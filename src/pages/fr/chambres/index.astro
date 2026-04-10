@@ -1,0 +1,23 @@
+---
+import { getEntry, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+
+// Récupérer la page chambres en français
+const page = await getEntry('pages', 'fr/chambres');
+
+if (!page) {
+  return Astro.redirect('/404');
+}
+
+const { Content } = await render(page);
+const { title, metaTitle, metaDescription } = page.data;
+---
+
+<Layout
+  title={metaTitle || title}
+  description={metaDescription || ''}
+>
+  <article class="container mx-auto px-4 py-12 max-w-4xl prose prose-lg">
+    <Content />
+  </article>
+</Layout>

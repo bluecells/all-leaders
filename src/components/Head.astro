@@ -1,0 +1,205 @@
+---
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-600.css';
+import '@fontsource/inter/latin-700.css';
+import '../styles/global.css';
+import JsonLd from '@/components/JsonLd.astro';
+import GoogleTagManager from '@/components/GoogleTagManager.astro';
+import { SITE } from '@/consts';
+import { commonTranslations } from '@/data/translations';
+import type { AlternateUrls } from '@/utils/hreflang';
+
+type JsonLdType = 'page' | 'blog' | 'event' | 'faq' | 'blogCollection' | 'hotelRoom' | null;
+
+interface Props {
+  title: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  publishDate?: Date;
+  lang?: string;
+  canonicalUrl?: string;
+  jsonType?: JsonLdType;
+  faqQuestions?: Array<{ question: string; answer: string }>;
+  roomData?: {
+    capacity?: number;
+    amenities?: string[];
+  };
+  alternateUrls?: AlternateUrls | null;
+}
+
+const {
+  title,
+  metaTitle,
+  metaDescription,
+  ogImage,
+  ogType = 'website',
+  publishDate,
+  lang = 'fr',
+  canonicalUrl,
+  jsonType = null,
+  faqQuestions = [],
+  roomData = {},
+  alternateUrls,
+} = Astro.props;
+
+const siteUrl = Astro.site?.toString() || 'https://all-leaders.fr';
+const currentUrl = canonicalUrl || new URL(Astro.url.pathname, siteUrl).toString();
+
+// Utiliser les traductions centralisées pour le defaultDescription et localeMap
+const t = commonTranslations[lang as keyof typeof commonTranslations] || commonTranslations.fr;
+const defaultDescription = t.defaultDescription;
+
+// Valeurs finales avec fallbacks clairs
+const finalMetaTitle = metaTitle || title;
+const finalMetaDescription = metaDescription || defaultDescription;
+const defaultOgImage = '/images/og/all-leaders-default-og.jpg';
+
+// Extraction robuste du chemin d'image
+let ogImagePath: string;
+if (typeof ogImage === 'object' && ogImage && 'image' in ogImage) {
+  ogImagePath = String((ogImage as any).image);
+} else if (typeof ogImage === 'string') {
+  ogImagePath = ogImage;
+} else {
+  ogImagePath = defaultOgImage;
+}
+
+// URL absolue
+const absoluteOgImage =
+  ogImagePath.startsWith('http') || ogImagePath.startsWith('//')
+    ? ogImagePath
+    : new URL(ogImagePath, siteUrl).toString();
+
+const localeMap: Record<string, string> = {
+  fr: commonTranslations.fr.localeCode,
+  en: commonTranslations.en.localeCode,
+};
+const ogLocale = localeMap[lang] || commonTranslations.fr.localeCode;
+---
+
+<!-- Charset & viewport -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- SEO Base -->
+<title>{title}</title>
+<meta name="title" content={finalMetaTitle} />
+<meta name="description" content={finalMetaDescription} />
+<meta name="generator" content={Astro.generator} />
+<link rel="canonical" href={currentUrl} />
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={currentUrl} />
+<meta property="og:title" content={finalMetaTitle} />
+<meta property="og:description" content={finalMetaDescription} />
+<meta property="og:image" content={absoluteOgImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:site_name" content="All Leaders" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={currentUrl} />
+<meta name="twitter:title" content={finalMetaTitle} />
+<meta name="twitter:description" content={finalMetaDescription} />
+<meta name="twitter:image" content={absoluteOgImage} />
+
+<!-- Article specific (for blog posts) -->
+{
+  ogType === 'article' && publishDate && (
+    <meta property="article:published_time" content={publishDate.toISOString()} />
+  )
+}
+
+<!-- Language alternates -->
+{
+  alternateUrls ? (
+    <>
+      {/* FR (toujours présent) */}
+      <link rel="alternate" hreflang="fr" href={new URL(alternateUrls.fr, siteUrl).toString()} />
+
+      {/* EN (si traduction existe) */}
+      {alternateUrls.en && (
+        <link rel="alternate" hreflang="en" href={new URL(alternateUrls.en, siteUrl).toString()} />
+      )}
+
+      {/* x-default pointe vers FR */}
+      <link
+        rel="alternate"
+        hreflang="x-default"
+        href={new URL(alternateUrls.fr, siteUrl).toString()}
+      />
+    </>
+  ) : (
+    <>
+      {/* Fallback pour pages statiques */}
+      <link rel="alternate" hreflang={lang} href={currentUrl} />
+      <link rel="alternate" hreflang="x-default" href={siteUrl} />
+    </>
+  )
+}
+
+<!-- Robots -->
+<meta name="robots" content="index, follow" />
+
+<!-- JSON-LD  -->
+{
+  jsonType === 'faq' && faqQuestions.length > 0 && (
+    <JsonLd
+      type="faq"
+      title={title}
+      url={`${SITE.URL}${Astro.url.pathname}`}
+      questions={faqQuestions.slice(0, 25)}
+    />
+  )
+}
+
+{
+  jsonType === 'page' && (
+    <JsonLd
+      type="page"
+      title={title}
+      description={finalMetaDescription}
+      url={`${SITE.URL}${Astro.url.pathname}`}
+    />
+  )
+}
+
+{
+  jsonType === 'hotelRoom' && (
+    <JsonLd
+      type="hotelRoom"
+      title={title}
+      description={finalMetaDescription}
+      url={`${SITE.URL}${Astro.url.pathname}`}
+      image={ogImage}
+      capacity={roomData?.capacity}
+      amenities={roomData?.amenities}
+    />
+  )
+}
+
+{
+  jsonType === 'blog' && publishDate && (
+    <JsonLd
+      type="blog"
+      title={title}
+      description={finalMetaDescription}
+      url={`${SITE.URL}${Astro.url.pathname}`}
+      date={publishDate}
+      image={ogImage}
+      author={SITE.AUTHOR}
+    />
+  )
+}
+
+<GoogleTagManager />

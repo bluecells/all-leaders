@@ -1,0 +1,264 @@
+---
+import { getCollection, render } from 'astro:content';
+import LayoutBlog from '../layouts/LayoutBlog.astro';
+import Layout from '../layouts/Layout.astro';
+import LayoutRooms from '../layouts/LayoutRooms.astro';
+import LayoutFaq from '../layouts/LayoutFaq.astro';
+import { findAlternateUrls, type AlternateUrls } from '@/utils/hreflang';
+import { SITE } from '@/consts';
+
+const pathname = Astro.url.pathname.replace(/^\/|\/$/g, '');
+let ContentComponent: any = null;
+let entryData: any = null;
+let entryType: string | null = null;
+let entryLang: 'fr' | 'en' | undefined = undefined;
+
+// ────────────────────────────────────────────────
+// 0. Vérification REDIRECTIONS depuis Keystatic (priorité maximale)
+// ────────────────────────────────────────────────
+try {
+  const redirectsCollection = await getCollection('redirects');
+
+  if (redirectsCollection && redirectsCollection.length > 0) {
+    const redirectsData = redirectsCollection[0].data;
+    const cleanPath = Astro.url.pathname.replace(/^\/|\/$/g, ''); // sans slash initial/final
+    const redirectMatch = redirectsData.redirects.find((r: any) => r.from === cleanPath);
+
+    if (redirectMatch) {
+      let toPath = redirectMatch.to.trim();
+
+      // Normalisation : s'assurer qu'il commence par /
+      if (!toPath.startsWith('/') && !toPath.includes('://')) {
+        toPath = '/' + toPath;
+      }
+
+      // Déterminer l'origine de façon la plus fiable possible
+      let origin = Astro.url?.origin;
+
+      // Fallbacks si origin est foireux ou absent (très courant en prod SSR)
+      if (
+        !origin ||
+        origin.includes('localhost') ||
+        origin === 'http://' ||
+        origin === 'https://'
+      ) {
+        origin = 'https://all-leaders.fr'; // ← ton domaine PROD fixe ici
+      }
+
+      // Construire URL absolue complète
+      const fullRedirectUrl = new URL(toPath, origin).toString();
+
+      const statusCode = Number(redirectMatch.status) || 301;
+
+      // Debug (enlève après test, ou garde en conditional si tu veux)
+      // console.log(`Redirect prod: ${Astro.url.pathname} → ${fullRedirectUrl} (status ${statusCode})`);
+
+      return Astro.redirect(fullRedirectUrl, statusCode);
+    }
+  }
+} catch (e) {
+  console.error('Redirects error:', e);
+  // Continue silencieusement
+}
+
+// ────────────────────────────────────────────────
+// 1. Exclusion fichiers système
+// ────────────────────────────────────────────────
+if (['favicon.ico', 'robots.txt', 'sitemap.xml'].includes(pathname)) {
+  return new Response(null, { status: 404 });
+}
+
+/* 2️⃣ Parsing de la route */
+const rawPath = Astro.url.pathname.replace(/^\/|\/$/g, '');
+const segments = rawPath ? rawPath.split('/') : [];
+
+/* Lang */
+const lang: string = (['fr', 'en'].includes(segments[0]) ? segments.shift() : 'fr') ?? 'fr';
+/* Route logique */
+const route = segments.join('/') || 'home';
+
+// Exclusion des routes blog (gérées par fichiers statiques)
+if (route === 'blog' || rawPath === 'en/blog') {
+  return new Response(null, { status: 404 });
+}
+
+/* 3️⃣ Chargement collections */
+const [articles, pages, rooms, faq, landingPages] = await Promise.all([
+  getCollection('articles'),
+  getCollection('pages'),
+  getCollection('rooms'),
+  getCollection('faq'),
+  getCollection('landing-pages'),
+]);
+
+let entry = null;
+let type = null;
+
+/* 4️⃣ ARTICLES */
+if (route.startsWith('limologiche/')) {
+  const [, categorySlug, articleSlug] = route.split('/');
+
+  // Charger toutes les catégories une fois
+  const allCategories = await getCollection('category');
+
+  entry = articles.find((a) => {
+    const cleanSlug = (a.data.seoSlug || a.id.split('/').pop())?.replace(/^\/|\/$/g, '');
+    if (a.data.lang !== lang || cleanSlug !== articleSlug) return false;
+
+    // Trouver la catégorie de cet article
+    const catEntry = allCategories.find((c) => c.id === a.data.category);
+    if (!catEntry) return false;
+
+    // Vérifier le slug localisé
+    const catSlugLocalized = catEntry.data[`slug_${lang}`] || catEntry.data.slug_fr;
+    return catSlugLocalized === categorySlug;
+  });
+  type = entry ? 'article' : null;
+}
+
+/* 5️⃣ ROOMS */
+if (!entry) {
+  const roomSlug = route.split('/').pop();
+  entry = rooms.find((r) => {
+    const cleanSlug = (r.data.seoSlug || r.id.split('/').pop())?.replace(/^\/|\/$/g, '');
+    if (r.data.lang !== lang) return false;
+    if (lang === 'fr' && route.startsWith('chambres/')) return cleanSlug === roomSlug;
+    if (lang === 'en' && route.startsWith('rooms/')) return cleanSlug === roomSlug;
+    return false;
+  });
+  type = entry ? 'room' : null;
+}
+
+/* 6️⃣ PAGES */
+if (!entry) {
+  entry = pages.find((p) => {
+    const cleanSlug = (p.data.seoSlug || p.id)?.replace(/^\/|\/$/g, '');
+    return p.data.lang === lang && cleanSlug === route;
+  });
+  type = entry ? 'page' : null;
+}
+
+/* 6️⃣ BIS - LANDING PAGES */
+if (!entry) {
+  entry = landingPages.find((lp) => {
+    const cleanSlug = (lp.data.seoSlug || lp.id)?.replace(/^\/|\/$/g, '');
+    return lp.data.lang === lang && cleanSlug === route;
+  });
+  type = entry ? 'landing-page' : null;
+}
+
+/* 7️⃣ FAQ */
+if (!entry && route.startsWith('faq/')) {
+  const routeParts = route.split('/');
+  const categorySlug = routeParts[1];
+  const faqSlug = routeParts[2];
+
+  if (categorySlug && faqSlug) {
+    const allFaqCategories = await getCollection('category');
+    entry = faq.find((f) => {
+      const cleanSlug = (f.data.seoSlug || f.id.split('/').pop()?.replace('.mdoc', ''))?.replace(/^\/|\/$/g, '');
+      if (f.data.lang !== lang || cleanSlug !== faqSlug) return false;
+
+      const catEntry = allFaqCategories.find((c) => c.id === f.data.category);
+      if (!catEntry) return false;
+
+      const catSlugLocalized = catEntry.data[`slug_${lang}`] || catEntry.data.slug_fr;
+      return catSlugLocalized === categorySlug;
+    });
+    type = entry ? 'faq' : null;
+  }
+}
+
+/* 8️⃣ 404 SAFE */
+if (!entry) {
+  if (lang === 'en') {
+    return Astro.redirect('/en/404');
+  } else {
+    return Astro.redirect('/404');
+  }
+} else {
+  const rendered = await render(entry);
+  ContentComponent = rendered.Content;
+  entryData = entry;
+  entryType = type;
+  entryLang = lang as 'fr' | 'en';
+}
+
+// Calculer les URLs alternatives pour hreflang
+let alternateUrls: AlternateUrls | null = null;
+if (entry && type) {
+  const allCategories = await getCollection('category');
+  alternateUrls = await findAlternateUrls(entry, type, {
+    pages,
+    articles,
+    rooms,
+    faq,
+    categories: allCategories,
+  });
+}
+---
+
+{
+  entryType === 'article' && (
+    <LayoutBlog
+      title={(entryData.data as any).title}
+      h1Title={(entryData.data as any).h1Title}
+      category={(entryData.data as any).category}
+      publishDate={(entryData.data as any).publishDate}
+      excerpt={(entryData.data as any).excerpt}
+      lang={entryLang}
+      ogImage={(entryData.data as any).ogImage}
+      metaTitle={(entryData.data as any).metaTitle}
+      metaDescription={(entryData.data as any).metaDescription}
+      featuredPhoto={(entryData.data as any).featuredPhoto}
+      alternateUrls={alternateUrls}
+    >
+      <ContentComponent />
+    </LayoutBlog>
+  )
+}
+
+{
+  entryType === 'page' && (
+    <Layout
+      title={(entryData.data as any).title}
+      lang={entryLang}
+      metaTitle={(entryData.data as any).metaTitle}
+      metaDescription={(entryData.data as any).metaDescription}
+      ogImage={(entryData.data as any).ogImage}
+      jsonType={(entryData.data as any).jsonType}
+      alternateUrls={alternateUrls}
+      isHomepage={pathname === '' || pathname.match(/^(fr|en)$/)}
+    >
+      <ContentComponent />
+    </Layout>
+  )
+}
+
+{
+  entryType === 'landing-page' && (
+    <Layout
+      title={(entryData.data as any).title}
+      lang={entryLang}
+      metaTitle={(entryData.data as any).metaTitle}
+      metaDescription={(entryData.data as any).metaDescription}
+      ogImage={(entryData.data as any).ogImage}
+      jsonType={(entryData.data as any).jsonType}
+      alternateUrls={alternateUrls}
+    >
+      <ContentComponent />
+    </Layout>
+  )
+}
+
+{
+  entryType === 'room' && (
+    <LayoutRooms room={entryData as any} lang={entryLang} alternateUrls={alternateUrls} />
+  )
+}
+
+{
+  entryType === 'faq' && (
+    <LayoutFaq faq={entryData as any} lang={entryLang} alternateUrls={alternateUrls} />
+  )
+}
