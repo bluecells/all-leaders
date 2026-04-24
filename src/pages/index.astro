@@ -349,23 +349,24 @@ import Carousel from '../components/UI/Carousel.astro';
 
 <style>
   /* ==========================================
-     PARTENAIRES — Layout Logo + Texte
+     PARTENAIRES — Layout Logo (1/4) + Texte (3/4)
   =========================================== */
 
   .partners-list {
     list-style: none;
     padding: 0;
     margin: 2rem 0;
+    display: grid;
+    gap: 1.5rem;
   }
 
   .partner-article {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 1rem;
     padding: 1.5rem;
     border: 1px solid rgba(74, 103, 65, 0.2);
     border-radius: 0.5rem;
-    margin-bottom: 1.5rem;
   }
 
   .partner-logo {
@@ -374,22 +375,20 @@ import Carousel from '../components/UI/Carousel.astro';
     height: auto;
   }
 
-  /* Mode desktop : logo à gauche, texte à droite */
+  /* Mode desktop : grille 4 colonnes (logo 1/4, texte 3/4) */
   @media (min-width: 768px) {
     .partner-article {
-      flex-direction: row;
-      align-items: flex-start;
+      grid-template-columns: 1fr 3fr;
+      align-items: start;
       gap: 2rem;
+      padding: 2rem;
     }
 
     .partner-logo {
-      flex-shrink: 0;
-      width: 120px;
-      height: 120px;
-    }
-
-    .partner-article > :not(.partner-logo) {
-      flex: 1;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: contain;
     }
   }
 
