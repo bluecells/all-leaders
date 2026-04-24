@@ -1,28 +1,342 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ActionBar from '../components/ActionBar.astro';
+import Grid from '../components/UI/Grid.astro';
+import Carousel from '../components/UI/Carousel.astro';
 ---
 
 <Layout
   title="All Leaders - Tourisme Responsable"
   lang="fr"
-  metaTitle="All Leaders - Tourisme responsable & Éco-living en Sardaigne"
-  metaDescription="Découvrez All Leaders, une maison d'hôtes éco-responsable à Cabras, en Sardaigne. Vivez le tourisme durable et la culture locale authentique."
+  metaTitle="All Leaders Initiative — Conseil en Leadership et Performance Collective"
+  metaDescription="All Leaders Initiative accompagne les équipes managériales, comités de direction et dirigeants pour dépasser les blocages collectifs et développer un leadership basé sur l'intention."
 >
   <div class="mx-auto px-4 py-12">
-    <h1 class="font-serif text-4xl mb-4 text-center">Bienvenue chez All Leaders</h1>
-    <p class="text-xl text-center mb-8">
-      Découvrez le tourisme responsable et l'éco-living en Sardaigne
+
+    <h1>All Leaders Initiative <span style="display: block; font-size: 2.25rem;">Conseil en performance collective pour dirigeants et équipes managériales</span></h1>
+
+    <p class="hero-quote pb-0! max-w-5xl mx-auto">
+      <q>&nbsp;Toutes les équipes performantes se ressemblent.<br>
+      Mais chaque équipe dysfonctionnelle l'est à sa façon.&nbsp;</q>
+
+      <p class="hero-quote text-6xl! not-italic! pt-10!">&mdash; Et la vôtre&nbsp;?</p>
     </p>
-    <p class="text-center mb-8">
-      Ceci est une page d'accueil temporaire. Le contenu arrivera bientôt.
+
+    
+<div class="max-w-3xl mx-auto text-center">
+    <p>
+      Vous sentez qu'il serait possible de <strong>mieux collaborer</strong>, de retrouver du <strong>sens</strong>,
+      de <strong>fluidifier les relations</strong>… mais quelque chose bloque.
+      Des habitudes ancrées, des non-dits, un manque de clarté.
+      <strong>Ces frontières invisibles freinent votre épanouissement et la dynamique collective.</strong>
     </p>
-    <div class="text-center">
-      <a href="/blog" class="inline-block px-6 py-3 text-white rounded bg-brand-primary hover:bg-brand-accent transition">
-        Explorer notre blog
-      </a>
+
+    <p class="hero-cta-text">Il est temps de les <strong>dépasser</strong>.</p>
+
+    <nav aria-label="Navigation principale">
+      <a href="#notre-approche" class="btn btn-primary">Découvrir notre approche</a>
+      <a href="#contact" class="btn btn-secondary">Prendre contact</a>
+    </nav>
     </div>
+
   </div>
 
-  <ActionBar />
+
+  <main>
+
+    <!-- ==========================================
+         SECTION 1 — Pourquoi All Leaders Initiative
+    =========================================== -->
+    <section id="notre-approche" aria-labelledby="h2-pourquoi">
+      <div class="container">
+
+        <h2 id="h2-pourquoi">
+          Dépasser les barrières invisibles de votre équipe
+        </h2>
+
+        <p>
+          Nous avons créé All Leaders Initiative pour vous permettre de questionner ce qui ne fonctionne
+          plus, oser de nouvelles façons d'agir et vous affranchir de ces barrières invisibles.
+          Pour réussir, ensemble.
+        </p>
+
+        <div class="values-grid" role="list">
+
+          <article role="listitem">
+            <h3><strong>Nous aimons l'entreprise</strong></h3>
+            <p>
+              Nous y avons grandi et en avons tiré beaucoup de fierté. Nous savons qu'elle doit offrir
+              un cadre qui favorise la responsabilité, la solidarité et l'initiative.
+            </p>
+          </article>
+
+          <article role="listitem">
+            <h3><strong>Nous croyons en l'humain</strong></h3>
+            <p>
+              Grâce à la sécurité psychologique et à l'affirmation de son intention, chacun peut
+              devenir leader et choisir consciemment d'influencer positivement son environnement.
+            </p>
+          </article>
+
+          <article role="listitem">
+            <h3><strong>Nous voyons l'organisation comme un équipage</strong></h3>
+            <p>
+              Nos parcours de marins, dans la sécurité nucléaire et une grande diversité de cultures
+              managériales nous ont appris à voir les organisations comme des équipages&nbsp;: des
+              collectifs qui gagnent en cultivant courage, cohésion, alignement et sens.
+              C'est dans cet esprit que nous vous accompagnons, avec la discipline des marins
+              et l'audace des aventuriers.
+            </p>
+            <p><strong>Cap&nbsp;?</strong></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2 — Offre / Continuum
+    =========================================== -->
+    <section id="offre" aria-labelledby="h2-offre">
+      <div class="container">
+
+        <h2 id="h2-offre">
+          Conseil en performance collective&nbsp;: du diagnostic à la transformation
+        </h2>
+
+                <h3>
+          Nous intervenons sur tout le <strong>continuum de la performance collective</strong>
+        </h3>
+
+        <Grid
+          items={[
+            {
+              title: 'Bien-être mental fondamental à récréer',
+              media: '/assets/diagnostic.svg',
+              description: 'Analyse approfondie de la dynamique d’équipe, identification des blocages et des leviers de performance.',
+            },
+            {
+              title: 'Amplifier les points forts et réguler les vecteurs de vulnérabilité',
+              media: '/assets/roadmap.svg',
+              description: 'Ateliers collaboratifs pour définir une feuille de route claire et alignée avec les objectifs stratégiques.',
+            },
+            {
+              title: 'Déployer le leadershio à tout niveau (leadership basé sur l’intention)',
+              media: '/assets/transformation.svg',
+              description: 'Accompagnement personnalisé pour mener à bien les transformations organisationnelles, en soutenant les équipes dans leur évolution.',
+            }
+          ]}
+        />
+
+        <h3>Nous avons accompagné de nombreuses équipes managériales, comités de direction et dirigeants exigeants actifs chez&nbsp;</h3>
+        <Carousel
+          images={[
+            { image: '/assets/clients/totalenergies.svg', alt: 'TotalEnergies' },
+            { image: '/assets/clients/edf.svg', alt: 'EDF' },
+            { image: '/assets/clients/sodexo.svg', alt: 'Sodexo' },
+            { image: '/assets/clients/airbus.svg', alt: 'Airbus' },
+            { image: '/assets/clients/orange.svg', alt: 'Orange' },
+          ]}
+        />  
+        <p>
+          Transformer les intentions en actions concrètes, pour des équipes agissant avec sens,
+          clarté et impact.
+        </p>
+
+        <!-- Placeholder pour les modules/offres détaillées -->
+        <div id="offre-modules" aria-label="Nos modules d'intervention">
+          <!-- Insérer ici les cards d'offres -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3 — Partenaires & Écosystème
+    =========================================== -->
+    <section id="ecosysteme" aria-labelledby="h2-ecosysteme">
+      <div class="container">
+
+        <h2 id="h2-ecosysteme">
+          Un écosystème de partenaires experts en leadership et cohésion d'équipe
+        </h2>
+
+        <p>Découvrez ceux qui naviguent avec vous et incarnent le leadership que nous développons.</p>
+
+        <ul class="partners-list" role="list">
+
+          <li>
+            <article>
+              <h3>Le Bureau du Réel</h3>
+              <p>
+                All Leaders Initiative est partie prenante du Bureau du Réel, un réseau d'intervenants
+                pour des formats de conférences disruptifs et centrés sur l'expérience vécue.
+              </p>
+              <a href="#" aria-label="En savoir plus sur le Bureau du Réel">En savoir plus</a>
+            </article>
+          </li>
+
+          <li>
+            <article>
+              <h3>Da CREW — Mission One</h3>
+              <p>
+                Simulation en réalité virtuelle&nbsp;: application concrète du Leadership basé sur
+                l'intention, faisant collaborer à "haute intensité" un équipage d'hélicoptère et un
+                équipage de sous-marin. Cette mission révèle les failles de communication et de
+                collaboration, et permet d'expérimenter et d'ancrer de nouveaux comportements ajustés.
+              </p>
+              <a href="#" aria-label="En savoir plus sur Da CREW Mission One">En savoir plus</a>
+            </article>
+          </li>
+
+          <li>
+            <article>
+              <h3>YourSafety.training — Gestion des conflits</h3>
+              <p>
+                Parce qu'on ne peut parler de relations sans parler de conflits, d'agressivité voire
+                de violence, nous avons intégré à notre expertise la gestion professionnelle des conflits.
+              </p>
+              <a href="#" aria-label="En savoir plus sur YourSafety.training">En savoir plus</a>
+            </article>
+          </li>
+
+          <li>
+            <article>
+              <h3>Synergies &amp; Co — Excellence opérationnelle</h3>
+              <p>
+                Parce que la performance dépend de l'adoption des bonnes postures, nous nous associons
+                à l'ancien dirigeant et militaire d'élite Olivier Crosetta et son cabinet Synergies &amp; Co
+                pour décliner l'excellence opérationnelle à tous niveaux.
+              </p>
+              <a href="#" aria-label="En savoir plus sur Synergies et Co">En savoir plus</a>
+            </article>
+          </li>
+
+          <li>
+            <article>
+              <h3>Pragmacie — Cartographie des talents CliftonStrengths</h3>
+              <p>
+                Parce qu'on ne peut parler de leadership sans alignement profond avec ses talents
+                naturels, nous avons intégré à notre expertise la cartographie des points forts avec
+                notre partenaire Pragmacie, certifié Gallup CliftonStrengths (ex StrengthsFinder).
+              </p>
+              <a href="#" aria-label="En savoir plus sur Pragmacie">En savoir plus</a>
+            </article>
+          </li>
+
+          <li>
+            <article>
+              <h3>Enablers — Accompagnement international</h3>
+              <p>
+                Pour accompagner vos défis organisationnels les plus complexes et à l'international,
+                nous sommes connectés à une communauté internationale et multiculturelle de
+                professionnels chevronnés.
+              </p>
+              <a href="#" aria-label="En savoir plus sur Enablers">En savoir plus</a>
+            </article>
+          </li>
+
+          <li>
+            <article>
+              <h3>FA3R — Expériences outdoor sur mesure</h3>
+              <p>
+                Parce que nous voulons proposer des expériences « out-door » sur mesure allant plus
+                loin dans les possibilités scénaristiques et l'engagement de vos équipes, en toute
+                sécurité, nous nous associons avec nos « frères d'armes » FA3R.
+              </p>
+              <a href="#" aria-label="En savoir plus sur FA3R">En savoir plus</a>
+            </article>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4 — Fondateurs
+    =========================================== -->
+    <section id="fondateurs" aria-labelledby="h2-fondateurs">
+      <div class="container">
+
+        <h2 id="h2-fondateurs">
+          Deux fondateurs, une vision commune du leadership basé sur l'intention
+        </h2>
+
+        <p>
+          Forts de nos différences et de nos complémentarités, nous sommes garants de la qualité
+          et de l'engagement des professionnels que nous rassemblons au service de vos objectifs.
+        </p>
+
+        <div class="founders-grid" role="list">
+
+          <article role="listitem" itemscope itemtype="https://schema.org/Person">
+            <h3 itemprop="name">Marie Emmanuelle Py</h3>
+            <p itemprop="jobTitle">Associée fondatrice</p>
+            <ul class="contact-list">
+              <li>
+                <a href="mailto:me@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Marie Emmanuelle Py">
+                  me@all-leaders.fr
+                </a>
+              </li>
+              <li>
+                <a href="tel:+33603555452" itemprop="telephone" aria-label="Appeler Marie Emmanuelle Py">
+                  +33 6 03 55 54 52
+                </a>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Marie Emmanuelle Py">
+                  Profil LinkedIn
+                </a>
+              </li>
+            </ul>
+          </article>
+
+          <article role="listitem" itemscope itemtype="https://schema.org/Person">
+            <h3 itemprop="name">Pierre-Etienne Bost</h3>
+            <p itemprop="jobTitle">Associé fondateur</p>
+            <ul class="contact-list">
+              <li>
+                <a href="mailto:pe@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Pierre-Etienne Bost">
+                  pe@all-leaders.fr
+                </a>
+              </li>
+              <li>
+                <a href="tel:+33685540511" itemprop="telephone" aria-label="Appeler Pierre-Etienne Bost">
+                  +33 6 85 54 05 11
+                </a>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Pierre-Etienne Bost">
+                  Profil LinkedIn
+                </a>
+              </li>
+            </ul>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5 — CTA Final / Contact
+    =========================================== -->
+    <section id="contact" aria-labelledby="h2-contact">
+      <div class="container">
+
+        <h2 id="h2-contact">Prêt à transformer la dynamique de votre équipe&nbsp;?</h2>
+
+        <p>
+          Engagez la conversation avec nos fondateurs et explorons ensemble comment
+          All Leaders Initiative peut vous accompagner.
+        </p>
+
+        <nav aria-label="Actions de contact">
+          <a href="mailto:me@all-leaders.fr" class="btn btn-primary">Contacter Marie Emmanuelle</a>
+          <a href="mailto:pe@all-leaders.fr" class="btn btn-primary">Contacter Pierre-Etienne</a>
+        </nav>
+
+      </div>
+    </section>
+
+  </main>
 </Layout>
