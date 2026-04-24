@@ -8,7 +8,8 @@ interface Props {
 const { lang = 'fr' } = Astro.props;
 
 // Charger le menu selon la langue
-const menuData = await getEntry('menu', lang);
+const menuKey = lang === 'fr' ? 'menuFR' : lang === 'en' ? 'menuEN' : 'menuFR';
+const menuData = await getEntry(menuKey as any);
 const liensDuMenu = menuData?.data.links || [];
 
 // URL du logo selon la langue

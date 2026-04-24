@@ -14,7 +14,7 @@
       "hasSubmenu": false,
       "submenu": []
     },
-  {
+    {
       "label": "Contact",
       "url": "/contact",
       "type": "link",
