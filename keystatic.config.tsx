@@ -546,6 +546,51 @@ export default config({
         }),
       },
     }),
+    accompagnements: collection({
+      label: 'Accompagnements',
+      slugField: 'title',
+      path: 'src/content/accompagnements/**',
+      columns: ['lang', 'title', 'type', 'categorie'],
+      schema: {
+        title: fields.slug({
+          name: { label: 'Titre' },
+          slug: { label: 'Slug technique' },
+        }),
+        categorie: fields.text({
+          label: 'Catégorie',
+          validation: { isRequired: true },
+        }),
+        type: fields.select({
+          label: 'Type',
+          options: [
+            { label: 'Formation', value: 'formation' },
+            { label: 'Coaching', value: 'coaching' },
+            { label: 'Conseil', value: 'conseil' },
+            { label: 'Mentorat', value: 'mentorat' },
+          ],
+          defaultValue: 'formation',
+        }),
+        description: fields.text({
+          label: 'Description',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        image: fields.image({
+          label: 'Image',
+          directory: 'public/images/accompagnements/',
+          publicPath: '/images/accompagnements/',
+          validation: { isRequired: true },
+        }),
+        lang: fields.select({
+          label: 'Langue',
+          options: [
+            { label: 'Français', value: 'fr' },
+            { label: 'Anglais', value: 'en' },
+          ],
+          defaultValue: 'fr',
+        }),
+      },
+    }),
     faq: collection({
       label: 'FAQ',
       path: 'src/content/faq/**',
