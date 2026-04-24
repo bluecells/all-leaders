@@ -218,6 +218,19 @@ const menu = defineCollection({
   }),
 });
 
+// Collection Accompagnements
+const accompagnements = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/accompagnements' }),
+  schema: z.object({
+    title: z.string(),
+    categorie: z.string(),
+    type: z.enum(['action', 'investigation', 'formation', 'coaching', 'conseil', 'mentorat']),
+    description: z.string(),
+    image: z.string(),
+    lang: z.enum(['fr', 'en']),
+  }),
+});
+
 export const collections = {
   pages,
   'landing-pages': landingPages,
@@ -228,4 +241,5 @@ export const collections = {
   redirects,
   category,
   tags,
+  accompagnements,
 };
