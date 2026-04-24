@@ -1,0 +1,47 @@
+---
+title: "M&amp;A : LE DIAGNOSTIC PARTAGÉ SUR L’ÉLÉMENT HUMAIN QUI RÉDUIT RISQUE ET TAUX D’ÉCHEC"
+date: 2023-05-12
+categories: 
+  - "outils"
+coverImage: "MA-LE-DIAGNOSTIC-PARTAGE-SUR-LELEMENT-HUMAIN-QUI-REDUIT-RISQUE-ET-TAUX-DECHEC-.jpeg"
+---
+
+#### **_Les chiffres d’échec des fusions-acquisitions (« M&A ») varient, tout en pointant vers un même constat d’échec dans 50 à 85% des cas suivant les sources… Soit bien pire qu’un jeu de pile ou face ! … Parmi les principaux facteurs d’échec, le même que celui expliquant à l’inverse les plus grands succès d’entreprise : l’élément humain._**
+
+#### **_Or, il est frappant de constater que cette dimension humaine – qualité des leaderships, des processus relationnels dans l’activité et donc capacité d’interactions et de prises de décision – est le parent pauvre des « due diligences », ces exercices d’analyse détaillée préalables aux M&A._**
+
+**Pourtant, il n’y a pas de fatalité** : il n’existe pas d’incompatibilité a priori insurmontable entre des individus, des équipes et des cultures d’entreprise – « seulement » un effort et un travail particulier de rapprochement dans la création de nouveaux modes de représentation et de fonctionnement communs – autrement dit une nouvelle culture commune. Et surtout, l’identification des écarts entre les cultures existantes et donc l’anticipation de l’effort à envisager pour les transcender en une nouvelle culture partagée est un exercice tout à fait réalisable, et pour un coût réellement marginal relativement à celui de n’importe quel « deal » de M&A…
+
+Notre propos n’est pas de développer ici les modalités de création d’une nouvelle culture « qui fonctionne » et d’une organisation performante – c’est à dire où les buts et effets recherchés sont alignés et clairement partagés, où l’on travaille en se parlant franchement sans évitement, faux-semblant ni risque de « retour de bâton » indu, en admettant ses propres appréhensions et besoins et sans penser avoir raison a priori\*…
+
+Nous voulons insister sur la possibilité d’**intégrer à la phase de due diligence d’une M&A un diagnostic partagé avec toutes les parties prenantes de la transaction, portant sur les dimensions clés des structures et dynamiques des organisations concernées**.
+
+Il ne s’agit pas d’un éventuel audit RH orienté comme l’ensemble de la due diligence sur les aspects très stratégiques et financiers, en ce cas avec les dimensions de risque social et juridique liées à la fonction RH. Mais bien d’**une véritable analyse de potentiel de l’intégration à se faire de manière optimale pour l’efficacité collective de l’activité opérationnelle.**
+
+Précisément, ce diagnostic permet d’évaluer où l’on en est des conditions d’organisation performante précitées, ainsi que **le niveau d’effort** potentiellement nécessaire pour les atteindre – ce qui apporte un élément décisif à l’analyse du risque de bonne mise en œuvre et intégration de l’opération de M&A étudiée, au même titre que les dimensions « classiques » de toute due diligence sur les risques et efforts stratégique, produit, financier…
+
+Pour cela, chez All Leaders Initiative, nous mettons en œuvre un **double dispositif, quantitatif et qualitatif**, applicable en plusieurs langues :
+
+- **Le volet quantitatif sous forme d’une enquête en ligne** pour l’ensemble des collaborateurs (management compris) permet de mesurer leur état d’esprit en termes de vécu actuel sur des dimensions telles que culture managériale, sécurité psychologique, etc. ainsi que leurs aspirations, et l’écart entre les deux. _L’outil utilisé bénéfice de l’expérience de 15 ans de R&D, de plus de 80 organisations et plus de 25 000 répondants analysés._
+
+- **Le volet qualitatif sous forme d’entretiens** avec un échantillon significatif permet d’identifier et d’analyser de manière globale et systémique les composantes structurant l’activité des équipes – leadership sous ses différentes formes, statut et appropriation des « standards » (vision & objectifs, règles et culture), qualité des processus relationnels, articulation entre l’activité et les enjeux de l’environnement identifiés. _Cette analyse repose sur les enseignements et l’expérience de la « Théorie Organisationnelle de Berne (T.O.B.) » – branche de l’Analyse Transactionnelle dédiée aux groupes et organisations._
+
+![](images/DiagALI-1024x411.png)
+
+**Bénéfices de ce double dispositif : fournir une lecture globale, systémique et objective de la situation sur toutes les dimensions clés de structures et dynamiques des organisations,** avec des données sur les aspirations ou états désirés, ainsi que l’écart (facilement appréhendé sous forme de cartographie) :
+
+– entre les collaborateurs entre eux,
+
+– entre leur vécu et leurs aspirations,
+
+– ainsi que l’écart entre l’état actuel et la vision stratégique de l’acquéreur.
+
+Ceci permet donc d’identifier et de partager ce qui sépare la situation actuelle d’un état d’efficacité collective optimal et du mode de fonctionnement envisagé et visé par l’acquéreur. On dispose ainsi d’**une vision claire de l’effort éventuel à produire pour aboutir à une situation souhaitée** – y compris avec une évaluation du coût de cet effort et une valorisation du potentiel de développement.
+
+En somme, pour un coût relativement marginal, on dispose d’**éléments complémentaires décisifs sur la viabilité de la transaction envisagée**… Et en cas de finalisation du « deal », les enseignements d’**une telle approche préparent particulièrement bien la phase d’intégration**. Avec de plus **des effets induits très positifs sur la confiance et l’engagement** des collaborateurs dont l’état d’esprit et la parole sont recueillies et reconnus…
+
+_Bien sûr, ce dispositif de diagnostic partagé particulièrement adapté au contexte de M&A peut être activé dans bien d’autres circonstances telles que réorganisation, changement d’orientation stratégique, prise de poste d’une nouvelle direction…_
+
+_**N’hésitez pas à [nous contacter](https://all-leaders.fr/contact/) pour en savoir plus !**_
+
+\*: on aura reconnu ici certains critères des équipes performantes chers à Will Schutz, fondateur de l’approche « Élément Humain » qui est une ressource clé dans l’approche intégrative animant All Leaders Initiative

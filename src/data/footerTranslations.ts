@@ -1,6 +1,6 @@
 export const footerTranslations = {
   fr: {
-    company: 'All Leaders Initiaive',
+    company: 'All Leaders Initiative',
     address: '67 rue de la Condamine',
     city: '75017 Paris',
     vat: 'TVA: 01253100950',
@@ -23,7 +23,7 @@ export const footerTranslations = {
     cookie: 'Cookies',
   },
   en: {
-    company: 'All Leaders Initiaive',
+    company: 'All Leaders Initiative',
     address: '67 rue de la Condamine',
     city: '75017 Paris',
     vat: 'VAT: 01253100950',

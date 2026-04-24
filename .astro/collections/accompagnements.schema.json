@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "categorie": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "action",
+        "investigation",
+        "formation",
+        "coaching",
+        "conseil",
+        "mentorat",
+        "immersion",
+        "inspiration"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "lang": {
+      "type": "string",
+      "enum": [
+        "fr",
+        "en"
+      ]
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "categorie",
+    "type",
+    "description",
+    "image",
+    "lang"
+  ]
+}

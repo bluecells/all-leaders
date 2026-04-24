@@ -1,0 +1,25 @@
+---
+title: "LA DIMENSION RELATIONNELLE DU TRAVAIL, UN AVANTAGE CONCURRENTIEL TROP NÉGLIGÉ !"
+date: 2022-10-05
+categories: 
+  - "idees"
+coverImage: "LA-DIMENSION-RELATIONNELLE-DU-TRAVAIL-UN-AVANTAGE-CONCURRENTIEL-TROP-NEGLIGE-.jpeg"
+---
+
+![](images/LA-DIMENSION-RELATIONNELLE-DU-TRAVAIL-UN-AVANTAGE-CONCURRENTIEL-TROP-NEGLIGE-.jpeg)
+
+## La dimension relationnelle : avantage compétitif ignoré ?
+
+**_Beaucoup de sociétés consacrent leur énergie au_**_**x sujets de structure, d’organisation (et d’organigramme…). Ceci malheureusement souvent au détriment de la dynamique des processus relationnels (**_**dimension relationnelle au travail**)_**, négligée, car moins tangible, moins « hard ».**_
+
+Or l’essentiel de la performance collective provient de la manière dont les membres de l’organisation ajustent leur fonctionnement relationnel pour tenir compte des variations de l’environnement, interne et externe.
+
+C’est là l’écho avec la loi de Pareto : le soin de réguler les relations occupe trop peu les managers, alors que c’est le facteur essentiel de succès collectif et un élément clé de compétitivité…
+
+Parmi les vecteurs pour optimiser ces ajustements relationnels : climat de **sécurité psychologique** (qui se travaille !), possibilité et capacité (qui s’apprend !) à **réguler les relations interpersonnelles**, à exprimer idées, besoins, préoccupations etc. de manière constructive.
+
+Le **_Leadership basé sur l’intention_** favorise l’engagement dans une telle dynamique d’intelligence collective en réduisant l’énergie dépensée dans les frictions ou conflits et en maximisant la performance.
+
+**_Et chez vous ? Les processus relationnels représentent-ils un potentiel avantage concurrentiel ? Comment formez-vous et accompagnez-vous vos managers et collaborateurs pour les aider à développer la dimension relationnelle au travail ?_**
+
+_**[Parlons-en par ici !](https://all-leaders.fr/contact/)**_

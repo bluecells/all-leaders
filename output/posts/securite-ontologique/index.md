@@ -1,0 +1,47 @@
+---
+title: "Sécurité ontologique : comment cultiver une stabilité intérieure pour tenir dans un monde incertain ?"
+date: 2025-02-13
+categories: 
+  - "outils"
+coverImage: "2025_Voeux-ALI.jpg"
+---
+
+## Le sentiment de sécurité est au cœur de notre capacité à développer une tolérance face au chaos et à contribuer à la création de valeur. De la capacité à fonctionner en vrai équipage par temps incertains.
+
+**Dans le cadre des organisations, on peut évoquer (avec Vincent Lénhardt) 4 niveaux de sécurité.**
+
+**1\. La sécurité institutionnelle :** savoir où l’on va.
+
+➡️ Une organisation stable et des rôles clairs.  
+❌ sauf que : aujourd’hui, tout change tout le temps (organigrammes mouvants, reporting à plusieurs niveaux, incertitude des marchés).
+
+**2\. La sécurité relationnelle** : savoir sur qui compter.
+
+➡️ Un réseau de confiance, des collègues avec qui partager.  
+❌ c'est sans compter sur : le télétravail, la volatilité des équipes notamment
+
+**3\. La sécurité psychologique** : savoir qu’on peut parler sans crainte d'être jugé.
+
+➡️ Droit à l’erreur, liberté d’expression, espace de confiance.  
+❌ Mais : ce n’est pas parce qu’on peut parler qu’on sait où aller.
+
+Toutes ces dimensions de sécurité sont essentielles, mais elles ne suffisent pas sans...
+
+**4.  La sécurité ontologique : savoir qui l’on est et avoir confiance en ce que l’on peut faire.**
+
+Cela se travaille !
+
+➡️ C'est **une boussole interne qui reste stable**, même quand tout s’effondre. Qui se travaille en clarifiant son socle de valeurs, en développant son ancrage et une vision long terme.
+
+➡️ C'est **une identité affirmée qui permet de prendre position**, même dans l’incertitude, en maintenant son cap. Qui se travaille en soignant la qualité de cercle de confiance : famille, amis, divers accompagnants et soutiens professionnels
+
+Parce nous ne pouvons pas garantir la stabilité de notre environnement ni empêcher les crises.  
+En revanche, nous pouvons incarner une stabilité intérieure, une solidité qui rassure et oriente.
+
+**Alors la vraie question n’est pas « Votre organisation est-elle stable ? » mais « sur quoi repose votre propre stabilité ? »**
+
+_L’ontologie, du grec ontos-, l’« être », et de logos, « raison », « discours ». Ce terme forgé au XVIIe siècle désigne l’étude philosophique de l’être en soi, indépendamment de ses déterminations particulières, avec ses modalités et ses propriétés. Elle est au cœur du travail de coaching._
+
+## Pour en savoir plus ...
+
+[Contactez-nous !](https://all-leaders.fr/contact/)

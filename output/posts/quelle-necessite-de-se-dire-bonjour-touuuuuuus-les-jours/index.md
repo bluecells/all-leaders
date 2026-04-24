@@ -1,0 +1,39 @@
+---
+title: "Quelle nécessité de se dire bonjour, touuuuuuus les jours ?"
+date: 2025-01-21
+categories: 
+  - "outils"
+coverImage: "jon-tyson-_ZS_mtl_H_0-unsplash-1-1-scaled.jpg"
+---
+
+## Dans la marine ou en navigation de manière générale, on passe littéralement des semaines ensemble, jour et nuit, au même endroit, dans un espace relativement confiné.  
+Pourtant, tous les matins, on se dit bonjour.
+
+Un bonjour qui n'a rien de nécessaire puisqu'il est redondant avec l'"appel" destiné à savoir si tout le monde est bien à bord. Mais pour ne pas passer notre journée à dire bonjour, on se dit bonjour une fois, le matin, avant 10 heures.
+
+Pas deux. Sinon c'est très mal pris : aurait-on salué quelqu'un machinalement sans même y prêter attention ! C'est très vexant !
+
+Car voilà **le véritable enjeu du « bonjour » : montrer à l’autre, une fois par jours, que je l’ai vu. Qu’il existe dans ma conscience**.  
+Même sans lui demander comment il va, je l'ai regardé, salué de loin, avec poignée de main ou un « check », mais je me suis arrêté sur lui. Il existe, il fait partie de mon univers, et par effet de cascade nous faisons tous partie du même univers.
+
+##### **Nous appartenons.**
+
+Cet acte d'inclusion est le premier stade de travail d'une équipe performante selon **Will Schutz**.
+
+Je n'ai plus peur de "ne pas appartenir" qui est l'une de nos peurs fondamentales en tant qu'êtres sociaux (rejet du groupe = mort).
+
+Cela m'évite de diriger une grande partie de mon énergie à cette tâche et la mettre au service de ce que j'ai à faire.
+
+Ou (autre stratégie, cela dépend des caractères) cela peut m'éviter de m'auto-isoler en me persuadant que de toute manière, je n'appartiens pas (comme cela je ne suis pas rejeté, c'est moi qui m'en vais "comme un prince"). En attendant, je ne travaille pas...
+
+Dans les équipes en bonne santé, on se dit donc bonjour tous les jours, en prenant soin de ce qui se cache derrière, même si cela peut sembler superflu ou redondant.
+
+##### **Ce rituel est fondamental pour renforcer l’inclusion, la cohésion et la culture d’un groupe, et un préalable à toute activité.**
+
+En entreprise aussi, et peut être surtout, ce n'est pas un hasard s'il existe une culture où le "bonjour" est valorisé comme un acte de cohésion. Cela peut passer par des rituels formels ou informels (salutations dans les couloirs, 2, 3 voir 4 bises (!), poignées de mains, « checks » …), mais qui sont des étapes indispensables au début d'un travail en commun.
+
+##### Ce simple rituel du « bonjour » est passionnant à observer car il parle vraiment du style et de la culture de chaque équipe, pour ne pas dire de sa santé...
+
+## Pour en savoir plus ...
+
+[Contactez-nous !](https://all-leaders.fr/contact/)

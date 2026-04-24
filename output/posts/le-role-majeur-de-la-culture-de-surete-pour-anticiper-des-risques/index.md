@@ -1,0 +1,93 @@
+---
+title: "LE RÔLE MAJEUR DE LA CULTURE DE SÛRETÉ DANS L’ANTICIPATION DES RISQUES"
+date: 2022-05-18
+categories: 
+  - "idees"
+coverImage: "LE-ROLE-MAJEUR-DE-LA-CULTURE-DE-SURETE-DANS-LANTICIPATION-DES-RISQUES-.jpeg"
+---
+
+**Les leçons de l’expérience de l’industrie nucléaire et des recherches les plus récentes en leadership**
+
+###### [_\[pdf à télécharger\]_](https://all-leaders.fr/wp-content/uploads/2023/05/Article-culture-de-surete-VFF.pdf)
+
+## La notion de risque vital
+
+### **La conscience et l’appréhension des risques façonnent la capacité à l’excellence des organisations.**
+
+Elles poussent leurs membres, à tous niveaux. Ils doivent trouver des ressorts à la fois techniques, organisationnels et psychologiques pour maximiser la performance dans l’atteinte de leurs missions. Ceci est valable dans l’industrie nucléaire pour laquelle le risque sur l’homme et l’environnement est évident, mais également pour chaque organisation confrontée à des risques de toute nature, susceptibles de menacer sa performance ou sa pérennité.  
+Ces menaces ou encore « situations redoutées », présentes dans chaque initiative humaine, peuvent être d’ordre industriel, économique ou humain, endogènes (propre à l’activité) ou exogènes (environnement au sens large : concurrence, substituts, régulation, société…), et peuvent potentiellement être vitaux, c’est-à-dire compromettre la viabilité de l’entreprise.  
+C’est maintenant la norme. Selon Ulrich Beck (1), nous sommes rentrés dans la société ou dans l’ère du risque, évoluant dans un environnement « de moins en moins prévisible et de plus en plus agressif », les événements en cours le confirment.
+
+## **Comment dans ce contexte prévenir, anticiper et maîtriser au mieux les situations redoutées propres à chaque entreprise ?**
+
+### Anticiper les risques et diminuer les vulnérabilités…
+
+L'industrie nucléaire se caractérise par le fait que les industriels de la profession ont largement partagé le haut niveau d'exigences pour se prémunir du risque. Et ceci a prévalu sur la réserve communément admise entre membres d'un même secteur. Il a ainsi donné lieu à des travaux de coopération internationale depuis plusieurs dizaines d’années, dont ceux de la réputée Agence Internationale pour l’Energie Atomique (AIEA (2)), ou encore au sein de WANO (3), association créée au lendemain de Tchernobyl, dont sont membres toutes les sociétés qui exploitent des centrales nucléaires dans le monde.  
+Ces travaux ont mis en évidence, à partir du retour d’expérience du terrain (études des anomalies, incidents et accidents), que la principale cause profonde des accidents est l’absence de culture de sûreté.
+
+#### **Par culture de sûreté s’entend _« l’ensemble des caractéristiques et des attitudes qui, dans les organismes et chez les individus, font que les questions relatives à la sûreté bénéficient, en priorité, de l’attention qu’elles méritent en raison de leur importance » (4)._**
+
+Cette culture influe sur la structure et le style de l’organisation, ainsi que sur les attitudes, les approches et l’engagement des collaborateurs à tous les niveaux, quels que soient les entreprises et les pays concernés. Elle exige que « toutes les tâches importantes pour la sûreté soient exécutées correctement, avec diligence, de manière réfléchie, en toute connaissance de cause, sur la base d’un jugement sain et avec le sens des responsabilités requis » (5).  
+Elle s’appuie surtout sur le capital humain de l’entreprise, d’où l’importance de lui offrir un cadre de travail lui permettant de s’épanouir et d’exprimer son plein potentiel, tout en reconnaissant que l’erreur humaine fait partie du quotidien de l’homme au travail.
+
+> **« La peur est bonne conseillère.** **Il faut être conscient du risque et le redouter pour pouvoir l’anticiper, sans qu’il nous paralyse et entrave notre capacité de décision »**  
+> Contre-amiral Jean Riou (6)
+
+Si ces éléments ne sont pas toujours mesurables, ils donnent cependant lieu à des effets tangibles. Il est donc possible – et nécessaire – de travailler à partir de ces effets.
+
+### …tout en travaillant sur la performance et la résilience de l’entreprise
+
+En parallèle, des recherches toujours plus nombreuses sont menées sur l’interaction forte entre la qualité relationnelle au sein des équipes et la performance de l’entreprise. Aux Etats Unis, Will Schutz (7) puis Amy Edmondson (8) ont ainsi mis en évidence la corrélation entre les deux et montré, entre autres, qu’un climat de sécurité psychologique permet de maximiser la capacité à créer de la valeur (performance court terme, adaptabilité et créativité) et à anticiper les crises (résilience et pérennité).  
+A l’instar de la culture de sûreté, la sécurité psychologique a des effets tangibles et mesurables.
+
+> **_« La sécurité psychologique est présente lorsque des collaborateurs ressentent une confiance et un respect mutuels ainsi que la possibilité – et même l’obligation – d’être francs et sincères. Ils ne craignent pas d’assumer leurs erreurs et au contraire s’en ouvrent de manière à permettre à l’entreprise de profiter de leur capacité à la faire réfléchir »_**  
+> Amy Edmondson (9)
+
+**Le rapport à l’erreur est ainsi fondamentalement repensé** : il s’agit pour l’entreprise de mettre en place les conditions qui motivent chacun à faire l’effort supplémentaire (the « extra mile ») nécessaire à assurer des pratiques de travail sécuritaires et la responsabilisation des employés. Ils osent ainsi faire preuve d’ouverture, c’est à dire parler de leurs problèmes, erreurs ou doutes, ce qui permet d’anticiper et surtout d’apprendre en permanence, et faire preuve de créativité dans la résolution des problèmes.  
+**Les deux leviers de la productivité de l’entreprise que sont la capacité à créer de la valeur et la capacité à anticiper et résoudre les problèmes sont ainsi optimisés.**
+
+### Bénéfices de l’autoévaluation de la culture de sûreté au sens large
+
+#### **Comment déployer et piloter cette culture de sûreté – incluant cette dimension de sécurité psychologique ?** Comment capitaliser sur la capacité des employés à réfléchir de manière autonome et responsable à la fois dans l’évaluation de cette culture, dans son déploiement et dans son pilotage quotidien ?
+
+Il s’agit dans un premier temps de **mettre en place des conditions s’assurant que chacun ait les moyens de s’approprier ce rapport au risque** : vision claire et partagée des situations redoutées, clarté organisationnelle, compétences individuelle et collective, et définition univoque des responsabilités en la matière.  
+Il s’agit ensuite de **travailler sur les conditions d’expression de cette capacité de chacun à être un acteur motivé et responsable, c'est-à-dire un leader, dans le système global**. Car pas plus que la capacité à réfléchir, la créativité et l’engagement ne peuvent s’imposer.
+
+> _**« You can’t manage knowledge workers »**  
+> _Peter Drucker (10)
+
+#### **Afin de s’appuyer sur le capital humain de son entreprise dans ces deux domaines, il est possible de mesurer par questionnaire autoadministré les différentes perceptions des collaborateurs sur les aspects clés de la culture de sûreté.**
+
+Ce questionnaire recouvre donc aussi bien les problématiques de définition du risque que la manière dont la culture de sûreté est déclinée dans toutes les activités de l’organisation. La manière dont d’autres facteurs influencent la sûreté, telles que la confiance, le travail d’équipe, la motivation, le stress, la charge de travail, les conditions de travail, le rapport à l’erreur et à la décision est également pris en compte.
+
+Les résultats anonymes peuvent être débriefés en équipe de travail, au niveau des directions ou au niveau central, chacun en tirant les leçons nécessaires à progresser.
+
+#### **Une autoévaluation de la culture de sûreté aide à la fois ceux directement concernés par la sûreté et le reste de l’organisation en mettant en lumière la façon dont la culture influe sur la performance.**
+
+Cette méthode, utilisée à la fois par l’AIEA et Edmondson, a montré qu’elle encourage les collaborateurs, à tous niveaux, à accepter la responsabilité de leurs résultats et facilite les prises de décisions favorisant une amélioration continue.
+
+#### _**S’autoriser à nommer clairement et à anticiper les risques, donner une priorité stratégique à l’établissement d’une culture de sûreté solide et mettre en place les conditions pour que le leadership de chacun puisse s’exprimer sont des conditions accessibles mais incontournables de performance et de résilience des entreprises aujourd’hui.**_
+
+_**Contactez-nous pour en savoir plus sur la culture de sûreté et sur comment procéder à son évaluation dans votre organisation**_
+
+_**Références**_
+
+> _(1) Ulrich Beck, sociologue allemand, auteur de « La Société du risque » (1986, 2001)._
+> 
+> _(2) L’AIEA est, au sein des Nations Unies, le centre international de la coopération dans le domaine du nucléaire. Elle travaille en collaboration avec ses États Membres et ses nombreux partenaires dans le monde. Elle œuvre aussi à la promotion de l’utilisation sûre, sécurisée et pacifique des technologies nucléaires._
+> 
+> _(3) WANO : (World Association of Nuclear Operators)_. D_epuis 1989, cette association mondiale des exploitants de centrales nucléaires s’attache à garantir l’exploitation responsable et sûre des centrales nucléaires dans le monde et à promouvoir l’amélioration continue de leur fonctionnement. Elle procède notamment à des contrôles de sûreté réguliers (revues de pairs) à l’aide d’experts chevronnés qu’elle sélectionne chez chacun de ses membres._
+> 
+> _(4) Groupe consultatif international pour la sûreté nucléaire – Rapports de sûreté – « Culture de sûreté » – collection sécurité N°75-INSAG-4 – AIEA, (1991)._
+> 
+> _(5) Groupe de travail consultatif international sur la culture de sûreté_. _Principes fondamentaux de sûreté pour les centrales nucléaires, Collection Sécurité -n° 75-INSAG-3, AIEA, (1990)._
+> 
+> _(6) Le contre-amiral Riou a été entre autres DRH des forces sous-marines stratégiques, directeur d’établissement (bases navales) et l’Amiral en charge des affaires nucléaires de la Marine_. _Il a ensuite occupé le poste d'Inspecteur Général pour la sûreté nucléaire, la radioprotection et la sécurité industrielle chez Areva._
+> 
+> _(7) Will Schutz est un psychologue et consultant en organisation. Il est l'auteur de l’approche « Elément Humain » dont le but est de résoudre les problèmes organisationnels et de permettre aux individus, aux équipes et aux organisations d’exprimer tout leur potentiel._
+> 
+> _(8) Amy C. Edmondson est une chercheuse, spécialiste américaine du leadership, du travail en équipe et de l’apprentissage organisationnel. Elle est l’auteure du livre « The Fearless Organisation » : Création de la sécurité psychologique en milieu de travail pour l’apprentissage, l’innovation et la croissance._
+> 
+> _(9) Traduit de l’article « How fearless organizations succeed », A. Edmondson, in Strategy+Business, 14/11/2018._
+> 
+> _(10) Peter Drucker, professeur, consultant en management d’entreprise, auteur et théoricien américain. Il est à l’origine de nombreux concepts utilisés dans le monde de l’entreprise, comme l’esprit d’entreprise et l’innovation systématique._

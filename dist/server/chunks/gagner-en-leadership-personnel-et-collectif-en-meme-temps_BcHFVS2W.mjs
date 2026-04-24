@@ -1,0 +1,8 @@
+async function getMod() {
+						return import('./gagner-en-leadership-personnel-et-collectif-en-meme-temps_Cu75jSd7.mjs');
+					}
+					const collectedLinks = [];
+					const collectedStyles = [];
+					const defaultMod = { __astroPropagation: true, getMod, collectedLinks, collectedStyles, collectedScripts: [] };
+
+export { defaultMod as default };

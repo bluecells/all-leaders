@@ -1,0 +1,38 @@
+---
+title: "Le continuum de la sécurité psychologique"
+date: 2023-10-03
+categories: 
+  - "idees"
+coverImage: "Ajouter-un-titre.jpg"
+---
+
+## Un référentiel pour articuler performances sociale, organisationnelle et managériale.
+
+### **Au fondement des conditions d’un travail de qualité et de l'efficacité collective, chez All Leaders Initiative, nous apprécions la notion de continuum de la sécurité psychologique. Elle est au cœur de la dimension relationnelle du travail.**  
+
+#### MAIS AU FOND, QU'EST-CE-QUE LA SECURITE PSYCHOLOGIQUE ?
+
+Exprimé très simplement, il s’agit de **se sentir dans un environnement de travail tel qu'on puisse s'y exprimer** - qu’il s’agisse de poser une question, exprimer un doute ou proposer une contribution, une initiative - **sans craindre un retour négatif** direct ou différé.
+
+C’est dans un tel environnement qu’on peut être collectivement ouvert, créatif et innovant.
+
+Nulle injonction au bonheur au travail, à la bien-pensance ou à la candeur ici : il s’agit bien d’être **au service de la performance collective, à l’alignement des enjeux économiques et humains** de toutes les parties-prenantes.  
+
+#### LA FLECHE DU CONTINUUM DE LA SECURITE PSYCHOLOGIQUE EXPRIME UNE CONTINUITE ENTRE DEUX EXTREMES
+
+![Le continuum de la sécurité psychologique](images/Continuum-secu-psy-1024x270.png)
+
+A droite, **la haute performance permise par un environnement fortement empreint de sécurité psychologique.** Pour rappel, nos études menées avec OpinionWay montrent que 100% des salariés dans un tel environnement appartiennent aussi à des organisations performantes…
+
+Ici, on est dans des niveaux élevés de **cohésion**, de **confiance** et d’**ouverture**. On y cultive le leadership à tous niveaux et observe la mise en œuvre des principes qui nous sont chers de _[« Leadership basé sur l’intention »](https://all-leaders.fr/leadership-base-sur-l-intention/)_.
+
+Lorsque l’on se déplace vers la gauche de la flèche de ce continuum, on rencontre les situations de **conflictualité** – qui ne sont pas mauvaises intrinsèquement : la conflictualité, c’est la confrontation à l’altérité, à la différence, condition de la capacité à penser autrement et à innover.
+
+Mais la conflictualité mal vécue et mal régulée est destructrice de valeur ([voir nos études](https://all-leaders.fr/evaluer-et-reduire-le-cout-excessif-de-la-conflictualite-au-travail-cest-possible/) sur les coûts cachés de la conflictualité excessive) et aussi d’humanité, avec son cortège de **tensions**, de bascule dans les **risques psychosociaux (RPS)**, les phénomènes d’**épuisement** et de **burn-out**…
+
+Et à l’extrême gauche de la flèche, les **troubles psychiques** s’observent. Non qu’ils soient à proprement parler créés par le travail (ce qu’on pourrait arguer des RPS) mais parce qu’ils vont s’y exprimer dans ce qui est une dimension importante de la vie quotidienne, et ce d’une manière **soit tempérée soit amplifiée par l’organisation et les conditions de travail**.
+
+On voit bien là cette idée de continuum : **c’est en se préoccupant de la partie gauche de la flèche qu’on peut se donner les moyens d’accéder à la partie droite de la haute performance collective** – tout comme il convient de soigner les fondations d’un édifice avant de se consacrer au second œuvre …
+
+### **En d’autres termes, la qualité et la santé des collaborateurs et managers sont la condition de la qualité et de la santé de l’organisation.**  
+**C’est pourquoi All Leaders Initiative intervient tout au long du continuum en fonction des contextes et enjeux** !

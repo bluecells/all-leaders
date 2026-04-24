@@ -1,0 +1,35 @@
+---
+title: "Redécouvrons le monde à travers nos 5 sens !"
+date: 2024-06-10
+categories: 
+  - "inspiration"
+coverImage: "Desert.jpg"
+---
+
+## Tout ce que nous connaissons commence par une sensation.  
+Redécouvrons le monde à travers nos cinq sens !
+
+> **_"Rien n'existe dans notre intelligence qui n'ait d'abord été dans nos sens."_**
+> 
+> Démocrite
+
+Quoi de plus vibrant que de sentir la chaleur du soleil, les différentes textures du sable, les odeurs de la lagune, les saveurs orientales et de voir les couleurs du ciel changer d’heure en heure ?  
+  
+Pour cette 6ème édition de nos marches / retraites dans le Sahara, en bord d’océan, j’invite [Michèle Gay](https://www.linkedin.com/in/ACoAAADg_hkBVuVT0dOQGU6E-D6v7qnmDDpVNj0), parfumeuse culinaire et formidable raconteuse, à sublimer nos sens.  
+  
+Le silence, la simplicité et la déconnexion viendront mettre ceux-ci en éveil.  
+  
+Chaque jour, je vous emmènerai dans un nouveau paysage et vous proposerai une manière différente de le faire dialoguer avec vous.  
+  
+Chaque jour, Michèle vous emmènera dans un voyage sensoriel différent et vous accompagnera à en capturer l’essence.
+
+Marie Emmanuelle
+
+* * *
+
+### Le sens, les sens, l'essence.  
+Carte Blanche à Michèle Gay.
+
+**Du 16 au 23 novembre 2024**  
+en marge de la lagune de **Dakhla**, Maroc.  
+Plus d’informations à venir ou en [nous contactant](https://all-leaders.fr/contact/) directement.

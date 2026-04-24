@@ -1,0 +1,21 @@
+---
+title: "COURAGEUX MAIS PAS TÉMÉRAIRE"
+date: 2022-09-10
+categories: 
+  - "idees"
+coverImage: "COURAGEUX-MAIS-PAS-TEMERAIRE.png"
+---
+
+![](images/COURAGEUX-MAIS-PAS-TEMERAIRE.png)
+
+## _**Entreprendre c’est prendre un risque. C’est oser croire que l’action que l’on va mener à des bénéfices plus grands (pour soi ou pour la société) que les dommages auxquels il pourrait aboutir en cas de danger.**_
+
+Et si le monde est peuplé de dangers, seuls quelques-uns peuvent avoir des conséquences néfastes significatives sur notre action. C’est ce qui distingue le danger du risque.
+
+L’entrepreneur n’a pas de prise sur l’occurrence des dangers qui l’entourent. Mais il est de sa responsabilité de les connaître au mieux. Il doit donc décider en conscience de prendre ou pas le risque d’entreprendre, et dans quelles conditions.
+
+Le téméraire (du latin _temerarius_ qui véhicule une notion de hasard) est hardi et audacieux, et dans une certaine mesure nie le danger, le courageux est réfléchi.
+
+Tout en ne perdant pas de vue le danger et en évaluant le risque à prendre, le courage de l’entrepreneur consiste à ne pas se laisser envahir par la peur. Il ne doit pas l’ignorer pour autant. Au contraire, il doit réfléchir en amont à la manière de faire avancer son idée, son entreprise, dans cet environnement instable. Il y a une certaine noblesse au courage.
+
+### _**Entreprendre c’est prendre un risque, donc. C’est croire en son action, mais aussi se préparer et préparer son équip(ag)e, en bon capitaine de navire, à tout ce qui pourrait menacer sa pérennité.**_

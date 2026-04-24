@@ -1,0 +1,31 @@
+---
+title: "SOULIGNER ET CONSCIENTISER LA PERFORMANCE"
+date: 2022-12-15
+categories: 
+  - "inspiration"
+coverImage: "amiral-riou.jpg"
+---
+
+**Pourquoi faut-il souligner et conscientiser la performance ?** Dans cette courte vidéo, l’amiral Jean Riou\* ne parle pas foot mais bien performance d’équipe, dans les contextes très particuliers qui ont été les siens, ceux des environnements de travail à hauts risques.
+
+- **mettre des mots** sur les choses qui se passent bien, pour les **apprécier**,
+
+- **comprendre** quels sont **les ingrédients de ces réussites** quotidiennes,
+
+- quels en sont **leurs sources de satisfaction** et
+
+- comment **en tirer les leçons pour le terrain**,
+
+https://youtu.be/Me4Mud-NcLM?list=PLOwiBOdMBHyeGXluIy03VN-BKe74Uqax2
+
+_Temps de visionnage (1’38)_
+
+Souligner et conscientiser la performance, tels sont le**s principes des enquêtes appréciatives** qui peuvent être menées dans le cadre de l’amélioration de la sécurité des opérations sensibles, et qui mobilisent les équipes autour de leur performance.
+
+La _**safety II**_ \[appréciative\] est un complément indispensable à la _**safety I**_ \[résolutoire\].
+
+**C’est pragmatique, c’est puissant, et ça fait du bien. Pourquoi s’en priver ? …**
+
+> **_« Qu’est-ce qui est plus valorisant que la satisfaction d’un travail bien fait \[…\] ou d’un succès remporté ensemble ? »_**
+
+_\* : Le Contre-Amiral (2S) Jean Riou a été Contre-Amiral en charge des affaires nucléaires de la Marine Nationale, commandant des bases navales de Brest et de l’Ile Longue (sous-marins nucléaires lanceurs d’engins), Chef Sécurité du porte-avions Charles de Gaulle, Inspecteur Général pour la sureté nucléaire, la radioprotection et la sécurité industrielle chez Areva._

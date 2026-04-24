@@ -1,0 +1,62 @@
+---
+title: "« DRH, REDEVENEZ DES DONNEURS DE SOUFFLE » : L’APPEL DE L’AMIRAL OLIVIER LAJOUS"
+date: 2022-04-12
+categories: 
+  - "inspiration"
+coverImage: "amiral-Olivier-Lajous.jpeg"
+---
+
+**Comment capitaliser sur la richesse humaine ? Nous reproduisons l’article _[publié ici](https://www.cspdocendi.fr/actualite/drh-redevenez-des-donneurs-de-souffle-lappel-de-lamiral-olivier-lajous?utm_source=linkedin&utm_medium=social&utm_campaign=leadearship-management&utm_term=211215&utm_content=)_ par CSP Docendi (Lefebvre Dalloz) et fondé sur un entretien avec une personnalité inspirante depuis longtemps pour _All Leaders Initiative_, l’amiral Olivier Lajous. Ce dernier livre ici une vision de la fonction RH à laquelle nous adhérons pleinement.**
+
+**Redonner du sens, gérer le rythme et le temps, miser sur une alliance d’exigence et de bienveillance… Ancien DRH de la Marine nationale élu DRH de l’année en 2012, l’amiral Olivier Lajous vient de publier _DRH, le courage de l’humain !_ (Afnor éditions), un ouvrage co-écrit avec Thomas Vilcot. Rencontre avec le fondateur du cabinet Olivier Lajous Conseil, qui nous livre sa vision d’une approche renouvelée – et ré-humanisée – de la fonction RH.**
+
+* * *
+
+### **D’APRÈS VOTRE EXPÉRIENCE DE DRH DANS L’ARMÉE, PUIS DE CONSEIL RH À DES ENTREPRISES PRIVÉES OU PUBLIQUES, LE RÔLE DE LA DIRECTION DES RESSOURCES HUMAINES EST-IL IDENTIQUE, QUEL QUE SOIT LE TYPE DE STRUCTURE ?**
+
+Toute organisation – administration, groupe privé, PME, milieu mutualiste ou associatif – fait face à l’improbable facteur humain : des femmes et des hommes travaillent ensemble pour une « cause ». Il peut s’agir de proposer des produits ou des services, de maintenir la paix, d’apporter des soins… Le défi est de les mettre au service de cette mission. Croient-ils à ce qu’ils font ? Se sentent-ils fiers et mobilisés ? Cette communauté doit se reconnaître au travers d’une culture, de valeurs, de règles de fonctionnement. Ce qui différencie les organisations tient justement à leur capacité à établir, ou non, des règles du jeu.
+
+* * *
+
+### **QUELS SONT LES PRINCIPAUX OBJECTIFS QUE DEVRAIT EMBRASSER LA DRH ?**
+
+Sa mission première est de ré-enchanter le monde du travail. Enfermée dans une vision très juridique et financière de la fonction, elle est en décalage avec la notion de richesse humaine dans laquelle le recrutement et la formation sont considérés comme des investissements. En globalisant le corps social avec un regard orienté sur la rentabilité, le risque est d’oublier la personne. La dynamique de succès repose sur la possibilité laissée aux individus de se réaliser, d’exprimer et développer leurs talents, et d’être reconnus. Chaque fonction, même considérée comme mineure, est un maillon de la chaîne.
+
+La DRH doit également réussir à articuler le « je » et le « nous ». D’après le concept africain de l’ubuntu, je suis ce que je suis grâce à ce que nous sommes. Il y a donc danger quand les intérêts des uns et des autres se télescopent, quand le « je » prend le pas sur le « nous ». Le « nous », c’est ce qui donne du sens. Ce sont des valeurs dans lesquelles on se reconnaît, des règles du jeu qui ont été co-construites et facilitent le vivre-ensemble. Faire communauté est donc un enjeu majeur pour la fonction RH, en contribuant à l’équilibre à trouver entre la réalisation individuelle et l’implication dans un collectif. Il faut aider les talents à se développer, à grandir, et mettre cette diversité des compétences au service d’un projet commun, d’une vision partagée.
+
+* * *
+
+### **POUR VOUS, LA DIRECTION DES RESSOURCES HUMAINES EST CELLE « DU LIEN, ET DU LIANT », TOUS DEUX ÉPROUVÉS DURANT LA CRISE SANITAIRE. COMMENT CONCILIER LES BESOINS LÉGITIMES DES INDIVIDUS, MIS EN LUMIÈRE DEPUIS LE DÉBUT DE LA PANDÉMIE, ET L’INTÉRÊT COLLECTIF ?**
+
+La crise a accéléré des tendances déjà présentes, dont la recherche d’un meilleur équilibre entre vie privée et vie professionnelle. Avec la généralisation du télétravail, il faut chercher d’autres façons de faire communauté, en inventant de nouveaux rituels. Des règles simples, de bon sens, pour vivre ensemble aussi harmonieusement que possible ; des règles que chacun peut s’approprier. En parallèle, il est essentiel de trouver des réponses adaptées aux besoins de chacun.
+
+* * *
+
+### **COMMENT LA DRH PEUT-ELLE RELEVER CES NOUVEAUX DÉFIS ?**
+
+Avec beaucoup de volonté ! Le numérique présente des opportunités mais aussi des risques, notamment en termes de déconnexion. Pression permanente, sentiment d’obligation de répondre au plus vite… Il est indispensable de fixer des limites. Je viens d’un monde professionnel où l’on reste en mer vingt-quatre heures sur vingt-quatre pendant de longues périodes. L’équipage qui rentre de mission bénéficie de trois à cinq semaines de repos – un temps où il met le travail de côté.
+
+Dans l’entreprise, trop souvent, il semble que l’on doive être « tout le temps sur le pont » – et que, de fait, l’on soit « sous l’eau ». Avec les risques associés de stress et de surmenage que cela comporte et donc, de brutalité dans les relations aux autres, de perte de jugement, de manque de disponibilité… La gestion du temps est essentielle. Il faut encourager une discipline personnelle pour s’imposer de vraies coupures et s’occuper de soi, de son bien-être.
+
+Au-delà de la question du temps, la DRH doit favoriser le bon rythme dans l’animation managériale. À quel moment, pour quelle opportunité, faut-il mettre sous pression, puis la relâcher ? Le management doit pouvoir bénéficier du soutien de l’équipe RH afin de gérer efficacement le rythme et le temps.
+
+* * *
+
+### **LES _SOFT SKILLS_ SONT AU CŒUR DE VOTRE OUVRAGE – DES SOFT SKILLS QUI AGISSENT AU QUOTIDIEN POUR PERMETTRE LE DIALOGUE, NOURRIR L’ACCOMPAGNEMENT, DESSINER UN CHEMIN AUSSI ET INVITER À L’ACTION. QUELLES SONT CELLES QUI VOUS ONT ÉTÉ LE PLUS UTILES TOUT AU LONG DE VOTRE PARCOURS ?**
+
+D’abord, la capacité à considérer l’autre dans son entièreté, pas uniquement à travers sa fiche de poste et ses objectifs de performance. Laissez-moi vous parler de la technique japonaise du Kintsugi. Elle consiste à recoller les morceaux d’une porcelaine cassée avec une laque contenant de la poudre d’or et, ainsi, à la magnifier. Nous sommes tous riches de nos fêlures. Nos réactions et comportements quotidiens sont ancrés dans ces blessures, complexes, échecs… Plus on accueille la personne avec son histoire, sa façon d’agir, plus on réussit à entrer dans la relation, dans un subtil équilibre d’exigence et de bienveillance.
+
+C’est d’ailleurs, sans doute, la plus importante soft skill pour les DRH aujourd’hui : cet équilibre, qui permet de chercher des solutions conjuguant bien-être et performance. Plus les collaborateurs sont reconnus, motivés, plus la performance est au rendez-vous. Il faut donc s’occuper d’eux, sans oublier de s’occuper de soi. Il me paraît également essentiel de donner les moyens de l’autonomie, en formant pour apporter les outils et postures nécessaires.
+
+* * *
+
+### **LES MODES MANAGÉRIALES SE SUCCÈDENT, APPORTANT PARFOIS DES BÉNÉFICES (HUMAINS, ORGANISATIONNELS), MAIS SE HEURTANT SOUVENT À L’ÉPREUVE DU RÉEL. COMMENT PALLIER CET ÉCUEIL ?**
+
+Dans toute approche, comme celle de l’entreprise libérée, il peut y avoir des éléments intéressants à retenir. Le risque consiste à en faire une théorie au lieu de la confronter à la réalité du terrain. Dans tous les cas, la priorité porte sur le fait d’établir des règles de vivre-ensemble pour favoriser la rencontre, l’échange, le collaboratif. Il faut aussi tirer parti des retours d’expérience. Par exemple, le droit à l’erreur. Dans la Marine, nous considérons que l'erreur est une leçon : « Qu’en a-t-on appris pour qu’elle soit utile ? ».
+
+J’aimerais faire un parallèle entre le monde de l’entreprise et les valeurs de la République – Liberté, Égalité, Fraternité -, qui sont les piliers de la communauté française. La liberté peut être source de violence si elle se transforme en ma volonté VS la liberté de l’autre. L’égalité se révèle dangereuse quand elle tire tout le monde vers le bas, en ne prenant pas en compte la différence et en appliquant une seule règle pour tous – contrairement à l’équité. Quant à la fraternité, elle doit nous inspirer pour tendre vers la solidarité et l’entraide. Il est temps de redonner du sens à ces termes, dans l’entreprise, pour refonder nos collectifs de travail.
+
+#### **_À propos de l’amiral Olivier Lajous :_**
+
+_Fondateur de l’EIRL Olivier Lajous Conseil, Olivier Lajous a achevé sa carrière militaire en tant qu’amiral quatre étoiles (vice-amiral d’escadre). Ancien DRH de la Marine Nationale, il a été élu DRH de l’année en 2012. Également auteur et conférencier, son nouvel ouvrage co-écrit avec Thomas Vilcot, DRH, le courage de l’humain !, est paru en septembre 2021 chez Afnor éditions. On lui doit également L’art de diriger ? L’art du temps et L’art de l’équilibre (éditions L’Harmattan)._  
+_Olivier Lajous est personnalité qualifiée auprès du conseil de gérance de l’Association Familiale Mulliez (AFM). Il est expert auprès de l’Association pour le Progrès du Management (APM) et président d’honneur de l’Executive Master RH de Sciences Po. Il a par ailleurs présidé le directoire de BPI Group de juin 2018 à juin 2019 – entre autres._

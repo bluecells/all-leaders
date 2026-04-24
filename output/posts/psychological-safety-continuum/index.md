@@ -1,0 +1,38 @@
+---
+title: "Psychological safety continuum"
+date: 2023-10-03
+categories: 
+  - "ideas"
+coverImage: "Ajouter-un-titre.jpg"
+---
+
+## A benchmark for linking social, organisational and managerial performance.
+
+### **At All Leaders Initiative, we value the notion of psychological safety continuum as the foundation for quality work and collective effectiveness. It lies at the heart of the relational dimension of work.**  
+
+#### BUT WHAT EXACTLY IS PSYCHOLOGICAL SAFETY?
+
+Put very simply, it's about **feeling that you're in a working environment where you can express yourself** - whether you're asking a question, expressing a doubt or proposing a contribution or initiative - **without fearing direct or delayed negative feedback.**
+
+It is in such an environment that we can be collectively open, creative and innovative.
+
+There's no injunction to happiness at work, to self-righteousness or to candour here: it's all about **serving collective performance, aligning the economic and human challenges** of all stakeholders.  
+
+#### THE PSYCHOLOGICAL SAFETY CONTINUUM ARROW EXPRESSES A CONTINUUM BETWEEN TWO EXTREMES
+
+![Psychological safety continuum](images/Continuum-secu-psy-1024x270.png)
+
+On the right, **the high performance enabled by an environment with a high level of psychological security**. As a reminder, our studies conducted with OpinionWay show that 100% of employees in such an environment also belong to high-performance organisations...
+
+Here we have high levels of **cohesion**, **trust** and **openness**. Leadership is cultivated at all levels, and we see the implementation of our cherished principles of _['Intention-based Leadership'](https://all-leaders.fr/leadership-base-sur-l-intention/)_.
+
+When we move to the left of the arrow on this continuum, we encounter **situations of conflict** - which are not intrinsically bad: conflict is the confrontation with otherness, with difference, which is a prerequisite for the ability to think differently and to innovate.
+
+But conflict that is poorly experienced and regulated destroys value ([see our studies](https://all-leaders.fr/evaluer-et-reduire-le-cout-excessif-de-la-conflictualite-au-travail-cest-possible/) on the hidden costs of excessive conflict) and also humanity, with its trail of **tension**, **psychosocial risks**, **exhaustion** and **burn-out**...
+
+And on the far left of the arrow, there are **mental disorders**. Not because they are, strictly speaking, created by work (which could be argued for psychosocial risks), but because they are expressed in what is an important dimension of daily life, and in a way that is either **tempered or amplified by the organisation and working conditions.**
+
+This idea of continuum is clearly obvious: **it's by looking after the left-hand side of the arrow that we can give ourselves the means to reach the right-hand side of high collective performance** - just as we need to look after the foundations of a building before devoting ourselves to the finishing touches...
+
+### **In other words, the quality and health of employees and managers are a prerequisite for the quality and health of the organisation.**  
+**That's why All Leaders Initiative is involved throughout the continuum, depending on the context and the issues at stake!**

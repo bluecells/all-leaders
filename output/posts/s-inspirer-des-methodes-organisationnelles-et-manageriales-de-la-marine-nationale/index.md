@@ -1,0 +1,19 @@
+---
+title: "HBR FRANCE / « CHEF, OUI CHEF ? LES ENTREPRISES AURAIENT TOUT INTÉRÊT À S’INSPIRER DES MÉTHODES ORGANISATIONNELLES ET MANAGÉRIALES DE LA MARINE NATIONALE. »"
+date: 2022-04-05
+categories: 
+  - "inspiration"
+coverImage: "HBR-FRANCE-CHEF-OUI-CHEF-LES-ENTREPRISES-AURAIENT-TOUT-INTERET-A-SINSPIRER-DES-METHODES-ORGANISATIONNELLES-ET-MANAGERIALES-DE-LA-MARINE-NATIONALE.-.jpeg"
+---
+
+Cet article publié sur le site français de la _Harvard Business Review_ offre un bel aperçu des conditions de création de « l’alchimie de l’équip(ag)e » propre à la Marine nationale française et qui nous est si chère chez _All Leaders Initiative_… Il  nous rappelle entre autres l’importance de soigner autant ce que nous appelons les **processus relationnels** (facilitation, régulation) que l’**activité opérationnelle** elle-même ou encore les **conditions de la subsidiarité**, pour une performance collective puissante et durable.
+
+Extrait :
+
+[Lien vers l’article](https://www.hbrfrance.fr/chroniques-experts/2021/03/33712-chef-oui-chef/)
+
+> > _« La subsidiarité permet d’attribuer la responsabilité d’une tâche à celui qui en est le plus capable : « Tout échelon supérieur s’interdit de réaliser lui-même ce qu’un échelon inférieur pourrait faire. \[…\]_
+> > 
+> > _Cette subsidiarité exige toutefois deux prérequis managériaux : le sens et la confiance. Pour ce qui est du sens, selon l’amiral Prazuck, « il appartient au chef de le décliner en objectifs concrets, sans brider l’initiative. » La déclinaison de cette vision se fait à la faveur d’une posture d’attention « vers le bas », ancrée au plus près de la réalité des équipes, et permet une meilleure appropriation individuelle du rôle de chacun, de telle sorte que la discipline émane du marin. Une telle autonomie exige que la vision soit clairement partagée au préalable, pour que chacun soit parfaitement aligné avec les enjeux stratégiques._
+> > 
+> > _Ensuite, pour ce qui est de la confiance : elle est nécessaire, car propice à la prise d’initiative et à l’engagement. Mieux : elle favorise l’émergence des potentiels._ _»_

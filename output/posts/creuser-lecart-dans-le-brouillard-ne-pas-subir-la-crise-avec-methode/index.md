@@ -1,0 +1,19 @@
+---
+title: "CREUSER L’ÉCART DANS LE BROUILLARD : NE PAS SUBIR LA CRISE, AVEC MÉTHODE"
+date: 2022-10-08
+categories: 
+  - "idees"
+coverImage: "CREUSER-LECART-DANS-LE-BROUILLARD-NE-PAS-SUBIR-LA-CRISE-AVEC-METHODE.png"
+---
+
+## Ne pas subir la crise
+
+_**Les fans de sport auto le savent : certains champions de rallye ont acquis la réputation de savoir creuser des écarts dans le brouillard, là où les autres lèvent le pied en attendant que ça passe… Pourtant, ces champions ne sont ni risque-tout ni trompe la mort. Non, leur secret repose dans un équilibre de discernement et de résolution.**_
+
+Comment trouver cet équilibre et créer les conditions de créer l’écart (sur le plan concurrentiel, de l’efficacité collective, etc.) dans le brouillard de cette crise, plutôt que la subir ?
+
+Le _**Leadership basé sur l’intention**_ est une voie pour cela, en travaillant sur la clarté de **l’échange d’« intentions »** de manière claire et maîtrisée : intention « descendante » du top management – les grands objectifs, les effets recherchés pour l’organisation ; intentions « montantes » – initiatives des collaborateurs pour aboutir à ces effets recherchés, dans l’exploitation du potentiel de situation de manière synchrone et responsable.
+
+Pour cela, nous appliquons et mettons à votre service **la méthode utilisée par les militaires français en opération**. Vous pouvez la découvrir et la mettre en pratique sur vos propres sujets en workshop, avec **l’intervention d’un officier supérieur des forces spéciales de la Marine en appui de nos consultants-coachs**. Cela afin de vous approprier l’approche et la mettre en œuvre collectivement, rapidement et efficacement, et creuser l’écart malgré le brouillard…
+
+_**[N’hésitez pas à nous contacter pour en savoir plus ou planifier un workshop !](https://all-leaders.fr/contact/)**_

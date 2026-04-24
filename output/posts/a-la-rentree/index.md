@@ -1,0 +1,25 @@
+---
+title: "A la rentrée on annonce la couleur !"
+date: 2023-09-19
+categories: 
+  - "outils"
+coverImage: "Comment-allez-vous.png"
+---
+
+## Il est aujourd'hui possible d'évaluer et réduire le coût excessif de la conflictualité en entreprise !
+
+### Nous vous proposons la nouvelle édition du dispositif de diagnostic par OpinionWay avec All Leaders Initiative !
+
+> - **1 mois de travail par an perdu en conflits au travail !**
+> 
+> - **Plus de 10 milliards d'euros de coût salarial dissipés en conflits chaque mois en France!**
+
+Ces premiers insights issus du volet benchmark national du dispositif de diagnostic du coût de la conflictualité montrent l’importance des situations de conflit au travail.
+
+Une **dimension souvent négligée de la réalité du travail, mais dont l’impact est multiple et massif** pour les organisations : temps, coût direct et indirect, efficacité collective et productivité, bien-être et qualité de vie au travail, risques psycho-sociaux…
+
+Et comme **on ne peut traiter une problématique qu’à partir de sa mesure objective**, _All Leaders Initiative_ et _[OpinionWay](https://www.opinion-way.com/)_ ont renouvelé leur **enquête nationale de mesure de la conflictualité au travail**, fouillant les situations, les effets directs et indirects et cette année la dimension d’agressivité et de violence de ces situations.
+
+En articulant à ce référentiel la **possibilité d’établir une mesure diagnostic en miroir dans votre organisation**, ce dispositif **_CAP "Coût de la conflictualité au travail_**" crée l**es conditions d’une mise en action** pouvant engager toutes les parties prenantes de votre organisation (DRH, DAF, managers, collaborateurs, RP, …) à partir d’**une vision objective et partagée afin d’identifier des gisements de coûts… et de gains cachés massifs et directement exploitables !**
+
+**_[N'hésitez pas à nous contacter pour en savoir plus !](https://all-leaders.fr/contact/)_**

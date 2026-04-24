@@ -1,0 +1,24 @@
+---
+title: "CONFLICTUALITÉ AU TRAVAIL : ESTIMEZ VOTRE GISEMENT DE COÛTS… ET DE GAINS CACHÉS !"
+date: 2022-11-26
+categories: 
+  - "outils"
+coverImage: "Conflictualite.jpg"
+---
+
+![cout des conflits en entreprise](images/cout-des-conflits-en-entreprise-1024x772.webp)
+
+**L’Observatoire du coût des conflits OpinionWay – All Leaders Initiative avec topics offre une vue globale de l’expérience de la conflictualité au travail, avec ses causes et ses effets, et notamment les temps et coûts salariaux dissipés associés, qui s’élèvent à non moins d’un mois par an, soit 152 milliards de coût salarial au niveau national… (voir** [Observatoire du coût du conflit](http://ob)**)**  
+**Mais il s’agit aussi (surtout !) d’un dispositif pour diagnostiquer la situation dans toute entreprise et ainsi identifier des gisements considérables de coûts et d’efficience !**
+
+L’étude démontre que ces gisements de coûts cachés directs sont liés au **temps excessif passé en conflictualité toxique au-lieu d’un temps optimisé de saine confrontation** comme seule une **minorité de salariés appartenant à des environnements de travail à la fois très performants et empreints de sécurité psychologique** l’expérimente. A cela conviendrait-il de rajouter les coûts indirects liés aux phénomènes de désengagement, d’évitement, voire d’absentéisme également mis à jour par l’étude…
+
+**Pour illustrer l’ampleur de ces enjeux, nous vous proposons ci-dessous un outil d’estimation de ces gains potentiels directs (temps passé à gérer des situations de conflit) dans votre propre organisation :**
+
+**Insérez l'effectif à c****onsidérer dans la calculatrice en ligne ci-dessous :** _(nombre d'employés de votre organisation)_
+
+<iframe src="https://webclient.openasapp.net/portal#!/client/app/4f35bda4-af62-46d4-a2fb-219f463c9343?disablePageTopArea=true&amp;disableMenu=true" width="500" height="700" style="border: none;"></iframe>
+
+## Pour aller plus loin...
+
+[Contactez-nous !](https://all-leaders.fr/contact/)

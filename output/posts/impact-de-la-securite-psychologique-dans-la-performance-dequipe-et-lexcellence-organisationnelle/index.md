@@ -1,0 +1,218 @@
+---
+title: "Impact de la sécurité psychologique dans la performance d’équipe et l’excellence organisationnelle"
+date: 2024-01-14
+categories: 
+  - "idees"
+coverImage: "excellence-2.jpg"
+---
+
+S’il y a une compétence interpersonnelle que tout le monde s’attache à travailler ce moment, c’est bien la sécurité psychologique au sein des équipes et organisations.
+
+Mais attention à bien comprendre le concept et à ne pas le confondre avec d’autres tendances en vogue.
+
+### Définition
+
+Ils ont le courage de prendre des décisions difficiles
+
+Les managers font souvent face à des choix complexes, impliquant des compromis difficiles ou impopulaires. Cela inclut des décisions concernant les changements stratégiques, les réductions de personnel, ou l'adoption de nouvelles méthodes de travail. Cela implique de stopper certaines activités de production, de faire des arbitrage complexes, de licencier parfois, au service de la mission et de l’ambition collectives.
+
+Dans tous les cas, petites ou grande décisions, le changement n’est jamais acquis et génère toujours des réactions de défense : les managers sont en première ligne pour permette qu’il puisse être permanent au sein de leur équipe, pour le bénéfice de leur organisation.
+
+![Re:work - Sécurité psychologique](images/rework.jpg)
+
+#### À ne pas confondre avec…
+
+Il est essentiel de distinguer la sécurité psychologique de concepts voisins en apparence, mais distincts.
+
+Par exemple, elle ne doit pas être confondue avec le confort, la gentillesse, un environnement amical, la sécurité psychique ou les notions de « safe spaces »
+
+Alors que le confort peut conduire à l'inaction et à l'évitement des défis, la sécurité psychologique encourage l'engagement actif et la prise de risques calculés.
+
+De même, elle diffère de la simple cordialité : il ne s'agit pas seulement de maintenir des relations agréables, mais de créer un cadre où la véritable expression et l'exploration des idées sont possibles et valorisées, ce qui est loin d’être consensuel.
+
+La sécurité psychique est à apprécier en rapport avec un environnement de travail non traumatisant, alors que la sécurité psychologique, bien qu'elle puisse favoriser la santé mentale, se concentre davantage sur la capacité de l'équipe à encourager la prise de risque interpersonnels et l'apprentissage collaboratif.
+
+Il ne s’agit pas non plus de créer des safe spaces, lieux où les individus peuvent se sentir protégés des préjugés et des critiques. La sécurité psychologique, à cultiver un environnement dans l’ensemble de l’espace de travail où les défis et les désaccords constructifs sont encouragés, dans une visée de performance personnelle et collective.  
+Enfin, elle ne va pas de pair avec l'absence de responsabilité ; au contraire, elle favorise une culture de redevabilité transparente et constructive.
+
+## La sécurité psychologique - une fondation pour l'excellence collective
+
+La sécurité psychologique, rappelons-le, désigne la liberté de s’exprimer (« speak up » ou « raise the voice » en anglais) sans conséquence négative lorsque cela nous est inconfortable mais que nous savons que l’équipe ou l’organisation en bénéficiera.
+
+Essentielle dans un monde imprévisible, elle est le fondement de la sécurité, l'innovation et de l'adaptabilité. Promouvoir cette sécurité, c'est ouvrir la porte au dernier stade de performance ou d’excellence – celui qui résiste aux organisations les plus clairs, aux patrons les plus avertis et aux process les mieux rôdés.
+
+#### Application au Leadership
+
+Dans le leadership, la sécurité psychologique se traduit par une culture d'ouverture et de confiance. Elle s'incarne dans des pratiques où les leaders encouragent activement la participation et la prise de risque calculé.
+
+Pourquoi ? Parce que naturellement il existe ce qu’Amy Edmondson appelle une [Asymétrie de la parole et de l’information (lien YouTube)](https://www.youtube.com/watch?v=eqt94enzklE).  
+Lorsque je dois dire quelques chose qui risque de me mettre mal à l’aise (report d’une erreur que personne n’avait remarquée, désaccord avec l’opinion majoritaire ou celle du hiérarchique, idée non aboutie, …), je vais, maintenant et à coup sûr, passer un moment tout à fait désagréable. Alors que si je me tais, c’est réglé. Mais peut-être que plus tard, mon organisation en bénéficiera. Nous sommes humains et sans intérêt supérieur la question est vite réglée.
+
+Comment le leader, le manager, l’organisation peut-elle faire pour que la balance soit plus équilibrée ? Que les bénéfices de la parole soient, pour la personne qui s’exprime, immédiatement et de manière certaine, compris et ressentis ?
+
+C’est tout l’objet de la sécurité psychologique.
+
+![Balance silence vs parole en sécurité psychologique](images/balance-silence-parole.jpg)
+
+#### Comportements et attitudes visés
+
+De manière pratique il s’agit pour les leaders, systématiquement, de décrypter l’intention positive, de remercier et de traiter l’information. Chacun se sentant valorisé et entendu, même dans ce qu’il n’a pas réussi, surtout dans ce qu’il n’a pas compris, est incité à collaborer ouvertement, et c’est là que réside le bon de performance.
+
+Ceci est d’ailleurs illustré par le tableau suivant : cette corrélation directe de la sécurité psychologique avec les standards de performance accessibles, montrée par les études, est illustrée de la manière suivante.
+
+C’est la sécurité psychologique qui permet de pousser les équipes hors de la zone de confort, en challengeant l’équipe sur sa compétence, les limites de sa compétence et ce qu’elle pourrait trouver comme ressources supplémentaires. C’est la condition de l’appellation pas très heureuse mais largement partagée d’ « équipe apprenante » ou « organisation apprenante ».
+
+![performance et sécurité psychologique](images/performance-secu-psychologique.jpg)
+
+#### Symptômes traités et bénéfices sur la performance des Équipes
+
+Les équipes imprégnées de sécurité psychologique affichent des niveaux supérieurs de performance, d'innovation et de collaboration. Les études de Amy Edmondson (reportées dans son livre de référence [« The Fearless organization »](https://fearlessorganization.com/the-fearless-organization) et à l’origine de ce concept) montrent combien ce climat favorise l’anticipation des problèmes, une résolution plus créative et une meilleure prise de décision, des atouts clés pour naviguer dans un monde en constante évolution.  
+Voici un récapitulatif des « pain point » régulièrement observés dans les équipes, auxquels s’adressent prioritairement les bénéfices de la sécurité psychologique
+
+##### **Communication inefficace**
+
+**Symptôme  
+**Malentendus fréquents, conflits
+
+**Causes probables  
+**Manque de transparence, peur de s'exprimer
+
+**Bénéfices sécurité psychologique  
+**Améliore la clarté et l'ouverture dans les échanges
+
+##### **Faible collaboration**
+
+**Symptôme  
+**Travail en silos, manque de soutien mutuel
+
+**Causes probables  
+**Compétition interne, manque de confiance
+
+**Bénéfices sécurité psychologique  
+**Encourage le partage d'informations et le travail d'équipe
+
+##### **Manque de créativité**
+
+**Symptôme  
+**Solutions stéréotypées, manque d'innovation
+
+**Causes probables  
+**Peur du jugement, environnement non stimulant
+
+**Bénéfices sécurité psychologique  
+**Stimule la pensée créative et l'expérimentation
+
+##### **Réticence à partager des feedbacks**
+
+**Symptôme  
+**Feedbacks superficiels ou inexistants
+
+**Causes probables  
+**Crainte des réactions négatives, culture non constructive
+
+**Bénéfices sécurité psychologique  
+**Favorise un retour constructif et honnête
+
+##### **Peur de l'échec**
+
+**Symptôme  
+**Aversion au risque, stagnation
+
+**Causes probables  
+**Culture punitive, manque de soutien
+
+**Bénéfices sécurité psychologique  
+**Permet de voir l'échec comme une opportunité d'apprentissage
+
+##### **Faible engagement**
+
+**Symptôme  
+**Absentéisme élevé, turnover
+
+**Causes probables  
+**Culture punitive, manque de soutien
+
+**Bénéfices sécurité psychologique  
+**Renforce l'engagement et le sentiment d'appartenance
+
+##### **Difficulté à gérer le stress**
+
+**Symptôme  
+**Tensions, burnout
+
+**Causes probables  
+**Pressions élevées, manque de soutien émotionnel
+
+**Bénéfices sécurité psychologique  
+**Offre un environnement de soutien et réduit le stress
+
+##### **Manque d'initiative**
+
+**Symptôme  
+**Attitude passive, dépendance excessive au leader
+
+**Causes probables  
+**Manque d'autonomie, peur de prendre des initiatives
+
+**Bénéfices sécurité psychologique  
+**Encourage l'autonomie et la prise d'initiative
+
+##### **Problèmes de confiance**
+
+**Symptôme  
+**Méfiance, vérifications constantes
+
+**Causes probables  
+**Manque de cohésion, expériences négatives passées
+
+**Bénéfices sécurité psychologique  
+**Construit et restaure la confiance au sein de l'équipe
+
+##### **Difficultés d'adaptation au changement**
+
+**Symptôme  
+**Résistance, confusion
+
+**Causes probables  
+**Manque de communication claire, peur de l'inconnu
+
+**Bénéfices sécurité psychologique  
+**Aide à naviguer et à s'adapter aux changements
+
+Pour aller plus loin
+
+**Les travaux et livres de Edmondson**
+
+"Right Kind of Wrong, the Science of Failing Well" (2023)
+
+“The Fearless Organization, Creating Psychological Safety in the Workplace for Learning, Innovation, and Growth” (2018)
+
+“Teaming: How Organizations Learn, Innovate and Compete in the Knowledge Economy” (2012).
+
+**Plus rapide, ses vidéos :**
+
+[Building a Psychologically Safe Workplace | Amy Edmondson | TEDxHGSE](https://www.youtube.com/watch?v=LhoLuui9gX8) - Un TEDx Talk où Amy Edmondson discute de la construction d'un lieu de travail psychologiquement sûr.
+
+[Creating Psychological Safety at Work in a Knowledge Economy | Amy Edmondson, Harvard](https://www.youtube.com/watch?v=KUo1QwVcCv0) - Une présentation de Harvard University où Dr. Edmondson aborde la sécurité psychologique au travail dans une économie de la connaissance.
+
+[The Importance of Psychological Safety: Amy Edmondson](https://www.youtube.com/watch?v=eP6guvRt0U0) - Une vidéo où Amy Edmondson parle de l'importance de la sécurité psychologique.
+
+**Des auteurs reconnus sur le sujet**  
+Pour apporter des perspectives supplémentaires et approfondir votre compréhension du sujet. Pour n’en citer que quatre :
+
+- "Turn The Ship Around" par David Marquet bien sûr : même s’il n'aborde pas spécifiquement la sécurité psychologique, son approche de leadership basé sur l’intention est tout à fait en ligne avec le concept
+- "Radical Candor" par Kim Scott : qui explore l'équilibre entre une gestion agressive et une empathie tout à fait ruineuse, suggérant un modèle de "candeur radicale" pour les managers.
+- Très pratique, "Speak-Up Culture: When Leaders Truly Listen, People Step Up" par Stephen Shedletzky offre des histoires, des théories et des outils pour aider les leaders à favoriser une culture de sécurité psychologique où chacun se sent en sécurité et habilité à s'exprimer.
+- "The Psychological Safety Playbook" par Karolin Helbig et Minette Norman : Un guide complet sur les pratiques, comportements et techniques pour favoriser la sécurité psychologique au sein des équipes de travail.
+
+#### Pour aller encore plus loin : viser la performance d’équipe et l’excellence collaborative
+
+Et parce qu’aucune équipe ne se ressemble, contactez-nous si vous voulez vous former, vous entraîner voire vous acculturer à la sécurité psychologique.
+
+  
+Chez **All leaders Initiative**, nous sommes spécialisés dans le renforcement du leadership et la création d'environnements de travail psychologiquement sûrs.
+
+  
+Nous vous accompagnerons pour un diagnostic de vos besoins et vous guiderons à travers des stratégies éprouvées et des approches innovantes pour remettre l’échange d’informations au sein de vos équipes et leur permettre d’atteindre de nouveaux standards.
+
+![Sécurité psychologique - Excellence des équipes - Allez plus loin](images/excellence-1.jpg)

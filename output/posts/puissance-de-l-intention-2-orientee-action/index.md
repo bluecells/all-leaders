@@ -1,0 +1,31 @@
+---
+title: "LA PUISSANCE DE L’INTENTION : ORIENTÉE ACTION (2/6)"
+date: 2022-09-07
+categories: 
+  - "idees"
+coverImage: "Orientee.jpg"
+---
+
+_L’approche du « Leadership basé sur l’intention » de All Leaders Initiative repose sur la puissance de « l’intention »._
+
+_Cette notion permet d’encapsuler deux dimensions essentielles à l’action de toute organisation : le but (quel est notre dessein, notre objectif ? ) et l’utilité (est-ce-que nos actions, comportements et attitudes favorisent l’atteinte de ce but ? )._
+
+_Dans cette série de six courts articles, nous précisons la notion d’intention, quels sont ses attributs particuliers, avant de conclure en forme de rappel sur les conditions de pleine expression de sa puissance._
+
+(Retrouvez le 1er épisode de la série « [Implication personnelle / Appropriation](https://all-leaders.fr/puissance-de-l-intention-1-implication-personnelle-et-appropriation/) _»_)
+
+## La puissance de l'intention orientée vers l'action
+
+Dans ce deuxième épisode dédié à l’intention, concept sous-jacent au _« Leadership basé sur l’intention »_, nous nous intéressons à un autre attribut essentiel de cette notion : le fait que **l’intention est « orientée action »**.
+
+#### **Cela signifie que l’intention implique** le parti pris d’envisager un but, et donc l’action vers l’atteinte de ce but.
+
+Il y a **une dimension de mise en mouvement propre à l’intention**. Celle-ci est résolument liée à une contribution ou initiative, ou encore à la résolution d’un problème.
+
+Dans _« l’échelle du leadership »_, concept et outil opérationnel propre au _« Leadership basé sur l’intention »_, on est avec l’intention dans un niveau supérieur aux échelons antérieurs mais néanmoins nécessaires de l’observation du contexte (échelon des faits), de la réflexion sur ce qu’ils inspirent (pensée) et même de l’idée générale de ce qu’il conviendrait de faire (souhait). L’intention implique le mouvement et la mise en action pour soi-même.
+
+**Elle s’oppose ainsi à la tentation de la passivité et l’attentisme** à l’égard d’instructions qui stérilisent le sens des responsabilités.
+
+#### **En d’autres termes,** elle favorise une attitude de leader…
+
+_Dans le prochain épisode, nous préciserons un troisième attribut majeur de l’intention : son rapport au contrôle…_
