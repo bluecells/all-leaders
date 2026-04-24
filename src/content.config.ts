@@ -236,7 +236,7 @@ const accompagnements = defineCollection({
   schema: z.object({
     title: z.string(),
     categorie: z.string(),
-    type: z.enum(['action', 'investigation', 'formation', 'coaching', 'conseil', 'mentorat']),
+    type: z.enum(['action', 'investigation', 'formation', 'coaching', 'conseil', 'mentorat', 'immersion', 'inspiration']),
     description: z.string(),
     image: z.string(),
     lang: z.enum(['fr', 'en']),
