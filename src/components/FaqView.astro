@@ -1,0 +1,38 @@
+---
+// FaqView.astro
+// Composant conteneur FAQ avec filtres et limite
+import { getCollection } from "astro:content"
+import FAQ from "../components/FAQ.astro"
+
+interface Props {
+  /** Catégorie à filtrer (optionnel) */
+  category?: string
+  /** Nombre maximum de FAQ à afficher (par défaut: toutes) */
+  limit?: number
+  /** Afficher le lien "Lire la suite" (par défaut: true) */
+  showReadMore?: boolean
+}
+
+const { category, limit, showReadMore = true } = Astro.props
+
+// Récupérer toutes les FAQ
+let faqs = (await getCollection("faq")).sort((a, b) => {
+  const orderA = a.data.order || 0
+  const orderB = b.data.order || 0
+  return orderB - orderA
+})
+
+// Filtrer par catégorie si spécifiée
+if (category) {
+  faqs = faqs.filter((faq) => faq.data.category === category)
+}
+
+// Limiter le nombre de résultats si spécifié
+if (limit) {
+  faqs = faqs.slice(0, limit)
+}
+---
+
+<div class="faq-view">
+  {faqs.map((entry) => <FAQ entry={entry} showReadMore={showReadMore} />)}
+</div>

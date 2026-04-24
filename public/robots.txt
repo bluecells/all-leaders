@@ -1,0 +1,15 @@
+# robots.txt - All Leaders Website
+
+# Interdire tous les bots d'accéder aux dossiers critiques
+User-agent: *
+Disallow: /admin/
+Disallow: /keystatic/
+Disallow: /api/
+Disallow: /.env
+Disallow: /.git/
+
+# Autoriser les bots pour le reste du site
+Allow: /
+
+# Sitemap
+Sitemap: https://all-leaders.fr/sitemap-index.xml

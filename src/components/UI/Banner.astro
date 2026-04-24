@@ -1,0 +1,149 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  background?: string; // Hex ou 'transparent'
+  height?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  fullBleed?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  background = 'white',
+  height = '200px',
+  ctaText,
+  ctaLink,
+  fullBleed = false,
+} = Astro.props;
+
+function getContrastColor(hexColor: string) {
+  // 1. FOND TRANSPARENT -> --color-brand-primary
+  if (!hexColor || hexColor === 'transparent') {
+    return 'var(--color-brand-primary)';
+  }
+
+  // Si c'est une variable CSS, on ne peut pas calculer dynamiquement en JS
+  if (hexColor.includes('var(')) {
+    return 'var(--color-brand-primary)';
+  }
+
+  const hex = hexColor.replace('#', '');
+  if (hex.length !== 6) return 'var(--color-brand-primary)';
+
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+
+  // Luminance (WCAG)
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+  // 2. FOND SOMBRE (lum < 0.5) -> BLANC
+  // 3. FOND CLAIR (lum >= 0.5) -> --color-brand-primary
+  return luminance < 0.5 ? '#FFFFFF' : 'var(--color-brand-primary)';
+}
+
+const textColor = getContrastColor(background);
+
+// On applique le beige du site uniquement si c'est explicitement transparent
+const finalBg = background === 'transparent' ? 'var(--color-bg-body)' : background;
+---
+
+<section
+  class={`banner ${fullBleed ? 'banner-fullbleed' : ''}`}
+  style={`min-height: ${height}; background-color: ${finalBg};`}
+>
+  <div class="banner-overlay">
+    <div class="banner-content">
+      <h2 class="banner-title" style={`color: ${textColor};`} set:html={title} />
+      {subtitle && <p class="banner-subtitle" style={`color: ${textColor};`} set:html={subtitle} />}
+      {
+        ctaText && ctaLink && (
+          <a href={ctaLink} class="banner-cta">
+            {ctaText}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* On corrige la faute de frappe dans la police */
+  .banner-title,
+  .banner-subtitle {
+    font-family: 'Playfair Display', serif; /* C'était 'Play-Fair' */
+  }
+
+  .banner {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .banner:last-child {
+    margin-bottom: -40px;
+  }
+
+  .banner-fullbleed {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: 100vw;
+  }
+
+  .banner-overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .banner-content {
+    display: flex;
+    flex-direction: column; /* Aligne les éléments verticalement */
+    align-items: center; /* Centre les éléments horizontalement (le H2, le P, le CTA) */
+    text-align: center; /* Centre le texte à l'intérieur des éléments */
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .banner-title {
+    width: 100%; /* Force le titre à prendre toute la largeur pour que text-align fonctionne */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .banner-cta {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.875rem 2rem;
+    background-color: var(--color-brand-primary);
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+
+  /* Si le texte de la bannière est blanc, le bouton devrait être blanc avec texte primary pour trancher */
+  .banner-title[style*='color: #FFFFFF'] ~ .banner-cta,
+  .banner-title[style*='color: #ffffff'] ~ .banner-cta {
+    background-color: #ffffff;
+    color: var(--color-brand-primary);
+  }
+
+  @media (min-width: 768px) {
+    .banner-title {
+      font-size: 3rem;
+    }
+  }
+</style>

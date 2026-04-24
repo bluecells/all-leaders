@@ -1,0 +1,85 @@
+redirects:
+  - from: camere/randa
+    to: /camere/alloggio-ecofriendly-camera-randa
+    status: '301'
+  - from: camere/trinchetta
+    to: /camere/bed-and-breakfast-a-cabras-la-camera-trinchetta
+    status: '301'
+  - from: le-camere
+    to: /le-camere-di-limolo-house
+    status: '301'
+  - from: 10-motivi-per-non-venire-a-limolo-a-cabras
+    to: /limologiche/soggiorno-eco/10-motivi-per-non-venire-a-limolo-a-cabras
+    status: '301'
+  - from: bioarchitettura-e-accoglienza-in-sardegna
+    to: /limologiche/sostenibilita/bioarchitettura-e-accoglienza-in-sardegna
+    status: '301'
+  - from: buone-pratiche-per-soggiornare-rispettando-lambiente
+    to: /limologiche/sostenibilita/buone-pratiche-per-soggiornare-rispettando-lambiente
+    status: '301'
+  - from: cantigos-in-carrela-2025
+    to: /limologiche/eventi-green/cantigos-in-carrela-2025
+    status: '301'
+  - from: cianotipia-laboratori
+    to: /limologiche/eventi-green/cianotipia-laboratori
+    status: '301'
+  - from: cocciopesto
+    to: /limologiche/sostenibilita/cocciopesto
+    status: '301'
+  - from: come-partecipare-al-world-wetlands-day-guida-completa
+    to: /limologiche/eventi-green/come-partecipare-al-world-wetlands-day-guida-completa
+    status: '301'
+  - from: destinazione-umana
+    to: /limologiche/eventi-green/destinazione-umana
+    status: '301'
+  - from: dune-di-piscinas-un-equilibrio-fragile-tra-natura-storia-e-tutela-ambientale
+    to: /limologiche/territorio/dune-di-piscinas-un-equilibrio-fragile-tra-natura-storia-e-tutela-ambientale
+    status: '301'
+  - from: eco-trekking-stefania-contini
+    to: /limologiche/sostenibilita/eco-trekking-stefania-contini
+    status: '301'
+  - from: giornata-mondiale-delle-zone-umide-in-sardegna-2025
+    to: /limologiche/eventi-green/giornata-mondiale-delle-zone-umide-in-sardegna-2025
+    status: '301'
+  - from: giornata-ramsar-2026-in-sardegna-stagnintour
+    to: /limologiche/eventi-green/giornata-ramsar-2026-in-sardegna-stagnintour
+    status: '301'
+  - from: luciano-pia-architetto-dal-25-green-alla-sardegna-di-limolo-house
+    to: /limologiche/sostenibilita/luciano-pia-architetto-dal-25-green-alla-sardegna-di-limolo-house
+    status: '301'
+  - from: mobilita-sostenibile-spiagge-del-sinis
+    to: /limologiche/sostenibilita/mobilita-sostenibile-spiagge-del-sinis
+    status: '301'
+  - from: once-upon-a-place-2025-perche-non-mancare
+    to: /limologiche/territorio/once-upon-a-place-2025-perche-non-mancare
+    status: '301'
+  - from: paesaggi-produttivi-del-montiferru-mostra-fotografica-e-territorio
+    to: /limologiche/eventi-green/paesaggi-produttivi-del-montiferru-mostra-fotografica-e-territorio
+    status: '301'
+  - from: parcheggiare-per-le-spiagge-del-sinis-rispettando-lambiente-te-lo-spiega-un-fratino
+    to: /limologiche/sostenibilita/parcheggiare-per-le-spiagge-del-sinis-rispettando-lambiente-te-lo-spiega-un-fratino
+    status: '301'
+  - from: pasqua-esperienza-sostenibile-in-sardegna
+    to: /limologiche/eventi-green/pasqua-esperienza-sostenibile-in-sardegna
+    status: '301'
+  - from: pernottare-a-cabras-5-giorni
+    to: /limologiche/eventi-green/pernottare-a-cabras-5-giorni
+    status: '301'
+  - from: ramsar-2025-in-sardegna-eventi-world-wetlands-day-stagnintour
+    to: /limologiche/eventi-green/ramsar-2025-in-sardegna-eventi-world-wetlands-day-stagnintour
+    status: '301'
+  - from: regali-green-per-un-natale-sostenibile-a-limolo-ti-consigliamo
+    to: /limologiche/sostenibilita/regali-green-per-un-natale-sostenibile-a-limolo-ti-consigliamo
+    status: '301'
+  - from: turismo-lento-a-cabras-e-nel-sinis
+    to: /limologiche/eventi-green/turismo-lento-a-cabras-e-nel-sinis
+    status: '301'
+  - from: visitare-il-bosco-da-fiaba-a-pau
+    to: /limologiche/turismo-responsabile/visitare-il-bosco-da-fiaba-a-pau
+    status: '301'
+  - from: visitare-la-sardegna-in-gennaio
+    to: /limologiche/turismo-responsabile/visitare-la-sardegna-in-gennaio
+    status: '301'
+  - from: workshop-di-fotografia-diario-di-viaggio-sardegna
+    to: /limologiche/eventi-green/workshop-di-fotografia-diario-di-viaggio-sardegna
+    status: '301'

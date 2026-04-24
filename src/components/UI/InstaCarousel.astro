@@ -1,0 +1,64 @@
+---
+// InstaCarousel.astro
+// On garde les props au cas où tu voudrais changer l'ID dynamiquement
+const { feedId = 'bSJr98Y1FpJkxujvmAK8', username = 'limolo.house' } = Astro.props;
+---
+
+<section class="insta-section">
+  <div class="insta-header">
+    <a href={`https://instagram.com/${username}`} target="_blank" rel="noopener noreferrer">
+      <h2 style="text-align: center;">Instagram @{username}</h2>
+    </a>
+  </div>
+
+  <div class="insta-container">
+    <behold-widget feed-id={feedId}></behold-widget>
+  </div>
+</section>
+
+<script>
+  // On utilise une fonction qui s'exécute même avec les ViewTransitions d'Astro
+  const loadBehold = () => {
+    if (!document.querySelector('script[src="https://w.behold.so/widget.js"]')) {
+      const s = document.createElement('script');
+      s.type = 'module';
+      s.src = 'https://w.behold.so/widget.js';
+      document.head.append(s);
+    }
+  };
+
+  // Lancement initial
+  loadBehold();
+
+  // Support pour Astro View Transitions (si activées)
+  document.addEventListener('astro:page-load', loadBehold);
+</script>
+
+<style>
+  .insta-section {
+    padding: 4rem 1rem;
+    background: var(--color-bg-body, #f4eee0);
+  }
+  .insta-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .insta-header h2 {
+    color: var(--color-brand-primary);
+    font-family: serif;
+    text-decoration: none;
+  }
+  .insta-header a {
+    text-decoration: none;
+  }
+
+  /* Conteneur pour limiter la largeur si besoin */
+  .insta-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 300px; /* Évite le saut de contenu au chargement */
+  }
+
+  /* Note : Le style des posts se gère désormais directement 
+     dans l'interface de Behold.so (couleurs, colonnes, etc.) */
+</style>

@@ -1,0 +1,37 @@
+---
+interface Props {
+  lang?: 'it' | 'fr' | 'en';
+}
+
+const { lang = 'it' } = Astro.props;
+
+const regionLabels = {
+  it: 'sardegna',
+  fr: 'sardaigne',
+  en: 'sardinia',
+};
+
+const region = regionLabels[lang];
+const actionUrl = `https://www.bed-and-breakfast.it/${lang}/${region}/limolo-house-56-green-cabras/57031`;
+---
+
+<div class="booking-engine-wrapper">
+  <div
+    class="js-booking-engine-container"
+    data-idstruttura="57031"
+    data-tipostruttura="bbit"
+    data-tipo="widget"
+    data-colore="ciano"
+    data-lingua={lang}
+    data-action={actionUrl}
+    data-wl="true"
+  ></div>
+  <script src="https://d117yjdt0789wg.cloudfront.net/CDN-widget/grunt/wdg-booking-engine.min.js"></script>
+</div>
+
+<style>
+  .booking-engine-wrapper {
+    width: 100%;
+    margin: 2rem 0;
+  }
+</style>

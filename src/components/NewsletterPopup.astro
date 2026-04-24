@@ -1,0 +1,171 @@
+---
+import { newsletterPopupTranslations } from '../data/newsletterPopupTranslations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t =
+  newsletterPopupTranslations[lang as keyof typeof newsletterPopupTranslations] ||
+  newsletterPopupTranslations.it;
+---
+
+<div id="newsletter-popup" class="newsletter-popup hidden">
+  <div class="newsletter-content">
+    <button id="close-newsletter" class="close-btn" aria-label={t.closeText}>×</button>
+    <img
+      src="/Logo-Limolo-Eco-House-a-Cabras-in-Sardegna.webp"
+      style="padding: 12px 0; max-width:120px;"
+    />
+    <h3>{t.title}</h3>
+    <p>{t.subtitle}</p>
+    <a
+      href="https://limolohouse56green.substack.com/subscribe"
+      target="_blank"
+      class="subscribe-btn"
+    >
+      {t.buttonText}
+    </a>
+  </div>
+</div>
+
+<script>
+  function initNewsletterPopup() {
+    const popup = document.getElementById('newsletter-popup');
+    const closeBtn = document.getElementById('close-newsletter');
+
+    if (!popup || !closeBtn) return;
+
+    // Afficher la pop-up après 10 secondes
+    setTimeout(() => {
+      popup.classList.remove('hidden');
+    }, 10000);
+
+    // Fermer la pop-up au clic sur le bouton fermer
+    closeBtn.addEventListener('click', () => {
+      popup.classList.add('hidden');
+    });
+
+    // Fermer la pop-up en cliquant en dehors du contenu
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        popup.classList.add('hidden');
+      }
+    });
+  }
+
+  // Initialiser au chargement du DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNewsletterPopup);
+  } else {
+    initNewsletterPopup();
+  }
+</script>
+
+<style>
+  .newsletter-popup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    animation: slideIn 0.4s ease-out;
+  }
+
+  .newsletter-popup.hidden {
+    display: none;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(450px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .newsletter-content {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    max-width: 380px;
+    position: relative;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--color-brand-primary);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: color 0.2s;
+  }
+
+  .close-btn:hover {
+    color: var(--color-brand-accent);
+  }
+
+  h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-brand-primary);
+  }
+
+  p {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .subscribe-btn {
+    display: inline-block;
+    background-color: var(--color-brand-primary);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+
+  .subscribe-btn:hover {
+    background-color: var(--color-brand-accent);
+  }
+
+  @media (max-width: 480px) {
+    .newsletter-popup {
+      bottom: 10px;
+      right: 10px;
+      left: 10px;
+    }
+
+    .newsletter-content {
+      max-width: none;
+      padding: 20px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
+</style>

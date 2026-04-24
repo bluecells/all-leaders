@@ -1,0 +1,417 @@
+/** @jsxImportSource react */
+import { useState, useEffect, type ReactElement } from 'react';
+import type { SeoAnalysis, SeoData } from './types';
+import { analyzeSeo } from './analyzers/seo';
+
+interface SeoPanelProps {
+  keyword?: string;
+}
+
+export default function SeoPanel({ keyword }: SeoPanelProps): ReactElement | null {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeTab, setActiveTab] = useState<'seo' | 'readability'>('seo');
+  const [analysis, setAnalysis] = useState<SeoAnalysis | null>(null);
+
+  useEffect(() => {
+    console.log('[SEO Analyzer] Component mounted, keyword:', keyword);
+
+    const analyzeContent = () => {
+      console.log('[SEO Analyzer] Starting content analysis...');
+      // Extract title
+      const title = document.querySelector('title')?.textContent || '';
+
+      // Extract meta description
+      const description = document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+
+      // Extract headings
+      const h1Elements = Array.from(document.querySelectorAll('h1')).map(el => el.textContent || '');
+      const h2Elements = Array.from(document.querySelectorAll('h2')).map(el => el.textContent || '');
+      const h3Elements = Array.from(document.querySelectorAll('h3')).map(el => el.textContent || '');
+
+      // Extract main content
+      const contentElement = document.querySelector('article') ||
+                            document.querySelector('main') ||
+                            document.body;
+      const content = contentElement?.textContent || '';
+
+      // Extract images
+      const images = Array.from(document.querySelectorAll('img')).map(img => ({
+        src: img.src,
+        alt: img.alt || ''
+      }));
+
+      // Extract links
+      const links = Array.from(document.querySelectorAll('a[href]')).map(link => {
+        const href = link.getAttribute('href') || '';
+        const isInternal = href.startsWith('/') ||
+                          href.startsWith('#') ||
+                          href.includes(window.location.hostname);
+        return {
+          href,
+          text: link.textContent || '',
+          isInternal
+        };
+      });
+
+      const seoData: SeoData = {
+        title,
+        description,
+        h1: h1Elements,
+        h2: h2Elements,
+        h3: h3Elements,
+        content,
+        images,
+        links,
+        url: window.location.pathname,
+        keyword
+      };
+
+      const result = analyzeSeo(seoData);
+      console.log('[SEO Analyzer] Analysis complete:', result);
+      setAnalysis(result);
+    };
+
+    // Run analysis after a short delay to ensure DOM is ready
+    const timer = setTimeout(analyzeContent, 100);
+    return () => clearTimeout(timer);
+  }, [keyword]);
+
+  if (!analysis) {
+    return null;
+  }
+
+  const { overallScore, checks, flesch, keywordDensity, wordCount } = analysis;
+
+  // Determine score color
+  const getScoreColor = (score: number) => {
+    if (score >= 70) return '#10b981'; // green
+    if (score >= 50) return '#f59e0b'; // orange
+    return '#ef4444'; // red
+  };
+
+  const getStatusIcon = (status: 'pass' | 'warning' | 'fail') => {
+    if (status === 'pass') return '✓';
+    if (status === 'warning') return '⚠';
+    return '✗';
+  };
+
+  const getStatusColor = (status: 'pass' | 'warning' | 'fail') => {
+    if (status === 'pass') return '#10b981';
+    if (status === 'warning') return '#f59e0b';
+    return '#ef4444';
+  };
+
+  const sortedChecks = [...checks].sort((a, b) => {
+    const priorityOrder = { high: 0, medium: 1, low: 2 };
+    return priorityOrder[a.priority] - priorityOrder[b.priority];
+  });
+
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
+        width: isExpanded ? '400px' : '80px',
+        maxHeight: isExpanded ? '600px' : '80px',
+        backgroundColor: '#1f2937',
+        color: '#f3f4f6',
+        borderRadius: '12px',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.3)',
+        zIndex: 9999,
+        overflow: 'hidden',
+        transition: 'all 0.3s ease',
+        fontFamily: 'system-ui, -apple-system, sans-serif',
+      }}
+    >
+      {/* Header */}
+      <div
+        style={{
+          padding: '16px',
+          borderBottom: isExpanded ? '1px solid #374151' : 'none',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          cursor: 'pointer',
+        }}
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '50%',
+              background: `conic-gradient(${getScoreColor(overallScore)} ${overallScore * 3.6}deg, #374151 0deg)`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+            }}
+          >
+            <div
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                backgroundColor: '#1f2937',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '12px',
+                fontWeight: 'bold',
+                color: getScoreColor(overallScore),
+              }}
+            >
+              {overallScore}
+            </div>
+          </div>
+          {isExpanded && (
+            <div>
+              <div style={{ fontWeight: 'bold', fontSize: '14px' }}>SEO Analyzer</div>
+              <div style={{ fontSize: '11px', color: '#9ca3af' }}>
+                {wordCount} words
+                {keyword && ` • ${keyword}`}
+              </div>
+            </div>
+          )}
+        </div>
+        <button
+          style={{
+            background: 'none',
+            border: 'none',
+            color: '#9ca3af',
+            fontSize: '20px',
+            cursor: 'pointer',
+            padding: '0',
+            width: '24px',
+            height: '24px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsExpanded(!isExpanded);
+          }}
+        >
+          {isExpanded ? '−' : '+'}
+        </button>
+      </div>
+
+      {/* Content */}
+      {isExpanded && (
+        <>
+          {/* Tabs */}
+          <div
+            style={{
+              display: 'flex',
+              borderBottom: '1px solid #374151',
+              backgroundColor: '#111827',
+            }}
+          >
+            <button
+              style={{
+                flex: 1,
+                padding: '12px',
+                background: 'none',
+                border: 'none',
+                color: activeTab === 'seo' ? '#3b82f6' : '#9ca3af',
+                borderBottom: activeTab === 'seo' ? '2px solid #3b82f6' : 'none',
+                cursor: 'pointer',
+                fontSize: '13px',
+                fontWeight: '500',
+              }}
+              onClick={() => setActiveTab('seo')}
+            >
+              SEO Analysis
+            </button>
+            <button
+              style={{
+                flex: 1,
+                padding: '12px',
+                background: 'none',
+                border: 'none',
+                color: activeTab === 'readability' ? '#3b82f6' : '#9ca3af',
+                borderBottom: activeTab === 'readability' ? '2px solid #3b82f6' : 'none',
+                cursor: 'pointer',
+                fontSize: '13px',
+                fontWeight: '500',
+              }}
+              onClick={() => setActiveTab('readability')}
+            >
+              Readability
+            </button>
+          </div>
+
+          {/* Tab Content */}
+          <div
+            style={{
+              maxHeight: '460px',
+              overflowY: 'auto',
+              padding: '16px',
+            }}
+          >
+            {activeTab === 'seo' && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {/* Overall Summary */}
+                <div
+                  style={{
+                    padding: '12px',
+                    backgroundColor: '#111827',
+                    borderRadius: '8px',
+                    fontSize: '12px',
+                  }}
+                >
+                  <div style={{ marginBottom: '8px', color: '#9ca3af' }}>Overall Score</div>
+                  <div
+                    style={{
+                      fontSize: '24px',
+                      fontWeight: 'bold',
+                      color: getScoreColor(overallScore),
+                    }}
+                  >
+                    {overallScore}/100
+                  </div>
+                  {keywordDensity !== undefined && (
+                    <div style={{ marginTop: '8px', fontSize: '11px', color: '#9ca3af' }}>
+                      Keyword Density: {keywordDensity.toFixed(2)}%
+                    </div>
+                  )}
+                </div>
+
+                {/* Checks */}
+                {sortedChecks.map((check) => (
+                  <div
+                    key={check.id}
+                    style={{
+                      padding: '12px',
+                      backgroundColor: '#111827',
+                      borderRadius: '8px',
+                      borderLeft: `3px solid ${getStatusColor(check.status)}`,
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        marginBottom: '6px',
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: '16px',
+                          color: getStatusColor(check.status),
+                        }}
+                      >
+                        {getStatusIcon(check.status)}
+                      </span>
+                      <span style={{ fontSize: '13px', fontWeight: '600' }}>
+                        {check.label}
+                      </span>
+                      <span
+                        style={{
+                          marginLeft: 'auto',
+                          fontSize: '10px',
+                          padding: '2px 6px',
+                          borderRadius: '4px',
+                          backgroundColor: '#374151',
+                          color: '#9ca3af',
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        {check.priority}
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#d1d5db', lineHeight: '1.5' }}>
+                      {check.message}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {activeTab === 'readability' && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {/* Flesch Score */}
+                <div
+                  style={{
+                    padding: '16px',
+                    backgroundColor: '#111827',
+                    borderRadius: '8px',
+                  }}
+                >
+                  <div style={{ marginBottom: '12px', color: '#9ca3af', fontSize: '12px' }}>
+                    Flesch Reading Ease
+                  </div>
+                  <div
+                    style={{
+                      fontSize: '32px',
+                      fontWeight: 'bold',
+                      color: getScoreColor(flesch.score),
+                      marginBottom: '8px',
+                    }}
+                  >
+                    {flesch.score}
+                  </div>
+                  <div style={{ fontSize: '13px', color: '#d1d5db', marginBottom: '16px' }}>
+                    {flesch.interpretation}
+                  </div>
+
+                  {/* Stats */}
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: '1fr 1fr',
+                      gap: '12px',
+                      paddingTop: '12px',
+                      borderTop: '1px solid #374151',
+                    }}
+                  >
+                    <div>
+                      <div style={{ fontSize: '11px', color: '#9ca3af', marginBottom: '4px' }}>
+                        Avg. Sentence Length
+                      </div>
+                      <div style={{ fontSize: '18px', fontWeight: '600' }}>
+                        {flesch.avgSentenceLength}
+                      </div>
+                    </div>
+                    <div>
+                      <div style={{ fontSize: '11px', color: '#9ca3af', marginBottom: '4px' }}>
+                        Avg. Word Length
+                      </div>
+                      <div style={{ fontSize: '18px', fontWeight: '600' }}>
+                        {flesch.avgWordLength}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Readability Tips */}
+                <div
+                  style={{
+                    padding: '12px',
+                    backgroundColor: '#111827',
+                    borderRadius: '8px',
+                  }}
+                >
+                  <div style={{ fontSize: '13px', fontWeight: '600', marginBottom: '8px' }}>
+                    Tips for Better Readability
+                  </div>
+                  <ul style={{ fontSize: '12px', color: '#d1d5db', margin: 0, paddingLeft: '20px', lineHeight: '1.8' }}>
+                    <li>Use shorter sentences (15-20 words ideal)</li>
+                    <li>Avoid complex words when simple ones work</li>
+                    <li>Break long paragraphs into smaller chunks</li>
+                    <li>Use subheadings to organize content</li>
+                    <li>Include bullet points and lists</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}

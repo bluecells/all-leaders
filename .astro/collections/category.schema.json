@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "tag_slug": {
+      "type": "string"
+    },
+    "name_it": {
+      "type": "string"
+    },
+    "name_fr": {
+      "type": "string"
+    },
+    "name_en": {
+      "type": "string"
+    },
+    "slug_it": {
+      "type": "string"
+    },
+    "slug_fr": {
+      "type": "string"
+    },
+    "slug_en": {
+      "type": "string"
+    },
+    "description_it": {
+      "type": "string"
+    },
+    "description_fr": {
+      "type": "string"
+    },
+    "description_en": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name_it",
+    "name_fr",
+    "name_en",
+    "slug_it",
+    "slug_fr",
+    "slug_en"
+  ]
+}

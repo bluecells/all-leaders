@@ -1,0 +1,51 @@
+---
+interface Props {
+  embedUrl: string;
+  title?: string;
+  height?: string;
+  class?: string;
+}
+
+const {
+  embedUrl,
+  title,
+  height = '400px',
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={`maps-container ${className}`} style={`--maps-height: ${height};`}>
+  {title && <h3 class="maps-title">{title}</h3>}
+  <iframe
+    src={embedUrl}
+    class="maps-iframe"
+    allowFullScreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  >
+  </iframe>
+</div>
+
+<style define:vars={{ mapsHeight: height }}>
+  .maps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .maps-title {
+    font-family: 'PlayFair', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-brand-primary);
+    margin: 0;
+  }
+
+  .maps-iframe {
+    width: 100%;
+    height: var(--maps-height);
+    border: 0;
+    border-radius: 4px;
+  }
+</style>

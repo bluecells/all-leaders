@@ -1,0 +1,158 @@
+---
+interface ImageData {
+  image: string;
+  alt: string;
+}
+
+interface Props {
+  images: ImageData[];
+  height?: string;
+  padding?: string;
+  text?: string;
+  textPosition?: 'top' | 'bottom' | 'left' | 'right';
+}
+
+const {
+  images,
+  height = '400px',
+  padding = '0',
+  text,
+  textPosition = 'bottom'
+} = Astro.props;
+
+// S'assurer qu'on a exactement 4 images
+const displayImages = images.slice(0, 4);
+while (displayImages.length < 4) {
+  displayImages.push({ image: '', alt: 'Image manquante' });
+}
+
+// Déterminer la disposition selon la position du texte
+const isHorizontal = textPosition === 'left' || textPosition === 'right';
+const flexDirection = isHorizontal
+  ? (textPosition === 'left' ? 'row-reverse' : 'row')
+  : (textPosition === 'top' ? 'column-reverse' : 'column');
+---
+
+<div
+  class="quadrifoglio-wrapper"
+  style={`padding: ${padding}; ${isHorizontal && text ? 'display: flex; flex-direction: ' + flexDirection + '; gap: 2rem; align-items: center;' : ''}`}
+>
+  {text && !isHorizontal && textPosition === 'top' && (
+    <div class="quadrifoglio-text mb-4 text-center">
+      <p class="text-lg">{text}</p>
+    </div>
+  )}
+
+  <div
+    class="quadrifoglio-content"
+    style={isHorizontal && text ? 'flex: 1;' : ''}
+  >
+    <div class="quadrifoglio-container" style={`--quad-height: ${height}`}>
+      <div class="quadrifoglio-grid">
+        {displayImages.map((image, index) => (
+          <div
+            class="quadrifoglio-item"
+            style={`animation-delay: ${index * 0.2}s`}
+          >
+            {image.image && (
+              <img
+                src={image.image}
+                alt={image.alt}
+                class="quadrifoglio-image"
+              />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {text && isHorizontal && (
+    <div class="quadrifoglio-text flex-1">
+      <p class="text-lg">{text}</p>
+    </div>
+  )}
+
+  {text && !isHorizontal && textPosition === 'bottom' && (
+    <div class="quadrifoglio-text mt-4 text-center">
+      <p class="text-lg">{text}</p>
+    </div>
+  )}
+</div>
+
+<style>
+  /* ========================================
+     MOBILE FIRST
+     ======================================== */
+
+  .quadrifoglio-wrapper {
+    flex-direction: column !important;
+  }
+
+  .quadrifoglio-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .quadrifoglio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0.5rem;
+    aspect-ratio: 1;
+    height: var(--quad-height);
+  }
+
+  .quadrifoglio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    background: #f3f4f6;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: quadrifoglio-light 0.6s ease-out forwards;
+  }
+
+  .quadrifoglio-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .quadrifoglio-item:hover .quadrifoglio-image {
+    transform: scale(1.05);
+  }
+
+  .quadrifoglio-text {
+    text-align: center;
+  }
+
+  @keyframes quadrifoglio-light {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    60% {
+      transform: scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* ========================================
+     DESKTOP
+     ======================================== */
+  @media (min-width: 769px) {
+    .quadrifoglio-container {
+      max-width: 800px;
+    }
+
+    .quadrifoglio-grid {
+      gap: 1rem;
+    }
+  }
+</style>

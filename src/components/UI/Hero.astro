@@ -1,0 +1,129 @@
+---
+import { getImageSrc } from '../../utils/imageHelper';
+
+// HeroSection.astro
+// Composant Hero moderne et responsive avec Tailwind CSS
+
+interface Props {
+  title?: string;
+  titleTag?: 'h1' | 'h2' | 'h3' | 'p' | 'div';
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  secondaryLinkText?: string;
+  secondaryLinkUrl?: string;
+  backgroundImage?: string | { src: string; alt?: string };
+  photoCredit?: string;
+  backgroundPositionX?: string;
+  backgroundPositionY?: string;
+  backgroundPositionXMobile?: string;
+  backgroundPositionYMobile?: string;
+  body?: string;
+  bgColor?: string;
+}
+
+const {
+  title = 'Titolo Principale',
+  titleTag = 'h2',
+  subtitle = 'Titolo Secondario',
+  ctaText = 'CTA',
+  ctaLink = '/faq-it-limolo',
+  secondaryLinkText = '',
+  secondaryLinkUrl = '',
+  backgroundImage,
+  photoCredit,
+  backgroundPositionX = 'bottom',
+  backgroundPositionY = 'top',
+  backgroundPositionXMobile,
+  backgroundPositionYMobile,
+  body,
+  bgColor = 'bg-indigo-900 dark:bg-indigo-400/10',
+} = Astro.props;
+
+// Normaliser l'image (string ou objet Keystatic)
+const backgroundImageSrc = getImageSrc(backgroundImage);
+
+const TitleTag = titleTag;
+---
+
+<section
+  class="relative isolate overflow-hidden h-full flex items-center"
+  style="width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);"
+>
+  <div class="absolute inset-0 -z-10">
+    {
+      backgroundImageSrc ? (
+        <>
+          <img
+            src={backgroundImageSrc}
+            alt="Background"
+            class="w-full h-full object-cover"
+            style={`object-position: ${backgroundPositionX} ${backgroundPositionY};`}
+          />
+          <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-600/50 to-transparent" />
+          {photoCredit && (
+            <div class="absolute bottom-4 right-4 text-white/40 text-[10px] uppercase tracking-widest">
+              Crédit : {photoCredit}
+            </div>
+          )}
+        </>
+      ) : (
+        <div class={`${bgColor} w-full h-full`}>
+          <div class="absolute inset-0 bg-linear-to-br from-indigo-500/10 via-transparent to-transparent" />
+        </div>
+      )
+    }
+  </div>
+
+  <div class="max-w-7xl sm:mx-auto w-full mx-10 my-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 items-center">
+      {/* 1ère Colonne : Texte (Centré mobile / Gauche SM+) */}
+      <div class="text-center sm:text-left space-y-6">
+        <p
+          class={`text-base sm:text-xl font-light font-serif text-indigo-400! tracking-wide ${backgroundImageSrc ? 'text-white/90' : 'text-white-900'}`}
+        >
+          {subtitle}
+        </p>
+
+        <TitleTag
+          class={`font-semibold text-3xl sm:text-4xl font-serif leading-tight ${backgroundImageSrc ? 'text-white' : 'text-indigo-200'}`}
+          style="border-bottom-width: 0px;"
+        >
+          {title}
+        </TitleTag>
+
+        {
+          body && (
+            <div
+              class={`text-white font-serif not-prose mx-auto sm:mx-0 ${backgroundImageSrc ? 'prose-invert' : 'dark:prose-invert'}`}
+              set:html={body}
+            />
+          )
+        }
+      </div>
+
+      {/* 2e Colonne : Slot (Centré partout, aligné verticalement via items-center) */}
+      <div class="flex justify-center flex-col sm:flex-row items-center gap-4 sm:gap-x-6">
+        {/* Groupe Boutons */}
+        <a
+          href={ctaLink}
+          class="text-2xl sm:text-4xl w-full sm:w-auto bg-indigo-950 dark:bg-indigo-600 text-white px-10 py-6 rounded-md font-normal hover:bg-indigo-600 dark:hover:bg-indigo-500 transition-all active:scale-95 text-center"
+        >
+          {ctaText}
+        </a>
+
+        {
+          secondaryLinkText && (
+            <a
+              href={secondaryLinkUrl}
+              class={`text-base sm:text-lg font-semibold transition-colors hidden sm:inline-block ${backgroundImageSrc ? 'text-white hover:text-indigo-300' : 'text-gray-900 dark:text-white hover:text-indigo-600'}`}
+            >
+              {secondaryLinkText} <span aria-hidden="true">→</span>
+            </a>
+          )
+        }
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>

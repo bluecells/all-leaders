@@ -1,0 +1,45 @@
+---
+import Duo from '../components/UI/Duo.astro';
+import Banner from '../components/UI/Banner.astro';
+import Carousel from '../components/UI/Carousel.astro';
+import CarouselRooms from '../components/UI/CarouselRooms.astro';
+import Hero from '../components/UI/Hero.astro';
+import Link from '../components/UI/Link.astro';
+import Slider from '../components/UI/Slider.astro';
+import RichTextEditor from './RichTextEditor.astro';
+
+interface Props {
+  blocks: any[];
+}
+
+const { blocks } = Astro.props;
+---
+
+{
+  blocks && blocks.map((block) => {
+    switch (block.discriminant) {
+      case 'Duo':
+        return <Duo {...block.value} />;
+      case 'Banner':
+        return <Banner {...block.value} />;
+      case 'Carousel':
+        return <Carousel {...block.value} />;
+      case 'CarouselRooms':
+        return <CarouselRooms {...block.value} />;
+      case 'Hero':
+        return <Hero {...block.value} />;
+      case 'Link':
+        return <Link {...block.value} />;
+      case 'Slider':
+        return <Slider {...block.value} />;
+      case 'RichTextEditor':
+        return <RichTextEditor {...block.value} />;
+      default:
+        return (
+          <div class="bg-yellow-100 p-4 text-orange-700">
+            Blocco non riconosciuto: {block.discriminant}
+          </div>
+        );
+    }
+  })
+}

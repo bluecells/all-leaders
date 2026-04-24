@@ -1,0 +1,89 @@
+---
+interface Props {
+  title?: string;
+  content: string;
+  type?: 'info' | 'warning' | 'important';
+  class?: string;
+}
+
+const {
+  title,
+  content,
+  type = 'info',
+  class: className = '',
+} = Astro.props;
+
+const typeStyles = {
+  info: {
+    borderColor: 'var(--color-brand-primary)',
+    backgroundColor: 'rgba(74, 103, 65, 0.05)',
+    textColor: 'var(--color-brand-primary)',
+  },
+  warning: {
+    borderColor: '#f59e0b',
+    backgroundColor: 'rgba(245, 158, 11, 0.05)',
+    textColor: '#92400e',
+  },
+  important: {
+    borderColor: '#dc2626',
+    backgroundColor: 'rgba(220, 38, 38, 0.05)',
+    textColor: '#7f1d1d',
+  },
+};
+
+const style = typeStyles[type];
+---
+
+<div
+  class={`nota-bene nota-bene-${type} ${className}`}
+  style={`border-left-color: ${style.borderColor}; background-color: ${style.backgroundColor};`}
+>
+  {title && <h4 class="nota-bene-title" style={`color: ${style.textColor};`}>{title}</h4>}
+  <div class="nota-bene-content" style={`color: ${style.textColor};`} set:html={content} />
+</div>
+
+<style>
+  .nota-bene {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border-left: 4px solid;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+  }
+
+  .nota-bene-title {
+    font-family: 'PlayFair', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .nota-bene-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .nota-bene-content :global(p) {
+    margin: 0;
+  }
+
+  .nota-bene-content :global(ul),
+  .nota-bene-content :global(ol) {
+    margin: 0.5rem 0 0 1.5rem;
+  }
+
+  .nota-bene-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .nota-bene-content :global(strong) {
+    font-weight: 600;
+  }
+
+  .nota-bene-content :global(em) {
+    font-style: italic;
+  }
+</style>

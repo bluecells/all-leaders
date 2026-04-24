@@ -1,0 +1,390 @@
+@import 'tailwindcss';
+@import '@fontsource/playfair-display';
+
+/* ==================================================
+   Variables de thème
+================================================== */
+:root {
+  --color-bg-body: #ffffff;
+  --color-bg-body-darker: #d3d0c2;
+  --color-text-main: #445361;
+  --color-text-muted: #c4f4d2;
+  --color-brand-primary: #2a748d;
+  --color-brand-secondary: #36524a;
+  --color-brand-tertiary: #3d3935;
+  --color-brand-darker: #023544;
+  --color-brand-hover: #459875;
+  --color-brand-alert: #a45429;
+  --color-brand-accent: #2c7ec4;
+}
+
+/* ==================================================
+   Base
+================================================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 18px;
+  } 
+
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-bg-body);
+    color: var(--color-text-main);
+    font-family: Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  main {
+    width: 100%;
+    max-width: 80rem;
+    padding-inline: 1rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-brand-primary);
+    font-weight: 500;
+    line-height: 1.15;
+    text-wrap: balance;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    letter-spacing: -0.02em;
+  }
+
+  h1:first-child {
+    padding: 20px 0;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    letter-spacing: -0.01em;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    font-size: clamp(1.35rem, 2vw, 2.15rem);
+    margin-top: 2.75rem;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    line-height: 1.8;
+    margin-bottom: 1.75rem;
+    font-size: 1.1rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  ul,
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-family: 'Playfair Display', serif;
+  }
+
+  li {
+    padding: 0.75rem 1rem;
+    line-height: 1.6;
+  }
+  li:is(:not(:first-child)) {
+    border-top: 1px solid rgb(37 99 119 / 0.2);
+  }
+
+  ul.partners-list li {
+    border: 0px;
+  }
+
+}
+
+/* On augmente la spécificité en doublant le sélecteur d'élément */
+article a {
+  /* On réinitialise proprement pour ignorer le reset */
+  border-bottom: 0 !important;
+
+  /* On impose notre style */
+
+  /* On force l'affichage du soulignement natif */
+  text-decoration-line: underline !important;
+  text-decoration-style: dotted !important;
+  text-decoration-thickness: 1px !important;
+  text-decoration-color: var(--color-brand-primary) !important;
+
+  /* On impose l'offset */
+  text-underline-offset: 5px !important;
+
+  /* Sécurité pour le rendu sur certains navigateurs */
+  display: inline;
+}
+
+/* État Hover */
+article a:hover {
+  text-decoration-color: var(--color-brand-accent) !important;
+  text-decoration-style: solid !important; /* Optionnel: devient plein au survol */
+}
+
+.hero-quote {
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    color: var(--color-brand-secondary);
+    text-align: center;
+    padding: 10% 0;
+}
+
+/* ==================================================
+   Composants
+================================================== */
+@layer components {
+  .section-container {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: 4rem 1.5rem;
+  }
+
+  .btn-limolo {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: var(--color-brand-primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: 0;
+    border: 1px solid transparent;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-limolo:hover {
+    background-color: var(--color-brand-accent);
+    color: var(--color-bg-body);
+    border-color: var(--color-brand-primary);
+  }
+}
+
+/* ==================================================
+   Utilitaires
+================================================== */
+@layer utilities {
+  /* Markdown layout */
+  .prose {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /* Full-bleed sections dans article */
+  .full-bleed {
+    width: 100svw;
+    margin-left: calc(50% - 50svw);
+  }
+
+  .full-bleed > .inner {
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  /* Annule la largeur de lecture dans les full-bleed */
+  .full-bleed p {
+    max-width: none;
+  }
+}
+
+/* ==================================================
+   Responsive
+================================================== */
+@media (min-width: 768px) {
+  body {
+    text-align: left;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  h1:first-child {
+    padding-top: 32px;
+  }
+
+  h2,
+  h3,
+  h4 {
+    text-align: left;
+  }
+
+  h2 {
+    margin-top: 8rem;
+  }
+
+  .section-container {
+    padding: 8rem 1.5rem;
+  }
+
+  p,
+  li {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-family: 'Playfair Display', serif;
+  }
+
+  ol {
+    text-align: left;
+  }
+
+  li {
+    padding: 0.5rem 1rem;
+    line-height: 1.6;
+  }
+
+  main {
+    max-width: 65rem;
+  }
+
+  article {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    text-align: left;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  h1:first-child {
+    padding: 32px 0;
+  }
+
+  h2,
+  h3,
+  h4 {
+    text-align: left;
+  }
+
+  h2 {
+    margin-top: 8rem;
+  }
+
+  .section-container {
+    padding: 8rem 1.5rem;
+  }
+
+  p,
+  li {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  li article {
+    padding: 2rem 0;
+  }
+
+  li article h3 {
+    margin-top: 0;
+  }
+
+  ul {
+    text-align: left;
+  }
+
+  ol {
+    max-width: 70%;
+  }
+
+  main {
+    max-width: 65rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  h1:first-child {
+    padding-top: 120px;
+  }
+  main {
+    max-width: 90rem;
+  }
+
+  p,
+  li {
+    font-size: 18px;
+  }
+}
+/* ==================================================
+   Styles Markdoc personnalisés
+================================================== */
+.align-left {
+  text-align: left !important;
+}
+
+.align-left h1,
+.align-left h2,
+.align-left h3,
+.align-left h4,
+.align-left p {
+  text-align: left !important;
+}
+
+.align-center {
+  text-align: center !important;
+}
+
+.align-center h1,
+.align-center h2,
+.align-center h3,
+.align-center h4,
+.align-center p {
+  text-align: center !important;
+}
+
+.align-right {
+  text-align: right !important;
+}
+
+.align-right h1,
+.align-right h2,
+.align-right h3,
+.align-right h4,
+.align-right p {
+  text-align: right !important;
+}

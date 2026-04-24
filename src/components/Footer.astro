@@ -1,0 +1,460 @@
+---
+import { footerTranslations, type Language } from '../data/footerTranslations';
+
+interface Props {
+  lang?: 'it' | 'fr' | 'en';
+}
+
+const { lang = 'fr' } = Astro.props as Props;
+const t = footerTranslations[lang as Language];
+const currentYear = new Date().getFullYear();
+
+// Map des slugs traduits par langue
+// → Ajoute ici tous les slugs que tu veux localiser
+const localizedSlugs = {
+  fr: {
+    blog: 'ressources',
+    faq: 'faq-all-leaders-french',
+    privacy: 'privacy-policy-fr',
+    cookie: 'cookies-policy-fr',
+  },
+  en: {
+    blog: 'resources',
+    faq: 'faq-all-leaders-english',
+    privacy: 'privacy-policy-en',
+    cookie: 'cookies-policy-en',
+  },
+} as const;
+
+// Slugs pour la langue courante (fallback sur 'it' si langue inconnue)
+const slugs = localizedSlugs[lang] ?? localizedSlugs.fr;
+
+// Préfixe de langue (comme tu l'as déjà)
+const langPrefix = lang === 'fr' ? '' : `/${lang}`;
+
+// Construction des liens
+const navigationLinks = {
+  blog: `${langPrefix}/${slugs.blog}`,
+  faq: `${langPrefix}/${slugs.faq}`,
+  privacy: `${langPrefix}/${slugs.privacy}`,
+  cookie: `${langPrefix}/${slugs.cookie}`,
+};
+---
+
+<footer class="footer-main">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h3 class="footer-title">{t.company}</h3>
+        <p class="footer-address">
+          {t.address},<br />
+          {t.city}
+        </p>
+        <p class="footer-address">
+          {t.vat}<br />
+          {t.siret}<br />
+        </p>
+        <div class="footer-contact">
+          <a href="tel:+393924812458" class="contact-link">+39 392 48 12 458</a>
+          <a href="mailto:contact@all-leaders.fr" class="contact-link">contact@all-leaders.fr</a>
+          <a href="https://wa.me/393924812458/" class="contact-link">{t.whatsapp}</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h4 class="footer-heading">{t.explore}</h4>
+        <ol class="footer-links">
+          <li><a href="https://bureaudureel.fr" class="footer-link">{t.bureauDuReel}</a></li>
+          <li><a href={navigationLinks.blog} class="footer-link">{t.blog}</a></li>
+          <li><a href={navigationLinks.faq} class="footer-link">{t.faq}</a></li>
+          <li><a href={navigationLinks.privacy} class="footer-link">{t.privacy}</a></li>
+          <li><a href={navigationLinks.cookie} class="footer-link">{t.cookie}</a></li>
+        </ol>
+      </div>
+
+      <div class="footer-section">
+        <h4 class="footer-heading">{t.keepInTouch}</h4>
+        <p class="newsletter-text">
+          {t.newsletterText}
+        </p>
+        <a
+          href="https://limolohouse56green.substack.com/subscribe"
+          target="_blank"
+          class="btn-limolo"
+          style="display:inline-block; width: auto;"
+          >{t.subscribe}<br />
+          <span class="font-bold text-lg">{t.newsletter56Green}</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-social">
+        <a href="https://www.instagram.com/limolo.house/" class="social-link">{t.instagram}</a>
+        <a href="https://www.facebook.com/Limolo.house/" class="social-link">{t.facebook}</a>
+        <a href="https://www.linkedin.com/company/limolo-house/" class="social-link">{t.linkedin}</a
+        >
+      </div>
+      <p class="footer-copyright">
+        © {currentYear}
+        {t.copyright}
+        <a href="https://bluecells.eu" target="_blank">{t.blueCells}</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* ========================================
+     MOBILE FIRST
+     ======================================== */
+
+  .footer-main {
+    width: 100%;
+    background-color: #001a33;
+    border-top: 1px solid rgba(74, 103, 65, 0.2);
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+    margin-top: 4rem;
+    color: white;
+  }
+
+  .footer-main li {
+    padding: 3px 0;
+    min-width: 100%;
+  }
+
+  .footer-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .footer-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--color-brand-primary);
+    margin: 0;
+  }
+
+  .footer-address {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .footer-contact {
+    padding-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: serif;
+  }
+
+  .contact-link {
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: color 300ms;
+  }
+
+  .contact-link:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .footer-heading {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-brand-primary);
+    margin: 0;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .footer-link {
+    font-size: 0.75rem;
+    color: var(--color-brand-tertiary);
+    text-decoration: none;
+    transition: color 300ms;
+  }
+
+  .footer-link:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .footer-newsletter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 280px;
+  }
+
+  .newsletter-text {
+    font-size: 0.75rem;
+    margin: 0;
+  }
+
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .newsletter-input {
+    background-color: white;
+    border: 1px solid rgba(74, 103, 65, 0.2);
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    flex-grow: 1;
+  }
+
+  .newsletter-input:focus {
+    outline: none;
+    border-color: var(--color-brand-primary);
+  }
+
+  .newsletter-button {
+    padding: 0.4rem 1rem;
+    background-color: var(--color-brand-primary);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 300ms;
+  }
+
+  .newsletter-button:hover {
+    background-color: var(--color-brand-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 103, 65, 0.3);
+  }
+
+  .footer-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(74, 103, 65, 0.15);
+    opacity: 0.6;
+    filter: grayscale(100%);
+    transition: all 300ms;
+  }
+
+  .footer-badges:hover {
+    filter: grayscale(0%);
+  }
+
+  .badge {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-brand-tertiary);
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(74, 103, 65, 0.2);
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .footer-social {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .social-link {
+    text-decoration: none;
+    transition: color 300ms;
+    font-size: 0.7rem;
+  }
+
+  .social-link:hover {
+    color: var(--color-brand-accent);
+  }
+
+  .footer-copyright {
+    margin: 0;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* ========================================
+     TABLET
+     ======================================== */
+  @media (min-width: 640px) {
+    .footer-container {
+      padding: 0 1.5rem;
+    }
+
+    .newsletter-form {
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+
+    .footer-section {
+      align-items: start;
+    }
+  }
+
+  /* ========================================
+     DESKTOP
+     ======================================== */
+  @media (min-width: 768px) {
+    .footer-main {
+      padding-top: 4rem;
+      padding-bottom: 2rem;
+    }
+
+    .footer-container {
+      padding: 0 2rem;
+    }
+
+    .footer-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-bottom: 4rem;
+      text-align: left;
+    }
+
+    .footer-section {
+      gap: 1rem;
+    }
+
+    .footer-title {
+      font-size: 1.25rem;
+    }
+
+    .footer-address {
+      font-size: 0.75rem;
+    }
+
+    .footer-contact {
+      align-items: flex-start;
+    }
+
+    .contact-link {
+      font-size: 0.875rem;
+    }
+
+    .footer-heading {
+      font-size: 11px;
+    }
+
+    .footer-links {
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .footer-link {
+      font-size: 0.875rem;
+    }
+
+    .footer-newsletter {
+      grid-column: span 2;
+      gap: 1rem;
+    }
+
+    .newsletter-text {
+      font-size: 0.875rem;
+    }
+
+    .newsletter-input {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .newsletter-button {
+      padding: 0.5rem 1.5rem;
+      font-size: 0.75rem;
+    }
+
+    .footer-badges {
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+
+    .badge {
+      font-size: 10px;
+    }
+
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0;
+      padding-top: 2rem;
+      text-align: left;
+    }
+
+    .footer-social {
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      width: auto;
+      margin-bottom: 0;
+    }
+
+    .social-link {
+      font-size: 10px;
+    }
+
+    .footer-copyright {
+      font-size: 10px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-container {
+      padding: 0 2rem;
+    }
+
+    .contact-link {
+      font-size: 0.95rem;
+    }
+  }
+</style>

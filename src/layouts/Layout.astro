@@ -1,0 +1,99 @@
+---
+import '../styles/global.css';
+import Head from '../components/Head.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SeoAnalyzer from '../components/SeoAnalyzer/SeoAnalyzer.astro';
+import ActionBar from '@/components/ActionBar.astro';
+import NewsletterPopup from '@/components/NewsletterPopup.astro';
+import CookieConsent from '@/components/CookieConsent.astro';
+import { getFaqQuestions } from '@/utils/faq';
+import type { AlternateUrls } from '@/utils/hreflang';
+
+type JsonLdType = 'page' | 'blog' | 'event' | 'faq' | 'blogCollection' | 'hotelRoom' | null;
+
+interface Props {
+  title: string;
+  lang?: 'it' | 'fr' | 'en';
+  seoSlug?: string;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  description?: string | null;
+  ogImage?: string | null;
+  ogType?: 'website' | 'article';
+  jsonType?: JsonLdType;
+  keyword?: string;
+  publishDate?: Date;
+  roomData?: {
+    capacity?: number;
+    amenities?: string[];
+  };
+  alternateUrls?: AlternateUrls | null;
+  isHomepage?: boolean;
+}
+
+const {
+  title,
+  lang = 'it',
+  seoSlug,
+  metaTitle,
+  metaDescription,
+  description,
+  ogImage,
+  ogType = 'website',
+  jsonType,
+  keyword,
+  publishDate,
+  roomData,
+  alternateUrls,
+  isHomepage = false,
+} = Astro.props as Props;
+
+const finalMetaDescription = metaDescription || description || '';
+
+const pageLang = lang;
+const finalJsonType = jsonType ?? null;
+
+let faqQuestions: Array<{ question: string; answer: string }> = [];
+
+if (finalJsonType === 'faq') {
+  faqQuestions = await getFaqQuestions({
+    lang: pageLang,
+  });
+}
+
+const finalOgImage = ogImage || undefined;
+---
+
+<!doctype html>
+<html lang={pageLang}>
+  <Head
+    title={title}
+    metaTitle={metaTitle ?? title}
+    metaDescription={finalMetaDescription}
+    ogImage={finalOgImage}
+    ogType={ogType}
+    lang={pageLang}
+    jsonType={finalJsonType}
+    faqQuestions={faqQuestions}
+    publishDate={publishDate}
+    roomData={roomData}
+    alternateUrls={alternateUrls}
+  />
+
+  <Header lang={pageLang} />
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TF95X7B2"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <main>
+      <slot />
+    </main>
+    <Footer lang={pageLang} />
+    <SeoAnalyzer keyword={keyword} />
+    <CookieConsent lang={pageLang} />
+    {isHomepage && <NewsletterPopup lang={pageLang} />}
+  </body>
+</html>

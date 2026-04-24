@@ -1,0 +1,38 @@
+---
+// Importation de tes composants du dossier UI
+import Hero from './UI/Hero.astro';
+import CarouselRooms from './UI/CarouselRooms.astro';
+
+interface Props {
+  sections: Array<{
+    discriminant: string;
+    value: Record<string, any>;
+  }>;
+}
+
+const { sections } = Astro.props;
+---
+
+{
+  sections.map((section: any) => {
+    switch (section.discriminant) {
+      case 'Hero':
+        return (
+          <Hero 
+            title={section.value.title} 
+            subtitle={section.value.subtitle} 
+            backgroundImage={section.value.image} 
+          />
+        );
+      
+      case 'CarouselRooms':
+        return (
+          <CarouselRooms />
+        );
+
+
+      default:
+        return <p>Composant {section.discriminant} non configuré.</p>;
+    }
+  })
+}

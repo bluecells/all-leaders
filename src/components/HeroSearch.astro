@@ -1,0 +1,97 @@
+---
+// HeroSection.astro
+import SearchIA from "./SearchIA.astro"
+
+interface Props {
+  title?: string
+  subtitle?: string
+  backgroundImage?: string
+  photoCredit?: string
+  backgroundPositionX?: string
+  backgroundPositionY?: string
+  body?: string
+  minHeight?: string
+}
+
+const {
+  title = "Titolo Principale",
+  subtitle = "Titolo Secondario",
+  backgroundImage,
+  photoCredit,
+  backgroundPositionX = "bottom",
+  backgroundPositionY = "top",
+  body,
+  minHeight = "min-h-screen",
+} = Astro.props
+---
+
+<section class={`px-2 sm:px-16 relative isolate overflow-hidden ${minHeight} flex items-center`}>
+  <div class="absolute inset-0 -z-10">
+    {
+      backgroundImage ? (
+        <>
+          <img
+            src={backgroundImage}
+            alt="Background"
+            class="w-full h-full object-cover"
+            style={`object-position: ${backgroundPositionX} ${backgroundPositionY};`}
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-600/50 to-transparent" />
+          {photoCredit && (
+            <div class="absolute bottom-4 right-4 text-white/40 text-[10px] uppercase tracking-widest">
+              Crédit : {photoCredit}
+            </div>
+          )}
+        </>
+      ) : (
+        <div class="bg-gray-50 dark:bg-gray-950 w-full h-full">
+          <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent" />
+        </div>
+      )
+    }
+  </div>
+
+  <div
+    class="mx-auto flex flex-col justify-center items-center gap-1 max-w-7xl text-center w-full py-4 sm:pb-10"
+  >
+    <p
+      class={`w-full text-lg sm:text-xl font-light font-serif tracking-wide leading-tight py-2 ${
+        backgroundImage ? "text-slate-100" : "text-slate-900 dark:text-indigo-400"
+      }`}
+      set:html={subtitle}
+    />
+
+    <h1
+      class={`w-full font-bold text-3xl sm:text-5xl sm:max-w-5xl font-serif leading-[1.25] !mb-O sm:mb-10 ${backgroundImage ? "text-slate-100" : "text-slate-800 dark:text-slate-200"}`}
+    >
+      {title}
+    </h1>
+
+    {
+      body && (
+        <div
+          class={`w-full prose prose-lg ${backgroundImage ? "prose-invert" : "dark:prose-invert"}`}
+          set:html={body}
+        />
+      )
+    }
+
+    <div class="w-full sm:max-w-3xl">
+      <SearchIA />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* On garde uniquement le reset global pour l'alignement à gauche du composant de recherche */
+  :global(.max-w-4xl.mx-auto.my-8) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  /* Assure que le contenu de recherche reste accessible sur mobile avec clavier */
+  :global(#trigger-input) {
+    font-size: 16px; /* Prévient le zoom sur iOS au focus */
+  }
+</style>

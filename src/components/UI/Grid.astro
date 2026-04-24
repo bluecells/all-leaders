@@ -1,0 +1,274 @@
+---
+interface GridItem {
+  title: string;
+  description: string;
+  media?: string;
+  isIcon?: boolean;
+}
+
+// Simple Markdown parser for descriptions
+function parseMarkdown(text: string): string {
+  if (!text) return '';
+  // **bold** -> <strong>bold</strong>
+  text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  // *italic* -> <em>italic</em>
+  text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  // [link](url) -> <a href="url">link</a>
+  text = text.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  // Line breaks
+  text = text.replace(/\n/g, '<br/>');
+  return text;
+}
+
+interface Props {
+  items?: GridItem[];
+  hideIcons?: boolean;
+  minWidth?: string;
+  gap?: string;
+  padding?: string;
+  background?: string;
+  fullBleed?: boolean;
+  class?: string;
+  textColor?: string; // ← force la couleur du texte si renseignée
+
+  mobileCols?: number;
+  tabletCols?: number;
+  xlCols?: number;
+}
+
+const {
+  items = [],
+  hideIcons = false,
+  minWidth = '0',
+  gap = '.5rem',
+  padding = '.75rem',
+  background = 'transparent',
+  fullBleed = false,
+  class: className = '',
+  textColor = 'white', // ← blanc par défaut partout
+
+  mobileCols = '1',
+  tabletCols = '2',
+  xlCols = '3',
+} = Astro.props;
+
+// La couleur finale est soit la prop textColor, soit 'white' par défaut
+const finalTextColor = textColor;
+---
+
+<div
+  class:list={['grid-wrapper', fullBleed && 'grid-fullbleed']}
+  style={`background-color: ${background}; --dynamic-text: ${finalTextColor};`}
+>
+  <div
+    class:list={['grid-container', className]}
+    style={{
+      '--grid-minwidth': minWidth,
+      '--grid-gap': gap,
+      '--grid-padding': padding,
+      '--cols-mobile': mobileCols ?? 'auto-fit',
+      '--cols-tablet': tabletCols ?? 'auto-fit',
+      '--cols-xl': xlCols ?? 'auto-fit',
+    }}
+  >
+    {
+      items.map((item) => (
+        <article class="grid-item">
+          {item.media && !hideIcons && (
+            <div class:list={['grid-item-media', item.isIcon ? 'is-icon' : 'is-image']}>
+              <img
+                src={item.media}
+                alt={item.title || 'Élément visuel'}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )}
+
+          <div class="grid-item-content">
+            <h3
+              class="grid-item-title"
+              style={`color: ${finalTextColor} !important; text-align:center;`}
+            >
+              {item.title}
+            </h3>
+            <div
+              class="grid-item-description"
+              set:html={parseMarkdown(item.description || '')}
+              style={`color: ${finalTextColor} !important;`}
+            />
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</div>
+
+<style is:global>
+  .grid-wrapper {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .grid-wrapper.grid-fullbleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+    padding: 2rem 0;
+  }
+
+  .grid-container {
+    display: grid;
+    gap: var(--grid-gap);
+    padding: var(--grid-padding);
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+
+    grid-template-columns: repeat(var(--cols-mobile), minmax(var(--grid-minwidth), 1fr));
+  }
+
+  .grid-fullbleed .grid-container {
+    max-width: none;
+    margin: 0;
+    padding-left: max(var(--grid-padding), 1.5rem);
+    padding-right: max(var(--grid-padding), 1.5rem);
+  }
+
+  .grid-item {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.035);
+    border-radius: 10px;
+    overflow: hidden;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .grid-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+  }
+
+  .grid-item-media {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .grid-item-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+  }
+
+  .grid-item:hover .grid-item-media img {
+    transform: scale(1.07);
+  }
+
+  .grid-item-media.is-image {
+    aspect-ratio: 4 / 3;
+  }
+
+  .grid-item-media.is-icon {
+    height: 100px;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem 1rem 0.75rem;
+  }
+
+  .grid-item-media.is-icon img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+  }
+
+  .grid-item-content {
+    padding: 1.5rem;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .grid-item-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--dynamic-text);
+    margin: 0;
+    line-height: 1.25;
+    padding-bottom: 2rem;
+  }
+
+  .grid-item-description {
+    font-size: 0.95rem;
+    color: var(--dynamic-text);
+    line-height: 1.65;
+    margin: 0 auto;
+    max-width: 90%;
+  }
+
+  .grid-item-description :global(ul),
+  .grid-item-description :global(ol) {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem auto;
+    max-width: 85%;
+    text-align: left;
+    font-size: 1.02rem;
+  }
+
+  .grid-item-description :global(li:not(:first-child)) {
+    border-top: 1px solid rgba(120, 120, 120, 0.12);
+    padding-top: 0.8rem;
+    margin-top: 0.8rem;
+  }
+
+
+  @media (min-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(var(--cols-tablet), minmax(var(--grid-minwidth), 1fr));
+    }
+    .grid-item {
+      padding: 0 .75rem 2rem .75rem ;
+    }
+    .grid-item-content {
+      padding: 0;
+    }
+  }
+
+
+  @media (min-width: 1025px) {
+    .grid-container {
+      grid-template-columns: repeat(var(--cols-xl), minmax(var(--grid-minwidth), 1fr));
+    }
+
+    .grid-item-media.is-icon {
+      height: 110px;
+    }
+    .grid-item-media.is-icon img {
+      width: 80px;
+      height: 80px;
+    }
+    .grid-item-title {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .grid-item-media.is-icon {
+      height: 130px;
+    }
+    .grid-item-media.is-icon img {
+      width: 96px;
+      height: 96px;
+    }
+    .grid-item-title {
+      font-size: 1.8rem;
+    }
+  }
+</style>

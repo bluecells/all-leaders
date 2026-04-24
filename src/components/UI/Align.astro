@@ -1,0 +1,17 @@
+---
+interface Props {
+  value?: 'left' | 'center' | 'right';
+}
+
+const { value = 'left' } = Astro.props;
+---
+
+<div class={`align-${value}`}>
+  <slot />
+</div>
+
+<style>
+  div {
+    text-align: v-bind('value');
+  }
+</style>

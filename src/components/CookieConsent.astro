@@ -1,0 +1,381 @@
+---
+import { cookieConsentTranslations } from '../data/cookieConsentTranslations';
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = cookieConsentTranslations[lang as keyof typeof cookieConsentTranslations] || cookieConsentTranslations.it;
+---
+
+<div id="cookie-consent-banner" class="cookie-banner hidden">
+  <div class="cookie-container">
+    <div class="cookie-content">
+      <h2>{t.title}</h2>
+      <p>{t.description}</p>
+      <a href={t.privacyLink} target="_blank" rel="noopener noreferrer" class="cookie-link">
+        {lang === 'it' ? 'Privacy Policy' : lang === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'}
+      </a>
+      <span class="divider">•</span>
+      <a href={t.cookieLink} target="_blank" rel="noopener noreferrer" class="cookie-link">
+        {lang === 'it' ? 'Cookie Policy' : lang === 'fr' ? 'Politique relative aux cookies' : 'Cookie Policy'}
+      </a>
+    </div>
+
+    <div id="cookie-settings" class="cookie-settings hidden">
+      <div class="cookie-option">
+        <label>
+          <input type="checkbox" id="essential-toggle" checked disabled class="cookie-checkbox" />
+          <span class="option-label">
+            <strong>{t.essential}</strong>
+            <p>{t.essentialDesc}</p>
+          </span>
+        </label>
+      </div>
+      <div class="cookie-option">
+        <label>
+          <input type="checkbox" id="analytics-toggle" class="cookie-checkbox" />
+          <span class="option-label">
+            <strong>{t.analytics}</strong>
+            <p>{t.analyticsDesc}</p>
+          </span>
+        </label>
+      </div>
+      <div class="cookie-option">
+        <label>
+          <input type="checkbox" id="marketing-toggle" class="cookie-checkbox" />
+          <span class="option-label">
+            <strong>{t.marketing}</strong>
+            <p>{t.marketingDesc}</p>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <div class="cookie-actions">
+      <button id="reject-all-btn" class="btn btn-secondary">{t.rejectAll}</button>
+      <button id="settings-btn" class="btn btn-secondary">{t.settings}</button>
+      <button id="save-prefs-btn" class="btn btn-primary hidden">{t.save}</button>
+      <button id="accept-all-btn" class="btn btn-primary">{t.acceptAll}</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Type pour les préférences de consentement
+  interface CookiePreferences {
+    essential: boolean;
+    analytics: boolean;
+    marketing: boolean;
+  }
+
+  // Stockage des préférences
+  const STORAGE_KEY = 'limolo-cookie-preferences';
+  const BANNER_KEY = 'limolo-banner-shown';
+
+  function getCookiePreferences(): CookiePreferences {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        return { essential: true, analytics: false, marketing: false };
+      }
+    }
+    return { essential: true, analytics: false, marketing: false };
+  }
+
+  function saveCookiePreferences(prefs: CookiePreferences) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
+    localStorage.setItem(BANNER_KEY, 'true');
+    applyConsentSettings(prefs);
+  }
+
+  function applyConsentSettings(prefs: CookiePreferences) {
+    // Stocker le consentement dans window pour les scripts externes
+    (window as any).cookieConsent = prefs;
+
+    // Bloquer/autoriser les cookies en fonction des préférences
+    if (prefs.analytics) {
+      // Charger Google Analytics ou autre service d'analytics
+      loadAnalytics();
+    }
+    if (prefs.marketing) {
+      // Charger les pixels de marketing
+      loadMarketingPixels();
+    }
+  }
+
+  function loadAnalytics() {
+    // Exemple: Google Analytics
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID';
+    document.head.appendChild(script);
+
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    function gtag(...args: any[]) {
+      (window as any).dataLayer.push(arguments);
+    }
+    (window as any).gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'YOUR_GA_ID');
+  }
+
+  function loadMarketingPixels() {
+    // Ajouter ici les pixels de marketing (Facebook, etc.)
+  }
+
+  function initCookieBanner() {
+    const banner = document.getElementById('cookie-consent-banner');
+    const settingsBtn = document.getElementById('settings-btn');
+    const rejectAllBtn = document.getElementById('reject-all-btn');
+    const acceptAllBtn = document.getElementById('accept-all-btn');
+    const savePrefsBtn = document.getElementById('save-prefs-btn');
+    const cookieSettings = document.getElementById('cookie-settings');
+    const analyticsToggle = document.getElementById('analytics-toggle') as HTMLInputElement;
+    const marketingToggle = document.getElementById('marketing-toggle') as HTMLInputElement;
+
+    if (!banner) return;
+
+    // Vérifier si l'utilisateur a déjà donné son consentement
+    const hasShownBanner = localStorage.getItem(BANNER_KEY);
+    if (hasShownBanner) {
+      banner.classList.add('hidden');
+      const prefs = getCookiePreferences();
+      applyConsentSettings(prefs);
+      return;
+    }
+
+    // Afficher la banneau après 1 seconde
+    setTimeout(() => {
+      banner.classList.remove('hidden');
+    }, 1000);
+
+    // Charger les préférences existantes
+    const currentPrefs = getCookiePreferences();
+    if (analyticsToggle) analyticsToggle.checked = currentPrefs.analytics;
+    if (marketingToggle) marketingToggle.checked = currentPrefs.marketing;
+
+    // Bouton Paramètres
+    settingsBtn?.addEventListener('click', () => {
+      cookieSettings?.classList.toggle('hidden');
+      savePrefsBtn?.classList.toggle('hidden');
+      acceptAllBtn?.classList.toggle('hidden');
+    });
+
+    // Bouton Rejeter tout
+    rejectAllBtn?.addEventListener('click', () => {
+      saveCookiePreferences({ essential: true, analytics: false, marketing: false });
+      banner.classList.add('hidden');
+    });
+
+    // Bouton Accepter tout
+    acceptAllBtn?.addEventListener('click', () => {
+      saveCookiePreferences({ essential: true, analytics: true, marketing: true });
+      banner.classList.add('hidden');
+    });
+
+    // Bouton Enregistrer les préférences
+    savePrefsBtn?.addEventListener('click', () => {
+      const prefs: CookiePreferences = {
+        essential: true,
+        analytics: analyticsToggle?.checked || false,
+        marketing: marketingToggle?.checked || false,
+      };
+      saveCookiePreferences(prefs);
+      banner.classList.add('hidden');
+    });
+  }
+
+  // Initialiser au chargement du DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookieBanner);
+  } else {
+    initCookieBanner();
+  }
+</script>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9998;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.1);
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .cookie-banner.hidden {
+    display: none;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .cookie-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .cookie-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cookie-content h2 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .cookie-content p {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+  }
+
+  .cookie-link {
+    font-size: 13px;
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .cookie-link:hover {
+    text-decoration: underline;
+  }
+
+  .divider {
+    margin: 0 8px;
+    color: #ccc;
+  }
+
+  .cookie-settings {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cookie-settings.hidden {
+    display: none;
+  }
+
+  .cookie-option {
+    margin-bottom: 12px;
+  }
+
+  .cookie-option label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+  .cookie-checkbox {
+    margin-top: 3px;
+    cursor: pointer;
+    accent-color: #333;
+  }
+
+  .cookie-checkbox:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .option-label {
+    flex: 1;
+  }
+
+  .option-label strong {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 3px;
+  }
+
+  .option-label p {
+    margin: 0;
+    font-size: 13px;
+    color: #888;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: 12px;
+    white-space: nowrap;
+    align-items: center;
+  }
+
+  .btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .btn-primary {
+    background-color: #333;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: #555;
+  }
+
+  .btn-secondary {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+
+  .btn-secondary:hover {
+    background-color: #e5e5e5;
+  }
+
+  .btn.hidden {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .cookie-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .cookie-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    .cookie-settings {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,387 @@
+---
+import { getImageSrc, getImageAlt } from '../../utils/imageHelper';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  image?: string | { src: string; alt?: string };
+  imageAlt?: string;
+  imagePosition?: 'left' | 'right';
+  background?: string;
+  fullBleed?: boolean;
+  heightMatch?: boolean;
+  maxHeight?: string;
+  noBorderPadding?: boolean;
+}
+
+const {
+  title,
+  subtitle,
+  ctaText,
+  ctaLink,
+  image,
+  imageAlt = '',
+  imagePosition = 'right',
+  background = 'transparent',
+  fullBleed = false,
+  heightMatch = false,
+  maxHeight = '60vh',
+  noBorderPadding = false,
+} = Astro.props;
+
+// Normaliser l'image (string ou objet Keystatic)
+const imageSrc = getImageSrc(image);
+const finalImageAlt = imageAlt || getImageAlt(image, '');
+
+const isImageLeft = imagePosition === 'left';
+const hasImage = imageSrc && imageSrc.trim();
+
+// Fonction simple pour déterminer si une couleur est sombre ou claire
+function getContrastColor(hexColor: string) {
+  if (!hexColor || hexColor === 'transparent') return 'var(--color-text-main)';
+
+  // Si c'est une variable CSS, retourner du blanc par défaut
+  if (hexColor.includes('var(')) return '#FFFFFF';
+
+  // Nettoyage du hex
+  const hex = hexColor.replace('#', '');
+  if (hex.length !== 6) return '#FFFFFF';
+
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+
+  // Formule de luminance (standard WCAG)
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+  return luminance > 0.5 ? 'var(--color-text-main)' : '#FFFFFF';
+}
+
+const textColor = getContrastColor(background);
+---
+
+<section class={`duo ${fullBleed ? 'duo-fullbleed' : ''}`}>
+  <div class="duo-container" style={`background-color: ${background};`}>
+    <div
+      class={`duo-grid ${isImageLeft ? 'duo-grid-reversed' : ''} ${heightMatch ? 'height-match' : ''} ${noBorderPadding ? 'no-border-padding' : ''}`}
+    >
+      <!-- Colonne 1: Image ou Titre centré -->
+      <div class={`duo-column-1 ${hasImage ? 'duo-image' : 'duo-title-column'}`}>
+        {
+          hasImage ? (
+            <img
+              src={imageSrc}
+              alt={finalImageAlt}
+              loading="lazy"
+              style={`max-height: ${heightMatch ? 'none' : maxHeight};`}
+            />
+          ) : (
+            <h2 class="duo-title-large" style={`color: ${textColor};`} set:html={title} />
+          )
+        }
+      </div>
+
+      <!-- Colonne 2: Titre (si image) + Texte -->
+      <div class="duo-column-2">
+        {hasImage && <h2 class="duo-title" set:html={title} />}
+        <div class="duo-content" style={`--dynamic-text: ${textColor};`}>
+          <slot />
+        </div>
+        {
+          ctaText && ctaLink && (
+            <a href={ctaLink} class="duo-cta">
+              {ctaText}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ========================================
+     MOBILE FIRST
+     ======================================== */
+
+  .duo {
+    width: 100%;
+    padding: 4rem 0;
+  }
+
+  .duo-fullbleed {
+    padding: 0;
+  }
+
+  .duo-fullbleed .duo-container {
+    max-width: 100%;
+    margin: 0;
+    padding: 2rem 0;
+  }
+
+  .duo-container {
+    max-width: 80rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* GRID - Mobile */
+  .duo-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  /* Inverser l'ordre en desktop si image à gauche */
+  .duo-grid-reversed .duo-column-1 {
+    order: 1;
+  }
+
+  .duo-grid-reversed .duo-column-2 {
+    order: 2;
+  }
+
+  .duo-grid:not(.duo-grid-reversed) .duo-column-1 {
+    order: unset;
+  }
+
+  .duo-grid:not(.duo-grid-reversed) .duo-column-2 {
+    order: unset;
+  }
+
+  /* COLONNE 1: Image ou Titre - Mobile */
+  .duo-column-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    padding: 0;
+  }
+
+  .duo-column-1.duo-image {
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .duo-column-1.duo-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 500ms ease;
+    max-height: 60vh;
+  }
+
+  .duo-column-1.duo-image:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Colonne 1: Mode titre centré */
+  .duo-column-1.duo-title-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* TITRE LARGE - Mobile */
+  .duo-title-large {
+    font-family: 'Play-Fair';
+    font-size: 2.25rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0;
+    text-align: center;
+  }
+
+  /* COLONNE 2: Texte - Mobile */
+  .duo-column-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 2rem 1rem;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* TITRE - Mobile */
+  .duo-title {
+    font-family: 'Play-Fair';
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--color-brand-primary);
+    margin: 0;
+    text-align: center;
+  }
+
+  .duo-subtitle {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-brand-tertiary);
+    margin: 0;
+    max-width: 100%;
+  }
+
+  /* CTA - Mobile */
+  .duo-cta {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background-color: var(--color-brand-primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 300ms;
+  }
+
+  .duo-cta:hover {
+    background-color: var(--color-brand-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 103, 65, 0.3);
+  }
+
+  .duo-content {
+    font-size: 1rem;
+    line-height: 1.2;
+    color: var(--dynamic-text);
+  }
+
+  .duo-content :global(ul) {
+    margin-bottom: 1rem;
+  }
+
+  .duo-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  /* ========================================
+     TABLET
+     ======================================== */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .duo-title {
+      font-size: 2rem;
+    }
+
+    .duo-title-large {
+      font-size: 2.5rem;
+    }
+
+    .duo-subtitle {
+      font-size: 1rem;
+    }
+
+        .duo-container {
+      padding: 0 .25rem;
+    }
+  }
+
+  /* ========================================
+     DESKTOP
+     ======================================== */
+  @media (min-width: 769px) {
+    .duo {
+      padding: 4rem 0;
+    }
+
+    .duo-fullbleed .duo-container {
+      padding: 4rem 1.5rem;
+    }
+
+    /* GRID - Desktop */
+    .duo-grid {
+      grid-template-columns: 2fr 3fr;
+      gap: 0;
+      align-items: center;
+    }
+
+    /* Mode heightMatch: forcer la même hauteur pour image et texte */
+    .duo-grid.height-match {
+      align-items: stretch;
+    }
+
+    .duo-grid.height-match .duo-column-1 {
+      height: 100%;
+    }
+
+    .duo-grid.height-match .duo-column-2 {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .duo-grid.height-match .duo-column-1.duo-image img {
+      height: 100%;
+      max-height: none;
+    }
+
+    .duo-grid:not(.duo-grid-reversed) .duo-column-1 {
+      order: 2;
+    }
+
+    .duo-grid:not(.duo-grid-reversed) .duo-column-2 {
+      order: 1;
+    }
+
+    /* COLONNE 1 - Desktop */
+    .duo-column-1 {
+      min-height: 400px;
+      padding: 4rem 0;
+    }
+
+    /* COLONNE 2 - Desktop */
+    .duo-column-2 {
+      padding: 3rem;
+      text-align: left;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    /* NO BORDER PADDING - Desktop */
+    .duo-grid.no-border-padding.duo-grid-reversed .duo-column-2 {
+      padding-right: 0;
+    }
+
+    .duo-grid.no-border-padding:not(.duo-grid-reversed) .duo-column-2 {
+      padding-left: 0;
+    }
+
+    /* TITRE LARGE - Desktop */
+    .duo-title-large {
+      font-size: 3rem;
+    }
+
+    /* TITRE - Desktop */
+    .duo-title {
+      font-size: 1.75rem;
+      text-align: left;
+    }
+
+    .duo-subtitle {
+      font-size: 1.125rem;
+    }
+
+    /* CTA - Desktop */
+    .duo-cta {
+      align-self: flex-start;
+    }
+
+    .duo-container {
+      padding: 0;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .duo-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

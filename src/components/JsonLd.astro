@@ -1,0 +1,276 @@
+---
+import { SITE } from "@/consts";
+
+type PageJsonLd = {
+  type: "page";
+  title: string;
+  description: string;
+  url: string;
+};
+
+type BlogJsonLd = {
+  type: "blog";
+  title: string;
+  description: string;
+  url: string;
+  date: Date;
+  image?: string;
+  author?: string;
+  categorie?: string;
+};
+
+type EventJsonLd = {
+  type: "event";
+  title: string;
+  description?: string;
+  url: string;
+  dateStart: Date;
+  dateEnd: Date;
+  location: {
+    venue: string;
+    address?: string;
+    city: string;
+    postalCode?: string;
+    country?: string;
+  };
+  image?: string;
+  ticketInfo?: {
+    isFree: boolean;
+    price?: number;
+    currency?: string;
+    bookingUrl?: string;
+  };
+};
+
+type FaqJsonLd = {
+  type: "faq";
+  title: string;
+  url: string;
+  questions: Array<{
+    question: string;
+    answer: string;
+  }>;
+};
+
+type BlogCollectionJsonLd = {
+  type: "blogCollection";
+  title: string;
+  description: string;
+  url: string;
+  posts: Array<{
+    title: string;
+    description: string;
+    url: string;
+    date: Date;
+    image?: string;
+  }>;
+};
+
+type HotelRoomJsonLd = {
+  type: "hotelRoom";
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  capacity?: number;
+  amenities?: string[];
+};
+
+type Props = PageJsonLd | BlogJsonLd | EventJsonLd | FaqJsonLd | BlogCollectionJsonLd | HotelRoomJsonLd;
+
+const props = Astro.props;
+
+function generatePageJsonLd(data: PageJsonLd) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": data.title,
+    "description": data.description,
+    "url": data.url,
+    "publisher": {
+      "@type": "Organization",
+      "name": SITE.NAME,
+      "url": SITE.URL
+    }
+  };
+}
+
+function generateBlogJsonLd(data: BlogJsonLd) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": data.title,
+    "description": data.description,
+    "url": data.url,
+    "datePublished": data.date.toISOString(),
+    "dateModified": data.date.toISOString(),
+    ...(data.image && { "image": data.image }),
+    "author": {
+      "@type": "Person",
+      "name": data.author || SITE.AUTHOR
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": SITE.NAME,
+      "url": SITE.URL
+    },
+    ...(data.categorie && {
+      "articleSection": data.categorie
+    })
+  };
+}
+
+function generateEventJsonLd(data: EventJsonLd) {
+  const jsonLd: any = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": data.title,
+    "startDate": data.dateStart.toISOString(),
+    "endDate": data.dateEnd.toISOString(),
+    "url": data.url,
+    "location": {
+      "@type": "Place",
+      "name": data.location.venue,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": data.location.city,
+        ...(data.location.postalCode && { "postalCode": data.location.postalCode }),
+        ...(data.location.address && { "streetAddress": data.location.address }),
+        ...(data.location.country && { "addressCountry": data.location.country })
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": SITE.NAME,
+      "url": SITE.URL
+    }
+  };
+
+  if (data.description) {
+    jsonLd.description = data.description;
+  }
+
+  if (data.image) {
+    jsonLd.image = data.image;
+  }
+
+  if (data.ticketInfo) {
+    if (data.ticketInfo.isFree) {
+      jsonLd.offers = {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": data.ticketInfo.currency || "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": data.url
+      };
+    } else if (data.ticketInfo.price) {
+      jsonLd.offers = {
+        "@type": "Offer",
+        "price": data.ticketInfo.price.toString(),
+        "priceCurrency": data.ticketInfo.currency || "EUR",
+        "availability": "https://schema.org/InStock",
+        "url": data.ticketInfo.bookingUrl || data.url
+      };
+    }
+  }
+
+  return jsonLd;
+}
+
+function generateFaqJsonLd(data: FaqJsonLd) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "name": data.title,
+    "url": data.url,
+    "mainEntity": data.questions.map(q => ({
+      "@type": "Question",
+      "name": q.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": q.answer
+      }
+    }))
+  };
+}
+
+function generateBlogCollectionJsonLd(data: BlogCollectionJsonLd) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": data.title,
+    "description": data.description,
+    "url": data.url,
+    "publisher": {
+      "@type": "Organization",
+      "name": SITE.NAME,
+      "url": SITE.URL
+    },
+    "blogPost": data.posts.map(post => ({
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.description,
+      "url": post.url,
+      "datePublished": post.date.toISOString(),
+      ...(post.image && { "image": post.image }),
+      "author": {
+        "@type": "Person",
+        "name": SITE.AUTHOR
+      }
+    }))
+  };
+}
+
+function generateHotelRoomJsonLd(data: HotelRoomJsonLd) {
+  const jsonLd: any = {
+    "@context": "https://schema.org",
+    "@type": "HotelRoom",
+    "name": data.title,
+    "description": data.description,
+    "url": data.url,
+    "hotelName": SITE.NAME,
+  };
+
+  if (data.image) {
+    jsonLd.image = data.image;
+  }
+
+  if (data.capacity) {
+    jsonLd.occupancy = {
+      "@type": "OpeningHoursSpecification",
+      "maxOccupancy": data.capacity
+    };
+  }
+
+  if (data.amenities && data.amenities.length > 0) {
+    jsonLd.amenities = data.amenities;
+  }
+
+  return jsonLd;
+}
+
+let jsonLd;
+
+switch (props.type) {
+  case "page":
+    jsonLd = generatePageJsonLd(props);
+    break;
+  case "blog":
+    jsonLd = generateBlogJsonLd(props);
+    break;
+  case "event":
+    jsonLd = generateEventJsonLd(props);
+    break;
+  case "faq":
+    jsonLd = generateFaqJsonLd(props);
+    break;
+  case "blogCollection":
+    jsonLd = generateBlogCollectionJsonLd(props);
+    break;
+  case "hotelRoom":
+    jsonLd = generateHotelRoomJsonLd(props);
+    break;
+}
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "question": {
+      "type": "string"
+    },
+    "lang": {
+      "type": "string",
+      "enum": [
+        "it",
+        "fr",
+        "en"
+      ]
+    },
+    "seoSlug": {
+      "type": "string"
+    },
+    "metaTitle": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "metaDescription": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "ogImage": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "jsonType": {
+      "default": "faq",
+      "type": "string",
+      "enum": [
+        "page",
+        "blog",
+        "event",
+        "faq",
+        "blogCollection",
+        "hotelRoom"
+      ]
+    },
+    "category": {
+      "type": "string"
+    },
+    "order": {
+      "default": 0,
+      "type": "number"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "question",
+    "lang"
+  ]
+}

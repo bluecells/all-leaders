@@ -1,0 +1,177 @@
+---
+interface Column {
+  header: string;
+  width?: string;
+}
+
+interface Props {
+  columns: Column[];
+  rows?: any[];
+}
+
+const { columns = [], rows = [] } = Astro.props;
+
+// Construire le template grid avec les largeurs
+const gridTemplate = columns
+  .map((col) => col.width || '1fr')
+  .join(' ');
+
+// Vérifier si au moins un header est présent
+const hasHeaders = columns.some((col) => col.header && col.header.trim());
+---
+
+<div class="table-wrapper">
+  <table class="table" style={`--grid-template: ${gridTemplate}`}>
+    {hasHeaders && (
+      <thead>
+        <tr>
+          {columns.map((col) => (
+            <th>{col.header}</th>
+          ))}
+        </tr>
+      </thead>
+    )}
+    <tbody>
+      {rows.length > 0 ? (
+        rows.map((row, rowIndex) => (
+          <tr key={rowIndex}>
+            {Array.isArray(row)
+              ? row.map((cell, colIndex) => (
+                  <td key={colIndex} data-label={columns[colIndex]?.header || ''}>
+                    {typeof cell === 'string' ? cell : String(cell)}
+                  </td>
+                ))
+              : Object.values(row).map((cell, colIndex) => (
+                  <td key={colIndex} data-label={columns[colIndex]?.header || ''}>
+                    {typeof cell === 'string' ? cell : String(cell)}
+                  </td>
+                ))}
+          </tr>
+        ))
+      ) : (
+        <slot />
+      )}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  /* ========================================
+     MOBILE FIRST
+     ======================================== */
+
+  .table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .table {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .table tbody tr {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 0.5rem;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 4px;
+  }
+
+  .table tbody td {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border: none;
+    color: var(--color-text-main);
+  }
+
+  .table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    margin-right: 0.5rem;
+    color: var(--color-brand-primary);
+    min-width: 150px;
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: white;
+  }
+
+  .table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+
+  /* ========================================
+     DESKTOP
+     ======================================== */
+  @media (min-width: 769px) {
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      display: table;
+    }
+
+    .table thead {
+      display: table-header-group;
+      background-color: var(--color-brand-primary);
+      color: white;
+    }
+
+    .table th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+      border: 1px solid var(--color-brand-primary);
+    }
+
+    .table tbody {
+      display: table-row-group;
+    }
+
+    .table tbody tr {
+      display: table-row;
+      grid-template-columns: unset;
+      gap: unset;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    .table tbody td {
+      display: table-cell;
+      padding: 1rem;
+      border: 1px solid #ddd;
+    }
+
+    .table tbody td::before {
+      display: none;
+    }
+
+    .table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .table tbody tr:hover {
+      background-color: #f0f0f0;
+    }
+  }
+</style>

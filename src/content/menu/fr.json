@@ -1,0 +1,105 @@
+{
+  "links": [
+    {
+      "label": "Co-living",
+      "url": "/fr/coliving-limolo",
+      "type": "link",
+      "hasSubmenu": true,
+      "submenu": [
+        {
+          "label": "Qu'est-ce que le co-living",
+          "url": "/fr/coliving-en-sardaigne"
+        },
+        {
+          "label": "Règles du co-living",
+          "url": "/fr/regles-coliving-limolo"
+        },
+        {
+          "label": "Petit-déjeuner en co-living",
+          "url": "/fr/petit-dejeuner-coliving-limolo"
+        }
+      ]
+    },
+    {
+      "label": "Expérience",
+      "url": "/fr/sustainable-living-experience",
+      "type": "link",
+      "hasSubmenu": false,
+      "submenu": []
+    },
+    {
+      "label": "Dormir à Cabras",
+      "url": "/fr/dormir-a-cabras-limolo-eco-house",
+      "type": "link",
+      "hasSubmenu": true,
+      "submenu": [
+        {
+          "label": "Dormir à Cabras",
+          "url": "/fr/dormir-a-cabras-limolo-eco-house"
+        },
+        {
+          "label": "Les chambres Limolò",
+          "url": "/fr/les-chambres-de-limolo-house"
+        }
+      ]
+    },
+    {
+      "label": "Durabilité",
+      "url": "/fr/hebergement-durable",
+      "type": "link",
+      "hasSubmenu": false,
+      "submenu": []
+    },
+    {
+      "label": "Cabras et le Sinis",
+      "url": "/fr/pourquoi-visiter-cabras-et-la-peninsule-du-sinis",
+      "type": "link",
+      "hasSubmenu": true,
+      "submenu": [
+        {
+          "label": "Visiter le Sinis",
+          "url": "/fr/pourquoi-visiter-cabras-et-la-peninsule-du-sinis"
+        },
+        {
+          "label": "Mer Zones humides",
+          "url": "/fr/mer-et-zones-humides-a-cabras"
+        },
+        {
+          "label": "Tharros insolita",
+          "url": "/fr/tharros-insolita"
+        }
+      ]
+    },
+    {
+      "label": "Blog",
+      "url": "/fr/limologiche",
+      "type": "link",
+      "hasSubmenu": false,
+      "submenu": []
+    },
+    {
+      "label": "Info",
+      "url": "/fr/info",
+      "type": "link",
+      "hasSubmenu": true,
+      "submenu": [
+        {
+          "label": "Qui sommes-nous ?",
+          "url": "/fr/qui-sommes-nous"
+        },
+        {
+          "label": "Réserver",
+          "url": "https://www.bed-and-breakfast.it/fr/booking/sardaigne/limolo-house-56-green-cabras/57031"
+        },
+        {
+          "label": "FAQ",
+          "url": "/fr/faq-fr-limolo"
+        },
+        {
+          "label": "Nous contacter",
+          "url": "/fr/nous-contacter"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+---
+interface Props {
+  videoId: string;
+  title?: string;
+  height?: string;
+  padding?: string;
+  text?: string;
+  textPosition?: 'top' | 'bottom' | 'left' | 'right';
+}
+
+const {
+  videoId,
+  title = 'Video YouTube',
+  height,
+  padding = '2rem 0',
+  text,
+  textPosition = 'bottom',
+} = Astro.props;
+
+const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+// Si une hauteur est spécifiée, calculer la largeur en 16:9
+const containerStyle = height
+  ? `height: ${height}; width: calc(${height} * 16 / 9); max-width: 100%;`
+  : '';
+
+// Déterminer la disposition selon la position du texte
+const isHorizontal = textPosition === 'left' || textPosition === 'right';
+const flexDirection = isHorizontal
+  ? textPosition === 'left'
+    ? 'row-reverse'
+    : 'row'
+  : textPosition === 'top'
+    ? 'column-reverse'
+    : 'column';
+---
+
+<div
+  class="youtube-wrapper"
+  style={`padding: ${padding}; ${isHorizontal && text ? 'display: flex; flex-direction: ' + flexDirection + '; gap: 2rem; align-items: center;' : ''}`}
+>
+  {
+    text && !isHorizontal && textPosition === 'top' && (
+      <div class="youtube-text mb-4 text-center">
+        <p class="text-lg">{text}</p>
+      </div>
+    )
+  }
+
+  <div class="youtube-content" style={isHorizontal && text ? 'flex: 1;' : ''}>
+    <a
+      href={youtubeUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="youtube-preview group relative block overflow-hidden rounded-lg shadow-lg transition-transform hover:scale-[1.02]"
+      style={containerStyle || undefined}
+      class:list={[
+        'youtube-preview',
+        'group',
+        'relative',
+        'block',
+        'overflow-hidden',
+        'rounded-lg',
+        'shadow-lg',
+        'transition-transform',
+        'hover:scale-[1.02]',
+        { 'mx-auto': height && !text }, // Centrer si hauteur fixe et pas de texte
+      ]}
+    >
+      <img src={thumbnailUrl} alt={title} class="w-full h-full object-cover" />
+      <div
+        class="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors group-hover:bg-black/40"
+      >
+        <div
+          class="w-20 h-20 flex items-center justify-center rounded-full bg-red-600 transition-transform group-hover:scale-110"
+        >
+          <svg class="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"></path>
+          </svg>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  {
+    text && isHorizontal && (
+      <div class="youtube-text flex-1">
+        <p>{text}</p>
+      </div>
+    )
+  }
+
+  {
+    text && !isHorizontal && textPosition === 'bottom' && (
+      <div class="youtube-text mt-4 text-center">
+        <p>{text}</p>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  /* ========================================
+     MOBILE FIRST
+     ======================================== */
+
+  .youtube-wrapper {
+    flex-direction: column !important;
+  }
+
+  .youtube-text p {
+    text-align: center;
+    font-size: 14px !important;
+    font-style: italic;
+    padding: 6px 1vw;
+    font-weight: 300;
+  }
+
+  /* ========================================
+     DESKTOP
+     ======================================== */
+  @media (min-width: 769px) {
+    /* Flexbox horizontal retrouvée via le code du template */
+  }
+</style>

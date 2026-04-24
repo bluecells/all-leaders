@@ -1,0 +1,288 @@
+---
+import { getCollection } from 'astro:content';
+import { generateSeoSlug, generateUrl } from '../../utils/slugify';
+
+interface Props {
+  height?: string;
+  speed?: number;
+  background?: string;
+  spacing?: string;
+  showName?: boolean;
+  showPunchline?: boolean;
+  lang?: 'it' | 'fr' | 'en';
+  excludeId?: string;
+  paddingVertical?: string;
+}
+
+const {
+  height = '30vh',
+  speed = 40000,
+  background = 'transparent',
+  spacing = '1rem',
+  showName = true,
+  showPunchline = true,
+  lang = 'it',
+  excludeId,
+  paddingVertical = '4rem',
+} = Astro.props;
+
+const allRooms = await getCollection('rooms');
+const rooms = allRooms.filter((room) => room.data.lang === lang && room.id !== excludeId);
+
+const limitedRooms = rooms.slice(0, 10);
+const duplicatedRooms = [...limitedRooms, ...limitedRooms];
+
+// Générer les URLs avec traduction i18n pour chaque room
+const roomsWithUrls = duplicatedRooms.map((room) => ({
+  ...room,
+  url: generateUrl(
+    room.data.lang,
+    generateSeoSlug({
+      seoSlug: room.data.seoSlug,
+      nameDisplay: room.data.nameDisplay,
+    }),
+    'room'
+  ),
+  featuredPhotoSrc: (room.data.featuredPhoto?.image as string) || '',
+}));
+---
+
+<section
+  class="carousel-rooms full-bleed"
+  style={`background-color: ${background}; --carousel-height: ${height}; --padding-vertical: ${paddingVertical};`}
+>
+  <div class="carousel-track-container">
+    <div
+      id="track"
+      class="carousel-track"
+      style={`--spacing: ${spacing}; --speed: ${speed}ms;`}
+      oncontextmenu="return false;"
+    >
+      {
+        roomsWithUrls.map((room) => (
+          <a href={room.url} class="carousel-item" draggable="false">
+            <img
+              src={room.featuredPhotoSrc}
+              alt={room.data.nameDisplay}
+              loading="lazy"
+              draggable="false"
+            />
+            <div class="carousel-overlay">
+              <div class="text-content">
+                {showName && <h3 class="room-name">{room.data.nameDisplay}</h3>}
+                {showPunchline && <p class="room-punchline">{room.data.punchline}</p>}
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ========================================
+     MOBILE FIRST
+     ======================================== */
+
+  .carousel-rooms {
+    overflow: hidden;
+    padding: var(--padding-vertical, 4rem) 0;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .carousel-rooms:active {
+    cursor: grabbing;
+  }
+
+  .carousel-track-container {
+    width: 100%;
+    height: var(--carousel-height, 30vh);
+    position: relative;
+    touch-action: pan-y;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: var(--spacing);
+    height: 100%;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .carousel-item {
+    position: relative;
+    height: 100%;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    text-decoration: none;
+    display: block;
+    width: calc((100vw / 1.25) - (var(--spacing) * 0.5));
+    -webkit-user-drag: none;
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    pointer-events: none;
+  }
+
+  .carousel-item:hover img {
+    transform: scale(1.1);
+  }
+
+  .carousel-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    pointer-events: none;
+  }
+
+  .capacity-box {
+    width: 20%;
+    min-width: 45px;
+    background-color: var(--color-brand-primary);
+    color: white;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border-radius: 0 0 4px 0;
+  }
+
+  .icon-user {
+    width: 14px;
+    height: 14px;
+  }
+
+  .text-content {
+    padding: 1.5rem 1rem;
+    color: white;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  }
+
+  .room-name {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .room-punchline {
+    margin: 5px 0 0;
+    font-size: 1.35rem;
+    opacity: 0.9;
+    font-family: 'Playfair Display', serif;
+    font-weight: 300;
+    line-height: 1.2;
+    color: white;
+  }
+
+  /* ========================================
+     TABLET
+     ======================================== */
+  @media (min-width: 768px) {
+    .carousel-item {
+      width: calc((100vw / 3) - (var(--spacing) * 0.66));
+    }
+  }
+
+  /* ========================================
+     DESKTOP
+     ======================================== */
+  @media (min-width: 1600px) {
+    .carousel-item {
+      width: calc((100vw / 4.5) - (var(--spacing) * 0.8));
+    }
+  }
+</style>
+
+<script>
+  const track = document.getElementById('track');
+  if (track) {
+    const speed = parseInt(track.style.getPropertyValue('--speed')) || 30000;
+
+    const animation = track.animate(
+      [{ transform: 'translateX(0px)' }, { transform: `translateX(-50%)` }],
+      {
+        duration: speed,
+        iterations: Infinity,
+        easing: 'linear',
+      }
+    );
+
+    let isDragging = false;
+    let startX = 0;
+    let startCurrentTime = 0;
+    let hasMoved = false;
+
+    const getEventX = (e: MouseEvent | TouchEvent) =>
+      e instanceof MouseEvent ? e.pageX : e.touches[0].pageX;
+
+    const startDrag = (e: MouseEvent | TouchEvent) => {
+      isDragging = true;
+      hasMoved = false;
+      animation.pause();
+      startX = getEventX(e);
+      startCurrentTime = Number(animation.currentTime) || 0;
+    };
+
+    const moveDrag = (e: MouseEvent | TouchEvent) => {
+      if (!isDragging) return;
+
+      const currentX = getEventX(e);
+      const diff = currentX - startX;
+
+      // Seuil de mouvement pour différencier clic et drag
+      if (Math.abs(diff) > 5) {
+        hasMoved = true;
+      }
+
+      const trackWidth = track.scrollWidth / 2;
+      // On convertit le mouvement en pixels vers le temps de l'animation
+      const timeOffset = (diff / trackWidth) * speed;
+
+      let newTime = Number(startCurrentTime) - timeOffset;
+
+      // Compensation pour boucle infinie
+      while (newTime < 0) newTime += speed;
+      while (newTime >= speed) newTime -= speed;
+
+      animation.currentTime = newTime;
+    };
+
+    const stopDrag = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      animation.play();
+    };
+
+    // Bloquer le clic si on a dragué (phase capture)
+    track.addEventListener(
+      'click',
+      (e) => {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      },
+      true
+    );
+
+    track.addEventListener('mousedown', startDrag);
+    window.addEventListener('mousemove', moveDrag);
+    window.addEventListener('mouseup', stopDrag);
+
+    track.addEventListener('touchstart', startDrag, { passive: true });
+    window.addEventListener('touchmove', moveDrag, { passive: true });
+    window.addEventListener('touchend', stopDrag);
+  }
+</script>

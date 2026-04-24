@@ -1,0 +1,31 @@
+---
+import { DocumentRenderer } from '@keystatic/core/renderer';
+
+interface Props {
+  content: any;
+  style: {
+    alignment: string;
+    maxWidth: string;
+    backgroundColor: string;
+  };
+}
+
+const { content, style } = Astro.props;
+
+const classes = [
+  "mx-auto prose prose-lg dark:prose-invert prose-headings:font-serif prose-a:text-indigo-600",
+  style.alignment,
+  style.maxWidth
+].join(" ");
+---
+
+<section 
+  class="py-12 px-4" 
+  style={`background-color: ${style.backgroundColor};`}
+>
+  <div class={classes}>
+    {Array.isArray(content) && (
+      <DocumentRenderer document={content} />
+    )}
+  </div>
+</section>

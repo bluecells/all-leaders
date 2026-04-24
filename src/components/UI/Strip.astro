@@ -1,0 +1,92 @@
+---
+// Strip.astro
+const { images = [], background = 'transparent', padding = '2rem' } = Astro.props;
+---
+
+<section class="strip-outer-wrapper" style={`background-color: ${background};`}>
+  <div class="strip-inner-container" style={`padding: ${padding} 1rem;`}>
+    <div class="strip-grid">
+      {
+        images.map((img) => (
+          <div class="image-item">
+            <img src={img.image} alt={img.alt || ''} loading="lazy" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ========================================
+     MOBILE FIRST
+     ======================================== */
+
+  .strip-outer-wrapper {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow: hidden;
+  }
+
+  .strip-inner-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .strip-grid {
+    display: grid;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 2rem;
+    justify-content: center;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .image-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .image-item img {
+    max-width: 100%;
+    height: auto;
+    max-height: 120px;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ========================================
+     TABLET
+     ======================================== */
+  @media (min-width: 640px) {
+    .strip-grid {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      max-width: 1440px;
+    }
+  }
+
+  /* ========================================
+     DESKTOP
+     ======================================== */
+  @media (min-width: 1024px) {
+    .strip-grid {
+      max-width: 1000px;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .strip-grid {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      max-width: 1200px;
+    }
+  }
+</style>

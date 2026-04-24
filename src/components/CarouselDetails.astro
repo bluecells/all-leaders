@@ -1,0 +1,166 @@
+---
+interface PhotoObject {
+  image?: string | null;
+  alt?: string | null;
+}
+
+interface Props {
+  height?: string;
+  speed?: number;
+  background?: string;
+  spacing?: string;
+  photos?: PhotoObject[] | null;
+  roomName: string;
+}
+
+const {
+  height = '35vh',
+  speed = 40000,
+  background = 'transparent',
+  spacing = '1rem',
+  photos = [],
+} = Astro.props;
+
+// Filtrer et normaliser les photos (sans la featured photo, juste la galerie)
+const validPhotos = (photos || [])
+  .filter(
+    (p): p is { image: string | null | undefined; alt: string | null | undefined } => p != null
+  )
+  .filter((p) => p.image) // Ne garder que celles avec une image
+  .map((p) => ({ src: p.image || '', alt: p.alt || '' }));
+
+const duplicatedPhotos = [...validPhotos, ...validPhotos];
+---
+
+<section class="carousel-details" style={`background-color: ${background};`}>
+  <div class="carousel-track-container" style={`height: ${height};`}>
+    <div
+      id="track-details"
+      class="carousel-track"
+      style={`--spacing: ${spacing}; --speed: ${speed}ms;`}
+    >
+      {
+        duplicatedPhotos.map((photo) => (
+          <div class="carousel-item">
+            <img src={photo.src} alt={photo.alt} loading="lazy" draggable="false" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .carousel-details {
+    width: 100%;
+    overflow: hidden;
+    padding: 2rem 0;
+    cursor: grab;
+    user-select: none;
+  }
+  .carousel-details:active {
+    cursor: grabbing;
+  }
+
+  .carousel-track-container {
+    width: 100%;
+    position: relative;
+    touch-action: pan-y;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: var(--spacing);
+    height: 100%;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .carousel-item {
+    position: relative;
+    height: 100%;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    width: calc(150px - (var(--spacing) * 0.66));
+  }
+
+  @media (min-width: 768px) {
+    .carousel-item {
+      width: calc(200px - (var(--spacing) * 0.66));
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .carousel-item {
+      width: calc(400px - (var(--spacing) * 0.5));
+    }
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    pointer-events: none;
+  }
+  .carousel-item:hover img {
+    transform: scale(1.05);
+  }
+</style>
+
+<script>
+  const track = document.getElementById('track-details');
+  if (!track) throw new Error('Track not found');
+
+  const speed = parseInt(track.style.getPropertyValue('--speed')) || 40000;
+
+  const animation = track.animate(
+    [{ transform: 'translateX(0px)' }, { transform: `translateX(-50%)` }],
+    {
+      duration: speed,
+      iterations: Infinity,
+      easing: 'linear',
+    }
+  );
+
+  let isDragging = false;
+  let startX = 0;
+  let startCurrentTime = 0;
+
+  const startDrag = (e: MouseEvent | TouchEvent) => {
+    isDragging = true;
+    animation.pause();
+    const x = 'pageX' in e ? e.pageX : e.touches[0].pageX;
+    startX = x;
+    startCurrentTime = Number(animation.currentTime) || 0;
+  };
+
+  const moveDrag = (e: MouseEvent | TouchEvent) => {
+    if (!isDragging) return;
+    const x = 'pageX' in e ? e.pageX : e.touches[0].pageX;
+    const walk = x - startX;
+
+    const trackWidth = track.scrollWidth / 2;
+    const timeOffset = (walk / trackWidth) * speed;
+    let newTime = Number(startCurrentTime) - timeOffset;
+
+    if (newTime < 0) newTime += speed;
+    if (newTime > speed) newTime -= speed;
+
+    animation.currentTime = newTime;
+  };
+
+  const stopDrag = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    animation.play();
+  };
+
+  track.addEventListener('mousedown', startDrag as EventListener);
+  window.addEventListener('mousemove', moveDrag as EventListener);
+  window.addEventListener('mouseup', stopDrag);
+  track.addEventListener('touchstart', startDrag as EventListener, { passive: true });
+  window.addEventListener('touchmove', moveDrag as EventListener, { passive: true });
+  window.addEventListener('touchend', stopDrag);
+</script>

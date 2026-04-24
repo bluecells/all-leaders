@@ -1,0 +1,424 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import { blogTranslations } from '@/data/translations';
+
+interface Props {
+  lang?: string;
+  fullBleed?: boolean;
+}
+
+const { lang = 'it', fullBleed = false } = Astro.props;
+const validLang = lang === 'fr' || lang === 'en' ? lang : 'it';
+const t = blogTranslations[validLang as keyof typeof blogTranslations];
+
+// Récupérer tous les articles dans la langue demandée
+const allArticles = await getCollection('articles', ({ data }) => data.lang === validLang);
+
+// Trier par date descendante
+const sortedArticles = allArticles.sort(
+  (a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+
+// ────────────────────────────────────────────────
+// Catégories utilisées (slugs uniques)
+const categorySlugs = new Set<string>(
+  sortedArticles
+    .map((article) => article.data.category)
+    .filter((cat): cat is string => typeof cat === 'string' && !!cat)
+);
+
+const categoriesEntries = await Promise.all(
+  Array.from(categorySlugs).map((slug) => getEntry('category', slug))
+);
+
+const categoriesMap = new Map<string, Awaited<ReturnType<typeof getEntry>>>(
+  categoriesEntries
+    .filter(
+      (entry): entry is Exclude<Awaited<ReturnType<typeof getEntry>>, null | undefined> => !!entry
+    )
+    .map((entry) => [entry.id || entry.slug, entry])
+);
+
+// ────────────────────────────────────────────────
+// Tags utilisés (slugs uniques)
+const tagSlugs = new Set<string>();
+
+sortedArticles.forEach((article) => {
+  const tags = article.data.tags ?? [];
+  tags.forEach((tagSlug) => {
+    if (typeof tagSlug === 'string' && tagSlug) tagSlugs.add(tagSlug);
+  });
+});
+
+const tagsEntries = await Promise.all(Array.from(tagSlugs).map((slug) => getEntry('tags', slug)));
+
+const tagsMap = new Map<string, Awaited<ReturnType<typeof getEntry>>>(
+  tagsEntries
+    .filter(
+      (entry): entry is Exclude<Awaited<ReturnType<typeof getEntry>>, null | undefined> => !!entry
+    )
+    .map((entry) => [entry.id || entry.slug, entry])
+);
+
+// ────────────────────────────────────────────────
+// Préparer les données articles
+const articlesData = sortedArticles.map((article) => {
+  const { title, publishDate, seoSlug, featuredPhoto, category } = article.data;
+  const tags = article.data.tags ?? [];
+
+  // Slug propre
+  const rawSlug = seoSlug || article.id.split('/').pop() || 'article';
+  const cleanSlug = rawSlug.replace(/^\/|\/$/g, '');
+
+  // Catégorie principale avec langue
+  let displayCategory = 'Uncategorized';
+  let categorySlug = '';
+  if (category && typeof category === 'string') {
+    const catEntry = categoriesMap.get(category);
+    if (catEntry) {
+      // Utiliser le nom et slug de la langue active avec fallback vers italien
+      displayCategory = catEntry.data[`name_${validLang}`] || catEntry.data.name_it || category;
+      categorySlug = catEntry.data[`slug_${validLang}`] || catEntry.data.slug_it || category;
+    }
+  }
+
+  // Permalink multilingue avec slug de catégorie localisé
+  const permalink =
+    validLang === 'it'
+      ? `/limologiche/${categorySlug || 'uncategorized'}/${cleanSlug}`
+      : `/${validLang}/limologiche/${categorySlug || 'uncategorized'}/${cleanSlug}`;
+
+  // Tags avec langue
+  const displayTags = tags
+    .map((tagSlug) => {
+      if (typeof tagSlug !== 'string') return null;
+      const tagEntry = tagsMap.get(tagSlug);
+      // Utiliser le nom de la langue active avec fallback vers italien
+      return tagEntry?.data[`name_${validLang}`] || tagEntry?.data.name_it || tagSlug;
+    })
+    .filter(Boolean);
+
+  const rawTags = tags.filter((t): t is string => typeof t === 'string');
+
+  // Image featuredPhoto
+  let photoSrc: string | null = null;
+  let photoAlt: string = title;
+
+  if (typeof featuredPhoto === 'string' && featuredPhoto) {
+    photoSrc = featuredPhoto;
+  } else if (featuredPhoto && typeof featuredPhoto === 'object' && 'image' in featuredPhoto) {
+    photoSrc = featuredPhoto.image || null;
+    photoAlt = featuredPhoto.alt || title;
+  }
+
+  return {
+    title,
+    permalink,
+    displayCategory,
+    categorySlug,
+    displayTags,
+    pubDate: publishDate,
+    photoSrc,
+    photoAlt,
+    rawTags,
+  };
+});
+
+// Données pour les filtres
+const categoriesForFilter = Array.from(categorySlugs);
+const tagsForFilter = Array.from(tagSlugs).sort();
+---
+
+<div
+  class={`blog-container blog-full-width-breakout py-6 ${fullBleed ? 'fullbleed px-[3vw]' : ''}`}
+>
+  <div class="flex flex-col justify-between lg:flex-row gap-12">
+    <aside class="lg:w-80 lg:order-2 space-y-10 lg:sticky lg:top-40 lg:self-start">
+      <div class="search-box">
+        <h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-4">
+          {t.search}
+        </h4>
+        <input
+          type="text"
+          id="search-input"
+          placeholder={t.searchPlaceholder}
+          class="w-full border-b border-gray-300 py-2 focus:border-limolo-green outline-none bg-transparent font-serif italic text-lg transition-colors"
+        />
+      </div>
+
+      <div class="categories-box">
+        <h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-4">
+          {t.categories}
+        </h4>
+        <div class="flex flex-col gap-2">
+          <button
+            class="filter-cat active text-left text-sm hover:text-limolo-green transition-colors font-bold text-limolo-green"
+            data-category="all"
+          >
+            {t.allCategories}
+          </button>
+          {
+            categoriesForFilter.map((slug) => {
+              const cat = categoriesMap.get(slug);
+              if (!cat) return null;
+
+              // Utiliser le nom localisé avec fallback
+              const localizedName = cat.data[`name_${validLang}`] || cat.data.name_it;
+              const localizedSlug = cat.data[`slug_${validLang}`] || cat.data.slug_it;
+
+              return (
+                <button
+                  class="filter-cat text-left text-sm text-gray-500 hover:text-limolo-green transition-colors"
+                  data-category={localizedSlug}
+                >
+                  {localizedName}
+                </button>
+              );
+            })
+          }
+        </div>
+      </div>
+
+      <div class="tags-box">
+        <h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-4">Tags</h4>
+        <div class="flex flex-wrap gap-2">
+          {
+            tagsForFilter.map((slug) => {
+              const tag = tagsMap.get(slug);
+              if (!tag) return null;
+
+              // Utiliser le nom localisé avec fallback
+              const localizedName = tag.data[`name_${validLang}`] || tag.data.name_it;
+              const localizedSlug = tag.data[`slug_${validLang}`] || tag.data.slug_it;
+
+              return (
+                <button
+                  class="filter-tag px-3 py-1 rounded-full text-[10px] border border-gray-200 text-gray-500 hover:border-limolo-green hover:text-limolo-green transition-all"
+                  data-tag={localizedSlug}
+                >
+                  #{localizedName}
+                </button>
+              );
+            })
+          }
+        </div>
+      </div>
+    </aside>
+
+    <main class="lg:flex-1 lg:order-1 max-w-full">
+      <div
+        class="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-x-6 gap-y-6"
+        id="blog-grid"
+      >
+        {
+          articlesData.map((article) => {
+            const {
+              title,
+              permalink,
+              displayCategory,
+              categorySlug,
+              displayTags,
+              pubDate,
+              photoSrc,
+              photoAlt,
+              rawTags,
+            } = article;
+
+            return (
+              <div
+                class="article-card group"
+                data-cat={categorySlug}
+                data-tags={JSON.stringify(rawTags)}
+                data-title={title.toLowerCase()}
+              >
+                <div class="relative aspect-16/10 mb-2 shadow-sm bg-gray-100 overflow-hidden">
+                  <div class="absolute top-0 left-0 z-20">
+                    <div class="bg-limolo-brand backdrop-blur-sm px-2 pb-1 rounded-md shadow-sm">
+                      <span class="text-[10px] font-bold uppercase tracking-tighter text-white">
+                        {new Date(pubDate).toLocaleDateString(
+                          validLang === 'it' ? 'it-IT' : validLang === 'fr' ? 'fr-FR' : 'en-US',
+                          { day: '2-digit', month: 'short', year: 'numeric' }
+                        )}
+                      </span>
+                    </div>
+                  </div>
+
+                  <a href={permalink}>
+                    {photoSrc ? (
+                      <img
+                        src={photoSrc}
+                        alt={photoAlt}
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      />
+                    ) : (
+                      <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm">
+                        Pas d'image
+                      </div>
+                    )}
+                  </a>
+                </div>
+
+                <div class="flex flex-col items-start px-3">
+                  {displayCategory !== 'Uncategorized' && (
+                    <button
+                      class="filter-cat-link text-[8px] my-1 uppercase tracking-[0.2em] font-bold text-limolo-green hover:text-limolo-accent transition-colors"
+                      data-category={displayCategory.toLowerCase()}
+                    >
+                      {displayCategory}
+                    </button>
+                  )}
+
+                  <a href={permalink} class="block group w-full">
+                    <h3 class="text-lg my-2 font-serif text-limolo-green leading-snug group-hover:text-limolo-accent transition-colors">
+                      {title}
+                    </h3>
+                  </a>
+
+                  {displayTags.length > 0 && (
+                    <div class="flex flex-wrap gap-2 mt-2">
+                      {displayTags.map((tag) => (
+                        <span class="text-[10px] text-gray-500">#{tag}</span>
+                      ))}
+                    </div>
+                  )}
+
+                  <a
+                    href={permalink}
+                    class="inline-flex items-center mt-4 text-[11px] font-bold uppercase tracking-widest text-limolo-earth group-hover:translate-x-2 transition-transform duration-300"
+                  >
+                    {t.cta} <span class="ml-2 text-lg">→</span>
+                  </a>
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+
+      <div id="no-results" class="hidden text-center py-20 text-gray-400 font-serif italic text-xl">
+        {t.noResults}
+      </div>
+    </main>
+  </div>
+</div>
+
+<style>
+  main {
+    max-width: 100%;
+  }
+
+  .blog-container.fullbleed {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+  }
+
+  .article-card {
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+</style>
+
+<script is:inline define:vars={{ lang: validLang }}>
+  const searchInput = document.getElementById('search-input');
+  const blogGrid = document.getElementById('blog-grid');
+  const noResults = document.getElementById('no-results');
+  const articleCards = document.querySelectorAll('.article-card');
+  const filterCatButtons = document.querySelectorAll('.filter-cat');
+  const filterCatLinks = document.querySelectorAll('.filter-cat-link');
+  const filterTagButtons = document.querySelectorAll('.filter-tag');
+
+  let activeCategory = 'all';
+  let activeTags = [];
+
+  function filterArticles() {
+    let visibleCount = 0;
+
+    articleCards.forEach((card) => {
+      const cardEl = /** @type {HTMLElement} */ (card);
+      const cardCat = cardEl.dataset.cat?.toLowerCase() || '';
+      const cardTitle = cardEl.dataset.title?.toLowerCase() || '';
+      const cardTagsStr = cardEl.dataset.tags || '[]';
+      const cardTags = JSON.parse(cardTagsStr);
+
+      const searchValue = searchInput?.value.toLowerCase() || '';
+
+      const catMatch = activeCategory === 'all' || cardCat === activeCategory;
+      const tagMatch = activeTags.length === 0 || activeTags.some((tag) => cardTags.includes(tag));
+      const searchMatch = searchValue === '' || cardTitle.includes(searchValue);
+
+      if (catMatch && tagMatch && searchMatch) {
+        cardEl.style.display = 'block';
+        visibleCount++;
+      } else {
+        cardEl.style.display = 'none';
+      }
+    });
+
+    if (visibleCount === 0) {
+      noResults?.classList.remove('hidden');
+      blogGrid?.classList.add('hidden');
+    } else {
+      noResults?.classList.add('hidden');
+      blogGrid?.classList.remove('hidden');
+    }
+  }
+
+  searchInput?.addEventListener('input', filterArticles);
+
+  filterCatButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.dataset.category?.toLowerCase() || 'all';
+
+      filterCatButtons.forEach((b) => {
+        b.classList.remove('active', 'font-bold', 'text-limolo-green');
+        b.classList.add('text-gray-500');
+      });
+
+      btn.classList.add('active', 'font-bold', 'text-limolo-green');
+      btn.classList.remove('text-gray-500');
+
+      filterArticles();
+    });
+  });
+
+  filterCatLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      activeCategory = link.dataset.category?.toLowerCase() || 'all';
+
+      filterCatButtons.forEach((b) => {
+        b.classList.remove('active', 'font-bold', 'text-limolo-green');
+        b.classList.add('text-gray-500');
+      });
+
+      const matchingBtn = Array.from(filterCatButtons).find(
+        (b) => (b.dataset.category?.toLowerCase() || 'all') === activeCategory
+      );
+      if (matchingBtn) {
+        matchingBtn.classList.add('active', 'font-bold', 'text-limolo-green');
+        matchingBtn.classList.remove('text-gray-500');
+      }
+
+      filterArticles();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  filterTagButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const tag = btn.dataset.tag || '';
+
+      if (activeTags.includes(tag)) {
+        activeTags = activeTags.filter((t) => t !== tag);
+        btn.classList.remove('border-limolo-green', 'text-limolo-green', 'bg-limolo-green/5');
+        btn.classList.add('border-gray-200', 'text-gray-500');
+      } else {
+        activeTags.push(tag);
+        btn.classList.add('border-limolo-green', 'text-limolo-green', 'bg-limolo-green/5');
+        btn.classList.remove('border-gray-200', 'text-gray-500');
+      }
+
+      filterArticles();
+    });
+  });
+</script>

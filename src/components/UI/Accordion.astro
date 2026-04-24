@@ -1,0 +1,117 @@
+---
+interface Props {
+  items: Array<{
+    title: string;
+    content: string;
+  }>;
+  allowMultiple?: boolean;
+}
+
+const { items, allowMultiple = true } = Astro.props;
+
+// Simple Markdown to HTML converter
+function markdownToHtml(text: string): string {
+  return (
+    text
+      // Bold
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/__(.+?)__/g, '<strong>$1</strong>')
+      // Italic
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/_(.+?)_/g, '<em>$1</em>')
+      // Line breaks (support both \n in strings and actual newlines)
+      .replace(/\\n/g, '<br/>')
+      .split('\n')
+      .join('<br/>')
+  );
+}
+---
+
+<div class="space-y-2 my-10">
+  {
+    items.map((item, index) => (
+      <div class="border border-color-bg-body-darker rounded-lg overflow-hidden">
+        <button
+          class="accordion-trigger w-full px-4 py-3 cursor-pointer text-left font-semibold text-color-brand-primary bg-gray-50/50 hover:bg-gray-50/80 transition-colors flex items-center justify-between"
+          data-index={index}
+          data-allow-multiple={allowMultiple}
+        >
+          <h3 class="text-base font-lg my-0 font-sans text-left">{item.title}</h3>
+          <svg
+            class="accordion-icon w-5 h-5 transition-transform duration-300 transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
+        </button>
+        <div
+          class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+          data-index={index}
+        >
+          <div
+            class="px-4 py-3 bg-gray-50/20 text-gray-700 border-t border-gray-200 [&_strong]:font-semibold [&_em]:italic [&_br]:block [&_br]:h-2"
+            set:html={markdownToHtml(item.content)}
+          />
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  const triggers = document.querySelectorAll('.accordion-trigger');
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const triggerEl = trigger as HTMLElement;
+      const index = triggerEl.dataset.index;
+      const allowMultiple = triggerEl.dataset.allowMultiple === 'true';
+      const content = document.querySelector(
+        `[data-index="${index}"].accordion-content`
+      ) as HTMLElement;
+      const icon = trigger.querySelector('.accordion-icon') as SVGElement;
+
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+      if (isOpen) {
+        // Fermer
+        content.style.maxHeight = '0';
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        // Ouvrir
+        if (!allowMultiple) {
+          // Fermer tous les autres
+          document.querySelectorAll('.accordion-content').forEach((el) => {
+            if (el !== content) {
+              (el as HTMLElement).style.maxHeight = '0';
+            }
+          });
+
+          document.querySelectorAll('.accordion-icon').forEach((el) => {
+            if (el !== icon) {
+              (el as SVGElement).style.transform = 'rotate(0deg)';
+            }
+          });
+        }
+
+        // Ouvrir celui-ci
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+</script>
+
+<style>
+  .accordion-trigger:focus {
+    outline: 1px solid rgb(131, 128, 123);
+    outline-offset: 0;
+  }
+</style>

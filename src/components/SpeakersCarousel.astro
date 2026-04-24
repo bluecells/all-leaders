@@ -1,0 +1,318 @@
+---
+// SpeakersCarousel.astro
+interface Props {
+  imageHeight?: string
+  speed?: number
+}
+
+const { speed = 0.5 } = Astro.props
+
+// Collection "conferenciers" n'existe pas, utiliser une collection vide pour éviter les erreurs
+const displayedSpeakers: any[] = []
+
+function getSpeakerSlug(fileName: string): string {
+  return fileName.replace(/\.md$/, "")
+}
+---
+
+<div class="ultimate-carousel-wrapper bg-indigo-950 dark:bg-slate-950">
+  <div class="view-window" id="carousel-container" data-speed={speed}>
+    <div class="moving-track" id="carousel-track">
+      {
+        displayedSpeakers.map((speaker) => (
+          <a
+            href={`/speakers/${getSpeakerSlug(speaker.id)}`}
+            class="speaker-item"
+            data-speaker-link
+          >
+            <div
+              class="photo-box"
+              role="img"
+              aria-label={`Photo de ${(speaker.data as any).prenom || speaker.data.title}`}
+              style={`background-image: url('${(speaker.data as any).photo || ''}');`}
+            >
+              <span class="sr-only">
+                {speaker.data.title}
+              </span>
+            </div>
+
+            <div class="label-div">
+              <span class="name-tag !text-indigo-100">
+                {speaker.data.title}
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  let carouselInstance = null
+
+  function initCarousel() {
+    const container = document.getElementById("carousel-container")
+    const track = document.getElementById("carousel-track")
+    if (!container || !track) return
+
+    // Nettoyer l'instance précédente si elle existe
+    if (carouselInstance && carouselInstance.animationFrameId) {
+      cancelAnimationFrame(carouselInstance.animationFrameId)
+    }
+
+    let currentX = 0
+    let isDragging = false
+    let isTouchDevice = false
+    let startX = 0
+    let dragDistance = 0
+    let animationFrameId = null
+
+    const autoPlaySpeed = parseFloat(container.dataset.speed || "0.5")
+    const DRAG_THRESHOLD = 5
+
+    const checkTouchDevice = () => "ontouchstart" in window || navigator.maxTouchPoints > 0
+
+    function animate() {
+      const halfTrackWidth = track.scrollWidth / 2
+
+      // Auto-play uniquement quand on ne drag pas
+      if (!isDragging) {
+        currentX -= autoPlaySpeed
+      }
+
+      if (-currentX >= halfTrackWidth) {
+        currentX = 0
+      } else if (currentX > 0) {
+        currentX = -halfTrackWidth
+      }
+
+      track.style.transform = `translateX(${currentX}px)`
+      animationFrameId = requestAnimationFrame(animate)
+    }
+
+    // Stocker l'instance pour pouvoir la nettoyer plus tard
+    carouselInstance = { animationFrameId, currentX }
+
+    // Desktop: Mouse drag
+    container.addEventListener("mousedown", (e) => {
+      isTouchDevice = checkTouchDevice()
+      if (isTouchDevice) return
+      isDragging = true
+      startX = e.clientX
+      dragDistance = 0
+      container.style.cursor = "grabbing"
+      e.preventDefault()
+    })
+
+    container.addEventListener("mousemove", (e) => {
+      if (!isDragging || isTouchDevice) return
+      const clientX = e.clientX
+      const deltaX = clientX - startX
+      dragDistance += Math.abs(deltaX)
+      currentX += deltaX
+      startX = clientX
+    })
+
+    container.addEventListener("mouseup", () => {
+      if (!isTouchDevice) {
+        isDragging = false
+        container.style.cursor = "grab"
+      }
+    })
+
+    container.addEventListener("mouseleave", () => {
+      if (!isTouchDevice) {
+        isDragging = false
+        container.style.cursor = "grab"
+      }
+    })
+
+    container.addEventListener(
+      "touchstart",
+      (e) => {
+        isTouchDevice = true
+        isDragging = true
+        startX = e.touches[0].clientX
+        dragDistance = 0
+      },
+      { passive: true }
+    )
+
+    container.addEventListener(
+      "touchmove",
+      (e) => {
+        if (!isDragging) return
+        const clientX = e.touches[0].clientX
+        const deltaX = clientX - startX
+        dragDistance += Math.abs(deltaX)
+        currentX += deltaX
+        startX = clientX
+      },
+      { passive: true }
+    )
+
+    container.addEventListener(
+      "touchend",
+      () => {
+        isDragging = false
+      },
+      { passive: true }
+    )
+
+    track.querySelectorAll("[data-speaker-link]").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        if (dragDistance > DRAG_THRESHOLD) e.preventDefault()
+      })
+    })
+
+    requestAnimationFrame(animate)
+  }
+
+  document.addEventListener("DOMContentLoaded", initCarousel)
+  document.addEventListener("astro:page-load", initCarousel)
+</script>
+
+<style is:inline>
+  .ultimate-carousel-wrapper {
+    width: 100%;
+    padding: 20px 0 0 0;
+    overflow: hidden;
+    cursor: grab;
+  }
+  .ultimate-carousel-wrapper:active {
+    cursor: grabbing;
+  }
+
+  .view-window {
+    width: 100%;
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+
+  .moving-track {
+    display: flex !important;
+    width: max-content !important;
+    gap: 0;
+    will-change: transform;
+  }
+
+  .speaker-item {
+    display: flex !important;
+    flex-direction: column !important;
+    text-decoration: none !important;
+    flex-shrink: 0 !important;
+    padding: 0 3px;
+    box-sizing: border-box;
+    -webkit-user-drag: none;
+  }
+
+  /* Responsive Widths */
+  .speaker-item {
+    width: 33.33vw;
+  }
+  .photo-box {
+    height: 130px;
+  }
+
+  @media (min-width: 1024px) {
+    .speaker-item {
+      width: 12.5vw;
+    }
+    .photo-box {
+      height: 190px;
+    }
+  }
+
+  @media (min-width: 2000px) {
+    .speaker-item {
+      width: 9.09vw;
+    }
+    .photo-box {
+      height: 240px;
+    }
+  }
+
+  .photo-box {
+    display: block !important;
+    width: 100% !important;
+    background-size: cover !important;
+    background-position: center top !important;
+    background-repeat: no-repeat !important;
+    border-radius: 3px;
+    position: relative;
+    background-color: #222;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .speaker-item:hover .photo-box {
+    transform: scale(1.03);
+  }
+
+  /* Styles des Étiquettes (Fallback CSS si Tailwind manque) */
+  .lvl-tag {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 4px;
+    color: #111; /* Texte sombre sur métaux */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+  }
+
+  /* Couleurs de fallback si vos classes bg-metal-xxx ne sont pas définies */
+  .bg-metal-gold {
+    background: linear-gradient(135deg, #ffd700, #b8860b) !important;
+    color: #000 !important;
+  }
+  .bg-metal-silver {
+    background: linear-gradient(135deg, #c0c0c0, #708090) !important;
+    color: #000 !important;
+  }
+  .bg-metal-bronze {
+    background: linear-gradient(135deg, #cd7f32, #8b4513) !important;
+    color: #fff !important;
+  }
+
+  .label-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 12px;
+    text-align: center;
+  }
+
+  .name-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: currentColor;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  .role-tag {
+    font-size: 9px;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>

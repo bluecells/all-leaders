@@ -1,0 +1,203 @@
+---
+import { breadcrumbTranslations } from '@/data/translations';
+
+/**
+ * Breadcrumb.astro - Composant de fil d'Ariane intelligent
+ *
+ * Ce composant génère automatiquement un fil d'Ariane adapté au type de contenu
+ * en analysant l'URL de la page actuelle.
+ *
+ * @example
+ * // Détection automatique
+ * <Breadcrumb />
+ *
+ * @example
+ * // Avec override du titre et catégorie
+ * <Breadcrumb category="Tradizioni" title="Il Canto a Cuncordu" />
+ *
+ * @example
+ * // Avec items manuels
+ * <Breadcrumb items={[
+ *   { label: 'Home', href: '/' },
+ *   { label: 'Custom', href: '/custom' }
+ * ]} />
+ */
+
+interface Props {
+  /** Items manuels du fil d'Ariane. Si fournis, la détection automatique est désactivée */
+  items?: Array<{ label: string; href: string }>
+  /** Nom de la catégorie. Override la catégorie extraite de l'URL */
+  category?: string
+  /** Titre de la page. Override le titre extrait de l'URL */
+  title?: string
+  /** Langue pour le fil d'Ariane */
+  lang?: 'it' | 'fr' | 'en'
+}
+
+const { items = [], category, title, lang = 'it' } = Astro.props
+const t = breadcrumbTranslations[lang] || breadcrumbTranslations.it
+
+let breadcrumbItems: Array<{ label: string; href: string }> = []
+
+/**
+ * PRIORITÉ 1 : Utiliser les items manuels si fournis
+ * Permet un contrôle total sur le fil d'Ariane
+ */
+if (items.length > 0) {
+  breadcrumbItems = items
+} else {
+  /**
+   * PRIORITÉ 2 : Génération automatique basée sur l'URL
+   */
+  // Récupérer le chemin de l'URL actuelle (ex: /faq/categorie/article)
+  const currentPath = Astro.url.pathname
+
+  // Découper le chemin en segments et retirer les segments vides
+  // Ex: "/faq/categorie/article" → ["faq", "categorie", "article"]
+  const pathSegments = currentPath.split("/").filter((segment) => segment)
+
+  // Détecter le type de contenu en analysant les segments du path
+  const isFAQ = pathSegments.includes("faq")
+  const isEventi = pathSegments.includes("eventi")
+
+  /**
+   * CAS 1 : FAQ avec catégorie
+   * Structure attendue : /faq/categorie/question
+   * Résultat : Home / FAQ / Catégorie / Titre
+   */
+  if (isFAQ && pathSegments.length >= 2) {
+    // Identifier le dossier faq
+    const folderName = "faq"
+    const folderLabel = t.faq
+
+    // Extraire la catégorie depuis l'URL (2ème segment - répertoire)
+    // Ex: /faq/categorie/article → "categorie"
+    const categoryFromPath = pathSegments[1]
+
+    // Formater la catégorie : utiliser la prop si fournie, sinon formatter depuis l'URL
+    // Si category prop existe (ex: "Canto Sardo"), l'utiliser
+    // Sinon, formatter depuis l'URL : "CantoSardo" → "Canto Sardo"
+    const categoryLabel =
+      category ||
+      categoryFromPath
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ")
+
+    // Créer le slug de la catégorie pour l'URL
+    // Si category prop existe (ex: "Canto Sardo"), le slugifier → "canto-sardo"
+    // Sinon, utiliser le segment de l'URL en minuscules
+    const categorySlug = category
+      ? category.toLowerCase().replace(/\s+/g, "-")
+      : categoryFromPath.toLowerCase()
+
+    // Extraire le titre depuis l'URL (dernier segment)
+    // Ex: /faq/categorie/question-slug → "question-slug"
+    const titleFromPath = pathSegments[pathSegments.length - 1]
+
+    // Formater le titre : utiliser la prop si fournie, sinon formatter depuis l'URL
+    // "il-canto-sardo" → "Il Canto Sardo"
+    const titleLabel =
+      title ||
+      titleFromPath
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ")
+
+    // Construire le fil d'Ariane à 4 niveaux
+    breadcrumbItems = [
+      { label: t.home, href: "/" },
+      { label: folderLabel, href: `/${folderName}` },
+      { label: categoryLabel, href: `/${folderName}/${categorySlug}` },
+      { label: titleLabel, href: "" }, // Pas de href pour la page actuelle
+    ]
+  } else if (isEventi && pathSegments.length >= 2) {
+    /**
+     * CAS 2 : Eventi sans catégorie
+     * Structure attendue : /eventi/nom-event
+     * Résultat : Home / Eventi / Titre
+     */
+    // Extraire le titre depuis l'URL (dernier segment)
+    const titleFromPath = pathSegments[pathSegments.length - 1]
+
+    // Formater le titre
+    const titleLabel =
+      title ||
+      titleFromPath
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ")
+
+    // Construire le fil d'Ariane à 3 niveaux
+    breadcrumbItems = [
+      { label: t.home, href: "/" },
+      { label: t.faq, href: "/faq" },
+      { label: titleLabel, href: "" },
+    ]
+  } else {
+    /**
+     * CAS 3 : Pages normales
+     * Génération standard basée sur tous les segments de l'URL
+     * Résultat : Home / Segment1 / Segment2 / ...
+     */
+    breadcrumbItems = [
+      { label: t.home, href: "/" },
+      // Pour chaque segment, construire un élément du fil d'Ariane
+      ...pathSegments.map((segment, index) => {
+        // Construire le href cumulatif
+        // Ex: index=0 → '/chi-siamo', index=1 → '/chi-siamo/team'
+        const href = "/" + pathSegments.slice(0, index + 1).join("/")
+
+        // Formater le label : capitaliser chaque mot
+        // "chi-siamo" → "Chi Siamo"
+        const label = segment
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")
+
+        return { label, href }
+      }),
+    ]
+  }
+}
+---
+
+<!--
+  Navigation Breadcrumb accessible avec aria-label
+  Structure sémantique <nav> > <ol> > <li>
+-->
+<nav aria-label="Fil d'Ariane" class="mx-auto max-w-7xl py-1 w-full">
+  <ol class="flex flex-wrap items-center gap-x-2 text-xs">
+    {
+      breadcrumbItems.map((item, index) => {
+        // Vérifier si c'est le dernier élément (page actuelle)
+        const isLast = index === breadcrumbItems.length - 1
+
+        return (
+          <li class="flex items-center gap-2">
+            {/* Liens cliquables pour tous les éléments sauf le dernier */}
+            {!isLast && item.href ? (
+              <>
+                <a
+                  href={item.href}
+                  class="text-indigo-600 hover:text-indigo-300 hover:underline transition-colors duration-200"
+                >
+                  {item.label}
+                </a>
+                {/* Séparateur visuel entre les éléments */}
+                <span class="text-slate-400 select-none" aria-hidden="true">
+                  /
+                </span>
+              </>
+            ) : (
+              /* Dernier élément : texte non cliquable avec aria-current pour l'accessibilité */
+              <span aria-current={isLast ? "page" : undefined} class="text-indigo-400 font-medium">
+                {item.label}
+              </span>
+            )}
+          </li>
+        )
+      })
+    }
+  </ol>
+</nav>

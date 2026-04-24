@@ -1,0 +1,840 @@
+---
+// SearchIA.astro
+---
+
+<div class="max-w-5xl w-full sm:w-full my-4 sm:my-8 group flex justify-center sm:block">
+  <div class="relative w-[96vw] sm:w-full">
+    <input
+      type="text"
+      id="trigger-input"
+      class="block w-full pl-2 pr-20 py-4 sm:py-6 rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 outline-none transition-all text-base sm:text-lg shadow-xl tracking-tighter sm:tracking-normal dark:text-white"
+      autocomplete="off"
+    />
+
+    <div
+      id="placeholder-slot"
+      class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 dark:text-slate-500/80 text-base sm:text-lg transition-opacity duration-200"
+    >
+      <span id="typewriter-text"></span><span id="cursor" class="animate-pulse">|</span>
+    </div>
+
+    <button
+      id="main-search-btn"
+      class="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 bg-indigo-600 dark:bg-indigo-500 text-white p-3 sm:p-4 rounded-2xl transition-all duration-500 ease-out hover:bg-indigo-500 hover:shadow-[0_0_30px_rgba(79,70,229,0.6)] active:scale-90 flex items-center justify-center z-20"
+      title="Lancer la recherche"
+    >
+      <div
+        class="relative transition-transform duration-500 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)_scale(1.1)]"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="sm:w-8 sm:h-8"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+      </div>
+    </button>
+  </div>
+</div>
+
+<div
+  id="ia-modal"
+  class="fixed inset-0 z-[999999] hidden items-center justify-center p-4 backdrop-blur-md"
+>
+  <div id="modal-overlay" class="absolute inset-0 bg-slate-950/60 transition-opacity"></div>
+
+  <div
+    id="modal-content"
+    class="relative bg-white dark:bg-slate-900 w-full max-w-[95vw] max-h-[92vh] rounded-md shadow-2xl flex flex-col overflow-hidden border border-slate-200 dark:border-slate-800 opacity-0 scale-95 transition-all duration-300"
+  >
+    <div
+      class="flex flex-col gap-2 p-3 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 shrink-0"
+    >
+      <!-- Première ligne mobile : Bouton Quitter uniquement -->
+      <div class="flex md:hidden items-center justify-between gap-2">
+        <div class="min-w-0">
+          <h3 class="text-[10px] !my-0 font-bold uppercase tracking-widest text-slate-400">
+            Assistant Intelligence Stratégique
+          </h3>
+        </div>
+        <button
+          id="close-modal"
+          class="group flex items-center gap-2 px-3 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all"
+        >
+          <span class="text-[10px] font-bold uppercase text-slate-500">Quitter</span>
+          <span class="text-xl text-slate-400 group-hover:rotate-90 transition-transform">×</span>
+        </button>
+      </div>
+
+      <!-- Desktop: Assistant à gauche, bouton Quitter à droite -->
+      <div class="hidden md:flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="blob-container scale-50 flex-shrink-0 -ml-6 relative z-10">
+            <div class="blobs-background-group">
+              <div class="blob"></div>
+              <div class="blob-sub"></div>
+            </div>
+
+            <div class="absolute inset-0 flex items-center justify-center z-20">
+              <span class="text-3xl">🧠</span>
+            </div>
+          </div>
+          <div class="min-w-0">
+            <h3 class="text-[10px] !my-0 font-bold uppercase tracking-widest text-slate-400">
+              Assistant Intelligence Stratégique
+            </h3>
+          </div>
+        </div>
+
+        <button
+          id="close-modal-desktop"
+          class="group flex items-center gap-2 px-3 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+        >
+          <span class="text-[10px] font-bold uppercase text-slate-500">Quitter</span>
+          <span class="text-xl text-slate-400 group-hover:rotate-90 transition-transform">×</span>
+        </button>
+      </div>
+
+      <!-- Deuxième ligne : String de recherche -->
+      <div class="w-full">
+        <p
+          id="query-reminder"
+          class="text-xs font-normal text-slate-700 dark:text-slate-200 italic truncate"
+        >
+        </p>
+      </div>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-5 custom-scrollbar bg-white dark:bg-slate-900">
+      <div id="ia-loader" class="hidden py-10 flex flex-col items-center justify-center">
+        <div class="blob-container flex-shrink-0 -ml-6 relative z-10">
+          <div class="blobs-background-group">
+            <div class="blob"></div>
+            <div class="blob-sub"></div>
+          </div>
+
+          <div class="absolute inset-0 flex items-center justify-center z-20">
+            <span class="text-6xl">🧠</span>
+          </div>
+        </div>
+        <p
+          class="mt-6 text-2xl font-black text-indigo-600 dark:text-indigo-400 animate-pulse tracking-widest"
+        >
+          I am fouilling in my fiches...
+        </p>
+      </div>
+
+      <div class="flex flex-col lg:flex-row gap-6">
+        <!-- Colonne gauche : Analyse IA -->
+        <div class="flex-1">
+          <div
+            id="ia-recommendation"
+            class="hidden mb-6 p-6 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border-l-4 border-indigo-500 text-sm leading-relaxed text-slate-700 dark:text-slate-300 shadow-inner opacity-0 transition-opacity duration-500"
+          >
+          </div>
+
+          <div
+            id="internal-search-zone"
+            class="hidden mb-8 opacity-0 translate-y-2 transition-all duration-500"
+          >
+            <div class="relative flex items-center gap-2 max-w-2xl mx-auto">
+              <div class="relative flex items-center flex-1">
+                <input
+                  type="text"
+                  id="internal-query"
+                  placeholder="Affiner (ex: 'Plus orienté sur la résilience', 'Profil féminin'...)"
+                  class="w-full pl-4 pr-28 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/10 outline-none text-xs transition-all dark:text-white"
+                />
+                <button
+                  id="internal-search-btn"
+                  class="absolute right-1.5 bg-indigo-600 text-white px-4 py-2 rounded-lg text-[10px] font-bold uppercase hover:bg-indigo-500 transition-all active:scale-95 shadow-lg shadow-indigo-500/20"
+                  >Affiner</button
+                >
+              </div>
+              <button
+                id="reset-search"
+                class="flex items-center gap-1.5 px-4 py-3.5 rounded-xl text-[10px] font-bold uppercase text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-all border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 shrink-0"
+                title="Effacer l'historique et recommencer"
+              >
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                  ></path></svg
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Colonne droite : Profils -->
+        <div class="lg:w-80 flex flex-col gap-4">
+          <div
+            id="share-bar"
+            class="hidden p-3 bg-indigo-50 dark:bg-indigo-900/10 rounded-xl border border-indigo-100 dark:border-indigo-800/50 opacity-0 transition-opacity duration-500"
+          >
+            <span
+              class="text-[9px] font-black uppercase text-indigo-600 dark:text-indigo-400 tracking-wider block mb-2"
+              >Partager cette sélection d'experts :</span
+            >
+            <div class="flex gap-2">
+              <a
+                id="share-whatsapp"
+                href="#"
+                target="_blank"
+                class="p-2 bg-white dark:bg-slate-800 shadow-sm rounded-lg hover:text-green-500 transition-all text-slate-500"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"
+                  ><path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.672 1.433 5.661 1.433h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  ></path></svg
+                >
+              </a>
+              <button
+                id="share-copy"
+                class="px-3 py-1.5 bg-white dark:bg-slate-800 shadow-sm rounded-lg text-[9px] font-bold uppercase hover:bg-slate-50 transition-all dark:text-slate-300"
+                >Copier le lien</button
+              >
+            </div>
+          </div>
+
+          <div id="ia-results" class="flex flex-col gap-3 pb-6 transition-opacity duration-300">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const SUPABASE_URL = "https://ijavzaiikdweofmeldpo.supabase.co"
+  const ANON_KEY =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlqYXZ6YWlpa2R3ZW9mbWVsZHBvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYyMzU1OTgsImV4cCI6MjA4MTgxMTU5OH0.t0SVIyY6EAZA-Cx3oywNS0yPOVvpqcV0Pe4nOQaZ4SA"
+
+  // Elements (déclarations initiales pour les éléments qui ne changent pas lors de la navigation)
+  const modal = document.getElementById("ia-modal")
+  const modalContent = document.getElementById("modal-content")
+  const queryReminder = document.getElementById("query-reminder")
+  const resultsDiv = document.getElementById("ia-results")
+  const recommendationDiv = document.getElementById("ia-recommendation")
+  const loader = document.getElementById("ia-loader")
+  const shareBar = document.getElementById("share-bar")
+  const internalSearchZone = document.getElementById("internal-search-zone")
+  let triggerInput = document.getElementById("trigger-input")
+
+  // Mémoire IA
+  let searchHistory = []
+  let currentSpeakerSlugs = []
+
+  // Animation typewriter pour les placeholders
+  const placeholders = [
+    "Un survivant qui nous réinitialise",
+    "Un stratège qui nous arme",
+    "Un hacker qui nous révèle",
+    "Une pionnière qui nous propulse",
+    "Un champion qui nous muscle",
+  ]
+
+  let currentPlaceholderIndex = 0
+  let typewriterTimeout = null
+  let isTyping = false
+  let isAnimating = false // Empêche les animations concurrentes
+  let typewriterText = document.getElementById("typewriter-text")
+  let placeholderSlot = document.getElementById("placeholder-slot")
+
+  // Références aux event handlers pour pouvoir les nettoyer
+  let inputHandler = null
+  let focusHandler = null
+  let blurHandler = null
+
+  function getRandomDelay(min = 60, max = 90) {
+    // Rythme régulier avec légères variations naturelles
+    return Math.random() * (max - min) + min
+  }
+
+  function stopTypewriter() {
+    isTyping = true
+    isAnimating = false
+    if (typewriterTimeout) {
+      clearTimeout(typewriterTimeout)
+      typewriterTimeout = null
+    }
+    if (typewriterText) {
+      typewriterText.textContent = ""
+      typewriterText.style.opacity = "1"
+      typewriterText.style.transition = "opacity 0s"
+    }
+  }
+
+  async function typewriterEffect() {
+    // Empêcher les animations concurrentes
+    if (isAnimating || !typewriterText || !triggerInput || triggerInput.value.trim() !== "") return
+
+    isAnimating = true
+
+    const text = placeholders[currentPlaceholderIndex]
+    typewriterText.textContent = ""
+
+    // Tape chaque caractère avec des délais irréguliers
+    for (let i = 0; i < text.length; i++) {
+      if (isTyping || triggerInput.value.trim() !== "") {
+        typewriterText.textContent = ""
+        isAnimating = false
+        return
+      }
+      typewriterText.textContent = text.substring(0, i + 1)
+      await new Promise((resolve) => {
+        typewriterTimeout = setTimeout(resolve, getRandomDelay())
+      })
+    }
+
+    // Pause avant de passer au texte suivant
+    await new Promise((resolve) => {
+      typewriterTimeout = setTimeout(resolve, 3000)
+    })
+
+    // Vérifier à nouveau avant l'effacement
+    if (isTyping || triggerInput.value.trim() !== "") {
+      typewriterText.textContent = ""
+      isAnimating = false
+      return
+    }
+
+    // Efface le texte avec fade-out
+    if (typewriterText) {
+      typewriterText.style.transition = "opacity 0.5s ease-out"
+      typewriterText.style.opacity = "0"
+      await new Promise((resolve) => {
+        typewriterTimeout = setTimeout(resolve, 500)
+      })
+      typewriterText.textContent = ""
+      typewriterText.style.opacity = "1"
+      typewriterText.style.transition = "opacity 0s"
+    }
+
+    // Passe au placeholder suivant
+    currentPlaceholderIndex = (currentPlaceholderIndex + 1) % placeholders.length
+    await new Promise((resolve) => {
+      typewriterTimeout = setTimeout(resolve, 500)
+    })
+
+    isAnimating = false
+
+    // Relancer seulement si l'utilisateur n'est pas en train de taper
+    if (!isTyping && triggerInput.value.trim() === "") {
+      typewriterEffect()
+    }
+  }
+
+  function initTypewriterAnimation() {
+    // Mettre à jour les références après navigation
+    triggerInput = document.getElementById("trigger-input")
+    const newTypewriterText = document.getElementById("typewriter-text")
+    const newPlaceholderSlot = document.getElementById("placeholder-slot")
+
+    if (newTypewriterText) {
+      typewriterText = newTypewriterText
+    }
+    if (newPlaceholderSlot) {
+      placeholderSlot = newPlaceholderSlot
+    }
+
+    // Nettoyer l'animation précédente
+    stopTypewriter()
+
+    currentPlaceholderIndex = 0
+    isTyping = false
+    isAnimating = false
+
+    if (typewriterText) {
+      typewriterText.textContent = ""
+    }
+
+    if (triggerInput && typewriterText && placeholderSlot) {
+      // Supprimer les anciens event listeners
+      if (inputHandler) triggerInput.removeEventListener("input", inputHandler)
+      if (focusHandler) triggerInput.removeEventListener("focus", focusHandler)
+      if (blurHandler) triggerInput.removeEventListener("blur", blurHandler)
+
+      // Cacher le placeholder quand l'utilisateur tape
+      inputHandler = () => {
+        if (triggerInput.value.trim() !== "") {
+          isTyping = true
+          stopTypewriter()
+          placeholderSlot.style.opacity = "0"
+          // Nettoyer complètement le texte du typewriter
+          if (typewriterText) {
+            typewriterText.textContent = ""
+          }
+        } else {
+          isTyping = false
+          placeholderSlot.style.opacity = "1"
+          // Relancer l'animation seulement si elle n'est pas déjà en cours
+          if (!isAnimating) {
+            setTimeout(() => typewriterEffect(), 300)
+          }
+        }
+      }
+
+      // Focus/Blur pour gérer l'affichage
+      focusHandler = () => {
+        isTyping = true
+        stopTypewriter()
+        // Toujours cacher le placeholder au focus pour éviter le double curseur
+        placeholderSlot.style.opacity = "0"
+        if (typewriterText) {
+          typewriterText.textContent = ""
+        }
+      }
+
+      blurHandler = () => {
+        isTyping = false
+        if (triggerInput.value.trim() === "") {
+          placeholderSlot.style.opacity = "1"
+          // Relancer l'animation après un court délai
+          if (!isAnimating) {
+            setTimeout(() => typewriterEffect(), 500)
+          }
+        } else {
+          placeholderSlot.style.opacity = "0"
+        }
+      }
+
+      triggerInput.addEventListener("input", inputHandler)
+      triggerInput.addEventListener("focus", focusHandler)
+      triggerInput.addEventListener("blur", blurHandler)
+
+      // Démarrer l'animation
+      setTimeout(() => typewriterEffect(), 300)
+    }
+  }
+
+  // Initialiser au chargement initial
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      initTypewriterAnimation()
+      initSearchBindings()
+    })
+  } else {
+    // DOM déjà chargé
+    initTypewriterAnimation()
+    initSearchBindings()
+  }
+
+  // Réinitialiser lors de la navigation Astro
+  document.addEventListener("astro:page-load", () => {
+    initTypewriterAnimation()
+    initSearchBindings()
+  })
+
+  if (modal) document.body.appendChild(modal)
+
+  function openModal() {
+    modal.classList.remove("hidden")
+    modal.classList.add("flex")
+    document.body.style.overflow = "hidden"
+    setTimeout(() => {
+      modalContent.classList.remove("opacity-0", "scale-95")
+      modalContent.classList.add("opacity-100", "scale-100")
+    }, 10)
+  }
+
+  function closeModal() {
+    modalContent.classList.remove("opacity-100", "scale-100")
+    modalContent.classList.add("opacity-0", "scale-95")
+    setTimeout(() => {
+      modal.classList.replace("flex", "hidden")
+      document.body.style.overflow = ""
+    }, 300)
+  }
+
+  // --- LOGIQUE RÉINITIALISER ---
+  function resetAll() {
+    // Effacer l'historique de recherche
+    searchHistory = []
+    currentSpeakerSlugs = []
+
+    // Réinitialiser tous les éléments visuels
+    resultsDiv.innerHTML = ""
+    recommendationDiv.innerHTML = ""
+    recommendationDiv.classList.add("hidden")
+    recommendationDiv.classList.remove("opacity-100")
+    recommendationDiv.classList.add("opacity-0")
+
+    internalSearchZone.classList.add("hidden")
+    internalSearchZone.classList.add("opacity-0", "translate-y-2")
+    internalSearchZone.classList.remove("opacity-100", "translate-y-0")
+
+    shareBar.classList.add("hidden")
+    shareBar.classList.add("opacity-0")
+    shareBar.classList.remove("opacity-100")
+
+    // Réinitialiser les inputs
+    triggerInput.value = ""
+    const internalInput = document.getElementById("internal-query")
+    if (internalInput) internalInput.value = ""
+
+    // Fermer la modale immédiatement
+    closeModal()
+  }
+
+  async function performSearch(customQuery) {
+    const isRefinement = !!customQuery
+    const query = isRefinement ? customQuery : triggerInput.value.trim()
+    if (!query) return
+
+    openModal()
+    queryReminder.innerText = isRefinement ? `Affinement : ${query}` : `Votre requête : ${query}`
+    loader.classList.remove("hidden")
+
+    // Feedback visuel de chargement sur les éléments existants
+    recommendationDiv.classList.add("opacity-40")
+    resultsDiv.classList.add("opacity-40")
+
+    try {
+      const response = await fetch(`${SUPABASE_URL}/functions/v1/search-speakers-gemini`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${ANON_KEY}`,
+        },
+        body: JSON.stringify({
+          query,
+          history: searchHistory,
+          is_refinement: isRefinement,
+        }),
+      })
+
+      const data = await response.json()
+      const speakers = data.speakers || []
+      const recommendationText = data.recommendationText || ""
+
+      // Enregistrer dans l'historique
+      searchHistory.push({ role: "user", content: query })
+      searchHistory.push({ role: "assistant", content: recommendationText })
+      if (searchHistory.length > 6) searchHistory = searchHistory.slice(-6)
+
+      // Affichage Recommandation
+      if (recommendationText) {
+        recommendationDiv.innerHTML = `<div class="prose prose-sm dark:prose-invert max-w-none">${recommendationText}</div>`
+        recommendationDiv.classList.remove("hidden", "opacity-40")
+        recommendationDiv.classList.add("opacity-100")
+
+        internalSearchZone.classList.remove("hidden")
+        setTimeout(() => {
+          internalSearchZone.classList.remove("opacity-0", "translate-y-2")
+          internalSearchZone.classList.add("opacity-100", "translate-y-0")
+        }, 150)
+      }
+
+      // Affichage Cartes
+      resultsDiv.innerHTML = ""
+      resultsDiv.classList.remove("opacity-40")
+      currentSpeakerSlugs = speakers.map((s) => s.slug)
+      if (speakers.length > 0) {
+        speakers.forEach((s) => {
+          const prixMoyen =
+            s.tarif_min && s.tarif_max ? Math.round((s.tarif_min + s.tarif_max) / 2) : null
+          const prixAffiche = prixMoyen ? `${prixMoyen.toLocaleString()}€` : "Sur demande"
+          const niveau = s.niveau || "Expert"
+
+          let badgeClass = "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600"
+          if (niveau === "Elite") {
+            badgeClass = "bg-metal-gold"
+          } else if (niveau === "Premium") {
+            badgeClass = "bg-metal-silver"
+          } else if (niveau === "A découvrir") {
+            badgeClass = "bg-metal-bronze"
+          }
+
+          resultsDiv.insertAdjacentHTML(
+            "beforeend",
+            `
+            <a href="/speakers/${s.slug}" class="group flex flex-col p-2 rounded-xl border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-indigo-400 hover:shadow-md transition-all">
+              <div class="flex gap-3 mb-2">
+                <img src="${s.photo_url || "/placeholder-user.png"}" class="w-24 h-24 rounded-lg object-cover shadow-sm shrink-0" />
+                <div class="min-w-0 flex-1 flex flex-col gap-1">
+                  <h4 class="font-bold text-xs text-slate-900 dark:text-white uppercase tracking-tight line-clamp-2">${s.nom_complet}</h4>
+                  <p class="text-[9px] text-slate-500 dark:text-slate-400 italic line-clamp-2 leading-tight">"${s.accroche || ""}"</p>
+                  <span class="text-[7px] px-1.5 py-0.5 rounded-full ${badgeClass} font-black uppercase tracking-widest inline-block w-fit">${niveau}</span>
+                </div>
+              </div>
+              <div class="border-t border-slate-50 dark:border-slate-800 flex justify-between items-center">
+                <div class="flex items-center gap-1">
+                  <svg class="w-3 h-3 text-amber-400 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <span class="text-[10px] font-bold text-slate-700 dark:text-slate-300">${(s.note || 5.0).toFixed(1)}</span>
+                </div>
+                <span class="text-[10px] font-bold text-slate-900 dark:text-slate-100">${prixAffiche}</span>
+              </div>
+            </a>
+          `
+          )
+        })
+
+        updateShareLinks()
+        shareBar.classList.remove("hidden")
+        setTimeout(() => {
+          shareBar.classList.remove("opacity-0")
+          shareBar.classList.add("opacity-100")
+        }, 250)
+      }
+    } catch (e) {
+      console.error("Erreur SearchIA:", e)
+    } finally {
+      loader.classList.add("hidden")
+    }
+  }
+
+  // Références aux event handlers pour pouvoir les nettoyer
+  let searchBtnHandler = null
+  let triggerInputHandler = null
+  let internalSearchBtnHandler = null
+  let internalInputHandler = null
+  let resetButtonHandler = null
+
+  // Fonction d'initialisation des bindings
+  function initSearchBindings() {
+    const searchBtn = document.getElementById("main-search-btn")
+    triggerInput = document.getElementById("trigger-input")
+    const internalSearchBtn = document.getElementById("internal-search-btn")
+    const internalInput = document.getElementById("internal-query")
+    const resetButton = document.getElementById("reset-search")
+
+    // Nettoyer les anciens event listeners
+    if (searchBtn && searchBtnHandler) {
+      searchBtn.removeEventListener("click", searchBtnHandler)
+    }
+    if (triggerInput && triggerInputHandler) {
+      triggerInput.removeEventListener("keydown", triggerInputHandler)
+    }
+    if (internalSearchBtn && internalSearchBtnHandler) {
+      internalSearchBtn.removeEventListener("click", internalSearchBtnHandler)
+    }
+    if (internalInput && internalInputHandler) {
+      internalInput.removeEventListener("keydown", internalInputHandler)
+    }
+    if (resetButton && resetButtonHandler) {
+      resetButton.removeEventListener("click", resetButtonHandler)
+    }
+
+    // Créer les nouveaux handlers
+    if (searchBtn) {
+      searchBtnHandler = (e) => {
+        e.preventDefault()
+        performSearch()
+      }
+      searchBtn.addEventListener("click", searchBtnHandler)
+    }
+
+    if (triggerInput) {
+      triggerInputHandler = (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault()
+          performSearch()
+        }
+      }
+      triggerInput.addEventListener("keydown", triggerInputHandler)
+    }
+
+    if (internalSearchBtn) {
+      internalSearchBtnHandler = (e) => {
+        e.preventDefault()
+        performSearch(internalInput.value.trim())
+      }
+      internalSearchBtn.addEventListener("click", internalSearchBtnHandler)
+    }
+
+    if (internalInput) {
+      internalInputHandler = (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault()
+          performSearch(internalInput.value.trim())
+        }
+      }
+      internalInput.addEventListener("keydown", internalInputHandler)
+    }
+
+    if (resetButton) {
+      resetButtonHandler = (e) => {
+        e.preventDefault()
+        resetAll()
+      }
+      resetButton.addEventListener("click", resetButtonHandler)
+    }
+  }
+
+  // Initialiser les bindings au chargement
+  initSearchBindings()
+
+  // Share buttons
+  function updateShareLinks() {
+    const baseUrl = window.location.origin
+    const profileLinks = currentSpeakerSlugs.map((slug) => `${baseUrl}/speakers/${slug}`).join("\n")
+    const shareText = `Découvrez ces conférenciers du Bureau du Réel :\n\n${profileLinks}`
+
+    // Update WhatsApp link
+    const whatsappLink = document.getElementById("share-whatsapp")
+    if (whatsappLink) {
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`
+      whatsappLink.setAttribute("href", whatsappUrl)
+    }
+  }
+
+  const shareCopyBtn = document.getElementById("share-copy")
+  if (shareCopyBtn) {
+    shareCopyBtn.addEventListener("click", (e) => {
+      e.preventDefault()
+      const baseUrl = window.location.origin
+      const profileLinks = currentSpeakerSlugs
+        .map((slug) => `${baseUrl}/speakers/${slug}`)
+        .join("\n")
+      const shareText = `Découvrez ces conférenciers du Bureau du Réel :\n\n${profileLinks}`
+
+      navigator.clipboard.writeText(shareText).then(() => {
+        const originalText = shareCopyBtn.innerText
+        shareCopyBtn.innerText = "✓ Copié !"
+        setTimeout(() => {
+          shareCopyBtn.innerText = originalText
+        }, 2000)
+      })
+    })
+  }
+
+  // Close buttons (mobile et desktop) - Réinitialise tout
+  const closeModalBtn = document.getElementById("close-modal")
+  const closeModalDesktopBtn = document.getElementById("close-modal-desktop")
+  const modalOverlay = document.getElementById("modal-overlay")
+
+  if (closeModalBtn) closeModalBtn.onclick = resetAll
+  if (closeModalDesktopBtn) closeModalDesktopBtn.onclick = resetAll
+  if (modalOverlay) modalOverlay.onclick = closeModal
+</script>
+
+<style>
+  .blob-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    /* On retire le flou d'ici ! */
+  }
+
+  /* Nouveau conteneur pour isoler le flou */
+  .blobs-background-group {
+    position: absolute;
+    inset: 0;
+    filter: blur(8px); /* Le flou ne s'applique qu'ici */
+    z-index: 10;
+  }
+
+  .blob {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation:
+      blob-morph 6s linear infinite alternate,
+      blob-rotate 15s linear infinite;
+    opacity: 0.7;
+  }
+
+  .blob-sub {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+    border-radius: 50%;
+    animation:
+      blob-morph 4s linear infinite alternate-reverse,
+      blob-rotate 10s linear infinite reverse;
+    opacity: 0.5;
+  }
+
+  @keyframes blob-morph {
+    0% {
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+    100% {
+      border-radius: 60% 40% 30% 70% / 50% 30% 70% 50%;
+    }
+  }
+  @keyframes blob-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+  }
+
+  /* Marge pour les listes dans les recommandations IA */
+  #ia-recommendation ul {
+    list-style-type: disc !important;
+    margin-left: 20px !important;
+    padding-left: 20px !important;
+  }
+
+  #ia-recommendation ol {
+    list-style-type: decimal !important;
+    margin-left: 20px !important;
+    padding-left: 20px !important;
+  }
+
+  #ia-recommendation li {
+    margin-bottom: 8px !important;
+    display: list-item !important;
+  }
+
+  /* Animation de flottement continu pour la loupe */
+  #main-search-btn svg {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+
+  /* Correction pour le glow persistant sur certains navigateurs */
+  #main-search-btn {
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+</style>

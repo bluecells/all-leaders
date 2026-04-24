@@ -1,0 +1,119 @@
+---
+import Layout from './Layout.astro';
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import type { AlternateUrls } from '@/utils/hreflang';
+
+interface Props {
+  faq: CollectionEntry<'faq'>;
+  lang?: 'it' | 'fr' | 'en';
+  alternateUrls?: AlternateUrls | null;
+}
+
+const { faq, alternateUrls } = Astro.props;
+const { data } = faq;
+const { Content } = await render(faq);
+
+// SEO
+const pageTitle = data.question;
+---
+
+<Layout
+  title={pageTitle}
+  lang={data.lang as 'it' | 'fr' | 'en'}
+  metaTitle={data.metaTitle}
+  metaDescription={data.metaDescription}
+  ogImage={data.ogImage}
+  jsonType={data.jsonType || 'faq'}
+  alternateUrls={alternateUrls}
+>
+  <main class="faq-page">
+    <article class="faq-container">
+      <header class="faq-header">
+        <span class="faq-category">{data.category}</span>
+        <h1 class="faq-question">{data.question}</h1>
+      </header>
+
+      <div class="faq-content">
+        <Content />
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .faq-page {
+    min-height: 100vh;
+    background-color: #fdfdfd;
+    padding: 4rem 0;
+  }
+
+  .faq-container {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .faq-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .faq-category {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-brand-primary, #4a6741);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-question {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-brand-primary, #4a6741);
+    line-height: 1.2;
+  }
+
+  @media (max-width: 768px) {
+    .faq-question {
+      font-size: 1.75rem;
+    }
+  }
+
+  .faq-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-brand-tertiary, #3d3d3d);
+  }
+
+  .faq-content :global(h2) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-brand-primary, #4a6741);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .faq-content :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-content :global(ul),
+  .faq-content :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  .faq-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-content :global(strong) {
+    color: var(--color-brand-primary, #4a6741);
+  }
+</style>

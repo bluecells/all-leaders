@@ -1,0 +1,198 @@
+---
+import { reviewsTranslations } from '@/data/translations';
+
+interface Props {
+  reviews?: Array<{
+    text: string;
+    author?: string;
+    date?: string;
+    icon?: string;
+    iconPosition?: 'top' | 'left';
+  }>;
+  columns?: number;
+  lang?: 'it' | 'fr' | 'en';
+}
+
+const { reviews = [], columns = 3, lang = 'it' } = Astro.props;
+const t = reviewsTranslations[lang] || reviewsTranslations.it;
+---
+
+<section class="review-section">
+  <div class="lang-separator">
+    <div class="line"></div>
+    <div class="icon-wrapper">
+      <svg viewBox="0 0 512 512" width="30" height="30" fill="currentColor">
+        <path
+          d="M136.6 138.79a64.003 64.003 0 0 0-43.31 41.35L0 460l14.69 14.69L164.8 324.58c-2.99-6.26-4.8-13.18-4.8-20.58 0-26.51 21.49-48 48-48s48 21.49 48 48-21.49 48-48 48c-7.4 0-14.32-1.81-20.58-4.8L37.31 497.31 52 512l279.86-93.29a64.003 64.003 0 0 0 41.35-43.31L416 224 288 96l-151.4 42.79zm361.34-64.62l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.75 18.75-49.15 0-67.91z"
+        ></path>
+      </svg>
+    </div>
+    <div class="text-content">
+      {t.title}
+    </div>
+    <div class="line"></div>
+  </div>
+
+  <div class={`review-container cols-${columns}`}>
+    {
+      reviews.map((review) => (
+        <div class={`review-card icon-${review.iconPosition || 'top'}`}>
+          {review.icon && (
+            <div class="icon-wrapper-card">
+              <img src={review.icon} alt="Review icon" width="40" height="40" />
+            </div>
+          )}
+          <div class="content-wrapper">
+            <p class="review-text">"{review.text}"</p>
+            {review.author && <span class="author">— {review.author}</span>}
+            {review.date && <span class="date">{review.date}</span>}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  /* ========================================
+     MOBILE FIRST
+     ======================================== */
+
+  .review-section {
+    padding: 2rem 1.5rem;
+  }
+
+  /* Style du Séparateur */
+  .lang-separator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .line {
+    height: 1px;
+    width: 80px;
+    background: var(--color-brand-primary);
+    opacity: 0.4;
+  }
+
+  .icon-wrapper {
+    color: var(--color-brand-primary);
+  }
+
+  .text-content {
+    font-family: serif;
+    font-size: 1.5rem;
+    color: var(--color-brand-primary);
+  }
+
+  /* Style de la Grille */
+  .review-container {
+    max-width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .review-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .icon-top {
+    flex-direction: column;
+  }
+
+  .icon-left {
+    flex-direction: column;
+  }
+
+  .review-text {
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .date {
+    margin-left: 0;
+    font-size: smaller;
+  }
+
+  .author {
+    font-weight: bold;
+    color: var(--color-brand-primary);
+    font-family: serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  /* ========================================
+     TABLET
+     ======================================== */
+  @media (min-width: 768px) {
+    .review-section {
+      padding: 3rem 1.5rem;
+    }
+
+    .lang-separator {
+      margin-bottom: 3rem;
+    }
+
+    .text-content {
+      font-size: 1.75rem;
+    }
+
+    .review-container {
+      max-width: 1200px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .review-card {
+      padding: 2rem;
+      gap: 1.5rem;
+    }
+
+    .icon-left {
+      flex-direction: row;
+    }
+
+    .date {
+      margin-left: 18px;
+    }
+
+    .author {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* ========================================
+     DESKTOP
+     ======================================== */
+  @media (min-width: 1024px) {
+    .review-section {
+      padding: 4rem 1.5rem;
+    }
+
+    .lang-separator {
+      margin-bottom: 4rem;
+    }
+
+    .text-content {
+      font-size: 2rem;
+    }
+
+    .cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

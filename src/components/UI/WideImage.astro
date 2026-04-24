@@ -1,0 +1,97 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  height?: string;
+  fullBleed?: boolean;
+  fullWidth?: boolean;
+  photoCredit?: string;
+}
+
+const {
+  src,
+  alt,
+  height = '400px',
+  fullBleed = false,
+  fullWidth = false,
+  photoCredit,
+} = Astro.props;
+---
+
+<figure
+  class={`wide-image ${fullBleed ? 'fullbleed' : ''} ${fullWidth ? 'fullwidth' : ''}`}
+  style={`height: ${height};`}
+>
+  <img src={src} alt={alt} loading="lazy" />
+  {photoCredit && <figcaption>{photoCredit}</figcaption>}
+</figure>
+
+<style>
+  /* ========================================
+     MOBILE FIRST
+     ======================================== */
+
+  .wide-image {
+    position: relative;
+    margin: 1.5rem auto;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  .wide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* Mode fullWidth: 100% du conteneur parent */
+  .wide-image.fullwidth {
+    width: 100%;
+  }
+
+  /* Mode fullBleed: 100% de la largeur de l'écran */
+  .wide-image.fullbleed {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Photo credit - Mobile */
+  figcaption {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 0.4rem 0.6rem;
+    border-radius: 2px;
+    font-family: 'Inter', system-ui, sans-serif;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ========================================
+     DESKTOP
+     ======================================== */
+  @media (min-width: 769px) {
+    .wide-image {
+      margin: 2rem auto;
+    }
+
+    .wide-image.fullbleed {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    figcaption {
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 0.75rem;
+      padding: 0.5rem 0.75rem;
+    }
+  }
+</style>

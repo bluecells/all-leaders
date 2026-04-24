@@ -1,0 +1,433 @@
+---
+import { getImageSrc, getImageAlt } from '../../utils/imageHelper';
+
+interface ImageData {
+  image?: string | { src: string; alt?: string };
+  src?: string;
+  alt: string;
+}
+
+interface Props {
+  height?: string;
+  mobileHeight?: string;
+  speed?: number;
+  images: ImageData[];
+  title?: string;
+  titleTag?: 'h1' | 'h2' | 'h3' | 'p' | 'div';
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  framePosition?: 'left' | 'right';
+  verticalGap?: string;
+}
+
+const {
+  height = 'calc(100vh - 7rem)',
+  mobileHeight = 'calc(100vh - 80px)',
+  speed = 3000,
+  images,
+  title,
+  titleTag = 'h2',
+  subtitle,
+  ctaText,
+  ctaLink,
+  framePosition = 'left',
+  verticalGap = '0',
+} = Astro.props;
+
+const TitleTag = titleTag;
+
+// Normaliser les images et limiter à 10 images max
+const limitedImages = images.slice(0, 10).map((img) => ({
+  src: getImageSrc(img.image),
+  alt: img.alt || getImageAlt(img.image, ''),
+}));
+---
+
+<div
+  class="slider-container full-bleed"
+  style={`--slider-height-mobile: ${mobileHeight}; --slider-height: ${height}; --vertical-gap: ${verticalGap};`}
+>
+  <!-- Slides -->
+  <div class="slider-wrapper">
+    {
+      limitedImages.map((image, index) => (
+        <div class="slide" data-index={index} style={index === 0 ? 'opacity: 1; z-index: 1;' : ''}>
+          <img src={image.src} alt={image.alt} loading={index === 0 ? 'eager' : 'lazy'} />
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Frame avec contenu -->
+  {
+    (title || subtitle || ctaText) && (
+      <div class={`slider-frame frame-${framePosition}`}>
+        <div class="frame-content">
+          {title && <TitleTag class="frame-title" set:html={title} />}
+          {subtitle && <p class="frame-subtitle" set:html={subtitle} />}
+          {ctaText && ctaLink && (
+            <a href={ctaLink} class="frame-cta">
+              {ctaText}
+            </a>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  <!-- Navigation dots -->
+  <div class="slider-dots">
+    {
+      limitedImages.map((_, index) => (
+        <button
+          class={`dot ${index === 0 ? 'active' : ''}`}
+          data-slide={index}
+          aria-label={`Aller à la diapositive ${index + 1}`}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  /* ========================================
+     MOBILE FIRST
+     ======================================== */
+
+  .slider-container {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to bottom, white, var(--color-bg-body));
+    height: var(--slider-height-mobile);
+  }
+
+  .slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .slide {
+    position: absolute;
+    top: 52%;
+    left: 0;
+    width: 100%;
+    height: 33%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* FRAME - Mobile */
+  .slider-frame {
+    position: absolute;
+    top: 32px;
+    z-index: 10;
+    left: 1rem;
+    right: 1rem;
+    max-width: calc(100% - 2rem);
+    padding: 4vw 1.5rem;
+  }
+
+  .frame-left {
+    left: 1rem;
+  }
+
+  .frame-right {
+    right: 1rem;
+  }
+
+  .frame-content {
+    display: flex;
+    flex-direction: column;
+    gap: calc(0.5rem + var(--vertical-gap));
+  }
+
+  /* TITLE - Mobile */
+  .frame-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--color-brand-primary);
+    margin: 0;
+    text-align: center;
+  }
+
+  /* SUBTITLE - Mobile */
+  .frame-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-main);
+    margin: 0;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  /* CTA - Mobile */
+  .frame-cta {
+    display: inline-block;
+    padding: 0.875rem 1.5rem;
+    background-color: var(--color-brand-primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 300ms;
+    align-self: center;
+  }
+
+  .frame-cta:hover {
+    background-color: var(--color-brand-accent);
+    transform: translateY(-2px);
+  }
+
+  /* DOTS - Mobile */
+  .slider-dots {
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 300ms;
+    padding: 0;
+  }
+
+  .dot:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .dot.active {
+    background-color: white;
+  }
+
+  /* ========================================
+     TABLET (769px - 1599px)
+     ======================================== */
+  @media (min-width: 769px) {
+    h1:first-child {
+      padding: 0;
+      padding-top: 0.5rem;
+    }
+    .slider-container {
+      height: var(--slider-height) !important;
+    }
+
+    /* FRAME - Tablet */
+    .slider-frame {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: calc(75px + 2 * var(--vertical-gap));
+      left: 50%;
+      transform: translate(-50%, -20%);
+      background: linear-gradient(
+        to bottom,
+        rgba(245, 241, 232, 1) 0%,
+        /* Pleine opacité au début */ rgba(245, 241, 232, 1) 30%,
+        /* Reste opaque jusqu'à 30% */ rgba(245, 241, 232, 0.3) 80%,
+        /* Transition vers 30% d'opacité à 80% de hauteur */ rgba(245, 241, 232, 0) 90%,
+        /* Devient totalement transparent à 90% */ rgba(245, 241, 232, 0) 100%
+          /* Reste transparent sur les 10% restants */
+      );
+      backdrop-filter: blur(2px);
+    }
+
+    .frame-left {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .frame-right {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .slide {
+      height: 100%;
+      top: 0;
+    }
+
+    /* TITLE - Tablet */
+    .frame-title {
+      font-size: 3.5rem;
+    }
+
+    /* SUBTITLE - Tablet */
+    .frame-subtitle {
+      font-size: 1.5rem;
+    }
+
+    /* CTA - Tablet */
+    .frame-cta {
+      padding: 1rem 2rem;
+    }
+
+    /* DOTS - Tablet */
+    .slider-dots {
+      bottom: 120px;
+      gap: 0.75rem;
+    }
+
+    .dot {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .slider-frame {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 110px;
+    }
+  }
+
+  /* ========================================
+     LARGE DESKTOP (1600px+)
+     ======================================== */
+  @media (min-width: 1600px) {
+    .slider-container {
+      height: var(--slider-height) !important;
+    }
+
+    /* FRAME - Large Desktop */
+    .slider-frame {
+      max-width: 100%;
+      padding: 9rem 2rem;
+      top: calc(75px + 2 * var(--vertical-gap));
+      left: O;
+    }
+
+    .frame-left {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .frame-right {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .slide {
+      height: 100%;
+      top: 0;
+    }
+
+    /* TITLE - Large Desktop */
+    .frame-title {
+      font-size: 6rem;
+    }
+
+    /* SUBTITLE - Large Desktop */
+    .frame-subtitle {
+      font-size: 2.75rem;
+    }
+
+    /* CTA - Large Desktop */
+    .frame-cta {
+      padding: 1rem 2rem;
+    }
+
+    /* DOTS - Large Desktop */
+    .slider-dots {
+      bottom: 150px;
+      gap: 0.75rem;
+    }
+
+    .dot {
+      width: 24px;
+      height: 24px;
+    }
+  }
+</style>
+
+<script define:vars={{ speed, totalSlides: limitedImages.length }}>
+  let currentSlide = 0;
+  let autoplayInterval;
+
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+
+  function showSlide(index) {
+    // Masquer tous les slides
+    slides.forEach((slide) => {
+      slide.style.opacity = '0';
+      slide.style.zIndex = '0';
+    });
+
+    // Désactiver tous les dots
+    dots.forEach((dot) => dot.classList.remove('active'));
+
+    // Afficher le slide actuel
+    if (slides[index]) {
+      slides[index].style.opacity = '1';
+      slides[index].style.zIndex = '1';
+    }
+
+    // Activer le dot correspondant
+    if (dots[index]) {
+      dots[index].classList.add('active');
+    }
+
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    const next = (currentSlide + 1) % totalSlides;
+    showSlide(next);
+  }
+
+  function startAutoplay() {
+    autoplayInterval = setInterval(nextSlide, speed);
+  }
+
+  function stopAutoplay() {
+    clearInterval(autoplayInterval);
+  }
+
+  // Navigation par dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      showSlide(index);
+      stopAutoplay();
+      startAutoplay(); // Redémarre l'autoplay après un clic
+    });
+  });
+
+  // Pause sur hover
+  const sliderContainer = document.querySelector('.slider-container');
+  sliderContainer?.addEventListener('mouseenter', stopAutoplay);
+  sliderContainer?.addEventListener('mouseleave', startAutoplay);
+
+  // Démarrer l'autoplay
+  if (totalSlides > 1) {
+    startAutoplay();
+  }
+</script>

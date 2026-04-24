@@ -1,0 +1,371 @@
+---
+import Layout from './Layout.astro';
+import CarouselRooms from '../components/UI/CarouselRooms.astro';
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import CarouselDetails from '../components/CarouselDetails.astro';
+import ActionBar from '../components/ActionBar.astro';
+import type { AlternateUrls } from '@/utils/hreflang';
+
+interface Props {
+  room: CollectionEntry<'rooms'>;
+  lang?: 'it' | 'fr' | 'en';
+  alternateUrls?: AlternateUrls | null;
+}
+
+const { room, alternateUrls } = Astro.props;
+const { data } = room;
+const { Content } = await render(room);
+
+// Normaliser photos pour le carousel
+const normalizedPhotos = (data.photos || []).map((photo: any) => ({
+  image: photo?.image || '',
+  alt: photo?.alt || '',
+}));
+
+// Labels selon la langue
+const capacityLabels = {
+  it: 'Fino a',
+  fr: "Jusqu'à",
+  en: 'Up to',
+};
+
+const choiceLabels = {
+  it: 'Scopri la camera',
+  fr: 'Découvrez la chambre',
+  en: 'Discover the room',
+};
+
+const areaLabels = {
+  it: 'Superficie',
+  fr: 'Superficie',
+  en: 'Area',
+};
+
+const bookingLabels = {
+  it: 'Verifica Prezzo e Disponibilità',
+  fr: 'Vérifier le prix et la disponibilité',
+  en: 'Check Price and Availability',
+};
+
+const regionLabels = {
+  it: 'sardegna',
+  fr: 'sardaigne',
+  en: 'sardinia',
+};
+
+const areaLabel = areaLabels[data.lang];
+const choiceLabel = choiceLabels[data.lang];
+const bookingLabel = bookingLabels[data.lang];
+const roomId = data.roomId || '';
+const lang = data.lang || 'it';
+const region = regionLabels[lang];
+
+// SEO et données pour le layout
+const amenities = [data.amenity1, data.amenity2, data.amenity3].filter(Boolean) as string[];
+
+const roomData = {
+  amenities: amenities,
+};
+---
+
+<Layout
+  title={data.title}
+  lang={data.lang as 'it' | 'fr' | 'en'}
+  seoSlug={data.seoSlug}
+  metaTitle={data.metaTitle}
+  metaDescription={data.metaDescription || data.punchline}
+  ogImage={data.ogImage
+    ? typeof data.ogImage === 'string'
+      ? data.ogImage
+      : data.ogImage.image
+    : data.featuredPhoto?.image}
+  jsonType={data.jsonType || 'hotelRoom'}
+  roomData={roomData}
+  alternateUrls={alternateUrls}
+>
+  <main>
+    <!-- Informations et contenu de la chambre -->
+    <section class="room-info">
+      <div class="room-container">
+        <p class="text-gray-500 font-serif text-center -mb-4">{choiceLabel}</p>
+        <h1>{data.nameDisplay}</h1>
+
+        <!-- Specs en colonne -->
+        <div class="room-specs">
+          {
+            data.amenity1 && (
+              <div class="spec-item">
+                <span class="spec-label">{data.amenity1}</span>
+              </div>
+            )
+          }
+          {
+            data.amenity2 && (
+              <div class="spec-item">
+                <span class="spec-label">{data.amenity2}</span>
+              </div>
+            )
+          }
+          {
+            data.amenity3 && (
+              <div class="spec-item">
+                <span class="spec-label">{data.amenity3}</span>
+              </div>
+            )
+          }
+        </div>
+        <div class="room-cta">
+          <a
+            href=`https://www.bed-and-breakfast.it/${lang}/booking/${region}/limolo-house-56-green-cabras/57031`
+            class="btn-prenota"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {bookingLabel}
+          </a>
+        </div>
+
+        <!-- Slider avec toutes les photos -->
+        <CarouselDetails
+          photos={normalizedPhotos}
+          roomName={data.nameDisplay}
+          height="250px"
+          speed={30000}
+        />
+
+        <!-- Description de la chambre -->
+        <div class="room-content">
+          <Content />
+        </div>
+      </div>
+    </section>
+  </main>
+  <h2>
+    {
+      data.lang === 'it'
+        ? 'Le altre camere'
+        : data.lang === 'fr'
+          ? 'Les autres chambres'
+          : 'Other Rooms'
+    }
+  </h2>
+  <CarouselRooms
+    lang={data.lang}
+    height="35vh"
+    speed={80000}
+    background="var(--color-bg-body)"
+    excludeId={room.id}
+  />
+  <ActionBar roomId={data.roomId} />
+</Layout>
+
+<style>
+  /* ========================================
+     MOBILE FIRST
+     ======================================== */
+
+  .room-info {
+    width: 100%;
+    padding: 2rem 0;
+    background-color: white;
+  }
+
+  .room-container {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .room-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: transparent;
+    border-radius: 4px;
+    padding-bottom: 2rem;
+  }
+
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 1rem;
+  }
+
+  .spec-label {
+    font-weight: 300;
+    color: var(--color-brand-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 1rem;
+    font-family: serif;
+    text-align: center;
+  }
+
+  .spec-value {
+    color: var(--color-brand-tertiary);
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  .room-cta {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-prenota {
+    display: inline-block;
+    padding: 0.875rem 2.5rem;
+    background-color: var(--color-brand-primary);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 300ms;
+    box-shadow: 0 2px 8px rgba(74, 103, 65, 0.2);
+  }
+
+  .btn-prenota:hover {
+    background-color: var(--color-brand-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(74, 103, 65, 0.3);
+  }
+
+  .room-content {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-brand-tertiary);
+  }
+
+  .room-info :global(h1) {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-brand-primary);
+    margin-top: 1rem;
+  }
+
+  .room-content :global(h2) {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 500;
+    color: var(--color-brand-primary);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .room-content :global(h3) {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-brand-primary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .room-content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .room-content :global(ul),
+  .room-content :global(ol) {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .room-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .other-rooms {
+    width: 100%;
+    background-color: white;
+    padding: 3rem 0;
+  }
+
+  .other-rooms-container {
+    width: 100%;
+  }
+
+  .other-rooms-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--color-brand-primary);
+    text-align: center;
+    margin: 0 0 2rem 0;
+  }
+
+  /* ========================================
+     TABLET & DESKTOP
+     ======================================== */
+  @media (min-width: 769px) {
+    .room-info {
+      padding: 3rem 0;
+    }
+
+    .room-container {
+      padding: 0 2rem;
+    }
+
+    .btn-prenota {
+      padding: 1rem 3rem;
+      font-size: 0.875rem;
+    }
+
+    .room-content {
+      font-size: 1.125rem;
+    }
+
+    .room-info :global(h1) {
+      font-size: 5rem;
+    }
+
+    .room-content :global(h2) {
+      font-size: 2rem;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .room-content :global(h3) {
+      font-size: 1.5rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .room-content :global(p) {
+      margin-bottom: 1.5rem;
+    }
+
+    .room-content :global(ul),
+    .room-content :global(ol) {
+      margin-bottom: 1.5rem;
+      padding-left: 2rem;
+    }
+
+    .other-rooms {
+      padding: 4rem 0;
+    }
+
+    .other-rooms-title {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .room-specs {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+      padding-top: 12px;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    .other-rooms-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+</style>

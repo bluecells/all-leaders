@@ -1,0 +1,32 @@
+---
+/**
+ * SEO Analyzer Component
+ *
+ * Analyzes page content for SEO and readability in development mode.
+ * Shows a floating panel with scores and recommendations.
+ *
+ * @example
+ * <SeoAnalyzer keyword="canto sardo" />
+ */
+
+import SeoPanel from './SeoPanel';
+
+interface Props {
+  keyword?: string;
+}
+
+const { keyword } = Astro.props;
+
+// Only run in development mode
+const isDev = import.meta.env.DEV;
+
+if (!isDev) {
+  // Don't render anything in production
+  return null;
+}
+---
+
+<!-- Render the React panel component with client-side hydration -->
+<!-- The analysis is done entirely client-side in the React component -->
+<SeoPanel client:only="react" keyword={keyword} />
+

@@ -12,13 +12,13 @@ export interface AlternateUrls {
  * Mapping des préfixes de routes par type de contenu et par langue
  */
 const ROUTE_PREFIXES = {
-  room: {
-    fr: 'chambres',
-    en: 'rooms',
+  services: {
+    fr: 'services',
+    en: 'services',
   },
   article: {
-    fr: 'limologiche',
-    en: 'limologiche',
+    fr: 'ressources',
+    en: 'resources',
   },
   faq: {
     fr: 'faq',
