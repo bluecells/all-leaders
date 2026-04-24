@@ -1,5 +1,6 @@
 ---
-import { getEntry } from 'astro:content';
+import menuFR from '@/content/menu/fr.json';
+import menuEN from '@/content/menu/en.json';
 
 interface Props {
   lang?: 'fr' | 'en';
@@ -8,9 +9,8 @@ interface Props {
 const { lang = 'fr' } = Astro.props;
 
 // Charger le menu selon la langue
-const menuKey = lang === 'fr' ? 'menuFR' : lang === 'en' ? 'menuEN' : 'menuFR';
-const menuData = await getEntry(menuKey as any);
-const liensDuMenu = menuData?.data.links || [];
+const menuData = lang === 'fr' ? menuFR : lang === 'en' ? menuEN : menuFR;
+const liensDuMenu = menuData?.links || [];
 
 // URL du logo selon la langue
 const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
