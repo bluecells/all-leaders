@@ -106,7 +106,7 @@ import Carousel from '../components/UI/Carousel.astro';
           Nous intervenons sur tout le <strong>continuum de la performance collective</strong>
         </h3>
 
-        <Grid
+        <Grid textColor="var(--color-text-primary)"
           items={[
             {
               title: 'Bien-être mental fondamental à récréer',
@@ -127,7 +127,7 @@ import Carousel from '../components/UI/Carousel.astro';
         />
 
         <h3>Nous avons accompagné de nombreuses équipes managériales, comités de direction et dirigeants exigeants actifs chez&nbsp;</h3>
-        <Carousel
+        <Carousel speed="5000"
           images={[
             { image: '/assets/clients/totalenergies.svg', alt: 'TotalEnergies' },
             { image: '/assets/clients/edf.svg', alt: 'EDF' },
@@ -136,10 +136,9 @@ import Carousel from '../components/UI/Carousel.astro';
             { image: '/assets/clients/orange.svg', alt: 'Orange' },
           ]}
         />  
-        <p>
-          Transformer les intentions en actions concrètes, pour des équipes agissant avec sens,
-          clarté et impact.
-        </p>
+        <h3>
+          Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec <strong>sens, clarté et impact</strong>.
+        </h3>
 
         <!-- Placeholder pour les modules/offres détaillées -->
         <div id="offre-modules" aria-label="Nos modules d'intervention">
@@ -164,7 +163,8 @@ import Carousel from '../components/UI/Carousel.astro';
         <ul class="partners-list" role="list">
 
           <li>
-            <article>
+            <article class="partner-article" role="listitem">
+              <img src="/assets/partners/bureau-du-reel.svg" alt="Logo du Bureau du Réel" class="partner-logo" />
               <h3>Le Bureau du Réel</h3>
               <p>
                 All Leaders Initiative est partie prenante du Bureau du Réel, un réseau d'intervenants
@@ -175,7 +175,8 @@ import Carousel from '../components/UI/Carousel.astro';
           </li>
 
           <li>
-            <article>
+            <article class="partner-article" role="listitem">
+              <img src="/assets/partners/da-crew.svg" alt="Logo de Da CREW" class="partner-logo" /> 
               <h3>Da CREW — Mission One</h3>
               <p>
                 Simulation en réalité virtuelle&nbsp;: application concrète du Leadership basé sur
@@ -188,7 +189,8 @@ import Carousel from '../components/UI/Carousel.astro';
           </li>
 
           <li>
-            <article>
+            <article class="partner-article" role="listitem">
+              <img src="/assets/partners/your-safety.svg" alt="Logo de YourSafety.training" class="partner-logo" />
               <h3>YourSafety.training — Gestion des conflits</h3>
               <p>
                 Parce qu'on ne peut parler de relations sans parler de conflits, d'agressivité voire
@@ -199,7 +201,8 @@ import Carousel from '../components/UI/Carousel.astro';
           </li>
 
           <li>
-            <article>
+            <article class="partner-article" role="listitem">
+              <img src="/assets/partners/synergies-et-co.svg" alt="Logo de Synergies & Co" class="partner-logo" />
               <h3>Synergies &amp; Co — Excellence opérationnelle</h3>
               <p>
                 Parce que la performance dépend de l'adoption des bonnes postures, nous nous associons
@@ -211,7 +214,8 @@ import Carousel from '../components/UI/Carousel.astro';
           </li>
 
           <li>
-            <article>
+            <article class="partner-article" role="listitem">
+              <img src="/assets/partners/pragmacie.svg" alt="Logo de Pragmacie" class="partner-logo" />
               <h3>Pragmacie — Cartographie des talents CliftonStrengths</h3>
               <p>
                 Parce qu'on ne peut parler de leadership sans alignement profond avec ses talents
@@ -223,7 +227,8 @@ import Carousel from '../components/UI/Carousel.astro';
           </li>
 
           <li>
-            <article>
+            <article class="partner-article" role="listitem">
+              <img src="/assets/partners/enablers.svg" alt="Logo d'Enablers" class="partner-logo" />
               <h3>Enablers — Accompagnement international</h3>
               <p>
                 Pour accompagner vos défis organisationnels les plus complexes et à l'international,
@@ -235,7 +240,8 @@ import Carousel from '../components/UI/Carousel.astro';
           </li>
 
           <li>
-            <article>
+            <article class="partner-article" role="listitem">
+              <img src="/assets/partners/fa3r.svg" alt="Logo de FA3R" class="partner-logo" />
               <h3>FA3R — Expériences outdoor sur mesure</h3>
               <p>
                 Parce que nous voulons proposer des expériences « out-door » sur mesure allant plus
@@ -340,3 +346,71 @@ import Carousel from '../components/UI/Carousel.astro';
 
   </main>
 </Layout>
+
+<style>
+  /* ==========================================
+     PARTENAIRES — Layout Logo + Texte
+  =========================================== */
+
+  .partners-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+  }
+
+  .partner-article {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(74, 103, 65, 0.2);
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .partner-logo {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+
+  /* Mode desktop : logo à gauche, texte à droite */
+  @media (min-width: 768px) {
+    .partner-article {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    .partner-logo {
+      flex-shrink: 0;
+      width: 120px;
+      height: 120px;
+    }
+
+    .partner-article > :not(.partner-logo) {
+      flex: 1;
+    }
+  }
+
+  .partner-article h3 {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .partner-article p {
+    margin: 0.5rem 0;
+  }
+
+  .partner-article a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--color-brand-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 200ms;
+  }
+
+  .partner-article a:hover {
+    color: var(--color-brand-accent);
+  }
+</style>
