@@ -563,12 +563,14 @@ export default config({
         type: fields.select({
           label: 'Type',
           options: [
+            { label: 'Action', value: 'action' },
+            { label: 'Investigation', value: 'investigation' },
             { label: 'Formation', value: 'formation' },
             { label: 'Coaching', value: 'coaching' },
             { label: 'Conseil', value: 'conseil' },
             { label: 'Mentorat', value: 'mentorat' },
           ],
-          defaultValue: 'formation',
+          defaultValue: 'action',
         }),
         description: fields.text({
           label: 'Description',
