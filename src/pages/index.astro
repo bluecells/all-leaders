@@ -432,4 +432,57 @@ import Carousel from '../components/UI/Carousel.astro';
   .partner-article a:hover {
     color: var(--color-brand-accent);
   }
+
+  /* ==========================================
+     FONDATEURS — Layout 2 Colonnes
+  =========================================== */
+
+  .founders-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .founders-grid article {
+    padding: 1.5rem;
+    border: 1px solid rgba(74, 103, 65, 0.2);
+    border-radius: 0.5rem;
+  }
+
+  .founders-grid h3 {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .founders-grid p {
+    margin: 0 0 1rem 0;
+  }
+
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .contact-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-list a {
+    color: var(--color-brand-primary);
+    text-decoration: none;
+    transition: color 200ms;
+  }
+
+  .contact-list a:hover {
+    color: var(--color-brand-accent);
+  }
+
+  /* Mode desktop : 2 colonnes */
+  @media (min-width: 768px) {
+    .founders-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
 </style>
