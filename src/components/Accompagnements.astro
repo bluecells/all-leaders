@@ -10,6 +10,7 @@ interface Props {
 const { lang, category, fullBleed = false } = Astro.props;
 
 let accompagnements = await getCollection('accompagnements');
+const allCategories = await getCollection('accompagnement-categories');
 
 // Filtrer par langue
 accompagnements = accompagnements.filter((item) => item.data.lang === lang);
@@ -21,13 +22,22 @@ if (category) {
 
 // Récupérer les catégories uniques pour affichage
 const categories = Array.from(new Set(accompagnements.map((item) => item.data.categorie)));
+
+// Fonction pour obtenir la description d'une catégorie
+function getCategoryDescription(categoryName: string): string {
+  const categoryData = allCategories.find(
+    (cat) => (lang === 'fr' ? cat.data.name_fr : cat.data.name_en) === categoryName
+  );
+  return lang === 'fr' ? categoryData?.data.description_fr || '' : categoryData?.data.description_en || '';
+}
 ---
 
 <div class={fullBleed ? '' : 'mx-auto max-w-6xl px-4'}>
   {categories.length > 0 ? (
     categories.map((cat) => (
       <section class="mb-16">
-        <h2 class="font-serif text-limolo-green mb-8 text-2xl">{cat}</h2>
+        <h2 class="font-serif text-limolo-green mb-4 text-2xl">{cat}</h2>
+        <p class="category-description mb-8">{getCategoryDescription(cat)}</p>
         <div class="accompagnements-grid">
           {accompagnements
             .filter((item) => item.data.categorie === cat)
@@ -52,6 +62,13 @@ const categories = Array.from(new Set(accompagnements.map((item) => item.data.ca
 </div>
 
 <style>
+  .category-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    max-width: 800px;
+  }
+
   .accompagnements-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

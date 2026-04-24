@@ -218,6 +218,18 @@ const menu = defineCollection({
   }),
 });
 
+// Collection Catégories Accompagnements
+const accompagnementCategories = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/accompagnement-categories' }),
+  schema: z.object({
+    name_fr: z.string(),
+    name_en: z.string(),
+    description_fr: z.string(),
+    description_en: z.string(),
+    slug: z.string(),
+  }),
+});
+
 // Collection Accompagnements
 const accompagnements = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/accompagnements' }),
@@ -242,4 +254,5 @@ export const collections = {
   category,
   tags,
   accompagnements,
+  'accompagnement-categories': accompagnementCategories,
 };
