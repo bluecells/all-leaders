@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "slug": {
+      "type": "string"
+    },
+    "name_fr": {
+      "type": "string"
+    },
+    "name_en": {
+      "type": "string"
+    },
+    "description_fr": {
+      "type": "string"
+    },
+    "description_en": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "order": {
+      "default": 0,
+      "type": "number"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "slug",
+    "name_fr",
+    "name_en",
+    "description_fr",
+    "description_en"
+  ]
+}

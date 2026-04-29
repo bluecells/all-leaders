@@ -8,15 +8,13 @@ export const GET: APIRoute = async ({ site }) => {
 
   const [
     articles,
-    pages,
-    rooms,
+    services,
     faqs,
     landingPages,
     categories, // pour les slugs de catégories localisés
   ] = await Promise.all([
     getCollection('articles'),
-    getCollection('pages'),
-    getCollection('rooms'),
+    getCollection('services'),
     getCollection('faq'),
     getCollection('landing-pages'),
     getCollection('category'),
@@ -48,36 +46,33 @@ export const GET: APIRoute = async ({ site }) => {
     const cat = categories.find((c) => c.id === article.data.category);
     if (!cat) continue;
 
-    const catSlug = cat.data[`slug_${lang}`] || cat.data.slug_it || 'limologiche';
+    const catSlug = cat.data[`slug_${lang}`] || cat.data.slug_fr || 'ressources';
     const artSlug = (article.data.seoSlug || article.id.split('/').pop())?.replace(
       /^\/|\/$/g,
       ''
     );
 
+    // Détermine le segment ressources selon la langue
+    const resourcesSegment = lang === 'fr' ? 'ressources' : 'resources';
     const path =
-      lang === 'it'
-        ? `/limologiche/${catSlug}/${artSlug}`
-        : `/${lang}/limologiche/${catSlug}/${artSlug}`;
+      lang === 'fr'
+        ? `/${resourcesSegment}/${catSlug}/${artSlug}`
+        : `/${lang}/${resourcesSegment}/${catSlug}/${artSlug}`;
 
     urls.push(urlEntry(path, article.data.publishDate, '0.8', 'monthly'));
   }
 
-  // Rooms
-  for (const room of rooms) {
-    const lang = room.data.lang as 'it' | 'fr' | 'en';
-    const slug = (room.data.seoSlug || room.id.split('/').pop())?.replace(/^\/|\/$/g, '');
-    const prefix = lang === 'it' ? 'camere' : lang === 'fr' ? 'chambres' : 'rooms';
-    const path = lang === 'it' ? `/${prefix}/${slug}` : `/${lang}/${prefix}/${slug}`;
+  // Services (accompagnements)
+  for (const service of services) {
+    const lang = service.data.lang as 'fr' | 'en';
+    const slug = (service.data.seoSlug || service.id.split('/').pop())?.replace(/^\/|\/$/g, '');
+    const path = lang === 'fr' ? `/services/${slug}` : `/${lang}/services/${slug}`;
     urls.push(urlEntry(path, new Date(), '0.7', 'monthly'));
   }
 
-  // Pages classiques
-  for (const page of pages) {
-    const lang = page.data.lang as 'it' | 'fr' | 'en';
-    const slug = (page.data.seoSlug || page.id)?.replace(/^\/|\/$/g, '');
-    const path = lang === 'it' ? `/${slug}` : `/${lang}/${slug}`;
-    urls.push(urlEntry(path, new Date(), '0.6', 'monthly'));
-  }
+  // Pages - Gérées via fichiers .astro statiques
+  urls.push(urlEntry('/faq', new Date(), '0.8', 'weekly'));
+  urls.push(urlEntry('/en/faq', new Date(), '0.8', 'weekly'));
 
   // Landing pages (même logique que pages)
   for (const lp of landingPages) {

@@ -2,11 +2,10 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-const [articles, pages, landingPages, rooms, faq] = await Promise.all([
+const [articles, landingPages, services, faq] = await Promise.all([
   getCollection('articles'),
-  getCollection('pages'),
   getCollection('landing-pages'),
-  getCollection('rooms'),
+  getCollection('services'),
   getCollection('faq'),
 ]);
 
@@ -82,9 +81,8 @@ const getSeoStatus = (
 
 const allEntries = [
   ...articles.map((e) => ({ ...e, type: 'Article' as const })),
-  ...pages.map((e) => ({ ...e, type: 'Page' as const })),
   ...landingPages.map((e) => ({ ...e, type: 'Page' as const })),
-  ...rooms.map((e) => ({ ...e, type: 'Room' as const })),
+  ...services.map((e) => ({ ...e, type: 'Room' as const })),
   ...faq.map((e) => ({ ...e, type: 'FAQ' as const })),
 ].map((entry) => {
   const lang = entry.data.lang || 'it';
@@ -100,15 +98,23 @@ const allEntries = [
 
   if (entry.type === 'Article') {
     const category = getCategory(entry.data as Record<string, unknown>);
-    finalPath = `${langPrefix}/limologiche/${category}/${cleanSlug}`;
+    const resourcesSegment = lang === 'fr' ? 'ressources' : 'resources';
+    finalPath = lang === 'fr'
+      ? `/${resourcesSegment}/${category}/${cleanSlug}`
+      : `/${lang}/${resourcesSegment}/${category}/${cleanSlug}`;
   } else if (entry.type === 'Room') {
-    const segment = lang === 'fr' ? 'chambres' : lang === 'en' ? 'rooms' : 'camere';
-    finalPath = `${langPrefix}/${segment}/${cleanSlug}`;
+    finalPath = lang === 'fr'
+      ? `/services/${cleanSlug}`
+      : `/${lang}/services/${cleanSlug}`;
   } else if (entry.type === 'Page') {
-    // Les pages normales et landing pages suivent la même logique
-    finalPath = cleanSlug === 'home' ? `${langPrefix}/` : `${langPrefix}/${cleanSlug}`;
+    // Les landing pages (gérées via contenu)
+    finalPath = lang === 'fr'
+      ? `/${cleanSlug}`
+      : `/${lang}/${cleanSlug}`;
   } else if (entry.type === 'FAQ') {
-    finalPath = `${langPrefix}/${cleanSlug}`;
+    finalPath = lang === 'fr'
+      ? `/faq/${cleanSlug}`
+      : `/${lang}/faq/${cleanSlug}`;
   }
 
   finalPath = finalPath.replace(/\/+/g, '/');

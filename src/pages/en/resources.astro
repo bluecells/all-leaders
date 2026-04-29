@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ActionBar from '../../components/ActionBar.astro';
+import BlogSection from '../../components/Blog.astro';
+---
+
+<Layout
+  title="Resources - All Leaders"
+  metaTitle="Resources - All Leaders"
+  metaDescription="Discover our articles and resources on leadership, psychological safety, and organizational development."
+  lang="en"
+>
+  <div class="mx-auto px-4 py-12">
+    <h1 class="font-serif text-limolo-green mb-8 text-center">Resources</h1>
+    <h2>Our articles and resources from All Leaders Initiative</h2>
+    <!-- Blog Component -->
+    <BlogSection lang="en" fullBleed={true} />
+  </div>
+
+  <ActionBar />
+</Layout>
+
+<style>
+  h1 {
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+  }
+  h2 {
+    margin: 0 !important;
+    padding: 0 0 1rem !important;
+    max-width: 100%;
+    text-align: center;
+    font-size: large;
+  }
+</style>

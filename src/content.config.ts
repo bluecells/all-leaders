@@ -12,30 +12,7 @@ const imageSchema = z
   ])
   .nullish();
 
-// Collection Pages
-const pages = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx,mdoc}', base: './src/content/pages' }),
-  schema: z.object({
-    title: z.string(),
-    slug: z.string().optional(),
-    lang: z.enum(['it', 'fr', 'en']),
-    seoSlug: z.string().nullish(),
-    metaTitle: z.string().nullish(),
-    metaDescription: z.string().nullish(),
-    ogImage: z.string().nullish(),
-    jsonType: z
-      .enum(['page', 'blog', 'event', 'faq', 'blogCollection', 'hotelRoom'])
-      .default('page')
-      .optional(),
-    blocks: z.array(z.any()).optional(),
-    featuredPhoto: z
-      .object({
-        image: z.string().nullish(),
-        alt: z.string().nullish(),
-      })
-      .nullish(),
-  }),
-});
+// Note: Pages sont gérées via fichiers .astro, pas via Keystatic
 
 // Collection Landing Pages
 const landingPages = defineCollection({
@@ -110,38 +87,22 @@ const faq = defineCollection({
   }),
 });
 
-// Collection Services
+// Collection Services (Accompagnements)
+// Les services/accompagnements sont stockés dans /src/content/services/ en YAML
 const services = defineCollection({
-  loader: glob({ pattern: '**/*.mdoc', base: './src/content/services' }),
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/services' }),
   schema: z.object({
     title: z.string(),
-    lang: z.enum(['it', 'fr', 'en']),
-    seoSlug: z.string().optional(),
-    metaTitle: z.string().nullish(),
-    metaDescription: z.string().nullish(),
-    ogImage: z.string().nullish(),
-    jsonType: z
-      .enum(['page', 'blog', 'event', 'faq', 'blogCollection', 'hotelRoom'])
-      .default('hotelRoom')
-      .optional(),
-    nameDisplay: z.string(),
-    punchline: z.string(),
-    featuredPhoto: z
-      .object({
-        image: z.string().nullish(),
-        alt: z.string().nullish(),
-      })
-      .nullish(),
-    photos: z
-      .array(
-        z.object({
-          image: imageSchema,
-          alt: z.string().nullish(),
-        })
-      )
-      .max(6)
-      .optional()
-      .default([]),
+    categorie: z.string(),
+    type: z.enum(['action', 'investigation', 'formation', 'coaching', 'conseil', 'mentorat', 'immersion', 'inspiration']),
+    description: z.string(),
+    image: z.string(),
+    lang: z.enum(['fr', 'en']),
+    USP1: z.string().optional(),
+    USP2: z.string().optional(),
+    USP3: z.string().optional(),
+    USP4: z.string().optional(),
+    USP5: z.string().optional(),
   }),
 });
 
@@ -218,9 +179,9 @@ const menu = defineCollection({
   }),
 });
 
-// Collection Catégories Accompagnements
-const accompagnementCategories = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/accompagnement-categories' }),
+// Collection Catégories Services
+const serviceCategories = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/services-categories' }),
   schema: z.object({
     name_fr: z.string(),
     name_en: z.string(),
@@ -230,21 +191,21 @@ const accompagnementCategories = defineCollection({
   }),
 });
 
-// Collection Accompagnements
-const accompagnements = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/accompagnements' }),
+// Collection Modalités d'Intervention
+const modalitesIntervention = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/modalites-intervention' }),
   schema: z.object({
-    title: z.string(),
-    categorie: z.string(),
-    type: z.enum(['action', 'investigation', 'formation', 'coaching', 'conseil', 'mentorat', 'immersion', 'inspiration']),
-    description: z.string(),
-    image: z.string(),
-    lang: z.enum(['fr', 'en']),
+    slug: z.string(),
+    name_fr: z.string(),
+    name_en: z.string(),
+    description_fr: z.string(),
+    description_en: z.string(),
+    icon: z.string().optional(),
+    order: z.number().default(0),
   }),
 });
 
 export const collections = {
-  pages,
   'landing-pages': landingPages,
   articles,
   faq,
@@ -253,6 +214,6 @@ export const collections = {
   redirects,
   category,
   tags,
-  accompagnements,
-  'accompagnement-categories': accompagnementCategories,
+  'service-categories': serviceCategories,
+  'modalites-intervention': modalitesIntervention,
 };

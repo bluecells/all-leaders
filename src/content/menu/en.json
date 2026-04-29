@@ -15,6 +15,13 @@
       "submenu": []
     },
     {
+      "label": "FAQ",
+      "url": "/en/faq",
+      "type": "link",
+      "hasSubmenu": false,
+      "submenu": []
+    },
+    {
       "label": "Contact",
       "url": "/en/contact",
       "type": "link",

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/animations.css';
 import Head from '../components/Head.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -95,5 +96,36 @@ const finalOgImage = ogImage || undefined;
     <SeoAnalyzer keyword={keyword} />
     <CookieConsent lang={pageLang} />
     {isHomepage && <NewsletterPopup lang={pageLang} />}
+
+    <script>
+      import { initPageAnimations, animateOnScroll, animateCardHover } from '@/utils/animations';
+
+      // Initialiser les animations au chargement
+      document.addEventListener('DOMContentLoaded', () => {
+        // Animation de fade-in au chargement
+        initPageAnimations();
+
+        // Animation des articles au scroll
+        animateOnScroll('.article-card');
+
+        // Animation des services au scroll
+        animateOnScroll('.service-card');
+
+        // Animation hover des cartes
+        animateCardHover('.article-card');
+        animateCardHover('.service-card');
+
+        // Observer les mutations pour les nouveaux éléments
+        const observer = new MutationObserver(() => {
+          animateCardHover('.article-card');
+          animateCardHover('.service-card');
+        });
+
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+        });
+      });
+    </script>
   </body>
 </html>

@@ -192,10 +192,11 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
                   related.map(async (item: any) => {
                     const itemSlug = item.data.seoSlug || item.id.split('/').pop();
                     const cleanSlug = itemSlug.replace(/^\/|\/$/g, '');
+                    const resourcesSegment = lang === 'fr' ? 'ressources' : 'resources';
                     const url =
-                      lang === 'it'
-                        ? `/limologiche/${item.data.category}/${cleanSlug}`
-                        : `/${lang}/limologiche/${item.data.category}/${cleanSlug}`;
+                      lang === 'fr'
+                        ? `/${resourcesSegment}/${item.data.category}/${cleanSlug}`
+                        : `/${lang}/${resourcesSegment}/${item.data.category}/${cleanSlug}`;
 
                     const itemFeaturedImagePath = getFeaturedImagePath(item.data.featuredPhoto);
                     const itemFeaturedImageAlt = getFeaturedImageAlt(item.data.featuredPhoto);

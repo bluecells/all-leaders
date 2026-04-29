@@ -159,97 +159,8 @@ export default config({
       },
     }),
   },
+  // Note: Pages sont gérées via fichiers .astro statiques, pas Keystatic
   collections: {
-    pages: collection({
-      label: 'Pages',
-      slugField: 'title',
-      path: 'src/content/pages/**',
-      columns: ['lang', 'title', 'seoSlug'],
-      format: { contentField: 'content' },
-      schema: {
-        title: fields.slug({
-          name: { label: 'Titolo', description: 'Titolo della pagina' },
-          slug: { label: 'Path fisico sul server', description: 'Diverso dello slug SEO' },
-        }),
-        metaTitle: fields.text({ label: 'Meta Title' }),
-        metaDescription: fields.text({ label: 'Meta Description', multiline: true }),
-        content: fields.markdoc({
-          label: 'Contenuto',
-          options: {
-            bold: true,
-            italic: true,
-            heading: [2, 3, 4],
-            unorderedList: true,
-            orderedList: true,
-            link: true,
-            divider: true,
-            image: { directory: 'public/images/content', publicPath: '/images/content/' },
-          },
-          components: {
-            Banner,
-            Carousel,
-            Duo,
-            Grid,
-            Hero,
-            Slider,
-            WideImage,
-            CtaButton,
-            SliderSteps,
-            ContactForm,
-            CarouselRooms,
-            FaqAccordion,
-            Strip,
-            InstaCarousel,
-            Reviews,
-            NotaBene,
-            YouTube,
-            GoogleMaps,
-            Accordion,
-            Align,
-            BookingEngine,
-            SliderBooking,
-          },
-        }),
-        lang: fields.select({
-          label: 'Lingua',
-          options: [
-            { label: 'it', value: 'it' },
-            { label: 'fr', value: 'fr' },
-            { label: 'en', value: 'en' },
-          ],
-          defaultValue: 'it',
-        }),
-        seoSlug: fields.text({ label: 'URL SEO definitiva' }),
-        jsonType: fields.select({
-          label: 'Tipo di JSON-LD',
-          options: [
-            { label: 'Page', value: 'page' },
-            { label: 'Articolo di blog', value: 'blog' },
-            { label: 'Faq', value: 'faq' },
-            { label: 'Hotel Room', value: 'hotelRoom' },
-          ],
-          defaultValue: 'page',
-        }),
-        ogImage: fields.image({
-          label: 'Immagina Open Graph',
-          directory: 'public/images/content/',
-          publicPath: '/images/content/',
-          validation: { isRequired: false },
-        }),
-        featuredPhoto: fields.object({
-          image: fields.image({
-            label: 'Featured Image',
-            directory: 'public/images/content/',
-            publicPath: '/images/content/',
-            validation: { isRequired: false },
-          }),
-          alt: fields.text({
-            label: 'Alt Text della Featured Image',
-            validation: { isRequired: false },
-          }),
-        }),
-      },
-    }),
     'landing-pages': collection({
       label: 'Landing Pages',
       slugField: 'title',
@@ -341,9 +252,9 @@ export default config({
       },
     }),
     rooms: collection({
-      label: 'Rooms',
+      label: 'Services',
       slugField: 'slug',
-      path: 'src/content/rooms/**',
+      path: 'src/content/services/**',
       format: { contentField: 'content' },
       columns: ['lang', 'nameDisplay', 'title', 'seoSlug'],
       schema: {
@@ -396,8 +307,8 @@ export default config({
           fields.object({
             image: fields.image({
               label: 'Image',
-              directory: 'public/images/rooms/gallery',
-              publicPath: '/images/rooms/gallery/',
+              directory: 'public/images/services/gallery',
+              publicPath: '/images/services/gallery/',
               validation: { isRequired: true },
             }),
             alt: fields.text({
@@ -546,10 +457,10 @@ export default config({
         }),
       },
     }),
-    accompagnements: collection({
-      label: 'Accompagnements',
+    services: collection({
+      label: 'Services - Accompagnements',
       slugField: 'title',
-      path: 'src/content/accompagnements/**',
+      path: 'src/content/services/**',
       columns: ['lang', 'title', 'type', 'categorie'],
       schema: {
         title: fields.slug({
@@ -579,8 +490,8 @@ export default config({
         }),
         image: fields.image({
           label: 'Image',
-          directory: 'public/images/accompagnements/',
-          publicPath: '/images/accompagnements/',
+          directory: 'public/images/services/',
+          publicPath: '/images/services/',
           validation: { isRequired: true },
         }),
         lang: fields.select({
@@ -646,7 +557,42 @@ export default config({
     }),
 
     // ────────────────────────────────────────────────
-    // 1. Catégories
+    // 0. Catégories Services
+    'service-categories': collection({
+      label: 'Services - Catégories 🏷️',
+      path: 'src/content/services-categories/*',
+      format: { data: 'yaml' },
+      columns: ['name_fr', 'name_en'],
+      slugField: 'slug',
+      schema: {
+        name_fr: fields.text({
+          label: '🇫🇷 Nom (FR)',
+          validation: { isRequired: true },
+        }),
+        slug: fields.text({
+          label: 'Slug',
+          validation: { isRequired: true },
+        }),
+        description_fr: fields.text({
+          label: '🇫🇷 Description (FR)',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+
+        name_en: fields.text({
+          label: '🇬🇧 Name (EN)',
+          validation: { isRequired: true },
+        }),
+        description_en: fields.text({
+          label: '🇬🇧 Description (EN)',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+      },
+    }),
+
+    // ────────────────────────────────────────────────
+    // 1. Catégories (Articles)
     categories: collection({
       label: 'Catégories 🏷️',
       path: 'src/content/categories/*',

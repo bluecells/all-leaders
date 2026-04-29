@@ -1,0 +1,148 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  description?: string;
+  cta?: {
+    label: string;
+    url: string;
+  };
+  backgroundImage?: string;
+  lang?: string;
+}
+
+const { title, subtitle, description, cta, backgroundImage, lang = 'fr' } = Astro.props;
+---
+
+<section
+  class="hero-animated relative w-full h-screen flex items-center justify-center overflow-hidden"
+  style={backgroundImage ? `background-image: url('${backgroundImage}'); background-size: cover; background-position: center;` : ''}
+>
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/20"></div>
+
+  <!-- Content -->
+  <div class="hero-content relative z-10 text-center px-4 max-w-4xl">
+    {subtitle && (
+      <p class="hero-subtitle text-limolo-brand text-lg font-semibold mb-4 tracking-widest uppercase">
+        {subtitle}
+      </p>
+    )}
+
+    <h1 class="hero-title text-5xl md:text-7xl font-serif text-white mb-6 leading-tight">
+      {title}
+    </h1>
+
+    {description && (
+      <p class="hero-description text-xl text-gray-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+        {description}
+      </p>
+    )}
+
+    {cta && (
+      <a
+        href={cta.url}
+        class="hero-cta inline-flex items-center px-8 py-4 bg-limolo-green text-white font-bold uppercase tracking-widest rounded-lg hover:bg-limolo-accent transition-colors duration-300"
+      >
+        {cta.label}
+        <span class="ml-3 text-2xl">→</span>
+      </a>
+    )}
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+    <div class="mouse flex flex-col items-center">
+      <span class="text-white text-sm mb-3 opacity-75">
+        {lang === 'fr' ? 'Scrollez' : 'Scroll'}
+      </span>
+      <div class="wheel border-2 border-white rounded-full w-8 h-12 flex justify-center p-2">
+        <div class="dot bg-white rounded-full w-1 h-2 animate-bounce"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+
+  // Animer le hero au chargement
+  const heroSubtitle = document.querySelector('.hero-subtitle');
+  const heroTitle = document.querySelector('.hero-title');
+  const heroDescription = document.querySelector('.hero-description');
+  const heroCta = document.querySelector('.hero-cta');
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+
+  const timeline = gsap.timeline({
+    defaults: { ease: 'power2.out' },
+  });
+
+  timeline
+    .from(heroSubtitle, {
+      opacity: 0,
+      y: -20,
+      duration: 0.8,
+    })
+    .from(
+      heroTitle,
+      {
+        opacity: 0,
+        y: 30,
+        duration: 1,
+      },
+      '-=0.4'
+    )
+    .from(
+      heroDescription,
+      {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+      },
+      '-=0.6'
+    )
+    .from(
+      heroCta,
+      {
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.6,
+      },
+      '-=0.4'
+    );
+
+  // Animer l'indicateur de scroll
+  gsap.to('.dot', {
+    y: -8,
+    duration: 1.5,
+    repeat: -1,
+    yoyo: true,
+    ease: 'sine.inOut',
+  });
+
+  // Parallax léger au scroll
+  gsap.to(heroTitle, {
+    y: window.innerHeight * 0.1,
+    scrollTrigger: {
+      trigger: 'section',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1,
+      markers: false,
+    },
+    ease: 'none',
+  });
+</script>
+
+<style>
+  .hero-animated {
+    background-attachment: fixed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-animated * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>

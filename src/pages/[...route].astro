@@ -83,10 +83,9 @@ if (route === 'blog' || rawPath === 'en/blog') {
 }
 
 /* 3️⃣ Chargement collections */
-const [articles, pages, rooms, faq, landingPages] = await Promise.all([
+const [articles, services, faq, landingPages] = await Promise.all([
   getCollection('articles'),
-  getCollection('pages'),
-  getCollection('rooms'),
+  getCollection('services'),
   getCollection('faq'),
   getCollection('landing-pages'),
 ]);
@@ -95,48 +94,60 @@ let entry = null;
 let type = null;
 
 /* 4️⃣ ARTICLES */
-if (route.startsWith('limologiche/')) {
-  const [, categorySlug, articleSlug] = route.split('/');
+// Déterminer le segment de ressources selon la langue
+const resourcesSegment = lang === 'fr' ? 'ressources' : 'resources';
+
+if (route.startsWith(resourcesSegment + '/')) {
+  const parts = route.split('/');
+  const categorySlug = parts[1];
+  const articleSlug = parts.slice(2).join('/');
 
   // Charger toutes les catégories une fois
   const allCategories = await getCollection('category');
 
+  console.log(`[ARTICLES DEBUG] Looking for: lang=${lang}, categorySlug=${categorySlug}, articleSlug=${articleSlug}`);
+  console.log(`[ARTICLES DEBUG] Total articles: ${articles.length}`);
+
   entry = articles.find((a) => {
-    const cleanSlug = (a.data.seoSlug || a.id.split('/').pop())?.replace(/^\/|\/$/g, '');
+    const rawSlug = a.data.seoSlug || a.id.split('/').pop()?.replace(/\.(mdoc|md|mdx)$/, '');
+    const cleanSlug = rawSlug?.replace(/^\/|\/$/g, '');
+
+    // Debug first article
+    if (articles.indexOf(a) === 0) {
+      console.log(`[ARTICLES DEBUG] First article: id=${a.id}, lang=${a.data.lang}, seoSlug=${a.data.seoSlug}, cleanSlug=${cleanSlug}, category=${a.data.category}`);
+    }
+
     if (a.data.lang !== lang || cleanSlug !== articleSlug) return false;
 
     // Trouver la catégorie de cet article
     const catEntry = allCategories.find((c) => c.id === a.data.category);
-    if (!catEntry) return false;
+    if (!catEntry) {
+      console.log(`[ARTICLES DEBUG] Category not found: ${a.data.category}`);
+      return false;
+    }
 
     // Vérifier le slug localisé
     const catSlugLocalized = catEntry.data[`slug_${lang}`] || catEntry.data.slug_fr;
+    console.log(`[ARTICLES DEBUG] Category match check: ${catSlugLocalized} === ${categorySlug}`);
     return catSlugLocalized === categorySlug;
   });
   type = entry ? 'article' : null;
 }
 
-/* 5️⃣ ROOMS */
+/* 5️⃣ SERVICES */
 if (!entry) {
-  const roomSlug = route.split('/').pop();
-  entry = rooms.find((r) => {
+  const serviceSlug = route.split('/').pop();
+  entry = services.find((r) => {
     const cleanSlug = (r.data.seoSlug || r.id.split('/').pop())?.replace(/^\/|\/$/g, '');
     if (r.data.lang !== lang) return false;
-    if (lang === 'fr' && route.startsWith('chambres/')) return cleanSlug === roomSlug;
-    if (lang === 'en' && route.startsWith('rooms/')) return cleanSlug === roomSlug;
+    if (route.startsWith('services/')) return cleanSlug === serviceSlug;
     return false;
   });
   type = entry ? 'room' : null;
 }
 
-/* 6️⃣ PAGES */
-if (!entry) {
-  entry = pages.find((p) => {
-    const cleanSlug = (p.data.seoSlug || p.id)?.replace(/^\/|\/$/g, '');
-    return p.data.lang === lang && cleanSlug === route;
-  });
-  type = entry ? 'page' : null;
-}
+/* 6️⃣ PAGES - Gérées via fichiers .astro, pas de traitement ici */
+// Les pages statiques sont servies directement par Astro
 
 /* 6️⃣ BIS - LANDING PAGES */
 if (!entry) {
@@ -189,9 +200,8 @@ let alternateUrls: AlternateUrls | null = null;
 if (entry && type) {
   const allCategories = await getCollection('category');
   alternateUrls = await findAlternateUrls(entry, type, {
-    pages,
     articles,
-    rooms,
+    services,
     faq,
     categories: allCategories,
   });

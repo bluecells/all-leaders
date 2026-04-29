@@ -2,9 +2,9 @@
  * Traductions i18n des segments d'URL
  */
 export const i18nRoutes = {
-  it: { rooms: 'camere', blog: 'blog', faq: 'faq' },
-  fr: { rooms: 'chambres', blog: 'blog', faq: 'faq' },
-  en: { rooms: 'rooms', blog: 'blog', faq: 'faq' }
+  it: { services: 'servizi', article: 'articoli', faq: 'faq' },
+  fr: { services: 'services', article: 'ressources', faq: 'faq' },
+  en: { services: 'services', article: 'resources', faq: 'faq' }
 } as const;
 
 /**
@@ -69,9 +69,9 @@ export function generateUrl(
 
   switch (type) {
     case 'room':
-      return `${langPrefix}/${routes.rooms}/${slug}`;
+      return `${langPrefix}/${routes.services}/${slug}`;
     case 'article':
-      return `${langPrefix}/${routes.blog}/${slug}`;
+      return `${langPrefix}/${routes.article}/${slug}`;
     case 'faq':
       return `${langPrefix}/${routes.faq}/${slug}`;
     case 'page':

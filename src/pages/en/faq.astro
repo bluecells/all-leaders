@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FAQ from '../../components/FAQ.astro';
+---
+
+<Layout
+  title="FAQ - All Leaders"
+  metaTitle="Frequently Asked Questions - All Leaders Initiative"
+  metaDescription="Frequently asked questions about leadership, team management and workplace well-being."
+  lang="en"
+>
+  <div class="mx-auto px-4 py-12">
+    <h1 class="font-serif text-limolo-green mb-2 text-center">Frequently Asked Questions</h1>
+    <p class="text-center text-gray-600 mb-12">Find answers to the most frequently asked questions, organized by profile</p>
+    
+    <!-- FAQ Component -->
+    <FAQ lang="en" fullBleed={true} />
+  </div>
+</Layout>
+
+<style>
+  h1 {
+    margin-bottom: 0;
+    padding-bottom: 0.5rem;
+  }
+</style>

@@ -1,0 +1,310 @@
+---
+// Grille interactive continuum de performance collective
+// Animation scroll avec GSAP ScrollTrigger - Mobile First
+---
+
+<div class="continuum-wrapper" role="img" aria-label="Continuum de la performance collective">
+  <div class="continuum-grid">
+    <!-- Ligne 1 -->
+    <div class="grid-cell cell-red ligne-1" data-text="Groupe dysfonctionnel" data-row="1" data-col="1" data-colspan="3"></div>
+    <div></div>
+    <div></div>
+    <div class="grid-cell cell-blue ligne-1" data-text="Collectif hautement performant" data-row="1" data-col="6" data-colspan="3"></div>
+
+    <!-- Ligne 2 -->
+    <div></div>
+    <div></div>
+    <div class="grid-cell cell-trans-red" data-text="Difficultés à résoudre" data-row="2" data-col="1" data-colspan="2"></div>
+    <div class="grid-cell cell-trans-purple" data-text="Opportunités à développer" data-row="2" data-col="3" data-colspan="2"></div>
+    <div class="grid-cell cell-trans-blue" data-text="(Sur)performance à maintenir" data-row="2" data-col="7" data-colspan="3"></div>
+    <div></div>
+
+
+    <!-- Ligne 3 -->
+    <div class="grid-cell red" data-text="Troubles de la santé mentale" data-row="3" data-col="1"></div>
+    <div class="grid-cell red" data-text="Épuisement" data-row="3" data-col="2"></div>
+    <div class="grid-cell red" data-text="Risques psychosociaux" data-row="3" data-col="3"></div>
+    <div class="grid-cell purple" data-text="Frictions et Tensions" data-row="3" data-col="4"></div>
+    <div class="grid-cell purple" data-text="Conflictualité" data-row="3" data-col="5"></div>
+    <div class="grid-cell purple" data-text="Régulation" data-row="3" data-col="6"></div>
+    <div class="grid-cell bleu" data-text="Confiance" data-row="3" data-col="7"></div>
+    <div class="grid-cell bleu" data-text="Cohésion" data-row="3" data-col="8"></div>
+    <div class="grid-cell bleu" data-text="Esprit d'équipage" data-row="3" data-col="9"></div>
+  </div>
+</div>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const sequence = [
+      { row: 1, col: 1 },
+      { row: 2, col: 1 },
+      { row: 3, col: 1 },
+      { row: 3, col: 2 },
+      { row: 3, col: 3 },
+      { row: 3, col: 4 },
+      { row: 2, col: 3 },
+      { row: 3, col: 5 },
+      { row: 3, col: 6 },
+      { row: 1, col: 6 },
+      { row: 2, col: 7 },
+      { row: 3, col: 7 },
+      { row: 3, col: 8 },
+      { row: 3, col: 9 },
+    ];
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.continuum-wrapper',
+        start: 'top 60%',
+        end: 'center center',
+        scrub: 1,
+        pin: false,
+      }
+    });
+
+    sequence.forEach((pos, index) => {
+      const cell = document.querySelector(`.grid-cell[data-row="${pos.row}"][data-col="${pos.col}"]`);
+      if (cell) {
+        tl.to(cell, { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }, index * 0.06);
+      }
+    });
+  });
+</script>
+
+<style>
+  /* ==========================================
+     MOBILE FIRST - Base styles
+     =========================================== */
+
+  .continuum-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 1.5rem 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-image: url('/images/pages/continuum-performance-collective.webp');
+    background-size: cover;
+    background-position: center;
+    aspect-ratio: 1 / 1;
+    min-height: 400px;
+  }
+
+  .continuum-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    width: 100%;
+    height: 100%;
+    gap: 0;
+  }
+
+  .grid-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0.75rem;
+    min-height: 50px;
+    opacity: 0;
+    transform: scale(0.8);
+    will-change: opacity, transform;
+  }
+
+  .grid-cell::after {
+    content: attr(data-text);
+    color: white;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 95%;
+  }
+
+  /* Cell variants */
+  .grid-cell[data-colspan="2"],
+  .grid-cell[data-colspan="3"] {
+    grid-column: span 1;
+  }
+
+  .cell-red::after,
+  .cell-blue::after {
+    font-weight: 400;
+    font-size: 12px!important;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .cell-red::after {
+    background: rgba(220, 38, 38, 0.7);
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .cell-blue::after {
+    background: rgba(59, 130, 246, 0.7);
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+.cell-trans-red::after,
+.cell-trans-purple::after,
+.cell-trans-blue::after {
+  font-weight: 700;
+  font-size: 18px!important;
+  padding: 5rem;
+
+
+  /* Remplacement du background uni par un dégradé radial */
+  background: radial-gradient(
+    circle, 
+    rgba(255, 255, 255, 1) 0%, 
+    rgba(255, 255, 255, .6) 70%,
+    rgba(255, 255, 255, .4) 95%
+  );
+
+  /* Effet de flou en arrière-plan (n'affecte pas le texte) */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /* Support Safari */
+}
+
+  .cell-trans-red::after {
+    color: rgba(200, 39, 39, 1);  
+  }
+
+  .cell-trans-purple::after {
+    color: rgb(136, 85, 175);
+  }
+
+  .cell-trans-blue::after {
+    color: rgb(35, 78, 146);
+  }
+
+  .red::after,
+  .purple::after,
+  .bleu::after {
+    font-weight: 400;
+    font-size: 12px;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .red::after {
+    color: rgb(165, 34, 34);
+  }
+
+  .purple::after {
+    color: rgb(120, 70, 150);
+  }
+
+  .bleu::after {
+    color: rgb(30, 60, 120);
+  }
+
+  /* Y-axis transforms for continuum line */
+  .red[data-col="1"]::after { transform: translateY(0px); }
+  .red[data-col="2"]::after { transform: translateY(-20px); }
+  .red[data-col="3"]::after { transform: translateY(20px); }
+
+  .purple[data-col="4"]::after { transform: translateY(-20px); }
+  .purple[data-col="5"]::after { transform: translateY(20px); }
+  .purple[data-col="6"]::after { transform: translateY(-20px); }
+
+  .bleu[data-col="7"]::after { transform: translateY(20px); }
+  .bleu[data-col="8"]::after { transform: translateY(-20px); }
+  .bleu[data-col="9"]::after { transform: translateY(20px); }
+
+  /* Standard continuum cells */
+  .grid-cell:not(.cell-trans-red, .cell-trans-purple, .cell-trans-blue, .cell-red, .cell-blue, .red, .purple, .bleu)::after {
+    font-size: 10px;
+    padding: 0.25rem 0.5rem;
+    color: white;
+    background: rgba(30, 30, 30, 0.8);
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ==========================================
+     TABLET (768px+)
+     =========================================== */
+
+  @media (min-width: 768px) {
+    .continuum-wrapper {
+      aspect-ratio: 9 / 4;
+      min-height: 280px;
+      margin: 2rem 0;
+    }
+
+    .continuum-grid {
+      grid-template-columns: repeat(9, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+    }
+
+    .grid-cell {
+      padding: 1rem;
+      min-height: auto;
+    }
+
+    .grid-cell[data-colspan="2"] {
+      grid-column: span 2;
+    }
+
+    .grid-cell[data-colspan="3"] {
+      grid-column: span 3;
+    }
+
+    .cell-red::after,
+    .cell-blue::after {
+      font-size: 14px;
+      padding: 0.4rem 0.8rem;
+    }
+
+    .cell-trans-red::after,
+    .cell-trans-purple::after,
+    .cell-trans-blue::after {
+      font-size: 14px;
+      padding: 1.5rem 2rem;
+    }
+
+    .red::after,
+    .purple::after,
+    .bleu::after {
+      font-size: 14px;
+    }
+
+    .grid-cell:not(.cell-trans-red, .cell-trans-purple, .cell-trans-blue, .cell-red, .cell-blue, .red, .purple, .bleu)::after {
+      font-size: 12px;
+    }
+  }
+
+  /* ==========================================
+     DESKTOP (1024px+)
+     =========================================== */
+
+  @media (min-width: 1024px) {
+    .continuum-wrapper {
+      aspect-ratio: 9 / 3;
+      min-height: 300px;
+    }
+
+    .cell-red.ligne-1::after,
+    .cell-blue.ligne-1::after {
+      padding: 0.55rem 1.75rem;
+    }
+  }
+
+  /* ==========================================
+     A11Y - Respect des préférences
+     =========================================== */
+
+  @media (prefers-reduced-motion: reduce) {
+    .grid-cell {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>

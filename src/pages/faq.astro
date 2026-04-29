@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FAQ from '../components/FAQ.astro';
+---
+
+<Layout
+  title="FAQ - All Leaders"
+  metaTitle="Foire aux Questions - All Leaders Initiative"
+  metaDescription="Questions fréquemment posées sur le leadership, la gestion d'équipe et le bien-être au travail."
+  lang="fr"
+>
+  <div class="mx-auto px-4 py-12">
+    <h1 class="font-serif text-limolo-green mb-2 text-center">Foire aux Questions</h1>
+    <p class="text-center text-gray-600 mb-12">Retrouvez les réponses aux questions les plus fréquemment posées, organisées par profil</p>
+    
+    <!-- FAQ Component -->
+    <FAQ lang="fr" fullBleed={true} />
+  </div>
+</Layout>
+
+<style>
+  h1 {
+    margin-bottom: 0;
+    padding-bottom: 0.5rem;
+  }
+</style>

@@ -14,13 +14,13 @@ const currentYear = new Date().getFullYear();
 const localizedSlugs = {
   fr: {
     blog: 'ressources',
-    faq: 'faq-all-leaders-french',
+    faq: 'faq',
     privacy: 'privacy-policy-fr',
     cookie: 'cookies-policy-fr',
   },
   en: {
     blog: 'resources',
-    faq: 'faq-all-leaders-english',
+    faq: 'faq-en',
     privacy: 'privacy-policy-en',
     cookie: 'cookies-policy-en',
   },
@@ -64,6 +64,7 @@ const navigationLinks = {
       <div class="footer-section">
         <h4 class="footer-heading">{t.explore}</h4>
         <ol class="footer-links">
+          <li><img src="/public/images/pages/pilote.webp" style="width: 50%; height: auto;" alt="Pilotine" class="footer-logo" /></li>
           <li><a href="https://bureaudureel.fr" class="footer-link">{t.bureauDuReel}</a></li>
           <li><a href={navigationLinks.blog} class="footer-link">{t.blog}</a></li>
           <li><a href={navigationLinks.faq} class="footer-link">{t.faq}</a></li>
@@ -74,6 +75,7 @@ const navigationLinks = {
 
       <div class="footer-section">
         <h4 class="footer-heading">{t.keepInTouch}</h4>
+        <img src="/public/images/pages/bateau.webp" style="width: 50%; height: auto;" alt="Pilotine" class="footer-logo" />
         <p class="newsletter-text">
           {t.newsletterText}
         </p>

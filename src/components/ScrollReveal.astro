@@ -1,0 +1,61 @@
+---
+interface Props {
+  children: any;
+  delay?: number;
+  direction?: 'up' | 'down' | 'left' | 'right';
+  duration?: number;
+  threshold?: number;
+}
+
+const { delay = 0, direction = 'up', duration = 0.8, threshold = 0.1 } = Astro.props;
+
+const directionMap = {
+  up: 'translate-y-12',
+  down: 'translate-y-12',
+  left: 'translate-x-12',
+  right: '-translate-x-12',
+};
+
+const initialTransform = directionMap[direction] || directionMap.up;
+---
+
+<div class={`scroll-reveal opacity-0 ${initialTransform}`} data-delay={delay} data-direction={direction} data-duration={duration}>
+  <slot />
+</div>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const reveals = document.querySelectorAll('.scroll-reveal');
+
+    reveals.forEach((reveal) => {
+      const delay = parseFloat((reveal as HTMLElement).dataset.delay || '0');
+      const direction = (reveal as HTMLElement).dataset.direction || 'up';
+      const duration = parseFloat((reveal as HTMLElement).dataset.duration || '0.8');
+
+      gsap.to(reveal, {
+        scrollTrigger: {
+          trigger: reveal,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+        opacity: 1,
+        y: direction === 'up' ? -48 : direction === 'down' ? 0 : 0,
+        x: direction === 'left' ? -48 : direction === 'right' ? 48 : 0,
+        duration,
+        delay,
+        ease: 'power2.out',
+      });
+    });
+  });
+</script>
+
+<style>
+  .scroll-reveal {
+    will-change: opacity, transform;
+  }
+</style>

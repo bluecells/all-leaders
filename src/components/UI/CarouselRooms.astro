@@ -26,7 +26,7 @@ const {
   paddingVertical = '4rem',
 } = Astro.props;
 
-const allRooms = await getCollection('rooms');
+const allRooms = await getCollection('services');
 const rooms = allRooms.filter((room) => room.data.lang === lang && room.id !== excludeId);
 
 const limitedRooms = rooms.slice(0, 10);

@@ -5,151 +5,49 @@
     "title": {
       "type": "string"
     },
+    "categorie": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "action",
+        "investigation",
+        "formation",
+        "coaching",
+        "conseil",
+        "mentorat",
+        "immersion",
+        "inspiration"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
     "lang": {
       "type": "string",
       "enum": [
-        "it",
         "fr",
         "en"
       ]
     },
-    "seoSlug": {
+    "USP1": {
       "type": "string"
     },
-    "metaTitle": {
-      "anyOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "null"
-        }
-      ]
-    },
-    "metaDescription": {
-      "anyOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "null"
-        }
-      ]
-    },
-    "ogImage": {
-      "anyOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "null"
-        }
-      ]
-    },
-    "jsonType": {
-      "default": "hotelRoom",
-      "type": "string",
-      "enum": [
-        "page",
-        "blog",
-        "event",
-        "faq",
-        "blogCollection",
-        "hotelRoom"
-      ]
-    },
-    "nameDisplay": {
+    "USP2": {
       "type": "string"
     },
-    "punchline": {
+    "USP3": {
       "type": "string"
     },
-    "featuredPhoto": {
-      "anyOf": [
-        {
-          "type": "object",
-          "properties": {
-            "image": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            },
-            "alt": {
-              "anyOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "type": "null"
-        }
-      ]
+    "USP4": {
+      "type": "string"
     },
-    "photos": {
-      "default": [],
-      "maxItems": 6,
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "image": {
-            "anyOf": [
-              {
-                "anyOf": [
-                  {
-                    "type": "string"
-                  },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "image": {
-                        "type": "string"
-                      },
-                      "alt": {
-                        "anyOf": [
-                          {
-                            "type": "string"
-                          },
-                          {
-                            "type": "null"
-                          }
-                        ]
-                      }
-                    },
-                    "required": [
-                      "image"
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "alt": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        }
-      }
+    "USP5": {
+      "type": "string"
     },
     "$schema": {
       "type": "string"
@@ -157,8 +55,10 @@
   },
   "required": [
     "title",
-    "lang",
-    "nameDisplay",
-    "punchline"
+    "categorie",
+    "type",
+    "description",
+    "image",
+    "lang"
   ]
 }

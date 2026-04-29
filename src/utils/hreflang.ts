@@ -12,10 +12,6 @@ export interface AlternateUrls {
  * Mapping des préfixes de routes par type de contenu et par langue
  */
 const ROUTE_PREFIXES = {
-  services: {
-    fr: 'services',
-    en: 'services',
-  },
   article: {
     fr: 'ressources',
     en: 'resources',
@@ -23,6 +19,10 @@ const ROUTE_PREFIXES = {
   faq: {
     fr: 'faq',
     en: 'faq',
+  },
+  services: {
+    fr: 'services',
+    en: 'services',
   },
 } as const;
 
@@ -46,28 +46,28 @@ export function buildPageUrl(
 }
 
 /**
- * Construit l'URL d'une room dans une langue donnée
+ * Construit l'URL d'un service (accompagnement) dans une langue donnée
  */
-export function buildRoomUrl(
-  room: CollectionEntry<'rooms'>,
+export function buildServiceUrl(
+  service: CollectionEntry<'services'>,
   lang: 'fr' | 'en'
 ): string {
-  const seoSlug = room.data.seoSlug || room.id.split('/').pop()?.replace('.mdoc', '') || 'room';
+  const seoSlug = service.data.seoSlug || service.id.split('/').pop()?.replace('.yaml', '') || 'service';
   const cleanSlug = seoSlug.replace(/^\/|\/$/g, '');
-  const roomPrefix = ROUTE_PREFIXES.room[lang];
+  const servicePrefix = ROUTE_PREFIXES.services[lang];
 
-  // FR: /chambres/slug (pas de préfixe)
+  // FR: /services/slug (pas de préfixe langue)
   if (lang === 'fr') {
-    return `/${roomPrefix}/${cleanSlug}`;
+    return `/${servicePrefix}/${cleanSlug}`;
   }
 
-  // EN: /en/rooms/slug
-  return `/${lang}/${roomPrefix}/${cleanSlug}`;
+  // EN: /en/services/slug
+  return `/${lang}/${servicePrefix}/${cleanSlug}`;
 }
 
 /**
  * Construit l'URL d'un article dans une langue donnée
- * Les articles ont une structure: /limologiche/{categorySlug}/{articleSlug}
+ * Les articles ont une structure: /ressources/{categorySlug}/{articleSlug} (FR) ou /en/resources/{categorySlug}/{articleSlug} (EN)
  */
 export function buildArticleUrl(
   article: CollectionEntry<'articles'>,
@@ -91,12 +91,12 @@ export function buildArticleUrl(
 
   const articlePrefix = ROUTE_PREFIXES.article[lang];
 
-  // FR: /limologiche/{categorySlug}/{articleSlug} (pas de préfixe)
+  // FR: /ressources/{categorySlug}/{articleSlug} (pas de préfixe)
   if (lang === 'fr') {
     return `/${articlePrefix}/${categorySlug}/${cleanSlug}`;
   }
 
-  // EN: /en/limologiche/{categorySlug}/{articleSlug}
+  // EN: /en/resources/{categorySlug}/{articleSlug}
   return `/${lang}/${articlePrefix}/${categorySlug}/${cleanSlug}`;
 }
 
@@ -134,7 +134,7 @@ export function buildFaqUrl(
 
 /**
  * Extrait le nom de fichier de base (sans le préfixe de langue fr/en)
- * Exemple: "fr/chambres.mdoc" → "chambres.mdoc"
+ * Exemple: "fr/services.yaml" → "services.yaml"
  */
 function getBaseFilename(entryId: string): string {
   const parts = entryId.split('/');
@@ -156,12 +156,11 @@ function getBaseFilename(entryId: string): string {
  * @returns Les URLs alternatives pour FR, EN (null si pas de traduction)
  */
 export async function findAlternateUrls(
-  entry: CollectionEntry<'pages' | 'articles' | 'rooms' | 'faq'>,
-  entryType: 'page' | 'article' | 'room' | 'faq',
+  entry: CollectionEntry<'articles' | 'services' | 'faq'>,
+  entryType: 'article' | 'room' | 'faq',
   collections: {
-    pages: CollectionEntry<'pages'>[];
     articles: CollectionEntry<'articles'>[];
-    rooms: CollectionEntry<'rooms'>[];
+    services: CollectionEntry<'services'>[];
     faq: CollectionEntry<'faq'>[];
     categories: CollectionEntry<'category'>[];
   }
@@ -176,23 +175,19 @@ export async function findAlternateUrls(
 
   // Sélectionner la collection appropriée selon le type
   const collection =
-    entryType === 'page'
-      ? collections.pages
-      : entryType === 'article'
-        ? collections.articles
-        : entryType === 'room'
-          ? collections.rooms
-          : collections.faq;
+    entryType === 'article'
+      ? collections.articles
+      : entryType === 'room'
+        ? collections.services
+        : collections.faq;
 
   // Sélectionner la fonction de construction d'URL appropriée
   const buildUrl =
-    entryType === 'page'
-      ? buildPageUrl
-      : entryType === 'article'
-        ? (e: any, l: 'fr' | 'en') => buildArticleUrl(e, l, collections.categories)
-        : entryType === 'room'
-          ? buildRoomUrl
-          : (e: any, l: 'fr' | 'en') => buildFaqUrl(e, l, collections.categories);
+    entryType === 'article'
+      ? (e: any, l: 'fr' | 'en') => buildArticleUrl(e, l, collections.categories)
+      : entryType === 'room'
+        ? buildServiceUrl
+        : (e: any, l: 'fr' | 'en') => buildFaqUrl(e, l, collections.categories);
 
   // Pour chaque langue, chercher l'entrée correspondante
   for (const lang of ['fr', 'en'] as const) {

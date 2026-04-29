@@ -83,10 +83,11 @@ const articlesData = sortedArticles.map((article) => {
   }
 
   // Permalink multilingue avec slug de catégorie localisé
+  const resourcesSegment = validLang === 'fr' ? 'ressources' : 'resources';
   const permalink =
-    validLang === 'it'
-      ? `/limologiche/${categorySlug || 'uncategorized'}/${cleanSlug}`
-      : `/${validLang}/limologiche/${categorySlug || 'uncategorized'}/${cleanSlug}`;
+    validLang === 'fr'
+      ? `/${resourcesSegment}/${categorySlug || 'uncategorized'}/${cleanSlug}`
+      : `/${validLang}/${resourcesSegment}/${categorySlug || 'uncategorized'}/${cleanSlug}`;
 
   // Tags avec langue
   const displayTags = tags
@@ -132,17 +133,17 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 <div
   class={`blog-container blog-full-width-breakout py-6 ${fullBleed ? 'fullbleed px-[3vw]' : ''}`}
 >
-  <div class="flex flex-col justify-between lg:flex-row gap-12">
-    <aside class="lg:w-80 lg:order-2 space-y-10 lg:sticky lg:top-40 lg:self-start">
+  <div class="flex flex-col justify-between lg:flex-row gap-4">
+    <aside class="lg:w-50 lg:order-2 space-y-10 lg:sticky lg:top-40 lg:self-start">
       <div class="search-box">
-        <h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-4">
+        <h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">
           {t.search}
         </h4>
         <input
           type="text"
           id="search-input"
           placeholder={t.searchPlaceholder}
-          class="w-full border-b border-gray-300 py-2 focus:border-limolo-green outline-none bg-transparent font-serif italic text-lg transition-colors"
+          class="w-full border-b border-gray-300 py-1 focus:border-limolo-green outline-none bg-transparent text-sm transition-colors"
         />
       </div>
 
@@ -207,7 +208,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 
     <main class="lg:flex-1 lg:order-1 max-w-full">
       <div
-        class="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-x-6 gap-y-6"
+        class="grid grid-cols-4 gap-4"
         id="blog-grid"
       >
         {
@@ -226,12 +227,13 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 
             return (
               <div
-                class="article-card group"
+                class="article-card group flex flex-col border border-gray-200 rounded-lg hover:shadow-md transition-shadow overflow-hidden"
                 data-cat={categorySlug}
                 data-tags={JSON.stringify(rawTags)}
                 data-title={title.toLowerCase()}
               >
-                <div class="relative aspect-16/10 mb-2 shadow-sm bg-gray-100 overflow-hidden">
+                {/* Image - Top */}
+                <div class="relative w-full aspect-16/10 shadow-sm bg-gray-100 overflow-hidden flex-shrink-0">
                   <div class="absolute top-0 left-0 z-20">
                     <div class="bg-limolo-brand backdrop-blur-sm px-2 pb-1 rounded-md shadow-sm">
                       <span class="text-[10px] font-bold uppercase tracking-tighter text-white">
@@ -251,40 +253,35 @@ const tagsForFilter = Array.from(tagSlugs).sort();
                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     ) : (
-                      <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-sm">
+                      <div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-xs">
                         Pas d'image
                       </div>
                     )}
                   </a>
                 </div>
 
-                <div class="flex flex-col items-start px-3">
-                  {displayCategory !== 'Uncategorized' && (
-                    <button
-                      class="filter-cat-link text-[8px] my-1 uppercase tracking-[0.2em] font-bold text-limolo-green hover:text-limolo-accent transition-colors"
-                      data-category={displayCategory.toLowerCase()}
-                    >
-                      {displayCategory}
-                    </button>
-                  )}
+                {/* Content - Bottom */}
+                <div class="flex flex-col items-start justify-between flex-1 p-3">
+                  <div class="w-full">
+                    {displayCategory !== 'Uncategorized' && (
+                      <button
+                        class="filter-cat-link text-[10px] mb-1 uppercase tracking-[0.2em] font-bold text-limolo-green hover:text-limolo-accent transition-colors"
+                        data-category={displayCategory.toLowerCase()}
+                      >
+                        {displayCategory}
+                      </button>
+                    )}
 
-                  <a href={permalink} class="block group w-full">
-                    <h3 class="text-lg my-2 font-serif text-limolo-green leading-snug group-hover:text-limolo-accent transition-colors">
-                      {title}
-                    </h3>
-                  </a>
-
-                  {displayTags.length > 0 && (
-                    <div class="flex flex-wrap gap-2 mt-2">
-                      {displayTags.map((tag) => (
-                        <span class="text-[10px] text-gray-500">#{tag}</span>
-                      ))}
-                    </div>
-                  )}
+                    <a href={permalink} class="block group w-full">
+                      <h3 class="text-sm m-0 font-serif text-limolo-green leading-tight group-hover:text-limolo-accent transition-colors line-clamp-4">
+                        {title}
+                      </h3>
+                    </a>
+                  </div>
 
                   <a
                     href={permalink}
-                    class="inline-flex items-center mt-4 text-[11px] font-bold uppercase tracking-widest text-limolo-earth group-hover:translate-x-2 transition-transform duration-300"
+                    class="inline-flex items-center mt-2 text-[11px] font-bold uppercase tracking-widest text-limolo-earth group-hover:translate-x-2 transition-transform duration-300"
                   >
                     {t.cta} <span class="ml-2 text-lg">→</span>
                   </a>
