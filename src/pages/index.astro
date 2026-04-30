@@ -51,19 +51,21 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     // 3. LE MOUVEMENT FINAL
     // On descend la citation
     tl.to(heroQuoteWrapper, {
-      y: "15vh", 
+      y: "20vh", 
+      autoAlpha: 0, 
       duration: 1.2,
-      ease: 'power3.inOut'
+      ease: 'power2.inOut'
     }, ">");
 
-    // On fait apparaître le titre en le faisant remonter légèrement
+    // 4. On fait apparaître le titre en le faisant remonter légèrement
     tl.to(heroTitle, {
       autoAlpha: 1,
-      yPercent: -120, // Remonte de -50% (centre) à -80% pour libérer de l'espace
+      yPercent: -80, // Remonte de -50% (centre) à -80% pour libérer de l'espace
       x: 0, // Reste centré horizontalement
       duration: 1,
       ease: 'power2.out'
     }, "-=0.8");
+
   }
 
   // Lancement propre
@@ -79,11 +81,11 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   <div class="mx-auto px-4 py-12 hero-section">
 
     <!-- Hero Title - Animé après -->
-    <h1 class="hero-title" style="opacity: 0;">All Leaders Initiative <span style="display: block; font-size: 2.25rem;">Conseil en performance collective pour dirigeants et équipes managériales</span></h1>
+    <h1 class="hero-title" style="opacity: 0;">All Leaders Initiative <span style="display: block; font-size: 2.25rem; color: var(--color-brand-darker);">Conseil en performance collective pour dirigeants et équipes managériales</span></h1>
 
     <!-- Hero Quote - Centre au début, puis slide vers le bas -->
     <div class="hero-quote-wrapper">
-      <p class="hero-quote pb-0! max-w-5xl mx-auto">
+      <p class="hero-quote pb-0! max-w-5xl mx-auto" >
         <q>&nbsp;Toutes les équipes performantes se ressemblent.<br>
         Mais chaque équipe dysfonctionnelle l'est à sa façon.&nbsp;</q>
       </p>
@@ -95,7 +97,10 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   </div>
 
     
-<div class="max-w-3xl mx-auto text-center">
+<div class="max-w-3xl mx-auto text-center" style="height:60vh;" >
+    <h2 id="h2-pourquoi">
+      Dépasser les <strong>barrières invisibles</strong> de votre équipe
+    </h2>
     <p>
       Vous sentez qu'il serait possible de <strong>mieux collaborer</strong>, de retrouver du <strong>sens</strong>,
       de <strong>fluidifier les relations</strong>… mais quelque chose bloque.
@@ -103,10 +108,8 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
       <strong>Ces frontières invisibles freinent votre épanouissement et la dynamique collective.</strong>
     </p>
 
-    <p class="hero-cta-text">Il est temps de les <strong>dépasser</strong>.</p>
-
     <nav aria-label="Navigation principale">
-      <a href="/contact" class="btn btn-secondary">Prendre contact</a>
+      <a href="/contact" class="mt-8 btn btn-secondary">Il est temps de les <strong>dépasser</strong></a>
     </nav>
     </div>
 
@@ -121,8 +124,8 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     <section id="notre-approche" aria-labelledby="h2-pourquoi">
       <div class="container">
 
-        <h2 id="h2-pourquoi">
-          Dépasser les barrières invisibles de votre équipe
+        <h2 id="h2-fondateurs" class="text-center! mt-8">
+          <strong>Deux fondateurs</strong>, une vision commune du <strong>leadership basé sur l'intention</strong>
         </h2>
 
         <p class="text-center">
@@ -139,6 +142,30 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               alt="Marie-Emmanuelle Py"
               class="w-full h-auto object-cover rounded-lg"
             />
+            <h3 itemprop="name">Marie Emmanuelle PY</h3>
+            <p class="mb-4" itemprop="jobTitle">Associée fondatrice</p>
+            <ul class="contact-list">
+              <li>
+                <a href="mailto:me@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Marie Emmanuelle Py">
+                  me@all-leaders.fr
+                </a>
+              </li>
+              <li>
+                <a href="tel:+33603555452" itemprop="telephone" aria-label="Appeler Marie Emmanuelle Py">
+                  +33 6 03 55 54 52
+                </a>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Marie Emmanuelle Py">
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil complet de Marie Emmanuelle Py">
+                  Profil complet
+                </a>
+              </li>
+            </ul>
           </div>
 
           <div class="values-grid" role="list">
@@ -160,7 +187,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
             </article>
 
             <article role="listitem">
-              <h3><strong>Nous voyons l'organisation comme un équipage</strong></h3>
+              <h3><strong>L'organisation est un équipage</strong></h3>
               <p class="text-center">
                 Nos parcours de marins, dans la sécurité nucléaire et une grande diversité de cultures
                 managériales nous ont appris à voir les organisations comme des équipages&nbsp;: des
@@ -180,6 +207,30 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               alt="Pierre-Etienne Bost"
               class="w-full h-auto object-cover rounded-lg"
             />
+            <h3 itemprop="name">Pierre-Etienne BOST</h3>
+            <p class="mb-4" itemprop="jobTitle">Associé fondateur</p>
+            <ul class="contact-list">
+              <li>
+                <a href="mailto:pe@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Pierre-Etienne Bost">
+                  pe@all-leaders.fr
+                </a>
+              </li>
+              <li>
+                <a href="tel:+33685540511" itemprop="telephone" aria-label="Appeler Pierre-Etienne Bost">
+                  +33 6 85 54 05 11
+                </a>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Pierre-Etienne Bost">
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil complet de Pierre-Etienne Bost">
+                  Profil complet
+                </a>
+              </li>
+            </ul>
           </div>
 
           {/* Images mobiles - affichées au-dessus en 50-50 */}
@@ -317,7 +368,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
                 <h3>YourSafety.training — Gestion des conflits</h3>
                 <p>
                   Parce qu'on ne peut parler de relations sans parler de conflits, d'agressivité voire
-                  de violence, nous avons intégré à notre expertise la gestion professionnelle des conflits avec notre partenariat <b>Jérôme Bouteiller</b>.
+                  de violence, nous avons intégré à notre expertise la gestion professionnelle des conflits avec notre partenaire <b>Jérôme Bouteiller</b>.
                 </p>
                 <a href="https://yoursafety.training" aria-label="En savoir plus sur YourSafety.training">Restaurer ou préserver la relation en cas de conflit</a>
               </div>
@@ -571,12 +622,14 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   .contact-list h1,
   .contact-list h2,
   .contact-list h3 {
-    text-align: left;
+    text-align: center;
   }
 
   .contact-list li {
-    margin-bottom: 0.35rem;
-    margin-left: -1rem;
+    margin-bottom: 0rem;
+    padding: 0.25rem 0;
+    text-align: center;
+    font-size: 0.85rem;
   }
 
   .contact-list a {
@@ -600,15 +653,23 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   /* Values section avec images latérales */
   .values-section {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     align-items: flex-start;
     margin-top: 3rem;
   }
 
   .values-image-left,
   .values-image-right {
-    flex: 0 0 20%;
-    max-height: 500px;
+    flex: 0 0 18%;
+    flex-direction: column;
+    background: rgba(74, 103, 65, 0.1);
+    padding-bottom: .5rem;
+  }
+
+    .values-image-left h3,
+  .values-image-right h3{
+    margin-top: 1rem;
+    font-size: 1.5rem;
   }
 
   .values-image-left img,

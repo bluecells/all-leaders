@@ -96,15 +96,23 @@
     position: absolute;
     width: 240px; /* Doublé par rapport à l'original mobile */
     height: 240px;
+    left: 50%;
+    top: 50%;
+    margin-left: -120px;
+    margin-top: -120px;
     z-index: 0;
-    transform: rotateX(30deg) translateX(20px); /* Légère translation pour compenser le décalage dû à la rotation */
+    transform: rotateX(30deg);
     pointer-events: none;
   }
 
   .compass-perspective-wrapper {
-    position: relative;
+    position: absolute;
     width: 500px;
     height: 500px;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -250px;
     display: flex;
     justify-content: center;
     align-items: center;
