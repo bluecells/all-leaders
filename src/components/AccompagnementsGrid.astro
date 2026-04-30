@@ -43,12 +43,8 @@ function getCategorySlug(categoryName: string): string {
 
 // Fonction pour créer l'URL vers la page de détail
 function buildAccompagnementUrl(accompagnement: CollectionEntry<'accompagnements'>, categorySlug: string): string {
-  // L'ID est au format: "fr/coaching-individuel" ou "en/coaching-individuel"
-  // On extrait juste le slug (partie après la langue)
-  const parts = accompagnement.id.split('/');
-  const slug = parts[parts.length - 1]?.replace(/\.yaml$/, '') || '';
-
-  console.log('Building URL for:', accompagnement.id, 'slug:', slug, 'categorySlug:', categorySlug);
+  // Utiliser le slug du YAML (field) au lieu du nom du fichier
+  const slug = accompagnement.data.slug || '';
 
   return `/accompagnements/${categorySlug}/${slug}`;
 }

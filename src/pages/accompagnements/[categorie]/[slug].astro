@@ -20,8 +20,8 @@ export const getStaticPaths = (async () => {
     // Utiliser le slug de la catégorie ou un slug par défaut
     const categorieSlug = category?.data.slug || accompagnement.data.categorie.toLowerCase().replace(/\s+/g, '-');
 
-    // Extraire le slug de l'accompagnement depuis l'ID
-    const slug = accompagnement.id.split('/').pop()?.replace(/\.yaml$/, '') || '';
+    // Utiliser le slug du YAML (field) au lieu du nom du fichier
+    const slug = accompagnement.data.slug || '';
 
     return {
       params: {
