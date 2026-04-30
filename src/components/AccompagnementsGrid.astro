@@ -98,14 +98,17 @@ function buildAccompagnementUrl(accompagnement: CollectionEntry<'accompagnements
   }
 
   .accompagnements-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: clamp(1.5rem, 3vw, 2.5rem);
     margin-bottom: 3rem;
     padding: 0 clamp(1.25rem, 5vw, 2rem);
   }
 
   .accompagnement-card-container {
+    width: 100%;
+    max-width: 280px;
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -215,9 +218,8 @@ function buildAccompagnementUrl(accompagnement: CollectionEntry<'accompagnements
   }
 
   @media (max-width: 768px) {
-    .accompagnements-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+    .accompagnement-card-container {
+      width: 100%;
     }
   }
 </style>
