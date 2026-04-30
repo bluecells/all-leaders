@@ -1,1 +1,0 @@
-import{g as e,S as r}from"./ScrollTrigger.a3sj5zmn.js";e.registerPlugin(r);document.addEventListener("DOMContentLoaded",()=>{const t=document.getElementById("compassOrbit");e.to(t,{rotation:36,scrollTrigger:{trigger:t,start:"top center",end:"bottom center",scrub:1,markers:!1}})});

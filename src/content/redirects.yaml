@@ -1,4 +1,12 @@
 redirects:
+  - from: /services
+    to: /accompagnements
+    status: '301'
+    note: 'Renommage collection services → accompagnements'
+  - from: /services/*
+    to: /accompagnements/*
+    status: '301'
+    note: 'Redirection wildcard services → accompagnements'
   - from: camere/randa
     to: /camere/alloggio-ecofriendly-camera-randa
     status: '301'

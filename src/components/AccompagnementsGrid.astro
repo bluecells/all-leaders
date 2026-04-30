@@ -1,0 +1,227 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  lang: 'fr' | 'en';
+  category?: string;
+  fullBleed?: boolean;
+  textColor?: string;
+}
+
+const { lang, category, fullBleed = false, textColor = 'white' } = Astro.props;
+
+let accompagnements = await getCollection('accompagnements');
+const allCategories = await getCollection('accompagnements-categories');
+
+// Filtrer par langue
+accompagnements = accompagnements.filter((item) => item.data.lang === lang);
+
+// Filtrer par catégorie si spécifiée
+if (category) {
+  accompagnements = accompagnements.filter((item) => item.data.categorie === category);
+}
+
+// Récupérer les catégories uniques pour affichage
+const categories = Array.from(new Set(accompagnements.map((item) => item.data.categorie)));
+
+// Fonction pour obtenir la description d'une catégorie
+function getCategoryDescription(categoryName: string): string {
+  const categoryData = allCategories.find(
+    (cat) => (lang === 'fr' ? cat.data.name_fr : cat.data.name_en) === categoryName
+  );
+  return lang === 'fr' ? categoryData?.data.description_fr || '' : categoryData?.data.description_en || '';
+}
+
+// Fonction pour obtenir le slug de la catégorie
+function getCategorySlug(categoryName: string): string {
+  const categoryData = allCategories.find(
+    (cat) => (lang === 'fr' ? cat.data.name_fr : cat.data.name_en) === categoryName
+  );
+  return categoryData?.data.slug || categoryName.toLowerCase().replace(/\s+/g, '-');
+}
+
+// Fonction pour créer l'URL vers la page de détail
+function buildAccompagnementUrl(accompagnement: CollectionEntry<'accompagnements'>, categorySlug: string): string {
+  // L'ID est au format: "fr/coaching-individuel" ou "en/coaching-individuel"
+  // On extrait juste le slug (partie après la langue)
+  const parts = accompagnement.id.split('/');
+  const slug = parts[parts.length - 1]?.replace(/\.yaml$/, '') || '';
+
+  console.log('Building URL for:', accompagnement.id, 'slug:', slug, 'categorySlug:', categorySlug);
+
+  return `/accompagnements/${categorySlug}/${slug}`;
+}
+---
+
+<div class={fullBleed ? '' : 'mx-auto max-w-6xl px-4'}>
+  {categories.length > 0 ? (
+    categories.map((cat) => {
+      const categorySlug = getCategorySlug(cat);
+      const categoryAccompagnements = accompagnements.filter((item) => item.data.categorie === cat);
+
+      return (
+        <section class="mb-16">
+          <h2 class="font-serif text-limolo-green mb-4">{cat}</h2>
+          <p class="category-description text-center! mx-auto mb-12">{getCategoryDescription(cat)}</p>
+          <div class="accompagnements-grid">
+            {categoryAccompagnements.map((item) => {
+              const itemUrl = buildAccompagnementUrl(item, categorySlug);
+
+              return (
+                <article class="accompagnement-card-container">
+                  <a href={itemUrl} class="accompagnement-card-link">
+                    <div class="card-image">
+                      <div class="card-image-wrapper">
+                        <img src={item.data.image} alt={item.data.title} />
+                      </div>
+                      <span class={`card-type card-type-${item.data.type}`}>{item.data.type}</span>
+                    </div>
+                    <div class="card-content">
+                      <h3 class="font-serif font-semibold text-limolo-green">{item.data.title}</h3>
+                    </div>
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      );
+    })
+  ) : (
+    <p class="text-center text-gray-500">Aucun accompagnement trouvé.</p>
+  )}
+</div>
+
+<style>
+  .category-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    max-width: 800px;
+  }
+
+  .accompagnements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: 3rem;
+    padding: 0 clamp(1.25rem, 5vw, 2rem);
+  }
+
+  .accompagnement-card-container {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 300ms, box-shadow 300ms;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .accompagnement-card-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .accompagnement-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-image {
+    position: relative;
+    width: 100%;
+    padding-bottom: 66.67%; /* 3:2 aspect ratio */
+    overflow: visible;
+    background: #f0f0f0;
+  }
+
+  .card-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .card-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-type {
+    position: absolute;
+    top: -0.35rem;
+    left: -2rem;
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 0;
+    font-size: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  /* Couleurs dynamiques par type */
+  .card-type-investigation {
+    background: #8ac20a;
+  }
+
+  .card-type-inspiration {
+    background: #ddb800;
+  }
+
+  .card-type-action {
+    background: #08aac2;
+  }
+
+  .card-type-immersion {
+    background: #b577f0;
+  }
+
+  .card-type-formation,
+  .card-type-coaching,
+  .card-type-conseil,
+  .card-type-mentorat {
+    background: #4a6741;
+  }
+
+  .card-content {
+    padding: 1.2rem 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-content h3 {
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    line-height: 1.4;
+  }
+
+  .accompagnement-card-container:hover .card-image img {
+    transform: scale(1.07);
+  }
+
+  .card-image img {
+    transition: transform 0.45s ease;
+  }
+
+  @media (max-width: 768px) {
+    .accompagnements-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

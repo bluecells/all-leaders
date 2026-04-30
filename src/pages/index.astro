@@ -6,22 +6,93 @@ import ContinuumGrid from '../components/UI/ContinuumGrid.astro';
 import CompassLinks from '../components/UI/CompassLinks.astro';
 ---
 
+<script>
+  import gsap from 'gsap';
+
+  function animateHero() {
+    const heroTitle = document.querySelector('.hero-title');
+    const heroQuoteWrapper = document.querySelector('.hero-quote-wrapper');
+    const heroQuestion = document.querySelector('.hero-question'); 
+    const questionWord = document.querySelector('.question-word');
+
+    // Sécurité : on s'assure que les éléments existent
+    if (!heroTitle || !heroQuoteWrapper) return;
+
+    const tl = gsap.timeline();
+
+    // 1. ÉTAT INITIAL FORCÉ
+    // On cache tout et on place le titre au centre exact via yPercent
+    tl.set([heroTitle, heroQuoteWrapper, heroQuestion], { 
+      autoAlpha: 0 
+    });
+    tl.set(heroTitle, { 
+      top: "50%", 
+      yPercent: -50, 
+    });
+    tl.set(questionWord, { transformOrigin: "left center" });
+
+    // 2. APPARITIONS
+    tl.to(heroQuoteWrapper, { 
+      autoAlpha: 1, 
+      duration: 2.5, 
+      ease: 'power2.inOut' 
+    })
+    .to(heroQuestion, { 
+      autoAlpha: 1, 
+      duration: 0.8 
+    }, ">-0.5") // Commence un peu avant la fin
+    .to(questionWord, { 
+      rotation: 15, 
+      duration: 0.5, 
+      x: 8,
+      ease: 'back.out(2)' 
+    }, "+=1");
+
+    // 3. LE MOUVEMENT FINAL
+    // On descend la citation
+    tl.to(heroQuoteWrapper, {
+      y: "15vh", 
+      duration: 1.2,
+      ease: 'power3.inOut'
+    }, ">");
+
+    // On fait apparaître le titre en le faisant remonter légèrement
+    tl.to(heroTitle, {
+      autoAlpha: 1,
+      yPercent: -120, // Remonte de -50% (centre) à -80% pour libérer de l'espace
+      x: 0, // Reste centré horizontalement
+      duration: 1,
+      ease: 'power2.out'
+    }, "-=0.8");
+  }
+
+  // Lancement propre
+  window.addEventListener('load', animateHero);
+</script>
+
 <Layout
   title="All Leaders - Tourisme Responsable"
   lang="fr"
   metaTitle="All Leaders Initiative — Conseil en Leadership et Performance Collective"
   metaDescription="All Leaders Initiative accompagne les équipes managériales, comités de direction et dirigeants pour dépasser les blocages collectifs et développer un leadership basé sur l'intention."
 >
-  <div class="mx-auto px-4 py-12">
+  <div class="mx-auto px-4 py-12 hero-section">
 
-    <h1>All Leaders Initiative <span style="display: block; font-size: 2.25rem;">Conseil en performance collective pour dirigeants et équipes managériales</span></h1>
+    <!-- Hero Title - Animé après -->
+    <h1 class="hero-title" style="opacity: 0;">All Leaders Initiative <span style="display: block; font-size: 2.25rem;">Conseil en performance collective pour dirigeants et équipes managériales</span></h1>
 
-    <p class="hero-quote pb-0! max-w-5xl mx-auto">
-      <q>&nbsp;Toutes les équipes performantes se ressemblent.<br>
-      Mais chaque équipe dysfonctionnelle l'est à sa façon.&nbsp;</q>
+    <!-- Hero Quote - Centre au début, puis slide vers le bas -->
+    <div class="hero-quote-wrapper">
+      <p class="hero-quote pb-0! max-w-5xl mx-auto">
+        <q>&nbsp;Toutes les équipes performantes se ressemblent.<br>
+        Mais chaque équipe dysfonctionnelle l'est à sa façon.&nbsp;</q>
+      </p>
 
-      <p class="hero-quote text-6xl! not-italic! pt-10!">&mdash; Et la vôtre&nbsp;?</p>
-    </p>
+      <p class="hero-quote hero-question text-6xl! not-italic! pt-10!">
+        <span class="question-dash">&mdash; Et </span><span class="question-word">la vôtre&nbsp;?</span>
+      </p>
+    </div>
+  </div>
 
     
 <div class="max-w-3xl mx-auto text-center">
@@ -211,7 +282,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
           <li>
             <article class="partner-article" role="listitem">
-              <img src="/public/images/pages/logo-bureau-du-reel.webp" alt="Logo du Bureau du Réel" class="partner-logo" />
+              <img src="/images/pages/logo-bureau-du-reel.webp" alt="Logo du Bureau du Réel" class="partner-logo" />
               <div class="partner-content">
                 <h3>Le Bureau du Réel</h3>
                 <p>
@@ -225,12 +296,12 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
           <li>
             <article class="partner-article" role="listitem">
-              <img src="/public/images/pages/logo-da-crew.webp" alt="Logo de Da CREW" class="partner-logo" />
+              <img src="/images/pages/logo-da-crew.webp" alt="Logo de Da CREW" class="partner-logo" />
               <div class="partner-content">
                 <h3>Da CREW — Mission One</h3>
                 <p>
                   Simulation en réalité virtuelle&nbsp;: application concrète du Leadership basé sur
-                  l'intention, faisant collaborer à "haute intensité" un équipage d'hélicoptère et un
+                  l'intention, faisant collaborer à « haute intensité » un équipage d'hélicoptère et un
                   équipage de sous-marin. Cette mission révèle les failles de communication et de
                   collaboration, et permet d'expérimenter et d'ancrer de nouveaux comportements ajustés.
                 </p>
@@ -246,21 +317,21 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
                 <h3>YourSafety.training — Gestion des conflits</h3>
                 <p>
                   Parce qu'on ne peut parler de relations sans parler de conflits, d'agressivité voire
-                  de violence, nous avons intégré à notre expertise la gestion professionnelle des conflits grâce à notre partenariat avec Jérôme Bouteiller.
+                  de violence, nous avons intégré à notre expertise la gestion professionnelle des conflits avec notre partenariat <b>Jérôme Bouteiller</b>.
                 </p>
-                <a href="https://yoursafety.training" aria-label="En savoir plus sur YourSafety.training">Devenir un vétéran du conflit rapidement</a>
+                <a href="https://yoursafety.training" aria-label="En savoir plus sur YourSafety.training">Restaurer ou préserver la relation en cas de conflit</a>
               </div>
             </article>
           </li>
 
           <li>
             <article class="partner-article" role="listitem">
-              <img src="/public/images/pages/logo-synergie-et-co.png" alt="Logo de Synergies & Co" class="partner-logo" />
+              <img src="/images/pages/logo-synergie-et-co.png" alt="Logo de Synergies & Co" class="partner-logo" />
               <div class="partner-content">
                 <h3>Synergies &amp; Co — Excellence opérationnelle</h3>
                 <p>
                   Parce que la performance dépend de l'adoption des bonnes postures, nous nous associons
-                  à l'ancien dirigeant et militaire d'élite Olivier Crosetta et son cabinet Synergies &amp; Co
+                  à l'ancien dirigeant et militaire d'élite <b>Olivier Crosetta</b> et son cabinet Synergies &amp; Co
                   pour décliner l'excellence opérationnelle à tous niveaux.
                 </p>
                 <a href="https://www.synergiesandco.com/" aria-label="En savoir plus sur Synergies et Co">Du terrain militaire au board : la performance naît des gens.</a>
@@ -270,7 +341,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
           <li>
             <article class="partner-article" role="listitem">
-              <img src="/public/images/pages/logo-pragmacie.svg" alt="Logo de Pragmacie" class="partner-logo" />
+              <img src="/images/pages/logo-pragmacie.svg" alt="Logo de Pragmacie" class="partner-logo" />
               <div class="partner-content">
                 <h3>Pragmacie — Cartographie des talents CliftonStrengths</h3>
                 <p>
@@ -285,7 +356,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
           <li>
             <article class="partner-article" role="listitem">
-              <img src="/public/images/pages/logo-enablers-network.webp" alt="Logo d'Enablers" class="partner-logo" />
+              <img src="/images/pages/logo-enablers-network.webp" alt="Logo d'Enablers" class="partner-logo" />
               <div class="partner-content">
                 <h3>Enablers — Accompagnement international</h3>
                 <p>
@@ -300,7 +371,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
           <li>
             <article class="partner-article" role="listitem">
-              <img src="/public/images/pages/logo-fa3r.webp" alt="Logo de FA3R" class="partner-logo" />
+              <img src="/images/pages/logo-fa3r.webp" alt="Logo de FA3R" class="partner-logo" />
               <div class="partner-content">
                 <h3>FA3R — Expériences outdoor sur mesure</h3>
                 <p>
@@ -318,87 +389,69 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
       </div>
     </section>
 
-    <!-- ==========================================
-         SECTION 4 — Fondateurs
-    =========================================== -->
-    <section id="fondateurs" aria-labelledby="h2-fondateurs">
-      <div class="container">
-
-        <h2 id="h2-fondateurs" class="text-center! mt-8">
-          <strong>Deux fondateurs</strong>, une vision commune du <strong>leadership basé sur l'intention</strong>
-        </h2>
-
-        <p class="text-center! mt-4">
-           Forts de nos différences et de nos complémentarités, nous sommes garants de la qualité
-          Forts de nos différences et de nos complémentarités, nous sommes garants de la qualité
-          et de l'engagement des professionnels que nous rassemblons au service de vos objectifs.
-        </p>
-
-        <div class="founders-grid" role="list">
-
-          <article role="listitem" itemscope itemtype="https://schema.org/Person">
-            <h3 itemprop="name">Marie Emmanuelle PY</h3>
-            <p itemprop="jobTitle">Associée fondatrice</p>
-            <ul class="contact-list">
-              <li>
-                <a href="mailto:me@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Marie Emmanuelle Py">
-                  me@all-leaders.fr
-                </a>
-              </li>
-              <li>
-                <a href="tel:+33603555452" itemprop="telephone" aria-label="Appeler Marie Emmanuelle Py">
-                  +33 6 03 55 54 52
-                </a>
-              </li>
-              <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Marie Emmanuelle Py">
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil complet de Marie Emmanuelle Py">
-                  Profil complet
-                </a>
-              </li>
-            </ul>
-          </article>
-
-          <article role="listitem" itemscope itemtype="https://schema.org/Person">
-            <h3 itemprop="name">Pierre-Etienne BOST</h3>
-            <p itemprop="jobTitle">Associé fondateur</p>
-            <ul class="contact-list">
-              <li>
-                <a href="mailto:pe@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Pierre-Etienne Bost">
-                  pe@all-leaders.fr
-                </a>
-              </li>
-              <li>
-                <a href="tel:+33685540511" itemprop="telephone" aria-label="Appeler Pierre-Etienne Bost">
-                  +33 6 85 54 05 11
-                </a>
-              </li>
-              <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Pierre-Etienne Bost">
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil complet de Pierre-Etienne Bost">
-                  Profil complet
-                </a>
-              </li>
-            </ul>
-          </article>
-
-        </div>
-
-      </div>
-    </section>
+    
 
   </main>
 </Layout>
 
 <style>
+  /* ==========================================
+     HERO SECTION — Animation GSAP
+  =========================================== */
+
+.hero-section {
+  position: relative;
+  height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: top; /* Centre verticalement par défaut */
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-title {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
+  padding: 0 2rem;
+  margin: 0;
+  z-index: 2;
+  margin-bottom: -5rem;
+}
+
+.hero-quote-wrapper {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+  .hero-quote {
+    will-change: opacity;
+    transition: none !important; /* Désactiver les transitions CSS pour GSAP */
+  }
+
+  .hero-question {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    will-change: opacity;
+  }
+
+  .question-dash,
+  .question-word,
+  .question-mark {
+    display: inline;
+    will-change: transform, opacity;
+  }
+
+  .question-word {
+    position: relative;
+    transform-origin: center top;
+  }
+
   /* ==========================================
      PARTENAIRES — Layout Logo (1/4) + Texte (3/4)
   =========================================== */
@@ -490,7 +543,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   }
 
   .founders-grid article {
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
     border: 1px solid rgba(74, 103, 65, 0.2);
     border-radius: 0.5rem;
   }
@@ -522,7 +575,8 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   }
 
   .contact-list li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
+    margin-left: -1rem;
   }
 
   .contact-list a {

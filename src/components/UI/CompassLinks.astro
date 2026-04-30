@@ -6,20 +6,21 @@
   />
 
   <div class="compass-perspective-wrapper">
+    <div class="compass-rose-bg" id="compassRoseBg"></div>
     <div class="compass-orbit" id="compassOrbit">
-      <a href="/services#gestionConflits" class="compass-link" data-index="0">
+      <a href="/accompagnements#gestionConflits" class="compass-link" data-index="0">
         <span>Gestion de la<br />conflictualité</span>
       </a>
-      <a href="/services#diagPerf" class="compass-link" data-index="1">
+      <a href="/accompagnements#diagPerf" class="compass-link" data-index="1">
         <span>Diagnostic de la<br />performance</span>
       </a>
-      <a href="/services#coaching" class="compass-link" data-index="2">
+      <a href="/accompagnements#coaching" class="compass-link" data-index="2">
         <span>Coaching de<br />managers</span>
       </a>
-      <a href="/services#sante" class="compass-link" data-index="3">
+      <a href="/accompagnements#sante" class="compass-link" data-index="3">
         <span>Santé mentale et<br />performance durable</span>
       </a>
-      <a href="/services#leadership" class="compass-link" data-index="4">
+      <a href="/accompagnements#leadership" class="compass-link" data-index="4">
         <span>Développement<br />Leadership</span>
       </a>
     </div>
@@ -34,6 +35,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const orbit = document.getElementById('compassOrbit');
+    const roseBg = document.getElementById('compassRoseBg');
     const spans = document.querySelectorAll('.compass-link span');
     const baseAngles = [0, 72, 144, 216, 288];
 
@@ -53,11 +55,17 @@
       ease: "none"
     }, 0);
 
+    // Faire tourner uniquement l'image de fond
+    tl.to(roseBg, {
+      rotation: 120,
+      ease: "none"
+    }, 0);
+
     spans.forEach((span, i) => {
       // On garde l'inclinaison 3D inverse pour que le texte reste face caméra
-      gsap.set(span, { 
+      gsap.set(span, {
         rotation: -baseAngles[i],
-        rotateX: "2deg" 
+        rotateX: "2deg"
       });
 
       tl.to(span, {
@@ -94,21 +102,37 @@
   }
 
   .compass-perspective-wrapper {
+    position: relative;
     width: 500px;
     height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: rotateX(30deg); 
+    transform: rotateX(30deg);
     transform-style: preserve-3d;
+  }
+
+  .compass-rose-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/pages/compass-grad.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.3;
+    z-index: 0;
+    pointer-events: none;
+    will-change: transform;
   }
 
   .compass-orbit {
     position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
+    z-index: 1;
   }
+
 
 .compass-link {
   position: absolute;

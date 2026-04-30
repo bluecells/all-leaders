@@ -457,10 +457,10 @@ export default config({
         }),
       },
     }),
-    services: collection({
-      label: 'Services - Accompagnements',
+    accompagnements: collection({
+      label: 'Accompagnements',
       slugField: 'title',
-      path: 'src/content/services/**',
+      path: 'src/content/accompagnements/**',
       columns: ['lang', 'title', 'type', 'categorie'],
       schema: {
         title: fields.slug({
@@ -558,9 +558,9 @@ export default config({
 
     // ────────────────────────────────────────────────
     // 0. Catégories Services
-    'service-categories': collection({
-      label: 'Services - Catégories 🏷️',
-      path: 'src/content/services-categories/*',
+    'accompagnements-categories': collection({
+      label: 'Accompagnements - Catégories 🏷️',
+      path: 'src/content/accompagnements-categories/*',
       format: { data: 'yaml' },
       columns: ['name_fr', 'name_en'],
       slugField: 'slug',

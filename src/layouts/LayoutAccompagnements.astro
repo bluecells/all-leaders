@@ -1,0 +1,197 @@
+---
+import Layout from './Layout.astro';
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  accompagnement: CollectionEntry<'accompagnements'>;
+  category?: CollectionEntry<'accompagnements-categories'>;
+}
+
+const { accompagnement, category } = Astro.props;
+const { data } = accompagnement;
+const lang = (data.lang || 'fr') as 'fr' | 'en';
+---
+
+<Layout
+  title={data.title}
+  lang={lang}
+  metaTitle={`${data.title} - All Leaders Initiative`}
+  metaDescription={data.description}
+>
+  <article class="accompagnement-page">
+    <div class="container mx-auto px-4 py-12 max-w-4xl">
+      {/* Image hero */}
+      {data.image && (
+        <div class="accompagnement-hero mb-12">
+          <img
+            src={data.image}
+            alt={data.title}
+            class="w-full h-auto rounded-lg shadow-lg object-cover"
+            style="max-height: 500px;"
+          />
+        </div>
+      )}
+
+      {/* Type badge + Category */}
+      <div class="metadata mb-6 flex items-center gap-4 justify-center flex-wrap">
+        <span class={`type-badge type-badge-${data.type}`}>
+          {data.type}
+        </span>
+        {category && (
+          <span class="category-badge">
+            {lang === 'fr' ? category.data.name_fr : category.data.name_en}
+          </span>
+        )}
+      </div>
+
+      {/* Titre principal */}
+      <h1 class="text-4xl md:text-5xl font-serif font-bold mb-8 text-limolo-green text-center">
+        {data.title}
+      </h1>
+
+      {/* Description */}
+      <div class="description text-xl text-gray-700 mb-12 leading-relaxed text-center max-w-2xl mx-auto">
+        <p>{data.description}</p>
+      </div>
+
+      {/* USPs section */}
+      {(data.USP1 || data.USP2 || data.USP3 || data.USP4 || data.USP5) && (
+        <div class="usp-section mb-12 p-8 bg-gradient-to-br from-limolo-green/5 to-transparent rounded-lg border border-limolo-green/10">
+          <h2 class="text-2xl font-serif font-semibold mb-6 text-limolo-green">
+            {lang === 'fr' ? 'Points clés' : 'Key points'}
+          </h2>
+          <ul class="usp-list grid grid-cols-1 md:grid-cols-2 gap-4">
+            {data.USP1 && (
+              <li class="flex gap-3">
+                <span class="usp-icon">✓</span>
+                <span>{data.USP1}</span>
+              </li>
+            )}
+            {data.USP2 && (
+              <li class="flex gap-3">
+                <span class="usp-icon">✓</span>
+                <span>{data.USP2}</span>
+              </li>
+            )}
+            {data.USP3 && (
+              <li class="flex gap-3">
+                <span class="usp-icon">✓</span>
+                <span>{data.USP3}</span>
+              </li>
+            )}
+            {data.USP4 && (
+              <li class="flex gap-3">
+                <span class="usp-icon">✓</span>
+                <span>{data.USP4}</span>
+              </li>
+            )}
+            {data.USP5 && (
+              <li class="flex gap-3">
+                <span class="usp-icon">✓</span>
+                <span>{data.USP5}</span>
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
+
+      {/* CTA section */}
+      <div class="cta-section mt-16 text-center">
+        <a href="/contact" class="btn btn-primary btn-lg">
+          {lang === 'fr' ? 'Prendre contact' : 'Get in touch'}
+        </a>
+      </div>
+
+      {/* Back link */}
+      <div class="back-link mt-12 text-center">
+        <a href="/accompagnements" class="text-limolo-green hover:underline">
+          ← {lang === 'fr' ? 'Retour aux accompagnements' : 'Back to services'}
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .accompagnement-page {
+    min-height: 100vh;
+  }
+
+  .type-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+  }
+
+  .type-badge-investigation {
+    background: #8ac20a;
+  }
+
+  .type-badge-inspiration {
+    background: #ddb800;
+  }
+
+  .type-badge-action {
+    background: #08aac2;
+  }
+
+  .type-badge-immersion {
+    background: #b577f0;
+  }
+
+  .type-badge-formation,
+  .type-badge-coaching,
+  .type-badge-conseil,
+  .type-badge-mentorat {
+    background: #4a6741;
+  }
+
+  .category-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    background: #f3f4f6;
+    color: #4a6741;
+    font-weight: 500;
+  }
+
+  .usp-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .usp-list li {
+    color: #555;
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    line-height: 1.7;
+  }
+
+  .usp-icon {
+    color: #4a6741;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .back-link a {
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .back-link a:hover {
+    text-decoration: underline;
+  }
+
+  .btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+</style>

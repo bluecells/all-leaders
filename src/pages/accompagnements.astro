@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AccompagnementsGrid from '../components/AccompagnementsGrid.astro';
+---
+
+<Layout
+  title="Accompagnements - All Leaders"
+  metaTitle="Nos accompagnements - All Leaders Initiative"
+  metaDescription="Découvrez nos accompagnements en diagnostic de performance, formation, coaching et conseil."
+  lang="fr"
+>
+  <div class="mx-auto px-4 py-12">
+    <h1 class="font-serif text-limolo-green mb-8 text-center">Nos accompagnements</h1>
+    <h2>Solutions de diagnostic et développement pour vos organisations</h2>
+    <!-- AccompagnementsGrid Component avec cards cliquables -->
+    <AccompagnementsGrid lang="fr" fullBleed={true} />
+  </div>
+
+</Layout>
+
+<style>
+  h1 {
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+  }
+  h2 {
+    margin: 0 !important;
+    padding: 0 0 2rem !important;
+    max-width: 100%;
+    text-align: center;
+    font-size: large;
+  }
+</style>

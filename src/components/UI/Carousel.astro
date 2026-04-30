@@ -13,7 +13,7 @@ interface Props {
 
 const {
   images,
-  height = '30vh',
+  height = '20vh',
   speed = 1000, // Vitesse de base par image
   background = 'transparent',
   spacing = '1rem',
@@ -50,7 +50,7 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
 
   .carousel {
     overflow: hidden;
-    padding: 2rem 0;
+    padding: 1rem 0;
     cursor: grab;
     user-select: none;
   }
@@ -79,7 +79,7 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
     flex-shrink: 0;
     overflow: hidden;
     border-radius: 4px;
-    box-shadow: 0 8px 12px #031a343d;
+    /* box-shadow: 0 8px 12px #031a343d; */
     /* Aspect ratio optionnel pour garder une cohérence si les images varient */
     aspect-ratio: 16 / 9;
   }

@@ -8,13 +8,13 @@ export const GET: APIRoute = async ({ site }) => {
 
   const [
     articles,
-    services,
+    accompagnements,
     faqs,
     landingPages,
     categories, // pour les slugs de catégories localisés
   ] = await Promise.all([
     getCollection('articles'),
-    getCollection('services'),
+    getCollection('accompagnements'),
     getCollection('faq'),
     getCollection('landing-pages'),
     getCollection('category'),
@@ -62,11 +62,11 @@ export const GET: APIRoute = async ({ site }) => {
     urls.push(urlEntry(path, article.data.publishDate, '0.8', 'monthly'));
   }
 
-  // Services (accompagnements)
-  for (const service of services) {
-    const lang = service.data.lang as 'fr' | 'en';
-    const slug = (service.data.seoSlug || service.id.split('/').pop())?.replace(/^\/|\/$/g, '');
-    const path = lang === 'fr' ? `/services/${slug}` : `/${lang}/services/${slug}`;
+  // Accompagnements
+  for (const accompagnement of accompagnements) {
+    const lang = accompagnement.data.lang as 'fr' | 'en';
+    const slug = (accompagnement.data.seoSlug || accompagnement.id.split('/').pop())?.replace(/^\/|\/$/g, '');
+    const path = lang === 'fr' ? `/accompagnements/${slug}` : `/${lang}/services/${slug}`;
     urls.push(urlEntry(path, new Date(), '0.7', 'monthly'));
   }
 

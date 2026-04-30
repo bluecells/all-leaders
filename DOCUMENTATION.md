@@ -1258,7 +1258,7 @@ npm run build -- --verbose
 
 **Organisation:**
 
-- Images dans `/public/images/`
+- Images dans `/images/`
 - Sous-dossiers par type de contenu recommandé
 
 ### 14.3 SEO

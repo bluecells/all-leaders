@@ -87,10 +87,10 @@ const faq = defineCollection({
   }),
 });
 
-// Collection Services (Accompagnements)
-// Les services/accompagnements sont stockés dans /src/content/services/ en YAML
-const services = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/services' }),
+// Collection Accompagnements
+// Les accompagnements sont stockés dans /src/content/accompagnements/ en YAML
+const accompagnements = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/accompagnements' }),
   schema: z.object({
     title: z.string(),
     categorie: z.string(),
@@ -179,9 +179,9 @@ const menu = defineCollection({
   }),
 });
 
-// Collection Catégories Services
-const serviceCategories = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/services-categories' }),
+// Collection Catégories Accompagnements
+const accompagnementsCategories = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/accompagnements-categories' }),
   schema: z.object({
     name_fr: z.string(),
     name_en: z.string(),
@@ -209,11 +209,11 @@ export const collections = {
   'landing-pages': landingPages,
   articles,
   faq,
-  services,
+  accompagnements,
   menu,
   redirects,
   category,
   tags,
-  'service-categories': serviceCategories,
+  'accompagnements-categories': accompagnementsCategories,
   'modalites-intervention': modalitesIntervention,
 };

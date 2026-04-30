@@ -1,22 +1,15 @@
 {
   "links": [
     {
+      "label": "Nous",
+      "url": "/",
+      "type": "link",
+      "hasSubmenu": false,
+      "submenu": []
+    },
+    {
       "label": "Nos accompagnements",
-      "url": "/services",
-      "type": "link",
-      "hasSubmenu": false,
-      "submenu": []
-    },
-    {
-      "label": "Ressources",
-      "url": "/ressources",
-      "type": "link",
-      "hasSubmenu": false,
-      "submenu": []
-    },
-    {
-      "label": "FAQ",
-      "url": "/faq",
+      "url": "/accompagnements",
       "type": "link",
       "hasSubmenu": false,
       "submenu": []

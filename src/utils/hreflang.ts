@@ -20,8 +20,8 @@ const ROUTE_PREFIXES = {
     fr: 'faq',
     en: 'faq',
   },
-  services: {
-    fr: 'services',
+  accompagnements: {
+    fr: 'accompagnements',
     en: 'services',
   },
 } as const;
@@ -46,24 +46,31 @@ export function buildPageUrl(
 }
 
 /**
- * Construit l'URL d'un service (accompagnement) dans une langue donnée
+ * Construit l'URL d'un accompagnement dans une langue donnée
  */
-export function buildServiceUrl(
-  service: CollectionEntry<'services'>,
-  lang: 'fr' | 'en'
+export function buildAccompagnementUrl(
+  accompagnement: CollectionEntry<'accompagnements'>,
+  lang: 'fr' | 'en',
+  categorieSlug?: string
 ): string {
-  const seoSlug = service.data.seoSlug || service.id.split('/').pop()?.replace('.yaml', '') || 'service';
+  const seoSlug = accompagnement.data.seoSlug || accompagnement.id.split('/').pop()?.replace('.yaml', '') || 'accompagnement';
   const cleanSlug = seoSlug.replace(/^\/|\/$/g, '');
-  const servicePrefix = ROUTE_PREFIXES.services[lang];
+  const accompagnementPrefix = ROUTE_PREFIXES.accompagnements[lang];
 
-  // FR: /services/slug (pas de préfixe langue)
+  // Si une catégorie est fournie, l'utiliser dans l'URL
+  const categoryPath = categorieSlug ? `/${categorieSlug}` : '';
+
+  // FR: /accompagnements/{categorie}/slug (pas de préfixe langue)
   if (lang === 'fr') {
-    return `/${servicePrefix}/${cleanSlug}`;
+    return `/${accompagnementPrefix}${categoryPath}/${cleanSlug}`;
   }
 
-  // EN: /en/services/slug
-  return `/${lang}/${servicePrefix}/${cleanSlug}`;
+  // EN: /en/services/{categorie}/slug
+  return `/${lang}/${accompagnementPrefix}${categoryPath}/${cleanSlug}`;
 }
+
+// Backward compatibility alias
+export const buildServiceUrl = buildAccompagnementUrl;
 
 /**
  * Construit l'URL d'un article dans une langue donnée

@@ -11,151 +11,199 @@ import ActionBar from '../components/ActionBar.astro';
 >
   <div class="mx-auto max-w-4xl px-4 py-12">
     <!-- Titre principal -->
-    <h1 class="font-serif text-limolo-green text-4xl mb-4 text-center">
+    <h1 class="font-serif text-limolo-green mb-4 text-center">
       Contacter All Leaders Initiative
     </h1>
 
-    <!-- Description -->
-    <p class="text-center text-gray-700 mb-12 text-lg">
-      N'hésitez pas à nous contacter pour toutes questions relatives aux accompagnements et à leur logistique.
-    </p>
+  <!-- ==========================================
+         SECTION 4 — Fondateurs
+    =========================================== -->
+    <section id="fondateurs" aria-labelledby="h2-fondateurs">
+      <div class="container">
 
-    <!-- Section d'invitation -->
-    <div class="bg-gray-50 rounded-lg p-8 mb-12">
-      <h2 class="font-serif text-limolo-green text-2xl mb-4">
-        Rencontrons-nous pour parler des challenges qui vous animent !
-      </h2>
-      <p class="text-gray-700 leading-relaxed">
-        Nos équipes sont à votre écoute pour discuter des défis professionnels qui vous occupent et vous proposer des solutions adaptées à vos besoins.
-      </p>
-    </div>
+        <h2 id="h2-fondateurs" class="text-center! mt-0! mt-8">
+          <strong>Deux fondateurs</strong>, une vision commune du <strong>leadership basé sur l'intention</strong>
+        </h2>
 
-    <!-- Contacts directs -->
-    <div class="mb-12">
-      <h2 class="font-serif text-limolo-green text-2xl mb-8">Contacts directs</h2>
+        <p class="text-center! mt-4">
+          Forts de nos différences et de nos complémentarités, nous sommes garants de la qualité
+          et de l'engagement des professionnels que nous rassemblons au service de vos objectifs.
+        </p>
 
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Marie Emmanuelle PY -->
-        <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
-          <h3 class="text-xl font-bold text-limolo-green mb-2">
-            Marie Emmanuelle PY
-          </h3>
-          <p class="text-sm text-gray-600 mb-4">Associée fondatrice</p>
+        <div class="founders-grid" role="list">
 
-          <div class="space-y-3">
-            <div>
-              <a
-                href="mailto:me@all-leaders.fr"
-                class="text-limolo-green hover:text-limolo-accent transition-colors font-semibold"
-              >
-                ✉ me@all-leaders.fr
-              </a>
-            </div>
-            <div>
-              <a
-                href="tel:+33603555452"
-                class="text-limolo-green hover:text-limolo-accent transition-colors font-semibold"
-              >
-                ☎ +33 6 03 55 54 52
-              </a>
-            </div>
-            <div class="pt-4 border-t border-gray-200">
-              <a
-                href="https://calendly.com/all-leaders"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-block px-4 py-2 bg-limolo-green text-white rounded hover:bg-limolo-accent transition-colors text-sm font-semibold"
-              >
-                Réserver un entretien gratuit
-              </a>
-            </div>
-          </div>
+          <article role="listitem" itemscope itemtype="https://schema.org/Person">
+            <h3 itemprop="name">Marie Emmanuelle PY</h3>
+            <p itemprop="jobTitle">Associée fondatrice</p>
+            <ul class="contact-list">
+              <li>
+                <a href="mailto:me@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Marie Emmanuelle Py">
+                  me@all-leaders.fr
+                </a>
+              </li>
+              <li>
+                <a href="tel:+33603555452" itemprop="telephone" aria-label="Appeler Marie Emmanuelle Py">
+                  +33 6 03 55 54 52
+                </a>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Marie Emmanuelle Py">
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil complet de Marie Emmanuelle Py">
+                  Profil complet
+                </a>
+              </li>
+            </ul>
+          </article>
+
+          <article role="listitem" itemscope itemtype="https://schema.org/Person">
+            <h3 itemprop="name">Pierre-Etienne BOST</h3>
+            <p itemprop="jobTitle">Associé fondateur</p>
+            <ul class="contact-list">
+              <li>
+                <a href="mailto:pe@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Pierre-Etienne Bost">
+                  pe@all-leaders.fr
+                </a>
+              </li>
+              <li>
+                <a href="tel:+33685540511" itemprop="telephone" aria-label="Appeler Pierre-Etienne Bost">
+                  +33 6 85 54 05 11
+                </a>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Pierre-Etienne Bost">
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil complet de Pierre-Etienne Bost">
+                  Profil complet
+                </a>
+              </li>
+            </ul>
+          </article>
+
         </div>
 
-        <!-- Pierre-Etienne BOST -->
-        <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
-          <h3 class="text-xl font-bold text-limolo-green mb-2">
-            Pierre-Etienne BOST
-          </h3>
-          <p class="text-sm text-gray-600 mb-4">Associé fondateur</p>
-
-          <div class="space-y-3">
-            <div>
-              <a
-                href="mailto:pe@all-leaders.fr"
-                class="text-limolo-green hover:text-limolo-accent transition-colors font-semibold"
-              >
-                ✉ pe@all-leaders.fr
-              </a>
-            </div>
-            <div>
-              <a
-                href="tel:+33685540511"
-                class="text-limolo-green hover:text-limolo-accent transition-colors font-semibold"
-              >
-                ☎ +33 6 85 54 05 11
-              </a>
-            </div>
-            <div class="pt-4 border-t border-gray-200">
-              <a
-                href="https://calendly.com/all-leaders"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-block px-4 py-2 bg-limolo-green text-white rounded hover:bg-limolo-accent transition-colors text-sm font-semibold"
-              >
-                Réserver un entretien gratuit
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
 
-    <!-- Coordonnées générales -->
-    <div class="bg-limolo-green bg-opacity-5 rounded-lg p-8">
-      <h2 class="font-serif text-limolo-green text-2xl mb-6">Coordonnées générales</h2>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <div>
-          <h3 class="font-bold text-gray-900 mb-2">Adresse</h3>
-          <p class="text-gray-700">
-            69, rue la Condamine<br/>
-            75017 Paris<br/>
-            France
-          </p>
-        </div>
-
-        <div>
-          <h3 class="font-bold text-gray-900 mb-2">Email</h3>
-          <p>
-            <a
-              href="mailto:contact@all-leaders.fr"
-              class="text-limolo-green hover:text-limolo-accent transition-colors"
-            >
-              contact@all-leaders.fr
-            </a>
-          </p>
-        </div>
-
-        <div>
-          <h3 class="font-bold text-gray-900 mb-2">Téléphone</h3>
-          <p>
-            <a
-              href="tel:+33685540511"
-              class="text-limolo-green hover:text-limolo-accent transition-colors"
-            >
-              +33 6 85 54 05 11
-            </a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+              <p class="text-center! mt-8">
+                Rencontrons-nous pour parler des challenges qui vous animent !
+              </p>
+    </section>
 
 </Layout>
 
 <style>
   h1 {
     line-height: 1.2;
+  }
+
+   /* ==========================================
+     FONDATEURS — Layout 2 Colonnes
+  =========================================== */
+
+  .founders-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .founders-grid article {
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    border: 1px solid rgba(74, 103, 65, 0.2);
+    border-radius: 0.5rem;
+  }
+
+  .founders-grid h1,
+  .founders-grid h2,
+  .founders-grid h3 {
+    text-align: left;
+  }
+
+  .founders-grid h3 {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .founders-grid p {
+    margin: 0 0 1rem 0;
+  }
+
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .contact-list h1,
+  .contact-list h2,
+  .contact-list h3 {
+    text-align: left;
+  }
+
+  .contact-list li {
+    margin-bottom: 0.35rem;
+    margin-left: -1rem;
+  }
+
+  .contact-list a {
+    color: var(--color-brand-primary);
+    text-decoration: none;
+    transition: color 200ms;
+  }
+
+  .contact-list a:hover {
+    color: var(--color-brand-accent);
+  }
+
+  /* Mode desktop : 2 colonnes */
+  @media (min-width: 768px) {
+    .founders-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+
+  /* Values section avec images latérales */
+  .values-section {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-top: 3rem;
+  }
+
+  .values-image-left,
+  .values-image-right {
+    flex: 0 0 20%;
+    max-height: 500px;
+  }
+
+  .values-image-left img,
+  .values-image-right img {
+    height: 100%;
+  }
+
+  .values-grid {
+    flex: 1;
+  }
+
+  /* Mobile : images au-dessus en 50-50 */
+  @media (max-width: 767px) {
+    .values-section {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .values-image-left,
+    .values-image-right {
+      flex: 0 0 auto;
+      max-height: 100%;
+    }
   }
 </style>

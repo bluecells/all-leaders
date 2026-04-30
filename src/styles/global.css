@@ -7,11 +7,11 @@
 :root {
   --color-bg-body: #ffffff;
   --color-bg-body-darker: #d3d0c2;
-  --color-text-main: #445361;
+  --color-text-main: #031A34;
   --color-text-muted: #c4f4d2;
-  --color-brand-primary: #2a748d;
-  --color-brand-secondary: #36524a;
-  --color-brand-tertiary: #3d3935;
+  --color-brand-primary: #031A34;
+  --color-brand-secondary: #AB0800;
+  --color-brand-tertiary: #BEAB54;
   --color-brand-darker: #023544;
   --color-brand-hover: #459875;
   --color-brand-alert: #a45429;
@@ -42,8 +42,8 @@
 
   main {
     width: 100%;
-    max-width: 80rem;
-    padding-inline: 1rem;
+    max-width: 1440px;
+    padding-inline: clamp(1.25rem, 5vw, 3rem);
   }
 
   h1,
@@ -92,7 +92,10 @@
   p {
     line-height: 1.8;
     margin-bottom: 1.75rem;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   p:last-child {
