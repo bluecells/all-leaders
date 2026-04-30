@@ -5,7 +5,10 @@
     "title": {
       "type": "string"
     },
-    "slug": {
+    "slug_fr": {
+      "type": "string"
+    },
+    "slug_en": {
       "type": "string"
     },
     "categorie": {
@@ -58,7 +61,8 @@
   },
   "required": [
     "title",
-    "slug",
+    "slug_fr",
+    "slug_en",
     "categorie",
     "type",
     "description",

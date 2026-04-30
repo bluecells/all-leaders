@@ -43,8 +43,8 @@ function getCategorySlug(categoryName: string): string {
 
 // Fonction pour créer l'URL vers la page de détail
 function buildAccompagnementUrl(accompagnement: CollectionEntry<'accompagnements'>, categorySlug: string): string {
-  // Utiliser le slug du YAML (field) au lieu du nom du fichier
-  const slug = accompagnement.data.slug || '';
+  // Utiliser le slug approprié selon la langue
+  const slug = lang === 'fr' ? accompagnement.data.slug_fr : accompagnement.data.slug_en;
 
   return `/accompagnements/${categorySlug}/${slug}`;
 }

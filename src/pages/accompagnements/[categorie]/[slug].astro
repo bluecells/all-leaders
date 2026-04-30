@@ -20,8 +20,8 @@ export const getStaticPaths = (async () => {
     // Utiliser le slug de la catégorie ou un slug par défaut
     const categorieSlug = category?.data.slug || accompagnement.data.categorie.toLowerCase().replace(/\s+/g, '-');
 
-    // Utiliser le slug du YAML (field) au lieu du nom du fichier
-    const slug = accompagnement.data.slug || '';
+    // Utiliser le slug approprié selon la langue
+    const slug = accompagnement.data.lang === 'fr' ? accompagnement.data.slug_fr : accompagnement.data.slug_en;
 
     return {
       params: {
