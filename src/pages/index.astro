@@ -122,17 +122,22 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
          SECTION 1 — Pourquoi All Leaders Initiative
     =========================================== -->
     <section id="notre-approche" aria-labelledby="h2-pourquoi">
-      <div class="container">
+      <div class="container h-[50dvh]">
 
         <h2 id="h2-fondateurs" class="text-center! mt-8">
           <strong>Deux fondateurs</strong>, une vision commune du <strong>leadership basé sur l'intention</strong>
         </h2>
 
+        
         <p class="text-center">
           Nous avons créé All Leaders Initiative pour vous permettre de questionner ce qui ne fonctionne
           plus, oser de nouvelles façons d'agir et vous affranchir de ces barrières invisibles.
           Pour réussir, ensemble.
         </p>
+
+      </div>
+
+      <div class="container h-[80dvh]">
 
         <div class="values-section">
           {/* Images latérales en desktop */}
@@ -171,7 +176,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
           <div class="values-grid" role="list">
 
             <article role="listitem">
-              <h3><strong>Nous aimons l'entreprise</strong></h3>
+              <h3 class="font-semibold text-2xl pt-4">Nous aimons l'entreprise</h3>
               <p class="text-center">
                 Nous y avons grandi et en avons tiré beaucoup de fierté. Nous savons qu'elle doit offrir
                 un cadre qui favorise la responsabilité, la solidarité et l'initiative.
@@ -179,15 +184,11 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
             </article>
 
             <article role="listitem">
-              <h3><strong>Nous croyons en l'humain</strong></h3>
+              <h3 class="font-semibold text-2xl">Nous croyons en l'humain</h3>
               <p class="text-center">
                 Grâce à la sécurité psychologique et à l'affirmation de son intention, chacun peut
                 devenir leader et choisir consciemment d'influencer positivement son environnement.
               </p>
-            </article>
-
-            <article role="listitem">
-              <h3><strong>L'organisation est un équipage</strong></h3>
               <p class="text-center">
                 Nos parcours de marins, dans la sécurité nucléaire et une grande diversité de cultures
                 managériales nous ont appris à voir les organisations comme des équipages&nbsp;: des
@@ -195,9 +196,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
                 C'est dans cet esprit que nous vous accompagnons, avec la discipline des marins
                 et l'audace des aventuriers.
               </p>
-              <img class="w-24 h-24 mx-auto mt-4" src="/images/pages/logo-all-leaders-rond-fonce.svg" alt="Logo All Leaders Initiative" />
-              <p class="text-center mt-4 text-5xl! font-serif">Cap&nbsp;?</p>
-              
+              <p class="text-center mt-4 text-5xl! font-serif">Cap&nbsp;?</p>              
             </article>
           </div>
 
@@ -238,12 +237,12 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
             <img
               src="/images/pages/marie-emmanuelle-py-acquarelle.webp"
               alt="Marie-Emmanuelle Py"
-              class="w-full h-auto object-cover rounded-lg"
+              class="w-full h-auto object-cover"
             />
             <img
               src="/images/pages/pierre-etienne-bost-acquarelle.webp"
               alt="Pierre-Etienne Bost"
-              class="w-full h-auto object-cover rounded-lg"
+              class="w-full h-auto object-cover"
             />
           </div>
         </div>
@@ -257,7 +256,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
       <div class="container">
 
         <h2 id="h2-offre">
-          Conseil en performance collective&nbsp;: du diagnostic à la transformation
+          Conseil en <strong>performance collective</strong>&nbsp;: du diagnostic à la transformation
         </h2>
 
         <h3 class="mb-12">
@@ -662,11 +661,11 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   .values-image-right {
     flex: 0 0 18%;
     flex-direction: column;
-    background: rgba(74, 103, 65, 0.1);
+    background: rgba(197, 205, 221, 0.14);
     padding-bottom: .5rem;
   }
 
-    .values-image-left h3,
+  .values-image-left h3,
   .values-image-right h3{
     margin-top: 1rem;
     font-size: 1.5rem;
