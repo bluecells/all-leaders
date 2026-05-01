@@ -1,9 +1,8 @@
-<div class="compass-container">
-  <img
-    class="compass-image"
-    src="/images/pages/boussole.webp"
-    alt="Boussole"
-  />
+<div class="compass-main">
+          <h3 class="text-center! pt-8">
+          Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec <strong>sens, clarté et impact</strong>.
+        </h3>
+  <div class="compass-container">
 
   <div class="compass-perspective-wrapper">
     <div class="compass-rose-bg" id="compassRoseBg"></div>
@@ -26,6 +25,7 @@
     </div>
   </div>
 </div>
+</div>
 
 <script>
   import gsap from 'gsap';
@@ -41,23 +41,24 @@
 
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".compass-container",
-        start: 'top top',
-        end: '+=60%', // 1 viewport de scroll
+        trigger: ".compass-main",
+        start: 'top-=90px top',
+        end: '+=20%', // 1 viewport de scroll
         scrub: 1.2,
         pin: true,
+        anticipatePin: 1,
       }
     });
 
-    // Rotation de 180° seulement pour un scroll de 100vh
+    // Rotation de 90 seulement pour un scroll de 100vh
     tl.to(orbit, {
-      rotation: 120,
+      rotation: 90,
       ease: "none"
     }, 0);
 
     // Faire tourner uniquement l'image de fond
     tl.to(roseBg, {
-      rotation: 120,
+      rotation: 90,
       ease: "none"
     }, 0);
 
@@ -69,7 +70,7 @@
       });
 
       tl.to(span, {
-        rotation: -120 - baseAngles[i],
+        rotation: -90 - baseAngles[i],
         ease: "none"
       }, 0);
     });
@@ -84,7 +85,7 @@
   .compass-container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;

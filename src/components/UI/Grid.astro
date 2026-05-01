@@ -120,21 +120,21 @@ const finalTextColor = textColor;
       // Bouée 1: Tangage long et ample
       emergenceDuration: 0.7,
       rotationStart: 0.4,
-      rotations: [4, -3, 0],
+      rotations: [5, -4, 0],
       durations: [0.7, 0.6, 0.5],
     },
     {
       // Bouée 2: Tangage rapide et léger
       emergenceDuration: 0.9,
       rotationStart: 0.5,
-      rotations: [2.5, -1.5, 0],
+      rotations: [3.5, -2.5, 0],
       durations: [0.5, 0.4, 0.35],
     },
     {
       // Bouée 3: Tangage modéré avec délai
       emergenceDuration: 0.8,
       rotationStart: 0.6,
-      rotations: [3.5, -2.5, 0],
+      rotations: [4.5, -3.5, 0],
       durations: [0.6, 0.55, 0.45],
     },
   ];
@@ -232,7 +232,7 @@ const finalTextColor = textColor;
 <style is:global>
   .grid-wrapper {
     width: 100%;
-    padding: clamp(1rem, 3vw, 2rem) 0;
+    padding: 10px 0;
   }
 
   .grid-wrapper.grid-fullbleed {
@@ -240,7 +240,7 @@ const finalTextColor = textColor;
     position: relative;
     left: 50%;
     margin-left: -50vw;
-    padding: clamp(2rem, 5vw, 3rem) 0;
+    padding: 2rem 0;
   }
 
   .grid-container {
@@ -248,7 +248,7 @@ const finalTextColor = textColor;
     gap: var(--grid-gap);
     padding: var(--grid-padding);
     width: 100%;
-    max-width: 1440px;
+    max-width: 80rem;
     margin: 0 auto;
 
     grid-template-columns: repeat(var(--cols-mobile), minmax(var(--grid-minwidth), 1fr));
@@ -257,13 +257,15 @@ const finalTextColor = textColor;
   .grid-fullbleed .grid-container {
     max-width: none;
     margin: 0;
-    padding-left: clamp(1.25rem, 5vw, 2rem);
-    padding-right: clamp(1.25rem, 5vw, 2rem);
+    padding-left: max(var(--grid-padding), 1.5rem);
+    padding-right: max(var(--grid-padding), 1.5rem);
   }
 
   .grid-item {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background: rgba(255, 255, 255, 0.035);
     border-radius: 10px;
     overflow: hidden;
@@ -299,9 +301,26 @@ const finalTextColor = textColor;
   }
 
   .grid-item-media.is-image {
+    max-width: 80%;
     aspect-ratio: 4 / 5;
     padding:2rem;
-  }
+    padding-bottom: 0; 
+
+  
+  /* On crée un dégradé radial qui va de l'opaque au transparent */
+  mask-image: radial-gradient(
+    circle, 
+    black 30%, 
+    transparent 100%
+  );
+  
+  /* Compatibilité pour Safari */
+  -webkit-mask-image: radial-gradient(
+    circle, 
+    black 30%, 
+    transparent 100%
+  );
+}
 
   .grid-item-media.is-icon {
     height: 100px;
