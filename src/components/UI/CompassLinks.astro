@@ -1,29 +1,28 @@
 <div class="compass-container">
-  <img
-    class="compass-image"
-    src="/images/pages/boussole.webp"
-    alt="Boussole"
-  />
-
-  <div class="compass-perspective-wrapper">
-    <div class="compass-rose-bg" id="compassRoseBg"></div>
-    <div class="compass-orbit" id="compassOrbit">
-      <a href="/accompagnements#gestionConflits" class="compass-link" data-index="0">
-        <span>Gestion de la<br />conflictualité</span>
-      </a>
-      <a href="/accompagnements#diagPerf" class="compass-link" data-index="1">
-        <span>Diagnostic de la<br />performance</span>
-      </a>
-      <a href="/accompagnements#coaching" class="compass-link" data-index="2">
-        <span>Coaching de<br />managers</span>
-      </a>
-      <a href="/accompagnements#sante" class="compass-link" data-index="3">
-        <span>Santé mentale et<br />performance durable</span>
-      </a>
-      <a href="/accompagnements#leadership" class="compass-link" data-index="4">
-        <span>Développement<br />Leadership</span>
-      </a>
+  <div class="compass-content">
+    <div class="compass-perspective-wrapper">
+      <div class="compass-rose-bg" id="compassRoseBg"></div>
+      <div class="compass-orbit" id="compassOrbit">
+        <a href="/accompagnements#gestionConflits" class="compass-link" data-index="0">
+          <span>Gestion de la<br />conflictualité</span>
+        </a>
+        <a href="/accompagnements#diagPerf" class="compass-link" data-index="1">
+          <span>Diagnostic de la<br />performance</span>
+        </a>
+        <a href="/accompagnements#coaching" class="compass-link" data-index="2">
+          <span>Coaching de<br />managers</span>
+        </a>
+        <a href="/accompagnements#sante" class="compass-link" data-index="3">
+          <span>Santé mentale et<br />performance durable</span>
+        </a>
+        <a href="/accompagnements#leadership" class="compass-link" data-index="4">
+          <span>Développement<br />Leadership</span>
+        </a>
+      </div>
     </div>
+    <h3 class="compass-subtitle">
+      Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec <strong>sens, clarté et impact</strong>.
+    </h3>
   </div>
 </div>
 
@@ -83,7 +82,7 @@
 
   .compass-container {
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -94,15 +93,17 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    margin-left: calc(-50vw + 50%);
   }
 
-  .compass-image {
-    position: absolute;
-    width: 240px; /* Doublé par rapport à l'original mobile */
-    height: 240px;
-    z-index: 0;
-    transform: rotateX(30deg) translateX(20px); /* Légère translation pour compenser le décalage dû à la rotation */
-    pointer-events: none;
+  .compass-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    height: 100%;
   }
 
   .compass-perspective-wrapper {
@@ -201,6 +202,17 @@
   .compass-link[data-index="2"] { transform: rotate(144deg) translateY(calc(-1 * var(--radius))); }
   .compass-link[data-index="3"] { transform: rotate(216deg) translateY(calc(-1 * var(--radius))); }
   .compass-link[data-index="4"] { transform: rotate(288deg) translateY(calc(-1 * var(--radius))); }
+
+  .compass-subtitle {
+    text-align: center;
+    max-width: 70ch;
+    margin: 0;
+    padding: 0 2rem;
+    font-size: clamp(1.5rem, 4vw, 1.875rem);
+    line-height: 1.4;
+    color: var(--color-primary);
+    font-weight: 400;
+  }
 
   @media (min-width: 768px) {
     :root { --radius: 240px; }
