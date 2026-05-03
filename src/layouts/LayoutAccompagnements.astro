@@ -21,19 +21,8 @@ const lang = (data.lang || 'fr') as 'fr' | 'en';
 >
   <article class="accompagnement-page">
     <div class="container mx-auto px-4 py-12 max-w-4xl">
-      {/* Image hero */}
-      {data.image && (
-        <div class="accompagnement-hero mb-12">
-          <img
-            src={data.image}
-            alt={data.title}
-            class="w-full h-auto rounded-lg shadow-lg object-cover"
-            style="max-height: 500px;"
-          />
-        </div>
-      )}
 
-      {/* Type badge + Category */}
+            {/* Type badge + Category */}
       <div class="metadata mb-6 flex items-center gap-4 justify-center flex-wrap">
         <span class={`type-badge type-badge-${data.type}`}>
           {data.type}
@@ -44,24 +33,38 @@ const lang = (data.lang || 'fr') as 'fr' | 'en';
           </span>
         )}
       </div>
-
-      {/* Titre principal */}
+            {/* Titre principal */}
       <h1 class="text-4xl md:text-5xl font-serif font-bold mb-8 text-limolo-green text-center">
         {data.title}
       </h1>
 
       {/* Description */}
-      <div class="description text-xl text-gray-700 mb-12 leading-relaxed text-center max-w-2xl mx-auto">
+      <div class="description text-xl text-gray-700 mb-8 leading-relaxed text-center max-w-2xl mx-auto">
         <p>{data.description}</p>
       </div>
 
+      {/* Image hero */}
+      {data.image && (
+        <div class="accompagnement-hero mb-12">
+          <img
+            src={data.image}
+            alt={data.title}
+            class="w-full h-auto rounded-lg shadow-lg object-cover"
+            style="max-height: 450px;"
+          />
+        </div>
+      )}
+
+
+
       {/* USPs section */}
       {(data.USP1 || data.USP2 || data.USP3 || data.USP4 || data.USP5) && (
-        <div class="usp-section mb-12 p-8 bg-gradient-to-br from-limolo-green/5 to-transparent rounded-lg border border-limolo-green/10">
-          <h2 class="text-2xl font-serif font-semibold mb-6 text-limolo-green">
-            {lang === 'fr' ? 'Points clés' : 'Key points'}
-          </h2>
-          <ul class="usp-list grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="usp-section pt-12 mb-12 mx-auto">
+          <div class="p-8 w-full flex flex-col items-center rounded-lg border border-limolo-green/10">
+            <h2 class="text-2xl font-serif font-semibold mt-4! mb-6 ml-4 text-limolo-green">
+              {lang === 'fr' ? 'Sujets clés' : 'Key topics'}
+            </h2>
+            <ul class="usp-list gap-4">
             {data.USP1 && (
               <li class="flex gap-3">
                 <span class="usp-icon">✓</span>
@@ -92,7 +95,8 @@ const lang = (data.lang || 'fr') as 'fr' | 'en';
                 <span>{data.USP5}</span>
               </li>
             )}
-          </ul>
+            </ul>
+          </div>
         </div>
       )}
 
@@ -121,7 +125,7 @@ const lang = (data.lang || 'fr') as 'fr' | 'en';
   .type-badge {
     display: inline-block;
     padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
+    border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -155,33 +159,41 @@ const lang = (data.lang || 'fr') as 'fr' | 'en';
   .category-badge {
     display: inline-block;
     padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    background: #f3f4f6;
-    color: #4a6741;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    border: 1px solid var(--color-brand-primary);
+    color: var(--color-brand-primary);
     font-weight: 500;
+  }
+
+  .usp-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:fit-content;
   }
 
   .usp-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    width:fit-content;
   }
 
   .usp-list li {
     color: #555;
     font-size: clamp(1rem, 2.5vw, 1.125rem);
     line-height: 1.7;
+    text-align: left;
   }
 
   .usp-icon {
-    color: #4a6741;
+    color: var(--color-brand-accent);
     font-weight: bold;
     flex-shrink: 0;
   }
 
   .back-link a {
-    text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
   }
@@ -193,5 +205,14 @@ const lang = (data.lang || 'fr') as 'fr' | 'en';
   .btn-lg {
     padding: 1rem 2rem;
     font-size: 1.125rem;
+    text-decoration-style: none!important;
+  }
+
+  .btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+  article a.btn {
+    text-decoration: none!important;
   }
 </style>

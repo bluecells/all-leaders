@@ -13,9 +13,10 @@
   --color-brand-secondary: #AB0800;
   --color-brand-tertiary: #BEAB54;
   --color-brand-darker: #4b595e;
-  --color-brand-hover: #459875;
+  --color-brand-hover: #1093AD;
   --color-brand-alert: #a45429;
-  --color-brand-accent: #2c7ec4;
+  --color-brand-accent: #1093AD;
+  --color-brand-muted: #1093ad7c;
 }
 
 /* ==================================================
@@ -42,7 +43,7 @@
 
   main {
     width: 100%;
-    max-width: 1440px;
+    max-width: 80rem;
     padding-inline: clamp(1.25rem, 5vw, 3rem);
   }
 
@@ -138,7 +139,7 @@ article a {
   text-decoration-line: underline !important;
   text-decoration-style: dotted !important;
   text-decoration-thickness: 1px !important;
-  text-decoration-color: var(--color-brand-primary) !important;
+  text-decoration-color: var(--color-brand-muted) !important;
 
   /* On impose l'offset */
   text-underline-offset: 5px !important;
@@ -167,7 +168,7 @@ article a:hover {
 ================================================== */
 @layer components {
   .section-container {
-    max-width: 72rem;
+    max-width: 80rem;
     margin-inline: auto;
     padding: 4rem 1.5rem;
   }
@@ -424,7 +425,7 @@ article a:hover {
   }
 
   main {
-    max-width: 65rem;
+    max-width: 80rem;
   }
 
   article {
@@ -482,7 +483,7 @@ article a:hover {
   }
 
   main {
-    max-width: 65rem;
+    max-width: 80rem;
   }
 }
 
@@ -491,7 +492,7 @@ article a:hover {
     padding-top: 120px;
   }
   main {
-    max-width: 90rem;
+    max-width: 80rem;
   }
 
   p,

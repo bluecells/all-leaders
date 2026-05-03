@@ -80,7 +80,7 @@ const finalTextColor = textColor;
                 class="buoy-animate"
                 src={item.media}
                 alt={item.title || 'Élément visuel'}
-                loading="lazy"
+                loading="eager"
                 decoding="async"
               />
             </div>
@@ -111,121 +111,136 @@ const finalTextColor = textColor;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animation des bouées
   const buoys = document.querySelectorAll('.buoy-animate');
 
-  // Variations d'animation pour chaque bouée
+  // Config de variations (léger random visuel)
   const buoyConfigs = [
-    {
-      // Bouée 1: Tangage long et ample
-      emergenceDuration: 0.7,
-      rotationStart: 0.4,
-      rotations: [5, -4, 0],
-      durations: [0.7, 0.6, 0.5],
-    },
-    {
-      // Bouée 2: Tangage rapide et léger
-      emergenceDuration: 0.9,
-      rotationStart: 0.5,
-      rotations: [3.5, -2.5, 0],
-      durations: [0.5, 0.4, 0.35],
-    },
-    {
-      // Bouée 3: Tangage modéré avec délai
-      emergenceDuration: 0.8,
-      rotationStart: 0.6,
-      rotations: [4.5, -3.5, 0],
-      durations: [0.6, 0.55, 0.45],
-    },
+    { floatY: 6, rotation: 2 },
+    { floatY: 4, rotation: 1.5 },
+    { floatY: 5, rotation: 2.5 },
   ];
 
-  buoys.forEach((buoy, index) => {
-    const config = buoyConfigs[index] || buoyConfigs[0];
-    const gridItem = buoy.closest('.grid-item');
+  // Attendre que toutes les images soient prêtes
+  const imagePromises = [...buoys].map(
+    (img) =>
+      new Promise((resolve) => {
+        if (img.complete) {
+          resolve();
+        } else {
+          img.addEventListener('load', resolve, { once: true });
+          img.addEventListener('error', resolve, { once: true });
+        }
+      })
+  );
 
-    // Chaque bouée démarre à une position décalée (sous l'eau)
-    gsap.set(buoy, {
-      yPercent: 20,
-      opacity: 0,
-    });
+  function createBuoyAnimation(buoy, config) {
+    gsap.killTweensOf(buoy);
 
-    // Animation à l'entrée du viewport
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: buoy,
-        start: 'top 80%',
-        toggleActions: 'play none none reverse', // reverse pour rejouer à chaque sortie/entrée
-      },
-    })
-      // Phase 1: Sortie de l'eau (effet bouchon)
-      .to(buoy, {
+    const tl = gsap.timeline();
+
+    // Entrée fluide + léger overshoot
+    tl.fromTo(
+      buoy,
+      { yPercent: 10, opacity: 0 },
+      {
         yPercent: 0,
         opacity: 1,
-        duration: config.emergenceDuration,
-        ease: 'power2.out',
-      }, 0)
-      // Phase 2: Tangage personnalisé (oscillation)
-      .to(
-        buoy,
-        {
-          rotation: config.rotations[0],
-          duration: config.durations[0],
-          ease: 'sine.inOut',
-        },
-        config.rotationStart
-      )
-      .to(
-        buoy,
-        {
-          rotation: config.rotations[1],
-          duration: config.durations[1],
-          ease: 'sine.inOut',
-        },
-        config.rotationStart + config.durations[0]
-      )
-      .to(
-        buoy,
-        {
-          rotation: config.rotations[2],
-          duration: config.durations[2],
-          ease: 'sine.inOut',
-        },
-        config.rotationStart + config.durations[0] + config.durations[1]
-      );
+        duration: 0.6,
+        ease: 'elastic.out(1,0.3)', // 💎 premium feel
+      }
+    );
 
-    // Animation au hover : tangage
-    if (gridItem) {
-      gridItem.addEventListener('mouseenter', () => {
-        gsap.timeline()
-          .to(
-            buoy,
-            {
-              rotation: config.rotations[0],
-              duration: config.durations[0],
-              ease: 'sine.inOut',
-            },
-            0
-          )
-          .to(
-            buoy,
-            {
-              rotation: config.rotations[1],
-              duration: config.durations[1],
-              ease: 'sine.inOut',
-            },
-            config.durations[0]
-          )
-          .to(
-            buoy,
-            {
-              rotation: config.rotations[2],
-              duration: config.durations[2],
-              ease: 'sine.inOut',
-            },
-            config.durations[0] + config.durations[1]
-          );
+    // Stabilisation
+    tl.to(buoy, {
+      rotation: 0,
+      duration: 0.4,
+      ease: 'sine.out',
+    });
+
+    // Floating loop infini
+    tl.to(
+      buoy,
+      {
+        y: `+=${config.floatY}`,
+        rotation: config.rotation,
+        duration: 1,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+      },
+      '>'
+    );
+
+    return tl;
+  }
+
+  Promise.all(imagePromises).then(() => {
+
+    buoys.forEach((buoy) => {
+  // Force le rendu GPU AVANT animation
+  gsap.set(buoy, {
+    force3D: true,
+    transformPerspective: 1000,
+  });
+
+  // Force un reflow (hack volontaire)
+  buoy.getBoundingClientRect();
+});
+
+    ScrollTrigger.refresh();
+
+    buoys.forEach((buoy, index) => {
+      const config = buoyConfigs[index % buoyConfigs.length];
+      const gridItem = buoy.closest('.grid-item');
+
+      // État initial
+      gsap.set(buoy, {
+        yPercent: 10,
+        opacity: 0,
+        rotation: 0,
+        y: 0,
       });
-    }
+
+      // Scroll animation
+      ScrollTrigger.create({
+        trigger: buoy,
+        start: 'top 95%',
+        invalidateOnRefresh: true,
+
+        onEnter: () => {
+          createBuoyAnimation(buoy, config);
+        },
+
+        onLeaveBack: () => {
+          gsap.killTweensOf(buoy);
+          gsap.set(buoy, {
+            yPercent: 20,
+            opacity: 0,
+            rotation: 0,
+            y: 0,
+          });
+        },
+      });
+
+      // Interaction hover (petit boost propre)
+      if (gridItem) {
+        gridItem.addEventListener('mouseenter', () => {
+          gsap.to(buoy, {
+            scale: 1.05,
+            duration: 0.3,
+            ease: 'power2.out',
+          });
+        });
+
+        gridItem.addEventListener('mouseleave', () => {
+          gsap.to(buoy, {
+            scale: 1,
+            duration: 0.3,
+            ease: 'power2.out',
+          });
+        });
+      }
+    });
   });
 </script>
 
@@ -233,6 +248,10 @@ const finalTextColor = textColor;
   .grid-wrapper {
     width: 100%;
     padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 5rem);
   }
 
   .grid-wrapper.grid-fullbleed {
@@ -242,6 +261,12 @@ const finalTextColor = textColor;
     margin-left: -50vw;
     padding: 2rem 0;
   }
+
+  .buoy-animate {
+  will-change: transform, opacity;
+  transform-origin: center;
+  backface-visibility: hidden;
+}
 
   .grid-container {
     display: grid;
@@ -296,30 +321,19 @@ const finalTextColor = textColor;
     will-change: transform, opacity;
   }
 
-  .grid-item:hover .grid-item-media img {
+/*   .grid-item:hover .grid-item-media img {
     transform: scale(1.07);
-  }
+  } */
 
   .grid-item-media.is-image {
-    max-width: 80%;
+    max-width: 60%;
+    min-height: 180px;
     aspect-ratio: 4 / 5;
     padding:2rem;
     padding-bottom: 0; 
 
-  
-  /* On crée un dégradé radial qui va de l'opaque au transparent */
-  mask-image: radial-gradient(
-    circle, 
-    black 30%, 
-    transparent 100%
-  );
-  
-  /* Compatibilité pour Safari */
-  -webkit-mask-image: radial-gradient(
-    circle, 
-    black 30%, 
-    transparent 100%
-  );
+  will-change: transform, opacity;
+
 }
 
   .grid-item-media.is-icon {

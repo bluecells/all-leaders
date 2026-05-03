@@ -7,7 +7,8 @@ export interface Site {
 
 export interface Metadata {
   TITLE: string;
-  DESCRIPTION: string;
+  METATITLE?: string;
+  METADESCRIPTION?: string;
 }
 
 export interface Social {

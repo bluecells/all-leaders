@@ -110,7 +110,7 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
     </p>
 
     <nav aria-label="Navigation principale">
-      <a href="/contact" class="mt-8 btn btn-secondary">Il est temps de les <strong>dépasser</strong></a>
+      <a href="/contact" class="mt-8 btn btn-secondary">Il est temps <strong>d'agir</strong></a>
     </nav>
     </div>
 
@@ -256,20 +256,19 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
     <section id="offre" aria-labelledby="h2-offre">
       <div class="container">
 
-        <h2 id="h2-offre">
+        <h2 id="h2-offre" class="pb-0!">
           Conseil en <strong>performance collective</strong>&nbsp;: du diagnostic à la transformation
         </h2>
 
-        <h3 class="mb-12">
+        <h3 class="mb-0 mt-0 texte-gradient">
           Nous intervenons sur tout le <strong>continuum de la performance collective</strong>
         </h3>
 
         <ContinuumGrid />
 
-         <p class="text-center mt-12">
+         <p class="text-center mt-0">
           Nous accompagnons les équipes managériales, comités de direction et dirigeants pour dépasser les
-          blocages collectifs et développer un leadership basé sur l'intention. Nous intervenons à tous
-          les stades du continuum de la performance collective, du diagnostic à la transformation.
+          blocages collectifs et développer un leadership basé sur l'intention.
 
         <Grid textColor="var(--color-text-primary)"
           items={[
@@ -290,7 +289,7 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
             }
           ]}
         />
-
+<div class="h-[80vh] flex flex-col items-center justify-center">
         <h3>Nous avons accompagné de nombreuses équipes managériales, comités de direction et dirigeants exigeants actifs chez&nbsp;</h3>
         <Carousel speed="5000"
           images={[
@@ -301,6 +300,7 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
             { image: '/images/pages/orange.png', alt: 'Orange' },
           ]}
         />
+        </div>
 
         <CompassLinks />
 
@@ -326,7 +326,7 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
           Découvrez ceux qui naviguent avec vous et incarnent <strong>le leadership</strong> que nous développons.
         </p>
 
-        <ul class="partners-list max-w-4xl mx-auto" role="list">
+        <ul class="partners-list max-w-4xl mx-auto px-4" role="list">
 
           <li>
             <article class="partner-article" role="listitem">
@@ -500,6 +500,20 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
     transform-origin: center top;
   }
 
+  .texte-gradient {
+  /* On définit le dégradé en arrière-plan */
+  background: linear-gradient(to right, #C65151, #9e8aa8, #172432);
+  
+  /* On "découpe" l'arrière-plan pour qu'il ne s'affiche que sur les lettres */
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* On rend le texte transparent pour laisser voir le dégradé dessous */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  }
+  
+
   /* ==========================================
      PARTENAIRES — Layout Logo (1/4) + Texte (3/4)
   =========================================== */
@@ -507,22 +521,21 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
   .partners-list {
     list-style: none;
     padding: 0;
-    margin: 2rem 0;
+    margin: 2rem auto;
   }
 
   .partner-article {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding: 1.5rem;
+    padding: 1.25rem;
     border: 1px solid rgba(74, 103, 65, 0.2);
     border-radius: 0.5rem;
-    margin-bottom: 1.5rem;
   }
 
   .partner-logo {
     width: 100%;
-    max-width: 200px;
+    max-width: 180px;
     height: auto;
   }
 
@@ -543,8 +556,8 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
     .partner-article {
       grid-template-columns: 1fr 3fr;
       align-items: start;
-      gap: 2rem;
-      padding: 2rem;
+      gap: 1rem;
+      padding: 1.75rem;
       margin-bottom: 0;
     }
 
@@ -557,20 +570,25 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
   }
 
   .partner-article h3 {
-    margin: 0 0 0.5rem 0;
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
   }
 
   .partner-article p {
     margin: 0.5rem 0;
+    font-size: 0.9rem;
+    font-family: sans-serif;
   }
 
   .partner-article a {
     display: inline-block;
     margin-top: 0.5rem;
-    color: var(--color-brand-primary);
+    color: var(--color-brand-accent);
     text-decoration: none;
-    font-weight: 600;
     transition: color 200ms;
+    font-family: sans-serif;
+    font-size: 0.9rem;
   }
 
   .partner-article a:hover {

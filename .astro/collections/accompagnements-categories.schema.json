@@ -17,6 +17,16 @@
     "slug": {
       "type": "string"
     },
+    "slug_fr": {
+      "type": "string"
+    },
+    "slug_en": {
+      "type": "string"
+    },
+    "order": {
+      "default": 0,
+      "type": "number"
+    },
     "$schema": {
       "type": "string"
     }

@@ -1,6 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import AccompagnementsGrid from '../components/AccompagnementsGrid.astro';
+import { getCollection } from 'astro:content';
+
+const modalites = await getCollection('modalites-intervention');
+const sortedModalites = modalites.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
+const categorie = await getCollection('accompagnements-categories');
+const sortedCategories = categorie.sort((a, b) => {
+  const orderA = a.data.order || 999;
+  const orderB = b.data.order || 999;
+  return orderB - orderA;
+});
 ---
 
 <Layout
@@ -9,13 +20,59 @@ import AccompagnementsGrid from '../components/AccompagnementsGrid.astro';
   metaDescription="Découvrez nos accompagnements en diagnostic de performance, formation, coaching et conseil."
   lang="fr"
 >
-  <div class="mx-auto px-4 py-12">
+  <div class="flex flex-col justify-center align-items mx-auto px-4 min-h-[85vh]">
     <h1 class="font-serif text-limolo-green mb-8 text-center">Nos accompagnements</h1>
     <h2>Solutions de diagnostic et développement pour vos organisations</h2>
-    <!-- AccompagnementsGrid Component avec cards cliquables -->
-    <AccompagnementsGrid lang="fr" fullBleed={true} />
+
+      <!-- Navigation des catégories d'accompagnements -->
+  <nav class="categories-nav">
+    <div class="categories-nav-wrapper">
+      {sortedCategories.map((cat) => (
+        <a
+          href={`#category-${cat.data.slug}`}
+          class={`category-nav-link category-nav-link-${cat.data.order}`}
+        >
+          {cat.data.name_fr}
+        </a>
+      ))}
+    </div>
+  </nav>
   </div>
 
+
+
+  <!-- AccompagnementsGrid Component avec cards cliquables -->
+  <AccompagnementsGrid lang="fr" fullBleed={true} />
+
+  <!-- Section des modalités avec descriptifs -->
+  <section class="modalites-section">
+    <div class="modalites-container">
+      {sortedModalites.map((modalite) => {
+        const objectiveMap = {
+          investigation: 'Poser un diagnostic',
+          inspiration: 'Sensibiliser',
+          action: 'Intervenir',
+          immersion: 'Apprendre par l\'expérience'
+        };
+        const objective = objectiveMap[modalite.data.slug as keyof typeof objectiveMap] || '';
+
+        return (
+          <div
+            id={modalite.data.slug}
+            class={`modalite-card modalite-${modalite.data.slug}`}
+          >
+            <div class="modalite-header">
+              <span class={`modalite-dot modalite-dot-${modalite.data.slug}`}></span>
+              <h3 class="modalite-title">{modalite.data.name_fr}</h3>
+            </div>
+            <p class="modalite-objective">{objective}</p>
+            <p class="modalite-description">{modalite.data.description_fr}</p>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+  
 </Layout>
 
 <style>
@@ -29,5 +86,144 @@ import AccompagnementsGrid from '../components/AccompagnementsGrid.astro';
     max-width: 100%;
     text-align: center;
     font-size: large;
+  }
+
+  /* Navigation des catégories d'accompagnements */
+  .categories-nav {
+    width: 100%;
+    background: white;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .categories-nav-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 10px;
+    margin: 0 auto;
+  }
+
+  .category-nav-link {
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+    background-color: rgb(3, 26, 52);
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.8rem;
+    display: block;
+    text-align: center;
+  }
+
+  .categories-nav-wrapper {
+    background: linear-gradient(90deg, #C65151, #9e8aa8, #9e8aa8, #6b7fa3, #172432);
+    padding: 0 !important;
+  }
+
+  .category-nav-link {
+    background: none !important;
+    position: relative;
+  }
+
+  .category-nav-link:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Section des modalités */
+  .modalites-section {
+    width: 100%;
+    background-color: #fafafa;
+    padding: 2rem 0;
+  }
+
+  .modalites-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .modalites-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .modalite-card {
+    padding: 1.25rem;
+    border-radius: 6px;
+    background: white;
+    border: 1px solid #e8e8e8;
+    transition: all 0.2s ease;
+  }
+
+  .modalite-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .modalite-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .modalite-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .modalite-dot-investigation { background-color: #8ac20a; }
+  .modalite-dot-inspiration { background-color: #ddb800; }
+  .modalite-dot-action { background-color: #08aac2; }
+  .modalite-dot-immersion { background-color: #b577f0; }
+
+  .modalite-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-brand-primary);
+  }
+
+  .modalite-objective {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #666;
+    margin: 0.35rem 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .modalite-description {
+    font-size: 0.7rem;
+    line-height: 1.5;
+    color: #555;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .categories-nav-wrapper {
+      gap: 0;
+      max-width: 100%;
+      background: linear-gradient(180deg, #C65151, #9e8aa8, #9e8aa8, #6b7fa3, #172432);
+      flex-direction: column;
+    }
+
+    .category-nav-link {
+      padding: 0.875rem 1.25rem;
+      font-size: 0.9rem;
+    }
   }
 </style>

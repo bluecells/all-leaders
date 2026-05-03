@@ -1,209 +1,417 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ActionBar from '../components/ActionBar.astro';
+import Container from "../components/UI/Container.astro"
+import { CONTACT } from "../consts"
+
+// URL Formspree
+const FORMSPREE_URL = "https://formspree.io/f/mqeneyew"
 ---
 
 <Layout
-  title="Contacter All Leaders Initiative"
-  metaTitle="Contacter All Leaders Initiative"
-  metaDescription="N'hésitez pas à contacter All Leaders Initiative pour toutes questions relatives aux accompagnements et à leur logistique."
-  lang="fr"
+  title={CONTACT.TITLE}
+  metaTitle={CONTACT.METATITLE}
+  metaDescription={CONTACT.METADESCRIPTION}
 >
-  <div class="mx-auto max-w-4xl px-4 py-12">
-    <!-- Titre principal -->
-    <h1 class="font-serif text-limolo-green mb-4 text-center">
-      Contacter All Leaders Initiative
-    </h1>
-
-  <!-- ==========================================
-         SECTION 4 — Fondateurs
-    =========================================== -->
-    <section id="fondateurs" aria-labelledby="h2-fondateurs">
-      <div class="container">
-
-        <h2 id="h2-fondateurs" class="text-center! mt-0! mt-8">
-          <strong>Deux fondateurs</strong>, une vision commune du <strong>leadership basé sur l'intention</strong>
-        </h2>
-
-        <p class="text-center! mt-4">
-          Forts de nos différences et de nos complémentarités, nous sommes garants de la qualité
-          et de l'engagement des professionnels que nous rassemblons au service de vos objectifs.
+  <Container>
+    <div class="contact-container min-h-[85vh]">
+      <div class="contact-header">
+        <h1 class="contact-title pt-12! pb-0!">
+Contactez-nous        </h1>
+        <p class="contact-subtitle pb-4">
+          Et si nous parlions de performance collective&nbsp;? Notre équipe vous répond avec précision.
         </p>
-
-        <div class="founders-grid" role="list">
-
-          <article role="listitem" itemscope itemtype="https://schema.org/Person">
-            <h3 itemprop="name">Marie Emmanuelle PY</h3>
-            <p itemprop="jobTitle">Associée fondatrice</p>
-            <ul class="contact-list">
-              <li>
-                <a href="mailto:me@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Marie Emmanuelle Py">
-                  me@all-leaders.fr
-                </a>
-              </li>
-              <li>
-                <a href="tel:+33603555452" itemprop="telephone" aria-label="Appeler Marie Emmanuelle Py">
-                  +33 6 03 55 54 52
-                </a>
-              </li>
-              <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Marie Emmanuelle Py">
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil complet de Marie Emmanuelle Py">
-                  Profil complet
-                </a>
-              </li>
-            </ul>
-          </article>
-
-          <article role="listitem" itemscope itemtype="https://schema.org/Person">
-            <h3 itemprop="name">Pierre-Etienne BOST</h3>
-            <p itemprop="jobTitle">Associé fondateur</p>
-            <ul class="contact-list">
-              <li>
-                <a href="mailto:pe@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Pierre-Etienne Bost">
-                  pe@all-leaders.fr
-                </a>
-              </li>
-              <li>
-                <a href="tel:+33685540511" itemprop="telephone" aria-label="Appeler Pierre-Etienne Bost">
-                  +33 6 85 54 05 11
-                </a>
-              </li>
-              <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Pierre-Etienne Bost">
-                  LinkedIn
-                </a>
-              </li>
-              <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil complet de Pierre-Etienne Bost">
-                  Profil complet
-                </a>
-              </li>
-            </ul>
-          </article>
-
-        </div>
-
       </div>
 
-              <p class="text-center! mt-8">
-                Rencontrons-nous pour parler des challenges qui vous animent !
-              </p>
-    </section>
+      <div class="contact-wrapper-outer">
+        <div class="contact-wrapper" id="contact-wrapper">
+          <div class="success-message" id="success-message">
+            <div class="success-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg
+              >
+            </div>
+            <h2 class="success-title">Message envoyé&nbsp;!</h2>
+            <p class="success-text">
+              Merci de nous avoir contactés. <br />
+              <strong>Notre équipe vous répondra sous 24h.</strong>
+            </p>
+          </div>
 
-</Layout>
+          <form id="contact-form" action={FORMSPREE_URL} method="POST" class="contact-form">
+            <div class="form-grid">
+              <div>
+                <label for="full-name" class="form-label">Nom Complet</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="full-name"
+                  required
+                  placeholder="Jean Dupont"
+                  class="form-input form-input-dark"
+                />
+              </div>
+              <div>
+                <label for="email-address" class="form-label">Email Professionnel</label>
+                <input
+                  type="email"
+                  name="_replyto"
+                  id="email-address"
+                  required
+                  placeholder="jean@entreprise.com"
+                  class="form-input form-input-dark"
+                />
+                <p id="email-error" class="form-error">
+                  Veuillez entrer une adresse email valide (ex: nom@domaine.com)
+                </p>
+              </div>
+            </div>
 
-<style>
-  h1 {
-    line-height: 1.2;
-  }
+            <div>
+              <label for="subject" class="form-label">Sujet</label>
+              <div class="select-wrapper">
+                <select name="subject" id="subject" class="form-select">
+                  <option>Organisation d'une conférence</option>
+                  <option>Demande de renseignement</option>
+                  <option>Autre</option>
+                </select>
+                <div class="select-icon">
+                  <svg viewBox="0 0 20 20"
+                    ><path
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    ></path></svg
+                  >
+                </div>
+              </div>
+            </div>
 
-   /* ==========================================
-     FONDATEURS — Layout 2 Colonnes
-  =========================================== */
+            <div>
+              <label for="message" class="form-label">Votre Message</label>
+              <textarea
+                name="message"
+                id="message"
+                required
+                placeholder="Décrivez votre besoin..."
+                class="form-textarea form-input-dark"
+              ></textarea>
+            </div>
 
-  .founders-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
-    max-width: 800px;
-    margin: auto;
-  }
+            <div class="form-submit">
+              <button type="submit" id="submit-btn" class="submit-button">
+                <span id="btn-text">Envoyer ma demande</span>
+              </button>
+              <div class="contact-phone">
+                <p>
+                  Une urgence&nbsp;? Appelez-nous au <a href="tel:+33603555452" class="phone-link">+33 6 03 55 54 52</a>
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </Container>
 
-  .founders-grid article {
-    padding: 1.5rem 1.5rem 1rem 1.5rem;
-    border: 1px solid rgba(74, 103, 65, 0.2);
-    border-radius: 0.5rem;
-  }
-
-  .founders-grid h1,
-  .founders-grid h2,
-  .founders-grid h3 {
-    text-align: left;
-  }
-
-  .founders-grid h3 {
-    margin: 0 0 0.5rem 0;
-  }
-
-  .founders-grid p {
-    margin: 0 0 1rem 0;
-  }
-
-  .contact-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .contact-list h1,
-  .contact-list h2,
-  .contact-list h3 {
-    text-align: left;
-  }
-
-  .contact-list li {
-    margin-bottom: 0.35rem;
-    margin-left: -1rem;
-  }
-
-  .contact-list a {
-    color: var(--color-brand-primary);
-    text-decoration: none;
-    transition: color 200ms;
-  }
-
-  .contact-list a:hover {
-    color: var(--color-brand-accent);
-  }
-
-  /* Mode desktop : 2 colonnes */
-  @media (min-width: 768px) {
-    .founders-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-  }
-
-  /* Values section avec images latérales */
-  .values-section {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
-    margin-top: 3rem;
-  }
-
-  .values-image-left,
-  .values-image-right {
-    flex: 0 0 20%;
-    max-height: 500px;
-  }
-
-  .values-image-left img,
-  .values-image-right img {
-    height: 100%;
-  }
-
-  .values-grid {
-    flex: 1;
-  }
-
-  /* Mobile : images au-dessus en 50-50 */
-  @media (max-width: 767px) {
-    .values-section {
+  <style>
+    .contact-container {
+      display: flex;
       flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-header {
+      text-align: center;
+      max-width: 48rem;
+      margin: 0 auto 2rem;
+    }
+
+    .contact-title {
+      font-size: clamp(1.875rem, 5vw, 3rem);
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .contact-accent {
+      color: #70a5af;
+    }
+
+    .contact-subtitle {
+      font-size: 1.125rem;
+    }
+
+    .contact-wrapper-outer {
+      max-width: 56rem;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .contact-wrapper {
+      background-color: rgba(223, 240, 244, 0.5);
+      border: 1px solid rgba(16, 147, 173, 0.2);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+
+    .success-message {
+      display: none;
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 5rem;
+      height: 5rem;
+      background-color: #1093AD;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .success-title {
+      font-size: 1.875rem;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+
+    .success-text {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.125rem;
+    }
+
+    .contact-form {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 1.5rem;
     }
 
-    .values-image-left,
-    .values-image-right {
-      flex: 0 0 auto;
-      max-height: 100%;
+    @media (min-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-label {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.35rem .75rem;
+      border-radius: 0.375rem;
+      border: 1px solid rgba(16, 147, 173, 0.2);
+      transition: all 0.2s;
+    }
+
+    .form-input-light {
+      background-color: white;
+      color: #666;
+      border-color: #ccc;
+    }
+
+    .form-input-dark {
+      background-color: rgba(226, 234, 243, 0.443);
+    }
+
+    .form-input-dark::placeholder,
+    .form-input-light::placeholder {
+      color: rgba(121, 121, 135, 0.44);
+    }
+
+    .form-error {
+      display: none;
+      font-size: 10px;
+      color: #ef4444;
+      margin-top: 0.25rem;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    .select-wrapper {
+      position: relative;
+    }
+
+    .form-select {
+      width: 100%;
+      padding: 0.35rem .75rem;
+      border-radius: 0.375rem;
+      border: 1px solid rgba(16, 147, 173, 0.2);
+      background-color: #031A34;
+      color: #ffffff;
+      transition: all 0.2s;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .form-select option {
+      background-color: #031A34!important;
+      color: #ffffff;
+    }
+
+    .select-icon {
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .select-icon svg {
+      width: 1rem;
+      height: 1rem;
+      fill: currentColor;
+    }
+
+    .form-textarea {
+      width: 100%;
+      height: 8rem;
+      padding: 1rem;
+      border-radius: 0.375rem;
+      border: 1px solid rgba(16, 147, 173, 0.2);
+      resize: none;
+    }
+
+    .form-submit {
+      text-align: center;
+      padding-top: 0.5rem;
+    }
+
+    .submit-button {
+      padding: 1rem 3rem;
+      background-color:#031A34;
+      color: #ffffff;
+      font-weight: bold;
+      border-radius: 0.375rem;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin: 0 auto;
+    }
+
+    .submit-button:hover {
+      background-color: #1093AD;
+      box-shadow: 0 25px 30px -5px rgba(16, 147, 173, 0.3);
+    }
+
+    .contact-phone {
+      margin-top: 1.5rem;
+      font-size: 12px;
+    }
+
+    .phone-link {
+      text-decoration: underline;
+      color: #1093AD;
+      font-weight: bold;
+    }
+
+    .phone-link:hover {
+      color: rgba(16, 147, 173, 0.8);
+    }
+  </style>
+</PageLayout>
+
+<script is:inline>
+  async function handleSubmit(event) {
+    event.preventDefault()
+    const form = event.target
+    const btn = document.getElementById("submit-btn")
+    const btnText = document.getElementById("btn-text")
+    const successDiv = document.getElementById("success-message")
+    const formEl = document.getElementById("contact-form")
+
+    btn.disabled = true
+    btn.style.opacity = "0.7"
+    btnText.innerText = "Envoi en cours..."
+
+    try {
+      const data = new FormData(form)
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { Accept: "application/json" },
+      })
+
+      if (response.ok) {
+        formEl.classList.add("hidden")
+        successDiv.classList.remove("hidden")
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      } else {
+        const errorData = await response.json()
+        alert(errorData.error || "Erreur lors de l'envoi.")
+        resetButton(btn, btnText)
+      }
+    } catch (error) {
+      alert("Erreur réseau.")
+      resetButton(btn, btnText)
     }
   }
-</style>
+
+  function resetButton(btn, btnText) {
+    btn.disabled = false
+    btn.style.opacity = "1"
+    btnText.innerText = "Envoyer ma demande"
+  }
+
+  function init() {
+    const form = document.getElementById("contact-form")
+    if (form) {
+      form.removeEventListener("submit", handleSubmit)
+      form.addEventListener("submit", handleSubmit)
+    }
+  }
+
+  const emailInput = document.getElementById("email-address")
+  const emailError = document.getElementById("email-error")
+
+  // Expression régulière pour valider l'email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+  emailInput.addEventListener("input", () => {
+    const isValid = emailRegex.test(emailInput.value)
+
+    if (emailInput.value === "" || isValid) {
+      // Si c'est valide ou vide, on cache l'erreur et on remet la bordure normale
+      emailError.style.display = "none"
+      emailInput.style.borderColor = "rgba(16, 147, 173, 0.2)"
+    } else {
+      // Si c'est invalide, on affiche l'erreur en rouge
+      emailError.style.display = "block"
+      emailInput.style.borderColor = "#ef4444"
+    }
+  })
+
+  document.addEventListener("DOMContentLoaded", init)
+  document.addEventListener("astro:after-swap", init)
+  init()
+</script>

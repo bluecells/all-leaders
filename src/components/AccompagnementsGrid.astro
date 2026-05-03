@@ -9,7 +9,7 @@ interface Props {
   textColor?: string;
 }
 
-const { lang, category, fullBleed = false, textColor = 'white' } = Astro.props;
+const { lang, category, fullBleed = false } = Astro.props;
 
 let accompagnements = await getCollection('accompagnements');
 const allCategories = await getCollection('accompagnements-categories');
@@ -19,213 +19,279 @@ accompagnements = accompagnements.filter((item) => item.data.lang === lang);
 
 // Filtrer par catégorie si spécifiée
 if (category) {
-  accompagnements = accompagnements.filter((item) => item.data.categorie === category);
+  accompagnements = accompagnements.filter(
+    (item) => item.data.categorie === category
+  );
 }
 
-// Récupérer les catégories uniques pour affichage
-const categories = Array.from(new Set(accompagnements.map((item) => item.data.categorie)));
+// Créer un map d'ordre des catégories
+const categoryOrderMap = new Map<string, number>();
+allCategories.forEach((cat) => {
+  const catName = lang === 'fr' ? cat.data.name_fr : cat.data.name_en;
+  categoryOrderMap.set(catName, cat.data.order);
+});
 
-// Fonction pour obtenir la description d'une catégorie
+// Récupérer les catégories uniques
+const uniqueCategories = Array.from(
+  new Set(accompagnements.map((item) => item.data.categorie))
+);
+
+// Trier les catégories
+const categories = uniqueCategories.sort((a, b) => {
+  const orderA = categoryOrderMap.get(a) ?? 999;
+  const orderB = categoryOrderMap.get(b) ?? 999;
+  return orderA - orderB;
+});
+
+// Description catégorie
 function getCategoryDescription(categoryName: string): string {
   const categoryData = allCategories.find(
-    (cat) => (lang === 'fr' ? cat.data.name_fr : cat.data.name_en) === categoryName
+    (cat) =>
+      (lang === 'fr' ? cat.data.name_fr : cat.data.name_en) === categoryName
   );
-  return lang === 'fr' ? categoryData?.data.description_fr || '' : categoryData?.data.description_en || '';
+
+  return lang === 'fr'
+    ? categoryData?.data.description_fr || ''
+    : categoryData?.data.description_en || '';
 }
 
-// Fonction pour obtenir le slug de la catégorie
+// Slug catégorie
 function getCategorySlug(categoryName: string): string {
   const categoryData = allCategories.find(
-    (cat) => (lang === 'fr' ? cat.data.name_fr : cat.data.name_en) === categoryName
+    (cat) =>
+      (lang === 'fr' ? cat.data.name_fr : cat.data.name_en) === categoryName
   );
-  return categoryData?.data.slug || categoryName.toLowerCase().replace(/\s+/g, '-');
+
+  return (
+    categoryData?.data.slug ||
+    categoryName.toLowerCase().replace(/\s+/g, '-')
+  );
 }
 
-// Fonction pour créer l'URL vers la page de détail
-function buildAccompagnementUrl(accompagnement: CollectionEntry<'accompagnements'>, categorySlug: string): string {
-  // Utiliser le slug approprié selon la langue
-  const slug = lang === 'fr' ? accompagnement.data.slug_fr : accompagnement.data.slug_en;
+// URL accompagnement
+function buildAccompagnementUrl(
+  accompagnement: CollectionEntry<'accompagnements'>,
+  categorySlug: string
+): string {
+  const slug =
+    lang === 'fr'
+      ? accompagnement.data.slug_fr
+      : accompagnement.data.slug_en;
 
   return `/accompagnements/${categorySlug}/${slug}`;
 }
 ---
 
-<div class={fullBleed ? '' : 'mx-auto max-w-6xl px-4'}>
+<div class={fullBleed ? '' : 'mx-auto max-w-4xl px-4'}>
   {categories.length > 0 ? (
-    categories.map((cat) => {
-      const categorySlug = getCategorySlug(cat);
-      const categoryAccompagnements = accompagnements.filter((item) => item.data.categorie === cat);
+    categories.map((category) => {
+      const categorySlug = getCategorySlug(category);
+
+      const categoryAccompagnements = accompagnements.filter(
+        (item) => item.data.categorie === category
+      );
 
       return (
-        <section class="mb-16">
-          <h2 class="font-serif text-limolo-green mb-4">{cat}</h2>
-          <p class="category-description text-center! mx-auto mb-12">{getCategoryDescription(cat)}</p>
-          <div class="accompagnements-grid">
+        <section class="category-section mb-16" id={`category-${categorySlug}`}>
+
+          <!-- COLONNE GAUCHE -->
+          <div class="category-left">
+            <h2 class="font-serif text-limolo-green mb-4">
+              {category}
+            </h2>
+            <p class="category-description">
+              {getCategoryDescription(category)}
+            </p>
+          </div>
+
+          <!-- COLONNE DROITE -->
+          <div class="accompagnements-list">
             {categoryAccompagnements.map((item) => {
-              const itemUrl = buildAccompagnementUrl(item, categorySlug);
+              const itemUrl = buildAccompagnementUrl(
+                item,
+                categorySlug
+              );
 
               return (
-                <article class="accompagnement-card-container">
-                  <a href={itemUrl} class="accompagnement-card-link">
-                    <div class="card-image">
-                      <div class="card-image-wrapper">
-                        <img src={item.data.image} alt={item.data.title} />
-                      </div>
-                      <span class={`card-type card-type-${item.data.type}`}>{item.data.type}</span>
+                <article class="accompagnement-card-horizontal">
+                  <a href={itemUrl} class="card-link">
+
+                    <div class="card-image-mini">
+                      <img
+                        src={item.data.image}
+                        alt={item.data.title}
+                      />
+                      <span class={`card-type-tag card-type-${item.data.type}`}>
+                        {item.data.type}
+                      </span>
                     </div>
-                    <div class="card-content">
-                      <h3 class="font-serif font-semibold text-limolo-green">{item.data.title}</h3>
+
+                    <div class={`card-content-mini card-type-${item.data.type}-trans`}>
+                      <h3 class="font-serif text-limolo-green">
+                        {item.data.title}
+                      </h3>
                     </div>
+
                   </a>
                 </article>
               );
             })}
           </div>
+
         </section>
       );
     })
   ) : (
-    <p class="text-center text-gray-500">Aucun accompagnement trouvé.</p>
+    <p class="text-center text-gray-500">
+      Aucun accompagnement trouvé.
+    </p>
   )}
 </div>
 
 <style>
-  .category-description {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #555;
-    max-width: 800px;
+/* ===== LAYOUT GLOBAL ===== */
+
+.category-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .category-section {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
   }
 
-  .accompagnements-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: stretch;
-    gap: clamp(1rem, 2vw, 1.5rem);
-    margin-bottom: 2rem;
-    padding: 0 clamp(1.25rem, 5vw, 2rem);
+  .category-left {
+    width: auto;
   }
 
-  article.accompagnement-card-container {
-    padding: 0;
+  .accompagnements-list {
+    width: 800px;
   }
-  
-  .accompagnement-card-container {
-    width: 100%;
-    max-width: 280px;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 300ms, box-shadow 300ms;
-    display: flex;
-    flex-direction: column;
-    min-height: 220px;
-  }
+}
 
-  .accompagnement-card-container:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  }
+/* ===== COLONNE GAUCHE ===== */
 
-  .accompagnement-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
+.category-left {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
 
-  .card-image {
-    position: relative;
-    width: 100%;
-    padding-bottom: 55%; /* 3:2 aspect ratio */
-    overflow: visible;
-    background: #f0f0f0;
-  }
+.category-left h2 {
+  font-size: 2rem;
+  text-align: left;
+  margin-top: 2rem;
+}
 
-  .card-image-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
+.category-section {
+  border-top: 1px solid #eee;
+  padding-top: 4rem;
+}
 
-  .card-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+.category-description {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #555;
+}
 
-  .card-type {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: white;
-    padding: 0.25rem 1rem;
-    border-radius: 0;
-    font-size: 0.5rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    transition: all 0.3s ease;
-    z-index: 10;
-  }
+/* ===== COLONNE DROITE ===== */
 
-  /* Couleurs dynamiques par type */
-  .card-type-investigation {
-    background: #8ac20a;
-  }
+.accompagnements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
-  .card-type-inspiration {
-    background: #ddb800;
-  }
+.accompagnements-list article {
+  padding: 0;
+}
 
-  .card-type-action {
-    background: #08aac2;
-  }
+/* ===== CARTE HORIZONTALE ===== */
 
-  .card-type-immersion {
-    background: #b577f0;
-  }
+.accompagnement-card-horizontal {
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  transition: all 0.25s ease;
+}
 
-  .card-type-formation,
-  .card-type-coaching,
-  .card-type-conseil,
-  .card-type-mentorat {
-    background: #4a6741;
-  }
+.accompagnement-card-horizontal:hover {
+  transform: translateX(8px) scale(1.01);
+}
 
-  .card-content {
-    padding: .75rem 1rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
+.card-link {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  height: 110px;
+  text-decoration: none;
+  color: inherit;
+}
 
-  .card-content h3 {
-    margin: 0;
-    font-size: clamp(12px, 1.5vw, 14px);
-    font-weight: 300;
-    line-height: 1.4;
-  }
+/* IMAGE */
 
-  .accompagnement-card-container:hover .card-image img {
-    transform: scale(1.07);
-  }
+.card-image-mini {
+  position: relative;
+  overflow: hidden;
+}
 
-  .card-image img {
-    transition: transform 0.45s ease;
-  }
+.card-image-mini img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
 
-  @media (max-width: 768px) {
-    .accompagnement-card-container {
-      width: 100%;
-    }
-  }
+.accompagnement-card-horizontal:hover img {
+  transform: scale(1.05);
+}
+
+/* CONTENU */
+
+.card-content-mini {
+  display: flex;
+  align-items: center;
+  padding: 0 1.25rem;
+}
+
+.card-content-mini h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* TAG */
+
+.card-type-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 0.6rem;
+  padding: 3px 8px;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* COLORS */
+
+.card-type-investigation { background: #8ac20a; }
+.card-type-inspiration { background: #ddb800; }
+.card-type-action { background: #08aac2; }
+.card-type-immersion { background: #b577f0; }
+
+.card-type-investigation-trans { background: #8bc20a3f; }
+.card-type-inspiration-trans { background: #ddb8003f; }
+.card-type-action-trans { background: #08aac23f; }
+.card-type-immersion-trans { background: #b577f03f; }
+
 </style>

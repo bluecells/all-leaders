@@ -5,41 +5,40 @@ export const SITE: Site = {
   URL: "https://all-leaders.fr",
   EMAIL: "contact@all-leaders.fr",
   AUTHOR: "All Leaders",
-  PROPERTYID: "155172",
 };
 
 export const HOME: Metadata = {
   TITLE: "All Leaders Initiative",
-  DESCRIPTION: "Bureau du Réel - Le réel prime sur la réputation. L'impact dépasse le spectacle.",
+  METATITLE: "All Leaders Initiative - Bâtir des équipes épanouies et performantes",
+  METADESCRIPTION: "Découvrez comment bâtir des équipes épanouies et performantes grâce à nos conférences et ressources",
 };
+
 
 export const FAQ: Metadata = {
   TITLE: "FAQ",
-  DESCRIPTION: "Les questions/réponses du Bureau du Réel",
+  METATITLE: "FAQ - All Leaders Initiative",
+  METADESCRIPTION: "Les questions/réponses du Bureau du Réel",
 };
 
-export const INTERVENTIONS: Metadata = {
+export const ACCOMPAGNEMENTS: Metadata = {
   TITLE: "Nos interventions",
-  DESCRIPTION: "Découvrez nos interventions et conférences",
-};
-
-export const SPEAKERS: Metadata = {
-  TITLE: "Nos conférenciers",
-  DESCRIPTION: "Découvrez nos conférenciers et experts",
+  METATITLE: "Nos interventions - All Leaders Initiative",
+  METADESCRIPTION: "Découvrez nos interventions et conférences",
 };
 
 export const CONTACT: Metadata = {
   TITLE: "Contact",
-  DESCRIPTION: "Contactez-nous pour organiser une conférence ou obtenir plus d'informations",
+  METATITLE: "Contactez-nous - All Leaders Initiative",
+  METADESCRIPTION: "Contactez-nous pour organiser une conférence ou obtenir plus d'informations",
 };
 
 export const SOCIALS: Socials = [
   { 
-    NAME: "twitter-x",
+    NAME: "instagram",
     HREF: "https://twitter.com/markhorn_dev",
   },
   { 
-    NAME: "github",
+    NAME: "youtube",
     HREF: "https://github.com/markhorn-dev"
   },
   { 

@@ -49,4 +49,4 @@ export const footerTranslations = {
 } as const;
 
 export type Language = keyof typeof footerTranslations;
-export type FooterTranslation = typeof footerTranslations.it;
+export type FooterTranslation = typeof footerTranslations.fr;

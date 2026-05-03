@@ -190,6 +190,9 @@ const accompagnementsCategories = defineCollection({
     description_fr: z.string(),
     description_en: z.string(),
     slug: z.string(),
+    slug_fr: z.string().optional(),
+    slug_en: z.string().optional(),
+    order: z.number().default(0),
   }),
 });
 
