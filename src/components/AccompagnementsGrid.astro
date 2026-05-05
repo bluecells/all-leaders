@@ -40,7 +40,7 @@ const uniqueCategories = Array.from(
 const categories = uniqueCategories.sort((a, b) => {
   const orderA = categoryOrderMap.get(a) ?? 999;
   const orderB = categoryOrderMap.get(b) ?? 999;
-  return orderA - orderB;
+  return orderB - orderA;
 });
 
 // Description catégorie
@@ -102,6 +102,12 @@ function buildAccompagnementUrl(
             <p class="category-description">
               {getCategoryDescription(category)}
             </p>
+            <a href="#" class="back-to-top-link">
+              Revenir au début
+              <svg class="back-to-top-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5v14M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
           </div>
 
           <!-- COLONNE DROITE -->
@@ -121,12 +127,13 @@ function buildAccompagnementUrl(
                         src={item.data.image}
                         alt={item.data.title}
                       />
-                      <span class={`card-type-tag card-type-${item.data.type}`}>
-                        {item.data.type}
-                      </span>
+                      
                     </div>
 
                     <div class={`card-content-mini card-type-${item.data.type}-trans`}>
+                      <span class={`card-type-tag card-type-${item.data.type}`}>
+                        {item.data.type}
+                      </span>
                       <h3 class="font-serif text-limolo-green">
                         {item.data.title}
                       </h3>
@@ -200,6 +207,36 @@ function buildAccompagnementUrl(
   font-size: 1.05rem;
   line-height: 1.6;
   color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.back-to-top-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-brand-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-brand-muted);
+  text-underline-offset: 5px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.back-to-top-link:hover {
+  color: var(--color-brand-accent);
+  text-decoration-color: var(--color-brand-accent);
+}
+
+.back-to-top-arrow {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+}
+
+.back-to-top-link:hover .back-to-top-arrow {
+  transform: translateY(-3px);
 }
 
 /* ===== COLONNE DROITE ===== */
@@ -232,8 +269,9 @@ function buildAccompagnementUrl(
   display: grid;
   grid-template-columns: 200px 1fr;
   height: 110px;
-  text-decoration: none;
+  text-decoration: none !important;
   color: inherit;
+  border: none !important;
 }
 
 /* IMAGE */
@@ -258,28 +296,41 @@ function buildAccompagnementUrl(
 
 .card-content-mini {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   padding: 0 1.25rem;
+  position: relative;
 }
 
 .card-content-mini h3 {
   margin: 0;
-  font-size: 1rem;
+  font-size: .875rem;
   font-weight: 500;
+  font-family: sans-serif;
+  letter-spacing: 0.02em;
   text-align: left;
 }
+
+.accompagnement-card-horizontal a {
+  text-decoration: none !important;
+  border: none !important;
+}
+
 
 /* TAG */
 
 .card-type-tag {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0rem;
+  right: 0rem;
   font-size: 0.6rem;
-  padding: 3px 8px;
+  padding: 4px 8px 2px 8px;
   color: white;
   font-weight: 600;
   text-transform: uppercase;
+  width: 100px;
+  text-align: center;
 }
 
 /* COLORS */
@@ -289,9 +340,22 @@ function buildAccompagnementUrl(
 .card-type-action { background: #08aac2; }
 .card-type-immersion { background: #b577f0; }
 
-.card-type-investigation-trans { background: #8bc20a3f; }
-.card-type-inspiration-trans { background: #ddb8003f; }
-.card-type-action-trans { background: #08aac23f; }
-.card-type-immersion-trans { background: #b577f03f; }
+/* Dégradé radial soyeux : 20% d'opacité en haut à droite -> Blanc pur */
+
+.card-type-investigation-trans { 
+  background: radial-gradient(ellipse at top right, rgba(139, 194, 10, 0.15), #ffffff 75%); 
+}
+
+.card-type-inspiration-trans { 
+  background: radial-gradient(ellipse at top right, rgba(221, 184, 0, 0.15), #ffffff 75%); 
+}
+
+.card-type-action-trans { 
+  background: radial-gradient(ellipse at top right, rgba(8, 170, 194, 0.15), #ffffff 75%); 
+}
+
+.card-type-immersion-trans { 
+  background: radial-gradient(ellipse at top right, rgba(181, 119, 240, 0.15), #ffffff 75%); 
+}
 
 </style>

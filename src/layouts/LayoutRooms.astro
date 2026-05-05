@@ -1,5 +1,6 @@
 ---
 import Layout from './Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import CarouselRooms from '../components/UI/CarouselRooms.astro';
 import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
@@ -84,6 +85,10 @@ const roomData = {
   roomData={roomData}
   alternateUrls={alternateUrls}
 >
+  <Breadcrumb
+    lang={data.lang as 'it' | 'fr' | 'en'}
+    title={data.nameDisplay}
+  />
   <main>
     <!-- Informations et contenu de la chambre -->
     <section class="room-info">

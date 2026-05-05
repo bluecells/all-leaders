@@ -1,6 +1,4 @@
 ---
-import { breadcrumbTranslations } from '@/data/translations';
-
 /**
  * Breadcrumb.astro - Composant de fil d'Ariane intelligent
  *
@@ -25,40 +23,38 @@ import { breadcrumbTranslations } from '@/data/translations';
 
 interface Props {
   /** Items manuels du fil d'Ariane. Si fournis, la détection automatique est désactivée */
-  items?: Array<{ label: string; href: string }>
+  items?: Array<{ label: string; href: string }>;
   /** Nom de la catégorie. Override la catégorie extraite de l'URL */
-  category?: string
+  category?: string;
   /** Titre de la page. Override le titre extrait de l'URL */
-  title?: string
-  /** Langue pour le fil d'Ariane */
-  lang?: 'it' | 'fr' | 'en'
+  title?: string;
 }
 
-const { items = [], category, title, lang = 'it' } = Astro.props
-const t = breadcrumbTranslations[lang] || breadcrumbTranslations.it
+const { items = [], category, title } = Astro.props;
 
-let breadcrumbItems: Array<{ label: string; href: string }> = []
+let breadcrumbItems: Array<{ label: string; href: string }> = [];
 
 /**
  * PRIORITÉ 1 : Utiliser les items manuels si fournis
  * Permet un contrôle total sur le fil d'Ariane
  */
 if (items.length > 0) {
-  breadcrumbItems = items
+  breadcrumbItems = items;
 } else {
   /**
    * PRIORITÉ 2 : Génération automatique basée sur l'URL
    */
   // Récupérer le chemin de l'URL actuelle (ex: /faq/categorie/article)
-  const currentPath = Astro.url.pathname
+  const currentPath = Astro.url.pathname;
 
   // Découper le chemin en segments et retirer les segments vides
   // Ex: "/faq/categorie/article" → ["faq", "categorie", "article"]
-  const pathSegments = currentPath.split("/").filter((segment) => segment)
+  const pathSegments = currentPath.split('/').filter((segment) => segment);
 
   // Détecter le type de contenu en analysant les segments du path
-  const isFAQ = pathSegments.includes("faq")
-  const isEventi = pathSegments.includes("eventi")
+  const isFAQ = pathSegments.includes('faq');
+  const isEventi = pathSegments.includes('eventi');
+  const isAccompagnements = pathSegments.includes('accompagnements');
 
   /**
    * CAS 1 : FAQ avec catégorie
@@ -67,12 +63,12 @@ if (items.length > 0) {
    */
   if (isFAQ && pathSegments.length >= 2) {
     // Identifier le dossier faq
-    const folderName = "faq"
-    const folderLabel = t.faq
+    const folderName = 'faq';
+    const folderLabel = 'FAQ';
 
     // Extraire la catégorie depuis l'URL (2ème segment - répertoire)
     // Ex: /faq/categorie/article → "categorie"
-    const categoryFromPath = pathSegments[1]
+    const categoryFromPath = pathSegments[1];
 
     // Formater la catégorie : utiliser la prop si fournie, sinon formatter depuis l'URL
     // Si category prop existe (ex: "Canto Sardo"), l'utiliser
@@ -80,60 +76,95 @@ if (items.length > 0) {
     const categoryLabel =
       category ||
       categoryFromPath
-        .split("-")
+        .split('-')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ")
+        .join(' ');
 
     // Créer le slug de la catégorie pour l'URL
     // Si category prop existe (ex: "Canto Sardo"), le slugifier → "canto-sardo"
     // Sinon, utiliser le segment de l'URL en minuscules
     const categorySlug = category
-      ? category.toLowerCase().replace(/\s+/g, "-")
-      : categoryFromPath.toLowerCase()
+      ? category.toLowerCase().replace(/\s+/g, '-')
+      : categoryFromPath.toLowerCase();
 
     // Extraire le titre depuis l'URL (dernier segment)
     // Ex: /faq/categorie/question-slug → "question-slug"
-    const titleFromPath = pathSegments[pathSegments.length - 1]
+    const titleFromPath = pathSegments[pathSegments.length - 1];
 
     // Formater le titre : utiliser la prop si fournie, sinon formatter depuis l'URL
     // "il-canto-sardo" → "Il Canto Sardo"
     const titleLabel =
       title ||
       titleFromPath
-        .split("-")
+        .split('-')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ")
+        .join(' ');
 
     // Construire le fil d'Ariane à 4 niveaux
     breadcrumbItems = [
-      { label: t.home, href: "/" },
+      { label: 'Accueil', href: '/' },
       { label: folderLabel, href: `/${folderName}` },
       { label: categoryLabel, href: `/${folderName}/${categorySlug}` },
-      { label: titleLabel, href: "" }, // Pas de href pour la page actuelle
-    ]
+      { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
+    ];
+  } else if (isAccompagnements && pathSegments.length >= 2) {
+    /**
+     * CAS 2 : Accompagnements avec catégorie
+     * Structure attendue : /accompagnements/categorie-slug/titre-slug
+     * Résultat : Home / Accompagnements / Catégorie (ancre) / Titre
+     */
+    // Extraire la catégorie depuis l'URL (2ème segment)
+    const categoryFromPath = pathSegments[1];
+
+    // Formater la catégorie : utiliser la prop si fournie, sinon formatter depuis l'URL
+    const categoryLabel =
+      category ||
+      categoryFromPath
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+    // Extraire le titre depuis l'URL (dernier segment)
+    const titleFromPath = pathSegments[pathSegments.length - 1];
+
+    // Formater le titre : utiliser la prop si fournie, sinon formatter depuis l'URL
+    const titleLabel =
+      title ||
+      titleFromPath
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+    // Construire le fil d'Ariane à 4 niveaux avec ancre pour la catégorie
+    breadcrumbItems = [
+      { label: 'Accueil', href: '/' },
+      { label: 'Accompagnements', href: '/accompagnements' },
+      { label: categoryLabel, href: `/accompagnements#category-${categoryFromPath}` },
+      { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
+    ];
   } else if (isEventi && pathSegments.length >= 2) {
     /**
-     * CAS 2 : Eventi sans catégorie
+     * CAS 3 : Eventi sans catégorie
      * Structure attendue : /eventi/nom-event
      * Résultat : Home / Eventi / Titre
      */
     // Extraire le titre depuis l'URL (dernier segment)
-    const titleFromPath = pathSegments[pathSegments.length - 1]
+    const titleFromPath = pathSegments[pathSegments.length - 1];
 
     // Formater le titre
     const titleLabel =
       title ||
       titleFromPath
-        .split("-")
+        .split('-')
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ")
+        .join(' ');
 
     // Construire le fil d'Ariane à 3 niveaux
     breadcrumbItems = [
-      { label: t.home, href: "/" },
-      { label: t.faq, href: "/faq" },
-      { label: titleLabel, href: "" },
-    ]
+      { label: 'Accueil', href: '/' },
+      { label: 'FAQ', href: '/faq' },
+      { label: titleLabel, href: '' },
+    ];
   } else {
     /**
      * CAS 3 : Pages normales
@@ -141,23 +172,31 @@ if (items.length > 0) {
      * Résultat : Home / Segment1 / Segment2 / ...
      */
     breadcrumbItems = [
-      { label: t.home, href: "/" },
+      { label: 'Accueil', href: '/' },
       // Pour chaque segment, construire un élément du fil d'Ariane
       ...pathSegments.map((segment, index) => {
         // Construire le href cumulatif
         // Ex: index=0 → '/chi-siamo', index=1 → '/chi-siamo/team'
-        const href = "/" + pathSegments.slice(0, index + 1).join("/")
+        let href = '/' + pathSegments.slice(0, index + 1).join('/');
+
+        // Redirectionner les liens vers /expertises et /types-interventions
+        // vers les pages canoniques (qui acceptent les slugs)
+        if (segment === 'expertises' && index === 0) {
+          href = '/speakers/conferenciers-expertises';
+        } else if (segment === 'types-interventions' && index === 0) {
+          href = '/speakers/conferenciers-types-interventions';
+        }
 
         // Formater le label : capitaliser chaque mot
         // "chi-siamo" → "Chi Siamo"
         const label = segment
-          .split("-")
+          .split('-')
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(" ")
+          .join(' ');
 
-        return { label, href }
+        return { label, href };
       }),
-    ]
+    ];
   }
 }
 ---
@@ -166,38 +205,91 @@ if (items.length > 0) {
   Navigation Breadcrumb accessible avec aria-label
   Structure sémantique <nav> > <ol> > <li>
 -->
-<nav aria-label="Fil d'Ariane" class="mx-auto max-w-7xl py-1 w-full">
-  <ol class="flex flex-wrap items-center gap-x-2 text-xs">
+<nav aria-label="Fil d'Ariane" class="breadcrumb-nav">
+  <ol class="breadcrumb-list">
     {
       breadcrumbItems.map((item, index) => {
         // Vérifier si c'est le dernier élément (page actuelle)
-        const isLast = index === breadcrumbItems.length - 1
+        const isLast = index === breadcrumbItems.length - 1;
 
         return (
-          <li class="flex items-center gap-2">
+          <li class="breadcrumb-item">
             {/* Liens cliquables pour tous les éléments sauf le dernier */}
             {!isLast && item.href ? (
               <>
-                <a
-                  href={item.href}
-                  class="text-indigo-600 hover:text-indigo-300 hover:underline transition-colors duration-200"
-                >
+                <a href={item.href} class="breadcrumb-link">
                   {item.label}
                 </a>
                 {/* Séparateur visuel entre les éléments */}
-                <span class="text-slate-400 select-none" aria-hidden="true">
+                <span class="breadcrumb-separator" aria-hidden="true">
                   /
                 </span>
               </>
             ) : (
               /* Dernier élément : texte non cliquable avec aria-current pour l'accessibilité */
-              <span aria-current={isLast ? "page" : undefined} class="text-indigo-400 font-medium">
+              <span aria-current={isLast ? 'page' : undefined} class="breadcrumb-current">
                 {item.label}
               </span>
             )}
           </li>
-        )
+        );
       })
     }
   </ol>
 </nav>
+
+<style>
+  .breadcrumb-nav {
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    width: 100%;
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li.breadcrumb-item {
+    border-top: 0;
+    padding: 0 10px 0 0;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .breadcrumb-link {
+    color: var(--color-brand-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--color-brand-secondary);
+  }
+
+  .breadcrumb-separator {
+    user-select: none;
+  }
+
+  @media (max-width: 640px) {
+    .breadcrumb-nav {
+      padding: 0.5rem 0.75rem;
+    }
+
+    .breadcrumb-list {
+      font-size: 0.625rem;
+      gap: 0.25rem;
+    }
+  }
+</style>

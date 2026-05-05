@@ -1,5 +1,6 @@
 ---
 import Layout from './Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { AlternateUrls } from '@/utils/hreflang';
@@ -27,6 +28,11 @@ const pageTitle = data.question;
   jsonType={data.jsonType || 'faq'}
   alternateUrls={alternateUrls}
 >
+  <Breadcrumb
+    lang={data.lang as 'it' | 'fr' | 'en'}
+    category={data.category}
+    title={data.question}
+  />
   <main class="faq-page">
     <article class="faq-container">
       <header class="faq-header">

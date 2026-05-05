@@ -13,7 +13,7 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
   function animateHero() {
     const heroTitle = document.querySelector('.hero-title');
     const heroQuoteWrapper = document.querySelector('.hero-quote-wrapper');
-    const heroQuestion = document.querySelector('.hero-question'); 
+    const heroQuestion = document.querySelector('.hero-question');
     const questionWord = document.querySelector('.question-word');
 
     // Sécurité : on s'assure que les éléments existent
@@ -23,50 +23,66 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
 
     // 1. ÉTAT INITIAL FORCÉ
     // On cache tout et on place le titre au centre exact via yPercent
-    tl.set([heroTitle, heroQuoteWrapper, heroQuestion], { 
-      autoAlpha: 0 
+    tl.set([heroTitle, heroQuoteWrapper, heroQuestion], {
+      autoAlpha: 0,
     });
-    tl.set(heroTitle, { 
-      top: "50%", 
-      yPercent: -50, 
+    tl.set(heroTitle, {
+      top: '50%',
+      yPercent: -60,
     });
-    tl.set(questionWord, { transformOrigin: "left center" });
+    tl.set(questionWord, { transformOrigin: 'left center' });
 
     // 2. APPARITIONS
-    tl.to(heroQuoteWrapper, { 
-      autoAlpha: 1, 
-      duration: 2.5, 
-      ease: 'power2.inOut' 
+    tl.to(heroQuoteWrapper, {
+      autoAlpha: 1,
+      duration: 2.5,
+      yPercent: -40, // Centre verticalement
+      ease: 'power2.inOut',
     })
-    .to(heroQuestion, { 
-      autoAlpha: 1, 
-      duration: 0.8 
-    }, ">-0.5") // Commence un peu avant la fin
-    .to(questionWord, { 
-      rotation: 15, 
-      duration: 0.5, 
-      x: 8,
-      ease: 'back.out(2)' 
-    }, "+=1");
+      .to(
+        heroQuestion,
+        {
+          autoAlpha: 1,
+          duration: 0.8,
+        },
+        '>-0.5'
+      ) // Commence un peu avant la fin
+      .to(
+        questionWord,
+        {
+          rotation: 15,
+          duration: 0.5,
+          x: 8,
+          ease: 'back.out(2)',
+        },
+        '+=1'
+      );
 
     // 3. LE MOUVEMENT FINAL
     // On descend la citation
-    tl.to(heroQuoteWrapper, {
-      y: "20vh", 
-      autoAlpha: 0, 
-      duration: 1.2,
-      ease: 'power2.inOut'
-    }, ">");
+    tl.to(
+      heroQuoteWrapper,
+      {
+        y: '20vh',
+        autoAlpha: 0,
+        duration: 1.2,
+        ease: 'power2.inOut',
+      },
+      '>'
+    );
 
     // 4. On fait apparaître le titre en le faisant remonter légèrement
-    tl.to(heroTitle, {
-      autoAlpha: 1,
-      yPercent: -80, // Remonte de -50% (centre) à -80% pour libérer de l'espace
-      x: 0, // Reste centré horizontalement
-      duration: 1,
-      ease: 'power2.out'
-    }, "-=0.8");
-
+    tl.to(
+      heroTitle,
+      {
+        autoAlpha: 1,
+        yPercent: -80, // Remonte de -50% (centre) à -80% pour libérer de l'espace
+        x: 0, // Reste centré horizontalement
+        duration: 1,
+        ease: 'power2.out',
+      },
+      '-=0.8'
+    );
   }
 
   // Lancement propre
@@ -74,72 +90,81 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
 </script>
 
 <Layout
-  title="All Leaders - Tourisme Responsable"
+  title="All Leaders Initiative — Leadership basé sur l'intention pour dirigeants et équipes managériales"
   lang="fr"
   metaTitle="All Leaders Initiative — Conseil en Leadership et Performance Collective"
   metaDescription="All Leaders Initiative accompagne les équipes managériales, comités de direction et dirigeants pour dépasser les blocages collectifs et développer un leadership basé sur l'intention."
 >
   <div class="mx-auto px-4 py-12 hero-section">
-
     <!-- Hero Title - Animé après -->
-    <h1 class="hero-title" style="opacity: 0;">All Leaders Initiative <span style="display: block; font-size: 2.25rem; color: var(--color-brand-darker);">Conseil en performance collective pour dirigeants et équipes managériales</span></h1>
+    <div class="hero-title">
+      <img class="w-full h-50 text-center" src="/images/pages/logo-all-leaders-rond-fonce.svg" />
+      <h1 class="mb-0! pb-0! text-6xl! font-sans uppercase" style="opacity: 0;">
+        All Le<span style="color: var(--color-brand-secondary);">a</span>ders <span
+          style="font-weight: 300;">Initiative</span
+        >
+      </h1>
+      <h2 class="mt-4! pb-0! text-3xl! leading-9!">
+        Conseil en performance collective pour dirigeants et équipes managériales.
+      </h2>
+    </div>
 
     <!-- Hero Quote - Centre au début, puis slide vers le bas -->
     <div class="hero-quote-wrapper">
-      <p class="hero-quote pb-0! max-w-5xl mx-auto" >
-        <q>&nbsp;Toutes les équipes performantes se ressemblent.<br>
-        Mais chaque équipe dysfonctionnelle l'est à sa façon.&nbsp;</q>
+      <p class="hero-quote pb-0! max-w-5xl mx-auto">
+        <q
+          >&nbsp;Toutes les équipes performantes se ressemblent.<br />
+          Mais chaque équipe dysfonctionnelle l'est à sa façon.&nbsp;</q
+        >
       </p>
 
       <p class="hero-quote hero-question text-6xl! not-italic! pt-10!">
-        <span class="question-dash">&mdash; Et </span><span class="question-word">la vôtre&nbsp;?</span>
+        <span class="question-dash">&mdash; Et </span><span class="question-word"
+          >la vôtre&nbsp;?</span
+        >
       </p>
     </div>
   </div>
 
-    
-<div class="max-w-3xl mx-auto text-center" style="height:60vh;" >
+  <div class="max-w-3xl mx-auto text-center" style="height:60vh;">
     <h2 id="h2-pourquoi">
       Dépasser les <strong>barrières invisibles</strong> de votre équipe
     </h2>
     <p>
-      Vous sentez qu'il serait possible de <strong>mieux collaborer</strong>, de retrouver du <strong>sens</strong>,
-      de <strong>fluidifier les relations</strong>… mais quelque chose bloque.
-      Des habitudes ancrées, des non-dits, un manque de clarté.
-      <strong>Ces frontières invisibles freinent votre épanouissement et la dynamique collective.</strong>
+      Vous sentez qu'il serait possible de <strong>mieux collaborer</strong>, de retrouver du <strong
+        >sens</strong
+      >, de <strong>fluidifier les relations</strong>… mais quelque chose bloque. Des habitudes
+      ancrées, des non-dits, un manque de clarté.
+      <strong
+        >Ces frontières invisibles freinent votre épanouissement et la dynamique collective.</strong
+      >
     </p>
 
     <nav aria-label="Navigation principale">
       <a href="/contact" class="mt-8 btn btn-secondary">Il est temps <strong>d'agir</strong></a>
     </nav>
-    </div>
-
   </div>
 
-
   <main>
-
     <!-- ==========================================
          SECTION 1 — Pourquoi All Leaders Initiative
     =========================================== -->
     <section id="notre-approche" aria-labelledby="h2-pourquoi">
       <div class="container h-[50dvh]">
-
         <h2 id="h2-fondateurs" class="text-center! mt-8">
-          <strong>Deux fondateurs</strong>, une vision commune du <strong>leadership basé sur l'intention</strong>
+          <strong>Deux fondateurs</strong>, une vision commune du <strong
+            >leadership basé sur l'intention</strong
+          >
         </h2>
 
-        
         <p class="text-center">
-          Nous avons créé All Leaders Initiative pour vous permettre de questionner ce qui ne fonctionne
-          plus, oser de nouvelles façons d'agir et vous affranchir de ces barrières invisibles.
-          Pour réussir, ensemble.
+          Nous avons créé All Leaders Initiative pour vous permettre de questionner ce qui ne
+          fonctionne plus, oser de nouvelles façons d'agir et vous affranchir de ces barrières
+          invisibles. <strong>Pour réussir, ensemble</strong>.
         </p>
-
       </div>
 
       <div class="container h-[80dvh]">
-
         <div class="values-section">
           {/* Images latérales en desktop */}
           <div class="values-image-left hidden md:flex">
@@ -152,22 +177,40 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
             <p class="mb-4" itemprop="jobTitle">Associée fondatrice</p>
             <ul class="contact-list">
               <li>
-                <a href="mailto:me@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Marie Emmanuelle Py">
+                <a
+                  href="mailto:me@all-leaders.fr"
+                  itemprop="email"
+                  aria-label="Envoyer un email à Marie Emmanuelle Py"
+                >
                   me@all-leaders.fr
                 </a>
               </li>
               <li>
-                <a href="tel:+33603555452" itemprop="telephone" aria-label="Appeler Marie Emmanuelle Py">
+                <a
+                  href="tel:+33603555452"
+                  itemprop="telephone"
+                  aria-label="Appeler Marie Emmanuelle Py"
+                >
                   +33 6 03 55 54 52
                 </a>
               </li>
               <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Marie Emmanuelle Py">
+                <a
+                  href="#"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  aria-label="Profil LinkedIn de Marie Emmanuelle Py"
+                >
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil complet de Marie Emmanuelle Py">
+                <a
+                  href="#"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  aria-label="Profil complet de Marie Emmanuelle Py"
+                >
                   Profil complet
                 </a>
               </li>
@@ -175,12 +218,11 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
           </div>
 
           <div class="values-grid" role="list">
-
             <article role="listitem">
               <h3 class="font-semibold text-2xl pt-4">Nous aimons l'entreprise</h3>
               <p class="text-center">
-                Nous y avons grandi et en avons tiré beaucoup de fierté. Nous savons qu'elle doit offrir
-                un cadre qui favorise la responsabilité, la solidarité et l'initiative.
+                Nous y avons grandi et en avons tiré beaucoup de fierté. Nous savons qu'elle doit
+                offrir un cadre qui favorise la responsabilité, la solidarité et l'initiative.
               </p>
             </article>
 
@@ -191,13 +233,13 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
                 devenir leader et choisir consciemment d'influencer positivement son environnement.
               </p>
               <p class="text-center">
-                Nos parcours de marins, dans la sécurité nucléaire et une grande diversité de cultures
-                managériales nous ont appris à voir les organisations comme des équipages&nbsp;: des
-                collectifs qui gagnent en cultivant courage, cohésion, alignement et sens.
-                C'est dans cet esprit que nous vous accompagnons, avec la discipline des marins
-                et l'audace des aventuriers.
+                Nos parcours de marins, dans la sécurité nucléaire et une grande diversité de
+                cultures managériales nous ont appris à voir les organisations comme des
+                équipages&nbsp;: des collectifs qui gagnent en cultivant courage, cohésion,
+                alignement et sens. C'est dans cet esprit que nous vous accompagnons, avec la
+                discipline des marins et l'audace des aventuriers.
               </p>
-              <p class="text-center mt-4 text-5xl! font-serif">Cap&nbsp;?</p>              
+              <p class="text-center mt-4 text-5xl! font-serif">Cap&nbsp;?</p>
             </article>
           </div>
 
@@ -211,22 +253,40 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
             <p class="mb-4" itemprop="jobTitle">Associé fondateur</p>
             <ul class="contact-list">
               <li>
-                <a href="mailto:pe@all-leaders.fr" itemprop="email" aria-label="Envoyer un email à Pierre-Etienne Bost">
+                <a
+                  href="mailto:pe@all-leaders.fr"
+                  itemprop="email"
+                  aria-label="Envoyer un email à Pierre-Etienne Bost"
+                >
                   pe@all-leaders.fr
                 </a>
               </li>
               <li>
-                <a href="tel:+33685540511" itemprop="telephone" aria-label="Appeler Pierre-Etienne Bost">
+                <a
+                  href="tel:+33685540511"
+                  itemprop="telephone"
+                  aria-label="Appeler Pierre-Etienne Bost"
+                >
                   +33 6 85 54 05 11
                 </a>
               </li>
               <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil LinkedIn de Pierre-Etienne Bost">
+                <a
+                  href="#"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  aria-label="Profil LinkedIn de Pierre-Etienne Bost"
+                >
                   LinkedIn
                 </a>
               </li>
               <li>
-                <a href="#" rel="noopener noreferrer" target="_blank" aria-label="Profil complet de Pierre-Etienne Bost">
+                <a
+                  href="#"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  aria-label="Profil complet de Pierre-Etienne Bost"
+                >
                   Profil complet
                 </a>
               </li>
@@ -255,9 +315,9 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
     =========================================== -->
     <section id="offre" aria-labelledby="h2-offre">
       <div class="container">
-
         <h2 id="h2-offre" class="pb-0!">
-          Conseil en <strong>performance collective</strong>&nbsp;: du diagnostic à la transformation
+          Conseil en <strong>performance collective</strong>&nbsp;: du diagnostic à la
+          transformation
         </h2>
 
         <h3 class="mb-0 mt-0 texte-gradient">
@@ -266,179 +326,229 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
 
         <ContinuumGrid />
 
-         <p class="text-center mt-0">
-          Nous accompagnons les équipes managériales, comités de direction et dirigeants pour dépasser les
-          blocages collectifs et développer un leadership basé sur l'intention.
+        <p class="text-center mt-0">
+          Nous accompagnons les équipes managériales, comités de direction et dirigeants pour
+          dépasser les blocages collectifs et développer un leadership basé sur l'intention.
 
-        <Grid textColor="var(--color-text-primary)"
-          items={[
-            {
-              title: 'Bien-être mental fondamental à récréer',
-              media: '/images/pages/marque-de-danger-isole.webp',
-              description: 'Analyse approfondie de la dynamique d’équipe, identification des blocages et des leviers de performance.',
-            },
-            {
-              title: 'Amplifier les points forts et réguler les vecteurs de vulnérabilité',
-              media: '/images/pages/balise-speciale.webp',
-              description: 'Ateliers collaboratifs pour définir une feuille de route claire et alignée avec les objectifs stratégiques.',
-            },
-            {
-              title: 'Déployer le leadership à tout niveau (leadership basé sur l’intention)',
-              media: '/images/pages/bouee-eaux-saines.webp',
-              description: 'Accompagnement personnalisé pour mener à bien les transformations organisationnelles, en soutenant les équipes dans leur évolution.',
-            }
-          ]}
-        />
-<div class="h-[80vh] flex flex-col items-center justify-center">
-        <h3>Nous avons accompagné de nombreuses équipes managériales, comités de direction et dirigeants exigeants actifs chez&nbsp;</h3>
-        <Carousel speed="5000"
-          images={[
-            { image: '/images/pages/homeserve.png', alt: 'HomeServe' },
-            { image: '/images/pages/edf.png', alt: 'EDF' },
-            { image: '/images/pages/vinci.png', alt: 'Vinci Construction' },
-            { image: '/images/pages/opinionway.png', alt: 'OpinionWay' },
-            { image: '/images/pages/orange.png', alt: 'Orange' },
-          ]}
-        />
-        </div>
+          <Grid
+            textColor="var(--color-text-primary)"
+            items={[
+              {
+                title: 'Bien-être mental fondamental à récréer',
+                media: '/images/pages/marque-de-danger-isole.webp',
+                description:
+                  'Analyse approfondie de la dynamique d’équipe, identification des blocages et des leviers de performance.',
+              },
+              {
+                title: 'Amplifier les points forts et réguler les vecteurs de vulnérabilité',
+                media: '/images/pages/balise-speciale.webp',
+                description:
+                  'Ateliers collaboratifs pour définir une feuille de route claire et alignée avec les objectifs stratégiques.',
+              },
+              {
+                title: 'Déployer le leadership à tout niveau (leadership basé sur l’intention)',
+                media: '/images/pages/bouee-eaux-saines.webp',
+                description:
+                  'Accompagnement personnalisé pour mener à bien les transformations organisationnelles, en soutenant les équipes dans leur évolution.',
+              },
+            ]}
+          />
+          <div class="h-[60vh] flex flex-col items-center justify-center">
+            <h3>
+              Nous avons accompagné de nombreuses équipes managériales, comités de direction et
+              dirigeants exigeants actifs chez&nbsp;
+            </h3>
+            <Carousel
+              speed="5000"
+              images={[
+                { image: '/images/pages/homeserve.png', alt: 'HomeServe' },
+                { image: '/images/pages/edf.png', alt: 'EDF' },
+                { image: '/images/pages/vinci.png', alt: 'Vinci Construction' },
+                { image: '/images/pages/opinionway.png', alt: 'OpinionWay' },
+                { image: '/images/pages/orange.png', alt: 'Orange' },
+              ]}
+            />
+          </div>
 
-        <CompassLinks />
-
-        <!-- Placeholder pour les modules/offres détaillées -->
-        <div id="offre-modules" aria-label="Nos modules d'intervention">
-          <!-- Insérer ici les cards d'offres -->
-        </div>
-
+          <!-- Placeholder pour les modules/offres détaillées -->
+          <div id="offre-modules" aria-label="Nos modules d'intervention">
+            <!-- Insérer ici les cards d'offres -->
+          </div>
+        </p>
       </div>
-    </section>
 
-    <!-- ==========================================
+      <CompassLinks />
+
+      <!-- ==========================================
          SECTION 3 — Partenaires & Écosystème
     =========================================== -->
-    <section id="ecosysteme" aria-labelledby="h2-ecosysteme">
-      <div class="container mx-auto">
+      <section id="ecosysteme" aria-labelledby="h2-ecosysteme">
+        <div class="container mx-auto">
+          <h2 id="h2-ecosysteme" class="text-center! mt-8">
+            Un écosystème de partenaires experts en leadership et cohésion d'équipe
+          </h2>
 
-        <h2 id="h2-ecosysteme" class="text-center! mt-8">
-          Un écosystème de partenaires experts en leadership et cohésion d'équipe
-        </h2>
+          <p class="text-center! mt-4">
+            Découvrez ceux qui naviguent avec vous et incarnent <strong>le leadership</strong> que nous
+            développons.
+          </p>
 
-        <p class="text-center! mt-4">
-          Découvrez ceux qui naviguent avec vous et incarnent <strong>le leadership</strong> que nous développons.
-        </p>
+          <ul class="partners-list max-w-4xl mx-auto px-4" role="list">
+            <li>
+              <article class="partner-article" role="listitem">
+                <img
+                  src="/images/pages/logo-bureau-du-reel.webp"
+                  alt="Logo du Bureau du Réel"
+                  class="partner-logo"
+                />
+                <div class="partner-content">
+                  <h3>Le Bureau du Réel</h3>
+                  <p>
+                    All Leaders Initiative est partie prenante du Bureau du Réel, un réseau
+                    d'intervenants pour des formats de conférences disruptifs et centrés sur
+                    l'expérience vécue.
+                  </p>
+                  <a
+                    href="https://www.bureaudureel.fr/"
+                    aria-label="En savoir plus sur le Bureau du Réel"
+                    >Découvrir des conférenciers disruptifs</a
+                  >
+                </div>
+              </article>
+            </li>
 
-        <ul class="partners-list max-w-4xl mx-auto px-4" role="list">
+            <li>
+              <article class="partner-article" role="listitem">
+                <img
+                  src="/images/pages/logo-da-crew.webp"
+                  alt="Logo de Da CREW"
+                  class="partner-logo"
+                />
+                <div class="partner-content">
+                  <h3>Da CREW — Mission One</h3>
+                  <p>
+                    Simulation en réalité virtuelle&nbsp;: application concrète du Leadership basé
+                    sur l'intention, faisant collaborer à « haute intensité » un équipage
+                    d'hélicoptère et un équipage de sous-marin. Cette mission révèle les failles de
+                    communication et de collaboration, et permet d'expérimenter et d'ancrer de
+                    nouveaux comportements ajustés.
+                  </p>
+                  <a href="https://da-crew.org" aria-label="En savoir plus sur Da CREW Mission One"
+                    >De l'équipe à l'équipage : simulation en VR</a
+                  >
+                </div>
+              </article>
+            </li>
 
-          <li>
-            <article class="partner-article" role="listitem">
-              <img src="/images/pages/logo-bureau-du-reel.webp" alt="Logo du Bureau du Réel" class="partner-logo" />
-              <div class="partner-content">
-                <h3>Le Bureau du Réel</h3>
-                <p>
-                  All Leaders Initiative est partie prenante du Bureau du Réel, un réseau d'intervenants
-                  pour des formats de conférences disruptifs et centrés sur l'expérience vécue.
-                </p>
-                <a href="https://www.bureaudureel.fr/" aria-label="En savoir plus sur le Bureau du Réel">Découvrir des conférenciers disruptifs</a>
-              </div>
-            </article>
-          </li>
+            <li>
+              <article class="partner-article" role="listitem">
+                <img
+                  src="/images/pages/logo-your-safety-training.webp"
+                  alt="Logo de YourSafety.training"
+                  class="partner-logo"
+                />
+                <div class="partner-content">
+                  <h3>YourSafety.training — Gestion des conflits</h3>
+                  <p>
+                    Parce qu'on ne peut parler de relations sans parler de conflits, d'agressivité
+                    voire de violence, nous avons intégré à notre expertise la gestion
+                    professionnelle des conflits avec notre partenaire <b>Jérôme Bouteiller</b>.
+                  </p>
+                  <a
+                    href="https://yoursafety.training"
+                    aria-label="En savoir plus sur YourSafety.training"
+                    >Restaurer ou préserver la relation en cas de conflit</a
+                  >
+                </div>
+              </article>
+            </li>
 
-          <li>
-            <article class="partner-article" role="listitem">
-              <img src="/images/pages/logo-da-crew.webp" alt="Logo de Da CREW" class="partner-logo" />
-              <div class="partner-content">
-                <h3>Da CREW — Mission One</h3>
-                <p>
-                  Simulation en réalité virtuelle&nbsp;: application concrète du Leadership basé sur
-                  l'intention, faisant collaborer à « haute intensité » un équipage d'hélicoptère et un
-                  équipage de sous-marin. Cette mission révèle les failles de communication et de
-                  collaboration, et permet d'expérimenter et d'ancrer de nouveaux comportements ajustés.
-                </p>
-                <a href="https://da-crew.org" aria-label="En savoir plus sur Da CREW Mission One">De l'équipe à l'équipage : simulation en VR</a>
-              </div>
-            </article>
-          </li>
+            <li>
+              <article class="partner-article" role="listitem">
+                <img
+                  src="/images/pages/logo-synergie-et-co.png"
+                  alt="Logo de Synergies & Co"
+                  class="partner-logo"
+                />
+                <div class="partner-content">
+                  <h3>Synergies &amp; Co — Excellence opérationnelle</h3>
+                  <p>
+                    Parce que la performance dépend de l'adoption des bonnes postures, nous nous
+                    associons à l'ancien dirigeant et militaire d'élite <b>Olivier Crosetta</b> et son
+                    cabinet Synergies &amp; Co pour décliner l'excellence opérationnelle à tous niveaux.
+                  </p>
+                  <a
+                    href="https://www.synergiesandco.com/"
+                    aria-label="En savoir plus sur Synergies et Co"
+                    >Du terrain militaire au board : la performance naît des gens.</a
+                  >
+                </div>
+              </article>
+            </li>
 
-          <li>
-            <article class="partner-article" role="listitem">
-              <img src="/images/pages/logo-your-safety-training.webp" alt="Logo de YourSafety.training" class="partner-logo" />
-              <div class="partner-content">
-                <h3>YourSafety.training — Gestion des conflits</h3>
-                <p>
-                  Parce qu'on ne peut parler de relations sans parler de conflits, d'agressivité voire
-                  de violence, nous avons intégré à notre expertise la gestion professionnelle des conflits avec notre partenaire <b>Jérôme Bouteiller</b>.
-                </p>
-                <a href="https://yoursafety.training" aria-label="En savoir plus sur YourSafety.training">Restaurer ou préserver la relation en cas de conflit</a>
-              </div>
-            </article>
-          </li>
+            <li>
+              <article class="partner-article" role="listitem">
+                <img
+                  src="/images/pages/logo-pragmacie.svg"
+                  alt="Logo de Pragmacie"
+                  class="partner-logo"
+                />
+                <div class="partner-content">
+                  <h3>Pragmacie — Cartographie des talents CliftonStrengths</h3>
+                  <p>
+                    Parce qu'on ne peut parler de leadership sans alignement profond avec ses
+                    talents naturels, nous avons intégré à notre expertise la cartographie des
+                    points forts avec notre partenaire Pragmacie, certifié Gallup CliftonStrengths
+                    (ex StrengthsFinder).
+                  </p>
+                  <a href="https://www.pragmacie.com/" aria-label="En savoir plus sur Pragmacie"
+                    >Gallup CliftonStrengths, sans le PDF</a
+                  >
+                </div>
+              </article>
+            </li>
 
-          <li>
-            <article class="partner-article" role="listitem">
-              <img src="/images/pages/logo-synergie-et-co.png" alt="Logo de Synergies & Co" class="partner-logo" />
-              <div class="partner-content">
-                <h3>Synergies &amp; Co — Excellence opérationnelle</h3>
-                <p>
-                  Parce que la performance dépend de l'adoption des bonnes postures, nous nous associons
-                  à l'ancien dirigeant et militaire d'élite <b>Olivier Crosetta</b> et son cabinet Synergies &amp; Co
-                  pour décliner l'excellence opérationnelle à tous niveaux.
-                </p>
-                <a href="https://www.synergiesandco.com/" aria-label="En savoir plus sur Synergies et Co">Du terrain militaire au board : la performance naît des gens.</a>
-              </div>
-            </article>
-          </li>
+            <li>
+              <article class="partner-article" role="listitem">
+                <img
+                  src="/images/pages/logo-enablers-network.webp"
+                  alt="Logo d'Enablers"
+                  class="partner-logo"
+                />
+                <div class="partner-content">
+                  <h3>Enablers — Accompagnement international</h3>
+                  <p>
+                    Pour accompagner vos défis organisationnels les plus complexes et à
+                    l'international, nous sommes connectés à une communauté internationale et
+                    multiculturelle de professionnels chevronnés.
+                  </p>
+                  <a href="https://enablersnetwork.com/" aria-label="En savoir plus sur Enablers"
+                    >Quand la disruption arrive — et elle arrive — ils sont déjà là.</a
+                  >
+                </div>
+              </article>
+            </li>
 
-          <li>
-            <article class="partner-article" role="listitem">
-              <img src="/images/pages/logo-pragmacie.svg" alt="Logo de Pragmacie" class="partner-logo" />
-              <div class="partner-content">
-                <h3>Pragmacie — Cartographie des talents CliftonStrengths</h3>
-                <p>
-                  Parce qu'on ne peut parler de leadership sans alignement profond avec ses talents
-                  naturels, nous avons intégré à notre expertise la cartographie des points forts avec
-                  notre partenaire Pragmacie, certifié Gallup CliftonStrengths (ex StrengthsFinder).
-                </p>
-                <a href="https://www.pragmacie.com/" aria-label="En savoir plus sur Pragmacie">Gallup CliftonStrengths, sans le PDF</a>
-              </div>
-            </article>
-          </li>
-
-          <li>
-            <article class="partner-article" role="listitem">
-              <img src="/images/pages/logo-enablers-network.webp" alt="Logo d'Enablers" class="partner-logo" />
-              <div class="partner-content">
-                <h3>Enablers — Accompagnement international</h3>
-                <p>
-                  Pour accompagner vos défis organisationnels les plus complexes et à l'international,
-                  nous sommes connectés à une communauté internationale et multiculturelle de
-                  professionnels chevronnés.
-                </p>
-                <a href="https://enablersnetwork.com/" aria-label="En savoir plus sur Enablers">Quand la disruption arrive — et elle arrive — ils sont déjà là.</a>
-              </div>
-            </article>
-          </li>
-
-          <li>
-            <article class="partner-article" role="listitem">
-              <img src="/images/pages/logo-fa3r.webp" alt="Logo de FA3R" class="partner-logo" />
-              <div class="partner-content">
-                <h3>FA3R — Expériences outdoor sur mesure</h3>
-                <p>
-                  Parce que nous voulons proposer des expériences « out-door » sur mesure allant plus
-                  loin dans les possibilités scénaristiques et l'engagement de vos équipes, en toute
-                  sécurité, nous nous associons avec nos « frères d'armes » FA3R.
-                </p>
-                <a href="https://www.fa3r.fr/" aria-label="En savoir plus sur FA3R">Apprendre sous stress, décider sous pression, tenir ensemble.</a>
-              </div>
-            </article>
-          </li>
-
-        </ul>
-
-      </div>
+            <li>
+              <article class="partner-article" role="listitem">
+                <img src="/images/pages/logo-fa3r.webp" alt="Logo de FA3R" class="partner-logo" />
+                <div class="partner-content">
+                  <h3>FA3R — Expériences outdoor sur mesure</h3>
+                  <p>
+                    Parce que nous voulons proposer des expériences « out-door » sur mesure allant
+                    plus loin dans les possibilités scénaristiques et l'engagement de vos équipes,
+                    en toute sécurité, nous nous associons avec nos « frères d'armes » FA3R.
+                  </p>
+                  <a href="https://www.fa3r.fr/" aria-label="En savoir plus sur FA3R"
+                    >Apprendre sous stress, décider sous pression, tenir ensemble.</a
+                  >
+                </div>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </section>
     </section>
-
-    
-
   </main>
 </Layout>
 
@@ -447,33 +557,39 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
      HERO SECTION — Animation GSAP
   =========================================== */
 
-.hero-section {
-  position: relative;
-  height: calc(100vh - 5rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: top; /* Centre verticalement par défaut */
-  align-items: center;
-  overflow: hidden;
-}
+  .hero-section {
+    position: relative;
+    height: calc(100vh - 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: top; /* Centre verticalement par défaut */
+    align-items: center;
+    overflow: hidden;
+  }
 
-.hero-title {
-  position: relative;
-  text-align: center;
-  width: 100%;
-  max-width: 900px;
-  padding: 0 2rem;
-  margin: 0;
-  z-index: 2;
-  margin-bottom: -5rem;
-}
+  .hero-title {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    max-width: 900px;
+    padding: 0 2rem;
+    margin: 0;
+    z-index: 2;
+    margin-bottom: -5rem;
+  }
 
-.hero-quote-wrapper {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  margin-top: 2rem;
-}
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 5rem;
+    }
+  }
+
+  .hero-quote-wrapper {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-top: 2rem;
+  }
 
   .hero-quote {
     will-change: opacity;
@@ -501,18 +617,17 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
   }
 
   .texte-gradient {
-  /* On définit le dégradé en arrière-plan */
-  background: linear-gradient(to right, #C65151, #9e8aa8, #172432);
-  
-  /* On "découpe" l'arrière-plan pour qu'il ne s'affiche que sur les lettres */
-  -webkit-background-clip: text;
-  background-clip: text;
-  
-  /* On rend le texte transparent pour laisser voir le dégradé dessous */
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+    /* On définit le dégradé en arrière-plan */
+    background: linear-gradient(to right, #c65151, #9e8aa8, #172432);
+
+    /* On "découpe" l'arrière-plan pour qu'il ne s'affiche que sur les lettres */
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* On rend le texte transparent pour laisser voir le dégradé dessous */
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
-  
 
   /* ==========================================
      PARTENAIRES — Layout Logo (1/4) + Texte (3/4)
@@ -521,15 +636,15 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
   .partners-list {
     list-style: none;
     padding: 0;
-    margin: 2rem auto;
+    margin: 1.5rem auto;
   }
 
   .partner-article {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 1.25rem;
-    border: 1px solid rgba(74, 103, 65, 0.2);
+    gap: 0.5rem;
+    padding: 1.15rem;
+    border: 2px solid rgba(74, 103, 65, 0.1);
     border-radius: 0.5rem;
   }
 
@@ -557,7 +672,7 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
       grid-template-columns: 1fr 3fr;
       align-items: start;
       gap: 1rem;
-      padding: 1.75rem;
+      padding: 1.5rem;
       margin-bottom: 0;
     }
 
@@ -571,24 +686,24 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
 
   .partner-article h3 {
     margin: 0;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     font-weight: 600;
   }
 
   .partner-article p {
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
+    margin: 0.35rem 0;
+    font-size: 0.85rem;
     font-family: sans-serif;
   }
 
   .partner-article a {
     display: inline-block;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
     color: var(--color-brand-accent);
     text-decoration: none;
     transition: color 200ms;
     font-family: sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .partner-article a:hover {
@@ -678,11 +793,11 @@ import IntentionCircle from '../components/UI/IntentionCircle.astro';
     flex: 0 0 18%;
     flex-direction: column;
     background: rgba(197, 205, 221, 0.14);
-    padding-bottom: .5rem;
+    padding-bottom: 0.5rem;
   }
 
   .values-image-left h3,
-  .values-image-right h3{
+  .values-image-right h3 {
     margin-top: 1rem;
     font-size: 1.5rem;
   }

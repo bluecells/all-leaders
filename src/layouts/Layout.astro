@@ -4,6 +4,7 @@ import '../styles/animations.css';
 import Head from '../components/Head.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import SeoAnalyzer from '../components/SeoAnalyzer/SeoAnalyzer.astro';
 import ActionBar from '@/components/ActionBar.astro';
 import NewsletterPopup from '@/components/NewsletterPopup.astro';
@@ -85,11 +86,17 @@ const finalOgImage = ogImage || undefined;
   <Header lang={pageLang} />
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TF95X7B2"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-TF95X7B2"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
     <!-- End Google Tag Manager (noscript) -->
 
     <main>
+      <Breadcrumb lang={pageLang} />
       <slot />
     </main>
     <Footer lang={pageLang} />

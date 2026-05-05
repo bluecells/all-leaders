@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import { marked } from 'marked';
 
 interface Props {
   accompagnement: CollectionEntry<'accompagnements'>;
@@ -11,6 +12,9 @@ interface Props {
 const { accompagnement, category } = Astro.props;
 const { data } = accompagnement;
 const lang = (data.lang || 'fr') as 'fr' | 'en';
+
+// Convertir le Markdown en HTML
+const longDescriptionHTML = data.long_description ? await marked(data.long_description) : '';
 ---
 
 <Layout
@@ -20,99 +24,108 @@ const lang = (data.lang || 'fr') as 'fr' | 'en';
   metaDescription={data.description}
 >
   <article class="accompagnement-page">
-    <div class="container mx-auto px-4 py-12 max-w-4xl">
-
-            {/* Type badge + Category */}
-      <div class="metadata mb-6 flex items-center gap-4 justify-center flex-wrap">
-        <span class={`type-badge type-badge-${data.type}`}>
-          {data.type}
-        </span>
-        {category && (
-          <span class="category-badge">
-            {lang === 'fr' ? category.data.name_fr : category.data.name_en}
+    <div class="flex items-center min-h-[93vh]">
+      <div class="container mx-auto p-4 max-w-4xl">
+        {/* Type badge + Category */}
+        <div class="metadata mb-4 flex items-center gap-4 justify-center flex-wrap">
+          <span class={`type-badge type-badge-${data.type}`}>
+            {data.type}
           </span>
-        )}
-      </div>
-            {/* Titre principal */}
-      <h1 class="text-4xl md:text-5xl font-serif font-bold mb-8 text-limolo-green text-center">
-        {data.title}
-      </h1>
-
-      {/* Description */}
-      <div class="description text-xl text-gray-700 mb-8 leading-relaxed text-center max-w-2xl mx-auto">
-        <p>{data.description}</p>
-      </div>
-
-      {/* Image hero */}
-      {data.image && (
-        <div class="accompagnement-hero mb-12">
-          <img
-            src={data.image}
-            alt={data.title}
-            class="w-full h-auto rounded-lg shadow-lg object-cover"
-            style="max-height: 450px;"
-          />
+          {
+            category && (
+              <span class="category-badge">
+                {lang === 'fr' ? category.data.name_fr : category.data.name_en}
+              </span>
+            )
+          }
         </div>
-      )}
+        {/* Titre principal */}
+        <h1 class="text-4xl md:text-5xl font-serif font-bold mb-8 text-limolo-green text-center">
+          {data.title}
+        </h1>
 
+        {/* Description */}
+        <div
+          class="description text-xl text-gray-700 mb-4 leading-relaxed text-center max-w-2xl mx-auto"
+        >
+          <p>{data.description}</p>
+        </div>
 
+        {/* Image hero */}
+        {
+          data.image && (
+            <div class="accompagnement-hero mb-8">
+              <img
+                src={data.image}
+                alt={data.title}
+                class="w-full h-auto rounded-lg shadow-lg object-cover"
+                style="max-height: 420px;"
+              />
+            </div>
+          )
+        }
+      </div>
+    </div>
+
+    <div class="main-container max-w-4xl mx-auto">
+      {
+        longDescriptionHTML && (
+          <div class="description-section-wrapper">
+            <div class="description-section mb-12" set:html={longDescriptionHTML} />
+          </div>
+        )
+      }
 
       {/* USPs section */}
-      {(data.USP1 || data.USP2 || data.USP3 || data.USP4 || data.USP5) && (
-        <div class="usp-section pt-12 mb-12 mx-auto">
-          <div class="p-8 w-full flex flex-col items-center rounded-lg border border-limolo-green/10">
-            <h2 class="text-2xl font-serif font-semibold mt-4! mb-6 ml-4 text-limolo-green">
-              {lang === 'fr' ? 'Sujets clés' : 'Key topics'}
-            </h2>
-            <ul class="usp-list gap-4">
-            {data.USP1 && (
-              <li class="flex gap-3">
-                <span class="usp-icon">✓</span>
-                <span>{data.USP1}</span>
-              </li>
-            )}
-            {data.USP2 && (
-              <li class="flex gap-3">
-                <span class="usp-icon">✓</span>
-                <span>{data.USP2}</span>
-              </li>
-            )}
-            {data.USP3 && (
-              <li class="flex gap-3">
-                <span class="usp-icon">✓</span>
-                <span>{data.USP3}</span>
-              </li>
-            )}
-            {data.USP4 && (
-              <li class="flex gap-3">
-                <span class="usp-icon">✓</span>
-                <span>{data.USP4}</span>
-              </li>
-            )}
-            {data.USP5 && (
-              <li class="flex gap-3">
-                <span class="usp-icon">✓</span>
-                <span>{data.USP5}</span>
-              </li>
-            )}
-            </ul>
+      {
+        (data.USP1 || data.USP2 || data.USP3 || data.USP4 || data.USP5) && (
+          <div class="usp-section flex flex-col mx-auto">
+            <div class="p-4 w-full flex flex-col items-center rounded-lg border border-limolo-green/10">
+              <h2 class="text-xl font-serif font-semibold mt-4! mb-4 ml-4 text-limolo-green">
+                {lang === 'fr' ? 'Sujets clés' : 'Key topics'}
+              </h2>
+              <ul class="usp-list gap-4">
+                {data.USP1 && (
+                  <li class="flex gap-3">
+                    <span class="usp-icon">✓</span>
+                    <span>{data.USP1}</span>
+                  </li>
+                )}
+                {data.USP2 && (
+                  <li class="flex gap-3">
+                    <span class="usp-icon">✓</span>
+                    <span>{data.USP2}</span>
+                  </li>
+                )}
+                {data.USP3 && (
+                  <li class="flex gap-3">
+                    <span class="usp-icon">✓</span>
+                    <span>{data.USP3}</span>
+                  </li>
+                )}
+                {data.USP4 && (
+                  <li class="flex gap-3">
+                    <span class="usp-icon">✓</span>
+                    <span>{data.USP4}</span>
+                  </li>
+                )}
+                {data.USP5 && (
+                  <li class="flex gap-3">
+                    <span class="usp-icon">✓</span>
+                    <span>{data.USP5}</span>
+                  </li>
+                )}
+              </ul>
+            </div>
+            {/* CTA section */}
+            <div class="cta-section mt-8 text-center">
+              <a href="/contact" class="btn btn-primary btn-lg">
+                {lang === 'fr' ? 'Prendre contact' : 'Get in touch'}
+              </a>
+            </div>
           </div>
-        </div>
-      )}
-
-      {/* CTA section */}
-      <div class="cta-section mt-16 text-center">
-        <a href="/contact" class="btn btn-primary btn-lg">
-          {lang === 'fr' ? 'Prendre contact' : 'Get in touch'}
-        </a>
-      </div>
-
-      {/* Back link */}
-      <div class="back-link mt-12 text-center">
-        <a href="/accompagnements" class="text-limolo-green hover:underline">
-          ← {lang === 'fr' ? 'Retour aux accompagnements' : 'Back to services'}
-        </a>
-      </div>
+        )
+      }
     </div>
   </article>
 </Layout>
@@ -166,23 +179,41 @@ const lang = (data.lang || 'fr') as 'fr' | 'en';
     font-weight: 500;
   }
 
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .main-container {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+  }
+
   .usp-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    width:fit-content;
+    width: 400px;
+    height: 100%;
   }
 
   .usp-list {
     list-style: none;
     padding: 0;
     margin: 0;
-    width:fit-content;
+    width: fit-content;
   }
 
   .usp-list li {
     color: #555;
-    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    font-size: 0.75rem;
     line-height: 1.7;
     text-align: left;
   }
@@ -191,6 +222,65 @@ const lang = (data.lang || 'fr') as 'fr' | 'en';
     color: var(--color-brand-accent);
     font-weight: bold;
     flex-shrink: 0;
+  }
+
+  .description-section-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    width: 70%;
+  }
+
+  .description-section {
+    text-align: left;
+    color: #374151; /* gray-700 */
+    line-height: 1.7;
+    font-size: 0.75rem;
+  }
+
+  /* Utilise :global car le HTML est injecté dynamiquement par marked */
+  .description-section :global(h3) {
+    font-family: serif;
+    font-size: 1.15rem;
+    text-align: left;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .description-section :global(p) {
+    margin: 0;
+    font-size: 0.75rem;
+    max-width: 100%;
+  }
+
+  .description-section :global(strong) {
+    color: #111827; /* gray-900 */
+    font-weight: 700;
+  }
+
+  .description-section :global(ul),
+  .description-section :global(ol) {
+    margin: 0.5rem 0;
+    padding-left: 0.8rem;
+    max-width: 100%;
+  }
+
+  .description-section :global(li) {
+    margin-bottom: 0;
+    list-style-type: decimal; /* Pour les listes 1. 2. 3. */
+    font-size: 0.75rem;
+    padding: 5px 0 5px 0.5rem;
+  }
+
+  .description-section :global(ul li) {
+    list-style-type: disc; /* Pour les listes à puces */
+  }
+
+  @media (max-width: 768px) {
+    .description-section {
+      text-align: center;
+    }
   }
 
   .back-link a {
@@ -205,7 +295,7 @@ const lang = (data.lang || 'fr') as 'fr' | 'en';
   .btn-lg {
     padding: 1rem 2rem;
     font-size: 1.125rem;
-    text-decoration-style: none!important;
+    text-decoration-style: none !important;
   }
 
   .btn-lg {
@@ -213,6 +303,6 @@ const lang = (data.lang || 'fr') as 'fr' | 'en';
     font-size: 1.125rem;
   }
   article a.btn {
-    text-decoration: none!important;
+    text-decoration: none !important;
   }
 </style>

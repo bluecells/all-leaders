@@ -20,26 +20,32 @@ const sortedCategories = categorie.sort((a, b) => {
   metaDescription="Découvrez nos accompagnements en diagnostic de performance, formation, coaching et conseil."
   lang="fr"
 >
-  <div class="flex flex-col justify-center align-items mx-auto px-4 min-h-[85vh]">
+  <div class="flex flex-col justify-center align-items mx-auto px-4 min-h-[83vh]">
     <h1 class="font-serif text-limolo-green mb-8 text-center">Nos accompagnements</h1>
     <h2>Solutions de diagnostic et développement pour vos organisations</h2>
 
-      <!-- Navigation des catégories d'accompagnements -->
-  <nav class="categories-nav">
-    <div class="categories-nav-wrapper">
-      {sortedCategories.map((cat) => (
-        <a
-          href={`#category-${cat.data.slug}`}
-          class={`category-nav-link category-nav-link-${cat.data.order}`}
-        >
-          {cat.data.name_fr}
-        </a>
-      ))}
-    </div>
-  </nav>
+    <!-- Navigation des catégories d'accompagnements -->
+    <nav class="categories-nav">
+      <div class="categories-nav-wrapper">
+        {
+          sortedCategories.map((cat) => (
+            <a
+              href={`#category-${cat.data.slug}`}
+              class={`category-nav-link category-nav-link-${cat.data.order}`}
+            >
+              {cat.data.name_fr}
+            </a>
+          ))
+        }
+      </div>
+      <div class="arrow-container">
+        <svg width="100" height="50" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 50L50 0L100 50Z" fill="#182433"></path>
+        </svg>
+        <div class="arrow-colours"></div>
+      </div>
+    </nav>
   </div>
-
-
 
   <!-- AccompagnementsGrid Component avec cards cliquables -->
   <AccompagnementsGrid lang="fr" fullBleed={true} />
@@ -47,34 +53,92 @@ const sortedCategories = categorie.sort((a, b) => {
   <!-- Section des modalités avec descriptifs -->
   <section class="modalites-section">
     <div class="modalites-container">
-      {sortedModalites.map((modalite) => {
-        const objectiveMap = {
-          investigation: 'Poser un diagnostic',
-          inspiration: 'Sensibiliser',
-          action: 'Intervenir',
-          immersion: 'Apprendre par l\'expérience'
-        };
-        const objective = objectiveMap[modalite.data.slug as keyof typeof objectiveMap] || '';
+      {
+        sortedModalites.map((modalite) => {
+          const objectiveMap = {
+            investigation: 'Poser un diagnostic',
+            inspiration: 'Sensibiliser',
+            action: 'Intervenir',
+            immersion: "Apprendre par l'expérience",
+          };
+          const objective = objectiveMap[modalite.data.slug as keyof typeof objectiveMap] || '';
 
-        return (
-          <div
-            id={modalite.data.slug}
-            class={`modalite-card modalite-${modalite.data.slug}`}
-          >
-            <div class="modalite-header">
-              <span class={`modalite-dot modalite-dot-${modalite.data.slug}`}></span>
-              <h3 class="modalite-title">{modalite.data.name_fr}</h3>
+          return (
+            <div id={modalite.data.slug} class={`modalite-card modalite-${modalite.data.slug}`}>
+              <div class="modalite-header">
+                <span class={`modalite-dot modalite-dot-${modalite.data.slug}`} />
+                <h3 class="modalite-title">{modalite.data.name_fr}</h3>
+              </div>
+              <p class="modalite-objective">{objective}</p>
+              <p class="modalite-description">{modalite.data.description_fr}</p>
             </div>
-            <p class="modalite-objective">{objective}</p>
-            <p class="modalite-description">{modalite.data.description_fr}</p>
-          </div>
-        );
-      })}
+          );
+        })
+      }
     </div>
   </section>
-  
-</Layout>
 
+  <script is:inline>
+    // Charger GSAP depuis CDN
+    Promise.all([
+      new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
+        script.onload = resolve;
+        document.head.appendChild(script);
+      }),
+      new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js';
+        script.onload = resolve;
+        document.head.appendChild(script);
+      }),
+    ]).then(() => {
+      gsap.registerPlugin(ScrollTrigger);
+      initAnimation();
+    });
+
+    function initAnimation() {
+      const navLinks = document.querySelectorAll('.category-nav-link');
+      const arrowContainer = document.querySelector('.arrow-container');
+
+      if (navLinks.length > 0) {
+        // On s'assure que tout est visible avant de lancer GSAP
+        gsap.set([navLinks, arrowContainer], { opacity: 1 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.categories-nav',
+            start: 'top bottom-=120px',
+            toggleActions: 'play none none none',
+          },
+        });
+
+        // Animation ralentie (3x plus lente)
+        tl.from(navLinks, {
+          opacity: 0,
+          duration: 1.2, // 0.6s * 3 = 1.8s
+          stagger: {
+            each: 0.1, // 0.15s * 3 = 0.45s entre chaque lien
+            from: 'end', // C'est ici qu'on définit l'ordre "du bas vers le haut"
+          },
+          ease: 'power2.out',
+        }).from(
+          arrowContainer,
+          {
+            opacity: 0,
+            y: 100,
+            scaleY: 0,
+            transformOrigin: 'bottom center',
+            duration: 2.4, // 0.8s * 3 = 2.4s
+            ease: 'power3.out',
+          },
+          '-=1.2'
+        ); // Commence à mi-chemin de l'animation des liens
+      }
+    }
+  </script>
+</Layout>
 <style>
   h1 {
     margin-bottom: 0;
@@ -93,74 +157,109 @@ const sortedCategories = categorie.sort((a, b) => {
     width: 100%;
     background: white;
     border-top: 1px solid #e8e8e8;
-    border-bottom: 1px solid #e8e8e8;
     padding: 2.5rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
   }
 
   .categories-nav-wrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    align-items: stretch;
-    gap: 10px;
-    margin: 0 auto;
+    align-items: center;
+    gap: 20px;
+    margin-top: 2rem;
   }
 
   .category-nav-link {
-    padding: .5rem 1rem;
+    padding: 0.75rem 0.75rem;
     border-radius: 4px;
     font-weight: 500;
     text-decoration: none;
-    color: white;
-    background-color: rgb(3, 26, 52);
-    border: none;
+    border: 1px solid rgba(61, 62, 64, 0.782);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 0.8rem;
     display: block;
     text-align: center;
-  }
-
-  .categories-nav-wrapper {
-    background: linear-gradient(90deg, #C65151, #9e8aa8, #9e8aa8, #6b7fa3, #172432);
-    padding: 0 !important;
-  }
-
-  .category-nav-link {
-    background: none !important;
-    position: relative;
+    width: 300px;
   }
 
   .category-nav-link:hover {
     transform: translateX(4px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: white;
+  }
+
+  .category-nav-link-5:hover {
+    background-color: #172432;
+  }
+
+  .category-nav-link-4:hover {
+    background-color: #6b7fa3;
+  }
+
+  .category-nav-link-3:hover {
+    background-color: #9e8aa8;
+  }
+
+  .category-nav-link-2:hover {
+    background-color: #9e8aa8;
+  }
+
+  .category-nav-link-1:hover {
+    background-color: #c65151;
+  }
+
+  .arrow-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100px;
+    height: auto;
+  }
+  .arrow-colours {
+    background: linear-gradient(0deg, #c65151, #9e8aa8, #9e8aa8, #6b7fa3, #172432);
+    /* Définit la largeur à 100px et la hauteur à 100% */
+    background-size: 40px 100%;
+    /* Empêche le dégradé de se répéter sur toute la largeur */
+    background-repeat: no-repeat;
+    /* Optionnel : centre le dégradé ou le met à gauche/droite */
+    background-position: center;
+
+    padding: 18vh 2rem;
   }
 
   /* Section des modalités */
   .modalites-section {
     width: 100%;
     background-color: #fafafa;
-    padding: 2rem 0;
+    padding: 1.25rem 0;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
   }
 
   .modalites-container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
     max-width: 80rem;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
   }
 
   @media (min-width: 768px) {
     .modalites-container {
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
   }
 
   .modalite-card {
-    padding: 1.25rem;
-    border-radius: 6px;
+    padding: 1.05rem;
+    border-radius: 4px;
     background: white;
     border: 1px solid #e8e8e8;
     transition: all 0.2s ease;
@@ -185,14 +284,23 @@ const sortedCategories = categorie.sort((a, b) => {
     flex-shrink: 0;
   }
 
-  .modalite-dot-investigation { background-color: #8ac20a; }
-  .modalite-dot-inspiration { background-color: #ddb800; }
-  .modalite-dot-action { background-color: #08aac2; }
-  .modalite-dot-immersion { background-color: #b577f0; }
+  .modalite-dot-investigation {
+    background-color: #8ac20a;
+  }
+  .modalite-dot-inspiration {
+    background-color: #ddb800;
+  }
+  .modalite-dot-action {
+    background-color: #08aac2;
+  }
+  .modalite-dot-immersion {
+    background-color: #b577f0;
+  }
 
   .modalite-title {
     font-size: 1rem;
     font-weight: 600;
+    letter-spacing: 0.02em;
     margin: 0;
     color: var(--color-brand-primary);
   }
@@ -217,7 +325,7 @@ const sortedCategories = categorie.sort((a, b) => {
     .categories-nav-wrapper {
       gap: 0;
       max-width: 100%;
-      background: linear-gradient(180deg, #C65151, #9e8aa8, #9e8aa8, #6b7fa3, #172432);
+      background: linear-gradient(180deg, #c65151, #9e8aa8, #9e8aa8, #6b7fa3, #172432);
       flex-direction: column;
     }
 

@@ -30,6 +30,9 @@
     "description": {
       "type": "string"
     },
+    "long_description": {
+      "type": "string"
+    },
     "image": {
       "type": "string"
     },
