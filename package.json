@@ -1,8 +1,8 @@
 {
-  "name": "limolo",
+  "name": "All Leaders Initiative",
   "type": "module",
   "version": "0.0.1",
-  "description": "Site trilingue pour Limolo - Turismo Responsabile e Co-living",
+  "description": "All Leaders Initiative is a project that aims to promote leadership and personal development through various resources and programs.",
   "scripts": {
     "dev": "astro dev",
     "start": "node ./dist/server/entry.mjs",
@@ -13,7 +13,7 @@
     "format:check": "prettier --check ."
   },
   "engines": {
-    "node": ">=18.17.1"
+    "node": "20.x"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
