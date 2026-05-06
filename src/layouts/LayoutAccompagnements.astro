@@ -24,8 +24,8 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
   metaDescription={data.description}
 >
   <article class="accompagnement-page">
-    <div class="flex items-center min-h-[93vh]">
-      <div class="container mx-auto p-4 max-w-4xl">
+    <div class="flex items-center min-h-[82vh] md:min-h-[93vh]">
+      <div class="container mx-auto max-w-4xl">
         {/* Type badge + Category */}
         <div class="metadata mb-4 flex items-center gap-4 justify-center flex-wrap">
           <span class={`type-badge type-badge-${data.type}`}>
@@ -40,7 +40,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
           }
         </div>
         {/* Titre principal */}
-        <h1 class="text-4xl md:text-5xl font-serif font-bold mb-8 text-limolo-green text-center">
+        <h1 class="text-2xl md:text-4xl font-serif font-bold mb-8 leading-tight text-center">
           {data.title}
         </h1>
 
@@ -81,7 +81,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
         (data.USP1 || data.USP2 || data.USP3 || data.USP4 || data.USP5) && (
           <div class="usp-section flex flex-col mx-auto">
             <div class="p-4 w-full flex flex-col items-center rounded-lg border border-limolo-green/10">
-              <h2 class="text-xl font-serif font-semibold mt-4! mb-4 ml-4 text-limolo-green">
+              <h2 class="text-xl font-serif font-semibold mt-4! mb-4 ml-0 md:ml-4 leading-relaxed">
                 {lang === 'fr' ? 'Sujets clés' : 'Key topics'}
               </h2>
               <ul class="usp-list gap-4">
@@ -187,6 +187,13 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
     width: 100%;
   }
 
+  .usp-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
   @media (min-width: 768px) {
     .main-container {
       flex-direction: row;
@@ -194,14 +201,9 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
       justify-content: space-between;
       gap: 3rem;
     }
-  }
-
-  .usp-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    height: 100%;
+    .usp-section {
+      width: 400px;
+    }
   }
 
   .usp-list {
@@ -216,6 +218,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
     font-size: 0.75rem;
     line-height: 1.7;
     text-align: left;
+    padding: 8px 0 8px 3px;
   }
 
   .usp-icon {
@@ -228,7 +231,17 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
     display: flex;
     justify-content: center;
     margin: 0 auto;
-    width: 70%;
+    width: 100%;
+  }
+
+  .description-section p {
+    text-align: left !important;
+  }
+
+  @media (min-width: 768px) {
+    .description-section-wrapper {
+      width: 70%;
+    }
   }
 
   .description-section {
@@ -264,6 +277,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
     margin: 0.5rem 0;
     padding-left: 0.8rem;
     max-width: 100%;
+    text-align: left;
   }
 
   .description-section :global(li) {
@@ -275,12 +289,6 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
 
   .description-section :global(ul li) {
     list-style-type: disc; /* Pour les listes à puces */
-  }
-
-  @media (max-width: 768px) {
-    .description-section {
-      text-align: center;
-    }
   }
 
   .back-link a {

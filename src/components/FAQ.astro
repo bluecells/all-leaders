@@ -11,7 +11,9 @@ const { lang, fullBleed = false } = Astro.props;
 
 // Récupérer toutes les FAQs dans la langue spécifiée
 const allFaqs = await getCollection('faq');
-const faqs = allFaqs.filter((faq) => faq.data.lang === lang).sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+const faqs = allFaqs
+  .filter((faq) => faq.data.lang === lang)
+  .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 
 // Grouper les FAQs par catégorie
 const faqsByCategory = faqs.reduce(
@@ -54,35 +56,41 @@ const sortedCategories = Object.keys(faqsByCategory).sort((a, b) => {
 });
 ---
 
-<div class={fullBleed ? 'w-full' : 'max-w-5xl mx-auto'}>
-  {sortedCategories.map((category) => (
-    <div class="mb-12">
-      <h2 class="text-2xl font-serif text-limolo-green mb-6 pb-2 border-b-2 border-limolo-green">
-        {getCategoryName(category)}
-      </h2>
-      <div class="space-y-4">
-        {faqsByCategory[category].map((faq) => (
-          <details class="group border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
-            <summary class="flex justify-between items-start font-semibold text-gray-900 group-open:text-limolo-green cursor-pointer list-none">
-              <span class="flex-1 pr-4">{faq.data.question}</span>
-              <span class="text-limolo-green flex-shrink-0 transition-transform group-open:rotate-180">
-                ▼
-              </span>
-            </summary>
-            <div class="mt-4 pt-4 border-t border-gray-100 text-gray-700 leading-relaxed prose prose-sm max-w-none">
-              {faq.body && <Fragment set:html={faq.body} />}
-            </div>
-          </details>
-        ))}
+<div class={fullBleed ? 'w-full flex flex-col items-center' : 'max-w-4xl mx-auto'}>
+  {
+    sortedCategories.map((category) => (
+      <div class="md:w-200 mb-12">
+        <h2 class="text-4xl font-serif text-limolo-green mb-6 pb-2 border-b-2 border-limolo-green">
+          {getCategoryName(category)}
+        </h2>
+        <div class="space-y-4">
+          {faqsByCategory[category].map((faq) => (
+            <details class="group border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
+              <summary class="flex justify-between items-start font-semibold text-gray-900 group-open:text-limolo-green cursor-pointer list-none">
+                <span class="flex-1 pr-4">{faq.data.question}</span>
+                <span class="text-limolo-green flex-shrink-0 transition-transform group-open:rotate-180">
+                  ▼
+                </span>
+              </summary>
+              <div class="mt-4 pt-4 border-t border-gray-100 text-gray-700 leading-relaxed prose prose-sm max-w-none">
+                {faq.body && <Fragment set:html={faq.body} />}
+              </div>
+            </details>
+          ))}
+        </div>
       </div>
-    </div>
-  ))}
+    ))
+  }
 
-  {sortedCategories.length === 0 && (
-    <div class="text-center py-12 text-gray-500">
-      {lang === 'fr' ? 'Aucune FAQ disponible pour le moment.' : 'No FAQs available at this time.'}
-    </div>
-  )}
+  {
+    sortedCategories.length === 0 && (
+      <div class="text-center py-12 text-gray-500">
+        {lang === 'fr'
+          ? 'Aucune FAQ disponible pour le moment.'
+          : 'No FAQs available at this time.'}
+      </div>
+    )
+  }
 </div>
 
 <style>

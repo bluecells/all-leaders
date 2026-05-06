@@ -9,6 +9,8 @@ interface Props {
   background?: string;
   spacing?: string;
   title?: string;
+  visibleItemsMobile?: number;
+  visibleItemsDesktop?: number;
 }
 
 const {
@@ -18,6 +20,8 @@ const {
   background = 'transparent',
   spacing = '1rem',
   title,
+  visibleItemsMobile = 1,
+  visibleItemsDesktop = 3,
 } = Astro.props;
 
 const limitedImages = images.slice(0, 10);
@@ -30,7 +34,7 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
     <div
       id="generic-track"
       class="carousel-track"
-      style={`--spacing: ${spacing}; --speed: ${speed * limitedImages.length}ms;`}
+      style={`--spacing: ${spacing}; --speed: ${speed * limitedImages.length}ms; --visible-mobile: ${visibleItemsMobile}; --visible-desktop: ${visibleItemsDesktop};`}
     >
       {
         duplicatedImages.map((image) => (
@@ -80,6 +84,8 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
     overflow: hidden;
     border-radius: 4px;
     /* box-shadow: 0 8px 12px #031a343d; */
+    /* Calcul largeur basé sur nombre d'items visibles */
+    width: calc((100vw / var(--visible-mobile)) - var(--spacing));
     /* Aspect ratio optionnel pour garder une cohérence si les images varient */
     aspect-ratio: 16 / 9;
   }
@@ -107,6 +113,10 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
 
     .carousel-track-container {
       height: 30vh;
+    }
+
+    .carousel-item {
+      width: calc((100vw / var(--visible-desktop)) - var(--spacing));
     }
   }
 </style>

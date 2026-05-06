@@ -6,22 +6,57 @@
 <div class="continuum-wrapper" role="img" aria-label="Continuum de la performance collective">
   <div class="continuum-grid">
     <!-- Ligne 1 -->
-    <div class="grid-cell cell-red ligne-1" data-text="Groupe dysfonctionnel" data-row="1" data-col="1" data-colspan="3"></div>
+    <div
+      class="grid-cell cell-red ligne-1"
+      data-text="Groupe dysfonctionnel"
+      data-row="1"
+      data-col="1"
+      data-colspan="3"
+    >
+    </div>
     <div></div>
     <div></div>
-    <div class="grid-cell cell-blue ligne-1" data-text="Collectif hautement performant" data-row="1" data-col="6" data-colspan="3"></div>
+    <div
+      class="grid-cell cell-blue ligne-1"
+      data-text="Collectif hautement performant"
+      data-row="1"
+      data-col="6"
+      data-colspan="3"
+    >
+    </div>
 
     <!-- Ligne 2 -->
     <div></div>
     <div></div>
-    <div class="grid-cell cell-trans-red" data-text="Difficultés à résoudre" data-row="2" data-col="1" data-colspan="2"></div>
-    <div class="grid-cell cell-trans-purple" data-text="Opportunités à développer" data-row="2" data-col="3" data-colspan="2"></div>
-    <div class="grid-cell cell-trans-blue" data-text="(Sur)performance à maintenir" data-row="2" data-col="7" data-colspan="3"></div>
+    <div
+      class="grid-cell cell-trans-red"
+      data-text="Difficultés à résoudre"
+      data-row="2"
+      data-col="1"
+      data-colspan="2"
+    >
+    </div>
+    <div
+      class="grid-cell cell-trans-purple"
+      data-text="Opportunités à développer"
+      data-row="2"
+      data-col="3"
+      data-colspan="2"
+    >
+    </div>
+    <div
+      class="grid-cell cell-trans-blue"
+      data-text="(Sur)performance à maintenir"
+      data-row="2"
+      data-col="7"
+      data-colspan="3"
+    >
+    </div>
     <div></div>
 
-
     <!-- Ligne 3 -->
-    <div class="grid-cell red" data-text="Troubles de la santé mentale" data-row="3" data-col="1"></div>
+    <div class="grid-cell red" data-text="Troubles de la santé mentale" data-row="3" data-col="1">
+    </div>
     <div class="grid-cell red" data-text="Épuisement" data-row="3" data-col="2"></div>
     <div class="grid-cell red" data-text="Risques psychosociaux" data-row="3" data-col="3"></div>
     <div class="grid-cell purple" data-text="Frictions et Tensions" data-row="3" data-col="4"></div>
@@ -60,15 +95,16 @@
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.continuum-wrapper',
-        start: 'top 60%',
-        end: 'center center',
-        scrub: 1,
-        pin: false,
-      }
+        start: 'top +=55%',
+        end: '+=12%',
+        scrub: 2,
+      },
     });
 
     sequence.forEach((pos, index) => {
-      const cell = document.querySelector(`.grid-cell[data-row="${pos.row}"][data-col="${pos.col}"]`);
+      const cell = document.querySelector(
+        `.grid-cell[data-row="${pos.row}"][data-col="${pos.col}"]`
+      );
       if (cell) {
         tl.to(cell, { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }, index * 0.06);
       }
@@ -124,15 +160,15 @@
   }
 
   /* Cell variants */
-  .grid-cell[data-colspan="2"],
-  .grid-cell[data-colspan="3"] {
+  .grid-cell[data-colspan='2'],
+  .grid-cell[data-colspan='3'] {
     grid-column: span 1;
   }
 
   .cell-red::after,
   .cell-blue::after {
     font-weight: 400;
-    font-size: 12px!important;
+    font-size: 12px !important;
     text-transform: uppercase;
     padding: 0.3rem 0.6rem;
   }
@@ -149,29 +185,28 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
-.cell-trans-red::after,
-.cell-trans-purple::after,
-.cell-trans-blue::after {
-  font-weight: 700;
-  font-size: 18px!important;
-  padding: 5rem;
+  .cell-trans-red::after,
+  .cell-trans-purple::after,
+  .cell-trans-blue::after {
+    font-weight: 700;
+    font-size: 18px !important;
+    padding: 5rem;
 
+    /* Remplacement du background uni par un dégradé radial */
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0.6) 70%,
+      rgba(255, 255, 255, 0.4) 95%
+    );
 
-  /* Remplacement du background uni par un dégradé radial */
-  background: radial-gradient(
-    circle, 
-    rgba(255, 255, 255, 1) 0%, 
-    rgba(255, 255, 255, .6) 70%,
-    rgba(255, 255, 255, .4) 95%
-  );
-
-  /* Effet de flou en arrière-plan (n'affecte pas le texte) */
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px); /* Support Safari */
-}
+    /* Effet de flou en arrière-plan (n'affecte pas le texte) */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px); /* Support Safari */
+  }
 
   .cell-trans-red::after {
-    color: rgba(171, 8, 0, 1);  
+    color: rgba(171, 8, 0, 1);
   }
 
   .cell-trans-purple::after {
@@ -206,20 +241,47 @@
   }
 
   /* Y-axis transforms for continuum line */
-  .red[data-col="1"]::after { transform: translateY(0px); }
-  .red[data-col="2"]::after { transform: translateY(-20px); }
-  .red[data-col="3"]::after { transform: translateY(20px); }
+  .red[data-col='1']::after {
+    transform: translateY(0px);
+  }
+  .red[data-col='2']::after {
+    transform: translateY(-20px);
+  }
+  .red[data-col='3']::after {
+    transform: translateY(20px);
+  }
 
-  .purple[data-col="4"]::after { transform: translateY(-20px); }
-  .purple[data-col="5"]::after { transform: translateY(20px); }
-  .purple[data-col="6"]::after { transform: translateY(-20px); }
+  .purple[data-col='4']::after {
+    transform: translateY(-20px);
+  }
+  .purple[data-col='5']::after {
+    transform: translateY(20px);
+  }
+  .purple[data-col='6']::after {
+    transform: translateY(-20px);
+  }
 
-  .bleu[data-col="7"]::after { transform: translateY(20px); }
-  .bleu[data-col="8"]::after { transform: translateY(-20px); }
-  .bleu[data-col="9"]::after { transform: translateY(20px); }
+  .bleu[data-col='7']::after {
+    transform: translateY(20px);
+  }
+  .bleu[data-col='8']::after {
+    transform: translateY(-20px);
+  }
+  .bleu[data-col='9']::after {
+    transform: translateY(20px);
+  }
 
   /* Standard continuum cells */
-  .grid-cell:not(.cell-trans-red, .cell-trans-purple, .cell-trans-blue, .cell-red, .cell-blue, .red, .purple, .bleu)::after {
+  .grid-cell:not(
+      .cell-trans-red,
+      .cell-trans-purple,
+      .cell-trans-blue,
+      .cell-red,
+      .cell-blue,
+      .red,
+      .purple,
+      .bleu
+    )::after {
     font-size: 10px;
     padding: 0.25rem 0.5rem;
     color: white;
@@ -249,11 +311,11 @@
       min-height: auto;
     }
 
-    .grid-cell[data-colspan="2"] {
+    .grid-cell[data-colspan='2'] {
       grid-column: span 2;
     }
 
-    .grid-cell[data-colspan="3"] {
+    .grid-cell[data-colspan='3'] {
       grid-column: span 3;
     }
 
@@ -276,7 +338,16 @@
       font-size: 14px;
     }
 
-    .grid-cell:not(.cell-trans-red, .cell-trans-purple, .cell-trans-blue, .cell-red, .cell-blue, .red, .purple, .bleu)::after {
+    .grid-cell:not(
+        .cell-trans-red,
+        .cell-trans-purple,
+        .cell-trans-blue,
+        .cell-red,
+        .cell-blue,
+        .red,
+        .purple,
+        .bleu
+      )::after {
       font-size: 12px;
     }
   }

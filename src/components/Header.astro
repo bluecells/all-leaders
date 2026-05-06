@@ -1,6 +1,7 @@
 ---
 import menuFR from '@/content/menu/fr.json';
 import menuEN from '@/content/menu/en.json';
+import { footerTranslations } from '../data/footerTranslations';
 
 interface Props {
   lang?: 'fr' | 'en';
@@ -8,11 +9,31 @@ interface Props {
 
 const { lang = 'fr' } = Astro.props;
 
-// Charger le menu selon la langue
+const validLang = lang === 'fr' || lang === 'en' ? lang : 'fr';
+const tFooter = footerTranslations[validLang];
+
+const localizedSlugs = {
+  fr: { blog: 'ressources', faq: 'faq', privacy: 'privacy', cookie: 'cookies' },
+  en: {
+    blog: 'resources',
+    faq: 'faq-en',
+    privacy: 'privacy-policy-en',
+    cookie: 'cookies-policy-en',
+  },
+} as const;
+
+const slugs = localizedSlugs[validLang] ?? localizedSlugs.fr;
+const langPrefix = validLang === 'fr' ? '' : `/${validLang}`;
+
+const footerNavLinks = {
+  blog: `${langPrefix}/${slugs.blog}`,
+  faq: `${langPrefix}/${slugs.faq}`,
+  privacy: `${langPrefix}/${slugs.privacy}`,
+  cookie: `${langPrefix}/${slugs.cookie}`,
+};
+
 const menuData = lang === 'fr' ? menuFR : lang === 'en' ? menuEN : menuFR;
 const liensDuMenu = menuData?.links || [];
-
-// URL du logo selon la langue
 const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
 ---
 
@@ -21,11 +42,7 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     <div class="header-content">
       <div class="logo-container">
         <a href={logoUrl} class="logo-link">
-          <img
-            class="logo-img"
-            src="/images/logo-all-leaders-initiative.webp"
-            alt="Logo d'All Leaders Initiative"
-          />
+          <img class="logo-img" src="/images/logo-all-leaders-initiative.webp" alt="Logo" />
         </a>
       </div>
 
@@ -33,7 +50,7 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
         {
           liensDuMenu.map((item) => (
             <div class="nav-item-wrapper">
-              {item.hasSubmenu && item.submenu && item.submenu.length > 0 ? (
+              {item.hasSubmenu && item.submenu ? (
                 <div class="nav-item-with-submenu">
                   <button class="nav-link nav-link-with-arrow" data-submenu-trigger>
                     {item.label}
@@ -68,22 +85,10 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
             </div>
           ))
         }
-
-        <!-- Language Switcher -->
         <div class="lang-switcher">
-          <a
-            href="/"
-            title="Français"
-            style="font-size:large;"
-            class={lang === 'fr' ? 'lang-link lang-active' : 'lang-link'}>🇫🇷</a
-          >
+          <a href="/" class={lang === 'fr' ? 'lang-link lang-active' : 'lang-link'}>🇫🇷</a>
           <span class="lang-separator">/</span>
-          <a
-            href="/en"
-            style="font-size:large;"
-            title="English"
-            class={lang === 'en' ? 'lang-link lang-active' : 'lang-link'}>🇬🇧</a
-          >
+          <a href="/en" class={lang === 'en' ? 'lang-link lang-active' : 'lang-link'}>🇬🇧</a>
         </div>
       </nav>
 
@@ -108,72 +113,88 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
   </div>
 
   <div id="mobile-menu" class="mobile-menu-content">
-    {
-      liensDuMenu.map((item) => (
-        <div class="mobile-menu-item">
-          {item.hasSubmenu && item.submenu && item.submenu.length > 0 ? (
-            <div class="mobile-submenu-wrapper">
-              <button class="mobile-menu-link mobile-submenu-trigger" data-mobile-submenu>
-                {item.label}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  class="mobile-chevron"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                  />
-                </svg>
-              </button>
-              <div class="mobile-submenu-items">
-                {item.submenu.map((subitem) => (
-                  <a href={subitem.url} class="mobile-submenu-link">
-                    {subitem.label}
-                  </a>
-                ))}
+    <div class="mobile-menu-scroll">
+      {/* Menu Principal */}
+      {
+        liensDuMenu.map((item) => (
+          <div class="mobile-menu-item">
+            {item.hasSubmenu && item.submenu ? (
+              <div class="mobile-submenu-wrapper">
+                <button class="mobile-menu-link mobile-submenu-trigger" data-mobile-submenu>
+                  {item.label}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="mobile-chevron"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                </button>
+                <div class="mobile-submenu-items">
+                  {item.submenu.map((subitem) => (
+                    <a href={subitem.url} class="mobile-submenu-link">
+                      {subitem.label}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
-          ) : (
-            <a
-              href={item.url}
-              class={item.type === 'cta' ? 'mobile-menu-link mobile-menu-cta' : 'mobile-menu-link'}
-            >
-              {item.label}
-            </a>
-          )}
-        </div>
-      ))
-    }
+            ) : (
+              <a
+                href={item.url}
+                class={`mobile-menu-link ${item.type === 'cta' ? 'mobile-menu-cta' : ''}`}
+              >
+                {item.label}
+              </a>
+            )}
+          </div>
+        ))
+      }
 
-    <!-- Language Switcher Mobile -->
-    <div class="mobile-lang-switcher">
-      <a
-        href="/"
-        title="Français"
-        style="font-size:large;"
-        class={lang === 'fr' ? 'mobile-lang-link mobile-lang-active' : 'mobile-lang-link'}>🇫🇷</a
-      >
-      <span class="lang-separator">/</span>
-      <a
-        href="/en"
-        title="English"
-        style="font-size:large;"
-        class={lang === 'en' ? 'mobile-lang-link mobile-lang-active' : 'mobile-lang-link'}>🇬🇧</a
-      >
+      {/* Menu Secondaire (Footer) - Même format mobile-menu-item */}
+      <div class="mobile-footer-separator"></div>
+
+      <div class="mobile-menu-item">
+        <a href="https://bureaudureel.fr" target="_blank" rel="noopener" class="mobile-menu-link"
+          >{tFooter.bureauDuReel}</a
+        >
+      </div>
+      <div class="mobile-menu-item">
+        <a href={footerNavLinks.blog} class="mobile-menu-link">{tFooter.blog}</a>
+      </div>
+      <div class="mobile-menu-item">
+        <a href={footerNavLinks.faq} class="mobile-menu-link">{tFooter.faq}</a>
+      </div>
+      <div class="mobile-menu-item">
+        <a href={footerNavLinks.privacy} class="mobile-menu-link">{tFooter.privacy}</a>
+      </div>
+      <div class="mobile-menu-item">
+        <a href={footerNavLinks.cookie} class="mobile-menu-link">{tFooter.cookie}</a>
+      </div>
+
+      <div class="mobile-lang-switcher">
+        <a
+          href="/"
+          class={lang === 'fr' ? 'mobile-lang-link mobile-lang-active' : 'mobile-lang-link'}>🇫🇷</a
+        >
+        <span class="lang-separator">/</span>
+        <a
+          href="/en"
+          class={lang === 'en' ? 'mobile-lang-link mobile-lang-active' : 'mobile-lang-link'}>🇬🇧</a
+        >
+      </div>
     </div>
   </div>
 </header>
 
 <style>
-  /* ========================================
-     MOBILE FIRST
-     ======================================== */
-
+  /* --- Base & Header --- */
   .header-main {
     width: 100%;
     background-color: rgba(246, 250, 251, 0.9);
@@ -183,13 +204,11 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     z-index: 50;
     border-bottom: 1px solid rgba(74, 103, 65, 0.2);
   }
-
   .header-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 1rem;
   }
-
   .header-content {
     display: flex;
     justify-content: center;
@@ -198,138 +217,31 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     position: relative;
   }
 
-  /* LOGO - Mobile */
-  .logo-container {
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .logo-link {
-    text-decoration: none;
+  @media (min-width: 1025px) {
+    .header-content {
+      justify-content: space-between;
+    }
   }
 
   .logo-img {
-    width: 100px;
+    width: 200px;
     height: auto;
   }
 
-  .logo-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: -0.05em;
-    color: var(--color-brand-primary);
-    transition: color 300ms;
-  }
-
-  .logo-link:hover .logo-text {
-    color: var(--color-brand-accent);
-  }
-
-  .logo-subtitle {
-    font-size: 8px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    text-align: center;
-    color: rgba(61, 57, 53, 0.6);
-  }
-
-  p.logo-subtitle {
-    margin-bottom: 0;
-  }
-
-  /* NAVIGATION - Mobile */
+  /* --- Desktop Nav --- */
   .nav-desktop {
     display: none;
     gap: 2rem;
     align-items: center;
   }
-
-  .nav-item-wrapper {
-    position: relative;
-  }
-
-  .nav-item-with-submenu {
-    position: relative;
-  }
-
   .nav-link {
     font-size: 12px;
     font-weight: 300;
-    font-family: serif;
     text-transform: uppercase;
     letter-spacing: 0.2em;
     color: var(--color-brand-primary);
-    transition: color 300ms;
     text-decoration: none;
   }
-
-  .nav-link:hover {
-    color: var(--color-brand-accent);
-  }
-
-  .nav-link-with-arrow {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    padding-top: 4px;
-  }
-
-  .chevron-icon {
-    width: 12px;
-    height: 12px;
-    transition: transform 300ms;
-  }
-
-  .nav-item-with-submenu:hover .chevron-icon {
-    transform: rotate(180deg);
-  }
-
-  .submenu-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    margin-top: 0.5rem;
-    background: white;
-    border: 1px solid rgba(74, 103, 65, 0.2);
-    border-radius: 0.5rem;
-    padding: 0.5rem 0;
-    width: max-content;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 300ms;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-item-with-submenu:hover .submenu-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .submenu-link {
-    display: block;
-    padding: 0.5rem 1rem;
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-brand-primary);
-    text-decoration: none;
-    transition: background-color 200ms;
-  }
-
-  .submenu-link:hover {
-    background-color: rgba(74, 103, 65, 0.05);
-    color: var(--color-brand-accent);
-  }
-
   .btn-nav {
     font-size: 11px;
     font-weight: 700;
@@ -338,93 +250,64 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     padding: 0.5rem 1.25rem;
     border: 1px solid var(--color-brand-primary);
     color: var(--color-brand-primary);
-    transition: all 300ms;
     text-decoration: none;
   }
 
-  .btn-nav:hover {
-    background-color: var(--color-brand-primary);
-    color: white;
-  }
-
-  /* Language Switcher */
-  .lang-switcher {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding-top: 6px;
-  }
-
-  .lang-link {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    color: var(--color-brand-primary);
-    text-decoration: none;
-    transition: color 300ms;
-    opacity: 0.5;
-  }
-
-  .lang-link:hover {
-    opacity: 1;
-  }
-
-  .lang-active {
-    opacity: 1;
-    font-weight: 700;
-  }
-
-  .lang-separator {
-    font-size: 10px;
-    color: var(--color-brand-primary);
-    opacity: 0.3;
-  }
-
-  /* MOBILE MENU BUTTON - Mobile */
+  /* --- Mobile Toggle --- */
   .mobile-menu-button {
-    display: flex;
-    align-items: center;
     position: absolute;
     right: 1rem;
+    display: flex;
+    align-items: center;
   }
-
   .menu-toggle {
-    color: var(--color-brand-primary);
-    padding: 0.5rem;
     background: none;
     border: none;
+    color: var(--color-brand-primary);
     cursor: pointer;
+    padding: 0.5rem;
   }
-
   .menu-icon {
     width: 1.5rem;
     height: 1.5rem;
   }
 
-  /* MOBILE MENU - Mobile */
+  /* --- Mobile Menu Content --- */
   .mobile-menu-content {
     display: none;
+    position: fixed;
+    top: 5rem;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 5rem);
     background-color: white;
-    border-top: 1px solid rgba(74, 103, 65, 0.2);
-    padding: 1.5rem 1rem;
+    z-index: 49;
+    overflow-y: auto;
+  }
+  .mobile-menu-scroll {
+    padding: 2rem 1.5rem 5rem;
   }
 
+  /* --- Harmonisation du format --- */
   .mobile-menu-item {
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
 
   .mobile-menu-link {
-    display: block;
-    font-size: 0.875rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     color: var(--color-brand-primary);
     text-decoration: none;
-    background: none;
     border: none;
-    padding: 0;
+    background: none;
     width: 100%;
     text-align: left;
+    padding: 0;
+    font-family: inherit;
     cursor: pointer;
   }
 
@@ -433,136 +316,49 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     font-weight: 700;
   }
 
-  .mobile-submenu-wrapper {
-    display: flex;
-    flex-direction: column;
+  .mobile-footer-separator {
+    margin: 2rem 0;
+    border-top: 1px dashed rgba(74, 103, 65, 0.2);
   }
 
-  .mobile-submenu-trigger {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .mobile-chevron {
-    width: 14px;
-    height: 14px;
-    transition: transform 300ms;
-  }
-
-  .mobile-submenu-trigger.active .mobile-chevron {
-    transform: rotate(180deg);
-  }
-
+  /* --- Submenus & Lang --- */
   .mobile-submenu-items {
     display: none;
     flex-direction: column;
     padding-left: 1rem;
     margin-top: 0.5rem;
   }
-
-  .mobile-submenu-items.show {
-    display: flex;
-  }
-
   .mobile-submenu-link {
-    display: block;
-    font-size: 0.75rem;
-    text-align: left;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-brand-primary);
-    text-decoration: none;
     padding: 0.5rem 0;
-    opacity: 0.7;
-  }
-
-  .mobile-submenu-link:hover {
-    opacity: 1;
-  }
-
-  /* Mobile Language Switcher */
-  .mobile-lang-switcher {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding-top: 1rem;
-    margin-top: 1rem;
-    border-top: 1px solid rgba(74, 103, 65, 0.2);
-  }
-
-  .mobile-lang-link {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    text-transform: uppercase;
     color: var(--color-brand-primary);
     text-decoration: none;
-    opacity: 0.5;
+    opacity: 0.8;
   }
-
+  .mobile-chevron {
+    width: 1.2rem;
+    height: 1.2rem;
+    transition: transform 0.3s;
+  }
+  .mobile-lang-switcher {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(74, 103, 65, 0.1);
+    display: flex;
+    gap: 1rem;
+  }
   .mobile-lang-active {
-    opacity: 1;
-    font-weight: 700;
+    font-weight: bold;
   }
 
-  /* ========================================
-     DESKTOP
-     ======================================== */
   @media (min-width: 1025px) {
-    .header-container {
-      padding: 0 2rem;
-    }
-
-    .header-content {
-      justify-content: space-between;
-      height: 4rem;
-    }
-
-    .logo-img {
-      width: 180px;
-    }
-
-    .logo-text {
-      font-size: 1.875rem;
-    }
-
     .nav-desktop {
       display: flex;
     }
-
     .mobile-menu-button {
       display: none;
     }
-
-    .mobile-menu-content {
-      display: none !important;
-    }
-  }
-
-  /* ========================================
-     LARGE DESKTOP
-     ======================================== */
-  @media (min-width: 1600px) {
-    .header-container {
-      padding: 0 2rem;
-    }
-
-    .logo-img {
-      width: 240px;
-    }
-
-    .logo-text {
-      font-size: 1.875rem;
-    }
-
-    .nav-desktop {
-      display: flex;
-    }
-
-    .mobile-menu-button {
-      display: none;
-    }
-
     .mobile-menu-content {
       display: none !important;
     }
@@ -570,28 +366,34 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
 </style>
 
 <script>
-  // Menu mobile toggle
-  const btn = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
+  function initMenu() {
+    const btn = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
 
-  btn?.addEventListener('click', () => {
-    if (menu?.style.display === 'block') {
-      menu.style.display = 'none';
-    } else if (menu) {
-      menu.style.display = 'block';
-    }
-  });
-
-  // Mobile submenu toggle
-  const mobileSubmenuTriggers = document.querySelectorAll('[data-mobile-submenu]');
-  mobileSubmenuTriggers.forEach((trigger) => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      const parent = trigger.closest('.mobile-submenu-wrapper');
-      const submenuItems = parent?.querySelector('.mobile-submenu-items');
-
-      trigger.classList.toggle('active');
-      submenuItems?.classList.toggle('show');
+    btn?.addEventListener('click', () => {
+      const isOpened = menu?.style.display === 'block';
+      if (menu) {
+        menu.style.display = isOpened ? 'none' : 'block';
+        document.body.style.overflow = isOpened ? 'auto' : 'hidden';
+      }
     });
-  });
+
+    const mobileSubmenuTriggers = document.querySelectorAll('[data-mobile-submenu]');
+    mobileSubmenuTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const parent = trigger.closest('.mobile-submenu-wrapper');
+        const submenuItems = parent?.querySelector('.mobile-submenu-items') as HTMLElement;
+        if (submenuItems) {
+          const isHidden = getComputedStyle(submenuItems).display === 'none';
+          submenuItems.style.display = isHidden ? 'flex' : 'none';
+          const svg = trigger.querySelector('svg');
+          if (svg) svg.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+      });
+    });
+  }
+
+  initMenu();
+  document.addEventListener('astro:after-swap', initMenu);
 </script>

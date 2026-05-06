@@ -175,17 +175,16 @@ const finalTextColor = textColor;
   }
 
   Promise.all(imagePromises).then(() => {
-
     buoys.forEach((buoy) => {
-  // Force le rendu GPU AVANT animation
-  gsap.set(buoy, {
-    force3D: true,
-    transformPerspective: 1000,
-  });
+      // Force le rendu GPU AVANT animation
+      gsap.set(buoy, {
+        force3D: true,
+        transformPerspective: 1000,
+      });
 
-  // Force un reflow (hack volontaire)
-  buoy.getBoundingClientRect();
-});
+      // Force un reflow (hack volontaire)
+      buoy.getBoundingClientRect();
+    });
 
     ScrollTrigger.refresh();
 
@@ -247,11 +246,10 @@ const finalTextColor = textColor;
 <style is:global>
   .grid-wrapper {
     width: 100%;
-    padding: 10px 0;
+    padding: 2rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 5rem);
   }
 
   .grid-wrapper.grid-fullbleed {
@@ -263,10 +261,10 @@ const finalTextColor = textColor;
   }
 
   .buoy-animate {
-  will-change: transform, opacity;
-  transform-origin: center;
-  backface-visibility: hidden;
-}
+    will-change: transform, opacity;
+    transform-origin: center;
+    backface-visibility: hidden;
+  }
 
   .grid-container {
     display: grid;
@@ -299,7 +297,7 @@ const finalTextColor = textColor;
       box-shadow 0.3s ease;
   }
 
-/*   .grid-item:hover {
+  /*   .grid-item:hover {
     transform: translateY(-6px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
   } */
@@ -321,36 +319,34 @@ const finalTextColor = textColor;
     will-change: transform, opacity;
   }
 
-/*   .grid-item:hover .grid-item-media img {
+  /*   .grid-item:hover .grid-item-media img {
     transform: scale(1.07);
   } */
 
   .grid-item-media.is-image {
-    max-width: 60%;
-    min-height: 180px;
+    max-width: 80%;
+    min-height: 120px;
     aspect-ratio: 4 / 5;
-    padding:2rem;
-    padding-bottom: 0; 
-
-  will-change: transform, opacity;
-
-}
+    padding: 1rem;
+    padding-bottom: 0;
+    will-change: transform, opacity;
+  }
 
   .grid-item-media.is-icon {
-    height: 100px;
+    height: 80px;
     display: grid;
     place-items: center;
-    padding: 1.5rem 1rem 0.75rem;
+    padding: 1rem 0.75rem 0.5rem;
   }
 
   .grid-item-media.is-icon img {
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     object-fit: contain;
   }
 
   .grid-item-content {
-    padding: 1.5rem;
+    padding: 0rem;
     text-align: center;
     flex: 1;
     display: flex;
@@ -360,7 +356,7 @@ const finalTextColor = textColor;
 
   .grid-item-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem!important;
+    font-size: 1.5rem !important;
     font-weight: 600;
     color: var(--dynamic-text);
     margin: 0;
@@ -392,19 +388,37 @@ const finalTextColor = textColor;
     margin-top: 0.8rem;
   }
 
-
   @media (min-width: 768px) {
+    .grid-wrapper {
+      height: calc(100vh - 5rem);
+      padding: 10px 0;
+    }
+
     .grid-container {
       grid-template-columns: repeat(var(--cols-tablet), minmax(var(--grid-minwidth), 1fr));
     }
+
     .grid-item {
-      padding: 0 .75rem 2rem .75rem ;
+      padding: 0 0.75rem 2rem 0.75rem;
     }
-    .grid-item-content {
-      padding: 0;
+
+    .grid-item-media.is-image {
+      max-width: 70%;
+      min-height: 180px;
+      padding: 2rem;
+      padding-bottom: 0;
+    }
+
+    .grid-item-media.is-icon {
+      height: 100px;
+      padding: 1.5rem 1rem 0.75rem;
+    }
+
+    .grid-item-media.is-icon img {
+      width: 90px;
+      height: 90px;
     }
   }
-
 
   @media (min-width: 1025px) {
     .grid-container {

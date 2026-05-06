@@ -20,8 +20,8 @@ const sortedCategories = categorie.sort((a, b) => {
   metaDescription="Découvrez nos accompagnements en diagnostic de performance, formation, coaching et conseil."
   lang="fr"
 >
-  <div class="flex flex-col justify-center align-items mx-auto px-4 min-h-[83vh]">
-    <h1 class="font-serif text-limolo-green mb-8 text-center">Nos accompagnements</h1>
+  <div class="flex flex-col justify-center align-items mx-auto min-h-[83vh]">
+    <h1 class="mb-8 text-4xl md:text-6xl text-center">Nos accompagnements</h1>
     <h2>Solutions de diagnostic et développement pour vos organisations</h2>
 
     <!-- Navigation des catégories d'accompagnements -->
@@ -51,7 +51,9 @@ const sortedCategories = categorie.sort((a, b) => {
   <AccompagnementsGrid lang="fr" fullBleed={true} />
 
   <!-- Section des modalités avec descriptifs -->
+
   <section class="modalites-section">
+    <h2 class="text-4xl! font-bold pt-10!">4 modalités d'intervention</h2>
     <div class="modalites-container">
       {
         sortedModalites.map((modalite) => {
@@ -157,11 +159,11 @@ const sortedCategories = categorie.sort((a, b) => {
     width: 100%;
     background: white;
     border-top: 1px solid #e8e8e8;
-    padding: 2.5rem 1.5rem;
+    padding: 2.5rem 0rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .categories-nav-wrapper {
@@ -169,21 +171,22 @@ const sortedCategories = categorie.sort((a, b) => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
     margin-top: 2rem;
   }
 
   .category-nav-link {
-    padding: 0.75rem 0.75rem;
+    padding: 0.5rem 1rem;
     border-radius: 4px;
     font-weight: 500;
     text-decoration: none;
     border: 1px solid rgba(61, 62, 64, 0.782);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 0.8rem;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 0.7rem !important;
     display: block;
     text-align: center;
-    width: 300px;
+    width: 180px;
   }
 
   .category-nav-link:hover {
@@ -223,7 +226,7 @@ const sortedCategories = categorie.sort((a, b) => {
   .arrow-colours {
     background: linear-gradient(0deg, #c65151, #9e8aa8, #9e8aa8, #6b7fa3, #172432);
     /* Définit la largeur à 100px et la hauteur à 100% */
-    background-size: 40px 100%;
+    background-size: 50px 100%;
     /* Empêche le dégradé de se répéter sur toute la largeur */
     background-repeat: no-repeat;
     /* Optionnel : centre le dégradé ou le met à gauche/droite */
@@ -255,6 +258,23 @@ const sortedCategories = categorie.sort((a, b) => {
       grid-template-columns: 1fr 1fr;
       gap: 1.25rem;
     }
+    .categories-nav {
+      padding: 2.5rem 1.5rem;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .category-nav-link {
+      padding: 0.75rem 0.75rem;
+      border-radius: 4px;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid rgba(61, 62, 64, 0.782);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 0.8rem;
+      display: block;
+      text-align: center;
+      width: 300px;
+    }
   }
 
   .modalite-card {
@@ -271,9 +291,16 @@ const sortedCategories = categorie.sort((a, b) => {
 
   .modalite-header {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .modalite-header {
+      justify-content: flex-start;
+    }
   }
 
   .modalite-dot {
@@ -319,19 +346,5 @@ const sortedCategories = categorie.sort((a, b) => {
     line-height: 1.5;
     color: #555;
     margin: 0;
-  }
-
-  @media (max-width: 768px) {
-    .categories-nav-wrapper {
-      gap: 0;
-      max-width: 100%;
-      background: linear-gradient(180deg, #c65151, #9e8aa8, #9e8aa8, #6b7fa3, #172432);
-      flex-direction: column;
-    }
-
-    .category-nav-link {
-      padding: 0.875rem 1.25rem;
-      font-size: 0.9rem;
-    }
   }
 </style>

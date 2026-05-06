@@ -1,0 +1,123 @@
+---
+// Composant ContinuumGrid pour mobile
+// Animation GSAP ScrollTrigger simplifiée - 3 zones principales
+---
+
+<div
+  class="continuum-mobile-wrapper"
+  role="img"
+  aria-label="Continuum de la performance collective"
+>
+  <div class="continuum-mobile-grid">
+    <!-- Zone rouge (gauche) -->
+    <div class="mobile-zone zone-red" data-zone="1">
+      <span>Du groupe dysfonctionnel</span>
+    </div>
+
+    <!-- Zone bleue (droite) -->
+    <div class="mobile-zone zone-blue" data-zone="2">
+      <span>Au collectif hautement performant</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const zones = document.querySelectorAll('.mobile-zone');
+
+    if (zones.length === 0) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.continuum-mobile-wrapper',
+        start: 'top 75%',
+        end: 'bottom 25%',
+        scrub: 1,
+      },
+    });
+
+    zones.forEach((zone, index) => {
+      tl.to(
+        zone,
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.5,
+          ease: 'power2.out',
+        },
+        index * 0.2
+      );
+    });
+  });
+</script>
+
+<style>
+  .continuum-mobile-wrapper {
+    position: relative;
+    width: 100vw;
+    /* On force le centrage par rapport au bord de l'écran */
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 2rem 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-image: url('/images/pages/continuum-performance-collective.webp');
+    background-position: center;
+    background-size: 120%;
+    background-repeat: no-repeat;
+    aspect-ratio: 16 / 9;
+    min-height: 48vh;
+  }
+
+  .continuum-mobile-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .mobile-zone {
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    opacity: 0;
+    transform: scale(0.9);
+    will-change: opacity, transform;
+  }
+
+  .mobile-zone span {
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    display: block;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .zone-red {
+    background: rgba(171, 8, 0, 0.8);
+  }
+
+  .zone-blue {
+    background: rgba(3, 26, 52, 0.8);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-zone {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+</style>
