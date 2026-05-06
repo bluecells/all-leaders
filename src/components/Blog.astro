@@ -5,9 +5,18 @@ import { blogTranslations } from '@/data/translations';
 interface Props {
   lang?: string;
   fullBleed?: boolean;
+  cardsPerRowMobile?: number;
+  cardsPerRowDesktop?: number;
+  articlesPerPage?: number;
 }
 
-const { lang = 'it', fullBleed = false } = Astro.props;
+const {
+  lang = 'fr',
+  fullBleed = false,
+  cardsPerRowMobile = 1,
+  cardsPerRowDesktop = 4,
+  articlesPerPage = 10,
+} = Astro.props;
 const validLang = lang === 'fr' || lang === 'en' ? lang : 'it';
 const t = blogTranslations[validLang as keyof typeof blogTranslations];
 
@@ -135,7 +144,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 >
   <div class="flex flex-col justify-between lg:flex-row gap-4">
     <aside class="lg:w-50 lg:order-2 space-y-10 lg:sticky lg:top-40 lg:self-start">
-      <div class="search-box">
+      <div class="search-box mb-0 text-center lg:text-left">
         <h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">
           {t.search}
         </h4>
@@ -143,17 +152,17 @@ const tagsForFilter = Array.from(tagSlugs).sort();
           type="text"
           id="search-input"
           placeholder={t.searchPlaceholder}
-          class="w-full border-b border-gray-300 py-1 focus:border-limolo-green outline-none bg-transparent text-sm transition-colors"
+          class="w-full border-b border-gray-300 py-1 focus:border-limolo-green outline-none bg-transparent text-sm transition-colors text-center lg:text-left placeholder:text-center lg:placeholder:text-left"
         />
       </div>
 
-      <div class="categories-box">
-        <h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-4">
+      <div class="categories-box text-center lg:text-left">
+        <h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 pt-4 mb-4">
           {t.categories}
         </h4>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-wrap gap-2 justify-center lg:justify-start">
           <button
-            class="filter-cat active text-left text-sm hover:text-limolo-green transition-colors font-bold text-limolo-green"
+            class="filter-cat active category-cloud-item px-3 py-1 rounded-full text-[11px] font-semibold border-2 border-limolo-green text-limolo-green bg-limolo-green/10 transition-all hover:shadow-md"
             data-category="all"
           >
             {t.allCategories}
@@ -169,7 +178,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 
               return (
                 <button
-                  class="filter-cat text-left text-sm text-gray-500 hover:text-limolo-green transition-colors"
+                  class="filter-cat category-cloud-item px-3 py-1 rounded-full text-[11px] font-semibold border-2 border-gray-300 text-gray-600 hover:border-limolo-green hover:text-limolo-green hover:bg-limolo-green/5 transition-all"
                   data-category={localizedSlug}
                 >
                   {localizedName}
@@ -194,7 +203,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 
               return (
                 <button
-                  class="filter-tag px-3 py-1 rounded-full text-[10px] border border-gray-200 text-gray-500 hover:border-limolo-green hover:text-limolo-green transition-all"
+                  class="filter-tag px-3 py-1 rounded-full text-[10px] border border-gray-400 text-gray-900 hover:border-limolo-green hover:text-limolo-green transition-all"
                   data-tag={localizedSlug}
                 >
                   #{localizedName}
@@ -208,11 +217,16 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 
     <main class="lg:flex-1 lg:order-1 max-w-full">
       <div
-        class="grid grid-cols-4 gap-4"
+        class="grid gap-4 grid-cols-1 lg:grid-cols-4"
         id="blog-grid"
+        data-articles={JSON.stringify(articlesData)}
+        data-cards-per-row-mobile={cardsPerRowMobile}
+        data-cards-per-row-desktop={cardsPerRowDesktop}
+        data-articles-per-page={articlesPerPage}
+        data-lang={validLang}
       >
         {
-          articlesData.map((article) => {
+          articlesData.slice(0, articlesPerPage).map((article) => {
             const {
               title,
               permalink,
@@ -281,9 +295,9 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 
                   <a
                     href={permalink}
-                    class="inline-flex items-center mt-2 text-[11px] font-bold uppercase tracking-widest text-limolo-earth group-hover:translate-x-2 transition-transform duration-300"
+                    class="btn-limolo inline-flex px-8 py-0 items-center justify-center gap-2 mt-4 w-full lg:w-auto"
                   >
-                    {t.cta} <span class="ml-2 text-lg">→</span>
+                    {t.cta} <span class="text-lg">→</span>
                   </a>
                 </div>
               </div>
@@ -295,11 +309,63 @@ const tagsForFilter = Array.from(tagSlugs).sort();
       <div id="no-results" class="hidden text-center py-20 text-gray-400 font-serif italic text-xl">
         {t.noResults}
       </div>
+
+      {
+        articlesData.length > articlesPerPage && (
+          <div class="flex justify-center mt-12">
+            <button id="load-more-btn" class="btn-limolo">
+              Afficher plus
+            </button>
+          </div>
+        )
+      }
     </main>
   </div>
 </div>
 
-<style>
+<!-- Template pour cloner les articles - gardé en DOM pour que Tailwind le voit -->
+<div id="article-template" style="display: none;">
+  <div
+    class="article-card group flex flex-col border border-gray-200 rounded-lg hover:shadow-md transition-shadow overflow-hidden"
+  >
+    <div class="relative w-full aspect-16/10 shadow-sm bg-gray-100 overflow-hidden flex-shrink-0">
+      <div class="absolute top-0 left-0 z-20">
+        <div class="bg-limolo-brand backdrop-blur-sm px-2 pb-1 rounded-md shadow-sm">
+          <span class="text-[10px] font-bold uppercase tracking-tighter text-white article-date"
+          ></span>
+        </div>
+      </div>
+      <a href="" class="article-link block w-full h-full">
+        <img
+          src=""
+          alt=""
+          class="article-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+        />
+      </a>
+    </div>
+    <div class="flex flex-col items-start justify-between flex-1 p-3">
+      <div class="w-full">
+        <button
+          class="article-category filter-cat-link text-[10px] mb-1 uppercase tracking-[0.2em] font-bold text-limolo-green hover:text-limolo-accent transition-colors hidden"
+        ></button>
+        <a href="" class="article-link block group w-full">
+          <h3
+            class="article-title text-sm m-0 font-serif text-limolo-green leading-tight group-hover:text-limolo-accent transition-colors line-clamp-4"
+          >
+          </h3>
+        </a>
+      </div>
+      <a
+        href=""
+        class="article-link btn-limolo inline-flex px-8 py-0 items-center justify-center gap-2 mt-4 w-full lg:w-auto"
+      >
+        Lire <span class="text-lg">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style is:global>
   main {
     max-width: 100%;
   }
@@ -313,22 +379,60 @@ const tagsForFilter = Array.from(tagSlugs).sort();
   .article-card {
     background-color: rgba(255, 255, 255, 0.9);
   }
+
+  /* ========================================
+     CATEGORY CLOUD / TAG CLOUD STYLES
+     ======================================== */
+  .category-cloud-item {
+    display: inline-block;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .category-cloud-item:hover {
+    transform: translateY(-2px);
+  }
+
+  .category-cloud-item.active {
+    border-color: var(--color-brand-primary);
+    color: white;
+    background-color: var(--color-brand-primary);
+  }
+
+  .categories-box {
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
 </style>
 
 <script is:inline define:vars={{ lang: validLang }}>
   const searchInput = document.getElementById('search-input');
   const blogGrid = document.getElementById('blog-grid');
   const noResults = document.getElementById('no-results');
-  const articleCards = document.querySelectorAll('.article-card');
+  const loadMoreBtn = document.getElementById('load-more-btn');
   const filterCatButtons = document.querySelectorAll('.filter-cat');
   const filterCatLinks = document.querySelectorAll('.filter-cat-link');
   const filterTagButtons = document.querySelectorAll('.filter-tag');
 
   let activeCategory = 'all';
   let activeTags = [];
+  let currentPage = 1;
+
+  // Récupérer les données du grid
+  const allArticlesJson = blogGrid?.dataset.articles || '[]';
+  const articlesPerPage = parseInt(blogGrid?.dataset.articlesPerPage || '10', 10);
+  const allArticles = JSON.parse(allArticlesJson);
+  const cardsPerRowMobile = parseInt(blogGrid?.dataset.cardsPerRowMobile || '1', 10);
+  const cardsPerRowDesktop = parseInt(blogGrid?.dataset.cardsPerRowDesktop || '4', 10);
+
+  function getVisibleArticleCards() {
+    return document.querySelectorAll('.article-card');
+  }
 
   function filterArticles() {
     let visibleCount = 0;
+    const articleCards = getVisibleArticleCards();
 
     articleCards.forEach((card) => {
       const cardEl = /** @type {HTMLElement} */ (card);
@@ -358,6 +462,143 @@ const tagsForFilter = Array.from(tagSlugs).sort();
       noResults?.classList.add('hidden');
       blogGrid?.classList.remove('hidden');
     }
+
+    updateLoadMoreButton();
+  }
+
+  function updateLoadMoreButton() {
+    if (loadMoreBtn) {
+      const totalCards = getVisibleArticleCards().length;
+      const totalArticles = allArticles.length;
+
+      // Masquer le bouton si tous les articles sont chargés
+      if (totalCards >= totalArticles) {
+        loadMoreBtn.style.display = 'none';
+      } else {
+        loadMoreBtn.style.display = 'inline-block';
+      }
+    }
+  }
+
+  function loadMoreArticles() {
+    currentPage++;
+    const startIndex = articlesPerPage * (currentPage - 1);
+    const endIndex = startIndex + articlesPerPage;
+    const articlesToAdd = allArticles.slice(startIndex, endIndex);
+
+    if (articlesToAdd.length === 0) {
+      updateLoadMoreButton();
+      return;
+    }
+
+    articlesToAdd.forEach((article) => {
+      const cardFragment = createArticleCard(article);
+      if (cardFragment && blogGrid) {
+        blogGrid.appendChild(cardFragment);
+      }
+    });
+
+    // Re-attacher les event listeners pour les nouveaux éléments
+    setTimeout(() => {
+      reattachEventListeners();
+      updateLoadMoreButton();
+      filterArticles();
+    }, 0);
+  }
+
+  function createArticleCard(article) {
+    const templateDiv = document.getElementById('article-template');
+    if (!templateDiv) return null;
+
+    const templateCard = templateDiv.querySelector('.article-card');
+    if (!templateCard) return null;
+
+    const clone = templateCard.cloneNode(true);
+    if (!clone) return null;
+
+    const cardDiv = clone;
+    if (!cardDiv) return null;
+
+    // Remplir les données
+    cardDiv.dataset.cat = article.categorySlug;
+    cardDiv.dataset.tags = JSON.stringify(article.rawTags);
+    cardDiv.dataset.title = article.title.toLowerCase();
+
+    // Date
+    const dateStr = new Date(article.pubDate).toLocaleDateString(
+      lang === 'fr' ? 'fr-FR' : lang === 'en' ? 'en-US' : 'it-IT',
+      { day: '2-digit', month: 'short', year: 'numeric' }
+    );
+    const dateEl = cardDiv.querySelector('.article-date');
+    if (dateEl) dateEl.textContent = dateStr;
+
+    // Tous les liens
+    const allLinks = cardDiv.querySelectorAll('.article-link');
+    allLinks.forEach((link) => {
+      link.href = article.permalink;
+    });
+
+    // Image
+    const imgEl = cardDiv.querySelector('.article-image');
+    const imageContainer = imgEl?.parentElement;
+
+    if (imgEl && article.photoSrc) {
+      imgEl.src = article.photoSrc;
+      imgEl.alt = article.photoAlt;
+      imgEl.style.display = 'block';
+    } else if (imageContainer) {
+      // Remplacer par une div "pas d'image"
+      const noImageDiv = document.createElement('div');
+      noImageDiv.className = 'w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-xs';
+      noImageDiv.textContent = "Pas d'image";
+      if (imgEl) {
+        imgEl.replaceWith(noImageDiv);
+      }
+    }
+
+    // Catégorie
+    const catBtn = cardDiv.querySelector('.article-category');
+    if (catBtn && article.displayCategory && article.displayCategory !== 'Uncategorized') {
+      catBtn.textContent = article.displayCategory;
+      catBtn.dataset.category = article.displayCategory.toLowerCase();
+      catBtn.classList.remove('hidden');
+    }
+
+    // Titre
+    const titleEl = cardDiv.querySelector('.article-title');
+    if (titleEl) titleEl.textContent = article.title;
+
+    return cardDiv;
+  }
+
+  function reattachEventListeners() {
+    const newFilterCatLinks = document.querySelectorAll('.filter-cat-link:not([data-listener-attached])');
+    newFilterCatLinks.forEach((link) => {
+      link.setAttribute('data-listener-attached', 'true');
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const linkElement = /** @type {HTMLElement} */ (link);
+        activeCategory = linkElement.dataset.category?.toLowerCase() || 'all';
+
+        filterCatButtons.forEach((b) => {
+          b.classList.remove('active');
+          b.classList.add('border-gray-300', 'text-gray-600', 'bg-transparent');
+          b.classList.remove('border-limolo-green', 'text-white', 'bg-limolo-green');
+        });
+
+        const matchingBtn = Array.from(filterCatButtons).find(
+          (b) => (b.dataset.category?.toLowerCase() || 'all') === activeCategory
+        );
+        if (matchingBtn) {
+          matchingBtn.classList.add('active');
+          matchingBtn.classList.add('border-limolo-green', 'text-white', 'bg-limolo-green');
+          matchingBtn.classList.remove('border-gray-300', 'text-gray-600', 'bg-transparent');
+        }
+
+        filterArticles();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
   }
 
   searchInput?.addEventListener('input', filterArticles);
@@ -367,12 +608,14 @@ const tagsForFilter = Array.from(tagSlugs).sort();
       activeCategory = btn.dataset.category?.toLowerCase() || 'all';
 
       filterCatButtons.forEach((b) => {
-        b.classList.remove('active', 'font-bold', 'text-limolo-green');
-        b.classList.add('text-gray-500');
+        b.classList.remove('active');
+        b.classList.add('border-gray-300', 'text-gray-600', 'bg-transparent');
+        b.classList.remove('border-limolo-green', 'text-white', 'bg-limolo-green');
       });
 
-      btn.classList.add('active', 'font-bold', 'text-limolo-green');
-      btn.classList.remove('text-gray-500');
+      btn.classList.add('active');
+      btn.classList.add('border-limolo-green', 'text-white', 'bg-limolo-green');
+      btn.classList.remove('border-gray-300', 'text-gray-600', 'bg-transparent');
 
       filterArticles();
     });
@@ -384,16 +627,18 @@ const tagsForFilter = Array.from(tagSlugs).sort();
       activeCategory = link.dataset.category?.toLowerCase() || 'all';
 
       filterCatButtons.forEach((b) => {
-        b.classList.remove('active', 'font-bold', 'text-limolo-green');
-        b.classList.add('text-gray-500');
+        b.classList.remove('active');
+        b.classList.add('border-gray-300', 'text-gray-600', 'bg-transparent');
+        b.classList.remove('border-limolo-green', 'text-white', 'bg-limolo-green');
       });
 
       const matchingBtn = Array.from(filterCatButtons).find(
         (b) => (b.dataset.category?.toLowerCase() || 'all') === activeCategory
       );
       if (matchingBtn) {
-        matchingBtn.classList.add('active', 'font-bold', 'text-limolo-green');
-        matchingBtn.classList.remove('text-gray-500');
+        matchingBtn.classList.add('active');
+        matchingBtn.classList.add('border-limolo-green', 'text-white', 'bg-limolo-green');
+        matchingBtn.classList.remove('border-gray-300', 'text-gray-600', 'bg-transparent');
       }
 
       filterArticles();
@@ -418,4 +663,13 @@ const tagsForFilter = Array.from(tagSlugs).sort();
       filterArticles();
     });
   });
+
+  // Initialiser le bouton "Afficher plus"
+  if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', loadMoreArticles);
+    updateLoadMoreButton();
+  }
+
+  // Réattacher les event listeners pour les category links existantes
+  reattachEventListeners();
 </script>
