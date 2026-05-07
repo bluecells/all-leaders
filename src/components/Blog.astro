@@ -144,8 +144,8 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 >
   <div class="flex flex-col justify-between lg:flex-row gap-4">
     <aside class="lg:w-50 lg:order-2 space-y-10 lg:sticky lg:top-40 lg:self-start">
-      <div class="search-box mb-0 text-center lg:text-left">
-        <h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">
+      <div class="search-box mb-0 text-center ">
+        <h4 class="text-[10px] md:text-left! uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">
           {t.search}
         </h4>
         <input
@@ -157,12 +157,12 @@ const tagsForFilter = Array.from(tagSlugs).sort();
       </div>
 
       <div class="categories-box text-center lg:text-left">
-        <h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 pt-4 mb-4">
+        <h4 class="text-[10px] md:text-left! uppercase tracking-[0.2em] font-bold text-gray-400 pt-4 mb-4">
           {t.categories}
         </h4>
         <div class="flex flex-wrap gap-2 justify-center lg:justify-start">
           <button
-            class="filter-cat active category-cloud-item px-3 py-1 rounded-full text-[11px] font-semibold border-2 border-limolo-green text-limolo-green bg-limolo-green/10 transition-all hover:shadow-md"
+            class="filter-cat active category-cloud-item px-3 py-1 rounded-md text-[11px] font-semibold border-2 border-limolo-green text-limolo-green bg-limolo-green/10 transition-all hover:shadow-md"
             data-category="all"
           >
             {t.allCategories}
@@ -178,7 +178,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 
               return (
                 <button
-                  class="filter-cat category-cloud-item px-3 py-1 rounded-full text-[11px] font-semibold border-2 border-gray-300 text-gray-600 hover:border-limolo-green hover:text-limolo-green hover:bg-limolo-green/5 transition-all"
+                  class="filter-cat category-cloud-item px-3 py-1 rounded-md text-[11px] font-semibold border-2 border-gray-300 text-gray-600 hover:border-limolo-green hover:text-limolo-green hover:bg-limolo-green/5 transition-all"
                   data-category={localizedSlug}
                 >
                   {localizedName}
@@ -190,7 +190,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
       </div>
 
       <div class="tags-box">
-        <h4 class="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-4">Tags</h4>
+        <h4 class="text-[10px] md:text-left! uppercase tracking-[0.2em] font-bold text-gray-400 mb-4">Tags</h4>
         <div class="flex flex-wrap gap-2">
           {
             tagsForFilter.map((slug) => {
@@ -203,7 +203,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 
               return (
                 <button
-                  class="filter-tag px-3 py-1 rounded-full text-[10px] border border-gray-400 text-gray-900 hover:border-limolo-green hover:text-limolo-green transition-all"
+                  class="filter-tag px-3 py-1 rounded-md text-[10px] border border-gray-400 text-gray-900 hover:border-limolo-green hover:text-limolo-green transition-all"
                   data-tag={localizedSlug}
                 >
                   #{localizedName}
@@ -275,11 +275,11 @@ const tagsForFilter = Array.from(tagSlugs).sort();
                 </div>
 
                 {/* Content - Bottom */}
-                <div class="flex flex-col items-start justify-between flex-1 p-3">
+                <div class="flex flex-col h-full items-start justify-between flex-1 py-2">
                   <div class="w-full">
                     {displayCategory !== 'Uncategorized' && (
                       <button
-                        class="filter-cat-link text-[10px] mb-1 uppercase tracking-[0.2em] font-bold text-limolo-green hover:text-limolo-accent transition-colors"
+                        class="filter-cat-link text-[10px] border-b-1 border-b-mist-200 mb-2 uppercase tracking-[0.2em] font-bold text-center! w-full text-limolo-green hover:text-limolo-accent transition-colors"
                         data-category={displayCategory.toLowerCase()}
                       >
                         {displayCategory}
@@ -295,7 +295,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 
                   <a
                     href={permalink}
-                    class="btn-limolo inline-flex px-8 py-0 items-center justify-center gap-2 mt-4 w-full lg:w-auto"
+                    class="btn-limolo inline-flex px-8 py-0 items-center justify-center gap-2 mt-4 w-full"
                   >
                     {t.cta} <span class="text-lg">→</span>
                   </a>
@@ -357,7 +357,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
       </div>
       <a
         href=""
-        class="article-link btn-limolo inline-flex px-8 py-0 items-center justify-center gap-2 mt-4 w-full lg:w-auto"
+        class="article-link btn-limolo inline-flex px-8 py-0 items-center justify-center gap-2 mt-4 w-full"
       >
         Lire <span class="text-lg">→</span>
       </a>
