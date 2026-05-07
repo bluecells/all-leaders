@@ -1,5 +1,6 @@
 ---
 import Layout from './Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { marked } from 'marked';
@@ -24,6 +25,10 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
   metaDescription={data.description}
 >
   <article class="accompagnement-page">
+    <Breadcrumb
+      category={category?.data?.name_fr || (category?.data?.name_en || '')}
+      title={data.title}
+    />
     <div class="flex items-center min-h-[82vh] md:min-h-[93vh]">
       <div class="container mx-auto max-w-4xl">
         {/* Type badge + Category */}

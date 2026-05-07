@@ -151,7 +151,7 @@ if (items.length > 0) {
     // Extraire le titre depuis l'URL (dernier segment)
     const titleFromPath = pathSegments[pathSegments.length - 1];
 
-    // Formater le titre
+    // Formater le titre : utiliser la prop si fournie, sinon formatter depuis l'URL
     const titleLabel =
       title ||
       titleFromPath
@@ -162,37 +162,51 @@ if (items.length > 0) {
     // Construire le fil d'Ariane à 3 niveaux
     breadcrumbItems = [
       { label: 'Accueil', href: '/' },
-      { label: 'FAQ', href: '/faq' },
+      { label: 'Eventi', href: '/eventi' },
       { label: titleLabel, href: '' },
     ];
   } else {
     /**
-     * CAS 3 : Pages normales
+     * CAS 4 : Pages normales
      * Génération standard basée sur tous les segments de l'URL
      * Résultat : Home / Segment1 / Segment2 / ...
+     * Le titre du frontmatter override le dernier segment s'il est fourni
      */
     breadcrumbItems = [
       { label: 'Accueil', href: '/' },
       // Pour chaque segment, construire un élément du fil d'Ariane
       ...pathSegments.map((segment, index) => {
+        const isLast = index === pathSegments.length - 1;
+
         // Construire le href cumulatif
         // Ex: index=0 → '/chi-siamo', index=1 → '/chi-siamo/team'
         let href = '/' + pathSegments.slice(0, index + 1).join('/');
 
-        // Redirectionner les liens vers /expertises et /types-interventions
-        // vers les pages canoniques (qui acceptent les slugs)
+        // Redirectionner certains segments vers des pages canoniques ou ancres
         if (segment === 'expertises' && index === 0) {
           href = '/speakers/conferenciers-expertises';
         } else if (segment === 'types-interventions' && index === 0) {
           href = '/speakers/conferenciers-types-interventions';
+        } else if (segment === 'equipe-all-leaders' && index === 0) {
+          href = '/#fondateurs';
         }
 
-        // Formater le label : capitaliser chaque mot
-        // "chi-siamo" → "Chi Siamo"
-        const label = segment
-          .split('-')
-          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ');
+        // Formater le label : utiliser le title si c'est le dernier segment et qu'il est fourni
+        // Sinon capitaliser le segment : "chi-siamo" → "Chi Siamo"
+        let label: string;
+        if (isLast && title) {
+          label = title;
+        } else {
+          label = segment
+            .split('-')
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+        }
+
+        // Pas de href pour le dernier élément (page actuelle)
+        if (isLast) {
+          href = '';
+        }
 
         return { label, href };
       }),
@@ -280,6 +294,7 @@ if (items.length > 0) {
 
   .breadcrumb-separator {
     user-select: none;
+    padding-right: 0.5rem;
   }
 
   @media (max-width: 640px) {

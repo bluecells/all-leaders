@@ -7,6 +7,15 @@ import ContinuumGridMobile from '../components/UI/ContinuumGridMobile.astro';
 import CompassLinks from '../components/UI/CompassLinks.astro';
 ---
 
+<style>
+  /* Prévenir le FOUC (Flash Of Unstyled Content) pour les animations GSAP */
+  .hero-title,
+  .hero-quote-wrapper,
+  .hero-question {
+    opacity: 0;
+  }
+</style>
+
 <script>
   import gsap from 'gsap';
 
@@ -184,7 +193,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
         </p>
       </div>
 
-      <div class="container min-h-0 py-12">
+      <div id="fondateurs" class="container min-h-0 py-12">
         <div class="values-section">
           {/* Images latérales en desktop */}
           <div class="values-image-left hidden order-1 md:flex">
@@ -216,7 +225,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               </li>
               <li>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/mepy/"
                   rel="noopener noreferrer"
                   target="_blank"
                   aria-label="Profil LinkedIn de Marie Emmanuelle Py"
@@ -226,7 +235,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/equipe-all-leaders/marie-emmanuelle-py"
                   rel="noopener noreferrer"
                   target="_blank"
                   aria-label="Profil complet de Marie Emmanuelle Py"
@@ -240,7 +249,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
           <div class="values-grid order-3 md:order-2" role="list">
             <article role="listitem">
               <h3 class="font-semibold text-2xl pt-4">Nous aimons l'entreprise</h3>
-              <p class="text-center px-20 text-[.9rem]!">
+              <p class="text-center md:px-20 text-[.9rem]!">
                 Nous y avons grandi et en avons tiré beaucoup de fierté. Nous savons qu'elle doit
                 offrir un cadre qui favorise la responsabilité, la solidarité et l'initiative.
               </p>
@@ -248,11 +257,11 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
             <article role="listitem">
               <h3 class="font-semibold text-2xl">Nous croyons en l'humain</h3>
-              <p class="text-center px-20 text-[.9rem]!">
+              <p class="text-center md:px-20 text-[.9rem]!">
                 Grâce à la sécurité psychologique et à l'affirmation de son intention, chacun peut
                 devenir leader et choisir consciemment d'influencer positivement son environnement.
               </p>
-              <p class="text-center px-20 text-[.9rem]!">
+              <p class="text-center md:px-20 text-[.9rem]!">
                 Nos parcours de marins, dans la sécurité nucléaire et une grande diversité de
                 cultures managériales nous ont appris à voir les organisations comme des
                 équipages&nbsp;: des collectifs qui gagnent en cultivant courage, cohésion,
@@ -292,7 +301,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               </li>
               <li>
                 <a
-                  href="#"
+                  href="https://www.linkedin.com/in/pebost/#"
                   rel="noopener noreferrer"
                   target="_blank"
                   aria-label="Profil LinkedIn de Pierre-Etienne Bost"
@@ -302,7 +311,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/equipe-all-leaders/pierre-etienne-bost"
                   rel="noopener noreferrer"
                   target="_blank"
                   aria-label="Profil complet de Pierre-Etienne Bost"

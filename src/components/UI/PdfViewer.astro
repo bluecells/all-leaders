@@ -1,0 +1,23 @@
+---
+interface Props {
+  url: string;
+  height?: string;
+}
+const { url, height = '600px' } = Astro.props;
+---
+
+<div class="pdf-container">
+  <iframe src={url} width="100%" height={height} style="border: none;" title="PDF Viewer">
+    <p>Votre navigateur ne supporte pas l'affichage des PDF. <a href={url}>Cliquez ici pour
+    télécharger le fichier.</a> </p>
+  </iframe>
+</div>
+
+<style>
+  .pdf-container {
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+</style>

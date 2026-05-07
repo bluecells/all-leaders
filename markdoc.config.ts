@@ -319,5 +319,12 @@ export default defineMarkdocConfig({
         class: { type: String },
       },
     },
+    Pdf: {
+      render: component('./src/components/UI/PdfViewer.astro'),
+      attributes: {
+        url: { type: String, required: true },
+        height: { type: String },
+      },
+    },
   },
 });
