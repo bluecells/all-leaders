@@ -331,35 +331,22 @@ const tagsForFilter = Array.from(tagSlugs).sort();
     <div class="relative w-full aspect-16/10 shadow-sm bg-gray-100 overflow-hidden flex-shrink-0">
       <div class="absolute top-0 left-0 z-20">
         <div class="bg-limolo-brand backdrop-blur-sm px-2 pb-1 rounded-md shadow-sm">
-          <span class="text-[10px] font-bold uppercase tracking-tighter text-white article-date"
-          ></span>
+          <span class="text-[10px] font-bold uppercase tracking-tighter text-white article-date"></span>
         </div>
       </div>
       <a href="" class="article-link block w-full h-full">
-        <img
-          src=""
-          alt=""
-          class="article-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-        />
+        <img src="" alt="" class="article-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
       </a>
     </div>
-    <div class="flex flex-col items-start justify-between flex-1 p-3">
+    <div class="flex flex-col h-full items-start justify-between flex-1 py-2">
       <div class="w-full">
-        <button
-          class="article-category filter-cat-link text-[10px] mb-1 uppercase tracking-[0.2em] font-bold text-limolo-green hover:text-limolo-accent transition-colors hidden"
-        ></button>
+        <button class="filter-cat-link article-category text-[10px] border-b-1 border-b-mist-200 mb-2 uppercase tracking-[0.2em] font-bold text-center! w-full text-limolo-green hover:text-limolo-accent transition-colors hidden"></button>
         <a href="" class="article-link block group w-full">
-          <h3
-            class="article-title text-sm m-0 font-serif text-limolo-green leading-tight group-hover:text-limolo-accent transition-colors line-clamp-4"
-          >
-          </h3>
+          <h3 class="text-sm m-0 font-serif text-limolo-green leading-tight group-hover:text-limolo-accent transition-colors line-clamp-4 article-title"></h3>
         </a>
       </div>
-      <a
-        href=""
-        class="article-link btn-limolo inline-flex px-8 py-0 items-center justify-center gap-2 mt-4 w-full"
-      >
-        Lire <span class="text-lg">→</span>
+      <a href="" class="article-link btn-limolo inline-flex px-8 py-0 items-center justify-center gap-2 mt-4 w-full">
+        <span class="article-cta">Lire</span><span class="text-lg">→</span>
       </a>
     </div>
   </div>
