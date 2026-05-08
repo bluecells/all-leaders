@@ -126,12 +126,12 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
   alternateUrls={alternateUrls}
 >
   <article class="bg-[#fdfdfd] min-h-screen pb-10">
-    <header class="relative pb-16 md:pt-20 md:pb-24">
+    <header class="relative pb-16 md:py-8">
       <div class="max-w-4xl mx-auto px-6 text-center">
         <div
-          class="inline-block px-4 py-1.5 rounded-lg bg-limolo-green/5 border border-limolo-green/10 mb-8"
+          class="inline-block px-4 pt-1 pb-2 rounded-lg bg-limolo-green/5 border border-limolo-green/10 mb-8"
         >
-          <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-limolo-green">
+          <span class="text-[10px] uppercase tracking-[0.3em]  font-bold text-limolo-green">
             {categoryLabel}
           </span>
         </div>
@@ -161,7 +161,7 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
     {
       featuredImagePath && (
         <div class="w-full max-w-2xl mx-auto px-4 mb-16">
-          <div class="relative aspect-video md:aspect-[21/9] rounded-xl overflow-hidden shadow-2xl shadow-limolo-green/10">
+          <div class="relative aspect-video rounded-xl overflow-hidden shadow-2xl shadow-limolo-green/10">
             <img
               src={featuredImagePath}
               alt={featuredImageAlt || title}
@@ -172,10 +172,8 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
       )
     }
 
-    <div class="max-w-4xl mx-auto px-6">
-      <div class="prose prose-stone prose-lg md:prose-xl prose-limolo max-w-none">
-        <slot />
-      </div>
+    <div class="prose-content max-w-4xl mx-auto">
+      <slot />
     </div>
 
     {
@@ -231,3 +229,51 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
     </h3>
   </article>
 </Layout>
+
+<style>
+  /* Le sélecteur 'is' permet de cibler le contenu injecté dans le slot */
+  
+  .prose-content :global(article) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .prose-content :global(h2) {
+    padding: 4rem 0 1rem 0;
+    margin-top: 0;
+  }
+
+  .prose-content :global(h3) {
+    padding: 2rem 0;
+    margin-top: 0;
+  }
+
+
+  .prose-content :global(h4) {
+    font-size: .875rem;
+    text-align: left;
+    font-weight: 900;
+    text-transform: none;
+    
+    margin-top: 1rem;
+  }
+  
+  .prose-content :global(p) {
+    text-align: left;  
+  }
+
+  .prose-content :global(ul), .prose-content :global(h4), .prose-content :global(p) {
+    max-width: 720px;
+    width: 100%;
+  }
+
+  .prose-content :global(ul) {
+    padding: 0;
+    margin: 0;
+  }
+
+  .prose-content :global(hr) {
+    padding: 1rem 0;
+  }
+
+</style>

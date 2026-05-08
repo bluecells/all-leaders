@@ -247,9 +247,9 @@ const tagsForFilter = Array.from(tagSlugs).sort();
                 data-title={title.toLowerCase()}
               >
                 {/* Image - Top */}
-                <div class="relative w-full aspect-16/10 shadow-sm bg-gray-100 overflow-hidden flex-shrink-0">
+                <div class="relative w-full aspect-16/10 shadow-sm bg-gray-100 overflow-hidden shrink-0">
                   <div class="absolute top-0 left-0 z-20">
-                    <div class="bg-limolo-brand backdrop-blur-sm px-2 pb-1 rounded-md shadow-sm">
+                    <div class="bg-blue-950/50 h-5 leading-none backdrop-blur-sm px-4 py-0">
                       <span class="text-[10px] font-bold uppercase tracking-tighter text-white">
                         {new Date(pubDate).toLocaleDateString(
                           validLang === 'it' ? 'it-IT' : validLang === 'fr' ? 'fr-FR' : 'en-US',
@@ -275,7 +275,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
                 </div>
 
                 {/* Content - Bottom */}
-                <div class="flex flex-col h-full items-start justify-between flex-1 py-2">
+                <div class="flex flex-col h-full items-center justify-between flex-1 py-2">
                   <div class="w-full">
                     {displayCategory !== 'Uncategorized' && (
                       <button
@@ -295,7 +295,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 
                   <a
                     href={permalink}
-                    class="btn-limolo inline-flex px-8 py-0 items-center justify-center gap-2 mt-4 w-full"
+                    class="btn-limolo inline-flex px-8 py-0 items-center justify-center rounded-sm gap-2 mt-4 w-[90%]"
                   >
                     {t.cta} <span class="text-lg">→</span>
                   </a>
@@ -328,24 +328,24 @@ const tagsForFilter = Array.from(tagSlugs).sort();
   <div
     class="article-card group flex flex-col border border-gray-200 rounded-lg hover:shadow-md transition-shadow overflow-hidden"
   >
-    <div class="relative w-full aspect-16/10 shadow-sm bg-gray-100 overflow-hidden flex-shrink-0">
+    <div class="relative w-full aspect-16/10 shadow-sm bg-gray-100 overflow-hidden shrink-0">
       <div class="absolute top-0 left-0 z-20">
-        <div class="bg-limolo-brand backdrop-blur-sm px-2 pb-1 rounded-md shadow-sm">
-          <span class="text-[10px] font-bold uppercase tracking-tighter text-white article-date"></span>
+        <div class="bg-blue-950/50 h-5 leading-none backdrop-blur-sm px-4 py-0">
+          <span class="article-date text-[10px] font-bold uppercase tracking-tighter text-white"></span>
         </div>
       </div>
       <a href="" class="article-link block w-full h-full">
         <img src="" alt="" class="article-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
       </a>
     </div>
-    <div class="flex flex-col h-full items-start justify-between flex-1 py-2">
+    <div class="flex flex-col h-full items-center justify-between flex-1 py-2">
       <div class="w-full">
         <button class="filter-cat-link article-category text-[10px] border-b-1 border-b-mist-200 mb-2 uppercase tracking-[0.2em] font-bold text-center! w-full text-limolo-green hover:text-limolo-accent transition-colors hidden"></button>
         <a href="" class="article-link block group w-full">
           <h3 class="text-sm m-0 font-serif text-limolo-green leading-tight group-hover:text-limolo-accent transition-colors line-clamp-4 article-title"></h3>
         </a>
       </div>
-      <a href="" class="article-link btn-limolo inline-flex px-8 py-0 items-center justify-center gap-2 mt-4 w-full">
+      <a href="" class="article-link btn-limolo inline-flex px-8 rounded-sm py-0 items-center justify-center gap-2 mt-4 w-[90%]">
         <span class="article-cta">Lire</span><span class="text-lg">→</span>
       </a>
     </div>
@@ -417,49 +417,60 @@ const tagsForFilter = Array.from(tagSlugs).sort();
     return document.querySelectorAll('.article-card');
   }
 
+  function getFilteredArticles() {
+    const searchValue = searchInput?.value.toLowerCase() || '';
+
+    return allArticles.filter((article) => {
+      const catMatch = activeCategory === 'all' || (article.categorySlug?.toLowerCase() || '') === activeCategory;
+      const tagMatch = activeTags.length === 0 || activeTags.some((tag) => (article.rawTags || []).includes(tag));
+      const searchMatch = searchValue === '' || article.title.toLowerCase().includes(searchValue);
+
+      return catMatch && tagMatch && searchMatch;
+    });
+  }
+
   function filterArticles() {
-    let visibleCount = 0;
-    const articleCards = getVisibleArticleCards();
+    const filteredArticles = getFilteredArticles();
+    currentPage = 1;
 
-    articleCards.forEach((card) => {
-      const cardEl = /** @type {HTMLElement} */ (card);
-      const cardCat = cardEl.dataset.cat?.toLowerCase() || '';
-      const cardTitle = cardEl.dataset.title?.toLowerCase() || '';
-      const cardTagsStr = cardEl.dataset.tags || '[]';
-      const cardTags = JSON.parse(cardTagsStr);
+    // Vider le grid et recharger avec les articles filtrés
+    if (blogGrid) {
+      blogGrid.innerHTML = '';
+    }
 
-      const searchValue = searchInput?.value.toLowerCase() || '';
+    const articlesToDisplay = filteredArticles.slice(0, articlesPerPage);
 
-      const catMatch = activeCategory === 'all' || cardCat === activeCategory;
-      const tagMatch = activeTags.length === 0 || activeTags.some((tag) => cardTags.includes(tag));
-      const searchMatch = searchValue === '' || cardTitle.includes(searchValue);
+    if (articlesToDisplay.length === 0) {
+      noResults?.classList.remove('hidden');
+      blogGrid?.classList.add('hidden');
+      if (loadMoreBtn) {
+        loadMoreBtn.style.display = 'none';
+      }
+      return;
+    }
 
-      if (catMatch && tagMatch && searchMatch) {
-        cardEl.style.display = 'block';
-        visibleCount++;
-      } else {
-        cardEl.style.display = 'none';
+    articlesToDisplay.forEach((article) => {
+      const cardFragment = createArticleCard(article);
+      if (cardFragment && blogGrid) {
+        blogGrid.appendChild(cardFragment);
       }
     });
 
-    if (visibleCount === 0) {
-      noResults?.classList.remove('hidden');
-      blogGrid?.classList.add('hidden');
-    } else {
+    setTimeout(() => {
+      reattachEventListeners();
       noResults?.classList.add('hidden');
       blogGrid?.classList.remove('hidden');
-    }
-
-    updateLoadMoreButton();
+      updateLoadMoreButton(filteredArticles);
+    }, 0);
   }
 
-  function updateLoadMoreButton() {
+  function updateLoadMoreButton(filteredArticles) {
     if (loadMoreBtn) {
       const totalCards = getVisibleArticleCards().length;
-      const totalArticles = allArticles.length;
+      const totalFiltered = filteredArticles?.length || allArticles.length;
 
-      // Masquer le bouton si tous les articles sont chargés
-      if (totalCards >= totalArticles) {
+      // Masquer le bouton si tous les articles filtrés sont chargés en DOM
+      if (totalCards >= totalFiltered) {
         loadMoreBtn.style.display = 'none';
       } else {
         loadMoreBtn.style.display = 'inline-block';
@@ -468,13 +479,14 @@ const tagsForFilter = Array.from(tagSlugs).sort();
   }
 
   function loadMoreArticles() {
+    const filteredArticles = getFilteredArticles();
     currentPage++;
     const startIndex = articlesPerPage * (currentPage - 1);
     const endIndex = startIndex + articlesPerPage;
-    const articlesToAdd = allArticles.slice(startIndex, endIndex);
+    const articlesToAdd = filteredArticles.slice(startIndex, endIndex);
 
     if (articlesToAdd.length === 0) {
-      updateLoadMoreButton();
+      updateLoadMoreButton(filteredArticles);
       return;
     }
 
@@ -488,8 +500,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
     // Re-attacher les event listeners pour les nouveaux éléments
     setTimeout(() => {
       reattachEventListeners();
-      updateLoadMoreButton();
-      filterArticles();
+      updateLoadMoreButton(filteredArticles);
     }, 0);
   }
 
@@ -654,7 +665,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
   // Initialiser le bouton "Afficher plus"
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', loadMoreArticles);
-    updateLoadMoreButton();
+    updateLoadMoreButton(getFilteredArticles());
   }
 
   // Réattacher les event listeners pour les category links existantes

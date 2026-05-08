@@ -2,10 +2,8 @@
 import { getCollection, render } from 'astro:content';
 import LayoutBlog from '../layouts/LayoutBlog.astro';
 import Layout from '../layouts/Layout.astro';
-import LayoutRooms from '../layouts/LayoutRooms.astro';
 import LayoutFaq from '../layouts/LayoutFaq.astro';
 import { findAlternateUrls, type AlternateUrls } from '@/utils/hreflang';
-import { SITE } from '@/consts';
 
 const pathname = Astro.url.pathname.replace(/^\/|\/$/g, '');
 let ContentComponent: any = null;
@@ -83,9 +81,9 @@ if (route === 'blog' || rawPath === 'en/blog') {
 }
 
 /* 3️⃣ Chargement collections */
-const [articles, services, faq, landingPages] = await Promise.all([
+const [articles, accompagnements, faq, landingPages] = await Promise.all([
   getCollection('articles'),
-  getCollection('services'),
+  getCollection('accompagnements'),
   getCollection('faq'),
   getCollection('landing-pages'),
 ]);
@@ -134,10 +132,10 @@ if (route.startsWith(resourcesSegment + '/')) {
   type = entry ? 'article' : null;
 }
 
-/* 5️⃣ SERVICES */
+/* 5️⃣ ACCOMPAGNEMENTS */
 if (!entry) {
   const serviceSlug = route.split('/').pop();
-  entry = services.find((r) => {
+  entry = accompagnements.find((r) => {
     const cleanSlug = (r.data.seoSlug || r.id.split('/').pop())?.replace(/^\/|\/$/g, '');
     if (r.data.lang !== lang) return false;
     if (route.startsWith('services/')) return cleanSlug === serviceSlug;
@@ -201,7 +199,7 @@ if (entry && type) {
   const allCategories = await getCollection('category');
   alternateUrls = await findAlternateUrls(entry, type, {
     articles,
-    services,
+    accompagnements,
     faq,
     categories: allCategories,
   });
@@ -258,12 +256,6 @@ if (entry && type) {
     >
       <ContentComponent />
     </Layout>
-  )
-}
-
-{
-  entryType === 'room' && (
-    <LayoutRooms room={entryData as any} lang={entryLang} alternateUrls={alternateUrls} />
   )
 }
 

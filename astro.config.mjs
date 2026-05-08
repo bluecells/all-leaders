@@ -12,7 +12,13 @@ export default defineConfig({
   site: 'https://all-leaders.fr',
   output: 'server',
   adapter: node({ mode: 'standalone' }),
-  integrations: [react(), markdoc(), keystatic()],
+  integrations: [
+    react(),
+    markdoc({
+      allowHTML: true, // C'est cette option qui permet de parser les <br>
+    }),
+    keystatic(),
+  ],
   i18n: {
     defaultLocale: 'fr',
     locales: ['fr', 'en'],
