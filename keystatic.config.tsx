@@ -563,14 +563,14 @@ export default config({
       path: 'src/content/accompagnements-categories/*',
       format: { data: 'yaml' },
       columns: ['name_fr', 'name_en'],
-      slugField: 'slug',
+      slugField: 'slug_fr',
       schema: {
         name_fr: fields.text({
           label: '🇫🇷 Nom (FR)',
           validation: { isRequired: true },
         }),
-        slug: fields.text({
-          label: 'Slug',
+        slug_fr: fields.text({
+          label: '🇫🇷 Slug (FR)',
           validation: { isRequired: true },
         }),
         description_fr: fields.text({
@@ -583,10 +583,18 @@ export default config({
           label: '🇬🇧 Name (EN)',
           validation: { isRequired: true },
         }),
+        slug_en: fields.text({
+          label: '🇬🇧 Slug (EN)',
+          validation: { isRequired: true },
+        }),
         description_en: fields.text({
           label: '🇬🇧 Description (EN)',
           multiline: true,
           validation: { isRequired: true },
+        }),
+        order: fields.integer({
+          label: 'Ordre d\'affichage',
+          validation: { isRequired: false },
         }),
       },
     }),

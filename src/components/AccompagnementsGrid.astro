@@ -24,7 +24,7 @@ allCategories.forEach(cat => {
   categoryMap.set(name, {
     order: cat.data.order ?? 999,
     description: lang === 'fr' ? cat.data.description_fr : cat.data.description_en,
-    slug: cat.data.slug || name.toLowerCase().replace(/\s+/g, '-')
+    slug: lang === 'fr' ? cat.data.slug_fr : cat.data.slug_en
   });
 });
 

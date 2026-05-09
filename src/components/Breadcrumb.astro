@@ -55,13 +55,55 @@ if (items.length > 0) {
   const isFAQ = pathSegments.includes('faq');
   const isEventi = pathSegments.includes('eventi');
   const isAccompagnements = pathSegments.includes('accompagnements');
+  const isRessources = pathSegments.includes('ressources') || pathSegments.includes('resources');
+  const isEnglish = pathSegments[0] === 'en';
 
   /**
-   * CAS 1 : FAQ avec catégorie
-   * Structure attendue : /faq/categorie/question
-   * Résultat : Home / FAQ / Catégorie / Titre
+   * CAS 0 : Ressources avec catégorie
+   * Structure attendue : /ressources/categorie/article ou /en/resources/category/article
+   * Résultat : Home / Ressources / Catégorie (avec filtre) / Titre
    */
-  if (isFAQ && pathSegments.length >= 2) {
+  if (isRessources && pathSegments.length >= 3) {
+    // Déterminer le segment ressources (ressources ou resources)
+    const resourcesSegment = isEnglish ? 'resources' : 'ressources';
+    const resourcesLabel = isEnglish ? 'Resources' : 'Ressources';
+
+    // Extraire la catégorie depuis l'URL
+    // Ex: /ressources/idees/mon-article → "idees"
+    // Ex: /en/resources/ideas/my-article → "ideas"
+    const categoryFromPath = pathSegments[isEnglish ? 2 : 1];
+
+    // Formater la catégorie : utiliser la prop si fournie, sinon formatter depuis l'URL
+    const categoryLabel =
+      category ||
+      categoryFromPath
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+    // Extraire le titre depuis l'URL (dernier segment)
+    const titleFromPath = pathSegments[pathSegments.length - 1];
+
+    // Formater le titre : utiliser la prop si fournie, sinon formatter depuis l'URL
+    const titleLabel =
+      title ||
+      titleFromPath
+        .split('-')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+    // Construire le lien vers les ressources avec le filtre de catégorie appliqué
+    const resourcesBaseUrl = isEnglish ? '/en/resources' : '/ressources';
+    const resourcesLinkWithFilter = `${resourcesBaseUrl}?category=${categoryFromPath}`;
+
+    // Construire le fil d'Ariane à 4 niveaux avec lien filtré pour la catégorie
+    breadcrumbItems = [
+      { label: 'Accueil', href: '/' },
+      { label: resourcesLabel, href: resourcesBaseUrl },
+      { label: categoryLabel, href: resourcesLinkWithFilter },
+      { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
+    ];
+  } else if (isFAQ && pathSegments.length >= 2) {
     // Identifier le dossier faq
     const folderName = 'faq';
     const folderLabel = 'FAQ';

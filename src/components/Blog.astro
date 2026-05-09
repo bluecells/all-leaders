@@ -402,7 +402,11 @@ const tagsForFilter = Array.from(tagSlugs).sort();
   const filterCatLinks = document.querySelectorAll('.filter-cat-link');
   const filterTagButtons = document.querySelectorAll('.filter-tag');
 
-  let activeCategory = 'all';
+  // Lire les query parameters pour initialiser les filtres
+  const urlParams = new URLSearchParams(window.location.search);
+  const categoryFromUrl = urlParams.get('category')?.toLowerCase();
+
+  let activeCategory = categoryFromUrl || 'all';
   let activeTags = [];
   let currentPage = 1;
 
@@ -412,6 +416,33 @@ const tagsForFilter = Array.from(tagSlugs).sort();
   const allArticles = JSON.parse(allArticlesJson);
   const cardsPerRowMobile = parseInt(blogGrid?.dataset.cardsPerRowMobile || '1', 10);
   const cardsPerRowDesktop = parseInt(blogGrid?.dataset.cardsPerRowDesktop || '4', 10);
+
+  // Si une catégorie est spécifiée dans l'URL, l'appliquer au chargement
+  if (categoryFromUrl && categoryFromUrl !== 'all') {
+    // Attendre que le DOM soit bien chargé et applique le filtre
+    setTimeout(() => {
+      // Trouver le bouton correspondant à la catégorie
+      const matchingBtn = Array.from(filterCatButtons).find(
+        (b) => (b.dataset.category?.toLowerCase() || '') === activeCategory
+      );
+
+      if (matchingBtn) {
+        // Mettre à jour l'apparence du bouton
+        filterCatButtons.forEach((b) => {
+          b.classList.remove('active');
+          b.classList.add('border-gray-300', 'text-gray-600', 'bg-transparent');
+          b.classList.remove('border-limolo-green', 'text-white', 'bg-limolo-green');
+        });
+
+        matchingBtn.classList.add('active');
+        matchingBtn.classList.add('border-limolo-green', 'text-white', 'bg-limolo-green');
+        matchingBtn.classList.remove('border-gray-300', 'text-gray-600', 'bg-transparent');
+      }
+
+      // Appliquer le filtre pour afficher les articles correspondants
+      filterArticles();
+    }, 0);
+  }
 
   function getVisibleArticleCards() {
     return document.querySelectorAll('.article-card');
