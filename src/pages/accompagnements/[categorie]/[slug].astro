@@ -17,15 +17,16 @@ export const getStaticPaths = (async () => {
         cat.data.name_en === accompagnement.data.categorie
     );
 
-    // Utiliser le slug de la catégorie ou un slug par défaut
-    const categorieSlug = category?.data.slug || accompagnement.data.categorie.toLowerCase().replace(/\s+/g, '-');
+    // Utiliser le slug de la catégorie selon la langue de l'accompagnement
+    const lang = accompagnement.data.lang;
+    const categorieSlug = lang === 'fr' ? category?.data.slug_fr : category?.data.slug_en;
 
     // Utiliser le slug approprié selon la langue
-    const slug = accompagnement.data.lang === 'fr' ? accompagnement.data.slug_fr : accompagnement.data.slug_en;
+    const slug = lang === 'fr' ? accompagnement.data.slug_fr : accompagnement.data.slug_en;
 
     return {
       params: {
-        categorie: categorieSlug,
+        categorie: categorieSlug || accompagnement.data.categorie.toLowerCase().replace(/\s+/g, '-'),
         slug: slug,
       },
       props: {

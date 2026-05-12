@@ -6,6 +6,7 @@ interface Props {
   padding?: string;
   text?: string;
   textPosition?: 'top' | 'bottom' | 'left' | 'right';
+  fullbleed?: boolean;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   padding = '2rem 0',
   text,
   textPosition = 'bottom',
+  fullbleed = false,
 } = Astro.props;
 
 const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
@@ -37,7 +39,7 @@ const flexDirection = isHorizontal
 ---
 
 <div
-  class="youtube-wrapper"
+  class={`youtube-wrapper ${fullbleed ? 'full-bleed' : 'youtube-constrained'}`}
   style={`padding: ${padding}; ${isHorizontal && text ? 'display: flex; flex-direction: ' + flexDirection + '; gap: 2rem; align-items: center;' : ''}`}
 >
   {
@@ -107,6 +109,32 @@ const flexDirection = isHorizontal
 
   .youtube-wrapper {
     flex-direction: column !important;
+    width: 100%;
+  }
+
+  /* Largeur de lecture par défaut (identique aux paragraphes et contenu d'articles) */
+  .youtube-constrained {
+    max-width: 70ch;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  /* Pleine largeur */
+  .youtube-wrapper.full-bleed {
+    width: 100svw;
+    margin-left: calc(50% - 50svw);
+  }
+
+  .youtube-wrapper.full-bleed > .inner {
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  /* Annule la largeur de lecture dans les full-bleed */
+  .youtube-wrapper.full-bleed {
+    max-width: none;
   }
 
   .youtube-text p {

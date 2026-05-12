@@ -14,9 +14,6 @@
     "description_en": {
       "type": "string"
     },
-    "slug": {
-      "type": "string"
-    },
     "slug_fr": {
       "type": "string"
     },
@@ -36,6 +33,7 @@
     "name_en",
     "description_fr",
     "description_en",
-    "slug"
+    "slug_fr",
+    "slug_en"
   ]
 }
