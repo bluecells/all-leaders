@@ -1,7 +1,7 @@
 export const footerTranslations = {
   fr: {
     company: 'All Leaders Initiative',
-    address: '67 rue de la Condamine',
+    address: '69 rue de la Condamine',
     city: '75017 Paris',
     vat: 'TVA : FR41883017717',
     siret: 'SIREN : 883017717',
@@ -24,7 +24,7 @@ export const footerTranslations = {
   },
   en: {
     company: 'All Leaders Initiative',
-    address: '67 rue de la Condamine',
+    address: '69 rue de la Condamine',
     city: '75017 Paris',
     vat: 'VAT: 01253100950',
     siret: 'SIRET: XXXXXXXXXX',

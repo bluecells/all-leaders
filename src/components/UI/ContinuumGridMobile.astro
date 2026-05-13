@@ -1,22 +1,29 @@
 ---
 // Composant ContinuumGrid pour mobile
-// Animation GSAP ScrollTrigger simplifiée - 3 zones principales
 ---
 
-<div
-  class="continuum-mobile-wrapper"
-  role="img"
-  aria-label="Continuum de la performance collective"
->
-  <div class="continuum-mobile-grid">
-    <!-- Zone rouge (gauche) -->
-    <div class="mobile-zone zone-red" data-zone="1">
-      <span>Du groupe dysfonctionnel</span>
-    </div>
+<div class="continuum-mobile-outer">
+  <div class="continuum-mobile-wrapper" role="img" aria-label="Continuum de la performance collective">
+    <div class="continuum-mobile-grid">
+      <div class="mobile-zone zone-blue">
+        <span>Collectif hautement performant</span>
+      </div>
 
-    <!-- Zone bleue (droite) -->
-    <div class="mobile-zone zone-blue" data-zone="2">
-      <span>Au collectif hautement performant</span>
+      <div class="mobile-zone zone-3">
+        <span>Déployer le leadership à tout niveau</span>
+      </div>
+
+      <div class="mobile-zone zone-2">
+        <span>Amplifier les points forts et réguler les vulnérabilités</span>
+      </div>
+
+      <div class="mobile-zone zone-1">
+        <span>Bien-être mental fondamental à récréer</span>
+      </div>
+
+      <div class="mobile-zone zone-red">
+        <span>Groupe dysfonctionnel</span>
+      </div>
     </div>
   </div>
 </div>
@@ -27,63 +34,90 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener('DOMContentLoaded', () => {
+  function initContinuum() {
+    const outer = document.querySelector('.continuum-mobile-outer');
+    const wrapper = document.querySelector('.continuum-mobile-wrapper');
     const zones = document.querySelectorAll('.mobile-zone');
+    
+    if (!wrapper || zones.length === 0) return;
 
-    if (zones.length === 0) return;
+    // On part de la zone-red (dernière dans le DOM) vers zone-blue (première)
+    const zonesArray = Array.from(zones).reverse();
 
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: '.continuum-mobile-wrapper',
-        start: 'top 70%',
-        end: 'bottom 70%',
+        trigger: outer,      // On déclenche sur le conteneur extérieur
+        start: '-80px top',    // Se bloque quand le haut touche le haut de l'écran
+        end: '+=800',       // Définit la "longueur" du scroll de l'animation
         scrub: 1,
+        pin: wrapper,        // On épingle uniquement le wrapper intérieur
+        pinSpacing: true,    // CRUCIAL : Pousse le contenu suivant
+        invalidateOnRefresh: true,
       },
     });
 
-    zones.forEach((zone, index) => {
-      tl.to(
-        zone,
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          ease: 'power2.out',
-        },
-        index * 0.2
-      );
+    zonesArray.forEach((zone, index) => {
+      tl.to(zone, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.inOut',
+      }, index * 1.5);
     });
-  });
+
+    tl.to({}, { duration: 0.5 }); // Petite pause finale
+  }
+
+  // Support Astro (Chargement initial + navigation client-side)
+  document.addEventListener('DOMContentLoaded', initContinuum);
+  document.addEventListener('astro:page-load', initContinuum);
 </script>
 
 <style>
+  /* Conteneur principal qui définit l'ancrage */
+  .continuum-mobile-outer {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+  }
+
   .continuum-mobile-wrapper {
     position: relative;
-    width: 100vw;
-    /* On force le centrage par rapport au bord de l'écran */
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    padding: 2rem 0;
-    border-radius: 0.5rem;
+    width: 100%;
+    height: 90vh; /* Prend toute la hauteur pour l'effet de focus */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
+  }
+
+  /* Flèche en arrière-plan */
+  .continuum-mobile-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90vh; 
+    height: 90vw;
+    transform: translate(-50%, -50%) rotate(-90deg);
     background-image: url('/images/pages/continuum-performance-collective.webp');
-    background-position: center 80px;
-    background-size: 120%;
+    background-position: center;
     background-repeat: no-repeat;
-    aspect-ratio: 16 / 9;
-    min-height: 360px;
+    background-size: contain;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.7;
   }
 
   .continuum-mobile-grid {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 340px;
-    padding: 1rem;
+    width: 90%;
     gap: 1rem;
   }
 
@@ -92,32 +126,28 @@
     padding: 1rem;
     text-align: center;
     border-radius: 0.5rem;
+    /* État initial caché */
     opacity: 0;
-    transform: scale(0.9);
+    transform: translateY(30px) scale(0.9);
     will-change: opacity, transform;
   }
 
   .mobile-zone span {
     color: white;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
     display: block;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   }
 
-  .zone-red {
-    background: rgba(171, 8, 0, 0.8);
-  }
-
-  .zone-blue {
-    background: rgba(3, 26, 52, 0.8);
-  }
+  .zone-red { background: rgba(171, 8, 0, 0.95); margin-top: 4rem;}
+  .zone-blue { background: rgba(3, 26, 52, 0.95); margin-bottom: 4rem;}
+  .zone-1 { background: rgba(171, 8, 0, 0.75); max-width: 80%;}
+  .zone-2 { background: rgba(151, 106, 152, 0.75); max-width: 80%; }
+  .zone-3 { background: rgba(3, 26, 52, 0.75); max-width: 80%; }
 
   @media (prefers-reduced-motion: reduce) {
-    .mobile-zone {
-      opacity: 1;
-      transform: scale(1);
-    }
+    .mobile-zone { opacity: 1; transform: none; }
   }
 </style>

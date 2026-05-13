@@ -100,9 +100,9 @@ export const Grid = block({
       defaultValue: false,
     }),
 
-    additionalClass: fields.text({
-      label: 'Classe CSS aggiuntiva (sul contenitore griglia)',
-      description: 'Opzionale',
+    class: fields.text({
+      label: 'Classe CSS (sul contenitore griglia)',
+      description: 'Opzionale – es: custom-grid, grid-dark',
     }),
   },
 
@@ -119,6 +119,7 @@ export const Grid = block({
       mobileCols,
       tabletCols,
       xlCols,
+      class: className = '',
     } = value || {};
 
     const itemCount = items.length;
@@ -159,6 +160,7 @@ export const Grid = block({
           }}
         >
           <div
+            className={className}
             style={{
               display: 'grid',
               gridTemplateColumns: `repeat(${getCols()}, minmax(${minWidth}, 1fr))`,

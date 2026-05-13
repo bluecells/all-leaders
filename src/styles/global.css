@@ -1,5 +1,6 @@
 @import 'tailwindcss';
-@import '@fontsource/playfair-display';
+@import '@fontsource/lexend';
+@import '@fontsource/source-sans-3';
 
 /* ==================================================
    Variables de thème
@@ -34,11 +35,15 @@
     align-items: center;
     background-color: var(--color-bg-body);
     color: var(--color-text-main);
-    font-family: Inter, system-ui, sans-serif;
+    font-family: 'Source Sans 3', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 1rem;
     text-align: center;
+
+    -webkit-font-smoothing: antialiased; /* Chrome/Safari */
+    -moz-osx-font-smoothing: grayscale; /* Firefox macOS */
+    text-rendering: optimizeLegibility;
   }
 
   main {
@@ -51,7 +56,7 @@
   h2,
   h3,
   h4 {
-    font-family: 'Playfair Display', serif;
+    font-family: Lexend, sans-serif;
     font-weight: 500;
     line-height: 1.2em;
     text-wrap: balance;
@@ -105,7 +110,7 @@
     font-size: 1.15rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    font-family: 'Playfair Display', serif;
+    font-family: Lexend, sans-serif;
     font-weight: 600;
     margin-bottom: 0.75rem;
     background-color: #3c4248;
@@ -135,7 +140,7 @@
     text-align: center;
     font-size: 1.1rem;
     font-weight: 500;
-    font-family: 'Playfair Display', serif;
+    font-family: Lexend, sans-serif;
   }
 
   li {
@@ -182,7 +187,7 @@ article a:hover {
 .hero-quote {
   font-size: clamp(1.5rem, 2vw, 2.5rem);
   font-style: italic;
-  font-family: 'Playfair Display', serif;
+  font-family: Lexend, sans-serif;
   color: var(--color-brand-secondary);
   text-align: center;
   padding: 10% 0;
@@ -437,7 +442,7 @@ article a:hover {
     text-align: center;
     font-size: 1.1rem;
     font-weight: 500;
-    font-family: 'Playfair Display', serif;
+    font-family: Lexend, sans-serif;
   }
 
   ol {

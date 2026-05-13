@@ -47,13 +47,10 @@ const sortedCategories = categorie.sort((a, b) => {
     </nav>
   </div>
 
-  <!-- AccompagnementsGrid Component avec cards cliquables -->
-  <AccompagnementsGrid lang="fr" fullBleed={true} />
-
-  <!-- Section des modalités avec descriptifs -->
+    <!-- Section des modalités avec descriptifs -->
 
   <section class="modalites-section">
-    <h2 class="text-4xl! font-bold pt-10!">4 modalités d'intervention</h2>
+    <h2 class="text-2xl! md:text-4xl font-bold pt-6! md:pt-10!">4 modalités d'intervention</h2>
     <div class="modalites-container">
       {
         sortedModalites.map((modalite) => {
@@ -72,13 +69,18 @@ const sortedCategories = categorie.sort((a, b) => {
                 <h3 class="modalite-title">{modalite.data.name_fr}</h3>
               </div>
               <p class="modalite-objective">{objective}</p>
-              <p class="modalite-description">{modalite.data.description_fr}</p>
+              <p class="modalite-description hidden md:block">{modalite.data.description_fr}</p>
             </div>
           );
         })
       }
     </div>
   </section>
+
+  <!-- AccompagnementsGrid Component avec cards cliquables -->
+  <AccompagnementsGrid lang="fr" fullBleed={true} />
+
+
 
   <script is:inline>
     // Charger GSAP depuis CDN
@@ -278,7 +280,7 @@ const sortedCategories = categorie.sort((a, b) => {
   }
 
   .modalite-card {
-    padding: 1.05rem;
+    padding: .75rem 1rem 0.1rem 1rem;
     border-radius: 4px;
     background: white;
     border: 1px solid #e8e8e8;
@@ -300,6 +302,10 @@ const sortedCategories = categorie.sort((a, b) => {
   @media (min-width: 768px) {
     .modalite-header {
       justify-content: flex-start;
+    }
+
+    .modalite-card {
+    padding: 1.05rem;
     }
   }
 
