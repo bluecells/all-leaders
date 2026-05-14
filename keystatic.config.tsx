@@ -356,7 +356,12 @@ export default config({
         h1Title: fields.text({ label: 'Titolo H1 (fallback su Titolo pagina)' }),
         seoSlug: fields.text({ label: 'Slug SEO', validation: { isRequired: false } }),
         metaTitle: fields.text({ label: 'Meta Title', validation: { isRequired: false } }),
-        metaDescription: fields.text({ label: 'Meta Description', multiline: true }),
+        metaDescription: fields.text({
+          label: 'Meta Description',
+          multiline: true,
+          description: '120-160 caractères recommandé pour l\'affichage optimal dans Google',
+          validation: { isRequired: false },
+        }),
         ogImage: fields.image({
           label: 'Immagina Open Graph',
           directory: 'public/images/content/',

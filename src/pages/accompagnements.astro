@@ -15,9 +15,9 @@ const sortedCategories = categorie.sort((a, b) => {
 ---
 
 <Layout
-  title="Accompagnements - All Leaders"
+  title="Les accompagnements de All Leaders Initiative"
   metaTitle="Nos accompagnements - All Leaders Initiative"
-  metaDescription="Découvrez nos accompagnements en diagnostic de performance, formation, coaching et conseil."
+  metaDescription="Développez la performance collective de vos équipes et de leurs leaders ! Coaching, diagnostic LBI et santé mentale : nous transformons vos blocages en leviers d'action."
   lang="fr"
 >
   <div class="flex flex-col justify-center align-items mx-auto min-h-[83vh]">
@@ -121,12 +121,12 @@ const sortedCategories = categorie.sort((a, b) => {
         // Animation ralentie (3x plus lente)
         tl.from(navLinks, {
           opacity: 0,
-          duration: 1.2, // 0.6s * 3 = 1.8s
+          duration: .5, // 0.6s * 3 = 1.8s
           stagger: {
-            each: 0.1, // 0.15s * 3 = 0.45s entre chaque lien
+            each: 0.4, // 0.15s * 3 = 0.45s entre chaque lien
             from: 'end', // C'est ici qu'on définit l'ordre "du bas vers le haut"
           },
-          ease: 'power2.out',
+          ease: 'power1.in',
         }).from(
           arrowContainer,
           {
@@ -135,7 +135,7 @@ const sortedCategories = categorie.sort((a, b) => {
             scaleY: 0,
             transformOrigin: 'bottom center',
             duration: 2.4, // 0.8s * 3 = 2.4s
-            ease: 'power3.out',
+            ease: 'power1.out',
           },
           '-=1.2'
         ); // Commence à mi-chemin de l'animation des liens

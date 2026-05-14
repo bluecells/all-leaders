@@ -53,7 +53,6 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
      ======================================== */
 
   .carousel {
-    overflow: hidden;
     padding: 1rem 0;
     cursor: grab;
     user-select: none;
@@ -64,10 +63,11 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
   }
 
   .carousel-track-container {
-    width: 100%;
+    width: 100vw;
     position: relative;
     touch-action: pan-y;
     height: 20vh;
+    margin-left: calc(50% - 50vw);
   }
 
   .carousel-track {
@@ -106,7 +106,7 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
   /* ========================================
      DESKTOP
      ======================================== */
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     .carousel {
       padding: 0 0 3rem 0;
     }

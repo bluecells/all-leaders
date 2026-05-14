@@ -1,7 +1,5 @@
 ---
 import Layout from './Layout.astro';
-import Breadcrumb from '../components/Breadcrumb.astro';
-import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { marked } from 'marked';
 
@@ -25,23 +23,23 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
   metaDescription={data.description}
 >
   <article class="accompagnement-page">
-    <div class="flex items-center min-h-[82vh] md:min-h-[93vh]">
+    <div class="flex items-center justify-center min-h-[82vh] md:min-h-[93vh]">
       <div class="container mx-auto max-w-4xl">
         {/* Type badge + Category */}
         <div class="metadata mb-4 flex items-center gap-4 justify-center flex-wrap">
-          <span class={`type-badge type-badge-${data.type}`}>
+          <span class={`type-badge px-6! py-1! mt-8! md:mt-0! type-badge-${data.type}`}>
             {data.type}
           </span>
           {
             category && (
-              <span class="category-badge">
+              <span class="category-badge px-6! py-1! mt-8! md:mt-0!">
                 {lang === 'fr' ? category.data.name_fr : category.data.name_en}
               </span>
             )
           }
         </div>
         {/* Titre principal */}
-        <h1 class="text-2xl md:text-4xl font-serif font-bold mb-8 leading-tight text-center">
+        <h1 class="text-2xl md:text-4xl font-bold mb-4 leading-tight text-center">
           {data.title}
         </h1>
 
@@ -55,12 +53,12 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
         {/* Image hero */}
         {
           data.image && (
-            <div class="accompagnement-hero mb-8">
+            <div class="accompagnement-hero mb-8 mx-auto max-w-xl">
               <img
                 src={data.image}
                 alt={data.title}
-                class="w-full h-auto rounded-lg shadow-lg object-cover"
-                style="max-height: 420px;"
+                class="aspect-square md:aspect-21/11 rounded-lg shadow-lg object-cover"
+                style="max-height: 400px;"
               />
             </div>
           )
@@ -82,7 +80,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
         (data.USP1 || data.USP2 || data.USP3 || data.USP4 || data.USP5) && (
           <div class="usp-section flex flex-col mx-auto">
             <div class="p-4 w-full flex flex-col items-center rounded-lg border border-limolo-green/10">
-              <h2 class="text-xl font-serif font-semibold mt-4! mb-4 ml-0 md:ml-4 leading-relaxed">
+              <h2 class="text-xl font-semibold mt-4! mb-4 ml-0 md:ml-4 leading-relaxed">
                 {lang === 'fr' ? 'Sujets clés' : 'Key topics'}
               </h2>
               <ul class="usp-list gap-4">
@@ -254,7 +252,6 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
 
   /* Utilise :global car le HTML est injecté dynamiquement par marked */
   .description-section :global(h3) {
-    font-family: serif;
     font-size: 1.15rem;
     text-align: left;
     margin-top: 1rem;

@@ -1,327 +1,201 @@
 <div class="compass-main">
-  <h3 class="text-center! w-full mx-auto max-w-4xl! px-4 py-12 md:px-0 md:py-8">
-    Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec <strong
-      >sens, clarté et impact</strong
-    >.
+  <h3 class="text-center! w-full mx-auto max-w-4xl! px-4 py-12 md:px-0 md:pb-2 md:pt-6">
+    Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec <strong>sens, clarté et impact</strong>.
   </h3>
   <div class="compass-container">
     <div class="compass-perspective-wrapper">
-      <!-- L'image de fond est maintenant gérée comme un carré indépendant -->
       <div class="compass-rose-bg" id="compassRoseBg"></div>
-
       <div class="compass-compass-fixed"></div>
-
       <div class="compass-orbit" id="compassOrbit">
-        <a
-          href="/accompagnements#category-gestion-de-la-conflictualite"
-          class="compass-link"
-          data-index="0"
-        >
-          <span>Gestion de la<br />conflictualité</span>
-        </a>
-        <a
-          href="/accompagnements#category-diagnostic-de-la-performance"
-          class="compass-link"
-          data-index="1"
-        >
-          <span>Diagnostic de la<br />performance</span>
-        </a>
-        <a href="/accompagnements#category-executive-coaching" class="compass-link" data-index="2">
-          <span>Executive<br />coaching</span>
-        </a>
-        <a href="/accompagnements#category-sante-mentale-et-performance-durable" class="compass-link" data-index="3">
-          <span>Santé mentale et<br />performance durable</span>
-        </a>
-        <a href="/accompagnements#category-leadership-development" class="compass-link" data-index="4">
-          <span>Leadership<br />development</span>
-        </a>
-        <a href="/accompagnements#category-coaching-equipe" class="compass-link" data-index="5">
-          <span>Coaching<br />d'équipe</span>
-        </a>
+        <a href="/accompagnements#category-gestion-de-la-conflictualite" class="compass-link" data-index="0"><span>🔗 Gestion de la<br />conflictualité</span></a>
+        <a href="/accompagnements#category-diagnostic-de-la-performance" class="compass-link" data-index="1"><span>🔗 Diagnostic de la<br />performance</span></a>
+        <a href="/accompagnements#category-executive-coaching" class="compass-link" data-index="2"><span>🔗 Executive<br />coaching</span></a>
+        <a href="/accompagnements#category-sante-mentale-et-performance-durable" class="compass-link" data-index="3"><span>🔗 Santé mentale et<br />performance durable</span></a>
+        <a href="/accompagnements#category-leadership-development" class="compass-link" data-index="4"><span>🔗 Leadership<br />development</span></a>
+        <a href="/accompagnements#category-coaching-equipe" class="compass-link" data-index="5"><span>🔗 Coaching<br />d'équipe</span></a>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  import gsap from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-  gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const orbit = document.getElementById('compassOrbit');
-    const roseBg = document.getElementById('compassRoseBg');
-    const spans = document.querySelectorAll('.compass-link span');
-    const baseAngles = [0, 72, 144, 216, 288];
+document.addEventListener('DOMContentLoaded', () => {
+  const orbit = document.getElementById('compassOrbit');
+  const roseBg = document.getElementById('compassRoseBg');
+  const spans = document.querySelectorAll('.compass-link span');
+  const angleStep = 60; // 360 / 6 liens
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.compass-main',
-        start: 'top-=30px top',
-        end: '+=20%',
-        scrub: 2.5,
-        pin: true,
-        anticipatePin: 1,
-      },
-    });
-
-    // Rotation lente du fond (on ajoute xPercent et yPercent pour garder le centrage CSS)
-    tl.to(
-      roseBg,
-      {
-        rotation: 8,
-        xPercent: -50,
-        yPercent: -50,
-        ease: 'none',
-      },
-      0
-    );
-
-    // Les liens tournent
-    tl.to(
-      orbit,
-      {
-        rotation: 90,
-        ease: 'none',
-      },
-      0
-    );
-
-    spans.forEach((span, i) => {
-      gsap.set(span, {
-        rotation: -baseAngles[i],
-        rotateX: '2deg',
-      });
-
-      tl.to(
-        span,
-        {
-          rotation: -90 - baseAngles[i],
-          ease: 'none',
-        },
-        0
-      );
-    });
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.compass-main',
+      start: 'top top',
+      end: '+=100%',
+      scrub: 1.5,
+      pin: true,
+      anticipatePin: 1,
+    },
   });
+
+  // Fond stable et fluide
+  tl.to(roseBg, {
+    rotation: 15,
+    force3D: true,
+    ease: 'none',
+  }, 0);
+
+  // Rotation de l'orbite
+  tl.to(orbit, {
+    rotation: 120,
+    ease: 'none',
+  }, 0);
+
+  // Contre-rotation des textes pour rester lisibles
+  spans.forEach((span, i) => {
+    const startAngle = i * angleStep;
+    gsap.set(span, { rotation: -startAngle });
+
+    tl.to(span, {
+      rotation: -(120 + startAngle),
+      ease: 'none',
+    }, 0);
+  });
+});
 </script>
 
 <style>
-  :root {
-    --radius: 120px;
-  }
+:root {
+  /* Rayon dynamique : petit sur mobile, grand sur desktop */
+  --radius: 32vw; 
+}
 
-  .compass-main {
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-  }
+@media (min-width: 768px) {
 
   .compass-container {
-    position: relative;
-    width: 100%;
-    height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 0px;
-    border: 0px solid #121010;
+    width: 90%; /* Ou 80% selon votre design précédent */
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 70vh;
+    border: 1px solid #121010;
+    border-radius: 8px;
   }
-
-  .compass-perspective-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  
+  /* On ajuste le rayon pour que les liens ne sortent pas du cadre desktop */
+  :root {
+    --radius: 200px;
   }
+}
 
-  /* SOLUTION : Carré géant centré */
-  .compass-rose-bg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    /* Utilisation de vmax pour être sûr que le carré dépasse du rectangle de l'écran */
-    width: 180vmax;
-    height: 180vmax;
-    /* Le centrage est crucial ici */
-    transform: translate(-50%, -50%);
-    opacity: 0.6;
+.compass-main {
+  width: 100vw;
+  position: relative;
+  /* On force le centrage horizontal si le parent a un padding */
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+}
 
-    background-image: url('/images/pages/carte-marine.webp');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 110%;
-    z-index: 0;
-    pointer-events: none;
-    will-change: transform;
-  }
+.compass-container {
+  position: relative;
+  width: 100%;
+  height: 75vh; /* Ajusté pour laisser de la place au texte en mobile */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* Full bleed par défaut (mobile) */
+  border: none;
+  border-radius: 0;
+}
 
-  .compass-orbit {
-    position: relative;
-    z-index: 2;
-    width: 200px;
-    height: 200px;
-  }
+.compass-perspective-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .compass-compass-fixed {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-48%, -54%);
-    width: 250px;
-    height: 250px;
-    background-image: url('/images/pages/boussole.webp');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 0;
-    pointer-events: none;
-  }
+.compass-rose-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120vmax; /* Garantit de couvrir tout l'écran */
+  height: 120vmax;
+  transform: translate(-50%, -50%);
+  background-image: url('/images/pages/carte-marine.webp');
+  background-size: 200%;
+  background-position: center;
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
 
-  .compass-link {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 200px;
-    margin-left: -100px;
-    margin-top: -30px;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform-origin: center center;
-    transform-style: preserve-3d;
-  }
+.compass-orbit {
+  position: relative;
+  z-index: 10;
+  width: 2px; height: 2px; /* Point central */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .compass-link::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 150px;
-    height: 150px;
-    z-index: -1;
-    background: radial-gradient(
-      circle at center,
-      rgba(132, 181, 199, 0.5) 0%,
-      rgba(231, 183, 100, 0) 70%
-    );
-    filter: blur(30px);
-    pointer-events: none;
-  }
+.compass-link {
+  position: absolute;
+  width: 200px;
+  text-decoration: none;
+  transform-origin: center center;
+  transition: all 0.3s ease;
+  z-index: 20;
+}
 
-  .compass-link span {
-    display: block;
-    position: relative;
-    z-index: 1;
-    font-size: 16px !important;
-    font-weight: 400;
-    font-family: serif;
-    text-align: left;
-    max-width: 14ch;
-    color: #1a1a1a; /* Remplace var si besoin pour test */
-    line-height: 1.2;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  }
+/* Calcul automatique du placement des 6 liens */
+.compass-link[data-index='0'] { transform: rotate(0deg) translateY(calc(-1 * var(--radius))); }
+.compass-link[data-index='1'] { transform: rotate(60deg) translateY(calc(-1 * var(--radius))); }
+.compass-link[data-index='2'] { transform: rotate(120deg) translateY(calc(-1 * var(--radius))); }
+.compass-link[data-index='3'] { transform: rotate(180deg) translateY(calc(-1 * var(--radius))); }
+.compass-link[data-index='4'] { transform: rotate(240deg) translateY(calc(-1 * var(--radius))); }
+.compass-link[data-index='5'] { transform: rotate(300deg) translateY(calc(-1 * var(--radius))); }
 
-  /* Placement initial */
-  .compass-link[data-index='0'] {
-    transform: rotate(0deg) translateY(calc(-1 * var(--radius)));
-  }
-  .compass-link[data-index='1'] {
-    transform: rotate(72deg) translateY(calc(-1 * var(--radius)));
-  }
-  .compass-link[data-index='2'] {
-    transform: rotate(144deg) translateY(calc(-1 * var(--radius)));
-  }
-  .compass-link[data-index='3'] {
-    transform: rotate(216deg) translateY(calc(-1 * var(--radius)));
-  }
-  .compass-link[data-index='4'] {
-    transform: rotate(288deg) translateY(calc(-1 * var(--radius)));
-  }
+.compass-link span {
+  display: block;
+  font-size: clamp(0.8rem, 2.5vw, 1.1rem); /* Taille s'adapte à l'écran */
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: center;
+  line-height: 1.2em;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: transform 0.1s;
 
-  @media (min-width: 768px) {
-    :root {
-      --radius: 200px;
-    }
-    .compass-link span {
-      font-size: 15px;
-    }
+}
 
-    .compass-main {
-      width: 100vw;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-    }
+/* UX : Feedback au survol */
+.compass-link:hover span {
+  color: #c98b3a; /* Couleur accentuée */
+  transform: scale(1.1);
+  text-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
 
-    .compass-container {
-      width: 80%;
-      border-radius: 8px;
-      border: 1px solid #121010;
-      height: 70vh;
-    }
-
-    .compass-compass-fixed {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 500px;
-      height: 500px;
-      background-image: url('/images/pages/boussole.webp');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      z-index: 3;
-      pointer-events: none;
-    }
-
-    .compass-rose-bg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      /* Utilisation de vmax pour être sûr que le carré dépasse du rectangle de l'écran */
-      width: 130vmax;
-      height: 130vmax;
-      /* Le centrage est crucial ici */
-      transform: translate(-50%, -50%);
-      opacity: 0.6;
-
-      background-image: url('/images/pages/carte-marine.webp');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: 110%;
-      z-index: 0;
-      pointer-events: none;
-      will-change: transform;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    :root {
-      --radius: 240px;
-    }
-  }
-
-  @media (min-width: 1600px) {
-    .compass-link span {
-      font-size: 24px !important;
-    }
-  }
+.compass-compass-fixed {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(200px, 50vw, 450px); /* Taille boussole adaptative */
+  height: clamp(200px, 50vw, 450px);
+  background-image: url('/images/pages/boussole.webp');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 5;
+  pointer-events: none;
+}
 </style>

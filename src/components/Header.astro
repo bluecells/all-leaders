@@ -86,9 +86,9 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
           ))
         }
         <div class="lang-switcher">
-          <a href="/" style="padding-right:2px;" class={lang === 'fr' ? 'lang-link lang-active' : 'lang-link '}>🇫🇷</a>
+          <a href="/" style="display: inline-block; padding-right:2px; transform:translateY(2px);" class={lang === 'fr' ? 'lang-link lang-active' : 'lang-link '}>🇫🇷</a>
           <span class="lang-separator">|</span>
-          <a href="/en" class={lang === 'en' ? 'lang-link lang-active' : 'lang-link'}>🇬🇧</a>
+          <a href="/en" style="display: inline-block; padding-right:2px; transform:translateY(2px);" class={lang === 'en' ? 'lang-link lang-active' : 'lang-link'}>🇬🇧</a>
         </div>
       </nav>
 
@@ -181,11 +181,13 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
       <div class="mobile-lang-switcher">
         <a
           href="/"
+          style="display: inline-block; padding-right:2px; transform:translateY(2px);"
           class={lang === 'fr' ? 'mobile-lang-link mobile-lang-active' : 'mobile-lang-link'}>🇫🇷</a
         >
         <span class="lang-separator">|</span>
         <a
           href="/en"
+          style="display: inline-block; padding-right:2px; transform:translateY(2px);"
           class={lang === 'en' ? 'mobile-lang-link mobile-lang-active' : 'mobile-lang-link'}>🇬🇧</a
         >
       </div>
@@ -235,10 +237,10 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     align-items: center;
   }
   .nav-link {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
     color: var(--color-brand-primary);
     text-decoration: none;
   }
@@ -352,6 +354,9 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     font-weight: bold;
   }
 
+  .lang-separator {
+    color: rgba(74, 103, 65, 0.4);
+  }
   @media (min-width: 1025px) {
     .nav-desktop {
       display: flex;

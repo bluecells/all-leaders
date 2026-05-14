@@ -7,14 +7,6 @@ import ContinuumGridMobile from '../components/UI/ContinuumGridMobile.astro';
 import CompassLinks from '../components/UI/CompassLinks.astro';
 ---
 
-<style>
-  /* Prévenir le FOUC (Flash Of Unstyled Content) pour les animations GSAP */
-  .hero-title,
-  .hero-quote-wrapper,
-  .hero-question {
-    opacity: 0;
-  }
-</style>
 
 <script>
   import gsap from 'gsap';
@@ -36,7 +28,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
         reduceMotion: '(prefers-reduced-motion: reduce)',
       },
       (context) => {
-        let { isDesktop, isMobile, reduceMotion } = context.conditions;
+        let { isMobile, reduceMotion } = context.conditions!;
         if (reduceMotion) return;
 
         const tl = gsap.timeline();
@@ -58,16 +50,16 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
         // A. Apparition rapide du H1 (hero-title)
         tl.to(heroTitle, {
           autoAlpha: 1,
-          duration: 0.6,
+          duration: .6,
           ease: "power2.out"
         })
 
         // B. Le H2 (hero-question) en fade-in lent
         .to(heroQuestion, {
           autoAlpha: 1,
-          duration: 1.5,
+          duration: 2,
           ease: "power1.inOut"
-        }, "+=0.2") // Petit délai après le H1
+        }, "+=0.6") // Petit délai après le H1
 
         // C. Le décrochage du mot (question-word)
         .to(questionWord, {
@@ -99,23 +91,23 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   metaTitle="All Leaders Initiative — Conseil en Leadership et Performance Collective"
   metaDescription="All Leaders Initiative accompagne les équipes managériales, comités de direction et dirigeants pour dépasser les blocages collectifs et développer un leadership basé sur l'intention."
 >
-  <div class="mx-auto py-12 hero-section">
+  <div class="mx-auto md:py-12 hero-section">
     <!-- Hero Title - Animé après -->
     <div class="hero-title">
-      <h1 class="mb-0! p-0! text-2xl! font-light md:text-[32px] italic leading-8 md:leading-10 " style="opacity: 0;">
+      <h1 class="mb-0! p-0! text-xl! font-light md:text-3xl! italic leading-8 md:leading-10 " style="opacity: 0;">
         <q
           >&nbsp;Toutes les équipes performantes se ressemblent.<br />
           Mais chaque équipe dysfonctionnelle l'est à sa façon.&nbsp;</q>
 
       </h1>
-      <h2 class="hero-quote hero-question text-3xl! md:text-4xl! not-italic! mt-6! pt-0!">
+      <h2 class="hero-quote hero-question text-3xl! md:text-4xl! not-italic! mt-0! ">
         <span class="question-dash">&mdash; Et </span><span class="question-word"
           >la vôtre&nbsp;?</span>
       </h2>
     </div>
 
     <!-- Hero Quote - Centre au début, puis slide vers le bas -->
-    <div class="hero-quote-wrapper">
+    <div class="hero-quote-wrapper pt-8">
       <p class="mx-auto">
         Vous sentez qu'il serait possible de <strong>mieux collaborer</strong>, de retrouver du <strong>sens</strong>, 
         de <strong>fluidifier les relations</strong>… mais quelque chose bloque. Des habitudes
@@ -132,8 +124,8 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     <!-- ==========================================
          SECTION 1 — Pourquoi All Leaders Initiative
     =========================================== -->
-    <section id="notre-approche" aria-labelledby="h2-pourquoi" class="py-16">
-      <div class="container min-h-[30vh] py-8">
+    <section id="notre-approche" aria-labelledby="h2-pourquoi">
+      <div class="container">
         <h2 id="h2-fondateurs" class="text-center! mt-8">
           Nous avons créé <strong>All Leaders Initiative...</strong> 
           
@@ -146,14 +138,14 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
         </p>
       </div>
 
-      <div id="fondateurs" class="container min-h-0 py-12">
+      <div id="fondateurs" class="container min-h-0 md:py-12">
         <div class="values-section">
           {/* Images latérales en desktop */}
           <div class="values-image-left hidden order-2 md:order-1 md:flex">
             <img
               src="/images/pages/marie-emmanuelle-py-acquarelle.webp"
               alt="Marie-Emmanuelle Py"
-              class="w-full h-auto object-cover rounded-lg"
+              class="w-full h-auto object-cover"
             />
             <h3 itemprop="name">Marie Emmanuelle PY</h3>
             <p class="mb-4" itemprop="jobTitle">Associée fondatrice</p>
@@ -199,7 +191,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
             </ul>
           </div>
 
-          <div class="values-grid order-1 md:order-2" role="list">
+          <div class="values-grid md:bg-linear-to-br md:from-slate-200/20 md:to-slate-400/10 order-1 md:order-2" role="list">
             <article  role="listitem">
               <h3 class="pt-8">Nous aimons l'entreprise</h3>
               <p class="text-center text-[.9rem]!">
@@ -221,7 +213,14 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
                 alignement et sens. C'est dans cet esprit que nous vous accompagnons, avec la
                 discipline des marins et l'audace des aventuriers.
               </p>
-              <p class="text-center mt-4 text-5xl! ">Cap&nbsp;?</p>
+              <div class="cap-container">
+                <p class="text-center text-4xl! pb-12 mb-0!">Cap&nbsp;?</p>
+                <img 
+                  class="ali-logo-watercolour" 
+                  src="images/pages/logo-ali-aquarelle.webp" 
+                  alt="Logo All Leaders Initiative"
+                >
+              </div>
             </article>
           </div>
 
@@ -229,7 +228,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
             <img
               src="/images/pages/pierre-etienne-bost-acquarelle.webp"
               alt="Pierre-Etienne Bost"
-              class="w-full h-auto object-cover rounded-lg"
+              class="w-full h-auto object-cover"
             />
             <h3 itemprop="name">Pierre-Etienne BOST</h3>
             <p class="mb-4" itemprop="jobTitle">Associé fondateur</p>
@@ -276,6 +275,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
           </div>
         </div>
       </div>
+
     </section>
 
     <!-- ==========================================
@@ -302,7 +302,6 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
           dépasser les blocages collectifs et développer un leadership basé sur l'intention.
 
           <Grid
-            class="hide-on-mobile"
             textColor="var(--color-text-primary)"
             items={[
               {
@@ -331,9 +330,9 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               dirigeants exigeants actifs chez&nbsp;
             </h3>
             <Carousel
-              speed="5000"
-              visibleItemsMobile="1.5"
-              visibleItemsDesktop="5"
+              speed={3500}
+              visibleItemsMobile={1.5}
+              visibleItemsDesktop={5}
               images={[
                 { image: '/images/pages/homeserve.png', alt: 'HomeServe' },
                 { image: '/images/pages/edf.png', alt: 'EDF' },
@@ -544,7 +543,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
   .hero-section {
     position: relative;
-    min-height: calc(100vh - 5rem);
+    min-height: calc(100vh - 90px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -575,6 +574,12 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   .hero-quote {
     will-change: opacity;
     transition: none !important; /* Désactiver les transitions CSS pour GSAP */
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
+    font-style: italic;
+    font-family: Lexend, sans-serif;
+    color: var(--color-brand-secondary);
+    text-align: center;
+    padding: 3% 0 5% 0;
   }
 
   .hero-question {
@@ -600,7 +605,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
   .texte-gradient {
     /* On définit le dégradé en arrière-plan */
-    background: linear-gradient(to right, #c65151, #9e8aa8, #172432);
+    background: linear-gradient(to bottom, #c65151, #9e8aa8, #172432);
 
     /* On "découpe" l'arrière-plan pour qu'il ne s'affiche que sur les lettres */
     -webkit-background-clip: text;
@@ -609,6 +614,18 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     /* On rend le texte transparent pour laisser voir le dégradé dessous */
     -webkit-text-fill-color: transparent;
     color: transparent;
+  }
+
+  @media (min-width: 768px) {
+    .texte-gradient {
+    background: linear-gradient(to right, #c65151, #9e8aa8, #172432);
+    
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    }
   }
 
   /* ==========================================
@@ -802,7 +819,6 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     flex-direction: column;
     gap: 1.5rem;
     align-items: flex-start;
-    margin-top: 3rem;
   }
 
   .values-image-left,
@@ -828,14 +844,52 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
   .values-grid {
     width: 100%;
+    border-radius: 10px;
+    padding-bottom: 5rem;
   }
+
+  /* Conteneur de référence */
+.cap-container {
+  position: relative;
+  display: inline-block; /* Pour qu'il ne prenne que la largeur du texte */
+  width: 100%;
+  text-align: center;
+  margin-top: 0;
+  padding-bottom: 0px; /* Espace réservé pour le logo qui dépasse */
+}
+
+.ali-logo-watercolour {
+  position: absolute;
+  left: 50%;
+  bottom: -40px;
+  transform: translateX(-50%); /* Centrage parfait par rapport au parent */
+  
+  height: 80px; /* Ajustez la taille selon votre besoin */
+  width: auto;
+  
+  /* Optionnel : fond blanc propre si l'aquarelle doit ressortir sur le gris */
+  background: white;
+  padding: 10px;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustement responsive si besoin */
+@media (min-width: 768px) {
+  .ali-logo-watercolour {
+    height: 100px;
+    bottom: -70px; /* On peut le faire descendre un peu plus sur desktop */
+  }
+}
 
   /* Desktop : images latérales en 18% */
   @media (min-width: 768px) {
     .values-section {
       flex-direction: row;
-      gap: 1rem;
-      align-items: flex-start;
+      gap: 0;
+      align-items: center;
+      margin-top: 0rem;
     }
 
   .values-section h3 {
@@ -858,8 +912,16 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
     .values-grid {
       flex: 1;
+      padding-bottom: 0;
+      
     }
   }
 
+    /* Prévenir le FOUC (Flash Of Unstyled Content) pour les animations GSAP */
+  .hero-title,
+  .hero-quote-wrapper,
+  .hero-question {
+    opacity: 0;
+  }
 
 </style>

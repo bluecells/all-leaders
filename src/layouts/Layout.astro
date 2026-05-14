@@ -18,10 +18,10 @@ interface Props {
   title: string;
   lang?: 'it' | 'fr' | 'en';
   seoSlug?: string;
-  metaTitle?: string | null;
-  metaDescription?: string | null;
-  description?: string | null;
-  ogImage?: string | null;
+  metaTitle?: string | undefined;
+  metaDescription?: string | undefined;
+  description?: string | undefined;
+  ogImage?: string | undefined;
   ogType?: 'website' | 'article';
   jsonType?: JsonLdType;
   keyword?: string;
@@ -52,6 +52,7 @@ const {
 } = Astro.props as Props;
 
 const finalMetaDescription = metaDescription || description || '';
+const finalMetaTitle = metaTitle ?? title;
 
 const pageLang = lang;
 const finalJsonType = jsonType ?? null;
@@ -71,7 +72,7 @@ const finalOgImage = ogImage || undefined;
 <html lang={pageLang}>
   <Head
     title={title}
-    metaTitle={metaTitle ?? title}
+    metaTitle={finalMetaTitle}
     metaDescription={finalMetaDescription}
     ogImage={finalOgImage}
     ogType={ogType}
