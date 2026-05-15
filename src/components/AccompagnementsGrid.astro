@@ -202,16 +202,27 @@ const getAccompagnementUrl = (item: CollectionEntry<'accompagnements'>, catSlug:
 
   .card-link {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     color: inherit;
     text-decoration: none !important;
     border: none !important;
   }
 
+  .card-link > *:nth-child(1) {
+  flex: 0 0 45%; /* Prend strictement 1/3 de la largeur, ne rétrécit pas, ne grandit pas */
+  max-width: 45%;
+}
+
+/* Le deuxième enfant direct (ex: le bloc de texte à droite) */
+.card-link > *:nth-child(2) {
+  flex: 0 0 55%; /* Prend strictement 2/3 de la largeur, ne rétrécit pas, ne grandit pas */
+  max-width: 55%;
+}
+
   .card-image-mini {
     position: relative;
     width: 100%;
-    height: 180px;
+    height: 140px;
     overflow: hidden;
   }
 
