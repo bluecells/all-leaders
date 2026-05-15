@@ -1,5 +1,5 @@
 ---
-// Composant ContinuumGrid pour mobile centré avec dégradés
+// Composant ContinuumGrid pour mobile parfaitement centré H&V
 ---
 
 <div class="continuum-mobile-outer">
@@ -53,9 +53,9 @@
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: outer,
-        start: 'top 1rem', // Calage à 1rem sous la nav
+        start: 'top top', // Déclenchement naturel dès que le conteneur padding inclus arrive en haut
         end: '+=800',
-        scrub: 1,
+        scrub: 1.2,
         pin: wrapper,
         pinSpacing: true,
         invalidateOnRefresh: true,
@@ -82,36 +82,36 @@
 </script>
 
 <style>
+  /* Le parent prend le padding demandé et laisse l'enfant s'occuper de l'écran */
   .continuum-mobile-outer {
     position: relative;
     width: 100%;
     overflow: visible;
+    padding: 2rem 0; /* Ton padding demandé */
+    box-sizing: border-box;
   }
 
+  /* Centrage H&V mathématique pur */
   .continuum-mobile-wrapper {
     position: relative;
     width: 100%;
-    /* Prise en compte de ton besoin de 96.5vh moins le décalage sous nav */
-    height: calc(96.5vh - 1rem);
+    height: 96.5vh; /* Hauteur de référence exclusive sur mobile */
     display: flex;
-    /* On repasse sur un vrai centrage vertical parfait */
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Centrage horizontal */
+    align-items: center; /* Centrage vertical parfait */
     overflow: hidden;
   }
 
+  /* La grille redevient un bloc naturel sans décalage parasite */
   .continuum-mobile-grid {
     position: relative;
     z-index: 2;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centre les éléments dans la grille */
     align-items: center;
     width: 90%;
-    /* On force une hauteur pour stabiliser le conteneur dès le départ */
     height: auto;
-    margin-top: 10dvh; /* Ajuste cette valeur (ex: 2rem, 3rem) pour descendre l'animation pile au centre visuel */
-    gap: 0.5rem;
+    gap: 0.75rem; /* Unifié pour simplifier la structure */
   }
 
   .mobile-zone {
@@ -119,8 +119,9 @@
     text-align: center;
     border-radius: 0.5rem;
     opacity: 0;
-    transform: translateY(20px) scale(0.95); /* Légèrement réduit pour éviter l'effet de saut au départ */
+    transform: translateY(20px) scale(0.95);
     will-change: opacity, transform;
+    box-sizing: border-box;
   }
 
   .mobile-zone span {
@@ -129,20 +130,21 @@
     font-size: 15px;
     text-transform: uppercase;
     display: block;
+    line-height: 1.3;
+  }
+
+  /* Blocs haut et bas simplifiés et homogènes */
+  .zone-red,
+  .zone-blue {
+    padding: 1rem 1.5rem;
   }
 
   .zone-red {
     background: rgba(171, 8, 0, 0.95);
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding: 1rem 2rem;
   }
 
   .zone-blue {
     background: rgba(3, 26, 52, 0.95);
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding: 1rem 2rem;
   }
 
   .zone-red span,
@@ -150,6 +152,7 @@
     color: #ffffff !important;
   }
 
+  /* Dégradés appliqués proprement sur les spans intermédiaires */
   .zone-1 span,
   .zone-2 span,
   .zone-3 span {
@@ -177,12 +180,11 @@
   .zone-2,
   .zone-3 {
     max-width: 80%;
-    padding-top: 0.5rem;
   }
 
   .img-bouees {
     height: auto;
-    width: 70px; /* Légèrement réduit pour garantir que le tout rentre sans déborder sur petits écrans */
+    width: 65px; /* Un tout petit peu optimisé pour garantir que tout l'empilement respire au centre */
     margin: 0 auto 0.25rem auto;
   }
 

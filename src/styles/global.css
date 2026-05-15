@@ -613,3 +613,7 @@ h2 .brand-text .stylized-a {
   height: .76em; /* Hauteur exacte de la majuscule */
   vertical-align: -0.18em; /* Aligne la base du V avec la base des lettres */
 } 
+
+h2 .brand-text .leaders {
+  margin: 0 0.1em;
+}

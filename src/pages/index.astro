@@ -93,7 +93,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     <!-- Hero Title - Animé après -->
     <div class="hero-title">
       <h1
-        class="mb-0! py-0! px-1! text-xl! font-base md:text-3xl! leading-8 md:leading-10"
+        class="mb-0! py-0! text-xl! font-base md:text-3xl! leading-8 md:leading-10"
         style="opacity: 0;"
       >
         <q
@@ -101,7 +101,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
           Mais chaque équipe dysfonctionnelle l'est à sa façon.&nbsp;</q
         >
       </h1>
-      <h2 class="hero-quote hero-question text-3xl! md:text-4xl! not-italic! mt-8!">
+      <h2 class="hero-quote hero-question text-3xl! md:text-4xl! not-italic! mt-6!">
         <span class="question-dash">&mdash; Et </span><span class="question-word"
           >la vôtre&nbsp;?</span
         >
@@ -109,7 +109,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     </div>
 
     <!-- Hero Quote - Centre au début, puis slide vers le bas -->
-    <div class="hero-quote-wrapper pt-4">
+    <div class="hero-quote-wrapper">
       <p class="mx-auto">
         Vous sentez qu'il serait possible de <strong>mieux collaborer</strong>, de retrouver du <strong
           >sens</strong
@@ -134,17 +134,16 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     <section id="notre-approche" aria-labelledby="h2-pourquoi">
       <div class="container">
         <h2 id="h2-fondateurs" class="text-center! mt-8">
-          Nous avons créé <span class="brand-text">
+          Nous avons créé<br /><span class="brand-text">
             ALL <span class="leaders">LE<span class="stylized-a">A</span>DERS</span>
             <span class="thin">INITIATIVE</span>
-          </span>...
+          </span>
         </h2>
 
         <p class="text-center">
-          ...pour vous permettre de questionner ce qui ne fonctionne plus, oser de nouvelles façons
-          d'agir et <strong>vous affranchir de ces barrières invisibles.</strong> Pour réussir, <strong
-            >ensemble</strong
-          >.
+          Nous voulons vous permettre de questionner ce qui ne fonctionne plus, oser de nouvelles
+          façons d'agir et <strong>vous affranchir de ces barrières invisibles.</strong> Pour réussir,
+          <strong>ensemble</strong>.
         </p>
       </div>
 
@@ -870,7 +869,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   .ali-logo-watercolour {
     position: absolute;
     left: 50%;
-    bottom: -40px;
+    bottom: -50px;
     transform: translateX(-50%); /* Centrage parfait par rapport au parent */
 
     height: 80px; /* Ajustez la taille selon votre besoin */
@@ -878,10 +877,8 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
     /* Optionnel : fond blanc propre si l'aquarelle doit ressortir sur le gris */
     background: white;
-    padding: 10px;
-    border-radius: 20px;
+
     z-index: 10;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   /* Ajustement responsive si besoin */
@@ -889,6 +886,9 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     .ali-logo-watercolour {
       height: 100px;
       bottom: -70px; /* On peut le faire descendre un peu plus sur desktop */
+      box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      padding: 10px;
     }
   }
 
