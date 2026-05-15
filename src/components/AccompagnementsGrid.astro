@@ -313,6 +313,15 @@ const getAccompagnementUrl = (item: CollectionEntry<'accompagnements'>, catSlug:
       box-shadow: none;
       transform: translateX(8px) scale(1.01);
     }
+
+      .card-link > *:nth-child(1) {
+  max-width: 100%;
+}
+
+/* Le deuxième enfant direct (ex: le bloc de texte à droite) */
+.card-link > *:nth-child(2) {
+  max-width: 100%;
+}
   }
 
   /* Desktop (LG) */

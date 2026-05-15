@@ -211,6 +211,7 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     position: sticky;
     top: 0;
     z-index: 50;
+    background-color: rgba(192, 192, 192, 0.1);
   }
   .header-container {
     max-width: 1400px;
@@ -254,6 +255,19 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     color: var(--color-brand-primary);
     text-decoration: none;
   }
+
+  .nav-link.active {
+    font-weight: 600;
+    text-shadow: 3px 3px 4px #4a7ab073;
+  }
+  .nav-link:active {
+    font-weight: 600;
+    text-shadow: 3px 3px 4px #4a7ab073;
+  }
+  .nav-link:hover {
+    text-shadow: 3px 3px 5px #031a3431;
+  }
+
   .btn-nav {
     font-size: 11px;
     font-weight: 700;
@@ -381,6 +395,22 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
 </style>
 
 <script>
+  function setActiveLink() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach((link) => {
+      const href = link.getAttribute('href');
+      if (href && currentPath.startsWith(href) && href !== '/') {
+        link.classList.add('active');
+      } else if (href === '/' && currentPath === '/') {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
   function initMenu() {
     const btn = document.getElementById('menu-toggle');
     const menu = document.getElementById('mobile-menu');
@@ -409,6 +439,10 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     });
   }
 
+  setActiveLink();
   initMenu();
-  document.addEventListener('astro:after-swap', initMenu);
+  document.addEventListener('astro:after-swap', () => {
+    setActiveLink();
+    initMenu();
+  });
 </script>
