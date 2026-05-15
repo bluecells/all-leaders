@@ -356,8 +356,8 @@ const finalTextColor = textColor;
 
   .grid-item-title {
     font-family: Lexend, sans-serif;
-    font-size: 1.5rem!important;
-    font-weight: 600;
+    font-size: 1.5rem !important;
+    font-weight: 300;
     color: var(--dynamic-text);
     margin: 0;
     line-height: 1.25;
@@ -391,12 +391,10 @@ const finalTextColor = textColor;
   .hide-on-mobile {
     display: none;
   }
-  
 
   @media (min-width: 768px) {
     .grid-wrapper {
-      height: calc(100vh - 5rem);
-      padding: 10px 0;
+      padding: 4rem 0 0 0;
     }
 
     .grid-container {
@@ -429,7 +427,6 @@ const finalTextColor = textColor;
     }
   }
 
-
   @media (min-width: 1025px) {
     .grid-container {
       grid-template-columns: repeat(var(--cols-xl), minmax(var(--grid-minwidth), 1fr));
@@ -443,7 +440,7 @@ const finalTextColor = textColor;
       height: 80px;
     }
     .grid-item-title {
-      font-size: 1.1rem!important;
+      font-size: 1.1rem !important;
     }
   }
 
@@ -456,7 +453,7 @@ const finalTextColor = textColor;
       height: 96px;
     }
     .grid-item-title {
-      font-size: 1.25rem!important;
+      font-size: 1.25rem !important;
     }
   }
 </style>

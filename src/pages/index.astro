@@ -7,7 +7,6 @@ import ContinuumGridMobile from '../components/UI/ContinuumGridMobile.astro';
 import CompassLinks from '../components/UI/CompassLinks.astro';
 ---
 
-
 <script>
   import gsap from 'gsap';
 
@@ -46,38 +45,37 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
         gsap.set(questionWord, { transformOrigin: 'left center' });
 
         // 2. SÉQUENCE D'ANIMATION
-        
+
         // A. Apparition rapide du H1 (hero-title)
         tl.to(heroTitle, {
           autoAlpha: 1,
-          duration: .6,
-          ease: "power2.out"
+          duration: 0.6,
+          ease: 'power2.out',
         })
 
-        // B. Le H2 (hero-question) en fade-in lent
-        .to(heroQuestion, {
-          autoAlpha: 1,
-          duration: 2,
-          ease: "power1.inOut"
-        }, "+=0.6") // Petit délai après le H1
+          // B. Le H2 (hero-question) en fade-in lent
+          .to(
+            heroQuestion,
+            {
+              autoAlpha: 1,
+              duration: 1,
+              ease: 'power1.inOut',
+            },
+            '+=0.6'
+          ) // Petit délai après le H1
 
-        // C. Le décrochage du mot (question-word)
-        .to(questionWord, {
-          rotation: isMobile ? 10 : 15,
-          x: isMobile ? 4 : 8,
-          duration: 0.6,
-          ease: 'back.out(2)',
-        }, ">-0.3") // Commence un peu avant la fin du fade-in précédent
-
-        // D. Apparition élégante du wrapper (hero-quote-wrapper)
-        // Arrivée du bas avec un fondu lent
-        .to(heroQuoteWrapper, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 1.8,
-          ease: "power3.out"
-        }, "+=0.4"); 
-
+          // D. Apparition élégante du wrapper (hero-quote-wrapper)
+          // Arrivée du bas avec un fondu lent
+          .to(
+            heroQuoteWrapper,
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 1.2,
+              ease: 'power3.out',
+            },
+            '+=0.2'
+          );
       }
     );
   }
@@ -94,28 +92,37 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   <div class="mx-auto md:py-12 hero-section">
     <!-- Hero Title - Animé après -->
     <div class="hero-title">
-      <h1 class="mb-0! p-0! text-xl! font-light md:text-3xl! italic leading-8 md:leading-10 " style="opacity: 0;">
+      <h1
+        class="mb-0! py-0! px-1! text-xl! font-base md:text-3xl! leading-8 md:leading-10"
+        style="opacity: 0;"
+      >
         <q
           >&nbsp;Toutes les équipes performantes se ressemblent.<br />
-          Mais chaque équipe dysfonctionnelle l'est à sa façon.&nbsp;</q>
-
+          Mais chaque équipe dysfonctionnelle l'est à sa façon.&nbsp;</q
+        >
       </h1>
-      <h2 class="hero-quote hero-question text-3xl! md:text-4xl! not-italic! mt-0! ">
+      <h2 class="hero-quote hero-question text-3xl! md:text-4xl! not-italic! mt-8!">
         <span class="question-dash">&mdash; Et </span><span class="question-word"
-          >la vôtre&nbsp;?</span>
+          >la vôtre&nbsp;?</span
+        >
       </h2>
     </div>
 
     <!-- Hero Quote - Centre au début, puis slide vers le bas -->
-    <div class="hero-quote-wrapper pt-8">
+    <div class="hero-quote-wrapper pt-4">
       <p class="mx-auto">
-        Vous sentez qu'il serait possible de <strong>mieux collaborer</strong>, de retrouver du <strong>sens</strong>, 
-        de <strong>fluidifier les relations</strong>… mais quelque chose bloque. Des habitudes
+        Vous sentez qu'il serait possible de <strong>mieux collaborer</strong>, de retrouver du <strong
+          >sens</strong
+        >, de <strong>fluidifier les relations</strong>… mais quelque chose bloque. Des habitudes
         ancrées, des non-dits, un manque de clarté.
-        <strong>Ces frontières invisibles freinent votre épanouissement et la dynamique collective.</strong>
+        <strong
+          >Ces frontières invisibles freinent votre épanouissement et la dynamique collective.</strong
+        >
       </p>
       <nav aria-label="Navigation principale">
-        <a href="/contact" class="mt-4 btn btn-secondary">Il est temps de <strong>les dépasser</strong></a>
+        <a href="/contact" class="mt-4 btn btn-secondary"
+          >Il est temps de <strong>les dépasser</strong></a
+        >
       </nav>
     </div>
   </div>
@@ -127,14 +134,17 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     <section id="notre-approche" aria-labelledby="h2-pourquoi">
       <div class="container">
         <h2 id="h2-fondateurs" class="text-center! mt-8">
-          Nous avons créé <strong>All Leaders Initiative...</strong> 
-          
+          Nous avons créé <span class="brand-text">
+            ALL <span class="leaders">LE<span class="stylized-a">A</span>DERS</span>
+            <span class="thin">INITIATIVE</span>
+          </span>...
         </h2>
 
         <p class="text-center">
-          ...pour vous permettre de questionner ce qui ne
-          fonctionne plus, oser de nouvelles façons d'agir et <strong>vous affranchir de ces barrières
-          invisibles.</strong> Pour réussir, <strong>ensemble</strong>.
+          ...pour vous permettre de questionner ce qui ne fonctionne plus, oser de nouvelles façons
+          d'agir et <strong>vous affranchir de ces barrières invisibles.</strong> Pour réussir, <strong
+            >ensemble</strong
+          >.
         </p>
       </div>
 
@@ -191,8 +201,11 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
             </ul>
           </div>
 
-          <div class="values-grid md:bg-linear-to-br md:from-slate-200/20 md:to-slate-400/10 order-1 md:order-2" role="list">
-            <article  role="listitem">
+          <div
+            class="values-grid md:bg-linear-to-br md:from-slate-200/20 md:to-slate-400/10 order-1 md:order-2"
+            role="list"
+          >
+            <article role="listitem">
               <h3 class="pt-8">Nous aimons l'entreprise</h3>
               <p class="text-center text-[.9rem]!">
                 Nous y avons grandi et en avons tiré beaucoup de fierté. Nous savons qu'elle doit
@@ -215,11 +228,11 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               </p>
               <div class="cap-container">
                 <p class="text-center text-4xl! pb-12 mb-0!">Cap&nbsp;?</p>
-                <img 
-                  class="ali-logo-watercolour" 
-                  src="images/pages/logo-ali-aquarelle.webp" 
+                <img
+                  class="ali-logo-watercolour"
+                  src="images/pages/logo-ali-aquarelle.webp"
                   alt="Logo All Leaders Initiative"
-                >
+                />
               </div>
             </article>
           </div>
@@ -275,7 +288,6 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
           </div>
         </div>
       </div>
-
     </section>
 
     <!-- ==========================================
@@ -284,7 +296,9 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     <section id="offre" aria-labelledby="h2-offre" class="py-16">
       <div class="container">
         <h2 class="mb-0 mt-0 texte-gradient">
-          Coaching de performance collective : nous intervenons sur tout le <strong>continuum de la performance collective</strong>
+          Coaching de performance collective&nbsp;: nous intervenons sur tout le <strong
+            >continuum de la performance collective</strong
+          >
         </h2>
 
         <!-- Mobile : version simplifiée -->
@@ -297,72 +311,65 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
           <ContinuumGrid />
         </div>
 
+        <Grid
+          textColor="var(--color-text-primary)"
+          items={[
+            {
+              title: 'Bien-être mental fondamental à récréer',
+              media: '/images/pages/marque-de-danger-isole.webp',
+            },
+            {
+              title: 'Amplifier les points forts et réguler les vecteurs de vulnérabilité',
+              media: '/images/pages/balise-speciale.webp',
+            },
+            {
+              title: 'Déployer le leadership à tout niveau (leadership basé sur l’intention)',
+              media: '/images/pages/bouee-eaux-saines.webp',
+            },
+          ]}
+        />
+
         <p class="text-center mt-4">
           Nous accompagnons les équipes managériales, comités de direction et dirigeants pour
           dépasser les blocages collectifs et développer un leadership basé sur l'intention.
-
-          <Grid
-            textColor="var(--color-text-primary)"
-            items={[
-              {
-                title: 'Bien-être mental fondamental à récréer',
-                media: '/images/pages/marque-de-danger-isole.webp',
-                description:
-                  'Analyse approfondie de la dynamique d’équipe, identification des blocages et des leviers de performance.',
-              },
-              {
-                title: 'Amplifier les points forts et réguler les vecteurs de vulnérabilité',
-                media: '/images/pages/balise-speciale.webp',
-                description:
-                  'Ateliers collaboratifs pour définir une feuille de route claire et alignée avec les objectifs stratégiques.',
-              },
-              {
-                title: 'Déployer le leadership à tout niveau (leadership basé sur l’intention)',
-                media: '/images/pages/bouee-eaux-saines.webp',
-                description:
-                  'Accompagnement personnalisé pour mener à bien les transformations organisationnelles, en soutenant les équipes dans leur évolution.',
-              },
+        </p>
+        <div class="py-0 md:py-12 flex flex-col items-center gap-4">
+          <h3>
+            Nous avons accompagné de nombreuses équipes managériales, comités de direction et
+            dirigeants exigeants actifs chez&nbsp;
+          </h3>
+          <Carousel
+            speed={3500}
+            visibleItemsMobile={1.5}
+            visibleItemsDesktop={5}
+            images={[
+              { image: '/images/pages/homeserve.png', alt: 'HomeServe' },
+              { image: '/images/pages/edf.png', alt: 'EDF' },
+              { image: '/images/pages/vinci-constructions.png', alt: 'Vinci Constructions' },
+              { image: '/images/pages/opinionway.png', alt: 'OpinionWay' },
+              { image: '/images/pages/orange.png', alt: 'Orange' },
+              { image: '/images/pages/samsung.png', alt: 'Samsung' },
+              { image: '/images/pages/oph.png', alt: 'OPH Castres' },
+              { image: '/images/pages/atelier-martel.png', alt: 'Atelier Martel' },
+              { image: '/images/pages/ocp.png', alt: 'OCP' },
+              { image: '/images/pages/tss.png', alt: 'TSS' },
+              { image: '/images/pages/fiphfp.png', alt: 'FipHfp' },
+              { image: '/images/pages/cea.png', alt: 'CEA' },
+              { image: '/images/pages/potel-chabot.png', alt: 'Potel&Chabot' },
+              { image: '/images/pages/stryker.png', alt: 'Stryker' },
+              { image: '/images/pages/dedalus.png', alt: 'Dedalus' },
+              { image: '/images/pages/wano.png', alt: 'Wano' },
             ]}
           />
-          <div class="py-0 md:py-12 flex flex-col items-center gap-4">
-            <h3>
-              Nous avons accompagné de nombreuses équipes managériales, comités de direction et
-              dirigeants exigeants actifs chez&nbsp;
-            </h3>
-            <Carousel
-              speed={3500}
-              visibleItemsMobile={1.5}
-              visibleItemsDesktop={5}
-              images={[
-                { image: '/images/pages/homeserve.png', alt: 'HomeServe' },
-                { image: '/images/pages/edf.png', alt: 'EDF' },
-                { image: '/images/pages/vinci-constructions.png', alt: 'Vinci Constructions' },
-                { image: '/images/pages/opinionway.png', alt: 'OpinionWay' },
-                { image: '/images/pages/orange.png', alt: 'Orange' },
-                { image: '/images/pages/samsung.png', alt: 'Samsung' },
-                { image: '/images/pages/oph.png', alt: 'OPH Castres' },
-                { image: '/images/pages/atelier-martel.png', alt: 'Atelier Martel' },
-                { image: '/images/pages/ocp.png', alt: 'OCP' },
-                { image: '/images/pages/tss.png', alt: 'TSS' },
-                { image: '/images/pages/fiphfp.png', alt: 'FipHfp' },
-                { image: '/images/pages/cea.png', alt: 'CEA' },
-                { image: '/images/pages/potel-chabot.png', alt: 'Potel&Chabot' },
-                { image: '/images/pages/stryker.png', alt: 'Stryker' },
-                { image: '/images/pages/dedalus.png', alt: 'Dedalus' },
-                { image: '/images/pages/wano.png', alt: 'Wano' },
-              ]}
-            />
-          </div>
+        </div>
 
-          <!-- Placeholder pour les modules/offres détaillées -->
-          <div id="offre-modules" aria-label="Nos modules d'intervention">
-            <!-- Insérer ici les cards d'offres -->
-          </div>
-        </p>
+        <!-- Placeholder pour les modules/offres détaillées -->
+        <div id="offre-modules" aria-label="Nos modules d'intervention">
+          <!-- Insérer ici les cards d'offres -->
+        </div>
       </div>
-
-      <CompassLinks />
     </section>
+    <CompassLinks />
 
     <!-- ==========================================
          SECTION 3 — Partenaires & Écosystème
@@ -370,12 +377,12 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     <section id="ecosysteme" aria-labelledby="h2-ecosysteme" class="py-0 md:py-16">
       <div class="container mx-auto">
         <h2 id="h2-ecosysteme" class="text-center! mt-8">
-           Découvrez ceux qui naviguent avec vous et incarnent <strong>le leadership</strong> que nous
+          Découvrez ceux qui naviguent avec vous et incarnent <strong>le leadership</strong> que nous
           développons.
         </h2>
 
         <p class="text-center! mt-4">
-         Un écosystème de partenaires experts en leadership et cohésion d'équipe
+          Un écosystème de partenaires experts en leadership et cohésion d'équipe
         </p>
 
         <ul class="partners-list max-w-4xl mx-auto px-4" role="list">
@@ -389,9 +396,11 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               <div class="partner-content">
                 <h3>Le Bureau du Réel</h3>
                 <p>
-                  All Leaders Initiative est partie prenante du Bureau du Réel, un réseau
-                  d'intervenants pour des formats de conférences disruptifs et centrés sur
-                  l'expérience vécue.
+                  <span class="brand-text">
+                    ALL <span class="leaders">LEADERS</span>
+                    <span class="thin">INITIATIVE</span>
+                  </span> est partie prenante du Bureau du Réel, un réseau d'intervenants pour des formats
+                  de conférences disruptifs et centrés sur l'expérience vécue.
                 </p>
                 <a
                   href="https://www.bureaudureel.fr/"
@@ -563,7 +572,6 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     font-size: 2rem;
   }
 
-
   .hero-quote-wrapper {
     position: relative;
     z-index: 1;
@@ -588,7 +596,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     justify-content: center;
     gap: 0.5rem;
     will-change: opacity;
-    padding-bottom:3rem;
+    padding-bottom: 3rem;
   }
 
   .question-dash,
@@ -619,13 +627,13 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
 
   @media (min-width: 768px) {
     .texte-gradient {
-    background: linear-gradient(to right, #c65151, #9e8aa8, #172432);
-    
-    -webkit-background-clip: text;
-    background-clip: text;
+      background: linear-gradient(to right, #c65151, #9e8aa8, #172432);
 
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+      color: transparent;
     }
   }
 
@@ -850,39 +858,39 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
   }
 
   /* Conteneur de référence */
-.cap-container {
-  position: relative;
-  display: inline-block; /* Pour qu'il ne prenne que la largeur du texte */
-  width: 100%;
-  text-align: center;
-  margin-top: 0;
-  padding-bottom: 0px; /* Espace réservé pour le logo qui dépasse */
-}
-
-.ali-logo-watercolour {
-  position: absolute;
-  left: 50%;
-  bottom: -40px;
-  transform: translateX(-50%); /* Centrage parfait par rapport au parent */
-  
-  height: 80px; /* Ajustez la taille selon votre besoin */
-  width: auto;
-  
-  /* Optionnel : fond blanc propre si l'aquarelle doit ressortir sur le gris */
-  background: white;
-  padding: 10px;
-  border-radius: 20px;
-  z-index: 10;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Ajustement responsive si besoin */
-@media (min-width: 768px) {
-  .ali-logo-watercolour {
-    height: 100px;
-    bottom: -70px; /* On peut le faire descendre un peu plus sur desktop */
+  .cap-container {
+    position: relative;
+    display: inline-block; /* Pour qu'il ne prenne que la largeur du texte */
+    width: 100%;
+    text-align: center;
+    margin-top: 0;
+    padding-bottom: 0px; /* Espace réservé pour le logo qui dépasse */
   }
-}
+
+  .ali-logo-watercolour {
+    position: absolute;
+    left: 50%;
+    bottom: -40px;
+    transform: translateX(-50%); /* Centrage parfait par rapport au parent */
+
+    height: 80px; /* Ajustez la taille selon votre besoin */
+    width: auto;
+
+    /* Optionnel : fond blanc propre si l'aquarelle doit ressortir sur le gris */
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    z-index: 10;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Ajustement responsive si besoin */
+  @media (min-width: 768px) {
+    .ali-logo-watercolour {
+      height: 100px;
+      bottom: -70px; /* On peut le faire descendre un peu plus sur desktop */
+    }
+  }
 
   /* Desktop : images latérales en 18% */
   @media (min-width: 768px) {
@@ -893,11 +901,11 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
       margin-top: 0rem;
     }
 
-  .values-section h3 {
-    margin-top: 1.5rem!important;
-    font-size: 1rem;
-    font-weight: 600;
-  }
+    .values-section h3 {
+      margin-top: 1.5rem !important;
+      font-size: 1rem;
+      font-weight: 600;
+    }
 
     .values-image-left,
     .values-image-right {
@@ -914,15 +922,13 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
     .values-grid {
       flex: 1;
       padding-bottom: 0;
-      
     }
   }
 
-    /* Prévenir le FOUC (Flash Of Unstyled Content) pour les animations GSAP */
+  /* Prévenir le FOUC (Flash Of Unstyled Content) pour les animations GSAP */
   .hero-title,
   .hero-quote-wrapper,
   .hero-question {
     opacity: 0;
   }
-
 </style>

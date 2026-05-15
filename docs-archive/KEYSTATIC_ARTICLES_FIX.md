@@ -30,28 +30,35 @@ src/content/articles/
 ## Pour voir les articles dans Keystatic
 
 ### Étape 1: Arrêter le serveur de développement
+
 Si le serveur est en cours d'exécution, arrêtez-le avec `Ctrl+C` ou:
+
 ```bash
 pkill -f "npm run dev"
 ```
 
 ### Étape 2: Nettoyer le cache (optionnel mais recommandé)
+
 ```bash
 rm -rf .astro node_modules/.vite
 ```
 
 ### Étape 3: Redémarrer le serveur
+
 ```bash
 npm run dev
 ```
 
 ### Étape 4: Accéder à Keystatic
+
 Ouvrez votre navigateur et allez sur:
+
 ```
 http://localhost:4321/keystatic
 ```
 
 Vous devriez maintenant voir **4 articles** dans la section "Articoli":
+
 - 3 articles en italien (IT)
 - 1 article en français (FR)
 
@@ -67,8 +74,9 @@ Vous devriez maintenant voir **4 articles** dans la section "Articoli":
 ## Configuration Keystatic
 
 Le path dans `keystatic.config.ts`:
+
 ```typescript
-path: 'src/content/articles/{{lang}}/*'
+path: 'src/content/articles/{{lang}}/*';
 ```
 
 Cette configuration utilise une variable dynamique `{{lang}}` qui crée automatiquement les fichiers dans le bon sous-dossier selon la langue sélectionnée.
@@ -76,11 +84,13 @@ Cette configuration utilise une variable dynamique `{{lang}}` qui crée automati
 ## Vérification
 
 Pour vérifier que la structure est correcte:
+
 ```bash
 ls -R src/content/articles/
 ```
 
 Vous devriez voir:
+
 ```
 en  fr  it
 

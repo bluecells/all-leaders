@@ -1,24 +1,31 @@
 ---
-// Composant ContinuumGrid pour mobile
+// Composant ContinuumGrid pour mobile centré avec dégradés
 ---
 
 <div class="continuum-mobile-outer">
-  <div class="continuum-mobile-wrapper" role="img" aria-label="Continuum de la performance collective">
+  <div
+    class="continuum-mobile-wrapper"
+    role="img"
+    aria-label="Continuum de la performance collective"
+  >
     <div class="continuum-mobile-grid">
       <div class="mobile-zone zone-blue">
         <span>Collectif hautement performant</span>
       </div>
 
       <div class="mobile-zone zone-3">
-        <span>Déployer le leadership à tout niveau</span>
+        <img class="img-bouees" src="/images/pages/bouee-eaux-saines.webp" alt="" />
+        <span>Déployer le leadership<br />à tout niveau</span>
       </div>
 
       <div class="mobile-zone zone-2">
+        <img class="img-bouees" src="/images/pages/balise-speciale.webp" alt="" />
         <span>Amplifier les points forts et réguler les vulnérabilités</span>
       </div>
 
       <div class="mobile-zone zone-1">
-        <span>Bien-être mental fondamental à récréer</span>
+        <img class="img-bouees" src="/images/pages/marque-de-danger-isole.webp" alt="" />
+        <span>Bien-être mental<br />fondamental à récréer</span>
       </div>
 
       <div class="mobile-zone zone-red">
@@ -38,44 +45,43 @@
     const outer = document.querySelector('.continuum-mobile-outer');
     const wrapper = document.querySelector('.continuum-mobile-wrapper');
     const zones = document.querySelectorAll('.mobile-zone');
-    
-    if (!wrapper || zones.length === 0) return;
 
-    // On part de la zone-red (dernière dans le DOM) vers zone-blue (première)
+    if (!outer || !wrapper || zones.length === 0) return;
+
     const zonesArray = Array.from(zones).reverse();
 
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: outer,      // On déclenche sur le conteneur extérieur
-        start: '-20% top',    // Se bloque quand le haut touche le haut de l'écran
-        end: '+=800',       // Définit la "longueur" du scroll de l'animation
+        trigger: outer,
+        start: 'top 1rem', // Calage à 1rem sous la nav
+        end: '+=800',
         scrub: 1,
-        pin: wrapper,        // On épingle uniquement le wrapper intérieur
-        pinSpacing: true,    // CRUCIAL : Pousse le contenu suivant
+        pin: wrapper,
+        pinSpacing: true,
         invalidateOnRefresh: true,
       },
     });
 
     zonesArray.forEach((zone, index) => {
-      tl.to(zone, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.inOut',
-      }, index * 1.5);
+      tl.to(
+        zone,
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.inOut',
+        },
+        index * 1.2
+      );
     });
-
-    tl.to({}, { duration: 0.5 }); // Petite pause finale
   }
 
-  // Support Astro (Chargement initial + navigation client-side)
   document.addEventListener('DOMContentLoaded', initContinuum);
   document.addEventListener('astro:page-load', initContinuum);
 </script>
 
 <style>
-  /* Conteneur principal qui définit l'ancrage */
   .continuum-mobile-outer {
     position: relative;
     width: 100%;
@@ -85,29 +91,13 @@
   .continuum-mobile-wrapper {
     position: relative;
     width: 100%;
-    height: 100vh; /* Prend toute la hauteur pour l'effet de focus */
+    /* Prise en compte de ton besoin de 96.5vh moins le décalage sous nav */
+    height: calc(96.5vh - 1rem);
     display: flex;
+    /* On repasse sur un vrai centrage vertical parfait */
     justify-content: center;
     align-items: center;
     overflow: hidden;
-  }
-
-  /* Flèche en arrière-plan */
-  .continuum-mobile-wrapper::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 90vh; 
-    height: 90vw;
-    transform: translate(-50%, -50%) rotate(-90deg);
-    background-image: url('/images/pages/continuum-performance-collective.webp');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.7;
   }
 
   .continuum-mobile-grid {
@@ -115,39 +105,91 @@
     z-index: 2;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* Centre les éléments dans la grille */
     align-items: center;
     width: 90%;
-    gap: 1rem;
+    /* On force une hauteur pour stabiliser le conteneur dès le départ */
+    height: auto;
+    margin-top: 10dvh; /* Ajuste cette valeur (ex: 2rem, 3rem) pour descendre l'animation pile au centre visuel */
+    gap: 0.5rem;
   }
 
   .mobile-zone {
     width: 100%;
-    padding: 1rem;
     text-align: center;
     border-radius: 0.5rem;
-    /* État initial caché */
     opacity: 0;
-    transform: translateY(30px) scale(0.9);
+    transform: translateY(20px) scale(0.95); /* Légèrement réduit pour éviter l'effet de saut au départ */
     will-change: opacity, transform;
   }
 
   .mobile-zone span {
-    color: white;
+    color: var(--color-brand-primary);
     font-weight: 700;
-    font-size: 13px;
+    font-size: 15px;
     text-transform: uppercase;
     display: block;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   }
 
-  .zone-red { background: rgba(171, 8, 0, 0.95); margin-top: 4rem; margin-bottom: 2rem;}
-  .zone-blue { background: rgba(3, 26, 52, 0.95); margin-bottom: 8rem;}
-  .zone-1 { background: rgba(171, 8, 0, 0.75); max-width: 80%;}
-  .zone-2 { background: rgba(151, 106, 152, 0.75); max-width: 80%; }
-  .zone-3 { background: rgba(3, 26, 52, 0.75); max-width: 80%; }
+  .zone-red {
+    background: rgba(171, 8, 0, 0.95);
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 1rem 2rem;
+  }
+
+  .zone-blue {
+    background: rgba(3, 26, 52, 0.95);
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 1rem 2rem;
+  }
+
+  .zone-red span,
+  .zone-blue span {
+    color: #ffffff !important;
+  }
+
+  .zone-1 span,
+  .zone-2 span,
+  .zone-3 span {
+    display: block;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    color: var(--color-brand-primary);
+  }
+
+  .zone-1 span {
+    background-image: linear-gradient(to top, rgba(171, 8, 0, 0.95), rgba(102, 16, 112, 0.95));
+  }
+
+  .zone-2 span {
+    background-image: linear-gradient(to top, rgba(102, 16, 112, 0.95), rgba(3, 26, 52, 0.85));
+  }
+
+  .zone-3 span {
+    background-image: linear-gradient(to top, rgba(3, 26, 52, 0.85), rgba(3, 26, 52, 1));
+  }
+
+  .zone-1,
+  .zone-2,
+  .zone-3 {
+    max-width: 80%;
+    padding-top: 0.5rem;
+  }
+
+  .img-bouees {
+    height: auto;
+    width: 70px; /* Légèrement réduit pour garantir que le tout rentre sans déborder sur petits écrans */
+    margin: 0 auto 0.25rem auto;
+  }
 
   @media (prefers-reduced-motion: reduce) {
-    .mobile-zone { opacity: 1; transform: none; }
+    .mobile-zone {
+      opacity: 1;
+      transform: none;
+    }
   }
 </style>

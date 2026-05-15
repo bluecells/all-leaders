@@ -16,38 +16,46 @@ const { title, subtitle, description, cta, backgroundImage, lang = 'fr' } = Astr
 
 <section
   class="hero-animated relative w-full h-screen flex items-center justify-center overflow-hidden"
-  style={backgroundImage ? `background-image: url('${backgroundImage}'); background-size: cover; background-position: center;` : ''}
+  style={backgroundImage
+    ? `background-image: url('${backgroundImage}'); background-size: cover; background-position: center;`
+    : ''}
 >
   <!-- Overlay -->
   <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/20"></div>
 
   <!-- Content -->
   <div class="hero-content relative z-10 text-center px-4 max-w-4xl">
-    {subtitle && (
-      <p class="hero-subtitle text-limolo-brand text-lg font-semibold mb-4 tracking-widest uppercase">
-        {subtitle}
-      </p>
-    )}
+    {
+      subtitle && (
+        <p class="hero-subtitle text-limolo-brand text-lg font-semibold mb-4 tracking-widest uppercase">
+          {subtitle}
+        </p>
+      )
+    }
 
-    <h1 class="hero-title text-5xl md:text-7xl font-serif text-white mb-6 leading-tight">
+    <h1 class="hero-title text-5xl md:text-7xl text-white mb-6 leading-tight">
       {title}
     </h1>
 
-    {description && (
-      <p class="hero-description text-xl text-gray-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-        {description}
-      </p>
-    )}
+    {
+      description && (
+        <p class="hero-description text-xl text-gray-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+          {description}
+        </p>
+      )
+    }
 
-    {cta && (
-      <a
-        href={cta.url}
-        class="hero-cta inline-flex items-center px-8 py-4 bg-limolo-green text-white font-bold uppercase tracking-widest rounded-lg hover:bg-limolo-accent transition-colors duration-300"
-      >
-        {cta.label}
-        <span class="ml-3 text-2xl">→</span>
-      </a>
-    )}
+    {
+      cta && (
+        <a
+          href={cta.url}
+          class="hero-cta inline-flex items-center px-8 py-4 bg-limolo-green text-white font-bold uppercase tracking-widest rounded-lg hover:bg-limolo-accent transition-colors duration-300"
+        >
+          {cta.label}
+          <span class="ml-3 text-2xl">→</span>
+        </a>
+      )
+    }
   </div>
 
   <!-- Scroll indicator -->

@@ -13,19 +13,14 @@ interface Props {
 const { content, style } = Astro.props;
 
 const classes = [
-  "mx-auto prose prose-lg dark:prose-invert prose-headings:font-serif prose-a:text-indigo-600",
+  'mx-auto prose prose-lg dark:prose-invert prose-headings: prose-a:text-indigo-600',
   style.alignment,
-  style.maxWidth
-].join(" ");
+  style.maxWidth,
+].join(' ');
 ---
 
-<section 
-  class="py-12 px-4" 
-  style={`background-color: ${style.backgroundColor};`}
->
+<section class="py-12 px-4" style={`background-color: ${style.backgroundColor};`}>
   <div class={classes}>
-    {Array.isArray(content) && (
-      <DocumentRenderer document={content} />
-    )}
+    {Array.isArray(content) && <DocumentRenderer document={content} />}
   </div>
 </section>

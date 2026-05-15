@@ -144,8 +144,10 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 >
   <div class="flex flex-col justify-between lg:flex-row gap-4">
     <aside class="lg:w-50 lg:order-2 space-y-10 lg:sticky lg:top-40 lg:self-start">
-      <div class="search-box mb-0 text-center ">
-        <h4 class="text-[10px] md:text-left! uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">
+      <div class="search-box mb-0 text-center">
+        <h4
+          class="text-[10px] md:text-left! uppercase tracking-[0.2em] font-bold text-gray-400 mb-2"
+        >
           {t.search}
         </h4>
         <input
@@ -157,7 +159,9 @@ const tagsForFilter = Array.from(tagSlugs).sort();
       </div>
 
       <div class="categories-box text-center lg:text-left">
-        <h4 class="text-[10px] md:text-left! uppercase tracking-[0.2em] font-bold text-gray-400 pt-4 mb-4">
+        <h4
+          class="text-[10px] md:text-left! uppercase tracking-[0.2em] font-bold text-gray-400 pt-4 mb-4"
+        >
           {t.categories}
         </h4>
         <div class="flex flex-wrap gap-2 justify-center lg:justify-start">
@@ -190,7 +194,11 @@ const tagsForFilter = Array.from(tagSlugs).sort();
       </div>
 
       <div class="tags-box">
-        <h4 class="text-[10px] md:text-left! uppercase tracking-[0.2em] font-bold text-gray-400 mb-4">Tags</h4>
+        <h4
+          class="text-[10px] md:text-left! uppercase tracking-[0.2em] font-bold text-gray-400 mb-4"
+        >
+          Tags
+        </h4>
         <div class="flex flex-wrap gap-2">
           {
             tagsForFilter.map((slug) => {
@@ -275,29 +283,30 @@ const tagsForFilter = Array.from(tagSlugs).sort();
                 </div>
 
                 {/* Content - Bottom */}
-                <div class="flex flex-col h-full items-center justify-between flex-1 py-2">
+                <div class="flex flex-col h-full items-center justify-between flex-1">
                   <div class="w-full">
                     {displayCategory !== 'Uncategorized' && (
                       <button
-                        class="filter-cat-link text-[10px] border-b-1 border-b-mist-200 mb-2 uppercase tracking-[0.2em] font-bold text-center! w-full text-limolo-green hover:text-limolo-accent transition-colors"
+                        class="filter-cat-link text-[10px] border-b border-b-mist-200 py-1 mb-1 uppercase tracking-[0.2em] font-bold text-center! w-full text-limolo-green hover:text-limolo-accent transition-colors"
                         data-category={displayCategory.toLowerCase()}
                       >
                         {displayCategory}
                       </button>
                     )}
-
-                    <a href={permalink} class="block group w-full">
-                      <h3 class="text-sm m-0 font-serif text-limolo-green leading-tight group-hover:text-limolo-accent transition-colors line-clamp-4">
-                        {title}
-                      </h3>
-                    </a>
+                    <div class="flex flex-col items-center justify-center min-h-14">
+                      <a href={permalink} class="block group w-full px-2">
+                        <h3 class="text-xs font-light m-0 text-limolo-green leading-tight group-hover:text-limolo-accent transition-colors line-clamp-4">
+                          {title}
+                        </h3>
+                      </a>
+                    </div>
                   </div>
 
                   <a
                     href={permalink}
-                    class="btn-limolo inline-flex px-8 py-0 items-center justify-center rounded-sm gap-2 mt-4 w-[90%]"
+                    class="border border-gray-200 bg-gray-100 hover:bg-gray-200 transition-colors inline-flex px-8 py-1 my-2 items-center justify-center rounded-sm gap-2 w-[90%]"
                   >
-                    {t.cta} <span class="text-lg">→</span>
+                    {t.cta} <span class="text-md">→</span>
                   </a>
                 </div>
               </div>
@@ -306,7 +315,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
         }
       </div>
 
-      <div id="no-results" class="hidden text-center py-20 text-gray-400 font-serif italic text-xl">
+      <div id="no-results" class="hidden text-center py-20 text-gray-400 italic text-xl">
         {t.noResults}
       </div>
 
@@ -331,22 +340,37 @@ const tagsForFilter = Array.from(tagSlugs).sort();
     <div class="relative w-full aspect-16/10 shadow-sm bg-gray-100 overflow-hidden shrink-0">
       <div class="absolute top-0 left-0 z-20">
         <div class="bg-blue-950/50 h-5 leading-none backdrop-blur-sm px-4 py-0">
-          <span class="article-date text-[10px] font-bold uppercase tracking-tighter text-white"></span>
+          <span class="article-date text-[10px] font-bold uppercase tracking-tighter text-white"
+          ></span>
         </div>
       </div>
       <a href="" class="article-link block w-full h-full">
-        <img src="" alt="" class="article-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+        <img
+          src=""
+          alt=""
+          class="article-image w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+        />
       </a>
     </div>
-    <div class="flex flex-col h-full items-center justify-between flex-1 py-2">
+    <div class="flex flex-col h-full items-center justify-between flex-1">
       <div class="w-full">
-        <button class="filter-cat-link article-category text-[10px] border-b-1 border-b-mist-200 mb-2 uppercase tracking-[0.2em] font-bold text-center! w-full text-limolo-green hover:text-limolo-accent transition-colors hidden"></button>
-        <a href="" class="article-link block group w-full">
-          <h3 class="text-sm m-0 font-serif text-limolo-green leading-tight group-hover:text-limolo-accent transition-colors line-clamp-4 article-title"></h3>
-        </a>
+        <button
+          class="filter-cat-link article-category text-[10px] border-b border-b-mist-200 py-1 mb-1 uppercase tracking-[0.2em] font-bold text-center! w-full text-limolo-green hover:text-limolo-accent transition-colors"
+        ></button>
+        <div class="flex flex-col items-center justify-center min-h-14">
+          <a href="" class="block group w-full px-2">
+            <h3
+              class="article-title text-xs font-light m-0 text-limolo-green leading-tight group-hover:text-limolo-accent transition-colors line-clamp-4"
+            >
+            </h3>
+          </a>
+        </div>
       </div>
-      <a href="" class="article-link btn-limolo inline-flex px-8 rounded-sm py-0 items-center justify-center gap-2 mt-4 w-[90%]">
-        <span class="article-cta">Lire</span><span class="text-lg">→</span>
+      <a
+        href=""
+        class="border border-gray-200 bg-gray-100 hover:bg-gray-200 transition-colors inline-flex px-8 py-1 my-2 items-center justify-center rounded-sm gap-2 w-[90%]"
+      >
+        <span class="article-cta">Lire</span><span class="text-md">→</span>
       </a>
     </div>
   </div>
@@ -452,8 +476,10 @@ const tagsForFilter = Array.from(tagSlugs).sort();
     const searchValue = searchInput?.value.toLowerCase() || '';
 
     return allArticles.filter((article) => {
-      const catMatch = activeCategory === 'all' || (article.categorySlug?.toLowerCase() || '') === activeCategory;
-      const tagMatch = activeTags.length === 0 || activeTags.some((tag) => (article.rawTags || []).includes(tag));
+      const catMatch =
+        activeCategory === 'all' || (article.categorySlug?.toLowerCase() || '') === activeCategory;
+      const tagMatch =
+        activeTags.length === 0 || activeTags.some((tag) => (article.rawTags || []).includes(tag));
       const searchMatch = searchValue === '' || article.title.toLowerCase().includes(searchValue);
 
       return catMatch && tagMatch && searchMatch;
@@ -578,7 +604,8 @@ const tagsForFilter = Array.from(tagSlugs).sort();
     } else if (imageContainer) {
       // Remplacer par une div "pas d'image"
       const noImageDiv = document.createElement('div');
-      noImageDiv.className = 'w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-xs';
+      noImageDiv.className =
+        'w-full h-full bg-gray-200 flex items-center justify-center text-gray-500 text-xs';
       noImageDiv.textContent = "Pas d'image";
       if (imgEl) {
         imgEl.replaceWith(noImageDiv);
@@ -601,7 +628,9 @@ const tagsForFilter = Array.from(tagSlugs).sort();
   }
 
   function reattachEventListeners() {
-    const newFilterCatLinks = document.querySelectorAll('.filter-cat-link:not([data-listener-attached])');
+    const newFilterCatLinks = document.querySelectorAll(
+      '.filter-cat-link:not([data-listener-attached])'
+    );
     newFilterCatLinks.forEach((link) => {
       link.setAttribute('data-listener-attached', 'true');
       link.addEventListener('click', (e) => {

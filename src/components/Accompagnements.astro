@@ -28,48 +28,64 @@ function getCategoryDescription(categoryName: string): string {
   const categoryData = allCategories.find(
     (cat) => (lang === 'fr' ? cat.data.name_fr : cat.data.name_en) === categoryName
   );
-  return lang === 'fr' ? categoryData?.data.description_fr || '' : categoryData?.data.description_en || '';
+  return lang === 'fr'
+    ? categoryData?.data.description_fr || ''
+    : categoryData?.data.description_en || '';
 }
 ---
 
 <div class={fullBleed ? '' : 'mx-auto max-w-6xl px-4'}>
-  {categories.length > 0 ? (
-    categories.map((cat) => (
-      <section class="mb-16">
-        <h2 class="font-serif text-limolo-green mb-4">{cat}</h2>
-        <p class="category-description text-center! mx-auto mb-12">{getCategoryDescription(cat)}</p>
-        <div class="accompagnements-grid">
-          {accompagnements
-            .filter((item) => item.data.categorie === cat)
-            .map((item) => (
-              <article class="accompagnement-card">
-                <div class="card-image">
-                  <div class="card-image-wrapper">
-                    <img src={item.data.image} alt={item.data.title} />
-                  </div>
-                  <span class={`card-type card-type-${item.data.type}`}>{item.data.type}</span>
-                </div>
-                <div class="card-content">
-                  <h3 class="font-serif font-semibold text-limolo-green">{item.data.title}</h3>
-                  <p class="text-2xl card-description text-center!">{item.data.description}</p>
-                  {(item.data.USP1 || item.data.USP2 || item.data.USP3 || item.data.USP4 || item.data.USP5) && (
-                    <div class="usp-section">
-                      <p class="usp-text">
-                        {[item.data.USP1, item.data.USP2, item.data.USP3, item.data.USP4, item.data.USP5]
-                          .filter(Boolean)
-                          .join(' • ')}
-                      </p>
+  {
+    categories.length > 0 ? (
+      categories.map((cat) => (
+        <section class="mb-16">
+          <h2 class="text-limolo-green mb-4">{cat}</h2>
+          <p class="category-description text-center! mx-auto mb-12">
+            {getCategoryDescription(cat)}
+          </p>
+          <div class="accompagnements-grid">
+            {accompagnements
+              .filter((item) => item.data.categorie === cat)
+              .map((item) => (
+                <article class="accompagnement-card">
+                  <div class="card-image">
+                    <div class="card-image-wrapper">
+                      <img src={item.data.image} alt={item.data.title} />
                     </div>
-                  )}
-                </div>
-              </article>
-            ))}
-        </div>
-      </section>
-    ))
-  ) : (
-    <p class="text-center text-gray-500">Aucun accompagnement trouvé.</p>
-  )}
+                    <span class={`card-type card-type-${item.data.type}`}>{item.data.type}</span>
+                  </div>
+                  <div class="card-content">
+                    <h3 class="font-semibold text-limolo-green">{item.data.title}</h3>
+                    <p class="text-2xl card-description text-center!">{item.data.description}</p>
+                    {(item.data.USP1 ||
+                      item.data.USP2 ||
+                      item.data.USP3 ||
+                      item.data.USP4 ||
+                      item.data.USP5) && (
+                      <div class="usp-section">
+                        <p class="usp-text">
+                          {[
+                            item.data.USP1,
+                            item.data.USP2,
+                            item.data.USP3,
+                            item.data.USP4,
+                            item.data.USP5,
+                          ]
+                            .filter(Boolean)
+                            .join(' • ')}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </article>
+              ))}
+          </div>
+        </section>
+      ))
+    ) : (
+      <p class="text-center text-gray-500">Aucun accompagnement trouvé.</p>
+    )
+  }
 </div>
 
 <style>
@@ -91,7 +107,9 @@ function getCategoryDescription(categoryName: string): string {
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 300ms, box-shadow 300ms;
+    transition:
+      transform 300ms,
+      box-shadow 300ms;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -146,19 +164,19 @@ function getCategoryDescription(categoryName: string): string {
 
   /* Couleurs dynamiques par type */
   .card-type-investigation {
-    background: #8AC20A;
+    background: #8ac20a;
   }
 
   .card-type-inspiration {
-    background: #DDB800;
+    background: #ddb800;
   }
 
   .card-type-action {
-    background: #08AAC2;
+    background: #08aac2;
   }
 
   .card-type-immersion {
-    background: #B577F0;
+    background: #b577f0;
   }
 
   .card-content {

@@ -46,7 +46,12 @@ const navigationLinks = {
           alt="Logo"
           class="footer-logo-brand"
         />
-        <h3 class="footer-title">{t.company}</h3>
+        <div class="footer-title">
+          <span class="brand-text">
+            ALL <span class="leaders">LE<span class="stylized-a">A</span>DERS</span>
+            <span class="thin">INITIATIVE</span>
+          </span>
+        </div>
         <p class="footer-address">
           {t.address},<br />
           {t.city}
@@ -222,6 +227,7 @@ const navigationLinks = {
   .footer-link {
     display: block;
     font-size: 0.8rem;
+    font-weight: 300;
     color: var(--color-text-main);
     text-decoration: none;
     padding: 0.2rem 0;

@@ -1,28 +1,28 @@
 ---
 // HeroSection.astro
-import SearchIA from "./SearchIA.astro"
+import SearchIA from './SearchIA.astro';
 
 interface Props {
-  title?: string
-  subtitle?: string
-  backgroundImage?: string
-  photoCredit?: string
-  backgroundPositionX?: string
-  backgroundPositionY?: string
-  body?: string
-  minHeight?: string
+  title?: string;
+  subtitle?: string;
+  backgroundImage?: string;
+  photoCredit?: string;
+  backgroundPositionX?: string;
+  backgroundPositionY?: string;
+  body?: string;
+  minHeight?: string;
 }
 
 const {
-  title = "Titolo Principale",
-  subtitle = "Titolo Secondario",
+  title = 'Titolo Principale',
+  subtitle = 'Titolo Secondario',
   backgroundImage,
   photoCredit,
-  backgroundPositionX = "bottom",
-  backgroundPositionY = "top",
+  backgroundPositionX = 'bottom',
+  backgroundPositionY = 'top',
   body,
-  minHeight = "min-h-screen",
-} = Astro.props
+  minHeight = 'min-h-screen',
+} = Astro.props;
 ---
 
 <section class={`px-2 sm:px-16 relative isolate overflow-hidden ${minHeight} flex items-center`}>
@@ -55,14 +55,14 @@ const {
     class="mx-auto flex flex-col justify-center items-center gap-1 max-w-7xl text-center w-full py-4 sm:pb-10"
   >
     <p
-      class={`w-full text-lg sm:text-xl font-light font-serif tracking-wide leading-tight py-2 ${
-        backgroundImage ? "text-slate-100" : "text-slate-900 dark:text-indigo-400"
+      class={`w-full text-lg sm:text-xl font-light  tracking-wide leading-tight py-2 ${
+        backgroundImage ? 'text-slate-100' : 'text-slate-900 dark:text-indigo-400'
       }`}
       set:html={subtitle}
     />
 
     <h1
-      class={`w-full font-bold text-3xl sm:text-5xl sm:max-w-5xl font-serif leading-[1.25] !mb-O sm:mb-10 ${backgroundImage ? "text-slate-100" : "text-slate-800 dark:text-slate-200"}`}
+      class={`w-full font-bold text-3xl sm:text-5xl sm:max-w-5xl  leading-[1.25] !mb-O sm:mb-10 ${backgroundImage ? 'text-slate-100' : 'text-slate-800 dark:text-slate-200'}`}
     >
       {title}
     </h1>
@@ -70,7 +70,7 @@ const {
     {
       body && (
         <div
-          class={`w-full prose prose-lg ${backgroundImage ? "prose-invert" : "dark:prose-invert"}`}
+          class={`w-full prose prose-lg ${backgroundImage ? 'prose-invert' : 'dark:prose-invert'}`}
           set:html={body}
         />
       )

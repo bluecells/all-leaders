@@ -80,13 +80,13 @@ const TitleTag = titleTag;
       {/* 1ère Colonne : Texte (Centré mobile / Gauche SM+) */}
       <div class="text-center sm:text-left space-y-6">
         <p
-          class={`text-base sm:text-xl font-light font-serif text-indigo-400! tracking-wide ${backgroundImageSrc ? 'text-white/90' : 'text-white-900'}`}
+          class={`text-base sm:text-xl font-light  text-indigo-400! tracking-wide ${backgroundImageSrc ? 'text-white/90' : 'text-white-900'}`}
         >
           {subtitle}
         </p>
 
         <TitleTag
-          class={`font-semibold text-3xl sm:text-4xl font-serif leading-tight ${backgroundImageSrc ? 'text-white' : 'text-indigo-200'}`}
+          class={`font-semibold text-3xl sm:text-4xl  leading-tight ${backgroundImageSrc ? 'text-white' : 'text-indigo-200'}`}
           style="border-bottom-width: 0px;"
         >
           {title}
@@ -95,7 +95,7 @@ const TitleTag = titleTag;
         {
           body && (
             <div
-              class={`text-white font-serif not-prose mx-auto sm:mx-0 ${backgroundImageSrc ? 'prose-invert' : 'dark:prose-invert'}`}
+              class={`text-white  not-prose mx-auto sm:mx-0 ${backgroundImageSrc ? 'prose-invert' : 'dark:prose-invert'}`}
               set:html={body}
             />
           )

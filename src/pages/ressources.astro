@@ -10,8 +10,13 @@ import BlogSection from '../components/Blog.astro';
   lang="fr"
 >
   <div class="mx-auto px-4 py-12">
-    <h1 class="font-serif text-limolo-green mb-8 text-center">Ressources</h1>
-    <h2>Nos articles et ressources de All Leaders Initiative</h2>
+    <h1 class="text-limolo-green mb-8 text-center">Ressources</h1>
+    <h2>
+      Nos articles et ressources de <span class="brand-text">
+        ALL <span class="leaders">LE<span class="stylized-a">A</span>DERS</span>
+        <span class="thin">INITIATIVE</span>
+      </span>
+    </h2>
     <!-- Blog Component -->
     <BlogSection lang="fr" fullBleed={true} />
   </div>

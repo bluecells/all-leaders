@@ -39,7 +39,25 @@ const { items = [], category, title } = Astro.props;
  */
 function slugToLabel(slug: string): string {
   // Mots qui restent en minuscules (sauf au début)
-  const smallWords = new Set(['de', 'la', 'le', 'et', 'ou', 'à', 'un', 'une', 'en', 'au', 'aux', 'sur', 'sous', 'pour', 'par', 'du', 'les']);
+  const smallWords = new Set([
+    'de',
+    'la',
+    'le',
+    'et',
+    'ou',
+    'à',
+    'un',
+    'une',
+    'en',
+    'au',
+    'aux',
+    'sur',
+    'sous',
+    'pour',
+    'par',
+    'du',
+    'les',
+  ]);
 
   const words = slug.split('-').map((word) => word.toLowerCase());
 
@@ -304,7 +322,7 @@ if (items.length > 0) {
     gap: 0.25rem;
   }
 
-    ol.breadcrumb-list {
+  ol.breadcrumb-list {
     max-width: 100%;
   }
 
@@ -323,7 +341,7 @@ if (items.length > 0) {
   .breadcrumb-link {
     color: var(--color-brand-primary);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 300;
     transition: color 0.2s ease;
   }
 
@@ -334,6 +352,7 @@ if (items.length > 0) {
   .breadcrumb-separator {
     user-select: none;
     padding-right: 0;
+    font-weight: 100;
   }
 
   /* ========================================

@@ -1,9 +1,1 @@
-node_modules
-dist
-build
-.astro
-.env
-.env.local
-*.log
-**/*.mdoc
-**/*.astro
+src/styles/global.css

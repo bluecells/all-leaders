@@ -3,6 +3,7 @@
 ## Documentation
 
 Consulter **[DOCUMENTATION.md](./DOCUMENTATION.md)** pour:
+
 - Architecture du site et structure des collections
 - Système de routing et hreflang
 - Configuration Astro et Keystatic

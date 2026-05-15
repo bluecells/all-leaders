@@ -5,6 +5,7 @@ Ce projet utilise **GSAP (GreenSock Animation Platform)** pour des animations pr
 ## 📦 Installation
 
 GSAP est déjà installé:
+
 ```bash
 npm install gsap --legacy-peer-deps
 ```
@@ -12,6 +13,7 @@ npm install gsap --legacy-peer-deps
 ## 🎬 Composants d'Animation
 
 ### 1. HeroAnimated
+
 Composant héro avec animations au chargement et parallax au scroll.
 
 ```astro
@@ -23,19 +25,21 @@ import HeroAnimated from '@/components/HeroAnimated.astro';
   title="Bienvenue"
   subtitle="Découvrez"
   description="Une description inspirante"
-  cta={{ label: "Commencer", url: "/contact" }}
+  cta={{ label: 'Commencer', url: '/contact' }}
   backgroundImage="/hero-bg.jpg"
   lang="fr"
 />
 ```
 
 **Animations incluses:**
+
 - Fade-in cascade du titre, sous-titre et description
 - CTA avec scale animation
 - Indicateur de scroll animé
 - Parallax léger au scroll
 
 ### 2. StatsAnimated
+
 Composant statistiques avec compteurs animés.
 
 ```astro
@@ -47,21 +51,23 @@ import StatsAnimated from '@/components/StatsAnimated.astro';
   title="Nos Résultats"
   description="Chiffres clés"
   stats={[
-    { value: 500, label: "Clients satisfaits", suffix: "+" },
-    { value: 95, label: "Taux de satisfaction", suffix: "%" },
+    { value: 500, label: 'Clients satisfaits', suffix: '+' },
+    { value: 95, label: 'Taux de satisfaction', suffix: '%' },
     { value: 10, label: "Années d'expérience" },
-    { value: 50, label: "Équipe", suffix: "+" },
+    { value: 50, label: 'Équipe', suffix: '+' },
   ]}
   variant="light"
 />
 ```
 
 **Animations incluses:**
+
 - Compteurs qui s'animent au scroll
 - Apparition progressive des cartes
 - Stagger pour un effet en cascade
 
 ### 3. ScrollReveal
+
 Wrapper pour animer l'apparition d'éléments au scroll.
 
 ```astro
@@ -75,6 +81,7 @@ import ScrollReveal from '@/components/ScrollReveal.astro';
 ```
 
 **Props:**
+
 - `delay`: délai avant l'animation (secondes)
 - `direction`: direction de l'animation ('up', 'down', 'left', 'right')
 - `duration`: durée de l'animation
@@ -84,6 +91,7 @@ import ScrollReveal from '@/components/ScrollReveal.astro';
 ### Animations au chargement (Layout.astro)
 
 Les animations suivantes sont automatiquement appliquées:
+
 - Fade-in des titres (h1, h2, h3)
 - Apparition des articles (.article-card)
 - Apparition des services (.service-card)
@@ -99,7 +107,7 @@ import {
   animateParallax,
   animateStagger,
   animateCounter,
-  animateDrawSVG
+  animateDrawSVG,
 } from '@/utils/animations';
 
 // Au chargement
@@ -130,12 +138,15 @@ Les styles initiaux sont définis dans `/src/styles/animations.css`:
 
 ```css
 /* Les éléments commencent invisibles et décalés */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   opacity: 0;
   transform: translateY(20px);
 }
 
-.article-card, .service-card {
+.article-card,
+.service-card {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -144,6 +155,7 @@ h1, h2, h3 {
 ## ⚡ Performances
 
 GSAP est optimisé pour:
+
 - ✅ GPU acceleration (utilise `transform` et `opacity`)
 - ✅ Animations fluides à 60fps
 - ✅ Lazy loading des animations
@@ -158,21 +170,22 @@ ScrollTrigger est automatiquement enregistré. Pour des triggers personnalisés:
 gsap.to(element, {
   scrollTrigger: {
     trigger: element,
-    start: "top 80%",        // Quand déclencher
-    end: "bottom top",       // Quand arrêter
-    toggleActions: "play none none none",
-    markers: false,          // Debug
-    scrub: 1,               // 1 = lié au scroll
+    start: 'top 80%', // Quand déclencher
+    end: 'bottom top', // Quand arrêter
+    toggleActions: 'play none none none',
+    markers: false, // Debug
+    scrub: 1, // 1 = lié au scroll
   },
   opacity: 1,
   y: 0,
-  ease: "power2.out"
+  ease: 'power2.out',
 });
 ```
 
 ## 📱 Responsive Animations
 
 Les animations s'adaptent automatiquement:
+
 - Pas d'animation sur devices avec `prefers-reduced-motion`
 - Ajustement des durées selon les média queries
 - Performance optimisée sur mobile

@@ -126,52 +126,52 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
   alternateUrls={alternateUrls}
 >
   <article class="bg-[#fdfdfd] min-h-screen pb-10">
-    <div class="min-h-[82vh] md:min-h-[93vh] flex flex-col items-center justify-center">  
-      <header class="relative pb-8  md:py-8">
-      <div class="max-w-4xl mx-auto px-6 text-center">
-        <div
-          class="inline-block px-6 pt-0 mt-8 md:mt-0 pb-1 rounded-lg bg-limolo-green/5 border border-limolo-green/10 mb-4"
-        >
-          <span class="text-[10px] uppercase tracking-[0.3em]  font-bold text-limolo-green">
-            {categoryLabel}
-          </span>
+    <div class="min-h-[82vh] md:min-h-[93vh] flex flex-col items-center justify-center">
+      <header class="relative pb-8 md:py-8">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+          <div
+            class="inline-block px-6 pt-0 mt-8 md:mt-0 pb-1 rounded-lg bg-limolo-green/5 border border-limolo-green/10 mb-4"
+          >
+            <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-limolo-green">
+              {categoryLabel}
+            </span>
+          </div>
+
+          <h1 class="text-3xl md:text-4xl text-limolo-green leading-[1.1] mb-4">
+            {cleanText(displayH1)}
+          </h1>
+
+          <div class="flex items-center justify-center gap-4 text-gray-400">
+            <span class="h-px w-8 bg-gray-200"></span>
+            <time class="text-[11px] uppercase tracking-widest font-bold">
+              {formatDate(publishDate, lang)}
+            </time>
+            <span class="h-px w-8 bg-gray-200"></span>
+          </div>
+
+          {
+            excerpt && (
+              <p class="py-4 text-xl md:text-2xl text-gray-600  italic leading-relaxed max-w-3xl mx-auto">
+                "{cleanText(excerpt)}"
+              </p>
+            )
+          }
         </div>
-
-        <h1 class="text-3xl md:text-4xl font-serif text-limolo-green leading-[1.1] mb-4">
-          {cleanText(displayH1)}
-        </h1>
-
-        <div class="flex items-center justify-center gap-4 text-gray-400">
-          <span class="h-px w-8 bg-gray-200"></span>
-          <time class="text-[11px] uppercase tracking-widest font-bold">
-            {formatDate(publishDate, lang)}
-          </time>
-          <span class="h-px w-8 bg-gray-200"></span>
-        </div>
-
-        {
-          excerpt && (
-            <p class="py-4 text-xl md:text-2xl text-gray-600 font-serif italic leading-relaxed max-w-3xl mx-auto">
-              "{cleanText(excerpt)}"
-            </p>
-          )
-        }
-      </div>
       </header>
 
       {
-       featuredImagePath && (
-        <div class="w-full max-w-xl mx-auto px-4 mb-20">
-          <div class="relative aspect-square md:aspect-21/11 rounded-xl overflow-hidden shadow-2xl shadow-limolo-green/10">
-            <img
-              src={featuredImagePath}
-              alt={featuredImageAlt || title}
-              class="w-full h-full object-cover"
-            />
+        featuredImagePath && (
+          <div class="w-full max-w-xl mx-auto px-4 mb-20">
+            <div class="relative aspect-square md:aspect-21/11 rounded-xl overflow-hidden shadow-2xl shadow-limolo-green/10">
+              <img
+                src={featuredImagePath}
+                alt={featuredImageAlt || title}
+                class="w-full h-full object-cover"
+              />
+            </div>
           </div>
-        </div>
         )
-     }
+      }
     </div>
     <div class="prose-content max-w-4xl mx-auto">
       <slot />
@@ -181,9 +181,7 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
       related && related.length > 0 && (
         <section class="bg-gray-50 border-t border-gray-100 mt-24 py-24">
           <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl font-serif text-limolo-green text-center mb-16">
-              {getRelatedTitle(lang)}
-            </h2>
+            <h2 class="text-3xl  text-limolo-green text-center mb-16">{getRelatedTitle(lang)}</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
               {await Promise.all(
@@ -212,7 +210,7 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
                       <div class="text-[10px] uppercase tracking-widest font-bold text-limolo-green mb-3">
                         {itemCategoryLabel}
                       </div>
-                      <h3 class="text-lg font-serif text-gray-800 leading-snug group-hover:text-limolo-accent transition-colors">
+                      <h3 class="text-lg  text-gray-800 leading-snug group-hover:text-limolo-accent transition-colors">
                         {cleanText(item.data.title)}
                       </h3>
                     </a>
@@ -242,9 +240,9 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
   }
 
   /* Éléments plein écran sur mobile avec une petite marge de sécurité */
-  .prose-content :global(p), 
-  .prose-content :global(ul), 
-  .prose-content :global(ol), 
+  .prose-content :global(p),
+  .prose-content :global(ul),
+  .prose-content :global(ol),
   .prose-content :global(h2),
   .prose-content :global(h3),
   .prose-content :global(h5),
@@ -264,10 +262,10 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
     font-size: 1.2rem;
   }
 
-  .prose-content :global(ul), 
+  .prose-content :global(ul),
   .prose-content :global(ol) {
     list-style-position: inside;
-    padding-left: 1rem !important; 
+    padding-left: 1rem !important;
   }
 
   .prose-content :global(li) {
@@ -294,9 +292,9 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
       align-items: center;
     }
 
-    .prose-content :global(p), 
-    .prose-content :global(ul), 
-    .prose-content :global(ol), 
+    .prose-content :global(p),
+    .prose-content :global(ul),
+    .prose-content :global(ol),
     .prose-content :global(h2),
     .prose-content :global(h3),
     .prose-content :global(h5),
@@ -309,10 +307,8 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
 
     /* Le li suit automatiquement la largeur de 70ch de son parent ul/ol */
     .prose-content :global(li) {
-      width: 100% !important; 
+      width: 100% !important;
     }
-
-
 
     /* Si tu veux vraiment utiliser un padding calculé plutôt que margin:auto 
        pour les listes (déconseillé si tu veux que le trait soit centré) :

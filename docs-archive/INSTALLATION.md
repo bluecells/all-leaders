@@ -13,6 +13,7 @@
 ### 2. Configuration du Projet
 
 #### Astro Config ([astro.config.mjs](astro.config.mjs))
+
 - ✅ Intégration React pour Keystatic
 - ✅ Intégration Keystatic
 - ✅ Configuration i18n (Italien par défaut, FR et EN)
@@ -20,6 +21,7 @@
 - ✅ Tailwind CSS via Vite plugin
 
 #### Keystatic Config ([keystatic.config.ts](keystatic.config.ts))
+
 - ✅ Configuration Git-based avec préfixe de branche `content/`
 - ✅ Collection **Pages** (trilingue)
 - ✅ Collection **Articles** (trilingue, avec date, featured, image)
@@ -148,17 +150,20 @@ npm run dev
 Le site peut être déployé sur plusieurs plateformes:
 
 #### Vercel (Recommandé)
+
 ```bash
 npm install -g vercel
 vercel
 ```
 
 #### Netlify
+
 - Connecter le repository GitHub
 - Build command: `npm run build`
 - Publish directory: `dist`
 
 #### Cloudflare Pages
+
 - Même configuration que Netlify
 
 **Important**: Configurer les variables d'environnement sur la plateforme de déploiement!
@@ -177,21 +182,25 @@ vercel
 ## 🎯 Fonctionnalités Prêtes à l'Emploi
 
 ### Support Multilingue
+
 - ✅ Italien (langue par défaut, pas de préfixe d'URL)
 - ✅ Français (`/fr/...`)
 - ✅ Anglais (`/en/...`)
 
 ### Collections Keystatic
+
 - ✅ Pages avec SEO
 - ✅ Articles avec images, dates, featured
 - ✅ FAQ avec catégories et ordre personnalisé
 
 ### Workflow Git
+
 - ✅ Branches séparées pour chaque éditrice
 - ✅ Pas de conflits entre les éditions
 - ✅ Review avant publication sur master
 
 ### Design
+
 - ✅ Tailwind CSS configuré
 - ✅ Layout responsive
 - ✅ Pages d'exemple trilingues
@@ -205,6 +214,7 @@ vercel
 ## 🆘 Support
 
 Pour toute question ou problème:
+
 1. Consulter la documentation dans ce repository
 2. Vérifier les issues GitHub du projet
 3. Contacter l'administrateur technique

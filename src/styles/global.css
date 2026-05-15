@@ -1,5 +1,9 @@
 @import 'tailwindcss';
-@import '@fontsource/lexend';
+@import '@fontsource/lexend/100.css'; /* Thin */
+@import '@fontsource/lexend/300.css'; /* Light */
+@import '@fontsource/lexend/400.css'; /* Regular */
+@import '@fontsource/lexend/500.css'; /* Medium */
+@import '@fontsource/lexend/700.css'; /* Bold */
 @import '@fontsource/source-sans-3';
 
 /* ==================================================
@@ -85,7 +89,7 @@
   }
 
   h2 {
-    font-size: clamp(2rem, 3vw, 3rem);
+    font-size: 1.5rem;
     letter-spacing: -0.01em;
     margin-top: 4rem;
     margin-bottom: 1.5rem;
@@ -286,7 +290,7 @@ article a:hover {
   .btn-limolo:hover {
     background-color: var(--color-brand-accent);
     color: var(--color-bg-body);
-    border-color: var(--color-brand-primary);
+    border: 1px solid var(--color-brand-primary)!important;
   }
 
   /* Card Types - Modalités d'intervention */
@@ -559,3 +563,53 @@ article a:hover {
 .align-right p {
   text-align: right !important;
 }
+
+
+.brand-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 550;
+  text-transform: uppercase;
+  align-items: baseline;
+  display: inline; 
+  word-break: normal;
+}
+
+.brand-text .leaders {
+  display: inline-block;
+  margin: 0 0.3em;
+  white-space: nowrap;
+}
+
+.brand-text .thin {
+  font-weight: 100;
+  white-space: nowrap;
+}
+
+/* On cible uniquement la lettre A */
+.brand-text .stylized-a {
+  display: inline-block;
+  color: transparent;
+  width: 0.72em;
+  
+  /* --- REGLAGE CHIRURGICAL --- */
+  height: .8em; /* Hauteur exacte de la majuscule */
+  vertical-align: -0.32em; /* Aligne la base du V avec la base des lettres */
+  /* ---------------------------- */
+  
+  margin: 0 0.02em;
+  background-color: #AB0800;
+  
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50,0 L100,100 L75,100 L50,45 L25,100 L0,100 Z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50,0 L100,100 L75,100 L50,45 L25,100 L0,100 Z"/></svg>');
+  
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+h2 .brand-text .stylized-a {
+  /* --- REGLAGE CHIRURGICAL --- */
+  height: .76em; /* Hauteur exacte de la majuscule */
+  vertical-align: -0.18em; /* Aligne la base du V avec la base des lettres */
+} 

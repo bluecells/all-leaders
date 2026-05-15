@@ -21,7 +21,7 @@ const sortedCategories = categorie.sort((a, b) => {
   lang="fr"
 >
   <div class="flex flex-col justify-center align-items mx-auto min-h-[83vh]">
-    <h1 class="mb-8 text-4xl md:text-6xl text-center">Nos accompagnements</h1>
+    <h1 class="mb-8 text-3xl md:text-6xl text-center">Nos accompagnements</h1>
     <h2>Solutions de diagnostic et développement pour vos organisations</h2>
 
     <!-- Navigation des catégories d'accompagnements -->
@@ -47,10 +47,10 @@ const sortedCategories = categorie.sort((a, b) => {
     </nav>
   </div>
 
-    <!-- Section des modalités avec descriptifs -->
+  <!-- Section des modalités avec descriptifs -->
 
   <section class="modalites-section">
-    <h2 class="text-2xl! md:text-4xl font-bold pt-6! md:pt-10!">4 modalités d'intervention</h2>
+    <h2 class="text-2xl! md:text-4xl font-bold pt-4! md:pt-10!">4 modalités d'intervention</h2>
     <div class="modalites-container">
       {
         sortedModalites.map((modalite) => {
@@ -79,8 +79,6 @@ const sortedCategories = categorie.sort((a, b) => {
 
   <!-- AccompagnementsGrid Component avec cards cliquables -->
   <AccompagnementsGrid lang="fr" fullBleed={true} />
-
-
 
   <script is:inline>
     // Charger GSAP depuis CDN
@@ -121,7 +119,7 @@ const sortedCategories = categorie.sort((a, b) => {
         // Animation ralentie (3x plus lente)
         tl.from(navLinks, {
           opacity: 0,
-          duration: .5, // 0.6s * 3 = 1.8s
+          duration: 0.5, // 0.6s * 3 = 1.8s
           stagger: {
             each: 0.4, // 0.15s * 3 = 0.45s entre chaque lien
             from: 'end', // C'est ici qu'on définit l'ordre "du bas vers le haut"
@@ -280,7 +278,7 @@ const sortedCategories = categorie.sort((a, b) => {
   }
 
   .modalite-card {
-    padding: .75rem 1rem 0.1rem 1rem;
+    padding: 0.75rem 1rem 0.1rem 1rem;
     border-radius: 4px;
     background: white;
     border: 1px solid #e8e8e8;
@@ -305,7 +303,7 @@ const sortedCategories = categorie.sort((a, b) => {
     }
 
     .modalite-card {
-    padding: 1.05rem;
+      padding: 1.05rem;
     }
   }
 
