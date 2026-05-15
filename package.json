@@ -23,6 +23,7 @@
     "@astrojs/sitemap": "^3.7.2",
     "@fontsource/inter": "^5.2.8",
     "@fontsource/lexend": "^5.2.11",
+    "@fontsource/open-sans": "^5.2.7",
     "@fontsource/playfair-display": "^5.2.8",
     "@fontsource/source-sans-3": "^5.2.9",
     "@keystatic/astro": "^5.0.6",

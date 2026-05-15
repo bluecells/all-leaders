@@ -1,9 +1,9 @@
 @import 'tailwindcss';
-@import '@fontsource/lexend/100.css'; /* Thin */
-@import '@fontsource/lexend/300.css'; /* Light */
-@import '@fontsource/lexend/400.css'; /* Regular */
-@import '@fontsource/lexend/500.css'; /* Medium */
-@import '@fontsource/lexend/700.css'; /* Bold */
+@import '@fontsource/open-sans/300.css'; /* Light */
+@import '@fontsource/open-sans/400.css'; /* Regular */
+@import '@fontsource/open-sans/500.css'; /* Medium */
+@import '@fontsource/open-sans/600.css'; /* SemiBold */
+@import '@fontsource/open-sans/700.css'; /* Bold */
 @import '@fontsource/source-sans-3';
 
 /* ==================================================
@@ -60,7 +60,7 @@
   h2,
   h3,
   h4 {
-    font-family: Lexend, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 500;
     line-height: 1.2em;
     text-wrap: balance;
@@ -114,7 +114,7 @@
     font-size: 1.15rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    font-family: Lexend, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     margin-bottom: 0.75rem;
     background-color: #3c4248;
@@ -144,7 +144,7 @@
     text-align: center;
     font-size: 1.1rem;
     font-weight: 500;
-    font-family: Lexend, sans-serif;
+    font-family: 'Open Sans', sans-serif;
   }
 
   li {
@@ -437,7 +437,7 @@ article a:hover {
     text-align: center;
     font-size: 1.1rem;
     font-weight: 500;
-    font-family: Lexend, sans-serif;
+    font-family: 'Open Sans', sans-serif;
   }
 
   ol {
@@ -572,6 +572,7 @@ article a:hover {
   align-items: baseline;
   display: inline; 
   word-break: normal;
+  color: var(--color-brand-primary);
 }
 
 .brand-text .leaders {
