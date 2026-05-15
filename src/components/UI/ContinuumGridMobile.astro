@@ -15,20 +15,27 @@
 
       <div class="mobile-zone zone-3">
         <img class="img-bouees" src="/images/pages/bouee-eaux-saines.webp" alt="" />
-        <span>Déployer le leadership<br />à tout niveau</span>
+        <div>
+          <span>(Sur)performance à maintenir</span>Déployer le leadership<br />à tout niveau
+        </div>
       </div>
 
       <div class="mobile-zone zone-2">
         <img class="img-bouees" src="/images/pages/balise-speciale.webp" alt="" />
-        <span>Amplifier les points forts et réguler les vulnérabilités</span>
+        <div>
+          <span>Opportunités à développer</span>Amplifier les points forts et réguler les
+          vulnérabilités
+        </div>
       </div>
 
       <div class="mobile-zone zone-1">
         <img class="img-bouees" src="/images/pages/marque-de-danger-isole.webp" alt="" />
-        <span>Bien-être mental<br />fondamental à récréer</span>
+        <div>
+          <span>Difficultés à résoudre</span>Bien-être mental<br />fondamental à récréer
+        </div>
       </div>
-
-      <div class="mobile-zone zone-red">
+      <div class="mobile-zone
+            zone-red">
         <span>Groupe dysfonctionnel</span>
       </div>
     </div>
@@ -111,7 +118,7 @@
     align-items: center;
     width: 90%;
     height: auto;
-    gap: 0.75rem; /* Unifié pour simplifier la structure */
+    gap: 1rem; /* Unifié pour simplifier la structure */
   }
 
   .mobile-zone {
@@ -124,11 +131,18 @@
     box-sizing: border-box;
   }
 
-  .mobile-zone span {
+  .mobile-zone div {
     color: var(--color-brand-primary);
-    font-weight: 700;
+    font-weight: 600;
     font-size: 15px;
+    display: block;
+    line-height: 1.3;
+  }
+
+  .mobile-zone div span {
     text-transform: uppercase;
+    font-weight: extra-bold;
+    font-size: 18px;
     display: block;
     line-height: 1.3;
   }
@@ -137,6 +151,7 @@
   .zone-red,
   .zone-blue {
     padding: 1rem 1.5rem;
+    line-height: 1.2em;
   }
 
   .zone-red {
@@ -153,9 +168,9 @@
   }
 
   /* Dégradés appliqués proprement sur les spans intermédiaires */
-  .zone-1 span,
-  .zone-2 span,
-  .zone-3 span {
+  .zone-1 div,
+  .zone-2 div,
+  .zone-3 div {
     display: block;
     -webkit-background-clip: text;
     background-clip: text;
@@ -164,22 +179,16 @@
     color: var(--color-brand-primary);
   }
 
-  .zone-1 span {
+  .zone-1 div {
     background-image: linear-gradient(to top, rgba(171, 8, 0, 0.95), rgba(102, 16, 112, 0.95));
   }
 
-  .zone-2 span {
+  .zone-2 div {
     background-image: linear-gradient(to top, rgba(102, 16, 112, 0.95), rgba(3, 26, 52, 0.85));
   }
 
-  .zone-3 span {
+  .zone-3 div {
     background-image: linear-gradient(to top, rgba(3, 26, 52, 0.85), rgba(3, 26, 52, 1));
-  }
-
-  .zone-1,
-  .zone-2,
-  .zone-3 {
-    max-width: 80%;
   }
 
   .img-bouees {
