@@ -593,8 +593,8 @@ article a:hover {
   width: 0.72em;
   
   /* --- REGLAGE CHIRURGICAL --- */
-  height: .8em; /* Hauteur exacte de la majuscule */
-  vertical-align: -0.3em; /* Aligne la base du V avec la base des lettres */
+  height: .78em; /* Hauteur exacte de la majuscule */
+  vertical-align: -0.325em; /* Aligne la base du V avec la base des lettres */
   /* ---------------------------- */
   
   margin: 0 0.02em;
@@ -616,5 +616,9 @@ h2 .brand-text .stylized-a {
 } 
 
 h2 .brand-text .leaders {
+  margin: 0 0.1em;
+}
+
+.footer-title .brand-text .leaders {
   margin: 0 0.1em;
 }

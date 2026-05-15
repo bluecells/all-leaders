@@ -1,7 +1,8 @@
 export const cookieConsentTranslations = {
   it: {
     title: 'I cookie su all-leaders.fr',
-    description: 'Utilizziamo i cookie per migliorare la tua esperienza, analizzare il traffico e personalizzare i contenuti.',
+    description:
+      'Utilizziamo i cookie per migliorare la tua esperienza, analizzare il traffico e personalizzare i contenuti.',
     acceptAll: 'Accetta tutto',
     rejectAll: 'Rifiuta tutto',
     settings: 'Impostazioni',
@@ -17,7 +18,8 @@ export const cookieConsentTranslations = {
   },
   fr: {
     title: 'Les cookies sur all-leaders.fr',
-    description: 'Nous utilisons des cookies pour améliorer votre expérience, analyser le trafic et personnaliser le contenu.',
+    description:
+      'Nous utilisons des cookies pour améliorer votre expérience, analyser le trafic et personnaliser le contenu.',
     acceptAll: 'Accepter tout',
     rejectAll: 'Refuser tout',
     settings: 'Paramètres',
@@ -28,12 +30,13 @@ export const cookieConsentTranslations = {
     analyticsDesc: 'Analyse anonyme du trafic',
     marketing: 'Marketing',
     marketingDesc: 'Publicité personnalisée',
-    privacyLink: '/fr/privacy-policy-fr',
-    cookieLink: '/fr/cookies-policy-fr',
+    privacyLink: '/privacy',
+    cookieLink: '/cookies',
   },
   en: {
     title: 'Cookies on all-leaders.fr',
-    description: 'We use cookies to improve your experience, analyze traffic, and personalize content.',
+    description:
+      'We use cookies to improve your experience, analyze traffic, and personalize content.',
     acceptAll: 'Accept all',
     rejectAll: 'Reject all',
     settings: 'Settings',
