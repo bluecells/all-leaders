@@ -5,6 +5,7 @@ import Carousel from '../components/UI/Carousel.astro';
 import ContinuumGrid from '../components/UI/ContinuumGrid.astro';
 import ContinuumGridMobile from '../components/UI/ContinuumGridMobile.astro';
 import CompassLinks from '../components/UI/CompassLinks.astro';
+import BentoReviews from '../components/UI/BentoReviews.astro';
 ---
 
 <script>
@@ -107,6 +108,10 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
         >
       </h2>
     </div>
+  </div>
+
+  <div class="mx-auto hero-section">
+    <!-- Hero Title - Animé après -->
 
     <!-- Hero Quote - Centre au début, puis slide vers le bas -->
     <div class="hero-quote-wrapper">
@@ -114,9 +119,11 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
         Vous sentez qu'il serait possible de <strong>mieux collaborer</strong>, de retrouver du <strong
           >sens</strong
         >, de <strong>fluidifier les relations</strong>… mais quelque chose bloque. Des habitudes
-        ancrées, des non-dits, un manque de clarté.
+        ancrées, des non-dits, un manque de clarté.<br />
+      </p>
+      <p class="mx-auto text-2xl!">
         <strong
-          >Ces frontières invisibles freinent votre épanouissement et la dynamique collective.</strong
+          >Ces frontières invisibles<br /> freinent votre épanouissement et<br /> la dynamique collective.</strong
         >
       </p>
       <nav aria-label="Navigation principale">
@@ -125,29 +132,29 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
         >
       </nav>
     </div>
-  </div>
 
-  <main>
-    <!-- ==========================================
+    <main>
+      <!-- ==========================================
          SECTION 1 — Pourquoi All Leaders Initiative
     =========================================== -->
-    <section id="notre-approche" aria-labelledby="h2-pourquoi">
-      <div class="container">
-        <h2 id="h2-fondateurs" class="text-center! mt-8">
-          Nous avons créé<br /><span class="brand-text">
-            ALL <span class="leaders">LE<span class="stylized-a">A</span>DERS</span>
-            <span class="thin">INITIATIVE</span>
-          </span>
-        </h2>
+      <section id="notre-approche" aria-labelledby="h2-pourquoi">
+        <div class="container min-h-0 md:py-12">
+          <div class="container">
+            <h2 id="h2-fondateurs" class="text-center! mt-8">
+              Nous avons créé<br /><span class="brand-text">
+                ALL <span class="leaders">LE<span class="stylized-a">A</span>DERS</span>
+                <span class="thin">INITIATIVE</span>
+              </span>
+            </h2>
 
-        <p class="text-center">
-          Pour vous permettre de questionner ce qui ne fonctionne plus, oser de nouvelles façons
-          d'agir et <strong>vous affranchir de ces barrières invisibles.</strong> Pour réussir,
-          <strong>ensemble</strong>.
-        </p>
-      </div>
+            <p class="text-center">
+              Pour vous permettre de questionner ce qui ne fonctionne plus, oser de nouvelles façons
+              d'agir et <strong>vous affranchir de ces barrières invisibles.</strong> Pour réussir,
+              <strong>ensemble</strong>.
+            </p>
+          </div>
+        </div>
 
-      <div class="container min-h-0 md:py-12">
         <div class="values-section">
           {/* Images latérales en desktop */}
           <div id="fondateurs" class="values-image-left hidden order-2 md:order-1 md:flex">
@@ -156,8 +163,8 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               alt="Marie-Emmanuelle Py"
               class="w-full h-auto object-cover"
             />
-            <h3 itemprop="name">Marie Emmanuelle PY</h3>
-            <p class="mb-4" itemprop="jobTitle">Associée fondatrice</p>
+            <h3 class="mb-1" itemprop="name">Marie Emmanuelle PY</h3>
+            <p class="mb-8 uppercase text-slate-400" itemprop="jobTitle">Associée fondatrice</p>
             <ul class="contact-list">
               <li>
                 <a
@@ -239,8 +246,8 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               alt="Pierre-Etienne Bost"
               class="w-full h-auto object-cover"
             />
-            <h3 itemprop="name">Pierre-Etienne BOST</h3>
-            <p class="mb-4" itemprop="jobTitle">Associé fondateur</p>
+            <h3 class="mb-1" itemprop="name">Pierre-Etienne BOST</h3>
+            <p class="mb-8 uppercase text-slate-400" itemprop="jobTitle">Associé fondateur</p>
             <ul class="contact-list">
               <li>
                 <a
@@ -283,8 +290,8 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
             </ul>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <!-- ==========================================
          SECTION 2 — Offre / Continuum
@@ -347,7 +354,6 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
               { image: '/images/pages/samsung.png', alt: 'Samsung' },
               { image: '/images/pages/oph.png', alt: 'OPH Castres' },
               { image: '/images/pages/atelier-martel.png', alt: 'Atelier Martel' },
-              { image: '/images/pages/ocp.png', alt: 'OCP' },
               { image: '/images/pages/tss.png', alt: 'TSS' },
               { image: '/images/pages/fiphfp.png', alt: 'FipHfp' },
               { image: '/images/pages/cea.png', alt: 'CEA' },
@@ -359,10 +365,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
           />
         </div>
 
-        <!-- Placeholder pour les modules/offres détaillées -->
-        <div id="offre-modules" aria-label="Nos modules d'intervention">
-          <!-- Insérer ici les cards d'offres -->
-        </div>
+        <BentoReviews />
       </div>
     </section>
     <CompassLinks />
@@ -393,10 +396,10 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
                 <h3>Le Bureau du Réel</h3>
                 <p>
                   <span class="brand-text">
-                    ALL <span class="leaders">LEADERS</span>
+                    ALL <span class="leaders">LE<span class="stylized-a">A</span>DERS</span>
                     <span class="thin">INITIATIVE</span>
-                  </span> est partie prenante du Bureau du Réel, un réseau d'intervenants pour des formats
-                  de conférences disruptifs et centrés sur l'expérience vécue.
+                  </span>est partie prenante du Bureau du Réel, un réseau d'intervenants pour des
+                  formats de conférences disruptifs et centrés sur l'expérience vécue.
                 </p>
                 <a
                   href="https://www.bureaudureel.fr/"
@@ -538,7 +541,7 @@ import CompassLinks from '../components/UI/CompassLinks.astro';
         </ul>
       </div>
     </section>
-  </main>
+  </div>
 </Layout>
 
 <style>

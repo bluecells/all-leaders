@@ -1,0 +1,309 @@
+---
+// Mock data des avis clients
+const allReviews = [
+  {
+    id: 1,
+    name: 'Anne-Flore Roger',
+    role: 'Directrice Réseaux et Services Mobiles, Orange',
+    rating: 5,
+    text: 'Notre équipe de direction est aujourd’hui plus engagée, cohérente et confiante dans ses orientations. ',
+  },
+  {
+    id: 2,
+    name: 'Thibault Lemoigne',
+    role: 'Directeur de la Relation Clients, HomeServe',
+    rating: 5,
+    text: 'Une démarche de développement pragmatique et adaptée. Un moment de construction collective grâce à la mise en action individuelle de chaque membre dans un principe commun de management : le leadership par l’intention.',
+  },
+  {
+    id: 3,
+    name: 'Christophe Jeanneau',
+    role: 'DRH de centre nucléaire de production d’électricité, EDF',
+    rating: 5,
+    text: 'Une posture de « sparring partner » stratégique… Une expertise pédagogique de haut niveau… Vision systémique et agilité.',
+  },
+  {
+    id: 4,
+    name: 'Jean-Luc Mitry',
+    role: 'Directeur du contrôle de gestion de VINCI Construction',
+    rating: 5,
+    text: 'Mission pleinement accomplie à la grande satisfaction des équipes concernées.',
+  },
+  {
+    id: 5,
+    name: 'Martine Neuville',
+    role: 'Directrice du FIPHFP',
+    rating: 5,
+    text: 'A travers différentes modalités d’accompagnement, j’ai pu mesurer toute l’étendue des compétences à la fois professionnelles et relationnelles de Marie Emmanuelle Py.',
+  },
+  {
+    id: 6,
+    name: 'Acteur de l’industrie nucléaire',
+    role: 'Chef de service (à l’issue d’un Parcours de développement managérial)',
+    rating: 5,
+    text: 'Ce parcours m’a offert une belle remise en question. Il permet d’objectiver des pratiques, des postures et des réflexions nécessaires à un management plus construit.',
+  },
+  {
+    id: 7,
+    name: 'Acteur de l’industrie nucléaire',
+    role: 'Chef de service (à l’issue d’un Parcours de développement managérial)',
+    rating: 5,
+    text: "Les apports de ce parcours sont individuels et collectifs. En pratique le fait de pouvoir s'approprier les concepts managériaux pour les appliquer avec son équipe dynamise les relations",
+  },
+];
+---
+
+<section class="bento-reviews-section">
+  <div class="bento-grid">
+    {
+      allReviews.map((review, index) => {
+        // Logique pour les spans (effet Bento asymétrique)
+        let colSpan = '';
+        let rowSpan = '';
+
+        if (index === 2) {
+          colSpan = 'col-span-2';
+        }
+        if (index === 3) {
+          rowSpan = 'row-span-2';
+        }
+
+        return (
+          <article class={`review-card ${colSpan} ${rowSpan}`} data-review-id={review.id}>
+            <h4 class="client-name">{review.name}</h4>
+            <p class="client-role">{review.role}</p>
+
+            <div class="rating">
+              {Array.from({ length: review.rating }).map(() => (
+                <svg class="star" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                </svg>
+              ))}
+            </div>
+
+            <p class="testimonial-text">{review.text}</p>
+          </article>
+        );
+      })
+    }
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const grid = document.querySelector('.bento-grid');
+  const allCards = Array.from(document.querySelectorAll('.review-card'));
+  const isMobile = window.innerWidth < 768;
+  const maxCards = isMobile ? 4 : 3;
+  const totalCards = allCards.length;
+  let currentIndex = 0;
+
+  // Créer un cycle infini de cartes en répétant si nécessaire
+  const cycleCards = [];
+  for (let i = 0; i < totalCards + maxCards; i++) {
+    cycleCards.push(allCards[i % totalCards]);
+  }
+
+  // Afficher les cartes initiales
+  function updateCardDisplay() {
+    allCards.forEach((card) => {
+      card.style.display = 'none';
+    });
+
+    for (let i = 0; i < maxCards; i++) {
+      const cardIndex = (currentIndex + i) % totalCards;
+      allCards[cardIndex].style.display = 'flex';
+    }
+  }
+
+  updateCardDisplay();
+
+  // Animation ScrollTrigger pour l'apparition initiale
+  const visibleCards = Array.from({ length: maxCards }, (_, i) => allCards[(currentIndex + i) % totalCards]);
+  visibleCards.forEach((card, index) => {
+    gsap.fromTo(
+      card,
+      {
+        opacity: 0,
+        scale: 0.95,
+        y: 30,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.8,
+        delay: index * 0.08,
+        scrollTrigger: {
+          trigger: grid,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+  });
+
+  // Rotation des cartes toutes les 6 secondes
+  setInterval(() => {
+    const displayedCards = Array.from({ length: maxCards }, (_, i) =>
+      allCards[(currentIndex + i) % totalCards]
+    );
+
+    // Fadeout
+    gsap.to(displayedCards, {
+      opacity: 0,
+      duration: 1.5,
+      ease: 'power2.inOut',
+    });
+
+    // Changer les cartes après fadeout
+    setTimeout(() => {
+      currentIndex = (currentIndex + maxCards) % totalCards;
+      updateCardDisplay();
+
+      // Fadein
+      const newDisplayedCards = Array.from({ length: maxCards }, (_, i) =>
+        allCards[(currentIndex + i) % totalCards]
+      );
+      gsap.to(newDisplayedCards, {
+        opacity: 1,
+        duration: 1.5,
+        ease: 'power2.inOut',
+      });
+    }, 1500);
+  }, 6000);
+</script>
+
+<style>
+  /* ========================================
+     Mobile First
+     ======================================== */
+
+  .bento-reviews-section {
+    padding: 1rem 0.75rem;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .review-card {
+    background: white;
+    border: 1px solid #f9fafb;
+    border-radius: 8px;
+    padding: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    transition: opacity 0.3s ease;
+  }
+
+  .review-card:hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  .client-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-brand-primary);
+    margin: 0;
+    line-height: 1.2;
+    width: 100%;
+    text-align: left;
+  }
+
+  .client-role {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .rating {
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  .star {
+    width: 14px;
+    height: 14px;
+    color: #cc960b;
+  }
+
+  .testimonial-text {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--color-brand-primary);
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  /* ========================================
+     Tablet (768px+)
+     ======================================== */
+  @media (min-width: 768px) {
+    .bento-reviews-section {
+      padding: 1.5rem 1rem;
+      min-height: 60vh;
+    }
+
+    .bento-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .review-card {
+      padding: 0.5rem;
+    }
+
+    .review-card:nth-child(3) {
+      grid-column: span 2;
+    }
+
+    .review-card:nth-child(4) {
+      grid-row: span 2;
+    }
+
+    .client-name {
+      font-size: 0.8rem;
+    }
+
+    .client-role {
+      font-size: 0.7rem;
+    }
+
+    .testimonial-text {
+      font-size: 0.7rem;
+    }
+  }
+
+  /* ========================================
+     Desktop (1024px+)
+     ======================================== */
+  @media (min-width: 1024px) {
+    .bento-reviews-section {
+      padding: 0;
+    }
+
+    .bento-grid {
+      gap: 0.5rem;
+    }
+
+    .review-card {
+      padding: 1rem;
+    }
+  }
+</style>

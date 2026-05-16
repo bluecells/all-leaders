@@ -566,7 +566,7 @@ article a:hover {
 
 
 .brand-text {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Open sans', sans-serif;
   font-weight: 550;
   text-transform: uppercase;
   align-items: baseline;
@@ -577,7 +577,7 @@ article a:hover {
 
 .brand-text .leaders {
   display: inline-block;
-  margin: 0 0.3em;
+  margin: 0 0.05em;
   white-space: nowrap;
 }
 
@@ -594,10 +594,10 @@ article a:hover {
   
   /* --- REGLAGE CHIRURGICAL --- */
   height: .78em; /* Hauteur exacte de la majuscule */
-  vertical-align: -0.325em; /* Aligne la base du V avec la base des lettres */
+  vertical-align: -0.4em; /* Aligne la base du V avec la base des lettres */
   /* ---------------------------- */
   
-  margin: 0 0.02em;
+  margin: 0 0.0em;
   background-color: #AB0800;
   
   -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M50,0 L100,100 L75,100 L50,45 L25,100 L0,100 Z"/></svg>');
@@ -612,12 +612,18 @@ article a:hover {
 h2 .brand-text .stylized-a {
   /* --- REGLAGE CHIRURGICAL --- */
   height: .76em; /* Hauteur exacte de la majuscule */
-  vertical-align: -0.18em; /* Aligne la base du V avec la base des lettres */
+  vertical-align: -0.215em; /* Aligne la base du V avec la base des lettres */
 } 
 
 h2 .brand-text .leaders {
   margin: 0 0.1em;
 }
+
+.footer-title  .brand-text .stylized-a {
+  /* --- REGLAGE CHIRURGICAL --- */
+  height: .76em; /* Hauteur exacte de la majuscule */
+  vertical-align: -0.35em; /* Aligne la base du V avec la base des lettres */
+} 
 
 .footer-title .brand-text .leaders {
   margin: 0 0.1em;
