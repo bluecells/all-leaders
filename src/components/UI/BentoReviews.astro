@@ -123,7 +123,10 @@ const allReviews = [
   updateCardDisplay();
 
   // Animation ScrollTrigger pour l'apparition initiale
-  const visibleCards = Array.from({ length: maxCards }, (_, i) => allCards[(currentIndex + i) % totalCards]);
+  const visibleCards = Array.from(
+    { length: maxCards },
+    (_, i) => allCards[(currentIndex + i) % totalCards]
+  );
   visibleCards.forEach((card, index) => {
     gsap.fromTo(
       card,
@@ -149,8 +152,9 @@ const allReviews = [
 
   // Rotation des cartes toutes les 6 secondes
   setInterval(() => {
-    const displayedCards = Array.from({ length: maxCards }, (_, i) =>
-      allCards[(currentIndex + i) % totalCards]
+    const displayedCards = Array.from(
+      { length: maxCards },
+      (_, i) => allCards[(currentIndex + i) % totalCards]
     );
 
     // Fadeout
@@ -166,8 +170,9 @@ const allReviews = [
       updateCardDisplay();
 
       // Fadein
-      const newDisplayedCards = Array.from({ length: maxCards }, (_, i) =>
-        allCards[(currentIndex + i) % totalCards]
+      const newDisplayedCards = Array.from(
+        { length: maxCards },
+        (_, i) => allCards[(currentIndex + i) % totalCards]
       );
       gsap.to(newDisplayedCards, {
         opacity: 1,
@@ -296,6 +301,7 @@ const allReviews = [
   @media (min-width: 1024px) {
     .bento-reviews-section {
       padding: 0;
+      min-height: auto;
     }
 
     .bento-grid {

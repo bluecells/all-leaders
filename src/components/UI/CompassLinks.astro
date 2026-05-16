@@ -122,6 +122,13 @@
     }
   }
 
+  @media (min-width: 1919px) {
+    /* On ajuste le rayon pour que les liens ne sortent pas du cadre desktop */
+    :root {
+      --radius: 300px;
+    }
+  }
+
   /* --- STRUCTURE EN GRILLE VERTICALE FORCEE --- */
   .compass-main {
     width: 100vw;
@@ -136,6 +143,7 @@
     /* Grille stricte : 1/4 (25%) et 3/4 (75%) de l'espace global */
     display: grid;
     grid-template-rows: 50% 50%;
+    padding-bottom: 1rem;
   }
 
   @media (min-width: 768px) {
@@ -143,6 +151,14 @@
       height: 100vh;
       grid-template-rows: 25% 75%; /* Reste identique sur desktop pour respecter ta consigne */
       padding-top: 60px;
+    }
+  }
+
+  @media (min-width: 1919px) {
+    .compass-main {
+      height: 100vh;
+      grid-template-rows: 35% 65%; /* Reste identique sur desktop pour respecter ta consigne */
+      padding-top: 150px;
     }
   }
 
@@ -172,6 +188,7 @@
     overflow: hidden;
     border: none;
     border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   .compass-perspective-wrapper {
@@ -199,6 +216,12 @@
     will-change: transform;
   }
 
+  @media (min-width: 768px) {
+    .compass-rose-bg {
+      background-size: 100%;
+    }
+  }
+
   .compass-orbit {
     position: relative;
     z-index: 10;
@@ -216,6 +239,12 @@
     transform-origin: center center;
     transition: all 0.3s ease;
     z-index: 20;
+  }
+
+  @media (min-width: 1919px) {
+    .compass-link {
+      width: 350px;
+    }
   }
 
   .compass-link[data-index='0'] {

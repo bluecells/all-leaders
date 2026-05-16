@@ -6,6 +6,10 @@
 @import '@fontsource/open-sans/700.css'; /* Bold */
 @import '@fontsource/source-sans-3';
 
+@theme {
+  --breakpoint-3xl: 1920px;
+}
+
 /* ==================================================
    Variables de thème
 ================================================== */
@@ -31,6 +35,12 @@
   html {
     scroll-behavior: smooth;
     font-size: 18px;
+  }
+
+  @media (min-width: 1919px) {
+    html {
+      font-size: 24px;
+    }
   }
 
   body {
@@ -89,7 +99,7 @@
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     letter-spacing: -0.01em;
     margin-top: 4rem;
     margin-bottom: 1.5rem;
@@ -100,7 +110,7 @@
   }
 
   h3 {
-    font-size: clamp(1.35rem, 2vw, 2.15rem);
+    font-size: clamp(1.35rem, 3vw, 1.5rem);
     margin-top: 2.75rem;
     margin-bottom: 1rem;
     background-color: #3c4248;
@@ -512,17 +522,12 @@ article a:hover {
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1919px) {
   h1:first-child {
     padding-top: 120px;
   }
   main {
     max-width: 80rem;
-  }
-
-  p,
-  li {
-    font-size: 18px;
   }
 }
 /* ==================================================
