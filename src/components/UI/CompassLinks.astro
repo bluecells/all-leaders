@@ -138,17 +138,17 @@
     margin-left: -50vw;
     margin-right: -50vw;
     overflow: hidden;
-    height: 96.5vh;
+    height: 100vh;
 
     /* Grille stricte : 1/4 (25%) et 3/4 (75%) de l'espace global */
     display: grid;
     grid-template-rows: 50% 50%;
     padding-bottom: 1rem;
+    padding-top: 60px;
   }
 
   @media (min-width: 768px) {
     .compass-main {
-      height: 100vh;
       grid-template-rows: 25% 75%; /* Reste identique sur desktop pour respecter ta consigne */
       padding-top: 60px;
     }
@@ -156,7 +156,6 @@
 
   @media (min-width: 1919px) {
     .compass-main {
-      height: 100vh;
       grid-template-rows: 35% 65%; /* Reste identique sur desktop pour respecter ta consigne */
       padding-top: 150px;
     }
