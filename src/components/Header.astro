@@ -215,9 +215,9 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     border-radius: 0 0 16px 16px;
   }
   .header-container {
-    max-width: 1400px;
+    max-width: 78rem;
     margin: 0 auto;
-    padding: 0.25rem;
+    padding: 0.5rem;
   }
   .header-content {
     display: flex;
@@ -237,6 +237,9 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
   }
 
   @media (min-width: 1025px) {
+    .header-container {
+      padding: 0.5rem;
+    }
     .header-content {
       justify-content: space-between;
     }

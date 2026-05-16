@@ -59,9 +59,9 @@ const allReviews = [
       {
         allReviews.map((review) => (
           <div class="review-item" data-review-id={review.id}>
-            <h4 class="review-role">{review.role}</h4>
-            <p class="review-name">{review.name}</p>
             <p class="review-text">{review.text}</p>
+            <p class="review-role">{review.role}</p>
+            <p class="review-name">{review.name}</p>
           </div>
         ))
       }
@@ -158,7 +158,7 @@ const allReviews = [
         animateGroupEntry(currentGroupIndex);
       },
     });
-  }, 6000);
+  }, 8000);
 </script>
 
 <style>
@@ -197,7 +197,7 @@ const allReviews = [
   }
 
   .review-role {
-    font-size: 0.7rem !important;
+    font-size: 0.6rem !important;
     font-weight: 600;
     color: var(--color-brand-primary);
     margin: 0;
@@ -206,7 +206,7 @@ const allReviews = [
   }
 
   .review-name {
-    font-size: 0.7rem !important;
+    font-size: 0.6rem !important;
     color: #6b7280;
     margin: 0;
     line-height: 1;
@@ -214,11 +214,36 @@ const allReviews = [
   }
 
   .review-text {
-    font-size: 0.7rem !important;
+    font-size: 0.8rem !important;
+    font-style: italic;
     line-height: 1.4;
     color: var(--color-brand-primary);
     margin: 0;
     text-align: center !important;
+
+    /* --- AJOUT CRITIQUE ICI --- */
+    position: relative;
+    padding-top: 2.5rem; /* Crée de l'espace au-dessus pour accueillir la quote centrée */
+  }
+
+  .review-text::before {
+    content: '“';
+    position: absolute;
+
+    /* --- CORRECTION DU CENTRAGE ICI --- */
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Centre parfaitement le guillemet au milieu horizontal */
+
+    /* Style et taille (Inchangés et parfaits) */
+    font-size: 5rem;
+    font-family: Georgia, serif;
+    line-height: 1;
+    font-weight: bold;
+    color: #6b7280;
+    opacity: 0.3;
+    pointer-events: none;
+    padding-bottom: 0.5rem;
   }
 
   /* ========================================
