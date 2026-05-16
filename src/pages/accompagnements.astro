@@ -50,7 +50,7 @@ const sortedCategories = categorie.sort((a, b) => {
   <!-- Section des modalités avec descriptifs -->
 
   <section class="modalites-section">
-    <h2 class="text-2xl! md:text-4xl font-bold pt-4! px-10 md:pt-10!">
+    <h2 class="text-2xl! md:text-4xl font-bold pt-4! px-20! md:pt-10!">
       4 modalités d'intervention
     </h2>
     <div class="modalites-container">
@@ -353,5 +353,11 @@ const sortedCategories = categorie.sort((a, b) => {
     line-height: 1.5;
     color: #555;
     margin: 0;
+  }
+
+  @media (min-width: 1929px) {
+    .category-nav-link {
+      width: 400px;
+    }
   }
 </style>

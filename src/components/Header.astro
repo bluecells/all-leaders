@@ -212,11 +212,12 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     top: 0;
     z-index: 50;
     background-color: rgba(192, 192, 192, 0.1);
+    border-radius: 0 0 16px 16px;
   }
   .header-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0.25rem;
   }
   .header-content {
     display: flex;
@@ -224,6 +225,10 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     align-items: center;
     height: 3.5rem;
     position: relative;
+    background-color: rgba(255, 255, 255, 0.778);
+    border-bottom: 1px solid rgba(74, 103, 65, 0.1);
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
   }
 
   .logo-img {
@@ -247,13 +252,9 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     display: none;
     gap: 2rem;
     align-items: center;
-    background-color: white;
-    border-bottom: 1px solid rgba(74, 103, 65, 0.1);
-    border-radius: 10px;
-    padding: 0.25rem 1rem;
   }
   .nav-link {
-    font-size: 14px;
+    font-size: 0.7rem;
     font-weight: 300;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -262,15 +263,16 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
   }
 
   .nav-link.active {
-    font-weight: 600;
-    text-shadow: 2px 2px 4px #4a7ab048;
+    color: #beab54;
+    border-bottom: dotted 2px #beab54;
   }
   .nav-link:active {
-    font-weight: 600;
-    text-shadow: 2px 2px 4px #4a7ab048;
+    color: #beab54;
+    border-bottom: dotted 2px #beab54;
   }
   .nav-link:hover {
-    text-shadow: 3px 3px 5px #031a3431;
+    color: #beab54;
+    transform: color ease-in 0.2s;
   }
 
   .btn-nav {
