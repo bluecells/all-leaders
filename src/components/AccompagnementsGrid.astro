@@ -342,4 +342,22 @@ const getAccompagnementUrl = (item: CollectionEntry<'accompagnements'>, catSlug:
       height: 130px;
     }
   }
+
+    @media (min-width: 1919px) {
+    .category-section {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .category-left { width: auto; }
+    
+    .accompagnements-list { width: 800px; }
+
+    .card-link {
+      grid-template-columns: 300px 1fr;
+      height: 180px;
+    }
+  }
 </style>
