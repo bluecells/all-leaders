@@ -271,7 +271,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
   <!-- ==========================================
          SECTION 2 — Offre / Continuum
     =========================================== -->
-  <section id="offre" aria-labelledby="h2-offre" class="py-16">
+  <section id="offre" aria-labelledby="h2-offre" class="pt-16">
     <div class="container">
       <h2 class="mb-0 mt-0 texte-gradient">
         Coaching de performance collective&nbsp;: nous intervenons sur tout le <strong
@@ -306,45 +306,42 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
           },
         ]}
       />
-
-      <!--         <p class="text-center mt-4">
-          Nous accompagnons les équipes managériales, comités de direction et dirigeants pour
-          dépasser les blocages collectifs et développer un leadership basé sur l'intention.
-        </p> -->
-      <div class="py-0 px-4 md:py-12 flex flex-col items-center gap-4">
-        <h3>
-          Nous avons accompagné de nombreuses équipes managériales, comités de direction et
-          dirigeants exigeants actifs chez&nbsp;
-        </h3>
-        <Carousel
-          speed={3500}
-          visibleItemsMobile={1.5}
-          visibleItemsDesktop={6}
-          height="10vh"
-          images={[
-            { image: '/images/pages/homeserve.webp', alt: 'HomeServe' },
-            { image: '/images/pages/edf.webp', alt: 'EDF' },
-            { image: '/images/pages/vinci-constructions.webp', alt: 'Vinci Constructions' },
-            { image: '/images/pages/opinionway.webp', alt: 'OpinionWay' },
-            { image: '/images/pages/orange.webp', alt: 'Orange' },
-            { image: '/images/pages/samsung.webp', alt: 'Samsung' },
-            { image: '/images/pages/oph.webp', alt: 'OPH Castres' },
-            { image: '/images/pages/atelier-martel.webp', alt: 'Atelier Martel' },
-            { image: '/images/pages/tss.webp', alt: 'TSS' },
-            { image: '/images/pages/fiphfp.webp', alt: 'FipHfp' },
-            { image: '/images/pages/cea.webp', alt: 'CEA' },
-            { image: '/images/pages/potel-chabot.webp', alt: 'Potel&Chabot' },
-            { image: '/images/pages/stryker.webp', alt: 'Stryker' },
-            { image: '/images/pages/dedalus.webp', alt: 'Dedalus' },
-            { image: '/images/pages/wano.webp', alt: 'Wano' },
-          ]}
-        />
-      </div>
-
-      <BannerReviews />
     </div>
   </section>
-  <CompassLinks />
+  <section>
+    <div class="py-0 px-4 md:py-12 flex flex-col items-center gap-4">
+      <h3 class="my-0">
+        Nous avons accompagné de nombreuses équipes managériales, comités de direction et dirigeants
+        exigeants actifs chez&nbsp;
+      </h3>
+      <Carousel
+        speed={3500}
+        visibleItemsMobile={1.5}
+        visibleItemsDesktop={6}
+        height="10vh"
+        images={[
+          { image: '/images/pages/homeserve.webp', alt: 'HomeServe' },
+          { image: '/images/pages/edf.webp', alt: 'EDF' },
+          { image: '/images/pages/vinci-constructions.webp', alt: 'Vinci Constructions' },
+          { image: '/images/pages/opinionway.webp', alt: 'OpinionWay' },
+          { image: '/images/pages/orange.webp', alt: 'Orange' },
+          { image: '/images/pages/samsung.webp', alt: 'Samsung' },
+          { image: '/images/pages/oph.webp', alt: 'OPH Castres' },
+          { image: '/images/pages/atelier-martel.webp', alt: 'Atelier Martel' },
+          { image: '/images/pages/tss.webp', alt: 'TSS' },
+          { image: '/images/pages/fiphfp.webp', alt: 'FipHfp' },
+          { image: '/images/pages/cea.webp', alt: 'CEA' },
+          { image: '/images/pages/potel-chabot.webp', alt: 'Potel&Chabot' },
+          { image: '/images/pages/stryker.webp', alt: 'Stryker' },
+          { image: '/images/pages/dedalus.webp', alt: 'Dedalus' },
+          { image: '/images/pages/wano.webp', alt: 'Wano' },
+        ]}
+      />
+    </div>
+
+    <BannerReviews />
+    <CompassLinks />
+  </section>
 
   <!-- ==========================================
          SECTION 3 — Partenaires & Écosystème
