@@ -28,10 +28,7 @@ const pageTitle = data.question;
   jsonType={data.jsonType || 'faq'}
   alternateUrls={alternateUrls}
 >
-  <Breadcrumb
-    category={data.category}
-    title={data.question}
-  />
+  <Breadcrumb category={data.category} title={data.question} />
   <main class="faq-page">
     <article class="faq-container">
       <header class="faq-header">
@@ -48,7 +45,7 @@ const pageTitle = data.question;
 
 <style>
   .faq-page {
-    min-height: 100vh;
+    min-height: 100dvh;
     background-color: #fdfdfd;
     padding: 4rem 0;
   }

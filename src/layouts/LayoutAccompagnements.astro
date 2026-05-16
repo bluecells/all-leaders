@@ -23,7 +23,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
   metaDescription={data.description}
 >
   <article class="accompagnement-page">
-    <div class="flex items-center justify-center min-h-[82vh] md:min-h-[93vh]">
+    <div class="intro-accompagnement flex items-start md:items-center justify-center">
       <div class="container mx-auto max-w-4xl">
         {/* Type badge + Category */}
         <div class="metadata mb-4 flex items-center gap-4 justify-center flex-wrap">
@@ -32,22 +32,20 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
           </span>
           {
             category && (
-              <span class="category-badge px-6! py-1! mt-8! md:mt-0!">
+              <span class="category-badge px-6! pb-2! md:mt-0!">
                 {lang === 'fr' ? category.data.name_fr : category.data.name_en}
               </span>
             )
           }
         </div>
         {/* Titre principal */}
-        <h1 class="text-2xl md:text-4xl font-bold mb-4 leading-tight text-center">
+        <h1 class="text-2xl md:text-4xl font-bold py-4 leading-tight text-center">
           {data.title}
         </h1>
 
         {/* Description */}
-        <div
-          class="description text-xl text-gray-700 mb-4 leading-relaxed text-center max-w-2xl mx-auto"
-        >
-          <p>{data.description}</p>
+        <div class="description text-xl text-gray-700 mb-4 text-center max-w-2xl mx-auto">
+          <p class="leading-tight!">{data.description}</p>
         </div>
 
         {/* Image hero */}
@@ -57,7 +55,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
               <img
                 src={data.image}
                 alt={data.title}
-                class="aspect-square md:aspect-21/11 rounded-lg shadow-lg object-cover"
+                class="aspect-6/4 md:aspect-21/11 rounded-lg shadow-lg object-cover"
                 style="max-height: 400px;"
               />
             </div>
@@ -70,7 +68,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
       {
         longDescriptionHTML && (
           <div class="description-section-wrapper">
-            <div class="description-section mb-12" set:html={longDescriptionHTML} />
+            <div class="description-section mb-0md:mb-12" set:html={longDescriptionHTML} />
           </div>
         )
       }
@@ -117,7 +115,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
               </ul>
             </div>
             {/* CTA section */}
-            <div class="cta-section mt-8 text-center">
+            <div class="cta-section mt-12 text-center">
               <a href="/contact" class="btn btn-primary btn-lg">
                 {lang === 'fr' ? 'Prendre contact' : 'Get in touch'}
               </a>
@@ -130,8 +128,9 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
 </Layout>
 
 <style>
-  .accompagnement-page {
-    min-height: 100vh;
+  .intro-accompagnement {
+    min-height: calc(88dvh - 80px);
+    margin-bottom: 1rem;
   }
 
   .type-badge {
