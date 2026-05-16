@@ -1,0 +1,282 @@
+---
+// Mock data des avis clients
+const allReviews = [
+  {
+    id: 1,
+    name: 'Anne-Flore Roger',
+    role: 'Directrice Réseaux et Services Mobiles, Orange',
+    rating: 5,
+    text: 'Notre équipe de direction est aujourd’hui plus engagée, cohérente et confiante dans ses orientations. ',
+  },
+  {
+    id: 2,
+    name: 'Thibault Lemoigne',
+    role: 'Directeur de la Relation Clients, HomeServe',
+    rating: 5,
+    text: 'Une démarche de développement pragmatique et adaptée. Un moment de construction collective grâce à la mise en action individuelle de chaque membre dans un principe commun de management : le leadership par l’intention.',
+  },
+  {
+    id: 3,
+    name: 'Christophe Jeanneau',
+    role: 'DRH de centre nucléaire de production d’électricité, EDF',
+    rating: 5,
+    text: 'Une posture de « sparring partner » stratégique… Une expertise pédagogique de haut niveau… Vision systémique et agilité.',
+  },
+  {
+    id: 4,
+    name: 'Jean-Luc Mitry',
+    role: 'Directeur du contrôle de gestion de VINCI Construction',
+    rating: 5,
+    text: 'Mission pleinement accomplie à la grande satisfaction des équipes concernées.',
+  },
+  {
+    id: 5,
+    name: 'Martine Neuville',
+    role: 'Directrice du FIPHFP',
+    rating: 5,
+    text: 'A travers différentes modalités d’accompagnement, j’ai pu mesurer toute l’étendue des compétences à la fois professionnelles et relationnelles de Marie Emmanuelle Py.',
+  },
+  {
+    id: 6,
+    name: 'Acteur de l’industrie nucléaire',
+    role: 'Chef de service (à l’issue d’un Parcours de développement managérial)',
+    rating: 5,
+    text: 'Ce parcours m’a offert une belle remise en question. Il permet d’objectiver des pratiques, des postures et des réflexions nécessaires à un management plus construit.',
+  },
+  {
+    id: 7,
+    name: 'Acteur de l’industrie nucléaire',
+    role: 'Chef de service (à l’issue d’un Parcours de développement managérial)',
+    rating: 5,
+    text: "Les apports de ce parcours sont individuels et collectifs. En pratique le fait de pouvoir s'approprier les concepts managériaux pour les appliquer avec son équipe dynamise les relations",
+  },
+];
+---
+
+<section class="banner-reviews-section">
+  <div class="banner-container">
+    <div class="reviews-track">
+      {
+        allReviews.map((review) => (
+          <div class="review-item" data-review-id={review.id}>
+            <h4 class="review-role">{review.role}</h4>
+            <p class="review-name">{review.name}</p>
+            <p class="review-text">{review.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+
+  const track = document.querySelector('.reviews-track');
+  const reviewItems = Array.from(document.querySelectorAll('.review-item'));
+  const totalReviews = reviewItems.length;
+  const groupSize = 3;
+  let currentGroupIndex = 0;
+
+  // Fonction pour afficher un groupe de 3 reviews
+  function displayGroup(groupIndex) {
+    reviewItems.forEach((item, index) => {
+      const isInGroup =
+        (index >= groupIndex && index < groupIndex + groupSize) ||
+        (groupIndex + groupSize > totalReviews && index < (groupIndex + groupSize) % totalReviews);
+      item.style.display = isInGroup ? 'flex' : 'none';
+    });
+  }
+
+  // Fonction pour animer l'apparition consécutive de 3 reviews (gauche, centre, droite / haut, milieu, bas)
+  function animateGroupEntry(groupIndex) {
+    const visibleItems = [];
+    for (let i = 0; i < groupSize; i++) {
+      const idx = (groupIndex + i) % totalReviews;
+      visibleItems.push(reviewItems[idx]);
+    }
+
+    // Cacher tous les items
+    reviewItems.forEach((item) => {
+      item.style.opacity = '0';
+    });
+
+    // Afficher les 3 reviews en séquence (gauche/haut, centre/milieu, droite/bas)
+    displayGroup(groupIndex);
+
+    gsap.fromTo(
+      visibleItems[0],
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power2.inOut',
+      }
+    );
+
+    gsap.fromTo(
+      visibleItems[1],
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.6,
+        delay: 0.5,
+        ease: 'power2.inOut',
+      }
+    );
+
+    gsap.fromTo(
+      visibleItems[2],
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.6,
+        delay: 1,
+        ease: 'power2.inOut',
+      }
+    );
+  }
+
+  // Animation initiale
+  animateGroupEntry(0);
+
+  // Rotation des groupes toutes les 5 secondes (3s d'affichage + 1.5s de fadeout + 0.5s buffer)
+  setInterval(() => {
+    const currentVisibleItems = [];
+    for (let i = 0; i < groupSize; i++) {
+      const idx = (currentGroupIndex + i) % totalReviews;
+      currentVisibleItems.push(reviewItems[idx]);
+    }
+
+    // Fadeout
+    gsap.to(currentVisibleItems, {
+      opacity: 0,
+      duration: 1.5,
+      ease: 'power2.inOut',
+      onComplete: () => {
+        currentGroupIndex = (currentGroupIndex + groupSize) % totalReviews;
+        animateGroupEntry(currentGroupIndex);
+      },
+    });
+  }, 6000);
+</script>
+
+<style>
+  /* ========================================
+     Mobile First
+     ======================================== */
+
+  .banner-reviews-section {
+    padding: 1rem 0.75rem;
+    background: white;
+  }
+
+  .banner-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .reviews-track {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .review-item {
+    background: white;
+    border: 1px solid #e8e9eb8e;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    opacity: 0;
+  }
+
+  .review-role {
+    font-size: 0.7rem !important;
+    font-weight: 600;
+    color: var(--color-brand-primary);
+    margin: 0;
+    line-height: 1.2;
+    text-align: center !important;
+  }
+
+  .review-name {
+    font-size: 0.7rem !important;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1;
+    text-align: center !important;
+  }
+
+  .review-text {
+    font-size: 0.7rem !important;
+    line-height: 1.4;
+    color: var(--color-brand-primary);
+    margin: 0;
+    text-align: center !important;
+  }
+
+  /* ========================================
+     Tablet (768px+)
+     ======================================== */
+  @media (min-width: 768px) {
+    .banner-reviews-section {
+      padding: 0;
+    }
+
+    .reviews-track {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .review-item {
+      padding: 1rem;
+    }
+
+    .review-name {
+      font-size: 0.8rem;
+    }
+
+    .review-role {
+      font-size: 0.7rem;
+    }
+
+    .review-text {
+      font-size: 0.75rem;
+    }
+  }
+
+  /* ========================================
+     Desktop (1024px+)
+     ======================================== */
+  @media (min-width: 1024px) {
+    .banner-reviews-section {
+      padding: 0;
+    }
+
+    .reviews-track {
+      gap: 1.25rem;
+    }
+
+    .review-item {
+      padding: 1.25rem;
+    }
+
+    .review-name {
+      font-size: 0.9rem;
+    }
+
+    .review-role {
+      font-size: 0.8rem;
+    }
+
+    .review-text {
+      font-size: 0.85rem;
+    }
+  }
+</style>

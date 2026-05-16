@@ -60,6 +60,8 @@
         scrub: 1.5,
         pin: true,
         anticipatePin: 1,
+        invalidateOnRefresh: true,
+        pinSpacing: true,
       },
     });
 
@@ -99,6 +101,9 @@
       );
     });
   });
+  window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
+  });
 </script>
 
 <style>
@@ -131,14 +136,10 @@
 
   /* --- STRUCTURE EN GRILLE VERTICALE FORCEE --- */
   .compass-main {
-    width: 100vw;
+    width: 100%;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
     overflow: hidden;
-    height: 100dvh;
+    height: 100svh;
 
     /* Grille stricte : 1/4 (25%) et 3/4 (75%) de l'espace global */
     display: grid;
