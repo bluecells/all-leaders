@@ -1,5 +1,5 @@
 <div class="compass-main">
-  <div class="bg-white/80 my-20 md:my-0 md=px-0 rounded-md px-4 z-50 w-10/12 mx-auto">
+  <div class="bg-white/80 my-10 p-4 shadow-2xl md:shadow-none rounded-md z-50 w-10/12 mx-auto">
     <h3 class="text-center! w-full mx-auto max-w-4xl! md:pb-2 md:pt-0">
       Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec
       <strong>sens, clarté et impact.</strong>
@@ -131,7 +131,7 @@
 
   /* --- STRUCTURE GLOBALE --- */
   .compass-main {
-    width: 100%;
+    width: calc(100% + 2rem); /* 2rem de padding sur les cotes */
     height: 100svh;
     position: relative;
     overflow: hidden;
@@ -139,6 +139,7 @@
     grid-template-rows: 50% 50%;
     padding-top: 60px;
     padding-bottom: 1rem;
+    margin: 0 -1rem;
     z-index: -100;
   }
 
@@ -260,7 +261,7 @@
 
   .compass-link span {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 400;
     color: #1a1a1a;
     text-align: center;
@@ -296,6 +297,7 @@
       overflow: hidden;
       grid-template-rows: 26% 74%;
       padding-top: 80px;
+      width: 100%;
     }
 
     .compass-container {
@@ -334,6 +336,9 @@
 
     .compass-link {
       width: 350px;
+    }
+    .compass-link span {
+      font-size: 1rem;
     }
   }
 </style>

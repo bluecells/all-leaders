@@ -210,7 +210,7 @@ article a:hover {
 
   /* Base button styles */
   .btn {
-    display: inline-flex;
+    display: block;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
