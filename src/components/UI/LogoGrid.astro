@@ -1,0 +1,202 @@
+---
+interface Props {
+  images: Array<{
+    image: string;
+    alt: string;
+  }>;
+  height?: string;
+}
+
+const { images, height = '20vh' } = Astro.props;
+---
+
+<section class="logo-grid-section">
+  <div class="logo-container">
+    <div class="logos-track">
+      {
+        images.map((item, index) => (
+          <div class="logo-item" data-logo-id={index}>
+            <img src={item.image} alt={item.alt} class="logo-image" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from 'gsap';
+
+  const track = document.querySelector('.logos-track');
+  const logoItems = Array.from(document.querySelectorAll('.logo-item'));
+  const totalLogos = logoItems.length;
+  const groupSize = 3;
+  let currentGroupIndex = 0;
+
+  // Fonction pour afficher un groupe de 3 logos
+  function displayGroup(groupIndex) {
+    logoItems.forEach((item, index) => {
+      const isInGroup =
+        (index >= groupIndex && index < groupIndex + groupSize) ||
+        (groupIndex + groupSize > totalLogos && index < (groupIndex + groupSize) % totalLogos);
+      item.style.display = isInGroup ? 'flex' : 'none';
+    });
+  }
+
+  // Fonction pour animer l'apparition consécutive de 3 logos
+  function animateGroupEntry(groupIndex) {
+    const visibleItems = [];
+    for (let i = 0; i < groupSize; i++) {
+      const idx = (groupIndex + i) % totalLogos;
+      visibleItems.push(logoItems[idx]);
+    }
+
+    // Cacher tous les items
+    logoItems.forEach((item) => {
+      item.style.opacity = '0';
+    });
+
+    // Afficher les 3 logos en séquence
+    displayGroup(groupIndex);
+
+    gsap.fromTo(
+      visibleItems[0],
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power2.inOut',
+      }
+    );
+
+    gsap.fromTo(
+      visibleItems[1],
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.6,
+        delay: 0.5,
+        ease: 'power2.inOut',
+      }
+    );
+
+    gsap.fromTo(
+      visibleItems[2],
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 0.6,
+        delay: 1,
+        ease: 'power2.inOut',
+      }
+    );
+  }
+
+  // Animation initiale
+  if (logoItems.length > 0) {
+    animateGroupEntry(0);
+
+    // Rotation des groupes toutes les 8 secondes (3s d'affichage + 1.5s de fadeout + 0.5s buffer)
+    setInterval(() => {
+      const currentVisibleItems = [];
+      for (let i = 0; i < groupSize; i++) {
+        const idx = (currentGroupIndex + i) % totalLogos;
+        currentVisibleItems.push(logoItems[idx]);
+      }
+
+      // Fadeout
+      gsap.to(currentVisibleItems, {
+        opacity: 0,
+        duration: 1.5,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          currentGroupIndex = (currentGroupIndex + groupSize) % totalLogos;
+          animateGroupEntry(currentGroupIndex);
+        },
+      });
+    }, 8000);
+  }
+</script>
+
+<style>
+  /* ========================================
+     Mobile First
+     ======================================== */
+
+  .logo-grid-section {
+    padding: 1rem 0.75rem;
+    background: white;
+  }
+
+  .logo-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .logos-track {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .logo-item {
+    background: white;
+    border: 1px solid #e8e9eb8e;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+    max-height: 20vh;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    opacity: 0;
+  }
+
+  .logo-image {
+    max-width: 90%;
+    max-height: 18vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* ========================================
+     Tablet (768px+)
+     ======================================== */
+  @media (min-width: 768px) {
+    .logo-grid-section {
+      padding: 0;
+    }
+
+    .logos-track {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .logo-item {
+      padding: 1rem;
+      min-height: 20vh;
+    }
+  }
+
+  /* ========================================
+     Desktop (1024px+)
+     ======================================== */
+  @media (min-width: 1024px) {
+    .logo-grid-section {
+      padding: 0;
+    }
+
+    .logos-track {
+      gap: 1.25rem;
+    }
+
+    .logo-item {
+      padding: 1.25rem;
+      min-height: 20vh;
+    }
+  }
+</style>

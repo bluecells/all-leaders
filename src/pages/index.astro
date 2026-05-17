@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Grid from '../components/UI/Grid.astro';
-import Carousel from '../components/UI/Carousel.astro';
+import LogoGrid from '../components/UI/LogoGrid.astro';
 import ContinuumGrid from '../components/UI/ContinuumGrid.astro';
 import ContinuumGridMobile from '../components/UI/ContinuumGridMobile.astro';
 import CompassLinks from '../components/UI/CompassLinks.astro';
@@ -63,7 +63,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
   metaTitle="All Leaders Initiative — Conseil en Leadership et Performance Collective"
   metaDescription="All Leaders Initiative accompagne les équipes managériales, comités de direction et dirigeants pour dépasser les blocages collectifs et développer un leadership basé sur l'intention."
 >
-  <div class="mx-auto hero-section">
+  <div class="mx-auto hero-section halos-confines">
     <!-- Hero Title - Animé après -->
     <div class="hero-title">
       <h1
@@ -85,7 +85,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
     </div>
   </div>
 
-  <div class="mx-auto pt-10 pb-40">
+  <div class="mx-auto flex flex-col items-center justify-center p-25">
     <!-- Hero Quote - Centre au début, puis slide vers le bas -->
     <div class="hero-quote-wrapper">
       <p class="mx-auto">
@@ -101,7 +101,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
         >
       </p>
       <nav aria-label="Navigation principale">
-        <a href="/contact" class="mt-4 btn btn-secondary"
+        <a href="/accompagnements" class="mt-4 btn btn-secondary"
           >Il est temps de <strong>les dépasser</strong></a
         >
       </nav>
@@ -272,7 +272,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
          SECTION 2 — Offre / Continuum
     =========================================== -->
   <section id="offre" aria-labelledby="h2-offre" class="pt-16">
-    <div class="container">
+    <div class="container h-full">
       <h2 class="mb-0 mt-0 texte-gradient">
         Coaching de performance collective&nbsp;: nous intervenons sur tout le <strong
           >continuum de la performance collective</strong
@@ -293,7 +293,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
         textColor="var(--color-text-primary)"
         items={[
           {
-            title: 'Bien-être mental fondamental à récréer',
+            title: 'Bien-être mental<br>fondamental à récréer',
             media: '/images/pages/marque-de-danger-isole.webp',
           },
           {
@@ -310,15 +310,13 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
   </section>
   <section>
     <div class="py-0 px-4 md:py-12 flex flex-col items-center gap-4">
-      <h3 class="my-0">
-        Nous avons accompagné de nombreuses équipes managériales, comités de direction et dirigeants
+      <p class="my-0 text-2xl! text-center">
+        Nous avons accompagné de nombreuses <b
+          >équipes managériales, comités de direction et dirigeants</b
+        >
         exigeants actifs chez&nbsp;
-      </h3>
-      <Carousel
-        speed={3500}
-        visibleItemsMobile={1.5}
-        visibleItemsDesktop={6}
-        height="10vh"
+      </p>
+      <LogoGrid
         images={[
           { image: '/images/pages/homeserve.webp', alt: 'HomeServe' },
           { image: '/images/pages/edf.webp', alt: 'EDF' },
@@ -337,9 +335,9 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
           { image: '/images/pages/wano.webp', alt: 'Wano' },
         ]}
       />
+      <BannerReviews />
     </div>
 
-    <BannerReviews />
     <CompassLinks />
   </section>
 
@@ -534,6 +532,104 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
     margin: 0;
     z-index: 2;
     font-size: 2rem;
+  }
+
+  /* 1. On déclare les variables pour que le navigateur sache les animer fluidement */
+  @property --x1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 25%;
+  }
+  @property --y1 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 85%;
+  }
+  @property --x2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 55%;
+  }
+  @property --y2 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 85%;
+  }
+  @property --x3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 35%;
+  }
+  @property --y3 {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 85%;
+  }
+
+  .halos-confines {
+    width: 100%;
+    background-color: #ffffff; /* Fond blanc imposé */
+
+    /* Sécurité absolue : rien ne dépasse visuellement */
+    overflow: hidden;
+    position: relative;
+
+    /* 3 halos radiaux restreints (ils s'arrêtent à 25% ou 30% max de leur taille) */
+    background-image:
+      radial-gradient(
+        circle at var(--x1, 20%) var(--y1, 20%),
+        rgba(255, 182, 193, 0.4),
+        transparent 25%
+      ),
+      radial-gradient(
+        circle at var(--x2, 25%) var(--y2, 30%),
+        rgba(173, 216, 230, 0.4),
+        transparent 20%
+      ),
+      radial-gradient(
+        circle at var(--x3, 40%) var(--y3, 20%),
+        rgba(255, 250, 190, 0.5),
+        transparent 5%
+      );
+
+    /* Animation fluide du dégradé via les variables CSS */
+    animation: mouvementHalos 10s ease-in-out infinite alternate;
+  }
+
+  /* On anime la position des centres en veillant à ce qu'ils restent loin des bords (entre 20% et 80%) */
+  @keyframes mouvementHalos {
+    0% {
+      --x1: 65%;
+      --y1: 85%;
+      --x2: 55%;
+      --y2: 85%;
+      --x3: 35%;
+      --y3: 85%;
+    }
+    33% {
+      --x1: 45%;
+      --y1: 75%;
+      --x2: 65%;
+      --y2: 70%;
+      --x3: 55%;
+      --y3: 80%;
+    }
+    66% {
+      --x1: 55%;
+      --y1: 55%;
+      --x2: 50%;
+      --y2: 75%;
+      --x3: 45%;
+      --y3: 70%;
+    }
+    100% {
+      --x1: 65%;
+      --y1: 85%;
+      --x2: 55%;
+      --y2: 85%;
+      --x3: 35%;
+      --y3: 85%;
+    }
   }
 
   @media (min-width: 1919px) {

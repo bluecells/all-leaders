@@ -90,9 +90,8 @@ const finalTextColor = textColor;
             <h3
               class="grid-item-title"
               style={`color: ${finalTextColor} !important; text-align:center;`}
-            >
-              {item.title}
-            </h3>
+              set:html={item.title}
+            />
             <div
               class="grid-item-description"
               set:html={parseMarkdown(item.description || '')}
@@ -406,8 +405,7 @@ const finalTextColor = textColor;
     }
 
     .grid-item-media.is-image {
-      max-width: 70%;
-      min-height: 180px;
+      max-width: 50%;
       padding: 2rem;
       padding-bottom: 0;
     }
@@ -453,7 +451,7 @@ const finalTextColor = textColor;
       height: 96px;
     }
     .grid-item-title {
-      font-size: 1.25rem !important;
+      font-size: 1rem !important;
     }
   }
 </style>

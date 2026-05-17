@@ -1,42 +1,79 @@
 <div class="compass-main">
-  <h3 class="text-center! w-full mx-auto max-w-4xl! md:pb-2 md:pt-0">
-    Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec <strong
-      >sens, clarté et impact.</strong
-    >
-  </h3>
-  <div class="compass-container">
+  <div class="bg-white/80 my-20 md:my-0 md=px-0 rounded-md px-4 z-50 w-10/12 mx-auto">
+    <h3 class="text-center! w-full mx-auto max-w-4xl! md:pb-2 md:pt-0">
+      Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec
+      <strong>sens, clarté et impact.</strong>
+    </h3>
+  </div>
+
+  <div class="compass-container rounded-lg">
+    <div class="compass-left"></div>
+
     <div class="compass-perspective-wrapper">
-      <div class="compass-rose-bg" id="compassRoseBg"></div>
+      <div id="compassRoseBg"></div>
       <div class="compass-compass-fixed"></div>
+
       <div class="compass-orbit" id="compassOrbit">
         <a
           href="/accompagnements#category-gestion-de-la-conflictualite"
           class="compass-link"
-          data-index="0"><span>🔗 Gestion de la<br />conflictualité</span></a
+          data-index="0"
         >
+          <span
+            ><img src="images/pages/conflits.webp" class="image-link" />Gestion de la<br
+            />conflictualité</span
+          >
+        </a>
         <a
           href="/accompagnements#category-diagnostic-de-la-performance"
           class="compass-link"
-          data-index="1"><span>🔗 Diagnostic de la<br />performance</span></a
+          data-index="1"
         >
-        <a href="/accompagnements#category-executive-coaching" class="compass-link" data-index="2"
-          ><span>🔗 Executive<br />coaching</span></a
-        >
+          <span
+            ><img src="images/pages/diag.webp" class="image-link" />Diagnostic de la<br
+            />performance</span
+          >
+        </a>
+        <a href="/accompagnements#category-executive-coaching" class="compass-link" data-index="2">
+          <span
+            ><img src="images/pages/executive.webp" class="image-link" />Executive<br
+            />coaching</span
+          >
+        </a>
         <a
           href="/accompagnements#category-sante-mentale-et-performance-durable"
           class="compass-link"
-          data-index="3"><span>🔗 Santé mentale et<br />performance durable</span></a
+          data-index="3"
         >
+          <span
+            ><img src="images/pages/sante.webp" class="image-link" />Santé mentale et<br
+            />performance durable</span
+          >
+        </a>
         <a
           href="/accompagnements#category-leadership-development"
           class="compass-link"
-          data-index="4"><span>🔗 Leadership<br />development</span></a
+          data-index="4"
         >
-        <a href="/accompagnements#category-coaching-equipe" class="compass-link" data-index="5"
-          ><span>🔗 Coaching<br />d'équipe</span></a
+          <span
+            ><img src="images/pages/leadership.webp" class="image-link" />Leadership<br
+            />development</span
+          >
+        </a>
+        <a
+          href="/accompagnements#category-coaching-equipes-et-organisations"
+          class="compass-link"
+          data-index="5"
         >
+          <span
+            ><img src="images/pages/equipages.webp" class="image-link" />Coaching<br
+            />d'équipe</span
+          >
+        </a>
       </div>
     </div>
+
+    <div class="compass-right"></div>
   </div>
 </div>
 
@@ -46,11 +83,13 @@
 
   gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener('DOMContentLoaded', () => {
+  const initCompass = () => {
     const orbit = document.getElementById('compassOrbit');
     const roseBg = document.getElementById('compassRoseBg');
     const spans = document.querySelectorAll('.compass-link span');
     const angleStep = 60; // 360 / 6 liens
+
+    if (!orbit || !spans.length) return;
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -65,130 +104,48 @@
       },
     });
 
-    // Fond stable et fluide
-    tl.to(
-      roseBg,
-      {
-        rotation: 15,
-        force3D: true,
-        ease: 'none',
-      },
-      0
-    );
+    // Rotation synchronisée de l'orbite et du fond décoratif
+    tl.to(orbit, { y: -20, rotation: 120, ease: 'none' }, 0);
+    if (roseBg) {
+      tl.to(roseBg, { rotation: 15, force3D: true, ease: 'none' }, 0);
+    }
 
-    // Rotation de l'orbite
-    tl.to(
-      orbit,
-      {
-        rotation: 120,
-        ease: 'none',
-      },
-      0
-    );
-
-    // Contre-rotation des textes pour rester lisibles
+    // Contre-rotation des textes pour les garder droits et lisibles
     spans.forEach((span, i) => {
       const startAngle = i * angleStep;
-      gsap.set(span, { rotation: -startAngle });
+      gsap.set(span, { transformOrigin: 'center center', rotation: -startAngle });
 
-      tl.to(
-        span,
-        {
-          rotation: -(120 + startAngle),
-          ease: 'none',
-        },
-        0
-      );
+      tl.to(span, { rotation: -(120 + startAngle), ease: 'none' }, 0);
     });
-  });
-  window.addEventListener('load', () => {
-    ScrollTrigger.refresh();
-  });
+  };
+
+  // Initialisation sécurisée sur le cycle de vie Astro/DOM
+  document.addEventListener('DOMContentLoaded', initCompass);
+  window.addEventListener('load', () => ScrollTrigger.refresh());
 </script>
 
 <style>
   :root {
-    /* Rayon dynamique : petit sur mobile, grand sur desktop */
     --radius: 32vw;
   }
 
-  @media (min-width: 768px) {
-    .compass-container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      border: 1px solid #121010;
-      border-radius: 8px;
-    }
-
-    /* On ajuste le rayon pour que les liens ne sortent pas du cadre desktop */
-    :root {
-      --radius: 180px;
-    }
-  }
-
-  @media (min-width: 1919px) {
-    /* On ajuste le rayon pour que les liens ne sortent pas du cadre desktop */
-    :root {
-      --radius: 300px;
-    }
-  }
-
-  /* --- STRUCTURE EN GRILLE VERTICALE FORCEE --- */
+  /* --- STRUCTURE GLOBALE --- */
   .compass-main {
     width: 100%;
+    height: 100svh;
     position: relative;
     overflow: hidden;
-    height: 100svh;
-
-    /* Grille stricte : 1/4 (25%) et 3/4 (75%) de l'espace global */
     display: grid;
     grid-template-rows: 50% 50%;
-    padding-bottom: 1rem;
     padding-top: 60px;
+    padding-bottom: 1rem;
+    z-index: -100;
   }
 
-  @media (min-width: 768px) {
-    .compass-main {
-      grid-template-rows: 26% 74%; /* Reste identique sur desktop pour respecter ta consigne */
-      padding-top: 80px;
-    }
-  }
-
-  @media (min-width: 1919px) {
-    .compass-main {
-      grid-template-rows: 35% 65%; /* Reste identique sur desktop pour respecter ta consigne */
-      padding-top: 150px;
-    }
-  }
-
-  /* Centrage horizontal et vertical parfait du titre */
-  .compass-main h3 {
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-    box-sizing: border-box;
-
-    /* --- CORRECTION ICI --- */
-    display: flex;
-    flex-direction: column; /* Aligne le contenu verticalement */
-    justify-content: center; /* Centre verticalement dans les 25% de la grille */
-    align-items: center; /* Centre horizontalement */
-    text-align: center; /* Garantit que le texte brut gère ses retours à la ligne normalement */
-  }
-
-  /* La carte occupe exactement l'espace restant (3/4) */
   .compass-container {
-    position: relative;
     width: 100%;
-    height: 100%; /* Prend 100% de sa ligne de grille (les 75%) */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border: none;
-    border-radius: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: block;
   }
 
   .compass-perspective-wrapper {
@@ -200,7 +157,26 @@
     align-items: center;
   }
 
-  .compass-rose-bg {
+  /* --- ÉLÉMENTS DU DÉCOR (CARTES) --- */
+  .compass-left,
+  .compass-right {
+    display: none; /* Masqués sur mobile par défaut */
+    width: 100%;
+    background-size: 120%;
+    background-repeat: no-repeat;
+  }
+  .compass-left {
+    background-image: url('/images/pages/carte-marine-gauche.webp');
+    background-position: left center;
+    border-radius: 1rem 0 0 1rem;
+  }
+  .compass-right {
+    background-image: url('/images/pages/carte-marine-droite.webp');
+    background-position: right center;
+    border-radius: 0 1rem 1rem 0;
+  }
+
+  #compassRoseBg {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -216,17 +192,39 @@
     will-change: transform;
   }
 
-  @media (min-width: 768px) {
-    .compass-rose-bg {
-      background-size: 100%;
-    }
+  .compass-compass-fixed {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(200px, 50vw, 450px);
+    height: clamp(200px, 50vw, 450px);
+    background-image: url('/images/pages/boussole.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 5;
+    pointer-events: none;
   }
 
+  /* --- TITRE --- */
+  .compass-main h3 {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* --- LIENS ET ORBITE --- */
   .compass-orbit {
     position: relative;
-    z-index: 10;
     width: 2px;
     height: 2px;
+    z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -237,14 +235,8 @@
     width: 200px;
     text-decoration: none;
     transform-origin: center center;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
     z-index: 20;
-  }
-
-  @media (min-width: 1919px) {
-    .compass-link {
-      width: 350px;
-    }
   }
 
   .compass-link[data-index='0'] {
@@ -268,33 +260,80 @@
 
   .compass-link span {
     display: block;
-    font-size: clamp(0.8rem, 2.5vw, 1.1rem);
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 400;
     color: #1a1a1a;
     text-align: center;
     line-height: 1.2em;
     padding: 8px 12px;
     border-radius: 4px;
-    transition: transform 0.1s;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    transition:
+      transform 0.2s ease,
+      text-shadow 0.2s ease;
   }
 
   .compass-link:hover span {
     color: #c98b3a;
-    transform: scale(1.1);
+    transform: scale(1.05);
     text-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   }
 
-  .compass-compass-fixed {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: clamp(200px, 50vw, 450px);
-    height: clamp(200px, 50vw, 450px);
-    background-image: url('/images/pages/boussole.webp');
-    background-size: contain;
-    background-repeat: no-repeat;
-    z-index: 5;
-    pointer-events: none;
+  img.image-link {
+    display: block;
+    width: 100px !important;
+    height: auto;
+    margin: 0 auto 8px;
+  }
+
+  /* --- RESPONSIVE DESKTOP (MD) --- */
+  @media (min-width: 768px) {
+    :root {
+      --radius: 180px;
+    }
+
+    .compass-main {
+      overflow: hidden;
+      grid-template-rows: 26% 74%;
+      padding-top: 80px;
+    }
+
+    .compass-container {
+      display: grid;
+      grid-template-columns: 2fr 3fr 2fr;
+    }
+
+    .compass-left,
+    .compass-right {
+      display: block;
+    }
+
+    #compassRoseBg {
+      background-size: 100%;
+    }
+
+    img.image-link {
+      width: 120px !important;
+    }
+
+    #compassRoseBg {
+      opacity: 0;
+    }
+  }
+
+  /* --- RESPONSIVE LARGE (XL) --- */
+  @media (min-width: 1919px) {
+    :root {
+      --radius: 300px;
+    }
+
+    .compass-main {
+      grid-template-rows: 35% 65%;
+      padding-top: 150px;
+    }
+
+    .compass-link {
+      width: 350px;
+    }
   }
 </style>
