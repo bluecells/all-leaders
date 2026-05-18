@@ -30,6 +30,7 @@ interface Props {
   fullBleed?: boolean;
   class?: string;
   textColor?: string; // ← force la couleur du texte si renseignée
+  reverse?: boolean; // ← inverse l'ordre media/title
 
   mobileCols?: number;
   tabletCols?: number;
@@ -46,6 +47,7 @@ const {
   fullBleed = false,
   class: className = '',
   textColor = 'white', // ← blanc par défaut partout
+  reverse = false, // ← inverse l'ordre media/title
 
   mobileCols = '1',
   tabletCols = '2',
@@ -73,7 +75,7 @@ const finalTextColor = textColor;
   >
     {
       items.map((item) => (
-        <article class="grid-item">
+        <article class:list={['grid-item', reverse && 'grid-item-reverse']}>
           {item.media && !hideIcons && (
             <div class:list={['grid-item-media', item.isIcon ? 'is-icon' : 'is-image']}>
               <img
@@ -294,6 +296,10 @@ const finalTextColor = textColor;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
+  }
+
+  .grid-item-reverse {
+    flex-direction: column-reverse;
   }
 
   /*   .grid-item:hover {

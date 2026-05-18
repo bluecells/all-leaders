@@ -123,7 +123,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
           </h2>
 
           <p class="text-center">
-            Pour vous permettre de questionner ce qui ne fonctionne plus, oser de nouvelles façons
+            pour vous permettre de questionner ce qui ne fonctionne plus, oser de nouvelles façons
             d'agir et <strong>vous affranchir de ces barrières invisibles.</strong> Pour réussir,
             <strong>ensemble</strong>.
           </p>
@@ -187,22 +187,29 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
             <h3 class="pt-8">Nous aimons l'entreprise</h3>
             <p class="text-center text-[.9rem]!">
               Nous y avons grandi et en avons tiré beaucoup de fierté. Nous savons qu'elle doit
-              offrir un cadre qui favorise la responsabilité, la solidarité et l'initiative.
+              offrir un <b>cadre</b> qui favorise la <b>responsabilité</b>, la <b>solidarité</b> et <b
+                >l'initiative</b
+              >.
             </p>
           </article>
 
           <article role="listitem">
             <h3>Nous croyons en l'humain</h3>
             <p class="text-center text-[.9rem]!">
-              Grâce à la sécurité psychologique et à l'affirmation de son intention, chacun peut
-              devenir leader et choisir consciemment d'influencer positivement son environnement.
+              Grâce à la <b>sécurité psychologique</b> et à l'affirmation de son <b>intention</b>,
+              chacun peut devenir <b>leader</b> et choisir consciemment d'influencer positivement son
+              environnement.
             </p>
             <p class="text-center text-[.9rem]!">
               Nos parcours de marins, dans la sécurité nucléaire et une grande diversité de cultures
-              managériales nous ont appris à voir les organisations comme des équipages&nbsp;: des
-              collectifs qui gagnent en cultivant courage, cohésion, alignement et sens. C'est dans
-              cet esprit que nous vous accompagnons, avec la discipline des marins et l'audace des
-              aventuriers.
+              managériales nous ont appris à voir les organisations comme des <b>équipages&nbsp;</b
+              >: des collectifs qui gagnent en cultivant <b>courage</b>, <b>cohésion</b>, <b
+                >alignement</b
+              > et <b>sens</b>.
+              <p class="text-center text-[.9rem]!">
+                C'est dans cet esprit que nous vous accompagnons, avec la discipline des marins et
+                l'audace des aventuriers.
+              </p>
             </p>
             <div class="cap-container">
               <p class="text-center text-4xl! pb-12 mb-0!">Cap&nbsp;?</p>
@@ -291,6 +298,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
 
       <Grid
         textColor="var(--color-text-primary)"
+        reverse="true"
         items={[
           {
             title: 'Bien-être mental<br>fondamental à récréer',
@@ -347,7 +355,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
   <section id="ecosysteme" aria-labelledby="h2-ecosysteme" class="py-0 md:py-16">
     <div class="container mx-auto">
       <h2 id="h2-ecosysteme" class="text-center! mt-8">
-        Découvrez ceux qui naviguent avec vous et incarnent <strong>le leadership</strong> que nous développons.
+        Découvrez ceux qui naviguent avec nous et incarnent <strong>le leadership</strong> que nous développons.
       </h2>
 
       <p class="text-center! mt-4">
@@ -506,492 +514,492 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
       </ul>
     </div>
   </section>
-</Layout>
 
-<style>
-  /* ==========================================
+  <style>
+    /* ==========================================
      HERO SECTION — Animation GSAP
   =========================================== */
 
-  .hero-section {
-    position: relative;
-    height: calc(100dvh - 140px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-
-  .hero-title {
-    position: relative;
-    text-align: center;
-    width: 100%;
-    max-width: 900px;
-    padding: 0;
-    margin: 0;
-    z-index: 2;
-    font-size: 2rem;
-  }
-
-  /* 1. On déclare les variables pour que le navigateur sache les animer fluidement */
-  @property --x1 {
-    syntax: '<percentage>';
-    inherits: false;
-    initial-value: 25%;
-  }
-  @property --y1 {
-    syntax: '<percentage>';
-    inherits: false;
-    initial-value: 85%;
-  }
-  @property --x2 {
-    syntax: '<percentage>';
-    inherits: false;
-    initial-value: 55%;
-  }
-  @property --y2 {
-    syntax: '<percentage>';
-    inherits: false;
-    initial-value: 85%;
-  }
-  @property --x3 {
-    syntax: '<percentage>';
-    inherits: false;
-    initial-value: 35%;
-  }
-  @property --y3 {
-    syntax: '<percentage>';
-    inherits: false;
-    initial-value: 85%;
-  }
-
-  .halos-confines {
-    width: 100%;
-    background-color: #ffffff; /* Fond blanc imposé */
-
-    /* Sécurité absolue : rien ne dépasse visuellement */
-    overflow: hidden;
-    position: relative;
-
-    /* 3 halos radiaux restreints (ils s'arrêtent à 25% ou 30% max de leur taille) */
-    background-image:
-      radial-gradient(
-        circle at var(--x1, 20%) var(--y1, 20%),
-        rgba(255, 182, 193, 0.4),
-        transparent 25%
-      ),
-      radial-gradient(
-        circle at var(--x2, 25%) var(--y2, 30%),
-        rgba(173, 216, 230, 0.4),
-        transparent 20%
-      ),
-      radial-gradient(
-        circle at var(--x3, 40%) var(--y3, 20%),
-        rgba(255, 250, 190, 0.5),
-        transparent 5%
-      );
-
-    /* Animation fluide du dégradé via les variables CSS */
-    animation: mouvementHalos 10s ease-in-out infinite alternate;
-  }
-
-  /* On anime la position des centres en veillant à ce qu'ils restent loin des bords (entre 20% et 80%) */
-  @keyframes mouvementHalos {
-    0% {
-      --x1: 65%;
-      --y1: 85%;
-      --x2: 55%;
-      --y2: 85%;
-      --x3: 35%;
-      --y3: 85%;
+    .hero-section {
+      position: relative;
+      height: calc(100dvh - 140px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
-    33% {
-      --x1: 45%;
-      --y1: 75%;
-      --x2: 65%;
-      --y2: 70%;
-      --x3: 55%;
-      --y3: 80%;
-    }
-    66% {
-      --x1: 55%;
-      --y1: 55%;
-      --x2: 50%;
-      --y2: 75%;
-      --x3: 45%;
-      --y3: 70%;
-    }
-    100% {
-      --x1: 65%;
-      --y1: 85%;
-      --x2: 55%;
-      --y2: 85%;
-      --x3: 35%;
-      --y3: 85%;
-    }
-  }
 
-  @media (min-width: 1919px) {
     .hero-title {
-      max-width: 1100px;
+      position: relative;
+      text-align: center;
+      width: 100%;
+      max-width: 900px;
+      padding: 0;
+      margin: 0;
+      z-index: 2;
+      font-size: 2rem;
     }
-  }
 
-  .hero-quote-wrapper {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-  }
+    /* 1. On déclare les variables pour que le navigateur sache les animer fluidement */
+    @property --x1 {
+      syntax: '<percentage>';
+      inherits: false;
+      initial-value: 25%;
+    }
+    @property --y1 {
+      syntax: '<percentage>';
+      inherits: false;
+      initial-value: 85%;
+    }
+    @property --x2 {
+      syntax: '<percentage>';
+      inherits: false;
+      initial-value: 55%;
+    }
+    @property --y2 {
+      syntax: '<percentage>';
+      inherits: false;
+      initial-value: 85%;
+    }
+    @property --x3 {
+      syntax: '<percentage>';
+      inherits: false;
+      initial-value: 35%;
+    }
+    @property --y3 {
+      syntax: '<percentage>';
+      inherits: false;
+      initial-value: 85%;
+    }
 
-  .hero-quote {
-    will-change: opacity;
-    transition: none !important; /* Désactiver les transitions CSS pour GSAP */
-    font-size: clamp(1.5rem, 2vw, 2.5rem);
-    font-style: italic;
-    font-family: Lexend, sans-serif;
-    color: var(--color-brand-secondary) !important;
-    text-align: center;
-    padding: 3% 0 5% 0;
-  }
+    .halos-confines {
+      width: 100%;
+      background-color: #ffffff; /* Fond blanc imposé */
 
-  .hero-question {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    will-change: opacity;
-    padding-bottom: 3rem;
-  }
+      /* Sécurité absolue : rien ne dépasse visuellement */
+      overflow: hidden;
+      position: relative;
 
-  .question-dash,
-  .question-word,
-  .question-mark {
-    display: inline;
-    will-change: transform, opacity;
-  }
+      /* 3 halos radiaux restreints (ils s'arrêtent à 25% ou 30% max de leur taille) */
+      background-image:
+        radial-gradient(
+          circle at var(--x1, 20%) var(--y1, 20%),
+          rgba(255, 182, 193, 0.4),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at var(--x2, 25%) var(--y2, 30%),
+          rgba(173, 216, 230, 0.4),
+          transparent 20%
+        ),
+        radial-gradient(
+          circle at var(--x3, 40%) var(--y3, 20%),
+          rgba(255, 250, 190, 0.5),
+          transparent 5%
+        );
 
-  .question-word {
-    position: relative;
-    transform-origin: center top;
-    font-weight: 600;
-  }
+      /* Animation fluide du dégradé via les variables CSS */
+      animation: mouvementHalos 10s ease-in-out infinite alternate;
+    }
 
-  .texte-gradient {
-    /* On définit le dégradé en arrière-plan */
-    background: linear-gradient(to bottom, #c65151, #9e8aa8, #172432);
+    /* On anime la position des centres en veillant à ce qu'ils restent loin des bords (entre 20% et 80%) */
+    @keyframes mouvementHalos {
+      0% {
+        --x1: 65%;
+        --y1: 85%;
+        --x2: 55%;
+        --y2: 85%;
+        --x3: 35%;
+        --y3: 85%;
+      }
+      33% {
+        --x1: 45%;
+        --y1: 75%;
+        --x2: 65%;
+        --y2: 70%;
+        --x3: 55%;
+        --y3: 80%;
+      }
+      66% {
+        --x1: 55%;
+        --y1: 55%;
+        --x2: 50%;
+        --y2: 75%;
+        --x3: 45%;
+        --y3: 70%;
+      }
+      100% {
+        --x1: 65%;
+        --y1: 85%;
+        --x2: 55%;
+        --y2: 85%;
+        --x3: 35%;
+        --y3: 85%;
+      }
+    }
 
-    /* On "découpe" l'arrière-plan pour qu'il ne s'affiche que sur les lettres */
-    -webkit-background-clip: text;
-    background-clip: text;
+    @media (min-width: 1919px) {
+      .hero-title {
+        max-width: 1100px;
+      }
+    }
 
-    /* On rend le texte transparent pour laisser voir le dégradé dessous */
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
+    .hero-quote-wrapper {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
 
-  @media (min-width: 768px) {
+    .hero-quote {
+      will-change: opacity;
+      transition: none !important; /* Désactiver les transitions CSS pour GSAP */
+      font-size: clamp(1.5rem, 2vw, 2.5rem);
+      font-style: italic;
+      font-family: Lexend, sans-serif;
+      color: var(--color-brand-secondary) !important;
+      text-align: center;
+      padding: 3% 0 5% 0;
+    }
+
+    .hero-question {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      will-change: opacity;
+      padding-bottom: 3rem;
+    }
+
+    .question-dash,
+    .question-word,
+    .question-mark {
+      display: inline;
+      will-change: transform, opacity;
+    }
+
+    .question-word {
+      position: relative;
+      transform-origin: center top;
+      font-weight: 600;
+    }
+
     .texte-gradient {
-      background: linear-gradient(to right, #c65151, #9e8aa8, #172432);
+      /* On définit le dégradé en arrière-plan */
+      background: linear-gradient(to bottom, #c65151, #9e8aa8, #172432);
 
+      /* On "découpe" l'arrière-plan pour qu'il ne s'affiche que sur les lettres */
       -webkit-background-clip: text;
       background-clip: text;
 
+      /* On rend le texte transparent pour laisser voir le dégradé dessous */
       -webkit-text-fill-color: transparent;
       color: transparent;
     }
-  }
 
-  /* ==========================================
+    @media (min-width: 768px) {
+      .texte-gradient {
+        background: linear-gradient(to right, #c65151, #9e8aa8, #172432);
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+    }
+
+    /* ==========================================
      PARTENAIRES — Layout Logo (1/4) + Texte (3/4)
   =========================================== */
 
-  .partners-list {
-    list-style: none;
-    padding: 0;
-    margin: 1.5rem auto;
-  }
-
-  .partners-list li {
-    padding: 1rem 0;
-  }
-
-  .partner-article {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-    padding: 1.15rem;
-    border: 2px solid rgba(74, 103, 65, 0.1);
-    border-radius: 0.5rem;
-    text-align: center;
-  }
-
-  .partner-logo {
-    width: 100%;
-    max-width: 180px;
-    height: auto;
-    margin: 0 auto;
-  }
-
-  .partner-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
-  }
-
-  .partner-content h1,
-  .partner-content h2,
-  .partner-content h3 {
-    text-align: center;
-  }
-
-  /* Mode desktop : grille 4 colonnes (logo 1/4, texte 3/4) */
-  @media (min-width: 768px) {
-    .partner-article {
-      grid-template-columns: 1fr 3fr;
-      align-items: start;
-      gap: 1rem;
-      padding: 1.5rem;
-      margin-bottom: 0;
-      text-align: left;
+    .partners-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem auto;
     }
+
     .partners-list li {
-      padding: 0.75rem;
+      padding: 1rem 0;
+    }
+
+    .partner-article {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      padding: 1.15rem;
+      border: 2px solid rgba(74, 103, 65, 0.1);
+      border-radius: 0.5rem;
+      text-align: center;
     }
 
     .partner-logo {
       width: 100%;
+      max-width: 180px;
       height: auto;
-      aspect-ratio: 1;
-      object-fit: contain;
-      margin: 0;
+      margin: 0 auto;
     }
 
     .partner-content {
-      align-items: flex-start;
-      justify-content: center;
-      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
     }
 
     .partner-content h1,
     .partner-content h2,
     .partner-content h3 {
-      text-align: left;
+      text-align: center;
+    }
+
+    /* Mode desktop : grille 4 colonnes (logo 1/4, texte 3/4) */
+    @media (min-width: 768px) {
+      .partner-article {
+        grid-template-columns: 1fr 3fr;
+        align-items: start;
+        gap: 1rem;
+        padding: 1.5rem;
+        margin-bottom: 0;
+        text-align: left;
+      }
+      .partners-list li {
+        padding: 0.75rem;
+      }
+
+      .partner-logo {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: contain;
+        margin: 0;
+      }
+
+      .partner-content {
+        align-items: flex-start;
+        justify-content: center;
+        height: 100%;
+      }
+
+      .partner-content h1,
+      .partner-content h2,
+      .partner-content h3 {
+        text-align: left;
+      }
+
+      .partner-article p {
+        text-align: left !important;
+      }
+
+      .partner-article a {
+        text-align: left;
+      }
+    }
+
+    .partner-article h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
     }
 
     .partner-article p {
-      text-align: left !important;
+      margin: 0.35rem 0;
+      font-size: 0.85rem;
+      font-family: sans-serif;
+      text-align: center;
     }
 
     .partner-article a {
-      text-align: left;
+      display: inline-block;
+      margin-top: 0.25rem;
+      color: var(--color-brand-accent);
+      text-decoration: none;
+      transition: color 200ms;
+      font-family: sans-serif;
+      font-size: 0.85rem;
+      text-align: center;
     }
-  }
 
-  .partner-article h3 {
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
+    .partner-article a:hover {
+      color: var(--color-brand-accent);
+    }
 
-  .partner-article p {
-    margin: 0.35rem 0;
-    font-size: 0.85rem;
-    font-family: sans-serif;
-    text-align: center;
-  }
-
-  .partner-article a {
-    display: inline-block;
-    margin-top: 0.25rem;
-    color: var(--color-brand-accent);
-    text-decoration: none;
-    transition: color 200ms;
-    font-family: sans-serif;
-    font-size: 0.85rem;
-    text-align: center;
-  }
-
-  .partner-article a:hover {
-    color: var(--color-brand-accent);
-  }
-
-  /* ==========================================
+    /* ==========================================
      FONDATEURS — Layout 2 Colonnes
   =========================================== */
 
-  .founders-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
-    max-width: 800px;
-    margin: auto;
-  }
-
-  .founders-grid article {
-    padding: 1.5rem 1.5rem 1rem 1.5rem;
-    border: 1px solid rgba(74, 103, 65, 0.2);
-    border-radius: 0.5rem;
-  }
-
-  .founders-grid h1,
-  .founders-grid h2,
-  .founders-grid h3 {
-    text-align: left;
-  }
-
-  .founders-grid h3 {
-    margin: 0 0 0.5rem 0;
-  }
-
-  .founders-grid p {
-    margin: 0 0 1rem 0;
-  }
-
-  .contact-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .contact-list h1,
-  .contact-list h2,
-  .contact-list h3 {
-    text-align: center;
-  }
-
-  .contact-list li {
-    margin-bottom: 0rem;
-    padding: 0.25rem 0;
-    text-align: center;
-    font-size: 0.85rem;
-  }
-
-  .contact-list a {
-    color: var(--color-brand-primary);
-    text-decoration: none;
-    transition: color 200ms;
-  }
-
-  .contact-list a:hover {
-    color: var(--color-brand-accent);
-  }
-
-  /* Mode desktop : 2 colonnes */
-  @media (min-width: 768px) {
     .founders-grid {
-      grid-template-columns: 1fr 1fr;
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 2rem;
+      margin-top: 2rem;
+      max-width: 800px;
+      margin: auto;
     }
-  }
 
-  /* Values section avec images latérales */
-  .values-section {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: flex-start;
-  }
-
-  .values-image-left,
-  .values-image-right {
-    width: 100%;
-    flex-direction: column;
-    background: rgba(197, 205, 221, 0.14);
-    padding-bottom: 0.5rem;
-    display: flex;
-  }
-
-  .values-image-left h3,
-  .values-image-right h3 {
-    margin-top: 1rem;
-    font-size: 1.25rem;
-  }
-
-  .values-image-left img,
-  .values-image-right img {
-    width: 100%;
-    height: auto;
-  }
-
-  .values-grid {
-    width: 100%;
-    border-radius: 10px;
-    padding-bottom: 5rem;
-  }
-
-  /* Conteneur de référence */
-  .cap-container {
-    position: relative;
-    display: inline-block; /* Pour qu'il ne prenne que la largeur du texte */
-    width: 100%;
-    text-align: center;
-    margin-top: 0;
-    padding-bottom: 0px; /* Espace réservé pour le logo qui dépasse */
-  }
-
-  .ali-logo-watercolour {
-    position: absolute;
-    left: 50%;
-    bottom: -50px;
-    transform: translateX(-50%); /* Centrage parfait par rapport au parent */
-
-    height: 80px; /* Ajustez la taille selon votre besoin */
-    width: auto;
-
-    /* Optionnel : fond blanc propre si l'aquarelle doit ressortir sur le gris */
-    background: white;
-
-    z-index: 10;
-  }
-
-  /* Ajustement responsive si besoin */
-  @media (min-width: 768px) {
-    .ali-logo-watercolour {
-      height: 100px;
-      bottom: -70px; /* On peut le faire descendre un peu plus sur desktop */
+    .founders-grid article {
+      padding: 1.5rem 1.5rem 1rem 1.5rem;
+      border: 1px solid rgba(74, 103, 65, 0.2);
+      border-radius: 0.5rem;
     }
-  }
 
-  /* Desktop : images latérales en 18% */
-  @media (min-width: 768px) {
+    .founders-grid h1,
+    .founders-grid h2,
+    .founders-grid h3 {
+      text-align: left;
+    }
+
+    .founders-grid h3 {
+      margin: 0 0 0.5rem 0;
+    }
+
+    .founders-grid p {
+      margin: 0 0 1rem 0;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .contact-list h1,
+    .contact-list h2,
+    .contact-list h3 {
+      text-align: center;
+    }
+
+    .contact-list li {
+      margin-bottom: 0rem;
+      padding: 0.25rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    .contact-list a {
+      color: var(--color-brand-primary);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+
+    .contact-list a:hover {
+      color: var(--color-brand-accent);
+    }
+
+    /* Mode desktop : 2 colonnes */
+    @media (min-width: 768px) {
+      .founders-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+    }
+
+    /* Values section avec images latérales */
     .values-section {
-      flex-direction: row;
-      gap: 0;
-      align-items: center;
-      margin-top: 0rem;
-    }
-
-    .values-section h3 {
-      margin-top: 1.5rem !important;
-      font-size: 1rem;
-      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-start;
     }
 
     .values-image-left,
     .values-image-right {
-      flex: 0 0 22%;
-      width: auto;
-      padding-bottom: 1.5rem;
+      width: 100%;
+      flex-direction: column;
+      background: rgba(197, 205, 221, 0.14);
+      padding-bottom: 0.5rem;
+      display: flex;
+    }
+
+    .values-image-left h3,
+    .values-image-right h3 {
+      margin-top: 1rem;
+      font-size: 1.25rem;
     }
 
     .values-image-left img,
     .values-image-right img {
-      height: 100%;
+      width: 100%;
+      height: auto;
     }
 
     .values-grid {
-      flex: 1;
-      padding-bottom: 0;
+      width: 100%;
+      border-radius: 10px;
+      padding-bottom: 5rem;
     }
-  }
 
-  /* Prévenir le FOUC (Flash Of Unstyled Content) pour les animations GSAP */
-  .hero-title,
-  .hero-quote-wrapper,
-  .hero-question {
-    opacity: 0;
-  }
-</style>
+    /* Conteneur de référence */
+    .cap-container {
+      position: relative;
+      display: inline-block; /* Pour qu'il ne prenne que la largeur du texte */
+      width: 100%;
+      text-align: center;
+      margin-top: 0;
+      padding-bottom: 0px; /* Espace réservé pour le logo qui dépasse */
+    }
+
+    .ali-logo-watercolour {
+      position: absolute;
+      left: 50%;
+      bottom: -50px;
+      transform: translateX(-50%); /* Centrage parfait par rapport au parent */
+
+      height: 80px; /* Ajustez la taille selon votre besoin */
+      width: auto;
+
+      /* Optionnel : fond blanc propre si l'aquarelle doit ressortir sur le gris */
+      background: white;
+
+      z-index: 10;
+    }
+
+    /* Ajustement responsive si besoin */
+    @media (min-width: 768px) {
+      .ali-logo-watercolour {
+        height: 100px;
+        bottom: -70px; /* On peut le faire descendre un peu plus sur desktop */
+      }
+    }
+
+    /* Desktop : images latérales en 18% */
+    @media (min-width: 768px) {
+      .values-section {
+        flex-direction: row;
+        gap: 0;
+        align-items: center;
+        margin-top: 0rem;
+      }
+
+      .values-section h3 {
+        margin-top: 1.5rem !important;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .values-image-left,
+      .values-image-right {
+        flex: 0 0 22%;
+        width: auto;
+        padding-bottom: 1.5rem;
+      }
+
+      .values-image-left img,
+      .values-image-right img {
+        height: 100%;
+      }
+
+      .values-grid {
+        flex: 1;
+        padding-bottom: 0;
+      }
+    }
+
+    /* Prévenir le FOUC (Flash Of Unstyled Content) pour les animations GSAP */
+    .hero-title,
+    .hero-quote-wrapper,
+    .hero-question {
+      opacity: 0;
+    }
+  </style>
+</Layout>

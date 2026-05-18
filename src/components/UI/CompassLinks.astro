@@ -20,8 +20,10 @@
           data-index="0"
         >
           <span
-            ><img src="images/pages/conflits.webp" class="image-link" />Gestion de la<br
-            />conflictualité</span
+            >Gestion de<br />la conflictualité<img
+              src="images/pages/en-savoir-plus.webp"
+              class="image-link"
+            /></span
           >
         </a>
         <a
@@ -30,14 +32,18 @@
           data-index="1"
         >
           <span
-            ><img src="images/pages/diag.webp" class="image-link" />Diagnostic de la<br
-            />performance</span
+            >Diagnostic de<br />la performance<img
+              src="images/pages/en-savoir-plus.webp"
+              class="image-link"
+            /></span
           >
         </a>
         <a href="/accompagnements#category-executive-coaching" class="compass-link" data-index="2">
           <span
-            ><img src="images/pages/executive.webp" class="image-link" />Executive<br
-            />coaching</span
+            >Executive<br />coaching<img
+              src="images/pages/en-savoir-plus.webp"
+              class="image-link"
+            /></span
           >
         </a>
         <a
@@ -46,8 +52,10 @@
           data-index="3"
         >
           <span
-            ><img src="images/pages/sante.webp" class="image-link" />Santé mentale et<br
-            />performance durable</span
+            >Santé mentale et<br />performance durable<img
+              src="images/pages/en-savoir-plus.webp"
+              class="image-link"
+            /></span
           >
         </a>
         <a
@@ -56,8 +64,10 @@
           data-index="4"
         >
           <span
-            ><img src="images/pages/leadership.webp" class="image-link" />Leadership<br
-            />development</span
+            >Leadership<br />development<img
+              src="images/pages/en-savoir-plus.webp"
+              class="image-link"
+            /></span
           >
         </a>
         <a
@@ -66,8 +76,10 @@
           data-index="5"
         >
           <span
-            ><img src="images/pages/equipages.webp" class="image-link" />Coaching<br
-            />d'équipe</span
+            >Coaching<br />d'équipe<img
+              src="images/pages/en-savoir-plus.webp"
+              class="image-link"
+            /></span
           >
         </a>
       </div>
@@ -140,7 +152,7 @@
     padding-top: 60px;
     padding-bottom: 1rem;
     margin: 0 -1rem;
-    z-index: -100;
+    z-index: 1;
   }
 
   .compass-container {
@@ -280,11 +292,16 @@
     text-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   }
 
+  .compass-link:hover img {
+    opacity: 0.7;
+  }
+
   img.image-link {
     display: block;
-    width: 100px !important;
+    width: 30px !important;
     height: auto;
     margin: 0 auto 8px;
+    opacity: 0.5;
   }
 
   /* --- RESPONSIVE DESKTOP (MD) --- */
@@ -295,7 +312,7 @@
 
     .compass-main {
       overflow: hidden;
-      grid-template-rows: 26% 74%;
+      grid-template-rows: 35% 65%;
       padding-top: 80px;
       width: 100%;
     }
@@ -315,7 +332,7 @@
     }
 
     img.image-link {
-      width: 120px !important;
+      width: 60px !important;
     }
 
     #compassRoseBg {
