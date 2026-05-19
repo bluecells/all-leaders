@@ -89,11 +89,7 @@ const finalTextColor = textColor;
           )}
 
           <div class="grid-item-content">
-            <h3
-              class="grid-item-title"
-              style={`color: ${finalTextColor} !important; text-align:center;`}
-              set:html={item.title}
-            />
+            <h3 class="grid-item-title" set:html={item.title} />
             <div
               class="grid-item-description"
               set:html={parseMarkdown(item.description || '')}
@@ -247,7 +243,7 @@ const finalTextColor = textColor;
 <style is:global>
   .grid-wrapper {
     width: 100%;
-    padding: 2rem 0;
+    padding: 0 0 2rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -362,11 +358,12 @@ const finalTextColor = textColor;
   .grid-item-title {
     font-family: Lexend, sans-serif;
     font-size: 1.5rem !important;
-    font-weight: 600;
-    color: var(--dynamic-text);
+    font-weight: 400;
     margin: 0;
     line-height: 1.25;
     padding-top: 1.25rem;
+    width: 100%;
+    text-align: center !important;
   }
 
   .grid-item-description {
@@ -399,7 +396,7 @@ const finalTextColor = textColor;
 
   @media (min-width: 768px) {
     .grid-wrapper {
-      padding: 4rem 0 0 0;
+      padding: O;
     }
 
     .grid-container {
@@ -410,10 +407,25 @@ const finalTextColor = textColor;
       padding: 0 0.75rem 2rem 0.75rem;
     }
 
+    /* Si c'est la 1ère carte de la ligne */
+    .grid-item:nth-child(3n + 1) .grid-item-title {
+      color: var(--color-brand-secondary) !important;
+    }
+
+    /* Si c'est la 2ème carte de la ligne */
+    .grid-item:nth-child(3n + 2) .grid-item-title {
+      color: var(--color-text-muted) !important;
+    }
+
+    /* Si c'est la 3ème carte de la ligne */
+    .grid-item:nth-child(3n + 3) .grid-item-title {
+      color: var(--color-brand-primary) !important;
+    }
+
     .grid-item-media.is-image {
-      max-width: 50%;
-      padding: 2rem;
-      padding-bottom: 0;
+      max-width: 40%;
+      padding: 0;
+      padding-bottom: 2rem;
     }
 
     .grid-item-media.is-icon {

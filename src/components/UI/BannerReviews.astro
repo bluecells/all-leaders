@@ -66,34 +66,52 @@ const allReviews = [
         ))
       }
     </div>
+    <div class="reviews-dots">
+      {
+        Array.from({ length: Math.ceil(allReviews.length / 3) }).map((_, index) => (
+          <button class="dot" data-group-index={index} aria-label={`Groupe ${index + 1}`} />
+        ))
+      }
+    </div>
   </div>
 </section>
 
 <script>
   import gsap from 'gsap';
 
-  const track = document.querySelector('.reviews-track');
   const reviewItems = Array.from(document.querySelectorAll('.review-item'));
+  const dots = Array.from(document.querySelectorAll('.dot'));
   const totalReviews = reviewItems.length;
   const groupSize = 3;
-  let currentGroupIndex = 0;
+  const totalGroups = Math.ceil(totalReviews / groupSize);
+  let currentGroupNumber = 0;
+  let autoPlayTimer: ReturnType<typeof setTimeout> | null = null;
 
   // Fonction pour afficher un groupe de 3 reviews
-  function displayGroup(groupIndex) {
+  function displayGroup(groupNumber: number) {
+    const startIndex = groupNumber * groupSize;
     reviewItems.forEach((item, index) => {
-      const isInGroup =
-        (index >= groupIndex && index < groupIndex + groupSize) ||
-        (groupIndex + groupSize > totalReviews && index < (groupIndex + groupSize) % totalReviews);
+      const isInGroup = index >= startIndex && index < startIndex + groupSize;
       item.style.display = isInGroup ? 'flex' : 'none';
     });
   }
 
-  // Fonction pour animer l'apparition consécutive de 3 reviews (gauche, centre, droite / haut, milieu, bas)
-  function animateGroupEntry(groupIndex) {
+  // Fonction pour mettre à jour les dots
+  function updateDots(groupNumber: number) {
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === groupNumber);
+    });
+  }
+
+  // Fonction pour animer l'apparition d'un bloc de 3 reviews ensemble
+  function animateGroupEntry(groupNumber: number) {
+    const startIndex = groupNumber * groupSize;
     const visibleItems = [];
     for (let i = 0; i < groupSize; i++) {
-      const idx = (groupIndex + i) % totalReviews;
-      visibleItems.push(reviewItems[idx]);
+      const idx = startIndex + i;
+      if (idx < totalReviews) {
+        visibleItems.push(reviewItems[idx]);
+      }
     }
 
     // Cacher tous les items
@@ -101,64 +119,83 @@ const allReviews = [
       item.style.opacity = '0';
     });
 
-    // Afficher les 3 reviews en séquence (gauche/haut, centre/milieu, droite/bas)
-    displayGroup(groupIndex);
+    // Afficher les 3 reviews en même temps
+    displayGroup(groupNumber);
+    updateDots(groupNumber);
 
+    // Fadein du bloc de 3 reviews ensemble
     gsap.fromTo(
-      visibleItems[0],
+      visibleItems,
       { opacity: 0 },
       {
         opacity: 1,
         duration: 0.6,
-        ease: 'power2.inOut',
-      }
-    );
-
-    gsap.fromTo(
-      visibleItems[1],
-      { opacity: 0 },
-      {
-        opacity: 1,
-        duration: 0.6,
-        delay: 0.5,
-        ease: 'power2.inOut',
-      }
-    );
-
-    gsap.fromTo(
-      visibleItems[2],
-      { opacity: 0 },
-      {
-        opacity: 1,
-        duration: 0.6,
-        delay: 1,
         ease: 'power2.inOut',
       }
     );
   }
 
-  // Animation initiale
-  animateGroupEntry(0);
+  // Fonction pour démarrer l'autoplay
+  function startAutoPlay() {
+    if (autoPlayTimer) clearTimeout(autoPlayTimer);
+    autoPlayTimer = setTimeout(() => {
+      const startIndex = currentGroupNumber * groupSize;
+      const currentVisibleItems = [];
+      for (let i = 0; i < groupSize; i++) {
+        const idx = startIndex + i;
+        if (idx < totalReviews) {
+          currentVisibleItems.push(reviewItems[idx]);
+        }
+      }
 
-  // Rotation des groupes toutes les 5 secondes (3s d'affichage + 1.5s de fadeout + 0.5s buffer)
-  setInterval(() => {
+      // Fadeout
+      gsap.to(currentVisibleItems, {
+        opacity: 0,
+        duration: 1.5,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          currentGroupNumber = (currentGroupNumber + 1) % totalGroups;
+          animateGroupEntry(currentGroupNumber);
+          startAutoPlay();
+        },
+      });
+    }, 8000);
+  }
+
+  // Fonction pour naviguer vers un groupe spécifique
+  function goToGroup(groupNumber: number) {
+    const startIndex = currentGroupNumber * groupSize;
     const currentVisibleItems = [];
     for (let i = 0; i < groupSize; i++) {
-      const idx = (currentGroupIndex + i) % totalReviews;
-      currentVisibleItems.push(reviewItems[idx]);
+      const idx = startIndex + i;
+      if (idx < totalReviews) {
+        currentVisibleItems.push(reviewItems[idx]);
+      }
     }
 
     // Fadeout
     gsap.to(currentVisibleItems, {
       opacity: 0,
-      duration: 1.5,
+      duration: 0.8,
       ease: 'power2.inOut',
       onComplete: () => {
-        currentGroupIndex = (currentGroupIndex + groupSize) % totalReviews;
-        animateGroupEntry(currentGroupIndex);
+        currentGroupNumber = groupNumber;
+        animateGroupEntry(currentGroupNumber);
+        startAutoPlay();
       },
     });
-  }, 8000);
+  }
+
+  // Animation initiale
+  animateGroupEntry(0);
+  startAutoPlay();
+
+  // Ajouter les event listeners aux dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      goToGroup(index);
+    });
+  });
 </script>
 
 <style>
@@ -175,13 +212,20 @@ const allReviews = [
     max-width: 1200px;
     margin: 0 auto;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 
   .reviews-track {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     width: 100%;
+    min-height: 30vh;
+    justify-content: center;
+    align-items: center;
   }
 
   .review-item {
@@ -194,6 +238,10 @@ const allReviews = [
     gap: 0.5rem;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
     opacity: 0;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1 1 100%;
+    height: 25vh;
   }
 
   .review-role {
@@ -236,14 +284,44 @@ const allReviews = [
     transform: translateX(-50%); /* Centre parfaitement le guillemet au milieu horizontal */
 
     /* Style et taille (Inchangés et parfaits) */
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 5rem;
-    font-family: Georgia, serif;
     line-height: 1;
     font-weight: bold;
     color: #6b7280;
     opacity: 0.3;
     pointer-events: none;
     padding-bottom: 0.5rem;
+  }
+
+  .reviews-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    border: none;
+    background-color: #d1d5db;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 0;
+  }
+
+  .dot.active {
+    background-color: var(--color-brand-primary);
+  }
+
+  .dot:hover {
+    background-color: #9ca3af;
+  }
+
+  .dot.active:hover {
+    background-color: var(--color-brand-primary);
   }
 
   /* ========================================
@@ -255,12 +333,12 @@ const allReviews = [
     }
 
     .reviews-track {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      flex-wrap: nowrap;
     }
 
     .review-item {
       padding: 1rem;
+      flex: 1 1 calc(33.333% - 1rem);
     }
 
     .review-name {

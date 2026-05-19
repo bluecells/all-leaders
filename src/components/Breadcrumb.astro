@@ -32,6 +32,10 @@ interface Props {
 
 const { items = [], category, title } = Astro.props;
 
+// Ne pas afficher le breadcrumb sur la page d'accueil
+const currentPath = Astro.url.pathname;
+const isHomepage = currentPath === '/';
+
 /**
  * Convertit un slug en texte avec capitalisation française
  * gestion-de-la-conflictualité → Gestion de la conflictualité
@@ -266,7 +270,9 @@ if (items.length > 0) {
 <!--
   Navigation Breadcrumb accessible avec aria-label
   Structure sémantique <nav> > <ol> > <li>
+  N'affiche pas le breadcrumb sur la page d'accueil
 -->
+{!isHomepage && (
 <nav aria-label="Fil d'Ariane" class="breadcrumb-nav">
   <ol class="breadcrumb-list">
     {
@@ -299,6 +305,7 @@ if (items.length > 0) {
     }
   </ol>
 </nav>
+)}
 
 <style>
   /* ========================================

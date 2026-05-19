@@ -99,10 +99,12 @@
     const orbit = document.getElementById('compassOrbit');
     const roseBg = document.getElementById('compassRoseBg');
     const spans = document.querySelectorAll('.compass-link span');
-    const angleStep = 60; // 360 / 6 liens
+    const links = document.querySelectorAll('.compass-link');
+    const angleStep = 60;
 
     if (!orbit || !spans.length) return;
 
+    // 1. On stocke la timeline dans une variable pour pouvoir y accéder au clic
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.compass-main',
@@ -116,23 +118,45 @@
       },
     });
 
-    // Rotation synchronisée de l'orbite et du fond décoratif
     tl.to(orbit, { y: -20, rotation: 120, ease: 'none' }, 0);
     if (roseBg) {
       tl.to(roseBg, { rotation: 15, force3D: true, ease: 'none' }, 0);
     }
 
-    // Contre-rotation des textes pour les garder droits et lisibles
     spans.forEach((span, i) => {
       const startAngle = i * angleStep;
       gsap.set(span, { transformOrigin: 'center center', rotation: -startAngle });
-
       tl.to(span, { rotation: -(120 + startAngle), ease: 'none' }, 0);
+    });
+
+    // 2. AXE 1 : Interception des clics pour stabiliser le scroll
+    links.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        // On récupère l'adresse cible (ex: /accompagnements#category-...)
+        const targetUrl = link.getAttribute('href');
+        if (!targetUrl) return;
+
+        // Évite le changement de page immédiat du navigateur pendant qu'on nettoie GSAP
+        e.preventDefault();
+
+        // Force la timeline à sa position finale et tue le ScrollTrigger
+        // Cela supprime le "pin-spacer" et rend au body sa hauteur fixe instantanément
+        if (tl.scrollTrigger) {
+          tl.scrollTrigger.kill(false); // Le paramètre false évite un jump visuel violent avant de partir
+        }
+
+        // Maintenant que le DOM de cette page est "propre", on change de page
+        window.location.href = targetUrl;
+      });
     });
   };
 
-  // Initialisation sécurisée sur le cycle de vie Astro/DOM
+  // Initialisation sur le cycle de vie Astro / DOM
   document.addEventListener('DOMContentLoaded', initCompass);
+
+  // Sécurité si vous utilisez Astro ViewTransitions (<ClientRouter />)
+  document.addEventListener('astro:page-load', initCompass);
+
   window.addEventListener('load', () => ScrollTrigger.refresh());
 </script>
 
