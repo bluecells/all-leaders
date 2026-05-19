@@ -81,6 +81,12 @@ const sortedCategories = categorie.sort((a, b) => {
   <AccompagnementsGrid lang="fr" fullBleed={true} />
 
   <script is:inline>
+    // 1. BLOCAGE IMMÉDIAT : On empêche le navigateur de sauter sauvagement
+    // avant que les CDN ne soient chargés
+    if (window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+
     // Charger GSAP depuis CDN
     Promise.all([
       new Promise((resolve) => {
@@ -97,7 +103,12 @@ const sortedCategories = categorie.sort((a, b) => {
       }),
     ]).then(() => {
       gsap.registerPlugin(ScrollTrigger);
+
+      // On initialise d'abord vos animations pour stabiliser le layout
       initAnimation();
+
+      // On gère l'ancre immédiatement après
+      handleAnchorScroll();
     });
 
     function initAnimation() {
@@ -105,7 +116,6 @@ const sortedCategories = categorie.sort((a, b) => {
       const arrowContainer = document.querySelector('.arrow-container');
 
       if (navLinks.length > 0) {
-        // On s'assure que tout est visible avant de lancer GSAP
         gsap.set([navLinks, arrowContainer], { opacity: 1 });
 
         const tl = gsap.timeline({
@@ -116,13 +126,12 @@ const sortedCategories = categorie.sort((a, b) => {
           },
         });
 
-        // Animation ralentie (3x plus lente)
         tl.from(navLinks, {
           opacity: 0,
-          duration: 0.5, // 0.6s * 3 = 1.8s
+          duration: 0.5,
           stagger: {
-            each: 0.4, // 0.15s * 3 = 0.45s entre chaque lien
-            from: 'end', // C'est ici qu'on définit l'ordre "du bas vers le haut"
+            each: 0.4,
+            from: 'end',
           },
           ease: 'power1.in',
         }).from(
@@ -132,12 +141,38 @@ const sortedCategories = categorie.sort((a, b) => {
             y: 100,
             scaleY: 0,
             transformOrigin: 'bottom center',
-            duration: 2.4, // 0.8s * 3 = 2.4s
+            duration: 2.4,
             ease: 'power1.out',
           },
           '-=1.2'
-        ); // Commence à mi-chemin de l'animation des liens
+        );
       }
+    }
+
+    // Nouvelle fonction pour gérer le défilement précis vers l'ancre
+    function handleAnchorScroll() {
+      const hash = window.location.hash;
+      if (!hash) return;
+
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      // On force ScrollTrigger à rafraîchir ses calculs de hauteurs de page
+      ScrollTrigger.refresh();
+
+      // On laisse un micro-délai pour que le layout se stabilise graphiquement
+      setTimeout(() => {
+        // Calcul de la position de l'élément par rapport au haut du document
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+
+        // Ajustement de l'offset (ex: 90px pour compenser un header fixe si vous en avez un)
+        const offset = 90;
+
+        window.scrollTo({
+          top: targetPosition - offset,
+          behavior: 'smooth', // Rendu propre et fluide
+        });
+      }, 50);
     }
   </script>
 </Layout>
