@@ -285,21 +285,21 @@ if (items.length > 0) {
 
         return (
           <li class="breadcrumb-item">
-            {/* Liens cliquables pour tous les éléments sauf le dernier */}
-            {!isLast && item.href ? (
-              <>
-                <a href={item.href} class="breadcrumb-link">
-                  {item.label}
-                </a>
-                {/* Séparateur visuel entre les éléments */}
-                <span class="breadcrumb-separator" aria-hidden="true">
-                  /
-                </span>
-              </>
+            {/* Afficher le lien ou le texte selon qu'il y a un href */}
+            {item.href ? (
+              <a href={item.href} class="breadcrumb-link">
+                {item.label}
+              </a>
             ) : (
-              /* Dernier élément : texte non cliquable avec aria-current pour l'accessibilité */
+              /* Texte non cliquable avec aria-current si c'est le dernier élément */
               <span aria-current={isLast ? 'page' : undefined} class="breadcrumb-current">
                 {item.label}
+              </span>
+            )}
+            {/* Séparateur visuel entre les éléments (sauf le dernier) */}
+            {!isLast && (
+              <span class="breadcrumb-separator" aria-hidden="true">
+                /
               </span>
             )}
           </li>
