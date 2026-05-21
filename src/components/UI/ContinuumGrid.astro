@@ -1,14 +1,62 @@
 ---
 // Grille interactive continuum de performance collective
 // Animation scroll avec GSAP ScrollTrigger - Mobile First
+interface Props {
+  lang?: 'fr' | 'en';
+}
+
+const { lang = 'fr' } = Astro.props;
+
+const texts = {
+  fr: {
+    title: "Continuum de la performance collective",
+    line1_left: "Du groupe dysfonctionnel...",
+    line1_right: "... au collectif hautement performant",
+    line2_left: "Difficultés à résoudre",
+    line2_middle: "Opportunités à développer",
+    line2_right: "(Sur)performance à maintenir",
+    line3: [
+      "Troubles de la santé mentale",
+      "Épuisement",
+      "Risques psychosociaux",
+      "Frictions et Tensions",
+      "Conflictualité",
+      "Régulation",
+      "Confiance",
+      "Cohésion",
+      "Esprit d'équipage"
+    ]
+  },
+  en: {
+    title: "Collective performance continuum",
+    line1_left: "From dysfunctional group...",
+    line1_right: "... to highly performing collective",
+    line2_left: "Difficulties to resolve",
+    line2_middle: "Opportunities to develop",
+    line2_right: "Performance to maintain",
+    line3: [
+      "Mental health issues",
+      "Burnout",
+      "Psychosocial risks",
+      "Friction and tension",
+      "Conflict",
+      "Regulation",
+      "Trust",
+      "Cohesion",
+      "Team spirit"
+    ]
+  }
+};
+
+const t = texts[lang] || texts.fr;
 ---
 
-<div class="continuum-wrapper" role="img" aria-label="Continuum de la performance collective">
+<div class="continuum-wrapper" role="img" aria-label={t.title}>
   <div class="continuum-grid">
     <!-- Ligne 1 -->
     <div
       class="grid-cell cell-red ligne-1"
-      data-text="Du groupe dysfonctionnel..."
+      data-text={t.line1_left}
       data-row="1"
       data-col="1"
       data-colspan="3"
@@ -18,7 +66,7 @@
     <div></div>
     <div
       class="grid-cell cell-blue ligne-1"
-      data-text="... au collectif hautement performant"
+      data-text={t.line1_right}
       data-row="1"
       data-col="6"
       data-colspan="3"
@@ -30,7 +78,7 @@
     <div></div>
     <div
       class="grid-cell cell-trans-red"
-      data-text="Difficultés à résoudre"
+      data-text={t.line2_left}
       data-row="2"
       data-col="1"
       data-colspan="2"
@@ -38,7 +86,7 @@
     </div>
     <div
       class="grid-cell cell-trans-purple"
-      data-text="Opportunités à développer"
+      data-text={t.line2_middle}
       data-row="2"
       data-col="3"
       data-colspan="2"
@@ -46,7 +94,7 @@
     </div>
     <div
       class="grid-cell cell-trans-blue"
-      data-text="(Sur)performance à maintenir"
+      data-text={t.line2_right}
       data-row="2"
       data-col="7"
       data-colspan="3"
@@ -55,16 +103,17 @@
     <div></div>
 
     <!-- Ligne 3 -->
-    <div class="grid-cell red" data-text="Troubles de la santé mentale" data-row="3" data-col="1">
-    </div>
-    <div class="grid-cell red" data-text="Épuisement" data-row="3" data-col="2"></div>
-    <div class="grid-cell red" data-text="Risques psychosociaux" data-row="3" data-col="3"></div>
-    <div class="grid-cell purple" data-text="Frictions et Tensions" data-row="3" data-col="4"></div>
-    <div class="grid-cell purple" data-text="Conflictualité" data-row="3" data-col="5"></div>
-    <div class="grid-cell purple" data-text="Régulation" data-row="3" data-col="6"></div>
-    <div class="grid-cell bleu" data-text="Confiance" data-row="3" data-col="7"></div>
-    <div class="grid-cell bleu" data-text="Cohésion" data-row="3" data-col="8"></div>
-    <div class="grid-cell bleu" data-text="Esprit d'équipage" data-row="3" data-col="9"></div>
+    {t.line3.map((text, idx) => {
+      const col = idx + 1;
+      const isRed = idx < 3;
+      const isPurple = idx >= 3 && idx < 6;
+      const className = isRed ? 'red' : isPurple ? 'purple' : 'bleu';
+
+      return (
+        <div class={`grid-cell ${className}`} data-text={text} data-row="3" data-col={col.toString()}>
+        </div>
+      );
+    })}
   </div>
 </div>
 

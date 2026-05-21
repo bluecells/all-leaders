@@ -1,56 +1,116 @@
 ---
-// Mock data des avis clients
-const allReviews = [
-  {
-    id: 1,
-    name: 'Anne-Flore Roger',
-    role: 'Directrice Réseaux et Services Mobiles, Orange',
-    rating: 5,
-    text: 'Notre équipe de direction est aujourd’hui plus engagée, cohérente et confiante dans ses orientations. ',
-  },
-  {
-    id: 2,
-    name: 'Thibault Lemoigne',
-    role: 'Directeur de la Relation Clients, HomeServe',
-    rating: 5,
-    text: 'Une démarche de développement pragmatique et adaptée. Un moment de construction collective grâce à la mise en action individuelle de chaque membre dans un principe commun de management : le leadership par l’intention.',
-  },
-  {
-    id: 3,
-    name: 'Christophe Jeanneau',
-    role: 'DRH de centre nucléaire de production d’électricité, EDF',
-    rating: 5,
-    text: 'Une posture de « sparring partner » stratégique… Une expertise pédagogique de haut niveau… Vision systémique et agilité.',
-  },
-  {
-    id: 4,
-    name: 'Jean-Luc Mitry',
-    role: 'Directeur du contrôle de gestion de VINCI Construction',
-    rating: 5,
-    text: 'Mission pleinement accomplie à la grande satisfaction des équipes concernées.',
-  },
-  {
-    id: 5,
-    name: 'Martine Neuville',
-    role: 'Directrice du FIPHFP',
-    rating: 5,
-    text: 'A travers différentes modalités d’accompagnement, j’ai pu mesurer toute l’étendue des compétences à la fois professionnelles et relationnelles de Marie Emmanuelle Py.',
-  },
-  {
-    id: 6,
-    name: 'Acteur de l’industrie nucléaire',
-    role: 'Chef de service (à l’issue d’un Parcours de développement managérial)',
-    rating: 5,
-    text: 'Ce parcours m’a offert une belle remise en question. Il permet d’objectiver des pratiques, des postures et des réflexions nécessaires à un management plus construit.',
-  },
-  {
-    id: 7,
-    name: 'Acteur de l’industrie nucléaire',
-    role: 'Chef de service (à l’issue d’un Parcours de développement managérial)',
-    rating: 5,
-    text: "Les apports de ce parcours sont individuels et collectifs. En pratique le fait de pouvoir s'approprier les concepts managériaux pour les appliquer avec son équipe dynamise les relations",
-  },
-];
+interface Props {
+  lang?: 'fr' | 'en';
+}
+
+const { lang = 'fr' } = Astro.props;
+
+const reviews = {
+  fr: [
+    {
+      id: 1,
+      name: 'Anne-Flore Roger',
+      role: 'Directrice Réseaux et Services Mobiles, Orange',
+      rating: 5,
+      text: 'Notre équipe de direction est aujourd’hui plus engagée, cohérente et confiante dans ses orientations. ',
+    },
+    {
+      id: 2,
+      name: 'Thibault Lemoigne',
+      role: 'Directeur de la Relation Clients, HomeServe',
+      rating: 5,
+      text: 'Une démarche de développement pragmatique et adaptée. Un moment de construction collective grâce à la mise en action individuelle de chaque membre dans un principe commun de management : le leadership par l’intention.',
+    },
+    {
+      id: 3,
+      name: 'Christophe Jeanneau',
+      role: 'DRH de centre nucléaire de production d’électricité, EDF',
+      rating: 5,
+      text: 'Une posture de « sparring partner » stratégique… Une expertise pédagogique de haut niveau… Vision systémique et agilité.',
+    },
+    {
+      id: 4,
+      name: 'Jean-Luc Mitry',
+      role: 'Directeur du contrôle de gestion de VINCI Construction',
+      rating: 5,
+      text: 'Mission pleinement accomplie à la grande satisfaction des équipes concernées.',
+    },
+    {
+      id: 5,
+      name: 'Martine Neuville',
+      role: 'Directrice du FIPHFP',
+      rating: 5,
+      text: 'A travers différentes modalités d’accompagnement, j’ai pu mesurer toute l’étendue des compétences à la fois professionnelles et relationnelles de Marie Emmanuelle Py.',
+    },
+    {
+      id: 6,
+      name: 'Acteur de l’industrie nucléaire',
+      role: 'Chef de service (à l’issue d’un Parcours de développement managérial)',
+      rating: 5,
+      text: 'Ce parcours m’a offert une belle remise en question. Il permet d’objectiver des pratiques, des postures et des réflexions nécessaires à un management plus construit.',
+    },
+    {
+      id: 7,
+      name: 'Acteur de l’industrie nucléaire',
+      role: 'Chef de service (à l’issue d’un Parcours de développement managérial)',
+      rating: 5,
+      text: "Les apports de ce parcours sont individuels et collectifs. En pratique le fait de pouvoir s'approprier les concepts managériaux pour les appliquer avec son équipe dynamise les relations",
+    },
+  ],
+  en: [
+    {
+      id: 1,
+      name: 'Anne-Flore Roger',
+      role: 'Director of Networks and Mobile Services, Orange',
+      rating: 5,
+      text: 'Our management team is now more engaged, coherent and confident in its strategic direction.',
+    },
+    {
+      id: 2,
+      name: 'Thibault Lemoigne',
+      role: 'Director of Client Relations, HomeServe',
+      rating: 5,
+      text: 'A pragmatic and well-adapted development approach. A moment of collective construction through the individual action of each member within a common management principle: leadership by intention.',
+    },
+    {
+      id: 3,
+      name: 'Christophe Jeanneau',
+      role: 'HR Director of Nuclear Power Generation Plant, EDF',
+      rating: 5,
+      text: 'A strategic "sparring partner" posture… High-level pedagogical expertise… Systemic vision and agility.',
+    },
+    {
+      id: 4,
+      name: 'Jean-Luc Mitry',
+      role: 'Controller Director at VINCI Construction',
+      rating: 5,
+      text: 'Mission fully accomplished to the great satisfaction of the teams involved.',
+    },
+    {
+      id: 5,
+      name: 'Martine Neuville',
+      role: 'Director of FIPHFP',
+      rating: 5,
+      text: "Through various support modalities, I was able to measure the full extent of Marie Emmanuelle Py's skills, both professional and relational.",
+    },
+    {
+      id: 6,
+      name: 'Nuclear Industry Professional',
+      role: 'Service Manager (following a Managerial Development Program)',
+      rating: 5,
+      text: 'This program offered me a valuable opportunity for self-reflection. It enables us to objectify practices, postures and reflections necessary for more constructive management.',
+    },
+    {
+      id: 7,
+      name: 'Nuclear Industry Professional',
+      role: 'Service Manager (following a Managerial Development Program)',
+      rating: 5,
+      text: 'The benefits of this program are both individual and collective. In practice, being able to grasp the managerial concepts and apply them with your team strengthens relationships.',
+    },
+  ],
+};
+
+const allReviews = reviews[lang] || reviews.fr;
 ---
 
 <section class="banner-reviews-section">
@@ -69,7 +129,11 @@ const allReviews = [
     <div class="reviews-dots">
       {
         Array.from({ length: Math.ceil(allReviews.length / 3) }).map((_, index) => (
-          <button class="dot" data-group-index={index} aria-label={`Groupe ${index + 1}`} />
+          <button
+            class="dot"
+            data-group-index={index}
+            aria-label={lang === 'en' ? `Group ${index + 1}` : `Groupe ${index + 1}`}
+          />
         ))
       }
     </div>

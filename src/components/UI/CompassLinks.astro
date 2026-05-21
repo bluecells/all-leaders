@@ -1,9 +1,38 @@
+---
+interface Props {
+  lang?: 'fr' | 'en';
+}
+
+const { lang = 'fr' } = Astro.props;
+
+const categories = {
+  fr: [
+    { name: "Gestion de la conflictualité", href: "/accompagnements#category-gestion-de-la-conflictualite" },
+    { name: "Diagnostic de la performance", href: "/accompagnements#category-diagnostic-de-la-performance" },
+    { name: "Executive coaching", href: "/accompagnements#category-executive-coaching" },
+    { name: "Santé mentale et performance durable", href: "/accompagnements#category-sante-mentale-et-performance-durable" },
+    { name: "Leadership development", href: "/accompagnements#category-leadership-development" },
+    { name: "Coaching d'équipe", href: "/accompagnements#category-coaching-equipes-et-organisations" }
+  ],
+  en: [
+    { name: "Conflict Management", href: "/en/services#category-conflict-management" },
+    { name: "Performance Diagnostics", href: "/en/services#category-performance-diagnostics" },
+    { name: "Executive Coaching", href: "/en/services#category-executive-coaching" },
+    { name: "Mental Health and Sustainable Performance", href: "/en/services#category-mental-health-and-sustainable-performance" },
+    { name: "Leadership Development", href: "/en/services#category-leadership-development" },
+    { name: "Team Coaching", href: "/en/services#category-team-coaching-and-organisations" }
+  ]
+};
+
+const titleFr = "Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec <strong>sens, clarté et impact.</strong>";
+const titleEn = "Transform <strong>intentions into concrete actions</strong>, for teams working with <strong>purpose, clarity and impact.</strong>";
+const title = lang === 'en' ? titleEn : titleFr;
+const catList = categories[lang] || categories.fr;
+---
+
 <div class="compass-main">
   <div class="my-6 p-4 shadow-2xl md:shadow-none rounded-md z-50 mx-auto">
-    <h3 class="title-compass">
-      Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec
-      <strong>sens, clarté et impact.</strong>
-    </h3>
+    <h3 class="title-compass" set:html={title} />
   </div>
 
   <div class="compass-container rounded-lg">
@@ -14,74 +43,18 @@
       <div class="compass-compass-fixed"></div>
 
       <div class="compass-orbit" id="compassOrbit">
-        <a
-          href="/accompagnements#category-gestion-de-la-conflictualite"
-          class="compass-link"
-          data-index="0"
-        >
-          <span
-            >Gestion de<br />la conflictualité<img
+        {catList.map((cat, idx) => (
+          <a
+            href={cat.href}
+            class="compass-link"
+            data-index={idx}
+          >
+            <span>{cat.name}<img
               src="images/pages/en-savoir-plus.webp"
               class="image-link"
-            /></span
-          >
-        </a>
-        <a
-          href="/accompagnements#category-diagnostic-de-la-performance"
-          class="compass-link"
-          data-index="1"
-        >
-          <span
-            >Diagnostic de<br />la performance<img
-              src="images/pages/en-savoir-plus.webp"
-              class="image-link"
-            /></span
-          >
-        </a>
-        <a href="/accompagnements#category-executive-coaching" class="compass-link" data-index="2">
-          <span
-            >Executive<br />coaching<img
-              src="images/pages/en-savoir-plus.webp"
-              class="image-link"
-            /></span
-          >
-        </a>
-        <a
-          href="/accompagnements#category-sante-mentale-et-performance-durable"
-          class="compass-link"
-          data-index="3"
-        >
-          <span
-            >Santé mentale et<br />performance durable<img
-              src="images/pages/en-savoir-plus.webp"
-              class="image-link"
-            /></span
-          >
-        </a>
-        <a
-          href="/accompagnements#category-leadership-development"
-          class="compass-link"
-          data-index="4"
-        >
-          <span
-            >Leadership<br />development<img
-              src="images/pages/en-savoir-plus.webp"
-              class="image-link"
-            /></span
-          >
-        </a>
-        <a
-          href="/accompagnements#category-coaching-equipes-et-organisations"
-          class="compass-link"
-          data-index="5"
-        >
-          <span
-            >Coaching<br />d'équipe<img
-              src="images/pages/en-savoir-plus.webp"
-              class="image-link"
-            /></span
-          >
-        </a>
+            /></span>
+          </a>
+        ))}
       </div>
     </div>
 
