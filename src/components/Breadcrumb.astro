@@ -122,7 +122,7 @@ if (items.length > 0) {
 
     // Construire le fil d'Ariane à 4 niveaux avec lien filtré pour la catégorie
     breadcrumbItems = [
-      { label: t.home, href: lang === 'en' ? '/en' : '/' },
+      { label: t.home, href: lang === 'en' ? '' : '/' },
       { label: resourcesLabel, href: resourcesBaseUrl },
       { label: categoryLabel, href: resourcesLinkWithFilter },
       { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
@@ -162,7 +162,7 @@ if (items.length > 0) {
 
     // Construire le fil d'Ariane à 4 niveaux
     breadcrumbItems = [
-      { label: t.home, href: lang === 'en' ? '/en' : '/' },
+      { label: t.home, href: lang === 'en' ? '' : '/' },
       { label: folderLabel, href: faqBaseUrl },
       { label: categoryLabel, href: `${faqBaseUrl}/${categorySlug}` },
       { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
@@ -192,7 +192,7 @@ if (items.length > 0) {
 
     // Construire le fil d'Ariane à 4 niveaux avec ancre pour la catégorie
     breadcrumbItems = [
-      { label: t.home, href: lang === 'en' ? '/en' : '/' },
+      { label: t.home, href: lang === 'en' ? '' : '/' },
       { label: accompanementsLabel, href: accompanementsBaseUrl },
       { label: categoryLabel, href: `${accompanementsBaseUrl}#category-${categoryFromPath}` },
       { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
@@ -211,7 +211,7 @@ if (items.length > 0) {
 
     // Construire le fil d'Ariane à 3 niveaux
     breadcrumbItems = [
-      { label: t.home, href: lang === 'en' ? '/en' : '/' },
+      { label: t.home, href: lang === 'en' ? '' : '/' },
       { label: 'Eventi', href: '/eventi' },
       { label: titleLabel, href: '' },
     ];
@@ -223,7 +223,7 @@ if (items.length > 0) {
      * Le titre du frontmatter override le dernier segment s'il est fourni
      */
     breadcrumbItems = [
-      { label: t.home, href: lang === 'en' ? '/en' : '/' },
+      { label: t.home, href: lang === 'en' ? '' : '/' },
       // Pour chaque segment, construire un élément du fil d'Ariane
       ...pathSegments.map((segment, index) => {
         const isLast = index === pathSegments.length - 1;
