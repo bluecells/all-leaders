@@ -37,9 +37,9 @@ interface Props {
 const { items = [], category, title, lang = 'fr' } = Astro.props;
 const t = breadcrumbTranslations[lang];
 
-// Ne pas afficher le breadcrumb sur la page d'accueil
+// Ne pas afficher le breadcrumb sur les pages d'accueil (FR et EN)
 const currentPath = Astro.url.pathname;
-const isHomepage = currentPath === '/';
+const isHomepage = currentPath === '/' || currentPath === '/en';
 
 /**
  * Convertit un slug en texte avec capitalisation adaptée à la langue
