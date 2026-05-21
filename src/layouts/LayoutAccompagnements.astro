@@ -28,7 +28,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
       <div class="container mx-auto max-w-4xl">
         {/* Type badge + Category */}
         <div class="metadata mb-4 flex items-center gap-4 justify-center flex-wrap">
-          <span class={`type-badge px-6! py-1! mt-8! md:mt-0! type-badge-${data.type}`}>
+          <span class={`type-badge px-6! py-2! md:mt-0! type-badge-${data.type}`}>
             {data.type}
           </span>
           {
@@ -139,7 +139,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
     padding: 0.5rem 1rem;
     border-radius: 4px;
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: white;
@@ -147,18 +147,22 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
 
   .type-badge-investigation {
     background: #8ac20a;
+    border: 2px solid #8bc20a78;
   }
 
   .type-badge-inspiration {
     background: #ddb800;
+    border: 2px solid #ddb80078;
   }
 
   .type-badge-action {
     background: #08aac2;
+    border: 2px solid #08aac278;
   }
 
   .type-badge-immersion {
     background: #b577f0;
+    border: 2px solid #b577f078;
   }
 
   .type-badge-formation,
@@ -166,6 +170,7 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
   .type-badge-conseil,
   .type-badge-mentorat {
     background: #4a6741;
+    border: 2px solid #4a674178;
   }
 
   .category-badge {
