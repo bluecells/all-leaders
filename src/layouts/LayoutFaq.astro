@@ -28,7 +28,7 @@ const pageTitle = data.question;
   jsonType={data.jsonType || 'faq'}
   alternateUrls={alternateUrls}
 >
-  <Breadcrumb category={data.category} title={data.question} />
+  <Breadcrumb lang={data.lang as 'fr' | 'en'} category={data.category} title={data.question} />
   <main class="faq-page">
     <article class="faq-container">
       <header class="faq-header">

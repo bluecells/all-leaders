@@ -97,7 +97,7 @@ const finalOgImage = ogImage || undefined;
     <!-- End Google Tag Manager (noscript) -->
 
     <main>
-      <Breadcrumb title={title} />
+      <Breadcrumb lang={pageLang as 'fr' | 'en'} title={title} />
       <slot />
     </main>
     <Footer lang={pageLang} />

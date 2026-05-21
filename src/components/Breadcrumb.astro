@@ -1,27 +1,31 @@
 ---
 /**
- * Breadcrumb.astro - Composant de fil d'Ariane intelligent
+ * Breadcrumb.astro - Composant de fil d'Ariane intelligent avec localisation FR/EN
  *
  * Ce composant génère automatiquement un fil d'Ariane adapté au type de contenu
- * en analysant l'URL de la page actuelle.
+ * en analysant l'URL de la page actuelle et la langue fournie.
  *
  * @example
  * // Détection automatique
- * <Breadcrumb />
+ * <Breadcrumb lang="fr" />
  *
  * @example
  * // Avec override du titre et catégorie
- * <Breadcrumb category="Tradizioni" title="Il Canto a Cuncordu" />
+ * <Breadcrumb lang="en" category="Services" title="Individual Coaching" />
  *
  * @example
  * // Avec items manuels
- * <Breadcrumb items={[
- *   { label: 'Home', href: '/' },
+ * <Breadcrumb lang="fr" items={[
+ *   { label: 'Accueil', href: '/' },
  *   { label: 'Custom', href: '/custom' }
  * ]} />
  */
 
+import { breadcrumbTranslations } from '@/data/breadcrumbTranslations';
+
 interface Props {
+  /** Langue du breadcrumb : 'fr' ou 'en' */
+  lang?: 'fr' | 'en';
   /** Items manuels du fil d'Ariane. Si fournis, la détection automatique est désactivée */
   items?: Array<{ label: string; href: string }>;
   /** Nom de la catégorie. Override la catégorie extraite de l'URL */
@@ -30,38 +34,21 @@ interface Props {
   title?: string;
 }
 
-const { items = [], category, title } = Astro.props;
+const { items = [], category, title, lang = 'fr' } = Astro.props;
+const t = breadcrumbTranslations[lang];
 
 // Ne pas afficher le breadcrumb sur la page d'accueil
 const currentPath = Astro.url.pathname;
 const isHomepage = currentPath === '/';
 
 /**
- * Convertit un slug en texte avec capitalisation française
- * gestion-de-la-conflictualité → Gestion de la conflictualité
- * leadership-base-sur-lintention → Leadership basé sur l'intention
+ * Convertit un slug en texte avec capitalisation adaptée à la langue
+ * FR: gestion-de-la-conflictualité → Gestion de la conflictualité
+ * EN: psychological-safety-continuum → Psychological Safety Continuum
  */
-function slugToLabel(slug: string): string {
-  // Mots qui restent en minuscules (sauf au début)
-  const smallWords = new Set([
-    'de',
-    'la',
-    'le',
-    'et',
-    'ou',
-    'à',
-    'un',
-    'une',
-    'en',
-    'au',
-    'aux',
-    'sur',
-    'sous',
-    'pour',
-    'par',
-    'du',
-    'les',
-  ]);
+function slugToLabel(slug: string, language: 'fr' | 'en'): string {
+  // Mots qui restent en minuscules (sauf au début) selon la langue
+  const smallWords = breadcrumbTranslations[language].smallWords;
 
   const words = slug.split('-').map((word) => word.toLowerCase());
 
@@ -104,7 +91,6 @@ if (items.length > 0) {
   const isEventi = pathSegments.includes('eventi');
   const isAccompagnements = pathSegments.includes('accompagnements');
   const isRessources = pathSegments.includes('ressources') || pathSegments.includes('resources');
-  const isEnglish = pathSegments[0] === 'en';
 
   /**
    * CAS 0 : Ressources avec catégorie
@@ -113,50 +99,51 @@ if (items.length > 0) {
    */
   if (isRessources && pathSegments.length >= 3) {
     // Déterminer le segment ressources (ressources ou resources)
-    const resourcesSegment = isEnglish ? 'resources' : 'ressources';
-    const resourcesLabel = isEnglish ? 'Resources' : 'Ressources';
+    const resourcesSegment = lang === 'en' ? 'resources' : 'ressources';
+    const resourcesLabel = lang === 'en' ? 'Resources' : 'Ressources';
 
     // Extraire la catégorie depuis l'URL
     // Ex: /ressources/idees/mon-article → "idees"
     // Ex: /en/resources/ideas/my-article → "ideas"
-    const categoryFromPath = pathSegments[isEnglish ? 2 : 1];
+    const categoryFromPath = pathSegments[lang === 'en' ? 2 : 1];
 
     // Formater la catégorie : utiliser la prop si fournie, sinon formatter depuis l'URL
-    const categoryLabel = category || slugToLabel(categoryFromPath);
+    const categoryLabel = category || slugToLabel(categoryFromPath, lang);
 
     // Extraire le titre depuis l'URL (dernier segment)
     const titleFromPath = pathSegments[pathSegments.length - 1];
 
     // Formater le titre : utiliser la prop si fournie, sinon formatter depuis l'URL
-    const titleLabel = title || slugToLabel(titleFromPath);
+    const titleLabel = title || slugToLabel(titleFromPath, lang);
 
     // Construire le lien vers les ressources avec le filtre de catégorie appliqué
-    const resourcesBaseUrl = isEnglish ? '/en/resources' : '/ressources';
+    const resourcesBaseUrl = lang === 'en' ? '/en/resources' : '/ressources';
     const resourcesLinkWithFilter = `${resourcesBaseUrl}?category=${categoryFromPath}`;
 
     // Construire le fil d'Ariane à 4 niveaux avec lien filtré pour la catégorie
     breadcrumbItems = [
-      { label: 'Accueil', href: '/' },
+      { label: t.home, href: lang === 'en' ? '/en' : '/' },
       { label: resourcesLabel, href: resourcesBaseUrl },
       { label: categoryLabel, href: resourcesLinkWithFilter },
       { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
     ];
   } else if (isFAQ && pathSegments.length >= 2) {
     // Identifier le dossier faq
-    const folderName = 'faq';
-    const folderLabel = 'FAQ';
+    const folderName = lang === 'en' ? 'faq' : 'faq';
+    const folderLabel = t.faq;
 
-    // Extraire la catégorie depuis l'URL (2ème segment - répertoire)
+    // Extraire la catégorie depuis l'URL (2ème segment ou 3ème si /en/faq)
     // Ex: /faq/categorie/article → "categorie"
-    const categoryFromPath = pathSegments[1];
+    // Ex: /en/faq/categorie/article → "categorie"
+    const categoryFromPath = pathSegments[lang === 'en' ? 2 : 1];
 
     // Formater la catégorie : utiliser la prop si fournie, sinon formatter depuis l'URL
-    // Si category prop existe (ex: "Canto Sardo"), l'utiliser
-    // Sinon, formatter depuis l'URL : "canto-sardo" → "Canto Sardo"
-    const categoryLabel = category || slugToLabel(categoryFromPath);
+    // Si category prop existe (ex: "How to"), l'utiliser
+    // Sinon, formatter depuis l'URL : "how-to" → "How To"
+    const categoryLabel = category || slugToLabel(categoryFromPath, lang);
 
     // Créer le slug de la catégorie pour l'URL
-    // Si category prop existe (ex: "Canto Sardo"), le slugifier → "canto-sardo"
+    // Si category prop existe (ex: "How To"), le slugifier → "how-to"
     // Sinon, utiliser le segment de l'URL en minuscules
     const categorySlug = category
       ? category.toLowerCase().replace(/\s+/g, '-')
@@ -167,39 +154,47 @@ if (items.length > 0) {
     const titleFromPath = pathSegments[pathSegments.length - 1];
 
     // Formater le titre : utiliser la prop si fournie, sinon formatter depuis l'URL
-    // "il-canto-sardo" → "Il Canto Sardo"
-    const titleLabel = title || slugToLabel(titleFromPath);
+    // "how-to-lead" → "How To Lead"
+    const titleLabel = title || slugToLabel(titleFromPath, lang);
+
+    // Construire le lien FAQ
+    const faqBaseUrl = lang === 'en' ? '/en/faq' : '/faq';
 
     // Construire le fil d'Ariane à 4 niveaux
     breadcrumbItems = [
-      { label: 'Accueil', href: '/' },
-      { label: folderLabel, href: `/${folderName}` },
-      { label: categoryLabel, href: `/${folderName}/${categorySlug}` },
+      { label: t.home, href: lang === 'en' ? '/en' : '/' },
+      { label: folderLabel, href: faqBaseUrl },
+      { label: categoryLabel, href: `${faqBaseUrl}/${categorySlug}` },
       { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
     ];
   } else if (isAccompagnements && pathSegments.length >= 2) {
     /**
      * CAS 2 : Accompagnements avec catégorie
-     * Structure attendue : /accompagnements/categorie-slug/titre-slug
-     * Résultat : Home / Accompagnements / Catégorie (ancre) / Titre
+     * Structure attendue : /accompagnements/categorie-slug/titre-slug (FR)
+     *                      /accompagnements/categorie-slug/titre-slug (EN)
+     * Résultat : Home / Services/Accompagnements / Catégorie (ancre) / Titre
      */
-    // Extraire la catégorie depuis l'URL (2ème segment)
-    const categoryFromPath = pathSegments[1];
+    // Extraire la catégorie depuis l'URL (2ème segment ou 3ème si /en/accompagnements)
+    const categoryFromPath = pathSegments[lang === 'en' ? 2 : 1];
 
     // Formater la catégorie : utiliser la prop si fournie, sinon formatter depuis l'URL
-    const categoryLabel = category || slugToLabel(categoryFromPath);
+    const categoryLabel = category || slugToLabel(categoryFromPath, lang);
 
     // Extraire le titre depuis l'URL (dernier segment)
     const titleFromPath = pathSegments[pathSegments.length - 1];
 
     // Formater le titre : utiliser la prop si fournie, sinon formatter depuis l'URL
-    const titleLabel = title || slugToLabel(titleFromPath);
+    const titleLabel = title || slugToLabel(titleFromPath, lang);
+
+    // Construire le lien accompagnements
+    const accompanementsBaseUrl = lang === 'en' ? '/en/services' : '/accompagnements';
+    const accompanementsLabel = t.accompagnements;
 
     // Construire le fil d'Ariane à 4 niveaux avec ancre pour la catégorie
     breadcrumbItems = [
-      { label: 'Accueil', href: '/' },
-      { label: 'Accompagnements', href: '/accompagnements' },
-      { label: categoryLabel, href: `/accompagnements#category-${categoryFromPath}` },
+      { label: t.home, href: lang === 'en' ? '/en' : '/' },
+      { label: accompanementsLabel, href: accompanementsBaseUrl },
+      { label: categoryLabel, href: `${accompanementsBaseUrl}#category-${categoryFromPath}` },
       { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
     ];
   } else if (isEventi && pathSegments.length >= 2) {
@@ -212,11 +207,11 @@ if (items.length > 0) {
     const titleFromPath = pathSegments[pathSegments.length - 1];
 
     // Formater le titre : utiliser la prop si fournie, sinon formatter depuis l'URL
-    const titleLabel = title || slugToLabel(titleFromPath);
+    const titleLabel = title || slugToLabel(titleFromPath, lang);
 
     // Construire le fil d'Ariane à 3 niveaux
     breadcrumbItems = [
-      { label: 'Accueil', href: '/' },
+      { label: t.home, href: lang === 'en' ? '/en' : '/' },
       { label: 'Eventi', href: '/eventi' },
       { label: titleLabel, href: '' },
     ];
@@ -228,7 +223,7 @@ if (items.length > 0) {
      * Le titre du frontmatter override le dernier segment s'il est fourni
      */
     breadcrumbItems = [
-      { label: 'Accueil', href: '/' },
+      { label: t.home, href: lang === 'en' ? '/en' : '/' },
       // Pour chaque segment, construire un élément du fil d'Ariane
       ...pathSegments.map((segment, index) => {
         const isLast = index === pathSegments.length - 1;
@@ -252,7 +247,7 @@ if (items.length > 0) {
         if (isLast && title) {
           label = title;
         } else {
-          label = slugToLabel(segment);
+          label = slugToLabel(segment, lang);
         }
 
         // Pas de href pour le dernier élément (page actuelle)
@@ -273,7 +268,7 @@ if (items.length > 0) {
   N'affiche pas le breadcrumb sur la page d'accueil
 -->
 {!isHomepage && (
-<nav aria-label="Fil d'Ariane" class="breadcrumb-nav">
+<nav aria-label={t.ariaLabel} class="breadcrumb-nav">
   <ol class="breadcrumb-list">
     {
       breadcrumbItems.map((item, index) => {
