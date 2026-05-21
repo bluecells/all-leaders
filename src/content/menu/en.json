@@ -8,13 +8,6 @@
       "submenu": []
     },
     {
-      "label": "Resources",
-      "url": "/en/resources",
-      "type": "link",
-      "hasSubmenu": false,
-      "submenu": []
-    },
-    {
       "label": "FAQ",
       "url": "/en/faq",
       "type": "link",

@@ -81,9 +81,8 @@ if (route === 'blog' || rawPath === 'en/blog') {
 }
 
 /* 3️⃣ Chargement collections */
-const [articles, accompagnements, faq, landingPages] = await Promise.all([
+const [articles, faq, landingPages] = await Promise.all([
   getCollection('articles'),
-  getCollection('accompagnements'),
   getCollection('faq'),
   getCollection('landing-pages'),
 ]);
@@ -132,17 +131,11 @@ if (route.startsWith(resourcesSegment + '/')) {
   type = entry ? 'article' : null;
 }
 
-/* 5️⃣ ACCOMPAGNEMENTS */
-if (!entry) {
-  const serviceSlug = route.split('/').pop();
-  entry = accompagnements.find((r) => {
-    const cleanSlug = (r.data.seoSlug || r.id.split('/').pop())?.replace(/^\/|\/$/g, '');
-    if (r.data.lang !== lang) return false;
-    if (route.startsWith('services/')) return cleanSlug === serviceSlug;
-    return false;
-  });
-  type = entry ? 'room' : null;
-}
+/* 5️⃣ ACCOMPAGNEMENTS - Gérées via routes statiques */
+// Les accompagnements sont servis directement par :
+// - FR: /src/pages/accompagnements/[slug].astro
+// - EN: /src/pages/en/services/[slug].astro
+// Pas de traitement ici
 
 /* 6️⃣ PAGES - Gérées via fichiers .astro, pas de traitement ici */
 // Les pages statiques sont servies directement par Astro

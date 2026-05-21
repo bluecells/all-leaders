@@ -90,6 +90,7 @@ if (items.length > 0) {
   const isFAQ = pathSegments.includes('faq');
   const isEventi = pathSegments.includes('eventi');
   const isAccompagnements = pathSegments.includes('accompagnements');
+  const isServices = pathSegments.includes('services');
   const isRessources = pathSegments.includes('ressources') || pathSegments.includes('resources');
 
   /**
@@ -126,6 +127,26 @@ if (items.length > 0) {
       { label: resourcesLabel, href: resourcesBaseUrl },
       { label: categoryLabel, href: resourcesLinkWithFilter },
       { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
+    ];
+  } else if (isServices && pathSegments.length === 2 && pathSegments[0] === 'en') {
+    /**
+     * CAS 1a : Landing Services EN
+     * Structure attendue : /en/services
+     * Résultat : Home / Services
+     */
+    breadcrumbItems = [
+      { label: t.home, href: '' },
+      { label: t.accompagnements, href: '' }, // Pas de href car on est sur la page actuelle
+    ];
+  } else if (isAccompagnements && pathSegments.length === 1) {
+    /**
+     * CAS 1 : Landing Accompagnements FR
+     * Structure attendue : /accompagnements
+     * Résultat : Home / Accompagnements
+     */
+    breadcrumbItems = [
+      { label: t.home, href: '/' },
+      { label: t.accompagnements, href: '' }, // Pas de href car on est sur la page actuelle
     ];
   } else if (isFAQ && pathSegments.length >= 2) {
     // Identifier le dossier faq
@@ -167,15 +188,14 @@ if (items.length > 0) {
       { label: categoryLabel, href: `${faqBaseUrl}/${categorySlug}` },
       { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
     ];
-  } else if (isAccompagnements && pathSegments.length >= 2) {
+  } else if (isServices && pathSegments.length === 4 && pathSegments[0] === 'en') {
     /**
-     * CAS 2 : Accompagnements avec catégorie
-     * Structure attendue : /accompagnements/categorie-slug/titre-slug (FR)
-     *                      /accompagnements/categorie-slug/titre-slug (EN)
-     * Résultat : Home / Services/Accompagnements / Catégorie (ancre) / Titre
+     * CAS 2a : Services détail (pages EN)
+     * Structure attendue : /en/services/categorie-slug/titre-slug
+     * Résultat : Home / Services / Catégorie (ancre) / Titre
      */
-    // Extraire la catégorie depuis l'URL (2ème segment ou 3ème si /en/accompagnements)
-    const categoryFromPath = pathSegments[lang === 'en' ? 2 : 1];
+    // Extraire la catégorie depuis l'URL (2ème segment, index 2 car pathSegments[0] = 'en')
+    const categoryFromPath = pathSegments[2];
 
     // Formater la catégorie : utiliser la prop si fournie, sinon formatter depuis l'URL
     const categoryLabel = category || slugToLabel(categoryFromPath, lang);
@@ -186,15 +206,36 @@ if (items.length > 0) {
     // Formater le titre : utiliser la prop si fournie, sinon formatter depuis l'URL
     const titleLabel = title || slugToLabel(titleFromPath, lang);
 
-    // Construire le lien accompagnements
-    const accompanementsBaseUrl = lang === 'en' ? '/en/services' : '/accompagnements';
-    const accompanementsLabel = t.accompagnements;
+    // Construire le fil d'Ariane à 4 niveaux avec ancre pour la catégorie
+    breadcrumbItems = [
+      { label: t.home, href: '' },
+      { label: t.accompagnements, href: '/en/services' },
+      { label: categoryLabel, href: `/en/services#category-${categoryFromPath}` },
+      { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
+    ];
+  } else if (isAccompagnements && pathSegments.length === 3) {
+    /**
+     * CAS 2 : Accompagnements détail (pages FR)
+     * Structure attendue : /accompagnements/categorie-slug/titre-slug
+     * Résultat : Home / Accompagnements / Catégorie (ancre) / Titre
+     */
+    // Extraire la catégorie depuis l'URL (2ème segment, index 1 car pathSegments[0] = 'accompagnements')
+    const categoryFromPath = pathSegments[1];
+
+    // Formater la catégorie : utiliser la prop si fournie, sinon formatter depuis l'URL
+    const categoryLabel = category || slugToLabel(categoryFromPath, lang);
+
+    // Extraire le titre depuis l'URL (dernier segment)
+    const titleFromPath = pathSegments[pathSegments.length - 1];
+
+    // Formater le titre : utiliser la prop si fournie, sinon formatter depuis l'URL
+    const titleLabel = title || slugToLabel(titleFromPath, lang);
 
     // Construire le fil d'Ariane à 4 niveaux avec ancre pour la catégorie
     breadcrumbItems = [
-      { label: t.home, href: lang === 'en' ? '' : '/' },
-      { label: accompanementsLabel, href: accompanementsBaseUrl },
-      { label: categoryLabel, href: `${accompanementsBaseUrl}#category-${categoryFromPath}` },
+      { label: t.home, href: '/' },
+      { label: t.accompagnements, href: '/accompagnements' },
+      { label: categoryLabel, href: `/accompagnements#category-${categoryFromPath}` },
       { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
     ];
   } else if (isEventi && pathSegments.length >= 2) {

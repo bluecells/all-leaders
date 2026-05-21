@@ -1,9 +1,9 @@
 redirects:
-  - from: /services
-    to: /accompagnements
+  # Ancien format avec catégorie FR vers nouveau format (sans catégorie)
+  - from: accompagnements/leadership-development/feminine-leadership
+    to: /accompagnements/leadership-feminin
     status: '301'
-    note: 'Renommage collection services → accompagnements'
-  - from: /services/*
-    to: /accompagnements/*
-    status: '301'
-    note: 'Redirection wildcard services → accompagnements'
+    note: 'Ancien format avec catégorie → nouveau format simple'
+  # Ancien format avec catégorie EN vers nouveau format (sans catégorie)
+  # Note: Les anciennes URLs EN avec /services/[categorie]/[slug] sont maintenant /en/services/[slug]
+  # Ajouter manuellement si besoin une fois les anciennes URLs identifiées
