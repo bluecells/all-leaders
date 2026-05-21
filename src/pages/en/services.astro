@@ -102,190 +102,302 @@ const sortedCategories = categorie.sort((a, b) => {
         document.head.appendChild(script);
       }),
     ]).then(() => {
-      if (typeof gsap !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger);
 
-        // Animation for modalite cards
-        document.querySelectorAll('.modalite-card').forEach((card, index) => {
-          gsap.fromTo(
-            card,
-            { autoAlpha: 0, y: 30 },
-            {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.6,
-              delay: index * 0.1,
-              scrollTrigger: {
-                trigger: card,
-                start: 'top 80%',
-                toggleActions: 'play none none none',
-              },
-            }
-          );
-        });
-      }
+      // On initialise d'abord vos animations pour stabiliser le layout
+      initAnimation();
+
+      // On gère l'ancre immédiatement après
+      handleAnchorScroll();
     });
+
+    function initAnimation() {
+      const navLinks = document.querySelectorAll('.category-nav-link');
+      const arrowContainer = document.querySelector('.arrow-container');
+
+      if (navLinks.length > 0) {
+        gsap.set([navLinks, arrowContainer], { opacity: 1 });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.categories-nav',
+            start: 'top bottom-=120px',
+            toggleActions: 'play none none none',
+          },
+        });
+
+        tl.from(navLinks, {
+          opacity: 0,
+          duration: 0.5,
+          stagger: {
+            each: 0.4,
+            from: 'end',
+          },
+          ease: 'power1.in',
+        }).from(
+          arrowContainer,
+          {
+            opacity: 0,
+            y: 100,
+            scaleY: 0,
+            transformOrigin: 'bottom center',
+            duration: 2.4,
+            ease: 'power1.out',
+          },
+          '-=1.2'
+        );
+      }
+    }
+
+    // Nouvelle fonction pour gérer le défilement précis vers l'ancre
+    function handleAnchorScroll() {
+      const hash = window.location.hash;
+      if (!hash) return;
+
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      // On force ScrollTrigger à rafraîchir ses calculs de hauteurs de page
+      ScrollTrigger.refresh();
+
+      // On laisse un micro-délai pour que le layout se stabilise graphiquement
+      setTimeout(() => {
+        // Calcul de la position de l'élément par rapport au haut du document
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+
+        // Ajustement de l'offset (ex: 90px pour compenser un header fixe si vous en avez un)
+        const offset = 90;
+
+        window.scrollTo({
+          top: targetPosition - offset,
+          behavior: 'smooth', // Rendu propre et fluide
+        });
+      }, 50);
+    }
   </script>
+</Layout>
+<style>
+  h1 {
+    margin-bottom: 0;
+    padding-bottom: 1rem;
+  }
+  h2 {
+    margin: 0 !important;
+    padding: 0 0 2rem !important;
+    max-width: 100%;
+    text-align: center;
+    font-size: large;
+  }
 
-  <style>
-    h2 {
-      margin: 0 !important;
-      padding: 0 0 2rem !important;
-      max-width: 100%;
-      text-align: center;
-      font-size: large;
-    }
+  /* Navigation des catégories d'accompagnements */
+  .categories-nav {
+    width: 100%;
+    background: white;
+    border-top: 1px solid #e8e8e8;
+    padding: 2.5rem 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
 
-    .categories-nav {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 2rem 0;
-    }
+  .categories-nav-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 2rem;
+  }
 
-    .categories-nav-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
+  .category-nav-link {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid rgba(61, 62, 64, 0.782);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 0.7rem !important;
+    display: block;
+    text-align: center;
+    width: 180px;
+  }
 
-    .category-nav-link {
-      padding: 0.75rem 1.5rem;
-      border: 2px solid #1093ad;
-      border-radius: 0.5rem;
-      color: #1093ad;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-    }
+  .category-nav-link:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: white;
+  }
 
-    .category-nav-link:hover {
-      background-color: #1093ad;
-      color: white;
-      transform: translateY(-2px);
-    }
+  .category-nav-link-5:hover {
+    background-color: #172432;
+  }
 
-    .arrow-container {
-      position: relative;
-      width: 100px;
-      height: 50px;
-    }
+  .category-nav-link-4:hover {
+    background-color: #6b7fa3;
+  }
 
-    .arrow-container svg {
-      width: 100%;
-      height: 100%;
-    }
+  .category-nav-link-3:hover {
+    background-color: #9e8aa8;
+  }
 
-    .arrow-colours {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        #1093ad 0%,
-        #70a5af 25%,
-        #a0d0d8 50%,
-        #70a5af 75%,
-        #1093ad 100%
-      );
-      clip-path: polygon(0 100%, 50% 0%, 100% 100%);
-    }
+  .category-nav-link-2:hover {
+    background-color: #9e8aa8;
+  }
 
-    .modalites-section {
-      padding: 3rem 1rem;
-      background-color: #f8f9fa;
-    }
+  .category-nav-link-1:hover {
+    background-color: #c65151;
+  }
 
+  .arrow-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100px;
+    height: auto;
+  }
+  .arrow-colours {
+    background: linear-gradient(0deg, #c65151, #9e8aa8, #9e8aa8, #6b7fa3, #172432);
+    /* Définit la largeur à 100px et la hauteur à 100% */
+    background-size: 50px 100%;
+    /* Empêche le dégradé de se répéter sur toute la largeur */
+    background-repeat: no-repeat;
+    /* Optionnel : centre le dégradé ou le met à gauche/droite */
+    background-position: center;
+
+    padding: 18vh 2rem;
+  }
+
+  /* Section des modalités */
+  .modalites-section {
+    width: 100%;
+    background-color: #fafafa;
+    padding: 1.25rem 0;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+  }
+
+  .modalites-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  @media (min-width: 768px) {
     .modalites-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 2rem auto;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .categories-nav {
+      padding: 2.5rem 1.5rem;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .category-nav-link {
+      padding: 0.75rem 0.75rem;
+      border-radius: 4px;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid rgba(61, 62, 64, 0.782);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 0.8rem;
+      display: block;
+      text-align: center;
+      width: 300px;
+    }
+  }
+
+  .modalite-card {
+    padding: 0.75rem 1rem 0.1rem 1rem;
+    border-radius: 4px;
+    background: white;
+    border: 1px solid #e8e8e8;
+    transition: all 0.2s ease;
+  }
+
+  .modalite-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .modalite-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0rem;
+  }
+
+  @media (min-width: 768px) {
+    .modalite-header {
+      justify-content: flex-start;
+      margin-bottom: 0.5rem;
     }
 
     .modalite-card {
-      background: white;
-      border: 1px solid #e0e0e0;
-      border-radius: 0.5rem;
-      padding: 1.5rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      padding: 1.05rem;
     }
+  }
 
-    .modalite-card:hover {
-      box-shadow: 0 4px 12px rgba(16, 147, 173, 0.15);
-      transform: translateY(-2px);
+  @media (min-width: 1024px) {
+    .modalites-container {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 1.25rem;
     }
+  }
 
-    .modalite-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
+  .modalite-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
 
-    .modalite-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+  .modalite-dot-investigation {
+    background-color: #8ac20a;
+  }
+  .modalite-dot-inspiration {
+    background-color: #ddb800;
+  }
+  .modalite-dot-action {
+    background-color: #08aac2;
+  }
+  .modalite-dot-immersion {
+    background-color: #b577f0;
+  }
 
-    .modalite-dot-investigation {
-      background-color: #1093ad;
-    }
+  .modalite-title {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin: 0;
+    color: var(--color-brand-primary);
+  }
 
-    .modalite-dot-inspiration {
-      background-color: #70a5af;
-    }
+  .modalite-objective {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #666;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
 
-    .modalite-dot-action {
-      background-color: #a0d0d8;
-    }
+  .modalite-description {
+    font-size: 0.7rem;
+    line-height: 1.5;
+    color: #555;
+    margin: 0;
+  }
 
-    .modalite-dot-immersion {
-      background-color: #52b5c0;
+  @media (min-width: 1929px) {
+    .category-nav-link {
+      width: 400px;
     }
-
-    .modalite-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin: 0;
-    }
-
-    .modalite-objective {
-      color: #1093ad;
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin: 0.5rem 0;
-    }
-
-    .modalite-description {
-      color: #666;
-      font-size: 0.9rem;
-      margin: 0.75rem 0 0;
-      line-height: 1.5;
-    }
-
-    @media (min-width: 768px) {
-      .modalites-container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .modalites-container {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-  </style>
-</Layout>
+  }
+</style>
