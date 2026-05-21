@@ -1,35 +1,291 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ActionBar from '../../components/ActionBar.astro';
-import Accompagnements from '../../components/Accompagnements.astro';
+import AccompagnementsGrid from '../../components/AccompagnementsGrid.astro';
+import { getCollection } from 'astro:content';
+
+const modalites = await getCollection('modalites-intervention');
+const sortedModalites = modalites.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
+const categorie = await getCollection('accompagnements-categories');
+const sortedCategories = categorie.sort((a, b) => {
+  const orderA = a.data.order || 999;
+  const orderB = b.data.order || 999;
+  return orderB - orderA;
+});
 ---
 
 <Layout
-  title="Services - All Leaders"
-  metaTitle="Our services - All Leaders Initiative"
-  metaDescription="Discover our services in performance diagnostics, training, coaching and consulting."
+  title="The Services of All Leaders Initiative"
+  metaTitle="Our Services - All Leaders Initiative"
+  metaDescription="Develop the collective performance of your teams and their leaders! Coaching, LBI diagnostic and mental health: we transform your obstacles into levers for action."
   lang="en"
 >
-  <div class="mx-auto px-4 py-12">
-    <h1 class="text-limolo-green mb-8 text-center">Our services</h1>
-    <h2>Diagnostic and development solutions for your organizations</h2>
-    <!-- Accompagnements Component -->
-    <Accompagnements lang="en" fullBleed={true} />
+  <div class="flex flex-col justify-center align-items mx-auto min-h-[83vh]">
+    <h1 class="mb-8 text-3xl md:text-6xl text-center">Our Services</h1>
+    <h2>Diagnostic and Development Solutions for Your Organisations</h2>
+
+    <!-- Navigation des catégories d'accompagnements -->
+    <nav class="categories-nav">
+      <div class="categories-nav-wrapper">
+        {
+          sortedCategories.map((cat) => (
+            <a
+              href={`#category-${cat.data.slug_en}`}
+              class={`category-nav-link category-nav-link-${cat.data.order}`}
+            >
+              {cat.data.name_en}
+            </a>
+          ))
+        }
+      </div>
+      <div class="arrow-container">
+        <svg width="100" height="50" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 50L50 0L100 50Z" fill="#182433"></path>
+        </svg>
+        <div class="arrow-colours"></div>
+      </div>
+    </nav>
   </div>
 
-  <ActionBar />
-</Layout>
+  <!-- Section des modalités avec descriptifs -->
 
-<style>
-  h1 {
-    margin-bottom: 0;
-    padding-bottom: 1rem;
-  }
-  h2 {
-    margin: 0 !important;
-    padding: 0 0 2rem !important;
-    max-width: 100%;
-    text-align: center;
-    font-size: large;
-  }
-</style>
+  <section class="modalites-section">
+    <h2 class="text-2xl! md:text-4xl font-bold pt-4! px-20!">4 Modes of Intervention</h2>
+    <div class="modalites-container">
+      {
+        sortedModalites.map((modalite) => {
+          const objectiveMap = {
+            investigation: 'Conduct an Assessment',
+            inspiration: 'Raise Awareness',
+            action: 'Intervene',
+            immersion: 'Learn Through Experience',
+          };
+          const objective = objectiveMap[modalite.data.slug as keyof typeof objectiveMap] || '';
+
+          return (
+            <div id={modalite.data.slug} class={`modalite-card modalite-${modalite.data.slug}`}>
+              <div class="modalite-header">
+                <span class={`modalite-dot modalite-dot-${modalite.data.slug}`} />
+                <h3 class="modalite-title">{modalite.data.name_en}</h3>
+              </div>
+              <p class="modalite-objective">{objective}</p>
+              <p class="modalite-description hidden md:block">{modalite.data.description_en}</p>
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <!-- AccompagnementsGrid Component avec cards cliquables -->
+  <AccompagnementsGrid lang="en" fullBleed={true} />
+
+  <script is:inline>
+    // 1. BLOCAGE IMMÉDIAT : On empêche le navigateur de sauter sauvagement
+    // avant que les CDN ne soient chargés
+    if (window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+
+    // Charger GSAP depuis CDN
+    Promise.all([
+      new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js';
+        script.onload = resolve;
+        document.head.appendChild(script);
+      }),
+      new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js';
+        script.onload = resolve;
+        document.head.appendChild(script);
+      }),
+    ]).then(() => {
+      if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animation for modalite cards
+        document.querySelectorAll('.modalite-card').forEach((card, index) => {
+          gsap.fromTo(
+            card,
+            { autoAlpha: 0, y: 30 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.6,
+              delay: index * 0.1,
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 80%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        });
+      }
+    });
+  </script>
+
+  <style>
+    h2 {
+      margin: 0 !important;
+      padding: 0 0 2rem !important;
+      max-width: 100%;
+      text-align: center;
+      font-size: large;
+    }
+
+    .categories-nav {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .categories-nav-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .category-nav-link {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid #1093ad;
+      border-radius: 0.5rem;
+      color: #1093ad;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .category-nav-link:hover {
+      background-color: #1093ad;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .arrow-container {
+      position: relative;
+      width: 100px;
+      height: 50px;
+    }
+
+    .arrow-container svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .arrow-colours {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        #1093ad 0%,
+        #70a5af 25%,
+        #a0d0d8 50%,
+        #70a5af 75%,
+        #1093ad 100%
+      );
+      clip-path: polygon(0 100%, 50% 0%, 100% 100%);
+    }
+
+    .modalites-section {
+      padding: 3rem 1rem;
+      background-color: #f8f9fa;
+    }
+
+    .modalites-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
+
+    .modalite-card {
+      background: white;
+      border: 1px solid #e0e0e0;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .modalite-card:hover {
+      box-shadow: 0 4px 12px rgba(16, 147, 173, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .modalite-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .modalite-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .modalite-dot-investigation {
+      background-color: #1093ad;
+    }
+
+    .modalite-dot-inspiration {
+      background-color: #70a5af;
+    }
+
+    .modalite-dot-action {
+      background-color: #a0d0d8;
+    }
+
+    .modalite-dot-immersion {
+      background-color: #52b5c0;
+    }
+
+    .modalite-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0;
+    }
+
+    .modalite-objective {
+      color: #1093ad;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin: 0.5rem 0;
+    }
+
+    .modalite-description {
+      color: #666;
+      font-size: 0.9rem;
+      margin: 0.75rem 0 0;
+      line-height: 1.5;
+    }
+
+    @media (min-width: 768px) {
+      .modalites-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .modalites-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+</Layout>
