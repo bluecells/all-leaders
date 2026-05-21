@@ -29,6 +29,6 @@ Consulter **[DOCUMENTATION.md](./DOCUMENTATION.md)** pour:
 
 ## Github
 
-- Origin: https://github.com/bluecells/limolo.git
-- Branches principales: `master` (production), `elise` (travail FR)
-- Keystatic Cloud: blue-cells-editors/limolo
+- Origin: https://github.com/bluecells/all-leaders.git
+- Branches principales: `main` (production), `elise` (travail FR)
+- Keystatic Cloud: blue-cells-editors/ali

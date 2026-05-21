@@ -1,8 +1,8 @@
-# Documentation Limolo House - Site Web
+# Documentation All Leaders Initiative - Site Web
 
 ## 1. Vue d'ensemble du projet
 
-Limolo House est un B&B éco-responsable situé à Cabras, en Sardaigne. Le site web est une application multilingue (IT/FR/EN) construite avec des technologies modernes pour offrir une expérience performante et maintenable.
+All Leaders Initiative est une société de conseil en leadership et performance collective basée à Paris. Le site web est une application multilingue (FR/EN) construite avec des technologies modernes pour offrir une expérience performante et maintenable.
 
 **Technologies utilisées:**
 
@@ -11,11 +11,12 @@ Limolo House est un B&B éco-responsable situé à Cabras, en Sardaigne. Le site
 - **Tailwind CSS v4** - Framework CSS utilitaire
 - **React** - Pour les composants interactifs
 - **TypeScript** - Typage statique
+- **GSAP** - Animations performantes
 
 **Architecture générale:**
 
 - Mode SSR (Server-Side Rendering) avec Node adapter
-- Site multilingue (IT par défaut, FR/EN avec préfixe)
+- Site bilingue (FR par défaut, EN avec préfixe `/en/`)
 - Gestion de contenu via Keystatic Cloud
 - Déploiement sur O2Switch
 
@@ -54,9 +55,9 @@ Le site sera accessible sur `http://localhost:4321`
 
 **Configuration i18n:**
 
-- Locale par défaut: Italien (`it`)
-- Locales supportées: `it`, `fr`, `en`
-- Italien sans préfixe d'URL, FR et EN avec préfixe (`/fr/`, `/en/`)
+- Locale par défaut: Français (`fr`)
+- Locales supportées: `fr`, `en`
+- Français sans préfixe d'URL, EN avec préfixe (`/en/`)
 
 **Intégrations:**
 
@@ -71,13 +72,15 @@ Le site sera accessible sur `http://localhost:4321`
 
 **Storage:**
 
-- **Production:** Cloud (blue-cells-editors/all-leaders)
+- **Production:** Cloud (blue-cells-editors/limolo)
 - **Développement:** Local (fichiers locaux)
 
 **Accès:**
 
 - Interface Keystatic disponible sur `/keystatic` en mode dev
 - Interface disponible sur `/edit` en production
+
+**Note:** Vérifier que le projet Keystatic Cloud correct est utilisé (référence potentiellement incorrecte).
 
 ## 3. Architecture du site
 
@@ -88,35 +91,88 @@ all-leaders/
 ├── src/
 │   ├── pages/              # Pages statiques et routing dynamique
 │   │   ├── [...route].astro   # Router principal
-│   │   ├── all-leadersgiche.astro  # Landing blog IT
-│   │   ├── fr/all-leadersgiche.astro  # Blog FR
-│   │   ├── en/all-leadersgiche.astro  # Blog EN
-│   │   ├── checkout.astro      # Page réservation
-│   │   ├── 404.astro          # Pages 404 localisées
-│   │   └── edit.astro         # Interface Keystatic
+│   │   ├── index.astro        # Homepage FR (avec animations GSAP)
+│   │   ├── accompagnements.astro  # Landing services FR
+│   │   ├── ressources.astro       # Landing blog FR
+│   │   ├── faq.astro              # FAQ FR
+│   │   ├── contact.astro          # Contact FR
+│   │   ├── cookies.astro          # Politique cookies FR
+│   │   ├── privacy.astro          # Politique confidentialité FR
+│   │   ├── 404.astro              # Page 404 localisée
+│   │   ├── edit.astro             # Interface Keystatic
+│   │   └── en/                    # Pages EN
+│   │       ├── index.astro        # Homepage EN
+│   │       ├── services.astro     # Services EN
+│   │       ├── resources.astro    # Resources EN
+│   │       ├── faq.astro          # FAQ EN
+│   │       ├── contact.astro      # Contact EN
+│   │       ├── cookies.astro      # Cookies EN
+│   │       ├── privacy.astro      # Privacy EN
+│   │       └── 404.astro          # 404 EN
 │   ├── content/           # Collections Keystatic
-│   │   ├── pages/         # Pages de contenu (it/, fr/)
-│   │   ├── articles/      # Articles de blog (it/, fr/)
-│   │   ├── rooms/         # Chambres (it/, fr/)
-│   │   ├── faq/          # Questions/réponses (it/, fr/)
-│   │   ├── categories/   # Catégories YAML
-│   │   ├── tags/         # Tags YAML
-│   │   └── redirects/    # Redirections 301/302
+│   │   ├── landing-pages/ # Pages dynamiques (vide actuellement)
+│   │   ├── articles/      # Articles de blog
+│   │   │   ├── fr/        # Articles français
+│   │   │   └── en/        # Articles anglais (Phase 2)
+│   │   ├── accompagnements/  # Services/accompagnements
+│   │   │   ├── fr/           # Services français (YAML)
+│   │   │   └── en/           # Services anglais (Phase 2)
+│   │   ├── faq/          # Questions/réponses
+│   │   │   ├── fr/       # FAQ françaises
+│   │   │   └── en/       # FAQ anglaises (Phase 2)
+│   │   ├── categories/   # Catégories (YAML, bilingue)
+│   │   ├── tags/         # Tags (YAML, bilingue)
+│   │   ├── accompagnements-categories/  # Catégories de services
+│   │   ├── modalites-intervention/      # Types d'intervention
+│   │   ├── menu/         # Menus de navigation
+│   │   │   ├── fr.json
+│   │   │   └── en.json
+│   │   └── redirects.yaml  # Redirections 301/302
 │   ├── layouts/          # Layouts Astro
-│   │   ├── Layout.astro       # Layout principal
-│   │   ├── LayoutBlog.astro   # Layout articles
-│   │   ├── LayoutRooms.astro  # Layout chambres
-│   │   └── LayoutFaq.astro    # Layout FAQ
+│   │   ├── Layout.astro           # Layout principal
+│   │   ├── LayoutBlog.astro       # Layout articles
+│   │   ├── LayoutAccompagnements.astro  # Layout services
+│   │   └── LayoutFaq.astro        # Layout FAQ
 │   ├── components/       # Composants globaux
+│   │   ├── Header.astro          # Navigation + language switcher
+│   │   ├── Footer.astro          # Footer bilingue
+│   │   ├── Head.astro            # Meta tags, SEO, hreflang
+│   │   ├── Blog.astro            # Listing articles (filtre lang)
+│   │   ├── FAQ.astro             # Accordion FAQ (filtre lang)
+│   │   ├── AccompagnementsGrid.astro  # Grille services (filtre lang)
+│   │   ├── Accompagnements.astro # Composant services
+│   │   ├── ActionBar.astro       # Barre d'action flottante
+│   │   ├── HeroAnimated.astro    # Hero avec animations GSAP
+│   │   ├── StatsAnimated.astro   # Stats animées
+│   │   ├── CookieConsent.astro   # Gestion consentement cookies
+│   │   ├── NewsletterPopup.astro # Popup newsletter
+│   │   └── UI/           # Composants UI réutilisables
 │   ├── content-components/  # Composants Markdoc (TSX)
+│   │   ├── hero.tsx
+│   │   ├── ctaButton.tsx
+│   │   ├── notaBene.tsx
+│   │   ├── googleMaps.tsx
+│   │   ├── instaCarousel.tsx
+│   │   └── ...
 │   ├── data/            # Traductions centralisées
-│   ├── styles/          # global.css
-│   └── utils/           # Utilitaires (hreflang, etc.)
+│   │   ├── translations.ts           # Registry
+│   │   ├── commonTranslations.ts     # Textes communs
+│   │   ├── footerTranslations.ts     # Footer
+│   │   ├── blogTranslations.ts       # Blog
+│   │   ├── actionBarTranslations.ts  # ActionBar
+│   │   ├── contactFormTranslations.ts # Formulaire contact
+│   │   └── ...
+│   ├── styles/          # Styles globaux
+│   │   └── global.css
+│   ├── utils/           # Utilitaires
+│   │   └── hreflang.ts  # Construction URLs alternatives
+│   └── consts.ts        # Constantes (site, metadata)
 ├── public/              # Assets statiques
 ├── keystatic.config.tsx # Configuration Keystatic
 ├── astro.config.mjs    # Configuration Astro
 ├── tailwind.config.js  # Configuration Tailwind
-└── deploy.sh           # Script de déploiement
+├── deploy.sh           # Script de déploiement
+└── DOCUMENTATION.md    # Ce fichier
 ```
 
 ### 3.2 Système de routing
@@ -128,41 +184,57 @@ Le fichier `[...route].astro` gère toutes les routes dynamiques du site.
 **Ordre de priorité:**
 
 1. **Redirects** - Vérification des redirections Keystatic
-2. **Articles** - Articles de blog (`/all-leadersgiche/{categorySlug}/{articleSlug}`)
-3. **Rooms** - Chambres (`/camere/`, `/chambres/`, `/rooms/`)
-4. **Pages** - Pages de contenu
+2. **Articles** - Articles de blog (`/ressources/{categorySlug}/{articleSlug}`)
+3. **Accompagnements** - Services (`/services/{serviceSlug}` ou `/accompagnements/{serviceSlug}`)
+4. **Landing Pages** - Pages dynamiques
 5. **FAQ** - Questions/réponses
 6. **404** - Redirection vers page 404 localisée
 
 **Parsing de langue:**
 
-- IT: Pas de préfixe (ex: `/le-camere`)
-- FR: Préfixe `/fr/` (ex: `/fr/les-chambres`)
-- EN: Préfixe `/en/` (ex: `/en/rooms`)
+- FR: Pas de préfixe (ex: `/ressources`)
+- EN: Préfixe `/en/` (ex: `/en/resources`)
 
 **Patterns d'URL par type:**
 
-| Type     | Italien                                     | Français                                       | Anglais                                        |
-| -------- | ------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| Pages    | `/{seoSlug}`                                | `/fr/{seoSlug}`                                | `/en/{seoSlug}`                                |
-| Articles | `/all-leadersgiche/{categorySlug}/{articleSlug}` | `/fr/all-leadersgiche/{categorySlug}/{articleSlug}` | `/en/all-leadersgiche/{categorySlug}/{articleSlug}` |
-| Rooms    | `/camere/{seoSlug}`                         | `/fr/chambres/{seoSlug}`                       | `/en/rooms/{seoSlug}`                          |
-| FAQ      | `/faq/{seoSlug}`                            | `/fr/faq/{seoSlug}`                            | `/en/faq/{seoSlug}`                            |
+| Type     | Français                                                      | Anglais                                      |
+| -------- | ------------------------------------------------------------- | -------------------------------------------- |
+| Pages    | `/{seoSlug}`                                                  | `/en/{seoSlug}`                              |
+| Articles | `/ressources/{categorySlug}/{articleSlug}`                    | `/en/resources/{categorySlug}/{articleSlug}` |
+| Services | `/services/{serviceSlug}` ou `/accompagnements/{serviceSlug}` | `/en/services/{serviceSlug}`                 |
+| FAQ      | `/faq/{categorySlug}/{faqSlug}`                               | `/en/faq/{categorySlug}/{faqSlug}`           |
+
+**Note:** Il y a une incohérence dans le routing FR : certains URLs utilisent `/services/`, d'autres `/accompagnements/`. À standardiser.
 
 #### Pages statiques
 
-- `/pages/all-leadersgiche.astro` - Landing blog IT
-- `/pages/fr/all-leadersgiche.astro` - Landing blog FR
-- `/pages/en/all-leadersgiche.astro` - Landing blog EN
-- `/pages/checkout.astro` - Page de réservation avec booking engine
-- `/pages/404.astro` - Pages d'erreur localisées (IT/FR/EN)
-- `/pages/edit.astro` - Interface Keystatic (production)
+**Pages françaises:**
+
+- `/` - Homepage (élaborée avec animations GSAP)
+- `/accompagnements` - Landing services
+- `/ressources` - Landing blog
+- `/faq` - Landing FAQ
+- `/contact` - Page contact avec formulaire
+- `/cookies` - Politique cookies
+- `/privacy` - Politique confidentialité
+- `/404` - Page erreur
+
+**Pages anglaises:**
+
+- `/en/` - Homepage EN
+- `/en/services` - Services EN
+- `/en/resources` - Resources EN
+- `/en/faq` - FAQ EN
+- `/en/contact` - Contact EN
+- `/en/cookies` - Cookies policy EN
+- `/en/privacy` - Privacy policy EN
+- `/en/404` - Error page EN
 
 ### 3.3 Collections Keystatic
 
 #### Singletons
 
-**menuIT, menuFR, menuEN** - Menus de navigation
+**menuFR, menuEN** - Menus de navigation
 
 - Structure: Items principaux + sous-menus optionnels
 - Champs: label, url, subItems[]
@@ -170,101 +242,144 @@ Le fichier `[...route].astro` gère toutes les routes dynamiques du site.
 
 #### Collections
 
-**pages** (`src/content/pages/**`)
+**landing-pages** (`src/content/landing-pages/`)
 
-Organisation hiérarchique par langue et thématique (cabras-e-il-sinis/, ospitalita-sostenibile/, etc.)
+Pages dynamiques avec contenu Markdoc.
 
 **Champs:**
 
 - `title` - Titre de la page (H1)
+- `seoSlug` - Slug de l'URL
+- `lang` - Langue (fr/en)
 - `metaTitle` - Titre SEO (meta title)
 - `metaDescription` - Description SEO
-- `seoSlug` - Slug de l'URL
-- `lang` - Langue (it/fr/en)
-- `jsonType` - Type JSON-LD (page par défaut)
-- `ogImage` - Image Open Graph (optionnel)
 - `featuredPhoto` - Photo principale (image, alt)
-- `content` - Contenu Markdoc avec support des 23 composants UI
+- `content` - Contenu Markdoc avec support des composants UI
 
-**rooms** (`src/content/rooms/**`)
+**Status:** Collection vide actuellement.
 
-Chambres d'hôtel par langue (it/, fr/)
+---
 
-**Champs:**
+**articles** (`src/content/articles/`)
 
-- `roomId` - ID pour le booking engine
-- `nameDisplay` - Nom d'affichage
-- `punchline` - Phrase d'accroche
-- `amenity1`, `amenity2`, `amenity3` - 3 caractéristiques principales
-- `photos` - Max 6 photos (image, alt)
-- `content` - Description Markdoc
-- JSON-LD type: `hotelRoom`
-
-**articles** (`src/content/articles/**`)
-
-Blog organisé par langue (it/, fr/)
+Articles de blog organisés par langue.
 
 **Champs:**
 
 - `title` - Titre de l'article
+- `h1Title` - Titre H1 (si différent du title)
 - `seoSlug` - Slug de l'URL
-- `publishDate` - Date de publication
-- `featured` - Article mis en avant (boolean)
 - `category` - Catégorie (relationship)
 - `tags` - Tags (array)
+- `publishDate` - Date de publication
 - `excerpt` - Extrait court
-- `featuredPhoto` - Photo principale
+- `featuredPhoto` - Photo principale (image, alt)
 - `metaTitle`, `metaDescription` - SEO
 - `content` - Contenu Markdoc
 - JSON-LD type: `blog`
 
-**faq** (`src/content/faq/**`)
+**Organisation:**
 
-Questions/réponses par langue
+- Articles français : `articles/fr/*.mdoc` (~20+ articles)
+- Articles anglais : `articles/en/*.mdoc` (Phase 2)
+
+---
+
+**accompagnements** (`src/content/accompagnements/`)
+
+Services et accompagnements en format YAML.
+
+**Champs:**
+
+- `title` - Titre du service
+- `slug_fr` - Slug français
+- `slug_en` - Slug anglais (pour Phase 2)
+- `categorie` - Catégorie (diagnostic, coaching, etc.)
+- `type` - Type (equipe, individuel, organisation)
+- `modalite` - Modalité d'intervention
+- `description` - Description courte
+- `long_description` - Description longue (Markdown)
+- `USP1`, `USP2`, `USP3`, `USP4`, `USP5` - Points clés (Unique Selling Points)
+- `image` - Image du service
+- `order` - Ordre d'affichage
+
+**Organisation:**
+
+- Services français : `accompagnements/fr/*.yaml` (~17 services)
+- Services anglais : `accompagnements/en/*.yaml` (Phase 2)
+
+---
+
+**faq** (`src/content/faq/`)
+
+Questions/réponses organisées par langue.
 
 **Champs:**
 
 - `question` - Question (titre)
 - `answer` - Réponse (Markdoc)
 - `category` - Catégorie
+- `lang` - Langue (fr/en)
 - `order` - Ordre d'affichage
-- `tag_slug` - Slug du tag (auto-généré par Keystatic)
 - `metaTitle`, `metaDescription` - SEO
 - JSON-LD type: `faq`
 
-**categories** (`src/content/categories/*`)
+**Organisation:**
 
-Format: YAML
+- FAQ françaises : `faq/fr/*.mdoc`
+- FAQ anglaises : `faq/en/*.mdoc` (Phase 2)
 
-**Champs localisés:**
+---
 
-- `name_it`, `name_fr`, `name_en` - Noms
-- `slug_it`, `slug_fr`, `slug_en` - Slugs pour URLs
-- `description_it`, `description_fr`, `description_en` - Descriptions
+**categories** (`src/content/categories/*.yaml`)
 
-**5 catégories:**
+Catégories d'articles en YAML avec champs localisés.
 
-1. eventi-green
-2. soggiorno-eco
-3. sostenibilita
-4. territorio
-5. turismo-responsabile
+**Champs:**
 
-**tags** (`src/content/tags/*`)
+- `name_fr`, `name_en` - Noms localisés
+- `slug_fr`, `slug_en` - Slugs pour URLs localisés
+- `description_fr`, `description_en` - Descriptions localisées
+- `color` - Couleur associée (hex)
 
-Format: YAML - Structure identique aux catégories
+---
 
-**5 tags:**
+**tags** (`src/content/tags/*.yaml`)
 
-1. bioarchittura
-2. hiking
-3. sardegna
-4. territorio
-5. zone-umide
+Tags d'articles - structure identique aux catégories.
 
-**redirects** (`src/content/redirects/*`)
+---
 
-Gestion des redirections 301/302
+**accompagnements-categories** (`src/content/accompagnements-categories/*.yaml`)
+
+Catégories de services avec champs localisés.
+
+**Champs:**
+
+- `name_fr`, `name_en`
+- `slug_fr`, `slug_en`
+- `description_fr`, `description_en`
+- `icon` - Icône associée (optionnel)
+- `order` - Ordre d'affichage
+
+---
+
+**modalites-intervention** (`src/content/modalites-intervention/*.yaml`)
+
+Types de modalités d'intervention (conférence, formation, coaching, etc.).
+
+**Champs:**
+
+- `name_fr`, `name_en`
+- `slug_fr`, `slug_en`
+- `description_fr`, `description_en`
+- `icon` - Icône associée
+
+---
+
+**redirects** (`src/content/redirects.yaml`)
+
+Gestion des redirections 301/302.
 
 **Champs:**
 
@@ -273,19 +388,20 @@ Gestion des redirections 301/302
 - `status` - Code HTTP (301 ou 302)
 - `note` - Note explicative (optionnel)
 
+**⚠️ Note:** Ce fichier contient actuellement de nombreuses redirections pour "Limolo House" qui doivent être nettoyées (voir LIMOLO_REFERENCES_AUDIT.md).
+
 ### 3.4 Layouts
 
 **Layout.astro** - Layout principal
 
-Utilisé pour: Pages, FAQ
+Utilisé pour: Pages statiques, FAQ
 
 **Inclut:**
 
-- Head.astro (meta tags, SEO)
+- Head.astro (meta tags, SEO, hreflang)
 - Header.astro (navigation)
-- Footer.astro (footer trilingue)
-- ActionBar.astro (barre de réservation flottante)
-- SeoAnalyzer (analyseur SEO)
+- Footer.astro (footer bilingue)
+- ActionBar.astro (barre d'action flottante - à vérifier/adapter)
 
 **Props:**
 
@@ -294,12 +410,14 @@ Utilisé pour: Pages, FAQ
   title: string;
   metaTitle?: string;
   metaDescription?: string;
-  lang?: 'it' | 'fr' | 'en';
+  lang?: 'fr' | 'en';
   ogImage?: string;
   jsonType?: string;
   alternateUrls?: AlternateUrls | null;
 }
 ```
+
+---
 
 **LayoutBlog.astro** - Articles de blog
 
@@ -311,15 +429,19 @@ Utilisé pour: Pages, FAQ
 - Articles similaires (même catégorie)
 - Fonction `cleanText()` pour encodage HTML
 
-**LayoutRooms.astro** - Chambres
+---
+
+**LayoutAccompagnements.astro** - Services
 
 **Features:**
 
-- Carousel de 6 photos max
-- Specs (amenity1-3) avec icônes
-- CTA booking avec roomId
-- Carousel "Autres chambres" en bas (filtre langue)
-- Intégration booking engine
+- Affichage du service avec tous ses détails
+- USPs (points clés)
+- Image du service
+- Description longue (Markdown)
+- Lien retour vers liste services
+
+---
 
 **LayoutFaq.astro** - FAQ
 
@@ -332,42 +454,30 @@ Structure simple:
 
 ### 4.1 Configuration
 
-**Locale par défaut:** Italien (`it`)
-**Locales supportées:** `it`, `fr`, `en`
+**Locale par défaut:** Français (`fr`)
+**Locales supportées:** `fr`, `en`
 
 **Routing:**
 
-- Italien: Sans préfixe (ex: `/le-camere`)
-- Français: Préfixe `/fr/` (ex: `/fr/les-chambres`)
-- Anglais: Préfixe `/en/` (ex: `/en/rooms`)
+- Français: Sans préfixe (ex: `/ressources`)
+- Anglais: Préfixe `/en/` (ex: `/en/resources`)
 
 ### 4.2 Organisation du contenu
 
 ```
 src/content/
-├── pages/
-│   ├── it/
-│   │   ├── cabras-e-il-sinis/
-│   │   ├── ospitalita-sostenibile/
-│   │   └── ...
-│   └── fr/
-│       ├── cabras-e-il-sinis/
-│       ├── ospitalita-sostenibile/
-│       └── ...
 ├── articles/
-│   ├── it/
-│   │   └── article1.mdoc
-│   └── fr/
-│       └── article1.mdoc
-├── rooms/
-│   ├── it/
-│   └── fr/
-└── faq/
-    ├── it/
-    └── fr/
+│   ├── fr/  (20+ articles)
+│   └── en/  (Phase 2)
+├── accompagnements/
+│   ├── fr/  (17 services)
+│   └── en/  (Phase 2)
+├── faq/
+│   ├── fr/
+│   └── en/  (Phase 2)
 ```
 
-**Matching des traductions:** Les traductions sont identifiées par le même nom de fichier dans les dossiers `it/`, `fr/`, `en/`.
+**Matching des traductions:** Les traductions sont identifiées par le même nom de fichier dans les dossiers `fr/` et `en/`.
 
 ### 4.3 Traductions centralisées (/src/data/)
 
@@ -382,16 +492,20 @@ src/content/
 - `blogTranslations.ts` - Textes du blog (filtres, catégories)
 - `actionBarTranslations.ts` - Textes de la barre d'action
 - `contactFormTranslations.ts` - Textes du formulaire de contact
-- `reviewsTranslations.ts` - Textes des avis clients
-- `breadcrumbTranslations.ts` - Textes du fil d'Ariane
+- `cookieConsentTranslations.ts` - Textes consentement cookies
+- `breadcrumbTranslations.ts` - Textes fil d'Ariane
+- `reviewsTranslations.ts` - Textes avis clients
+- `newsletterPopupTranslations.ts` - Textes popup newsletter
 
 **Usage:**
 
 ```typescript
 import { translations } from '@/data/translations';
 const t = translations[lang];
-console.log(t.common.readMore); // "Leggi di più" (IT)
+console.log(t.common.readMore); // Texte localisé
 ```
+
+**Couverture:** Tous les fichiers ont des entrées FR et EN complètes.
 
 ## 5. Système hreflang (SEO multilingue)
 
@@ -403,26 +517,24 @@ console.log(t.common.readMore); // "Leggi di più" (IT)
 
 ```typescript
 export interface AlternateUrls {
-  it: string;
-  fr: string | null;
+  fr: string;
   en: string | null;
 }
 ```
 
 ### 5.2 Fonctionnalités
 
-- **Génération automatique** des URLs alternatives pour IT/FR/EN
-- **Matching par nom de fichier** entre langues (ex: `le-camere.mdoc` → `it/le-camere.mdoc`, `fr/le-camere.mdoc`)
+- **Génération automatique** des URLs alternatives pour FR/EN
+- **Matching par nom de fichier** entre langues (ex: `article.mdoc` → `fr/article.mdoc`, `en/article.mdoc`)
 - **Support des slugs localisés:**
-  - Catégories: `sostenibilita` (IT) → `durabilite` (FR)
-  - Préfixes rooms: `camere` (IT) → `chambres` (FR) → `rooms` (EN)
+  - Catégories: `slug_fr` / `slug_en`
+  - Services: `slug_fr` / `slug_en`
 - **Intégration dans tous les layouts** via prop `alternateUrls`
 
 **Fonctions principales:**
 
-- `buildPageUrl(page, lang)` - Construit l'URL d'une page
-- `buildRoomUrl(room, lang)` - Construit l'URL d'une chambre
 - `buildArticleUrl(article, lang, categories)` - Construit l'URL d'un article
+- `buildAccompagnementUrl(accompagnement, lang)` - Construit l'URL d'un service
 - `buildFaqUrl(faq, lang)` - Construit l'URL d'une FAQ
 - `findAlternateUrls(entry, type, collections)` - Trouve toutes les URLs alternatives
 
@@ -430,25 +542,23 @@ export interface AlternateUrls {
 
 ```html
 <!-- Si alternateUrls est fourni -->
-<link rel="alternate" hreflang="it" href="https://all-leaders.fr/le-camere" />
-<link rel="alternate" hreflang="fr" href="https://all-leaders.fr/fr/les-chambres" />
-<link rel="alternate" hreflang="en" href="https://all-leaders.fr/en/rooms" />
-<link rel="alternate" hreflang="x-default" href="https://all-leaders.fr/le-camere" />
+<link rel="alternate" hreflang="fr" href="https://all-leaders.fr/" />
+<link rel="alternate" hreflang="en" href="https://all-leaders.fr/en/" />
+<link rel="alternate" hreflang="x-default" href="https://all-leaders.fr/" />
 ```
 
-Le tag `x-default` pointe toujours vers la version italienne (langue par défaut).
+Le tag `x-default` pointe toujours vers la version française (langue par défaut).
 
 ### 5.4 Calcul dans [...route].astro
 
 ```javascript
-// Après avoir trouvé l'entry (page, article, room, faq)
+// Après avoir trouvé l'entry (article, accompagnement, faq)
 let alternateUrls: AlternateUrls | null = null;
 if (entry && type) {
   const allCategories = await getCollection('category');
   alternateUrls = await findAlternateUrls(entry, type, {
-    pages,
     articles,
-    rooms,
+    accompagnements,
     faq,
     categories: allCategories,
   });
@@ -459,247 +569,62 @@ Les `alternateUrls` sont ensuite passés à tous les layouts.
 
 ## 6. Composants UI
 
-### 6.1 Composants disponibles dans Markdoc (23 composants)
+### 6.1 Composants disponibles dans Markdoc
 
 Tous les composants sont définis dans `/src/content-components/` (fichiers TSX) et disponibles dans l'éditeur Keystatic.
 
-#### Layout
+**Note:** Les valeurs par défaut et exemples contiennent des références à "Limolo" qui doivent être mises à jour.
 
-**Duo** - Section texte + image (2 colonnes)
+#### Layout & Structure
 
-```markdoc
-{% Duo
-   title="Titre"
-   image="/images/photo.webp"
-   imageAlt="Description"
-   imagePosition="left"
-   background="transparent"
-   fullBleed=false
-   heightMatch=false %}
-Contenu texte ici
-{% /Duo %}
-```
-
-**Grid** - Grille d'items avec icônes
-
-```markdoc
-{% Grid
-   hideIcons=false
-   fullBleed=true
-   textColor="white"
-   items=[{title: "Item 1", description: "<p>Description</p>", isIcon: false}] /%}
-```
-
-**Hero** - Bannière héro avec background
-
-```markdoc
-{% Hero
-   title="Titre"
-   subtitle="Sous-titre"
-   backgroundImage="/images/bg.webp"
-   height="600px"
-   ctaText="Réserver"
-   ctaLink="/checkout" /%}
-```
-
-**Banner** - Bannière simple avec titre/CTA
-
-```markdoc
-{% Banner
-   title="Titre"
-   subtitle="Sous-titre"
-   background="var(--color-bg-body)"
-   height="400px"
-   ctaText="En savoir plus"
-   ctaLink="/page"
-   fullBleed=true /%}
-```
-
-**WideImage** - Image pleine largeur
-
-```markdoc
-{% WideImage
-   src="image.webp"
-   alt="Description" /%}
-```
-
-**Strip** - Bande d'images
-
-```markdoc
-{% Strip
-   images=[{src: "image1.webp", alt: "Alt 1"}, {src: "image2.webp", alt: "Alt 2"}]
-   fullBleed=true /%}
-```
+- **Hero** - Bannière héro avec background et CTA
+- **Banner** - Bannière simple
+- **Duo** - Section texte + image (2 colonnes)
+- **Grid** - Grille d'items avec icônes
+- **WideImage** - Image pleine largeur
+- **Strip** - Bande d'images
+- **Container** - Container générique
+- **Align** - Alignement du contenu
 
 #### Interactifs
 
-**Slider** - Slider d'images
-
-```markdoc
-{% Slider
-   images=[{src: "image1.webp", alt: "Alt 1", caption: "Caption 1"}] /%}
-```
-
-**SliderSteps** - Slider avec étapes numérotées
-
-```markdoc
-{% SliderSteps
-   items=[{image: "image1.webp", alt: "Alt 1", title: "Titre 1", content: "Contenu 1"}] /%}
-```
-
-**Carousel** - Carousel d'images
-
-```markdoc
-{% Carousel
-   images=[{src: "image1.webp", alt: "Alt 1"}] /%}
-```
-
-**CarouselRooms** - Carousel de chambres (filtre langue)
-
-```markdoc
-{% CarouselRooms /%}
-```
-
-**InstaCarousel** - Intégration Instagram (Behold)
-
-```markdoc
-{% InstaCarousel feedId="abc123" /%}
-```
-
-**Accordion** - Accordéon générique
-
-```markdoc
-{% Accordion
-   items=[{title: "Question 1", content: "Réponse 1"}] /%}
-```
-
-**FaqAccordion** - Accordéon FAQ avec filtrage
-
-```markdoc
-{% FaqAccordion
-   category="booking"
-   lang="it" /%}
-```
+- **Slider** - Slider d'images
+- **SliderSteps** - Slider avec étapes numérotées
+- **Carousel** - Carousel d'images
+- **InstaCarousel** - Intégration Instagram
+- **Accordion** - Accordéon générique
+- **FaqAccordion** - Accordéon FAQ avec filtrage
 
 #### Contenu
 
-**Reviews** - Avis clients
-
-```markdoc
-{% Reviews
-   reviews=[{author: "Marie", rating: 5, text: "Excellent!", date: "2024-01-15"}] /%}
-```
-
-**NotaBene** - Encadré info/warning/important
-
-```markdoc
-{% NotaBene type="info" %}
-Texte de l'encadré
-{% /NotaBene %}
-```
-
-**ContactForm** - Formulaire de contact
-
-```markdoc
-{% ContactForm
-   formId="xeeljwrl"
-   formPosition="right"
-   buttonText="Envoyer" /%}
-```
-
-**Blog** - Liste d'articles
-
-```markdoc
-{% Blog
-   category="sostenibilita"
-   limit=6
-   showFilters=true /%}
-```
+- **Blog** - Liste d'articles avec filtres
+- **Reviews** - Avis clients
+- **NotaBene** - Encadré info/warning/important
+- **ContactForm** - Formulaire de contact
 
 #### Média
 
-**YouTube** - Embed YouTube
-
-```markdoc
-{% YouTube videoId="abc123" /%}
-```
-
-**GoogleMaps** - Embed Google Maps
-
-```markdoc
-{% GoogleMaps
-   latitude="40.0"
-   longitude="8.5"
-   zoom=15 /%}
-```
+- **YouTube** - Embed YouTube
+- **GoogleMaps** - Embed Google Maps
 
 #### Utilitaires
 
-**CtaButton** - Bouton CTA
+- **CtaButton** - Bouton CTA
+- **Link** - Lien personnalisé
+- **Table** - Tableaux responsives
 
-```markdoc
-{% CtaButton
-   text="Réserver"
-   link="/checkout"
-   variant="primary" /%}
-```
+**⚠️ Composants à vérifier/supprimer:**
 
-**Align** - Alignement
+- **BookingEngine** - Moteur de réservation (non pertinent pour All Leaders)
+- **SliderBooking** - Slider de booking (non pertinent)
 
-```markdoc
-{% Align value="center" %}
-Contenu centré
-{% /Align %}
-```
-
-**Container** - Container générique
-
-```markdoc
-{% Container maxWidth="800px" %}
-Contenu
-{% /Container %}
-```
-
-**Link** - Lien personnalisé
-
-```markdoc
-{% Link href="/page" text="Lien" external=false /%}
-```
-
-**Table** - Tableaux responsives
-
-```markdoc
-{% Table
-   headers=["Colonne 1", "Colonne 2"]
-   rows=[["Cellule 1", "Cellule 2"]] /%}
-```
-
-### 6.2 Utilisation dans Keystatic
-
-Tous les composants sont disponibles dans l'éditeur Markdoc de Keystatic via le bouton **"+ Component"**.
-
-**Syntaxe:**
-
-```markdoc
-{% ComponentName
-   prop1="value1"
-   prop2="value2" /%}
-
-<!-- Ou avec contenu -->
-{% ComponentName prop="value" %}
-Contenu ici
-{% /ComponentName %}
-```
-
-**Important:** Les composants avec attributs requis doivent tous les avoir définis, sinon le build échouera.
-
-### 6.3 Composants globaux (/src/components/)
+### 6.2 Composants globaux (/src/components/)
 
 **Navigation:**
 
 - `Header.astro` - Navigation responsive avec language switcher
-- `Footer.astro` - Footer trilingue avec liens et informations
-- `ActionBar.astro` - Barre d'action flottante pour réservation
+- `Footer.astro` - Footer bilingue avec liens et informations
+- `ActionBar.astro` - Barre d'action flottante (⚠️ contient liens booking Limolo)
 
 **SEO et structure:**
 
@@ -711,13 +636,27 @@ Contenu ici
 
 - `Blog.astro` - Listing d'articles avec filtres catégorie/tag
 - `FAQ.astro` / `FaqView.astro` - Vues FAQ avec accordéon
+- `Accompagnements.astro` - Listing services
+- `AccompagnementsGrid.astro` - Grille services avec filtrage langue
 - `FormattedDate.astro` - Formatage dates localisées
+
+**Animation:**
+
+- `HeroAnimated.astro` - Hero avec animations GSAP
+- `StatsAnimated.astro` - Statistiques animées
 
 **Utilitaires:**
 
 - `GoogleAnalytics.astro` - Integration Google Analytics
-- `SeoAnalyzer/` - Analyseur SEO (development)
+- `CookieConsent.astro` - Gestion consentement cookies
+- `NewsletterPopup.astro` - Popup newsletter (⚠️ pointe vers Limolo Substack)
 - `BackToTop.astro` - Bouton retour en haut
+
+**⚠️ Composants à supprimer/adapter:**
+
+- `BookingEngine.astro` - Moteur de réservation Limolo
+- `SliderBooking.astro` - Slider booking Limolo
+- `NewsletterPopup.astro` - Newsletter Limolo (adapter pour All Leaders)
 
 ## 7. Styles et design system
 
@@ -725,21 +664,33 @@ Contenu ici
 
 **Fichier de configuration:** `tailwind.config.js`
 
-**Palette de couleurs:**
+**Palette de couleurs All Leaders:**
 
 ```css
---color-bg-body: #eee7d9 /* Beige (background principal) */ --color-text-main: #445361
-  /* Bleu-gris (texte principal) */ --color-brand-primary: #256377 /* Bleu canard (primaire) */
-  --color-brand-secondary: #36524a /* Vert foncé (secondaire) */ --color-brand-tertiary: #3d3935
-  /* Brun (tertiaire) */ --color-brand-darker: #023a4b /* Bleu très foncé */
-  --color-brand-hover: #459875 /* Vert clair (hover) */ --color-brand-alert: #a45429
-  /* Orange terracotta (alerte) */ --color-brand-accent: #2c7ec4 /* Bleu vif (accent) */;
+--color-bg-body: #ffffff /* Blanc */ --color-bg-body-darker: #d3d0c2 /* Beige clair */
+  --color-text-main: #031a34 /* Bleu marine foncé (texte principal) */ --color-text-muted: #c4f4d2
+  /* Vert pâle */ --color-brand-primary: #031a34 /* Bleu marine (primaire) */
+  --color-brand-secondary: #ab0800 /* Rouge bordeaux (secondaire) */ --color-brand-tertiary: #beab54
+  /* Or/jaune (tertiaire) */ --color-brand-darker: #4b595e /* Gris bleuté foncé */
+  --color-brand-hover: #1093ad /* Bleu turquoise (hover) */ --color-brand-alert: #a45429
+  /* Orange terracotta (alerte) */ --color-brand-accent: #1093ad /* Bleu turquoise (accent) */
+  --color-brand-muted: #1093ad7c /* Bleu turquoise transparent */ /* Couleurs simplifiées */
+  --clair: #ffffff /* Blanc */ --fonce: #031a34 /* Bleu marine */ --accent: #1093ad
+  /* Bleu turquoise */;
 ```
+
+**⚠️ Couleur legacy "limolo-green":**
+
+```css
+--limolo-green: #4a6741 /* Vert olive - À RENOMMER */;
+```
+
+Cette couleur est utilisée **partout** dans le projet avec la classe `.limolo-green`. Elle doit être renommée (ex: `.brand-green` ou `.all-leaders-green`) et tous les usages mis à jour.
 
 **Typographie:**
 
 - **Display:** Inter (sans-serif) - Corps de texte
-- **Titres:** Playfair Display (serif) - Titres et headers
+- **Titres:** Playfair Display ou Inter Bold - Titres et headers
 
 **Usage dans Tailwind:**
 
@@ -757,7 +708,7 @@ Contenu ici
 
 ```css
 @layer base {
-  /* Styles de base (reset, variables) */
+  /* Styles de base (reset, variables CSS custom) */
 }
 
 @layer components {
@@ -765,8 +716,8 @@ Contenu ici
   .section-container {
     /* Container de section */
   }
-  .btn-all-leaders {
-    /* Bouton principal */
+  .btn-brand {
+    /* Bouton principal (renommer depuis .btn-limolo) */
   }
 }
 
@@ -780,6 +731,8 @@ Contenu ici
   }
 }
 ```
+
+**⚠️ Note:** Ce fichier contient probablement des classes `.limolo-*` à renommer.
 
 **Breakpoints:**
 
@@ -802,7 +755,7 @@ Contenu ici
 
 - `og:title`, `og:description`, `og:image`
 - `og:type` - Type de contenu (website, article)
-- `og:locale` - Langue (it_IT, fr_FR, en_GB)
+- `og:locale` - Langue (fr_FR, en_GB)
 - `og:url` - URL canonique
 
 **Twitter Cards:**
@@ -812,8 +765,8 @@ Contenu ici
 
 **Hreflang:**
 
-- Balises `<link rel="alternate" hreflang="...">` pour IT/FR/EN
-- Tag `x-default` pointant vers IT
+- Balises `<link rel="alternate" hreflang="...">` pour FR/EN
+- Tag `x-default` pointant vers FR
 
 **Favicon:**
 
@@ -822,7 +775,7 @@ Contenu ici
 
 ### 8.2 JSON-LD (JsonLd.astro)
 
-Support de 4 types de données structurées:
+Support de 3 types de données structurées:
 
 **page** - Page standard
 
@@ -845,13 +798,13 @@ Support de 4 types de données structurées:
   "headline": "Titre de l'article",
   "datePublished": "2024-01-15",
   "author": {
-    "@type": "Person",
-    "name": "Daniela Meloni"
+    "@type": "Organization",
+    "name": "All Leaders Initiative"
   }
 }
 ```
 
-**faq** - Questions/réponses (max 25)
+**faq** - Questions/réponses
 
 ```json
 {
@@ -867,21 +820,6 @@ Support de 4 types de données structurées:
       }
     }
   ]
-}
-```
-
-**hotelRoom** - Chambre d'hôtel
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "HotelRoom",
-  "name": "Nom de la chambre",
-  "occupancy": {
-    "@type": "QuantitativeValue",
-    "maxValue": 2
-  },
-  "amenityFeature": ["WiFi", "Climatisation"]
 }
 ```
 
@@ -914,7 +852,9 @@ sitemap({
 
 - **Host:** chaise.o2switch.net
 - **User:** boje2508
-- **Path:** `/home2/boje2508/public_html/all-leaders.bluecells.eu`
+- **Path:** `/home2/boje2508/public_html/limolo.bluecells.eu` ⚠️
+
+**⚠️ Note:** Le chemin de déploiement contient "limolo" - vérifier si c'est correct ou si le chemin doit être mis à jour pour All Leaders.
 
 **Mode:** Application Node.js avec Passenger
 
@@ -1000,12 +940,14 @@ Le fichier `tmp/restart.txt` déclenche le redémarrage de l'application Passeng
 
 ### 10.1 Branches principales
 
-- **`master`** - Branche principale de production
+- **`main`** - Branche principale de production
 - **`elise`** - Branche de travail pour modifications FR
 
 ### 10.2 Keystatic Cloud
 
-**Organisation:** blue-cells-editors/all-leaders
+**Organisation:** blue-cells-editors/limolo ⚠️
+
+**⚠️ Note:** Le projet Keystatic Cloud référencé est "limolo" - vérifier si c'est correct ou si un autre projet doit être utilisé pour All Leaders.
 
 **Storage:**
 
@@ -1022,8 +964,8 @@ Le fichier `tmp/restart.txt` déclenche le redémarrage de l'application Passeng
 **Développement local:**
 
 ```bash
-git checkout master
-git pull origin master
+git checkout main
+git pull origin main
 npm run dev
 # Accéder à http://localhost:4321/keystatic pour éditer
 ```
@@ -1043,7 +985,7 @@ npm run dev
 # Si modifications locales:
 git add .
 git commit -m "Description des changements"
-git push origin master
+git push origin main
 
 # Déploiement sur O2Switch:
 ./deploy.sh
@@ -1055,7 +997,7 @@ git push origin master
 git fetch origin elise
 git merge origin/elise
 # Résoudre les conflits si nécessaire
-git push origin master
+git push origin main
 ./deploy.sh
 ```
 
@@ -1120,11 +1062,10 @@ import Layout from '@/layouts/Layout.astro';
 
 ```typescript
 export const SITE = {
-  NAME: 'Limolo House',
+  NAME: 'All Leaders Initiative',
   URL: 'https://all-leaders.fr',
-  EMAIL: 'daniela@all-leaders.fr',
-  AUTHOR: 'Daniela Meloni',
-  PROPERTY_ID: '155172', // ID booking engine
+  EMAIL: 'contact@all-leaders.fr',
+  AUTHOR: 'All Leaders',
 };
 ```
 
@@ -1162,14 +1103,14 @@ Missing required attribute: 'image'
 **Causes possibles:**
 
 1. `seoSlug` incorrect dans Keystatic
-2. Langue du fichier (`lang: it/fr/en`) incorrecte
-3. Structure des dossiers incorrecte (doit être dans `it/` ou `fr/`)
+2. Langue du fichier (`lang: fr/en`) incorrecte
+3. Structure des dossiers incorrecte (doit être dans `fr/` ou `en/`)
 4. Fichier pas dans la bonne collection
 
 **Solution:**
 
-- Vérifier le `seoSlug` dans le fichier .mdoc
-- Vérifier que `lang` correspond au dossier (it/ → lang: it)
+- Vérifier le `seoSlug` dans le fichier
+- Vérifier que `lang` correspond au dossier (fr/ → lang: fr)
 - Vérifier que le fichier est dans le bon dossier de collection
 
 **Keystatic ne se charge pas:**
@@ -1186,19 +1127,13 @@ Missing required attribute: 'image'
 - Vérifier le mode storage (local en dev, cloud en prod)
 - Vérifier la console pour les erreurs
 
-**Erreur "tag_slug: Required":**
-
-**Cause:** Le champ `tag_slug` est auto-généré par Keystatic mais pas dans le schéma Zod
-
-**Solution:** Déjà corrigé - le schéma accepte `tag_slug` en optionnel
-
 ### 13.2 Logs et debugging
 
 **Logs serveur O2Switch:**
 
 ```bash
 ssh boje2508@chaise.o2switch.net
-tail -f /home2/boje2508/public_html/all-leaders.bluecells.eu/logs/error.log
+tail -f /home2/boje2508/public_html/limolo.bluecells.eu/logs/error.log
 ```
 
 **Rebuild après changement:**
@@ -1233,14 +1168,9 @@ npm run build -- --verbose
 
 **Traductions:**
 
-- Vérifier que les traductions IT/FR sont cohérentes
+- Vérifier que les traductions FR/EN sont cohérentes
 - Tester les URLs après création de contenu
 - Vérifier les tags hreflang après ajout de traductions
-
-**Tester les URLs:**
-
-- Après création d'une page, tester l'URL dans le navigateur
-- Vérifier que les hreflang sont corrects (inspecter le code source)
 
 ### 14.2 Images
 
@@ -1258,7 +1188,7 @@ npm run build -- --verbose
 
 **Organisation:**
 
-- Images dans `/images/`
+- Images dans `/public/images/`
 - Sous-dossiers par type de contenu recommandé
 
 ### 14.3 SEO
@@ -1273,11 +1203,11 @@ npm run build -- --verbose
 
 - Vérifier les tags après ajout de traductions
 - S'assurer que le matching par nom de fichier fonctionne
-- Tester avec Ahrefs ou Search Console
+- Tester avec Google Search Console
 
 **JSON-LD:**
 
-- Choisir le bon `jsonType` (page, blog, faq, hotelRoom)
+- Choisir le bon `jsonType` (page, blog, faq)
 - Vérifier avec le Rich Results Test de Google
 
 ### 14.4 Code
@@ -1296,7 +1226,7 @@ npm run build -- --verbose
 
 **Conventions de nommage:**
 
-- Fichiers: kebab-case (ex: `le-camere.mdoc`)
+- Fichiers: kebab-case (ex: `article-exemple.mdoc`)
 - Composants: PascalCase (ex: `Duo.tsx`)
 - Variables: camelCase (ex: `alternateUrls`)
 
@@ -1306,66 +1236,122 @@ npm run build -- --verbose
 - Tester les nouvelles pages dans le navigateur
 - Vérifier la console pour les erreurs
 
-## 15. Ressources
+## 15. Nettoyage nécessaire
 
-### 15.1 Documentation externe
+### 15.1 Références à Limolo House
+
+Le projet contient de **nombreuses références résiduelles** à "Limolo House", un B&B éco-responsable en Sardaigne qui n'a aucun rapport avec All Leaders Initiative.
+
+**Voir le rapport détaillé:** `LIMOLO_REFERENCES_AUDIT.md`
+
+**Principales actions nécessaires:**
+
+1. ✅ **Documentation mise à jour** (ce fichier)
+2. ⚠️ **Renommer classe CSS** : `.limolo-green` → `.brand-green`
+3. ⚠️ **Mettre à jour claude.md** : repository Git correct
+4. ⚠️ **Vérifier keystatic.config.tsx** : projet Keystatic correct
+5. ⚠️ **Mettre à jour deploy.sh** : chemin de déploiement correct
+6. ⚠️ **Supprimer composants booking** : BookingEngine, SliderBooking, checkout.astro
+7. ⚠️ **Adapter/supprimer** : NewsletterPopup, ActionBar (liens Limolo)
+8. ⚠️ **Nettoyer redirects.yaml** : supprimer redirections Limolo
+9. ⚠️ **Mettre à jour CookieConsent** : renommer clés localStorage
+10. ⚠️ **Mettre à jour content-components** : exemples et valeurs par défaut
+
+**Estimation du travail de nettoyage:** 4-7 heures
+
+### 15.2 Incohérences de routing
+
+**Services / Accompagnements:**
+
+Le site utilise deux patterns d'URL différents pour les services :
+
+- `/services/` (en anglais et certaines pages françaises)
+- `/accompagnements/` (certaines pages françaises)
+
+**Action recommandée:** Standardiser sur un seul pattern (ex: `/services/` pour FR et EN).
+
+## 16. Ressources
+
+### 16.1 Documentation externe
 
 - **Astro:** https://docs.astro.build
 - **Keystatic:** https://keystatic.com/docs
 - **Tailwind CSS:** https://tailwindcss.com/docs
 - **Markdoc:** https://markdoc.dev
 - **TypeScript:** https://www.typescriptlang.org/docs
+- **GSAP:** https://greensock.com/docs
 
-### 15.2 Outils SEO
+### 16.2 Outils SEO
 
-- **Ahrefs:** Audit SEO et hreflang
 - **Google Search Console:** Indexation et performance
 - **Google Rich Results Test:** Validation JSON-LD
 - **PageSpeed Insights:** Performance et Core Web Vitals
+- **Wave:** Accessibilité
 
-### 15.3 Contacts
+### 16.3 Contacts
 
 - **Développeur:** Claude Code
-- **Contenu:** Daniela Meloni (daniela@all-leaders.fr)
+- **Contenu:** All Leaders Initiative
 - **Repository:** https://github.com/bluecells/all-leaders.git
 - **Site web:** https://all-leaders.fr
 
-## 16. Changelog
+## 17. Roadmap
 
-### Version actuelle (Février 2026)
+### Phase 1 : Pages statiques EN (EN COURS)
 
-**Nouvelles fonctionnalités:**
+**Statut:** En planification
+**Durée estimée:** 24-32 heures
 
-- ✅ Système hreflang complet (IT/FR/EN) avec URLs alternatives
-- ✅ Collections multilingues (categories, tags avec slugs localisés)
-- ✅ 23 composants UI Markdoc pour l'édition de contenu
-- ✅ Intégration booking engine (roomId dans rooms)
-- ✅ Déploiement O2Switch automatisé avec deploy.sh
-- ✅ Keystatic Cloud en production avec sync GitHub
-- ✅ Collection redirects pour gestion 301/302
-- ✅ Singletons Menu (IT/FR/EN)
-- ✅ API routes (/api/sync, /api/github-webhook)
-- ✅ Système de traductions centralisé (/src/data/)
+**Livrables:**
 
-**Corrections:**
+- Homepage EN traduite (avec animations GSAP)
+- Pages principales traduites (services, resources, FAQ, contact)
+- Pages légales traduites (privacy, cookies)
+- Tests et validation complets
 
-- ✅ Fix Blog.astro filtres avec tag_slug optionnel
-- ✅ Fix hreflang reciprocal links (92 erreurs Ahrefs)
-- ✅ Fix structure articles (it/ et fr/ subdirectories)
-- ✅ Fix ContactForm syntax dans pages FR
+**Voir:** `/Users/bluecells/.claude/plans/snuggly-petting-brooks.md`
 
-### Prochaines améliorations
+### Phase 2 : Collections dynamiques EN
 
-- [ ] Contenu EN complet (actuellement IT/FR uniquement)
-- [ ] Tests automatisés (unit tests, e2e tests)
-- [ ] Optimisation automatique des images (plugin Astro)
-- [ ] PWA support (service worker, manifest)
-- [ ] Lazy loading des images
-- [ ] Compression brotli/gzip
-- [ ] CDN pour les assets statiques
-- [ ] Monitoring et analytics avancés
+**Statut:** À venir après Phase 1
+**Durée estimée:** 20-30 heures
+
+**Livrables:**
+
+- ~17 services (accompagnements) traduits
+- ~20+ articles traduits
+- ~30 FAQs traduites
+- Catégories et tags vérifiés/complétés
+
+### Phase 3 : Nettoyage Limolo
+
+**Statut:** À planifier
+**Durée estimée:** 4-7 heures
+
+**Livrables:**
+
+- Classes CSS renommées (`.limolo-*` → `.brand-*`)
+- Composants non pertinents supprimés/adaptés
+- Configuration mise à jour (deploy, keystatic, etc.)
+- Redirections nettoyées
+
+### Phase 4 : Optimisations
+
+**Statut:** À planifier
+**Durée estimée:** Variable
+
+**Améliorations potentielles:**
+
+- Tests automatisés (unit tests, e2e tests)
+- Optimisation automatique des images
+- PWA support (service worker, manifest)
+- Lazy loading des images
+- Compression brotli/gzip
+- CDN pour les assets statiques
+- Monitoring et analytics avancés
 
 ---
 
-**Dernière mise à jour:** Février 2026
-**Version de la documentation:** 1.0
+**Dernière mise à jour:** 2026-05-21
+**Version de la documentation:** 2.0 (All Leaders Initiative)
+**Remplace:** Version 1.0 (Limolo House)

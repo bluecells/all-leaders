@@ -6,7 +6,9 @@ interface Props {
 }
 
 const { lang } = Astro.props;
-const t = cookieConsentTranslations[lang as keyof typeof cookieConsentTranslations] || cookieConsentTranslations.it;
+const t =
+  cookieConsentTranslations[lang as keyof typeof cookieConsentTranslations] ||
+  cookieConsentTranslations.it;
 ---
 
 <div id="cookie-consent-banner" class="cookie-banner hidden">
@@ -15,11 +17,23 @@ const t = cookieConsentTranslations[lang as keyof typeof cookieConsentTranslatio
       <h2>{t.title}</h2>
       <p>{t.description}</p>
       <a href={t.privacyLink} target="_blank" rel="noopener noreferrer" class="cookie-link">
-        {lang === 'it' ? 'Privacy Policy' : lang === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'}
+        {
+          lang === 'it'
+            ? 'Privacy Policy'
+            : lang === 'fr'
+              ? 'Politique de confidentialité'
+              : 'Privacy Policy'
+        }
       </a>
       <span class="divider">•</span>
       <a href={t.cookieLink} target="_blank" rel="noopener noreferrer" class="cookie-link">
-        {lang === 'it' ? 'Cookie Policy' : lang === 'fr' ? 'Politique relative aux cookies' : 'Cookie Policy'}
+        {
+          lang === 'it'
+            ? 'Cookie Policy'
+            : lang === 'fr'
+              ? 'Politique relative aux cookies'
+              : 'Cookie Policy'
+        }
       </a>
     </div>
 
@@ -71,8 +85,8 @@ const t = cookieConsentTranslations[lang as keyof typeof cookieConsentTranslatio
   }
 
   // Stockage des préférences
-  const STORAGE_KEY = 'limolo-cookie-preferences';
-  const BANNER_KEY = 'limolo-banner-shown';
+  const STORAGE_KEY = 'all-leaders-cookie-preferences';
+  const BANNER_KEY = 'all-leaders-banner-shown';
 
   function getCookiePreferences(): CookiePreferences {
     const stored = localStorage.getItem(STORAGE_KEY);

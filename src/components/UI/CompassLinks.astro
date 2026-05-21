@@ -1,6 +1,6 @@
 <div class="compass-main">
-  <div class="bg-white/80 my-6 p-4 shadow-2xl md:shadow-none rounded-md z-50 w-10/12 mx-auto">
-    <h3 class="text-center! w-full mx-auto max-w-4xl! md:pt-0">
+  <div class="my-6 p-4 shadow-2xl md:shadow-none rounded-md z-50 mx-auto">
+    <h3 class="title-compass">
       Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec
       <strong>sens, clarté et impact.</strong>
     </h3>
@@ -162,7 +162,15 @@
 
 <style>
   :root {
-    --radius: 32vw;
+    /* Calcul dynamique de l'espace disponible */
+    --title-height: 120px; /* Estimation hauteur titre + padding */
+    --available-height: calc(100svh - var(--title-height) - 100px);
+
+    /* Taille de la boussole : plus petit entre hauteur et largeur */
+    --compass-size: min(calc(var(--available-height) * 0.75), 80vw);
+
+    /* Rayon de l'orbite proportionnel */
+    --radius: calc(var(--compass-size) * 0.35);
   }
 
   /* --- STRUCTURE GLOBALE --- */
@@ -171,18 +179,19 @@
     height: 100svh;
     position: relative;
     overflow: hidden;
-    display: grid;
-    grid-template-rows: 50% 50%;
-    padding-top: 60px;
-    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
     margin: 0 -1rem;
     z-index: 1;
   }
 
   .compass-container {
     width: 100%;
-    height: 100%;
-    display: block;
+    flex: 1;
+    min-height: 0; /* Important pour flexbox */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .compass-perspective-wrapper {
@@ -199,6 +208,7 @@
   .compass-right {
     display: none; /* Masqués sur mobile par défaut */
     width: 100%;
+    height: 100%;
     background-size: 120%;
     background-repeat: no-repeat;
   }
@@ -217,14 +227,15 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 120vmax;
-    height: 120vmax;
+    width: calc(var(--compass-size) * 2.8);
+    height: calc(var(--compass-size) * 2.8);
+    max-width: 1200px;
+    max-height: 1200px;
     transform: translate(-50%, -50%);
-    background-image: url('/images/pages/carte-marine.webp');
     background-size: 200%;
     background-position: center;
     opacity: 0.6;
-    z-index: 0;
+    z-index: -1;
     pointer-events: none;
     will-change: transform;
   }
@@ -234,8 +245,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(200px, 50vw, 450px);
-    height: clamp(200px, 50vw, 450px);
+    width: var(--compass-size);
+    height: var(--compass-size);
+    max-width: 600px; /* Limite sur très grands écrans */
+    max-height: 600px;
     background-image: url('/images/pages/boussole.webp');
     background-size: contain;
     background-repeat: no-repeat;
@@ -244,16 +257,14 @@
   }
 
   /* --- TITRE --- */
-  .compass-main h3 {
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
+  .title-compass {
+    flex-shrink: 0; /* Ne rétrécit jamais */
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 60px 1rem 1rem; /* Top pour passer sous menu */
     text-align: center;
+    width: clamp(70%, 5vw + 55%, 90%);
+    margin: 0 auto;
+    line-height: 1.4;
   }
 
   /* --- LIENS ET ORBITE --- */
@@ -269,7 +280,8 @@
 
   .compass-link {
     position: absolute;
-    width: 200px;
+    width: calc(var(--compass-size) * 0.45); /* Proportionnel */
+    max-width: 250px;
     text-decoration: none;
     transform-origin: center center;
     transition: color 0.3s ease;
@@ -297,14 +309,14 @@
 
   .compass-link span {
     display: block;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, calc(var(--compass-size) / 25), 1.1rem);
     font-weight: 400;
     color: #1a1a1a;
     text-align: center;
-    line-height: 1.2em;
-    padding: 8px 12px;
+    line-height: 1.3;
+    padding: clamp(4px, calc(var(--compass-size) * 0.02), 12px);
     border-radius: 4px;
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
     transition:
       transform 0.2s ease,
       text-shadow 0.2s ease;
@@ -322,23 +334,51 @@
 
   img.image-link {
     display: block;
-    width: 30px !important;
+    width: clamp(25px, calc(var(--compass-size) / 8), 60px) !important;
     height: auto;
-    margin: 0 auto 8px;
+    margin: 0 auto clamp(4px, calc(var(--compass-size) * 0.015), 8px);
     opacity: 0.5;
   }
 
-  /* --- RESPONSIVE DESKTOP (MD) --- */
-  @media (min-width: 768px) {
+  /* --- MEDIA QUERIES BASÉES SUR HAUTEUR ET LARGEUR --- */
+
+  /* Mobile landscape (hauteur faible, priorité compacité) */
+  @media (max-height: 500px) {
     :root {
-      --radius: 180px;
+      --title-height: 80px;
+      --compass-size: min(calc(100svh - 140px), 65vw);
+    }
+
+    .title-compass {
+      padding: 60px 0.5rem 0.5rem;
+      font-size: 0.85rem;
     }
 
     .compass-main {
-      overflow: hidden;
-      grid-template-rows: 35% 65%;
-      padding-top: 80px;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  /* Mobile portrait (hauteur moyenne) */
+  @media (min-height: 500px) and (max-width: 767px) {
+    :root {
+      --compass-size: min(calc(var(--available-height) * 0.7), 75vw);
+    }
+  }
+
+  /* Tablette portrait ou desktop petit */
+  @media (min-width: 768px) {
+    :root {
+      --title-height: 140px;
+      --radius: calc(var(--compass-size) * 0.45);
+    }
+
+    .compass-main {
       width: 100%;
+    }
+
+    .title-compass {
+      padding-top: 80px;
     }
 
     .compass-container {
@@ -354,32 +394,31 @@
     #compassRoseBg {
       background-size: 100%;
     }
+  }
 
-    img.image-link {
-      width: 60px !important;
-    }
-
-    #compassRoseBg {
-      opacity: 0;
+  /* Desktop avec hauteur confortable */
+  @media (min-width: 768px) and (min-height: 800px) {
+    :root {
+      --compass-size: min(calc(var(--available-height) * 0.7), 500px);
     }
   }
 
-  /* --- RESPONSIVE LARGE (XL) --- */
-  @media (min-width: 1919px) {
+  /* Large desktop */
+  @media (min-width: 1920px) {
     :root {
-      --radius: 300px;
+      --title-height: 180px;
+      --compass-size: min(calc(var(--available-height) * 0.75), 650px);
     }
 
-    .compass-main {
-      grid-template-rows: 35% 65%;
-      padding-top: 150px;
+    .title-compass {
+      padding-top: 100px;
     }
+  }
 
-    .compass-link {
-      width: 350px;
-    }
-    .compass-link span {
-      font-size: 1rem;
+  /* Très grande hauteur (ex: écran vertical) */
+  @media (min-height: 1200px) {
+    :root {
+      --compass-size: min(60vh, 700px);
     }
   }
 </style>

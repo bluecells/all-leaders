@@ -37,7 +37,7 @@ export default config({
       },
   ...(isProd && {
     cloud: {
-      project: 'blue-cells-editors/limolo',
+      project: 'blue-cells-editors/ali',
     },
   }),
 
@@ -359,7 +359,7 @@ export default config({
         metaDescription: fields.text({
           label: 'Meta Description',
           multiline: true,
-          description: '120-160 caractères recommandé pour l\'affichage optimal dans Google',
+          description: "120-160 caractères recommandé pour l'affichage optimal dans Google",
           validation: { isRequired: false },
         }),
         ogImage: fields.image({
@@ -598,7 +598,7 @@ export default config({
           validation: { isRequired: true },
         }),
         order: fields.integer({
-          label: 'Ordre d\'affichage',
+          label: "Ordre d'affichage",
           validation: { isRequired: false },
         }),
       },

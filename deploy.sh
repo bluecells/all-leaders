@@ -4,7 +4,7 @@ set -e
 # CONFIGURATION
 PROD_HOST="chaise.o2switch.net"
 PROD_USER="boje2508"
-PROD_PATH="/home2/boje2508/public_html/limolo.bluecells.eu"
+PROD_PATH="/home2/boje2508/public_html/all-leaders.bluecells.eu"
 
 echo "🚀 Step 1: Nettoyage et Build local..."
 rm -rf dist
@@ -27,7 +27,7 @@ rsync -avz --delete \
 
 echo "🛠 Step 4: Installation des modules (Production uniquement)..."
 # On utilise --no-save pour ne pas modifier le package.json sur le serveur
-ssh $PROD_USER@$PROD_HOST "source /home2/boje2508/nodevenv/public_html/limolo.bluecells.eu/22/bin/activate && cd $PROD_PATH && npm install --production --no-save"
+ssh $PROD_USER@$PROD_HOST "source /home2/boje2508/nodevenv/public_html/all-leaders.bluecells.eu/22/bin/activate && cd $PROD_PATH && npm install --production --no-save"
 echo "🔄 Step 5: Redémarrage de l'application..."
 # Sur o2switch, toucher restart.txt relance le processus Node
 mkdir -p tmp
