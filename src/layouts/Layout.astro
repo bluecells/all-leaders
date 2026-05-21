@@ -32,6 +32,7 @@ interface Props {
   };
   alternateUrls?: AlternateUrls | null;
   isHomepage?: boolean;
+  breadcrumbCategory?: string;
 }
 
 const {
@@ -49,6 +50,7 @@ const {
   roomData,
   alternateUrls,
   isHomepage = false,
+  breadcrumbCategory,
 } = Astro.props as Props;
 
 const finalMetaDescription = metaDescription || description || '';
@@ -97,7 +99,7 @@ const finalOgImage = ogImage || undefined;
     <!-- End Google Tag Manager (noscript) -->
 
     <main>
-      <Breadcrumb lang={pageLang as 'fr' | 'en'} title={title} />
+      <Breadcrumb lang={pageLang as 'fr' | 'en'} title={title} category={breadcrumbCategory} />
       <slot />
     </main>
     <Footer lang={pageLang} />
