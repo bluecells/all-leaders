@@ -63,6 +63,12 @@ export const SERVICES_EN: Metadata = {
   METADESCRIPTION: 'Discover our services and conferences on collective performance and leadership development',
 };
 
+export const ACCOMPAGNEMENTS_EN: Metadata = {
+  TITLE: 'Our Services',
+  METATITLE: 'Our Services - All Leaders Initiative',
+  METADESCRIPTION: 'Develop the collective performance of your teams and their leaders through our coaching, diagnostics and mental wellbeing programmes',
+};
+
 export const CONTACT_EN: Metadata = {
   TITLE: 'Contact',
   METATITLE: 'Contact All Leaders Initiative',
