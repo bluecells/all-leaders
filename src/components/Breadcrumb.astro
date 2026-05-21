@@ -221,16 +221,24 @@ if (items.length > 0) {
      * Génération standard basée sur tous les segments de l'URL
      * Résultat : Home / Segment1 / Segment2 / ...
      * Le titre du frontmatter override le dernier segment s'il est fourni
+     * Note : Pour les pages EN, on exclut le segment "en" du breadcrumb
      */
+    // Filtrer le segment "en" pour les pages anglaises
+    const filteredSegments = lang === 'en' && pathSegments[0] === 'en'
+      ? pathSegments.slice(1)
+      : pathSegments;
+
     breadcrumbItems = [
       { label: t.home, href: lang === 'en' ? '' : '/' },
       // Pour chaque segment, construire un élément du fil d'Ariane
-      ...pathSegments.map((segment, index) => {
-        const isLast = index === pathSegments.length - 1;
+      ...filteredSegments.map((segment, index) => {
+        const isLast = index === filteredSegments.length - 1;
 
         // Construire le href cumulatif
-        // Ex: index=0 → '/chi-siamo', index=1 → '/chi-siamo/team'
-        let href = '/' + pathSegments.slice(0, index + 1).join('/');
+        // Pour EN : /en/segment1/segment2 → /en/segment1, /en/segment1/segment2
+        // Pour FR : /segment1/segment2 → /segment1, /segment1/segment2
+        const baseSegments = lang === 'en' ? ['en', ...filteredSegments.slice(0, index + 1)] : filteredSegments.slice(0, index + 1);
+        let href = '/' + baseSegments.join('/');
 
         // Redirectionner certains segments vers des pages canoniques ou ancres
         if (segment === 'expertises' && index === 0) {
