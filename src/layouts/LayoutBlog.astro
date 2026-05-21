@@ -59,6 +59,18 @@ const getRelatedTitle = (l: string): string => {
   return 'Articoli Correlati';
 };
 
+const getLearnMoreText = (l: string): string => {
+  if (l === 'fr') return 'Pour en savoir plus...';
+  if (l === 'en') return 'Learn more...';
+  return 'Scopri di più...';
+};
+
+const getContactCTA = (l: string): string => {
+  if (l === 'fr') return 'Contactez-nous';
+  if (l === 'en') return 'Contact Us';
+  return 'Contattaci';
+};
+
 const getCategoryLabel = async (categoryId: string, l: string): Promise<string> => {
   try {
     const categoryEntry = await getEntry('category', categoryId);
@@ -224,7 +236,7 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
     }
 
     <h3>
-      Pour en savoir plus... <br /><br /><a class="btn-limolo" href="/contact/">Contactez-nous</a>
+      {getLearnMoreText(lang)} <br /><br /><a class="btn-limolo" href={lang === 'fr' ? '/contact/' : '/en/contact/'}>{getContactCTA(lang)}</a>
     </h3>
   </article>
 </Layout>
