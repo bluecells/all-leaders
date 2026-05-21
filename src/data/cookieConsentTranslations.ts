@@ -47,7 +47,7 @@ export const cookieConsentTranslations = {
     analyticsDesc: 'Anonymous traffic analysis',
     marketing: 'Marketing',
     marketingDesc: 'Personalized advertising',
-    privacyLink: '/en/privacy-policy',
-    cookieLink: '/en/cookies-policy',
+    privacyLink: '/en/privacy',
+    cookieLink: '/en/cookies',
   },
 };
