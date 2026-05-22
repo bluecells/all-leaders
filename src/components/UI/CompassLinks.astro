@@ -23,7 +23,7 @@ const categories = {
     { name: 'Leadership development', href: '/accompagnements#category-leadership-development' },
     {
       name: "Coaching d'équipe",
-      href: '/accompagnements#category-coaching-equipes-et-organisations',
+      href: '/accompagnements#category-coaching-equipes-et-organizations',
     },
   ],
   en: [
@@ -35,7 +35,7 @@ const categories = {
       href: '/en/services#category-mental-health-and-sustainable-performance',
     },
     { name: 'Leadership Development', href: '/en/services#category-leadership-development' },
-    { name: 'Team Coaching', href: '/en/services#category-team-coaching-and-organisations' },
+    { name: 'Team Coaching', href: '/en/services#category-team-coaching-and-organizations' },
   ],
 };
 
@@ -194,7 +194,6 @@ const catList = categories[lang] || categories.fr;
   /* --- ÉLÉMENTS DU DÉCOR (CARTES) --- */
   .compass-left,
   .compass-right {
-    display: none; /* Masqués sur mobile par défaut */
     width: 100%;
     height: 100%;
     background-size: 120%;
@@ -351,6 +350,11 @@ const catList = categories[lang] || categories.fr;
   @media (min-height: 500px) and (max-width: 767px) {
     :root {
       --compass-size: min(calc(var(--available-height) * 0.7), 75vw);
+    }
+
+    .compass-container {
+      display: grid;
+      grid-template-columns: 2fr 3fr 2fr;
     }
   }
 
