@@ -184,92 +184,178 @@ redirects:
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
   # ========================================
-  # PHASE 4: Accompagnements EN (Priorité 2 - ~17 liens)
+  # PHASE 4: Services EN (Priorité 2 - ~34 liens)
   # ========================================
+  # Ancien URL anglais: /en/services/ ou /en/accompagnements/ → Nouveau: /en/services/[category]/[slug]
+  - from: /en/services/agressivite-virtual-box
+    to: /en/services/conflict-management/professional-aggression-management-virtual-box
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
   - from: /en/accompagnements/agressivite-virtual-box
-    to: /en/accompagnements/conflict-management/professional-aggression-management-virtual-box
+    to: /en/services/conflict-management/professional-aggression-management-virtual-box
+    status: '301'
+    note: 'Ancien format accompagnements → services avec catégorie'
+
+  - from: /en/services/bien-etre-psychique
+    to: /en/services/mental-wellbeing-and-sustainable-performance/mental-wellbeing-and-health-at-work
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
   - from: /en/accompagnements/bien-etre-psychique
-    to: /en/accompagnements/mental-wellbeing-and-sustainable-performance/mental-wellbeing-and-health-at-work
+    to: /en/services/mental-wellbeing-and-sustainable-performance/mental-wellbeing-and-health-at-work
+    status: '301'
+    note: 'Ancien format accompagnements → services avec catégorie'
+
+  - from: /en/services/coaching-individuel
+    to: /en/services/executive-coaching/individual-coaching-for-managers
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/coaching-okr-steppps
+    to: /en/services/team-coaching-and-organizations/okr-collective-coaching-steppps-ibl
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/conferenciers-disruptifs
+    to: /en/services/leadership-development/disruptive-speakers
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/conflictualite
+    to: /en/services/performance-diagnosis/conflict-cost-measurement
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/efficacite-collective
+    to: /en/services/performance-diagnosis/collective-effectiveness-collaboration-assessment
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/gestion-conflits
+    to: /en/services/conflict-management/conflict-management
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/gestion-stress-top
+    to: /en/services/mental-health-and-sustainable-performance/stress-management-top-method
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/gestion-violence-patient
+    to: /en/services/conflict-management/patient-aggression-violence-management
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/leadership-feminin
+    to: /en/services/leadership-development/womens-leadership
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/leadership-vr-mission-one
+    to: /en/services/leadership-development/experiential-leadership-virtual-reality-mission-one
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/mission-one
+    to: /en/services/performance-diagnosis/mission-one-performance-flash-assessment
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/montee-competences-manageriales
+    to: /en/services/leadership-development/workshops-managerial-skills-development
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/pssm-premiers-secours
+    to: /en/services/mental-health-and-sustainable-performance/pssm-mental-health-first-aid-training
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/seminaires-teambuilding
+    to: /en/services/team-coaching-and-organizations/corporate-seminars-teambuilding-for-managers
+    status: '301'
+    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  - from: /en/services/supervision-collective
+    to: /en/services/executive-coaching/managerial-supervision-groups
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
   - from: /en/accompagnements/coaching-individuel
-    to: /en/accompagnements/executive-coaching/individual-coaching-for-managers
+    to: /en/services/executive-coaching/individual-coaching-for-managers
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/coaching-okr-steppps
-    to: /en/accompagnements/team-and-organizational-coaching/okr-collective-coaching-steppps-ibl
+    to: /en/services/team-coaching-and-organizations/okr-collective-coaching-steppps-ibl
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/conferenciers-disruptifs
-    to: /en/accompagnements/leadership-development/disruptive-speakers
+    to: /en/services/leadership-development/disruptive-speakers
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/conflictualite
-    to: /en/accompagnements/performance-diagnosis/conflict-cost-measurement
+    to: /en/services/performance-diagnosis/conflict-cost-measurement
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/efficacite-collective
-    to: /en/accompagnements/performance-diagnosis/collective-effectiveness-collaboration-assessment
+    to: /en/services/performance-diagnosis/collective-effectiveness-collaboration-assessment
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/gestion-conflits
-    to: /en/accompagnements/conflict-management/conflict-management
+    to: /en/services/conflict-management/conflict-management
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/gestion-stress-top
-    to: /en/accompagnements/mental-wellbeing-and-sustainable-performance/stress-management-top-method
+    to: /en/services/mental-wellbeing-and-sustainable-performance/stress-management-top-method
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/gestion-violence-patient
-    to: /en/accompagnements/conflict-management/patient-aggression-violence-management
+    to: /en/services/conflict-management/patient-aggression-violence-management
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/leadership-feminin
-    to: /en/accompagnements/leadership-development/womens-leadership
+    to: /en/services/leadership-development/womens-leadership
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/leadership-vr-mission-one
-    to: /en/accompagnements/leadership-development/experiential-leadership-virtual-reality-mission-one
+    to: /en/services/leadership-development/experiential-leadership-virtual-reality-mission-one
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/mission-one
-    to: /en/accompagnements/performance-diagnosis/mission-one-performance-flash-assessment
+    to: /en/services/performance-diagnosis/mission-one-performance-flash-assessment
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/montee-competences-manageriales
-    to: /en/accompagnements/leadership-development/workshops-managerial-skills-development
+    to: /en/services/leadership-development/workshops-managerial-skills-development
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/pssm-premiers-secours
-    to: /en/accompagnements/mental-wellbeing-and-sustainable-performance/pssm-mental-health-first-aid-training
+    to: /en/services/mental-wellbeing-and-sustainable-performance/pssm-mental-health-first-aid-training
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/seminaires-teambuilding
-    to: /en/accompagnements/team-and-organizational-coaching/corporate-seminars-teambuilding-for-managers
+    to: /en/services/team-coaching-and-organizations/corporate-seminars-teambuilding-for-managers
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/supervision-collective
-    to: /en/accompagnements/executive-coaching/managerial-supervision-groups
+    to: /en/services/executive-coaching/managerial-supervision-groups
     status: '301'
-    note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+    note: 'Ancien format accompagnements → services avec catégorie'
 
   # ========================================
   # PHASE 5: Articles anciens FR (Priorité 3 - ~45 liens)
