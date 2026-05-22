@@ -270,3 +270,247 @@ redirects:
     to: /en/accompagnements/executive-coaching/managerial-supervision-groups
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
+
+  # ========================================
+  # PHASE 5: Articles anciens FR (Priorité 3 - ~45 liens)
+  # ========================================
+  # Articles qui ont été déplacés du domaine racine vers /ressources/idees/
+  - from: /a-la-rentree/
+    to: /ressources/idees/a-la-rentree/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /agir-en-stratege-dans-un-monde-volatile-et-incertain/
+    to: /ressources/idees/agir-en-stratege-dans-un-monde-volatile-et-incertain/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /appreciative-inquiry-a-la-recherche-des-forces-valeurs-et-comportements-gagnants-dune-organisation/
+    to: /ressources/idees/appreciative-inquiry-a-la-recherche-des-forces-valeurs-et-comportements-gagnants-dune-organisation/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /arretez-dattendre-des-solutions-favorisez-lintention/
+    to: /ressources/idees/arretez-dattendre-des-solutions-favorisez-lintention/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /bienveillance-authenticite-et-autres-mots-valises-a-eviter/
+    to: /ressources/idees/bienveillance-authenticite-et-autres-mots-valises-a-eviter/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /ce-que-ma-desappris-la-pratique-du-coaching/
+    to: /ressources/idees/ce-que-ma-desappris-la-pratique-du-coaching/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /champion-du-monde/
+    to: /ressources/idees/champion-du-monde/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /christian-clot-reaction-construction/
+    to: /ressources/idees/christian-clot-reaction-construction/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /conflictualite-au-travail-estimez-votre-gisement-de-couts-et-de-gains-caches/
+    to: /ressources/idees/conflictualite-au-travail-estimez-votre-gisement-de-couts-et-de-gains-caches/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /contre-le-chaos-la-culture/
+    to: /ressources/idees/contre-le-chaos-la-culture/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /courage-managerial-et-culture-de-surete/
+    to: /ressources/idees/courage-managerial-et-culture-de-surete/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /creuser-lecart-dans-le-brouillard-ne-pas-subir-la-crise-avec-methode/
+    to: /ressources/idees/creuser-lecart-dans-le-brouillard-ne-pas-subir-la-crise-avec-methode/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /david-marquet-intent-based-leadership/
+    to: /ressources/idees/david-marquet-intent-based-leadership/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /engagement-envie-clarte-reconnaissance-bienveillance/
+    to: /ressources/idees/engagement-envie-clarte-reconnaissance-bienveillance/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /evaluer-et-reduire-le-cout-excessif-de-la-conflictualite-au-travail-cest-possible/
+    to: /ressources/idees/evaluer-et-reduire-le-cout-excessif-de-la-conflictualite-au-travail-cest-possible/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /ignorer-intention-commune/
+    to: /ressources/idees/ignorer-intention-commune/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /impact-de-la-securite-psychologique-dans-la-performance-dequipe-et-lexcellence-organizationnelle/
+    to: /ressources/idees/impact-de-la-securite-psychologique-dans-la-performance-dequipe-et-lexcellence-organizationnelle/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /la-dimension-relationnelle-du-travail-un-avantage-concurrentiel-trop-neglige/
+    to: /ressources/idees/la-dimension-relationnelle-du-travail-un-avantage-concurrentiel-trop-neglige/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /la-puissance-de-l-intention-4-echange-d-intentions/
+    to: /ressources/idees/la-puissance-de-l-intention-4-echange-d-intentions/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /le-coaching-en-pratique/
+    to: /ressources/idees/le-coaching-en-pratique/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /le-role-majeur-de-la-culture-de-surete-pour-anticiper-des-risques/
+    to: /ressources/idees/le-role-majeur-de-la-culture-de-surete-pour-anticiper-des-risques/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /le-systemicien-nouveau-demineur-de-conflits-en-entreprise/
+    to: /ressources/idees/le-systemicien-nouveau-demineur-de-conflits-en-entreprise/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /le-teletravail-moins-bien-vecu-par-les-jeunes-les-femmes-et-les-employes/
+    to: /ressources/idees/le-teletravail-moins-bien-vecu-par-les-jeunes-les-femmes-et-les-employes/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /leadership-base-sur-l-intention/
+    to: /ressources/idees/leadership-base-sur-l-intention/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /les-4-piliers-au-fondement-dun-engagement-professionnel-reussi/
+    to: /ressources/idees/les-4-piliers-au-fondement-dun-engagement-professionnel-reussi/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /les-conditions-de-puissance-du-leadership-base-sur-lintention/
+    to: /ressources/idees/les-conditions-de-puissance-du-leadership-base-sur-lintention/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /limplication-des-collaborateurs-cle-dune-vraie-digitalisation-reussie/
+    to: /ressources/idees/limplication-des-collaborateurs-cle-dune-vraie-digitalisation-reussie/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /ma-le-diagnostic-partage-sur-lelement-humain-qui-reduit-risque-et-taux-dechec/
+    to: /ressources/idees/ma-le-diagnostic-partage-sur-lelement-humain-qui-reduit-risque-et-taux-dechec/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /manque-de-cohesion-crise-risque-interne-majeur/
+    to: /ressources/idees/manque-de-cohesion-crise-risque-interne-majeur/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /nouvelle-ere-du-travail-phygital/
+    to: /ressources/idees/nouvelle-ere-du-travail-phygital/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /observatoire-du-cout-des-conflits/
+    to: /ressources/idees/observatoire-du-cout-des-conflits/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /pour-gagner-risquer-linitiative-avec-le-commandement-par-intention/
+    to: /ressources/idees/pour-gagner-risquer-linitiative-avec-le-commandement-par-intention/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /puissance-de-l-intention-1-implication-personnelle-et-appropriation/
+    to: /ressources/idees/puissance-de-l-intention-1-implication-personnelle-et-appropriation/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /puissance-de-l-intention-2-orientee-action/
+    to: /ressources/idees/puissance-de-l-intention-2-orientee-action/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /puissance-de-l-intention-3/
+    to: /ressources/idees/puissance-de-l-intention-3/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /puissance-de-l-intention-5-protections-reciproques/
+    to: /ressources/idees/puissance-de-l-intention-5-protections-reciproques/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /quand-lagile-va-trop-loin/
+    to: /ressources/idees/quand-lagile-va-trop-loin/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /quelles-conversations-pour-regenerer-nos-organizations-aujourdhui/
+    to: /ressources/idees/quelles-conversations-pour-regenerer-nos-organizations-aujourdhui/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /quelles-sont-les-composantes-de-la-culture-de-surete/
+    to: /ressources/idees/quelles-sont-les-composantes-de-la-culture-de-surete/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /richesse-humaine-drh-redonner-du-souffle-amiral-lajous/
+    to: /ressources/idees/richesse-humaine-drh-redonner-du-souffle-amiral-lajous/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /s-inspirer-des-methodes-organisationnelles-et-manageriales-de-la-marine-nationale/
+    to: /ressources/idees/s-inspirer-des-methodes-organisationnelles-et-manageriales-de-la-marine-nationale/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /sante-mentale-et-bien-etre-psychique-un-enjeu-majeur-dans-le-monde-du-travail/
+    to: /ressources/idees/sante-mentale-et-bien-etre-psychique-un-enjeu-majeur-dans-le-monde-du-travail/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /securite-ontologique/
+    to: /ressources/idees/securite-ontologique/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /sens-et-travail-entre-permanences-et-mutations/
+    to: /ressources/idees/sens-et-travail-entre-permanences-et-mutations/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /signaux-faibles-le-bruit-de-fond-qui-vaut-de-lor/
+    to: /ressources/idees/signaux-faibles-le-bruit-de-fond-qui-vaut-de-lor/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /sinteresser-aux-causes-des-defaillances-et-a-celles-du-bon-fonctionnement/
+    to: /ressources/idees/sinteresser-aux-causes-des-defaillances-et-a-celles-du-bon-fonctionnement/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /transformance-vincent-lenhardt/
+    to: /ressources/idees/transformance-vincent-lenhardt/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
+
+  - from: /un-referentiel-pour-envisager-une-performance-sociale-organisationnelle-et-manageriale-au-service-de-la-performance-globale/
+    to: /ressources/idees/un-referentiel-pour-envisager-une-performance-sociale-organisationnelle-et-manageriale-au-service-de-la-performance-globale/
+    status: '301'
+    note: 'Article ancien → /ressources/idees/'
