@@ -88,7 +88,7 @@ const FORMSPREE_URL = 'https://formspree.io/f/mqeneyew';
                     <option>Executive Coaching</option>
                     <option>Conflict Management</option>
                     <option>Leadership Development</option>
-                    <option>Conference Organisation</option>
+                    <option>Conference organization</option>
                     <option>Mental Health and Sustainable Performance</option>
                     <option>Other</option>
                   </select>
@@ -390,7 +390,7 @@ const FORMSPREE_URL = 'https://formspree.io/f/mqeneyew';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         const errorData = await response.json();
-        alert(errorData.error || "Error sending message.");
+        alert(errorData.error || 'Error sending message.');
         resetButton(btn, btnText);
       }
     } catch (error) {

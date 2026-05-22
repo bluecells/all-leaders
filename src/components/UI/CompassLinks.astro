@@ -10,32 +10,65 @@ const categories = {
     {
       name: 'Gestion de la conflictualité',
       href: '/accompagnements#category-gestion-de-la-conflictualite',
+      alt: 'Gestion de la conflictualité',
     },
     {
       name: 'Diagnostic de la performance',
       href: '/accompagnements#category-diagnostic-de-la-performance',
+      alt: 'Diagnostic de la performance',
     },
-    { name: 'Executive coaching', href: '/accompagnements#category-executive-coaching' },
+    {
+      name: 'Executive coaching',
+      href: '/accompagnements#category-executive-coaching',
+      alt: 'Executive coaching',
+    },
     {
       name: 'Santé mentale et performance durable',
       href: '/accompagnements#category-sante-mentale-et-performance-durable',
+      alt: 'Santé mentale et performance durable',
     },
-    { name: 'Leadership development', href: '/accompagnements#category-leadership-development' },
+    {
+      name: 'Leadership development',
+      href: '/accompagnements#category-leadership-development',
+      alt: 'Leadership development',
+    },
     {
       name: "Coaching d'équipe",
       href: '/accompagnements#category-coaching-equipes-et-organizations',
+      alt: "Coaching d'équipe",
     },
   ],
   en: [
-    { name: 'Conflict Management', href: '/en/services#category-conflict-management' },
-    { name: 'Performance Diagnosis', href: '/en/services#category-performance-diagnosis' },
-    { name: 'Executive Coaching', href: '/en/services#category-executive-coaching' },
+    {
+      name: 'Conflict Management',
+      href: '/en/services#category-conflict-management',
+      alt: 'Conflict Management',
+    },
+    {
+      name: 'Performance Diagnosis',
+      href: '/en/services#category-performance-diagnosis',
+      alt: 'Performance Diagnosis',
+    },
+    {
+      name: 'Executive Coaching',
+      href: '/en/services#category-executive-coaching',
+      alt: 'Executive Coaching',
+    },
     {
       name: 'Mental Health and Sustainable Performance',
       href: '/en/services#category-mental-health-and-sustainable-performance',
+      alt: 'Mental Health and Sustainable Performance',
     },
-    { name: 'Leadership Development', href: '/en/services#category-leadership-development' },
-    { name: 'Team Coaching', href: '/en/services#category-team-coaching-and-organizations' },
+    {
+      name: 'Leadership Development',
+      href: '/en/services#category-leadership-development',
+      alt: 'Leadership Development',
+    },
+    {
+      name: 'Team Coaching',
+      href: '/en/services#category-team-coaching-and-organizations',
+      alt: 'Team Coaching',
+    },
   ],
 };
 
@@ -48,7 +81,7 @@ const catList = categories[lang] || categories.fr;
 ---
 
 <div class="compass-main">
-  <div class="my-6 p-4 shadow-2xl md:shadow-none rounded-md z-50 mx-auto">
+  <div class="my-6 p-4 z-50 mx-auto">
     <h3 class="title-compass" set:html={title} />
   </div>
 
@@ -65,7 +98,7 @@ const catList = categories[lang] || categories.fr;
             <a href={cat.href} class="compass-link" data-index={idx}>
               <span>
                 {cat.name}
-                <img src="images/pages/en-savoir-plus.webp" class="image-link" />
+                <img src="/images/pages/en-savoir-plus.webp" class="image-link" alt={cat.alt} />
               </span>
             </a>
           ))
@@ -158,7 +191,7 @@ const catList = categories[lang] || categories.fr;
     --compass-size: min(calc(var(--available-height) * 0.75), 80vw);
 
     /* Rayon de l'orbite proportionnel */
-    --radius: calc(var(--compass-size) * 0.35);
+    --radius: calc(var(--compass-size) * 0.38);
   }
 
   /* --- STRUCTURE GLOBALE --- */
@@ -196,17 +229,17 @@ const catList = categories[lang] || categories.fr;
   .compass-right {
     width: 100%;
     height: 100%;
-    background-size: 120%;
+    background-size: 200%;
     background-repeat: no-repeat;
   }
   .compass-left {
     background-image: url('/images/pages/carte-marine-gauche.webp');
-    background-position: left center;
+    background-position: right center;
     border-radius: 1rem 0 0 1rem;
   }
   .compass-right {
     background-image: url('/images/pages/carte-marine-droite.webp');
-    background-position: right center;
+    background-position: left center;
     border-radius: 0 1rem 1rem 0;
   }
 
@@ -333,7 +366,7 @@ const catList = categories[lang] || categories.fr;
   @media (max-height: 500px) {
     :root {
       --title-height: 80px;
-      --compass-size: min(calc(100svh - 140px), 65vw);
+      --compass-size: min(calc(100svh - 140px), 68vw);
     }
 
     .title-compass {
@@ -352,10 +385,14 @@ const catList = categories[lang] || categories.fr;
       --compass-size: min(calc(var(--available-height) * 0.7), 75vw);
     }
 
+    .title-compass {
+      padding: 120px 0;
+      font-size: 1.25rem;
+    }
+
     .compass-container {
       display: grid;
-      grid-template-columns: 2fr 3fr 2fr;
-      min-height: 400px;
+      grid-template-columns: 3fr 1fr 3fr;
     }
   }
 
@@ -382,6 +419,7 @@ const catList = categories[lang] || categories.fr;
     .compass-left,
     .compass-right {
       display: block;
+      background-size: 100%;
     }
 
     #compassRoseBg {

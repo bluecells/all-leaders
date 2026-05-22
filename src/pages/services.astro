@@ -1,6 +1,6 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import AccompagnementsGrid from '../../components/AccompagnementsGrid.astro';
+import Layout from '../layouts/Layout.astro';
+import AccompagnementsGrid from '../components/AccompagnementsGrid.astro';
 import { getCollection } from 'astro:content';
 
 const modalites = await getCollection('modalites-intervention');
@@ -15,14 +15,14 @@ const sortedCategories = categorie.sort((a, b) => {
 ---
 
 <Layout
-  title="Les accompagnements de All Leaders Initiative"
-  metaTitle="Nos accompagnements - All Leaders Initiative"
-  metaDescription="Développez la performance collective de vos équipes et de leurs leaders ! Coaching, diagnostic LBI et santé mentale : nous transformons vos blocages en leviers d'action."
-  lang="fr"
+  title="The Services of All Leaders Initiative"
+  metaTitle="Our Services - All Leaders Initiative"
+  metaDescription="Develop the collective performance of your teams and their leaders! Coaching, LBI diagnostic and mental health: we transform your obstacles into levers for action."
+  lang="en"
 >
   <div class="flex flex-col justify-center align-items mx-auto min-h-[83vh]">
-    <h1 class="mb-8 text-3xl md:text-6xl text-center">Nos accompagnements</h1>
-    <h2>Solutions de diagnostic et développement pour vos organizations</h2>
+    <h1 class="mb-8 text-3xl md:text-6xl text-center">Our Services</h1>
+    <h2>Diagnostic and Development Solutions for Your Organisations</h2>
 
     <!-- Navigation des catégories d'accompagnements -->
     <nav class="categories-nav">
@@ -30,10 +30,10 @@ const sortedCategories = categorie.sort((a, b) => {
         {
           sortedCategories.map((cat) => (
             <a
-              href={`#category-${cat.data.slug_fr}`}
+              href={`#category-${cat.data.slug_en}`}
               class={`category-nav-link category-nav-link-${cat.data.order}`}
             >
-              {cat.data.name_fr}
+              {cat.data.name_en}
             </a>
           ))
         }
@@ -50,15 +50,15 @@ const sortedCategories = categorie.sort((a, b) => {
   <!-- Section des modalités avec descriptifs -->
 
   <section class="modalites-section">
-    <h2 class="text-2xl! md:text-4xl font-bold pt-4! px-20!">4 modalités d'intervention</h2>
+    <h2 class="text-2xl! md:text-4xl font-bold pt-4! px-20!">4 Modes of Intervention</h2>
     <div class="modalites-container">
       {
         sortedModalites.map((modalite) => {
           const objectiveMap = {
-            investigation: 'Poser un diagnostic',
-            inspiration: 'Sensibiliser',
-            action: 'Intervenir',
-            immersion: "Apprendre par l'expérience",
+            investigation: 'Conduct an Assessment',
+            inspiration: 'Raise Awareness',
+            action: 'Intervene',
+            immersion: 'Learn Through Experience',
           };
           const objective = objectiveMap[modalite.data.slug as keyof typeof objectiveMap] || '';
 
@@ -66,10 +66,10 @@ const sortedCategories = categorie.sort((a, b) => {
             <div id={modalite.data.slug} class={`modalite-card modalite-${modalite.data.slug}`}>
               <div class="modalite-header">
                 <span class={`modalite-dot modalite-dot-${modalite.data.slug}`} />
-                <h3 class="modalite-title">{modalite.data.name_fr}</h3>
+                <h3 class="modalite-title">{modalite.data.name_en}</h3>
               </div>
               <p class="modalite-objective">{objective}</p>
-              <p class="modalite-description hidden md:block">{modalite.data.description_fr}</p>
+              <p class="modalite-description hidden md:block">{modalite.data.description_en}</p>
             </div>
           );
         })
@@ -78,7 +78,7 @@ const sortedCategories = categorie.sort((a, b) => {
   </section>
 
   <!-- AccompagnementsGrid Component avec cards cliquables -->
-  <AccompagnementsGrid lang="fr" fullBleed={true} />
+  <AccompagnementsGrid lang="en" fullBleed={true} />
 
   <script is:inline>
     // 1. BLOCAGE IMMÉDIAT : On empêche le navigateur de sauter sauvagement
