@@ -1,4 +1,82 @@
 redirects:
+  # ========================================
+  # PHASE 1: Pages légales EN (Priorité maximale - ~400 liens)
+  # ========================================
+  - from: /en/cookies-policy-en
+    to: /en/cookies
+    status: '301'
+    note: 'Ancienne URL page cookies EN → nouvelle URL'
+
+  - from: /en/privacy-policy-en
+    to: /en/privacy
+    status: '301'
+    note: 'Ancienne URL page privacy EN → nouvelle URL'
+
+  - from: /en/faq-en
+    to: /en/faq
+    status: '301'
+    note: 'Ancienne URL page FAQ EN → nouvelle URL'
+
+  # ========================================
+  # PHASE 2: FAQ catégories EN (~100 liens)
+  # ========================================
+  # Les FAQ ne sont pas organisées par URL mais par ancres
+  - from: /en/faq/manager
+    to: /en/faq#manager
+    status: '301'
+    note: 'Ancienne structure FAQ catégorie → ancre'
+
+  - from: /en/faq/employee
+    to: /en/faq#collaborateur
+    status: '301'
+    note: 'Ancienne structure FAQ catégorie → ancre'
+
+  - from: /en/faq/assistant
+    to: /en/faq#assistant
+    status: '301'
+    note: 'Ancienne structure FAQ catégorie → ancre'
+
+  - from: /en/faq/dirigeant
+    to: /en/faq#dirigeant
+    status: '301'
+    note: 'Ancienne structure FAQ catégorie → ancre'
+
+  - from: /en/faq/collaborateur
+    to: /en/faq#collaborateur
+    status: '301'
+    note: 'Ancienne structure FAQ catégorie → ancre'
+
+  - from: /en/faq/executive
+    to: /en/faq#dirigeant
+    status: '301'
+    note: 'Ancienne structure FAQ catégorie → ancre (executive = dirigeant)'
+
+  # ========================================
+  # PHASE 2: FAQ catégories FR
+  # ========================================
+  - from: /faq/manager
+    to: /faq#manager
+    status: '301'
+    note: 'Ancienne structure FAQ catégorie → ancre'
+
+  - from: /faq/collaborateur
+    to: /faq#collaborateur
+    status: '301'
+    note: 'Ancienne structure FAQ catégorie → ancre'
+
+  - from: /faq/assistant
+    to: /faq#assistant
+    status: '301'
+    note: 'Ancienne structure FAQ catégorie → ancre'
+
+  - from: /faq/dirigeant
+    to: /faq#dirigeant
+    status: '301'
+    note: 'Ancienne structure FAQ catégorie → ancre'
+
+  # ========================================
+  # Redirections existantes (à conserver)
+  # ========================================
   # Ancien format avec catégorie FR vers nouveau format (sans catégorie)
   - from: accompagnements/leadership-development/feminine-leadership
     to: /accompagnements/leadership-feminin
@@ -7,3 +85,11 @@ redirects:
   # Ancien format avec catégorie EN vers nouveau format (sans catégorie)
   # Note: Les anciennes URLs EN avec /services/[categorie]/[slug] sont maintenant /en/services/[slug]
   # Ajouter manuellement si besoin une fois les anciennes URLs identifiées
+  - from: /accompagnements/coaching-de-managers/coaching-individuel-pour-managers/
+    to: /accompagnements/executive-coaching/coaching-individuel-pour-managers
+    status: '301'
+    note: 'Ancien format avec catégorie → nouveau format simple
+  - from: /accompagnements/coaching-de-managers/ateliers-collectifs-coaching-equipes/
+    to: /accompagnements#category-executive-coaching
+    status: '301'
+    note: 'Ancien format avec catégorie → nouveau format simple
