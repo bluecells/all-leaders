@@ -48,37 +48,43 @@ export const COOKIES: Metadata = {
 export const HOME_EN: Metadata = {
   TITLE: 'All Leaders Initiative',
   METATITLE: 'All Leaders Initiative - Building fulfilled and high-performing teams',
-  METADESCRIPTION: 'Discover how to build fulfilled and high-performing teams through our conferences and resources',
+  METADESCRIPTION:
+    'Discover how to build fulfilled and high-performing teams through our conferences and resources',
 };
 
 export const FAQ_EN: Metadata = {
   TITLE: 'FAQ',
   METATITLE: 'FAQ - All Leaders Initiative',
-  METADESCRIPTION: 'Frequently asked questions about leadership, team management and workplace well-being',
+  METADESCRIPTION:
+    'Frequently asked questions about leadership, team management and workplace well-being',
 };
 
 export const SERVICES_EN: Metadata = {
   TITLE: 'Our Services',
   METATITLE: 'Our Services - All Leaders Initiative',
-  METADESCRIPTION: 'Discover our services and conferences on collective performance and leadership development',
+  METADESCRIPTION:
+    'Discover our services and conferences on collective performance and leadership development',
 };
 
 export const ACCOMPAGNEMENTS_EN: Metadata = {
   TITLE: 'Our Services',
   METATITLE: 'Our Services - All Leaders Initiative',
-  METADESCRIPTION: 'Develop the collective performance of your teams and their leaders through our coaching, diagnostics and mental wellbeing programmes',
+  METADESCRIPTION:
+    'Develop the collective performance of your teams and their leaders through our coaching, diagnostics and mental wellbeing programmes',
 };
 
 export const CONTACT_EN: Metadata = {
   TITLE: 'Contact',
   METATITLE: 'Contact All Leaders Initiative',
-  METADESCRIPTION: 'Please feel free to contact us for any questions regarding our services and their logistics',
+  METADESCRIPTION:
+    'Please feel free to contact us for any questions regarding our services and their logistics',
 };
 
 export const PRIVACY_EN: Metadata = {
   TITLE: 'Privacy Policy',
   METATITLE: 'Privacy Policy - All Leaders Initiative',
-  METADESCRIPTION: 'Information on how we process and protect your personal data in accordance with GDPR',
+  METADESCRIPTION:
+    'Information on how we process and protect your personal data in accordance with GDPR',
 };
 
 export const COOKIES_EN: Metadata = {
@@ -90,7 +96,8 @@ export const COOKIES_EN: Metadata = {
 export const RESOURCES_EN: Metadata = {
   TITLE: 'Resources',
   METATITLE: 'Resources - All Leaders Initiative',
-  METADESCRIPTION: 'Discover our articles and resources on leadership, psychological safety, and organisational development',
+  METADESCRIPTION:
+    'Discover our articles and resources on leadership, psychological safety, and organizational development',
 };
 
 export const SOCIALS: Socials = [
