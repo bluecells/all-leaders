@@ -81,7 +81,7 @@ const catList = categories[lang] || categories.fr;
 ---
 
 <div class="compass-main">
-  <div class="my-6 p-4 z-50 mx-auto">
+  <div class="flex justify-end py-10 z-50 mx-auto">
     <h3 class="title-compass" set:html={title} />
   </div>
 
@@ -129,13 +129,13 @@ const catList = categories[lang] || categories.fr;
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.compass-main',
-        start: 'top top',
-        end: '+=100%',
+        start: '-25% top',
+        end: '15%',
         scrub: 1.5,
-        pin: true,
+        pin: false,
         anticipatePin: 1,
         invalidateOnRefresh: true,
-        pinSpacing: true,
+        pinSpacing: false,
       },
     });
 
@@ -184,7 +184,7 @@ const catList = categories[lang] || categories.fr;
 <style>
   :root {
     /* Calcul dynamique de l'espace disponible */
-    --title-height: 120px; /* Estimation hauteur titre + padding */
+    --title-height: 100px; /* Estimation hauteur titre + padding */
     --available-height: calc(100svh - var(--title-height) - 100px);
 
     /* Taille de la boussole : plus petit entre hauteur et largeur */
@@ -280,7 +280,6 @@ const catList = categories[lang] || categories.fr;
   .title-compass {
     flex-shrink: 0; /* Ne rétrécit jamais */
     box-sizing: border-box;
-    padding: 60px 1rem 1rem; /* Top pour passer sous menu */
     text-align: center;
     width: clamp(70%, 5vw + 55%, 90%);
     margin: 0 auto;
@@ -370,7 +369,6 @@ const catList = categories[lang] || categories.fr;
     }
 
     .title-compass {
-      padding: 60px 0.5rem 0.5rem;
       font-size: 0.85rem;
     }
 
@@ -386,7 +384,6 @@ const catList = categories[lang] || categories.fr;
     }
 
     .title-compass {
-      padding: 120px 0;
       font-size: 1.25rem;
     }
 
@@ -407,10 +404,6 @@ const catList = categories[lang] || categories.fr;
       width: 100%;
     }
 
-    .title-compass {
-      padding-top: 80px;
-    }
-
     .compass-container {
       display: grid;
       grid-template-columns: 2fr 3fr 2fr;
@@ -419,7 +412,7 @@ const catList = categories[lang] || categories.fr;
     .compass-left,
     .compass-right {
       display: block;
-      background-size: 100%;
+      background-size: 120%;
     }
 
     #compassRoseBg {
@@ -432,6 +425,11 @@ const catList = categories[lang] || categories.fr;
     :root {
       --compass-size: min(calc(var(--available-height) * 0.7), 500px);
     }
+
+    .compass-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 
   /* Large desktop */
@@ -439,10 +437,6 @@ const catList = categories[lang] || categories.fr;
     :root {
       --title-height: 180px;
       --compass-size: min(calc(var(--available-height) * 0.75), 650px);
-    }
-
-    .title-compass {
-      padding-top: 100px;
     }
   }
 
