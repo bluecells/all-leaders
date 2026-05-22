@@ -35,14 +35,13 @@ export const GET: APIRoute = async ({ site }) => {
 
   const urls: string[] = [];
 
-  // Homepage + racines langues
+  // Homepage + racine langue anglaise
   urls.push(urlEntry('/', new Date(), '1.0', 'daily'));
-  urls.push(urlEntry('/fr/', new Date(), '0.9', 'daily'));
   urls.push(urlEntry('/en/', new Date(), '0.9', 'daily'));
 
   // Articles (avec catégorie slug localisée)
   for (const article of articles) {
-    const lang = article.data.lang as 'it' | 'fr' | 'en';
+    const lang = article.data.lang as 'fr' | 'en';
     const cat = categories.find((c) => c.id === article.data.category);
     if (!cat) continue;
 
@@ -64,9 +63,10 @@ export const GET: APIRoute = async ({ site }) => {
 
   // Accompagnements
   for (const accompagnement of accompagnements) {
-    const lang = accompagnement.data.lang as 'fr' | 'en';
+    const lang = accompagnement.data.lang as 'fr' | 'en' | undefined;
+    if (!lang) continue; // Skip accompagnements sans langue définie
     const slug = (accompagnement.data.seoSlug || accompagnement.id.split('/').pop())?.replace(/^\/|\/$/g, '');
-    const path = lang === 'fr' ? `/accompagnements/${slug}` : `/${lang}/services/${slug}`;
+    const path = lang === 'fr' ? `/accompagnements/${slug}` : `/en/services/${slug}`;
     urls.push(urlEntry(path, new Date(), '0.7', 'monthly'));
   }
 
@@ -76,22 +76,22 @@ export const GET: APIRoute = async ({ site }) => {
 
   // Landing pages (même logique que pages)
   for (const lp of landingPages) {
-    const lang = lp.data.lang as 'it' | 'fr' | 'en';
+    const lang = lp.data.lang as 'fr' | 'en';
     const slug = (lp.data.seoSlug || lp.id)?.replace(/^\/|\/$/g, '');
-    const path = lang === 'it' ? `/${slug}` : `/${lang}/${slug}`;
+    const path = lang === 'fr' ? `/${slug}` : `/en/${slug}`;
     urls.push(urlEntry(path, new Date(), '0.7', 'monthly'));
   }
 
   // FAQ (avec catégorie slug localisée)
   for (const faq of faqs) {
-    const lang = faq.data.lang as 'it' | 'fr' | 'en';
+    const lang = faq.data.lang as 'fr' | 'en';
     const cat = categories.find((c) => c.id === faq.data.category);
     if (!cat) continue;
 
-    const catSlug = cat.data[`slug_${lang}`] || cat.data.slug_it || 'generale';
+    const catSlug = cat.data[`slug_${lang}`] || cat.data.slug_fr || 'faq';
     const faqSlug = (faq.data.seoSlug || faq.id.split('/').pop()?.replace('.mdoc', ''))?.replace(/^\/|\/$/g, '');
 
-    const path = lang === 'it' ? `/faq/${catSlug}/${faqSlug}` : `/${lang}/faq/${catSlug}/${faqSlug}`;
+    const path = lang === 'fr' ? `/faq/${catSlug}/${faqSlug}` : `/${lang}/faq/${catSlug}/${faqSlug}`;
     urls.push(urlEntry(path, null, '0.6', 'monthly'));
   }
 

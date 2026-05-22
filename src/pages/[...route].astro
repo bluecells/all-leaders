@@ -81,10 +81,11 @@ if (route === 'blog' || rawPath === 'en/blog') {
 }
 
 /* 3️⃣ Chargement collections */
-const [articles, faq, landingPages] = await Promise.all([
+const [articles, faq, landingPages, accompagnements] = await Promise.all([
   getCollection('articles'),
   getCollection('faq'),
   getCollection('landing-pages'),
+  getCollection('accompagnements'),
 ]);
 
 let entry = null;
