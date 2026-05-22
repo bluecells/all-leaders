@@ -8,38 +8,34 @@ const { lang = 'fr' } = Astro.props;
 
 const texts = {
   fr: {
-    title: "Continuum de la performance collective",
-    zone_blue: "Collectif hautement performant",
-    zone_3_title: "(Sur)performance à maintenir",
-    zone_3_desc: "Déployer le leadership à tout niveau",
-    zone_2_title: "Opportunités à développer",
-    zone_2_desc: "Amplifier les points forts et réguler les vulnérabilités",
-    zone_1_title: "Difficultés à résoudre",
-    zone_1_desc: "Bien-être mental fondamental à récréer",
-    zone_red: "Groupe dysfonctionnel"
+    title: 'Continuum de la performance collective',
+    zone_blue: 'Collectif hautement performant',
+    zone_3_title: '(Sur)performance à maintenir',
+    zone_3_desc: 'Déployer le leadership à tout niveau',
+    zone_2_title: 'Opportunités à développer',
+    zone_2_desc: 'Amplifier les points forts et réguler les vulnérabilités',
+    zone_1_title: 'Difficultés à résoudre',
+    zone_1_desc: 'Bien-être mental fondamental à récréer',
+    zone_red: 'Groupe dysfonctionnel',
   },
   en: {
-    title: "Collective performance continuum",
-    zone_blue: "Highly performing collective",
-    zone_3_title: "Performance to maintain",
-    zone_3_desc: "Deploy leadership at all levels",
-    zone_2_title: "Opportunities to develop",
-    zone_2_desc: "Amplify strengths and regulate vulnerabilities",
-    zone_1_title: "Difficulties to resolve",
-    zone_1_desc: "Rebuild fundamental mental wellbeing",
-    zone_red: "Dysfunctional group"
-  }
+    title: 'Collective performance continuum',
+    zone_blue: 'High performing team',
+    zone_3_title: 'High performance to maintain',
+    zone_3_desc: 'Deploy leadership at all levels',
+    zone_2_title: 'Opportunities to develop',
+    zone_2_desc: 'Amplify strengths and regulate vulnerabilities',
+    zone_1_title: 'Chanllenges to resolve',
+    zone_1_desc: 'Rebuild fundamental mental wellbeing',
+    zone_red: 'Dysfunctional group',
+  },
 };
 
 const t = texts[lang] || texts.fr;
 ---
 
 <div class="continuum-mobile-outer">
-  <div
-    class="continuum-mobile-wrapper"
-    role="img"
-    aria-label={t.title}
-  >
+  <div class="continuum-mobile-wrapper" role="img" aria-label={t.title}>
     <div class="continuum-mobile-grid">
       <div class="mobile-zone zone-blue">
         <span>{t.zone_blue}</span>

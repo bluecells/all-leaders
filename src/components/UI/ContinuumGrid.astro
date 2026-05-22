@@ -9,43 +9,43 @@ const { lang = 'fr' } = Astro.props;
 
 const texts = {
   fr: {
-    title: "Continuum de la performance collective",
-    line1_left: "Du groupe dysfonctionnel...",
-    line1_right: "... au collectif hautement performant",
-    line2_left: "Difficultés à résoudre",
-    line2_middle: "Opportunités à développer",
-    line2_right: "(Sur)performance à maintenir",
+    title: 'Continuum de la performance collective',
+    line1_left: 'Du groupe dysfonctionnel...',
+    line1_right: '... au collectif hautement performant',
+    line2_left: 'Difficultés à résoudre',
+    line2_middle: 'Opportunités à développer',
+    line2_right: '(Sur)performance à maintenir',
     line3: [
-      "Troubles de la santé mentale",
-      "Épuisement",
-      "Risques psychosociaux",
-      "Frictions et Tensions",
-      "Conflictualité",
-      "Régulation",
-      "Confiance",
-      "Cohésion",
-      "Esprit d'équipage"
-    ]
+      'Troubles de la santé mentale',
+      'Épuisement',
+      'Risques psychosociaux',
+      'Frictions et Tensions',
+      'Conflictualité',
+      'Régulation',
+      'Confiance',
+      'Cohésion',
+      "Esprit d'équipage",
+    ],
   },
   en: {
-    title: "Collective performance continuum",
-    line1_left: "From dysfunctional group...",
-    line1_right: "... to highly performing collective",
-    line2_left: "Difficulties to resolve",
-    line2_middle: "Opportunities to develop",
-    line2_right: "Performance to maintain",
+    title: 'Collective performance continuum',
+    line1_left: 'From dysfunctional group...',
+    line1_right: '... to high performing team',
+    line2_left: 'Challenges to resolve',
+    line2_middle: 'Opportunities to develop',
+    line2_right: 'High performance to maintain',
     line3: [
-      "Mental health issues",
-      "Burnout",
-      "Psychosocial risks",
-      "Friction and tension",
-      "Conflict",
-      "Regulation",
-      "Trust",
-      "Cohesion",
-      "Team spirit"
-    ]
-  }
+      'Mental health issues',
+      'Burnout',
+      'Psychosocial risks',
+      'Friction and tension',
+      'Conflict',
+      'Regulation',
+      'Trust',
+      'Cohesion',
+      'Crew spirit',
+    ],
+  },
 };
 
 const t = texts[lang] || texts.fr;
@@ -103,17 +103,23 @@ const t = texts[lang] || texts.fr;
     <div></div>
 
     <!-- Ligne 3 -->
-    {t.line3.map((text, idx) => {
-      const col = idx + 1;
-      const isRed = idx < 3;
-      const isPurple = idx >= 3 && idx < 6;
-      const className = isRed ? 'red' : isPurple ? 'purple' : 'bleu';
+    {
+      t.line3.map((text, idx) => {
+        const col = idx + 1;
+        const isRed = idx < 3;
+        const isPurple = idx >= 3 && idx < 6;
+        const className = isRed ? 'red' : isPurple ? 'purple' : 'bleu';
 
-      return (
-        <div class={`grid-cell ${className}`} data-text={text} data-row="3" data-col={col.toString()}>
-        </div>
-      );
-    })}
+        return (
+          <div
+            class={`grid-cell ${className}`}
+            data-text={text}
+            data-row="3"
+            data-col={col.toString()}
+          ></div>
+        );
+      })
+    }
   </div>
 </div>
 

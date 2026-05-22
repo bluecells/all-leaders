@@ -7,25 +7,42 @@ const { lang = 'fr' } = Astro.props;
 
 const categories = {
   fr: [
-    { name: "Gestion de la conflictualité", href: "/accompagnements#category-gestion-de-la-conflictualite" },
-    { name: "Diagnostic de la performance", href: "/accompagnements#category-diagnostic-de-la-performance" },
-    { name: "Executive coaching", href: "/accompagnements#category-executive-coaching" },
-    { name: "Santé mentale et performance durable", href: "/accompagnements#category-sante-mentale-et-performance-durable" },
-    { name: "Leadership development", href: "/accompagnements#category-leadership-development" },
-    { name: "Coaching d'équipe", href: "/accompagnements#category-coaching-equipes-et-organisations" }
+    {
+      name: 'Gestion de la conflictualité',
+      href: '/accompagnements#category-gestion-de-la-conflictualite',
+    },
+    {
+      name: 'Diagnostic de la performance',
+      href: '/accompagnements#category-diagnostic-de-la-performance',
+    },
+    { name: 'Executive coaching', href: '/accompagnements#category-executive-coaching' },
+    {
+      name: 'Santé mentale et performance durable',
+      href: '/accompagnements#category-sante-mentale-et-performance-durable',
+    },
+    { name: 'Leadership development', href: '/accompagnements#category-leadership-development' },
+    {
+      name: "Coaching d'équipe",
+      href: '/accompagnements#category-coaching-equipes-et-organisations',
+    },
   ],
   en: [
-    { name: "Conflict Management", href: "/en/services#category-conflict-management" },
-    { name: "Performance Diagnostics", href: "/en/services#category-performance-diagnostics" },
-    { name: "Executive Coaching", href: "/en/services#category-executive-coaching" },
-    { name: "Mental Health and Sustainable Performance", href: "/en/services#category-mental-health-and-sustainable-performance" },
-    { name: "Leadership Development", href: "/en/services#category-leadership-development" },
-    { name: "Team Coaching", href: "/en/services#category-team-coaching-and-organisations" }
-  ]
+    { name: 'Conflict Management', href: '/en/services#category-conflict-management' },
+    { name: 'Performance Diagnosis', href: '/en/services#category-performance-diagnosis' },
+    { name: 'Executive Coaching', href: '/en/services#category-executive-coaching' },
+    {
+      name: 'Mental Health and Sustainable Performance',
+      href: '/en/services#category-mental-health-and-sustainable-performance',
+    },
+    { name: 'Leadership Development', href: '/en/services#category-leadership-development' },
+    { name: 'Team Coaching', href: '/en/services#category-team-coaching-and-organisations' },
+  ],
 };
 
-const titleFr = "Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec <strong>sens, clarté et impact.</strong>";
-const titleEn = "Transform <strong>intentions into concrete actions</strong>, for teams working with <strong>purpose, clarity and impact.</strong>";
+const titleFr =
+  'Transformer les <strong>intentions en actions</strong> concrètes, pour des équipes agissant avec <strong>sens, clarté et impact.</strong>';
+const titleEn =
+  'Transform <strong>intentions into concrete actions</strong>, to enable teams led by <strong>purpose, clarity and impact.</strong>';
 const title = lang === 'en' ? titleEn : titleFr;
 const catList = categories[lang] || categories.fr;
 ---
@@ -43,18 +60,16 @@ const catList = categories[lang] || categories.fr;
       <div class="compass-compass-fixed"></div>
 
       <div class="compass-orbit" id="compassOrbit">
-        {catList.map((cat, idx) => (
-          <a
-            href={cat.href}
-            class="compass-link"
-            data-index={idx}
-          >
-            <span>{cat.name}<img
-              src="images/pages/en-savoir-plus.webp"
-              class="image-link"
-            /></span>
-          </a>
-        ))}
+        {
+          catList.map((cat, idx) => (
+            <a href={cat.href} class="compass-link" data-index={idx}>
+              <span>
+                {cat.name}
+                <img src="images/pages/en-savoir-plus.webp" class="image-link" />
+              </span>
+            </a>
+          ))
+        }
       </div>
     </div>
 
