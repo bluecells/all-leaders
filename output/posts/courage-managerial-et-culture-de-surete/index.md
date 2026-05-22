@@ -1,9 +1,9 @@
 ---
-title: "Le courage managérial, pour et par la sécurité psychologique"
+title: 'Le courage managérial, pour et par la sécurité psychologique'
 date: 2024-01-14
-categories: 
-  - "idees"
-coverImage: "PARLONS-CULTURE-DE-SURETE.jpeg"
+categories:
+  - 'idees'
+coverImage: 'PARLONS-CULTURE-DE-SURETE.jpeg'
 ---
 
 Chez All Leaders Initiative, nous connaissons et aimons l’entreprise. Et nous connaissons et aimons les managers. Nous l’avons été, nous les accompagnons, et nous savons qu’ils font preuve d’un courage qui est rarement mis en avant. Ce courage n'est pas seulement dans les grandes décisions, mais aussi dans leur choix quotidien (de plus en plus rare d’ailleurs, c’est un des challenges actuels) de se consacrer à leurs équipes, au service de leur mission commune. 
@@ -20,7 +20,7 @@ Comme le souligne David Marquet, cela implique un changement de la mentalité de
 
 Les managers font souvent face à des choix complexes, impliquant des compromis difficiles ou impopulaires. Cela inclut des décisions concernant les changements stratégiques, les réductions de personnel, ou l'adoption de nouvelles méthodes de travail. Cela implique de stopper certaines activités de production, de faire des arbitrage complexes, de licencier parfois, au service de la mission et de l’ambition collectives.
 
-Dans tous les cas, petites ou grande décisions, le changement n’est jamais acquis et génère toujours des réactions de défense : les managers sont en première ligne pour permette qu’il puisse être permanent au sein de leur équipe, pour le bénéfice de leur organisation.
+Dans tous les cas, petites ou grande décisions, le changement n’est jamais acquis et génère toujours des réactions de défense : les managers sont en première ligne pour permette qu’il puisse être permanent au sein de leur équipe, pour le bénéfice de leur organization.
 
 ### Ils ont le courage de gérer les conflits
 
@@ -36,7 +36,7 @@ Encourager l'innovation et la prise de risques calculés au sein des équipes de
 
 Parfois, les managers doivent prendre position pour défendre les intérêts de leur équipe face à la direction ou à d'autres départements. Cela nécessite de l'assurance et de la détermination, surtout lorsqu'il s'agit de protéger les ressources ou de plaider pour les besoins de l'équipe. Encore plus lorsqu’on est un jeune manager.
 
-De temps en temps, les arbitrages internes impliquent que les intérêts d’autres équipes soient plus cruciaux pour la mission commune. Une fois de plus, ce sont les managers qui, ayant en tête la vision et la mission de l’organisation, devront avoir le courage de l’assumer et de l’expliquer à leurs équipes. Cela nécessite tout autant d’assurance et de la détermination !
+De temps en temps, les arbitrages internes impliquent que les intérêts d’autres équipes soient plus cruciaux pour la mission commune. Une fois de plus, ce sont les managers qui, ayant en tête la vision et la mission de l’organization, devront avoir le courage de l’assumer et de l’expliquer à leurs équipes. Cela nécessite tout autant d’assurance et de la détermination !
 
 ### Ils ont le courage de faire des feedbacks honnêtes et de montrer de l’empathie
 
@@ -50,11 +50,11 @@ Le développement du courage managérial passe par une compréhension profonde d
 
 Le courage managérial comme une composante intrinsèque de la dynamique interpersonnelle au sein des équipes.
 
-Cela tombe bien, la sécurité psychologique, au sein d’une équipe ou d’une organisation,
+Cela tombe bien, la sécurité psychologique, au sein d’une équipe ou d’une organization,
 
 « La croyance partagée par les membres d'une équipe qu'ils peuvent s'exprimer librement et prendre des risques interpersonnels (exprimer une opinion divergente, reporter une erreur même minime, partager une idée non aboutie, …) sans crainte de répercussions négatives ».
 
-La relation entre le courage des managers et la sécurité psychologique dans une organisation est étroitement liée et bidirectionnelle. Elles se renforcent mutuellement dans un cercle vertueux
+La relation entre le courage des managers et la sécurité psychologique dans une organization est étroitement liée et bidirectionnelle. Elles se renforcent mutuellement dans un cercle vertueux
 
 ### Car la sécurité psychologique renforce le courage des managers
 
@@ -74,7 +74,7 @@ En soutenant les initiatives et les idées des collaborateurs, les managers renf
 
 En reconnaissant que l'échec est une partie naturelle du processus de croissance et en le permettant – sous conditions- et le gérant de manière constructive, les managers cultivent un environnement où leur équipe se sentent en sécurité pour essayer, échouer et apprendre.
 
-Cette synergie entre sécurité psychologique et courage managériale crée une dynamique organisationnelle où la prise de risque, l'innovation, et la croissance personnelle et collective sont encouragées, contribuant ainsi à une performance et une efficacité accrues de l'équipe.
+Cette synergie entre sécurité psychologique et courage managériale crée une dynamique organizationnelle où la prise de risque, l'innovation, et la croissance personnelle et collective sont encouragées, contribuant ainsi à une performance et une efficacité accrues de l'équipe.
 
 ## Commencez maintenant avec All Leaders Initiative
 

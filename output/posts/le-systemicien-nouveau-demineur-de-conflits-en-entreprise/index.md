@@ -1,21 +1,21 @@
 ---
-title: "LE SYSTÉMICIEN, NOUVEAU DÉMINEUR DE CONFLITS EN ENTREPRISE"
+title: 'LE SYSTÉMICIEN, NOUVEAU DÉMINEUR DE CONFLITS EN ENTREPRISE'
 date: 2022-05-13
-categories: 
-  - "idees"
-  - "inspiration"
-coverImage: "systemicien.jpg"
+categories:
+  - 'idees'
+  - 'inspiration'
+coverImage: 'systemicien.jpg'
 ---
 
-#### Cet article publié dans [_The Conversation_](https://theconversation.com/le-systemicien-nouveau-demineur-de-conflits-en-entreprise-182470) s’appuie sur les observations de _[l’Observatoire du Coût des Conflits](https://all-leaders.fr/observatoire-du-cout-des-conflits/)_ créé par All Leaders Initiative avec OpinionWay. Il pose un regard neutre de chercheurs et enseignants universitaires sur ces enjeux et leur mode de résolution, ce qui permet d’illustrer l’approche de coaching intégratif empruntant largement à la Systémique mise en œuvre dans les interventions de All Leaders Initiative.
+#### Cet article publié dans [_The Conversation_](https://theconversation.com/le-systemicien-nouveau-demineur-de-conflits-en-entreprise-182470) s’appuie sur les observations de *[l’Observatoire du Coût des Conflits](https://all-leaders.fr/observatoire-du-cout-des-conflits/)* créé par All Leaders Initiative avec OpinionWay. Il pose un regard neutre de chercheurs et enseignants universitaires sur ces enjeux et leur mode de résolution, ce qui permet d’illustrer l’approche de coaching intégratif empruntant largement à la Systémique mise en œuvre dans les interventions de All Leaders Initiative.
 
-[Audrey Becuwe](https://theconversation.com/profiles/audrey-becuwe-1297412), _[Université de Limoges](https://theconversation.com/institutions/universite-de-limoges-1835)_ et [Grégoire Vitry](https://theconversation.com/profiles/gregoire-vitry-1343550), _[Université Paris 8 – Vincennes Saint-Denis](https://theconversation.com/institutions/universite-paris-8-vincennes-saint-denis-2364)_
+[Audrey Becuwe](https://theconversation.com/profiles/audrey-becuwe-1297412), *[Université de Limoges](https://theconversation.com/institutions/universite-de-limoges-1835)* et [Grégoire Vitry](https://theconversation.com/profiles/gregoire-vitry-1343550), *[Université Paris 8 – Vincennes Saint-Denis](https://theconversation.com/institutions/universite-paris-8-vincennes-saint-denis-2364)*
 
 Selon l’Observatoire du coût des conflits au travail, [plus de deux salariés sur trois se déclarent en situation de conflit](https://www.opinion-way.com/fr/inside-by-opinionway/a-la-une/489-observatoire-du-cout-des-conflits-opinionway-all-leaders-initiative-avec-topics.html). Une étude plus ancienne d’OPP Ltd, cabinet de consultants spécialisé dans la psychologie du travail, précise que les salariés français « passent, en moyenne, [1,8 heure par semaine](https://fr.slideshare.net/PortailGLF/etude-opp-conflits-au-travail) » à gérer ces difficultés. Et que 51 % des salariés des départements ressources humaines y consacrent de 1 à 5 heures hebdomadaires.
 
 Or le temps, c’est de l’argent. La perte pour les entreprises de l’Hexagone est estimée à l’équivalent d’un mois de travail par an, soit une facture de plus de 152 milliards d’euros chaque année. Ainsi, la question de la résolution des conflits dans un cadre professionnel représente un enjeu économique autant que social.
 
-Pour prendre en charge ces tensions, les entreprises ont aujourd’hui généralement recours à la médecine du travail, à des médiateurs, des coachs, des juristes ou des organisations syndicales. Autant d’acteurs – particulièrement la médecine du travail –, qui sont généralement démunis face à des situations à la croisée de la santé individuelle et du bien-être collectif. La seule réponse est trop souvent l’arrêt de travail, le licenciement ou la mutation. Mais il existe une autre approche, encore méconnue, bien que particulièrement efficace : l’intervention d’un systémicien.
+Pour prendre en charge ces tensions, les entreprises ont aujourd’hui généralement recours à la médecine du travail, à des médiateurs, des coachs, des juristes ou des organizations syndicales. Autant d’acteurs – particulièrement la médecine du travail –, qui sont généralement démunis face à des situations à la croisée de la santé individuelle et du bien-être collectif. La seule réponse est trop souvent l’arrêt de travail, le licenciement ou la mutation. Mais il existe une autre approche, encore méconnue, bien que particulièrement efficace : l’intervention d’un systémicien.
 
 ## Des situations qui se sont « dégonflées d’elles-mêmes »
 
@@ -57,10 +57,10 @@ De manière générale, les interventions correspondent à trois types de diffic
 
 Les entreprises peuvent donc d’ores et déjà ajouter un outil performant à leur dispositif d’amélioration de la qualité de vie au travail, indépendamment de la médiation et des plates-formes d’écoute téléphonique. Un nouvel outil de résolution des problèmes, nous l’avons dit. Mais aussi un outil de prévention, avec la mise en place de formations/interventions sur le management relationnel (à partir de modules collectifs de 2 heures) appliqué aux sujets sensibles de l’entreprise, par exemple la discrimination, la gestion de conflits, le télétravail… Un outil, de surcroît, qui permet d’impliquer, lorsque c’est nécessaire, l’ensemble des parties prenantes : direction, management, médecine du travail, syndicats. Une saine gestion des ressources humaines peut-elle se passer d’un tel atout ?
 
-* * *
+---
 
 _Les prénoms ont été changés._
 
-[Audrey Becuwe](https://theconversation.com/profiles/audrey-becuwe-1297412), Maître de Conférences HDR en sciences de gestion à l’IAE Limoges, _[Université de Limoges](https://theconversation.com/institutions/universite-de-limoges-1835)_ et [Grégoire Vitry](https://theconversation.com/profiles/gregoire-vitry-1343550), Chercheur en psychologie et sociologie, Université Paris Descartes CERMES3-Paris, Chargé de cours, _[Université Paris 8 – Vincennes Saint-Denis](https://theconversation.com/institutions/universite-paris-8-vincennes-saint-denis-2364)_
+[Audrey Becuwe](https://theconversation.com/profiles/audrey-becuwe-1297412), Maître de Conférences HDR en sciences de gestion à l’IAE Limoges, *[Université de Limoges](https://theconversation.com/institutions/universite-de-limoges-1835)* et [Grégoire Vitry](https://theconversation.com/profiles/gregoire-vitry-1343550), Chercheur en psychologie et sociologie, Université Paris Descartes CERMES3-Paris, Chargé de cours, *[Université Paris 8 – Vincennes Saint-Denis](https://theconversation.com/institutions/universite-paris-8-vincennes-saint-denis-2364)*
 
 Cet article est republié à partir de [The Conversation](https://theconversation.com/) sous licence Creative Commons. Lire l’[article original](https://theconversation.com/le-systemicien-nouveau-demineur-de-conflits-en-entreprise-182470).

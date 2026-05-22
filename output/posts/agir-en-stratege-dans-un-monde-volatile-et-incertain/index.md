@@ -1,12 +1,12 @@
 ---
-title: "Agir en stratège dans un monde volatile et incertain"
+title: 'Agir en stratège dans un monde volatile et incertain'
 date: 2024-03-03
-categories: 
-  - "idees"
-coverImage: "Storm.jpg"
+categories:
+  - 'idees'
+coverImage: 'Storm.jpg'
 ---
 
-## Comment n'être pas pris par la contagion du chaos et permettre à nos organisations "d'agir en stratèges dans un monde volatile et incertain ?" Eclairages de l’amiral Vandier, Major Général des Armées, dont nous apprécions particulièrement la pensée stratégique, pragmatique, et l'incarnation du Leadership basé sur l'intention.
+## Comment n'être pas pris par la contagion du chaos et permettre à nos organizations "d'agir en stratèges dans un monde volatile et incertain ?" Eclairages de l’amiral Vandier, Major Général des Armées, dont nous apprécions particulièrement la pensée stratégique, pragmatique, et l'incarnation du Leadership basé sur l'intention.
 
 ### En faisant nôtre le paradoxe de "l'urgence du temps long"
 
@@ -20,10 +20,10 @@ Au contraire, profiter des nouveaux outils numériques pour « dompter » le plu
 
 ### En renonçant à l'ambition illusoire de maîtriser les risques
 
-Comment ? De manière paradoxale : en décidant d'en prendre... C’est-à-dire en osant _« faire des choix non strictement prévus ou encadrés »_ par les acteurs de l’organisation, sur la base d’une intention générale, partagée et bien comprise par tous. L’intention au service de la subsidiarité.
+Comment ? De manière paradoxale : en décidant d'en prendre... C’est-à-dire en osant _« faire des choix non strictement prévus ou encadrés »_ par les acteurs de l’organization, sur la base d’une intention générale, partagée et bien comprise par tous. L’intention au service de la subsidiarité.
 
-> **_« Il s’agit de laisser les acteurs de l’organisation décider sur la base d’une « intention générale » donnée par la direction mais sans forcément directives ou ordres précis »_**
-> 
+> **_« Il s’agit de laisser les acteurs de l’organization décider sur la base d’une « intention générale » donnée par la direction mais sans forcément directives ou ordres précis »_**
+>
 > Amiral Pierre Vandier
 
 Ces enseignements tirés de la gestion du chaos illustrent le caractère essentiel du **Leadership basé sur l'intention** et de la subsidiarité, chers à **All Leaders Initiative**.
@@ -32,6 +32,6 @@ Sur la forme, ils montrent également que face au chaos, face à la menace, à l
 
 **Le chaos est navigable, il y en a même qui y prennent plaisir !**
 
-* * *
+---
 
 #### L'article de l'amiral Vandier publié par la HBR France [en ligne ici](https://www.hbrfrance.fr/strategie/face-a-la-contagion-du-chaos-definir-une-nouvelle-grille-daction-60384) ou [téléchargeable dans son intégralité en pdf](https://all-leaders.fr/wp-content/uploads/2024/06/2312_Amiral-Vandier-une-nouvelle-grille-daction-HBR-Fr.pdf).

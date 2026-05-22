@@ -1,12 +1,12 @@
 ---
-title: "The impact of psychological safety on team performance and organisational excellence"
+title: 'The impact of psychological safety on team performance and organizational excellence'
 date: 2024-01-14
-categories: 
-  - "ideas"
-coverImage: "excellence-2.jpg"
+categories:
+  - 'ideas'
+coverImage: 'excellence-2.jpg'
 ---
 
-If there's one interpersonal skill that everyone is working on at the moment, it's psychological safety within teams and organisations.
+If there's one interpersonal skill that everyone is working on at the moment, it's psychological safety within teams and organizations.
 
 But the concept must be carefully understood. It must not be confused with other fashionable trends.
 
@@ -16,7 +16,7 @@ They have the courage to make difficult decisions
 
 Managers are often faced with complex choices, involving difficult or unpopular compromises, often dealing with strategic changes, staff reductions or the adoption of new working methods. This means stopping certain production activities, making complex trade-offs, and sometimes laying off staff, for the benefit of our collective mission and ambition.
 
-In all cases, small or big decisions, change is never a given and always generates defensive reactions: managers are in the front line to ensure that it can be permanent within their team, for the benefit of their organisation.
+In all cases, small or big decisions, change is never a given and always generates defensive reactions: managers are in the front line to ensure that it can be permanent within their team, for the benefit of their organization.
 
 ![Re:work - Psychological safety](images/rework.jpg)
 
@@ -37,18 +37,18 @@ Finally, it is not synonymous with a lack of accountability; on the contrary, it
 
 ## Psychological safety - a foundation for collective excellence
 
-Psychological safety refers to the freedom to "speak up" or "raise the voice" without negative consequences when we are uncomfortable doing so but know that the team or organisation will benefit.
+Psychological safety refers to the freedom to "speak up" or "raise the voice" without negative consequences when we are uncomfortable doing so but know that the team or organization will benefit.
 
-Essential in an unpredictable world, it is the foundation of security, innovation and adaptability. Promoting this security means opening the door to the last stage of performance or excellence - the one that resists the clearest organisations, the most experienced bosses and the best-tuned processes.
+Essential in an unpredictable world, it is the foundation of security, innovation and adaptability. Promoting this security means opening the door to the last stage of performance or excellence - the one that resists the clearest organizations, the most experienced bosses and the best-tuned processes.
 
 #### Application to Leadership
 
 In leadership, psychological safety translates into a culture of openness and trust. It is embodied in practices where leaders actively encourage participation and calculated risk-taking.
 
 Why? Because of course there is what Amy Edmondson calls an [Asymmetry of Speech and Information (YouTube link).](https://www.youtube.com/watch?v=eqt94enzklE)  
-When I have to say something that is likely to make me feel uncomfortable (reporting an error that no-one else noticed, disagreeing with the majority opinion or that of a line manager, an idea that hasn't been implemented, etc.), I'm going to have a very unpleasant time. If I keep quiet, that's the end of it. But maybe later my organisation will benefit. We're human, and if we don't have a higher interest, the issue is quickly settled.
+When I have to say something that is likely to make me feel uncomfortable (reporting an error that no-one else noticed, disagreeing with the majority opinion or that of a line manager, an idea that hasn't been implemented, etc.), I'm going to have a very unpleasant time. If I keep quiet, that's the end of it. But maybe later my organization will benefit. We're human, and if we don't have a higher interest, the issue is quickly settled.
 
-What can leaders, managers, organisations do to make the balance more even? Or the benefits of speaking out immediately and unequivocally understood and felt by the people expressing themselves?
+What can leaders, managers, organizations do to make the balance more even? Or the benefits of speaking out immediately and unequivocally understood and felt by the people expressing themselves?
 
 That's what psychological safety is all about.
 
@@ -60,7 +60,7 @@ In practical terms, this involves leaders systematically deciphering positive in
 
 This is illustrated by the following table: this direct correlation between psychological safety and accessible performance standards, as shown by the studies, is illustrated as follows.
 
-It's psychological safety that enables teams to be pushed out of their comfort zone, by challenging the team on its skills, the limits of its skills and what it could find in the way of additional resources. This is the condition for the not very happy but widely shared appellation of "learning team" or "learning organisation".
+It's psychological safety that enables teams to be pushed out of their comfort zone, by challenging the team on its skills, the limits of its skills and what it could find in the way of additional resources. This is the condition for the not very happy but widely shared appellation of "learning team" or "learning organization".
 
 ![performance and psychological safety](images/performance-secu-psychologique.jpg)
 
@@ -185,9 +185,9 @@ For further information
 
 "Right Kind of Wrong, the Science of Failing Well" (2023)
 
-“The Fearless Organization, Creating Psychological Safety in the Workplace for Learning, Innovation, and Growth” (2018)
+“The Fearless organization, Creating Psychological Safety in the Workplace for Learning, Innovation, and Growth” (2018)
 
-“Teaming: How Organizations Learn, Innovate and Compete in the Knowledge Economy” (2012).
+“Teaming: How organizations Learn, Innovate and Compete in the Knowledge Economy” (2012).
 
 **For a quicker overview, her videos:**
 

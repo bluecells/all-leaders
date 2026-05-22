@@ -1,10 +1,10 @@
 ---
-title: "CE N’EST PAS LE SILENCE, MAIS LE BRUIT DE FOND QUI VAUT DE L’OR"
+title: 'CE N’EST PAS LE SILENCE, MAIS LE BRUIT DE FOND QUI VAUT DE L’OR'
 date: 2022-12-16
-categories: 
-  - "idees"
-  - "inspiration"
-coverImage: "CE-NEST-PAS-LE-SILENCE-MAIS-LE-BRUIT-DE-FOND-QUI-VAUT-DE-LOR.jpeg"
+categories:
+  - 'idees'
+  - 'inspiration'
+coverImage: 'CE-NEST-PAS-LE-SILENCE-MAIS-LE-BRUIT-DE-FOND-QUI-VAUT-DE-LOR.jpeg'
 ---
 
 ## Signaux faibles - Le bruit de fond, c’est déjà de l’information.
@@ -19,11 +19,11 @@ Mais avant de pouvoir la traiter, il faut déjà partir de la « matière brute
 
 Cette recherche de signaux faibles a un prix, c’est-à-dire qu’elle ne va pas sans efforts. Elle nécessite de **donner une valeur à certaines informations**. En effet il est compliqué pour chacun de partager ses doutes, ses erreurs passées ou ses embryons d’idées ; il faut pour cela que chacun soit en mesure de sentir que cela « vaut le coup », ce qui est contre-intuitif. Car se taire est naturel, et personne n’a envie de passer pour un ignorant ou un idiot sur son lieu de travail. Amy Edmonson\* appelle **« asymétrie de la parole et du silence »**, le fait que :
 
-–  s’exprimer demande un effort pour l’organisation et peut faire une différence à un moment donné, mais cela reste incertain
+–  s’exprimer demande un effort pour l’organization et peut faire une différence à un moment donné, mais cela reste incertain
 
 –  le silence, en revanche, est instinctif et sûr. Les bénéfices en sont donc personnels et immédiats.
 
-Ainsi, selon Edmondson, « _lorsque les gens sont prêts à prendre la parole, c’est généralement parce que des efforts considérables ont été déployés pour créer une culture de franchise, d’apprentissage et d’innovation qui facilite le partage ouvert d’idées, de questions et de préoccupations_ ».
+Ainsi, selon Edmondson, « *lorsque les gens sont prêts à prendre la parole, c’est généralement parce que des efforts considérables ont été déployés pour créer une culture de franchise, d’apprentissage et d’innovation qui facilite le partage ouvert d’idées, de questions et de préoccupations* ».
 
 Cette **culture** est celle de l’établissement d’une **sécurité psychologique suffisante** sur le lieu de travail. Un solide esprit d’équipe, ou d’équipage, est un contexte qui permet de développer ce sentiment de sécurité et favorise la prise de parole.
 
@@ -31,7 +31,7 @@ Cette **culture** est celle de l’établissement d’une **sécurité psycho
 
 Une fois que les signaux faibles ont été isolées, comment rentabiliser l’investissement mis en place pour obtenir cette matière première faite de faits techniques, d’erreurs, sur ses peurs, doutes, questionnements, observations ?
 
-* * *
+---
 
 ### **_Comment donner du sens à la donnée brute ?_**
 
@@ -90,7 +90,7 @@ Cela nécessite évidemment d’être capable de se confronter de manière const
 
 ### Le juste stress
 
-Toute entreprise redoute un ou plusieurs évènements, capable de mettre sa pérennité en péril. Pour s’en prémunir, il est nécessaire qu’elle adapte son organisation de manière à **permettre la création d’une conscience vivante et responsable** de la présence de ce risque, et de la **responsabilité individuelle et commune** face à lui.
+Toute entreprise redoute un ou plusieurs évènements, capable de mettre sa pérennité en péril. Pour s’en prémunir, il est nécessaire qu’elle adapte son organization de manière à **permettre la création d’une conscience vivante et responsable** de la présence de ce risque, et de la **responsabilité individuelle et commune** face à lui.
 
 Cette conscience crée **un juste « stress »**, celui qui permet à chacun de **se mobiliser et de se vouloir performant, sans se sentir envahi par l’appréhension**.
 
@@ -110,11 +110,11 @@ L’exemple des services de renseignements est assez explicite, et facilement ap
 
 1. **il est nécessaire savoir ce qu’on cherche. Ensuite de savoir qu’on ne peut pas savoir exactement ce qu’il va se passer, donc il est nécessaire de chercher un peu autour.**
 
-3. **Il est important de voir quels moyens on veut bien affecter à cette recherche. Cela déterminera l’énergie qui sera consacrée à émuler la culture de sûreté au sein de votre entreprise.**
+2. **Il est important de voir quels moyens on veut bien affecter à cette recherche. Cela déterminera l’énergie qui sera consacrée à émuler la culture de sûreté au sein de votre entreprise.**
 
-5. **Il faudra collecter un maximum d’informations, par des canaux différents : comptes-rendus d’évènements formels ou informels, inspections, réunions de retour d’expérience, analyse des données brutes, questions aux clients, etc…**
+3. **Il faudra collecter un maximum d’informations, par des canaux différents : comptes-rendus d’évènements formels ou informels, inspections, réunions de retour d’expérience, analyse des données brutes, questions aux clients, etc…**
 
-7. **Il faudra traiter ces informations, ce qui implique de les comprendre et d’utiliser pour cela la diversité des équipes et le travail de confrontation positive.**
+4. **Il faudra traiter ces informations, ce qui implique de les comprendre et d’utiliser pour cela la diversité des équipes et le travail de confrontation positive.**
 
 #### **Tout cela implique une grande intelligence comportementale et un travail quotidien. En effet, la dynamique de ce processus est essentielle pour que chacun se sente réellement un acteur de prévention et ose participer au process. En ce sens, des informations ne seront jamais considérées comme inutiles et, me semble-t-il, célébrer des succès d’étape peut aider à intégrer cette démarche dans le temps et l’envie commune.**
 
@@ -122,6 +122,6 @@ _Marie Emmanuelle Py & Olivier Fichot_
 
 ###### _Illustration : © Julien Panié / Pathé Films. Image du film « le chant du loup ». Une « oreille d’or » ou analyste acoustique écoute les bruits sous-marins pour dissocier les sons naturels des sons des bateaux, et les reconnaître._ Une oreille à développer pour percevoir les signaux faibles.
 
-_\* Amy Edmonson : Amy C. Edmondson est professeure-Novartis de Leadership et de Management à la Harvard Business School. Elle enseigne et écrit sur le leadership, le teaming et l’apprentissage organisationnel. Elle est connue pour ses travaux précurseurs en matière de sécurité psychologique,_ 
+*\* Amy Edmonson : Amy C. Edmondson est professeure-Novartis de Leadership et de Management à la Harvard Business School. Elle enseigne et écrit sur le leadership, le teaming et l’apprentissage organizationnel. Elle est connue pour ses travaux précurseurs en matière de sécurité psychologique,* 
 
 _\*\* Culture de sûreté. La culture de sûreté comprend, vis-à-vis de la prévention des risques encourus par une entreprise, les traditions. Elles qui sont le reflet de « ce qui a marché par le passé ». Elle englobe également la manière dont les gens ont appris à regarder leur environnement et leur identité propre, ainsi que leurs postulats implicites sur la façon dont le monde se présente et la manière dont les gens doivent se comporter vis-à-vis de ces risques._

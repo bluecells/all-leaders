@@ -1,14 +1,14 @@
 ---
-title: "LA PUISSANCE DE L’INTENTION : PROTECTIONS RÉCIPROQUES (5/6)"
+title: 'LA PUISSANCE DE L’INTENTION : PROTECTIONS RÉCIPROQUES (5/6)'
 date: 2022-09-28
-categories: 
-  - "idees"
-coverImage: "Protection.jpg"
+categories:
+  - 'idees'
+coverImage: 'Protection.jpg'
 ---
 
 _L’approche du « Leadership basé sur l’intention » de All Leaders Initiative repose sur la puissance de « l’intention »._
 
-_Cette notion permet d’encapsuler deux dimensions essentielles à l’action de toute organisation : le but (quel est notre dessein, notre objectif ?) et l’utilité (est-ce-que nos actions, comportements et attitudes favorisent l’atteinte de ce but ?)._
+_Cette notion permet d’encapsuler deux dimensions essentielles à l’action de toute organization : le but (quel est notre dessein, notre objectif ?) et l’utilité (est-ce-que nos actions, comportements et attitudes favorisent l’atteinte de ce but ?)._
 
 _Dans cette série de six courts articles, nous précisons la notion d’intention, quels sont ses attributs particuliers, avant de conclure en forme de rappel sur les conditions de pleine expression de sa puissance._
 
@@ -24,9 +24,9 @@ Le dernier (mais pas le moindre…) attribut de l’intention est le fait qu’e
 
 **Pour celui qui propose l’intention**, la protection vient de ce que son action est soumise à validation. **Un contrôle comme une protection** qui permet d’oser, d’explorer, de grandir sans être dans la solitude et livré à soi-même… Un élément de sécurité psychologique indispensable pour expérimenter, innover, et croître…
 
-**Pour le manager / récepteur de l’intention**, la protection vient de ce qu’il sait que **sa responsabilité formelle _(« accountability »)_ est respectée**. Cela le prémunit de la tentation d’être « hyper-contrôlant » ou « micro-manager »  pour éviter une erreur qui le mettrait en cause… au prix de l’engagement et de la motivation de ses interlocuteurs…
+**Pour le manager / récepteur de l’intention**, la protection vient de ce qu’il sait que **sa responsabilité formelle *(« accountability »)* est respectée**. Cela le prémunit de la tentation d’être « hyper-contrôlant » ou « micro-manager »  pour éviter une erreur qui le mettrait en cause… au prix de l’engagement et de la motivation de ses interlocuteurs…
 
-L’atteinte du niveau de l’échange d’intention dans ce que le _**« Leadership basé sur l’intention »**_ définit comme la montée de _**« l’échelle du leadership »**_ s’effectue en différentes étapes progressives (faits > pensée/jugement > souhait > intention).
+L’atteinte du niveau de l’échange d’intention dans ce que le ***« Leadership basé sur l’intention »*** définit comme la montée de ***« l’échelle du leadership »*** s’effectue en différentes étapes progressives (faits > pensée/jugement > souhait > intention).
 
 Cette progressivité dans l’échange revêt elle-même un caractère protecteur en permettant aux interlocuteurs de se sentir en sécurité
 

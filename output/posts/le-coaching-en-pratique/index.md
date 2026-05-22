@@ -1,12 +1,13 @@
 ---
-title: "Le Coaching en pratique"
+title: 'Le Coaching en pratique'
 date: 2023-03-28
-categories: 
-  - "outils"
-coverImage: "AdobeStock_429661967.jpeg"
+categories:
+  - 'outils'
+coverImage: 'AdobeStock_429661967.jpeg'
 ---
 
-##   
+##
+
 **Parcours de coaching : déployer le plein potentiel des managers et des équipes**
 
 **Aujourd’hui plus que jamais, les circonstances rendent nécessaire de pouvoir faire bénéficier un collaborateur – quel que soit le niveau hiérarchique – ou une équipe, d’un « lieu sûr » à la fois sans jugement et potentialisant pour prendre du recul, explorer des options, affiner sa capacité à ajuster ses capacités relationnelles, maintenir sa résilience…**  
@@ -26,11 +27,11 @@ Lorsque nous vous accompagnons, nous sommes particulièrement attentifs
 
 - A l’éthique et à la confidentialité de nos échanges
 
-* * *
+---
 
 ## COACHING INDIVIDUEL
 
-_**Disposer d’un « espace-temps » dédié pour développer une relation « gagnant-gagnant » avec son organisation, en accédant aux clés pour s’épanouir, libérer son potentiel et accroître la performance collective**_
+_**Disposer d’un « espace-temps » dédié pour développer une relation « gagnant-gagnant » avec son organization, en accédant aux clés pour s’épanouir, libérer son potentiel et accroître la performance collective**_
 
 #### Coaching de dirigeants
 
@@ -40,7 +41,7 @@ _Parcours de 6 à 10 sessions individuelles, sur mesure_
 
 #### Coaching de managers
 
-Pour aider à assumer cette position singulière dans l’organisation, et leur permettre de s’y déployer, au bénéfice de leurs équipes.
+Pour aider à assumer cette position singulière dans l’organization, et leur permettre de s’y déployer, au bénéfice de leurs équipes.
 
 Lorsqu’une problématique est identifiée par le manager ou sa hiérarchie, ou en accompagnement des moments-clés de son évolution : prise de poste, posture de leadership à assumer, transition…
 
@@ -58,7 +59,7 @@ _**Réduire les frictions en débloquant les attitudes rigides, sources de mése
 
 Tels que réunions de CoDir, travail de visioning, séminaires et team-building…
 
-#### Développement du leadership par le déploiement du _Leadership basé sur l’intention_
+#### Développement du leadership par le déploiement du *Leadership basé sur l’intention*
 
 Par ateliers collectifs, « shadowing » (suivi in situ avec débriefing), …
 
@@ -68,7 +69,7 @@ Par l’optimisation des relations interindividuelles et résolution de conflits
 
 _Accompagnements personnalisés à partir d’1/2 journée_
 
-* * *
+---
 
 ## **EN PRATIQUE**
 
@@ -76,9 +77,9 @@ _Accompagnements personnalisés à partir d’1/2 journée_
 
 Des ressources méthodologiques et outils éprouvés combinés à une profonde connaissance et compréhension de l'entreprise pour un accompagnement adapté
 
-### Contribution à l’alignement des enjeux de l’organisation et de ses acteurs
+### Contribution à l’alignement des enjeux de l’organization et de ses acteurs
 
-Notre approche repose sur la codéfinition et la coconstruction d’une démarche sur mesure, adaptée au contexte, qui a pour objectif de s’ancrer dans le temps et l’espace de votre organisation
+Notre approche repose sur la codéfinition et la coconstruction d’une démarche sur mesure, adaptée au contexte, qui a pour objectif de s’ancrer dans le temps et l’espace de votre organization
 
 ### Coachs professionnels certifiés et expérimentés
 
@@ -86,14 +87,14 @@ Des coachs professionnels certifiés RNCP combinant exigence métier et une vari
 
 En savoir plus et planifier un coaching
 
-* * *
+---
 
 ### Face à face et distanciel
 
 Le retour d’expérience des mois de confinement de 2020 a montré que dans la plupart des cas, le coaching individuel en entreprise se faisait de manière tout à fait efficace et sereine à distance. Le fait de n’avoir pas de temps de trajet à gérer et d’être dans l’espace de son choix est particulièrement apprécié par beaucoup.  
 Nos parcours sont donc disponibles à la fois en face à face et à distance.
 
-* * *
+---
 
 ## Bénéfices du coaching pour les entreprises
 
@@ -107,7 +108,7 @@ Une étude de l'Observatoire du Coaching en France a révélé que **88% des ent
 
 Selon une recherche menée par la Chambre Syndicale de la Médiation et du Conseil (CSMC), les entreprises françaises qui ont mis en place un accompagnement en coaching ont constaté une **amélioration de la communication interne dans 73% des cas, ainsi qu'une amélioration de la performance individuelle et collective dans 67% des cas**. (Référence : "Le coaching, levier de développement de l'entreprise", Chambre Syndicale de la Médiation et du Conseil, 2017)
 
-* * *
+---
 
 ### Vos interlocuteurs
 

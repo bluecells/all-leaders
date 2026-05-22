@@ -1,9 +1,9 @@
 ---
-title: "Le leadership basé sur l’intention selon David Marquet"
+title: 'Le leadership basé sur l’intention selon David Marquet'
 date: 2023-06-09
-categories: 
-  - "non-classifiee"
-coverImage: "IBL-Davide-Marquet.jpg"
+categories:
+  - 'non-classifiee'
+coverImage: 'IBL-Davide-Marquet.jpg'
 ---
 
 ## Comment définir le leadership basé sur l’intention ?
@@ -12,7 +12,7 @@ Le leadership basé sur l'intention est un style de leadership qui se concentre 
 
 Il vise à créer les conditions pour qu’il n’y ait non pas un leader et des followers obéissants mais bien une interaction leader-leader.
 
-Ce type de leadership se distingue par sa capacité à créer une vision (direction, et finalité) pour toute l'équipe. Le leader basé sur l'intention cherche à comprendre les valeurs, les besoins et les motivations des membres de son équipe, et à aligner ces éléments avec l'objectif global de l'organisation.
+Ce type de leadership se distingue par sa capacité à créer une vision (direction, et finalité) pour toute l'équipe. Le leader basé sur l'intention cherche à comprendre les valeurs, les besoins et les motivations des membres de son équipe, et à aligner ces éléments avec l'objectif global de l'organization.
 
 Dans le même mouvement, il incite chacun à expliquer, en fonction des informations qu’il a à sa disposition, son propre objectif ainsi que et sa propre direction. Leurs intentions s'inscriront ensuite dans le mouvement global.
 
@@ -66,7 +66,8 @@ Chez All Leaders Initiative, nous aimons travailler d’après [les écrits de *
 
 Il y raconte comment il a transformé pas à pas l'un des pires équipages de la flotte en l'une des équipes les plus performantes, en adoptant une approche qu’il a appelée the « Intend Based Leadership ® » ou « Leadership Basé sur l’Intention », c’est-à-dire une délégation du pouvoir de décision à ceux qui sont au plus proche de l’information. **Le commandant David Marquet** y partage des principes et des pratiques concrètes avec lesquelles il a, dans un temps relativement court, inspiré l'autonomie, développé le leadership à tous les niveaux et créé une culture d'engagement et d'excellence qui a perduré longtemps après son départ.
 
-## Les 6 principes du Leadership Basé sur l’Intention  
+## Les 6 principes du Leadership Basé sur l’Intention
+
 (« Intent Based Leadership® ») selon David Marquet ?
 
 ![IBL-David-Marquet](images/IBL-Davide-Marquet.jpg)
@@ -74,7 +75,7 @@ Il y raconte comment il a transformé pas à pas l'un des pires équipages de la
 David Marquet, maintenant à la tête de l’Intent-Based Leadership International, énonce les 6 principes suivants pour un Leadership Basé sur l’Intention.
 
 > _« Imagine a work place where everyone engages and contributes their full intellectual capacity. A place where people are healthier and happier because they have more control over their work - a place where everyone is a leader. »_
-> 
+>
 > _**\- L. David Marquet**_
 
 ### 1 - Décentralisez l’autorité au plus près de ceux qui ont l’information
@@ -117,7 +118,7 @@ Il s’agit d’adopter une mentalité de croissance et d'amélioration continue
 
 **La subsidiarité** est un principe juridique et politique appliqué au sein de l'Union européenne. Il contribue à déterminer la **répartition des compétences entre les niveaux de gouvernance**. Ainsi, il apporte la garantie que les décisions sont prises au niveau le plus approprié, en favorisant la prise de décision au niveau le plus proche des citoyens, sauf lorsque l'action au niveau supérieur est plus efficace. Il est étroitement lié au leadership basé sur l'intention, car les deux concepts mettent l'accent sur la décentralisation du pouvoir et la responsabilisation des individus.
 
-Lors de son application dans un contexte organisationnel, le principe de subsidiarité encourage la prise de décisions au niveau le plus bas possible de la hiérarchie, là où se trouvent les connaissances et les informations pertinentes. Cela permet aux membres de l'équipe de se sentir responsables et engagés, car ils ont une plus grande influence sur les décisions qui les affectent.
+Lors de son application dans un contexte organizationnel, le principe de subsidiarité encourage la prise de décisions au niveau le plus bas possible de la hiérarchie, là où se trouvent les connaissances et les informations pertinentes. Cela permet aux membres de l'équipe de se sentir responsables et engagés, car ils ont une plus grande influence sur les décisions qui les affectent.
 
 Dans le cadre du leadership basé sur l'intention, le principe de subsidiarité s'utilise pour déléguer le pouvoir de décision et favoriser l'autonomie des membres de l'équipe. Les leaders encouragent ainsi les individus à prendre des initiatives. Ils doivent résoudre les problèmes par eux-mêmes, au lieu de tout centraliser. Cela permet aux membres de l'équipe de se sentir valorisés, de développer leurs compétences et de contribuer activement à l'atteinte des objectifs.
 
@@ -129,7 +130,7 @@ Elles diffèrent seulement par leur nature (juridique versus inspirationnelle).
 
 Imaginez un style de leadership qui va au-delà des méthodes traditionnelles. Un style qui vous permet de libérer tout le potentiel de votre équipe. Chez All Leaders Initiative, cette approche hautement pragmatique nous a séduit puis convaincu.
 
-Novatrice et adoptées par des entreprises et institutions hautement performantes, elle s’intéresse aux comportements et au langage. Elle vise à générer autant de leaders que de personnes dans une équipe. Mettant l’accent sur des comportements pratiques qui peuvent être travaillés encore et encore, cette approche amène à affiner les compétences en communication et l’intelligence émotionnelle de chacun au sein d’une équipe. Elle permet de créer un environnement de travail motivant et harmonieux, influant ainsi sur la culture même de l’organisation.
+Novatrice et adoptées par des entreprises et institutions hautement performantes, elle s’intéresse aux comportements et au langage. Elle vise à générer autant de leaders que de personnes dans une équipe. Mettant l’accent sur des comportements pratiques qui peuvent être travaillés encore et encore, cette approche amène à affiner les compétences en communication et l’intelligence émotionnelle de chacun au sein d’une équipe. Elle permet de créer un environnement de travail motivant et harmonieux, influant ainsi sur la culture même de l’organization.
 
 ### Les bénéfices collatéraux de cette approche sont ainsi nombreux. Et, si l’on en croit l’expérience de David Marquet, durables dans le temps.
 

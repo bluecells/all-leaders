@@ -1,12 +1,13 @@
 ---
-title: "Bienveillance, authenticité et autres « mots-valises » à éviter. Heu, vraiment ?"
+title: 'Bienveillance, authenticité et autres « mots-valises » à éviter. Heu, vraiment ?'
 date: 2025-01-15
-categories: 
-  - "idees"
-coverImage: "Cadre-1.png"
+categories:
+  - 'idees'
+coverImage: 'Cadre-1.png'
 ---
 
-## « Bienveillance », « authenticité », « suspension du jugement », « écoute », « respect »… On entend souvent qu’il s’agit là de mots galvaudés, usés et qu’ils ne veulent plus rien dire…  
+## « Bienveillance », « authenticité », « suspension du jugement », « écoute », « respect »… On entend souvent qu’il s’agit là de mots galvaudés, usés et qu’ils ne veulent plus rien dire…
+
 Et pourtant...
 
 Quand nous accompagnons une équipe et que nous déterminons avec eux **un cadre à la fois protecteur et exigeant**, qui leur permettra d’a**ller plus loin ensemble**, ces mots sont presque systématiquement là.
@@ -36,7 +37,7 @@ A ceux qui se plaignent de trop entendre toujours les mêmes mots nous disons, n
 
 > _" Toi qui déplores que la bienveillance (au hasard…) ne veuille plus rien dire, que mets-tu concrètement derrière le mot ?_  
 > _Et qu’observes-tu dans ton environnement qui n’est pas aligné avec cela ?_  
-> _Et surtout, comment aimerais-tu que cela soit plus présent, réellement au sein de ton équipe et organisation ? »_
+> _Et surtout, comment aimerais-tu que cela soit plus présent, réellement au sein de ton équipe et organization ? »_
 
 Et vous, osez-vous encore prononcer ce genre de mots en entreprise ?
 

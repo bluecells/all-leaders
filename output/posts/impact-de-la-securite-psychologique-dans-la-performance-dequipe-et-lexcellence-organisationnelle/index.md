@@ -1,12 +1,12 @@
 ---
-title: "Impact de la sécurité psychologique dans la performance d’équipe et l’excellence organisationnelle"
+title: 'Impact de la sécurité psychologique dans la performance d’équipe et l’excellence organizationnelle'
 date: 2024-01-14
-categories: 
-  - "idees"
-coverImage: "excellence-2.jpg"
+categories:
+  - 'idees'
+coverImage: 'excellence-2.jpg'
 ---
 
-S’il y a une compétence interpersonnelle que tout le monde s’attache à travailler ce moment, c’est bien la sécurité psychologique au sein des équipes et organisations.
+S’il y a une compétence interpersonnelle que tout le monde s’attache à travailler ce moment, c’est bien la sécurité psychologique au sein des équipes et organizations.
 
 Mais attention à bien comprendre le concept et à ne pas le confondre avec d’autres tendances en vogue.
 
@@ -16,7 +16,7 @@ Ils ont le courage de prendre des décisions difficiles
 
 Les managers font souvent face à des choix complexes, impliquant des compromis difficiles ou impopulaires. Cela inclut des décisions concernant les changements stratégiques, les réductions de personnel, ou l'adoption de nouvelles méthodes de travail. Cela implique de stopper certaines activités de production, de faire des arbitrage complexes, de licencier parfois, au service de la mission et de l’ambition collectives.
 
-Dans tous les cas, petites ou grande décisions, le changement n’est jamais acquis et génère toujours des réactions de défense : les managers sont en première ligne pour permette qu’il puisse être permanent au sein de leur équipe, pour le bénéfice de leur organisation.
+Dans tous les cas, petites ou grande décisions, le changement n’est jamais acquis et génère toujours des réactions de défense : les managers sont en première ligne pour permette qu’il puisse être permanent au sein de leur équipe, pour le bénéfice de leur organization.
 
 ![Re:work - Sécurité psychologique](images/rework.jpg)
 
@@ -37,18 +37,18 @@ Enfin, elle ne va pas de pair avec l'absence de responsabilité ; au contraire, 
 
 ## La sécurité psychologique - une fondation pour l'excellence collective
 
-La sécurité psychologique, rappelons-le, désigne la liberté de s’exprimer (« speak up » ou « raise the voice » en anglais) sans conséquence négative lorsque cela nous est inconfortable mais que nous savons que l’équipe ou l’organisation en bénéficiera.
+La sécurité psychologique, rappelons-le, désigne la liberté de s’exprimer (« speak up » ou « raise the voice » en anglais) sans conséquence négative lorsque cela nous est inconfortable mais que nous savons que l’équipe ou l’organization en bénéficiera.
 
-Essentielle dans un monde imprévisible, elle est le fondement de la sécurité, l'innovation et de l'adaptabilité. Promouvoir cette sécurité, c'est ouvrir la porte au dernier stade de performance ou d’excellence – celui qui résiste aux organisations les plus clairs, aux patrons les plus avertis et aux process les mieux rôdés.
+Essentielle dans un monde imprévisible, elle est le fondement de la sécurité, l'innovation et de l'adaptabilité. Promouvoir cette sécurité, c'est ouvrir la porte au dernier stade de performance ou d’excellence – celui qui résiste aux organizations les plus clairs, aux patrons les plus avertis et aux process les mieux rôdés.
 
 #### Application au Leadership
 
 Dans le leadership, la sécurité psychologique se traduit par une culture d'ouverture et de confiance. Elle s'incarne dans des pratiques où les leaders encouragent activement la participation et la prise de risque calculé.
 
 Pourquoi ? Parce que naturellement il existe ce qu’Amy Edmondson appelle une [Asymétrie de la parole et de l’information (lien YouTube)](https://www.youtube.com/watch?v=eqt94enzklE).  
-Lorsque je dois dire quelques chose qui risque de me mettre mal à l’aise (report d’une erreur que personne n’avait remarquée, désaccord avec l’opinion majoritaire ou celle du hiérarchique, idée non aboutie, …), je vais, maintenant et à coup sûr, passer un moment tout à fait désagréable. Alors que si je me tais, c’est réglé. Mais peut-être que plus tard, mon organisation en bénéficiera. Nous sommes humains et sans intérêt supérieur la question est vite réglée.
+Lorsque je dois dire quelques chose qui risque de me mettre mal à l’aise (report d’une erreur que personne n’avait remarquée, désaccord avec l’opinion majoritaire ou celle du hiérarchique, idée non aboutie, …), je vais, maintenant et à coup sûr, passer un moment tout à fait désagréable. Alors que si je me tais, c’est réglé. Mais peut-être que plus tard, mon organization en bénéficiera. Nous sommes humains et sans intérêt supérieur la question est vite réglée.
 
-Comment le leader, le manager, l’organisation peut-elle faire pour que la balance soit plus équilibrée ? Que les bénéfices de la parole soient, pour la personne qui s’exprime, immédiatement et de manière certaine, compris et ressentis ?
+Comment le leader, le manager, l’organization peut-elle faire pour que la balance soit plus équilibrée ? Que les bénéfices de la parole soient, pour la personne qui s’exprime, immédiatement et de manière certaine, compris et ressentis ?
 
 C’est tout l’objet de la sécurité psychologique.
 
@@ -60,7 +60,7 @@ De manière pratique il s’agit pour les leaders, systématiquement, de décryp
 
 Ceci est d’ailleurs illustré par le tableau suivant : cette corrélation directe de la sécurité psychologique avec les standards de performance accessibles, montrée par les études, est illustrée de la manière suivante.
 
-C’est la sécurité psychologique qui permet de pousser les équipes hors de la zone de confort, en challengeant l’équipe sur sa compétence, les limites de sa compétence et ce qu’elle pourrait trouver comme ressources supplémentaires. C’est la condition de l’appellation pas très heureuse mais largement partagée d’ « équipe apprenante » ou « organisation apprenante ».
+C’est la sécurité psychologique qui permet de pousser les équipes hors de la zone de confort, en challengeant l’équipe sur sa compétence, les limites de sa compétence et ce qu’elle pourrait trouver comme ressources supplémentaires. C’est la condition de l’appellation pas très heureuse mais largement partagée d’ « équipe apprenante » ou « organization apprenante ».
 
 ![performance et sécurité psychologique](images/performance-secu-psychologique.jpg)
 
@@ -185,9 +185,9 @@ Pour aller plus loin
 
 "Right Kind of Wrong, the Science of Failing Well" (2023)
 
-“The Fearless Organization, Creating Psychological Safety in the Workplace for Learning, Innovation, and Growth” (2018)
+“The Fearless organization, Creating Psychological Safety in the Workplace for Learning, Innovation, and Growth” (2018)
 
-“Teaming: How Organizations Learn, Innovate and Compete in the Knowledge Economy” (2012).
+“Teaming: How organizations Learn, Innovate and Compete in the Knowledge Economy” (2012).
 
 **Plus rapide, ses vidéos :**
 
@@ -209,10 +209,8 @@ Pour apporter des perspectives supplémentaires et approfondir votre compréhens
 
 Et parce qu’aucune équipe ne se ressemble, contactez-nous si vous voulez vous former, vous entraîner voire vous acculturer à la sécurité psychologique.
 
-  
 Chez **All leaders Initiative**, nous sommes spécialisés dans le renforcement du leadership et la création d'environnements de travail psychologiquement sûrs.
 
-  
 Nous vous accompagnerons pour un diagnostic de vos besoins et vous guiderons à travers des stratégies éprouvées et des approches innovantes pour remettre l’échange d’informations au sein de vos équipes et leur permettre d’atteindre de nouveaux standards.
 
 ![Sécurité psychologique - Excellence des équipes - Allez plus loin](images/excellence-1.jpg)

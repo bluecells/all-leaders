@@ -1,18 +1,18 @@
 ---
-title: "LA PUISSANCE DE L’INTENTION : CONTRÔLÉE (3/6)"
+title: 'LA PUISSANCE DE L’INTENTION : CONTRÔLÉE (3/6)'
 date: 2022-09-14
-categories: 
-  - "idees"
-coverImage: "Controle.jpg"
+categories:
+  - 'idees'
+coverImage: 'Controle.jpg'
 ---
 
 _L’approche du « Leadership basé sur l’intention » de All Leaders Initiative repose sur la puissance de « l’intention »._
 
-_Cette notion permet d’encapsuler deux dimensions essentielles à l’action de toute organisation : **le but** (quel est notre dessein, notre objectif ?) **et l’utilité** (est-ce-que nos actions, comportements et attitudes favorisent l’atteinte de ce but ?)._
+_Cette notion permet d’encapsuler deux dimensions essentielles à l’action de toute organization : **le but** (quel est notre dessein, notre objectif ?) **et l’utilité** (est-ce-que nos actions, comportements et attitudes favorisent l’atteinte de ce but ?)._
 
 _Dans cette série de six courts articles, nous précisons la notion d’intention, quels sont ses attributs particuliers, avant de conclure en forme de rappel sur les conditions de pleine expression de sa puissance._
 
-(Retrouvez le 1er épisode de la série « [Implication personnelle / Appropriation](https://all-leaders.fr/puissance-de-l-intention-1-implication-personnelle-et-appropriation) _»_ et le second « [Orientée action](https://all-leaders.fr/puissance-de-l-intention-2-orientee-action/) »)
+(Retrouvez le 1er épisode de la série « [Implication personnelle / Appropriation](https://all-leaders.fr/puissance-de-l-intention-1-implication-personnelle-et-appropriation) *»* et le second « [Orientée action](https://all-leaders.fr/puissance-de-l-intention-2-orientee-action/) »)
 
 ## La puissance de l'intention est contrôlée.
 
@@ -23,9 +23,9 @@ Celle-ci comprend deux dimensions :
 
 1. pourquoi l’action envisagée est **techniquement et opérationnellement correcte et sûre**.
 
-3. en quoi elle est **alignée avec les objectifs** (intentions…) de l’organisation.
+2. en quoi elle est **alignée avec les objectifs** (intentions…) de l’organization.
 
-De ce fait, l’intention ouvre la possibilité à la validation, mais aussi à l’enrichissement, voire au refus argumenté, notamment quand l’interlocuteur est le responsable formel (_« accountable »_ pour les anglo-saxons).
+De ce fait, l’intention ouvre la possibilité à la validation, mais aussi à l’enrichissement, voire au refus argumenté, notamment quand l’interlocuteur est le responsable formel (*« accountable »* pour les anglo-saxons).
 
 #### Ainsi, l’intention est mise en mouvement et incitation à l’initiative, mais sans compromis avec l’exigence de contrôle des actions entreprises.
 

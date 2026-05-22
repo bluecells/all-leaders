@@ -1,9 +1,9 @@
 ---
-title: "OBSERVATOIRE DU COÛT DES CONFLITS"
+title: 'OBSERVATOIRE DU COÛT DES CONFLITS'
 date: 2023-05-02
-categories: 
-  - "inspiration"
-coverImage: "cout-des-conflits.jpg"
+categories:
+  - 'inspiration'
+coverImage: 'cout-des-conflits.jpg'
 ---
 
 ## **Les petites tensions et les fortes confrontations qui se déroulent chaque jour en entreprise coûtent. En effet, elles correspondent à l’équivalent d’un mois de travail par an, soit plus de 152 Mds€ / an de coût salarial à l’échelle française…**
@@ -12,7 +12,7 @@ coverImage: "cout-des-conflits.jpg"
 
 #### Un conflit au travail, c’est quoi ?
 
-Nous l’avons défini avec la formule suivante : _« tout différend, toute perturbation dans la relation aux autres, qui affecte le déroulement de mon activité »_.
+Nous l’avons défini avec la formule suivante : *« tout différend, toute perturbation dans la relation aux autres, qui affecte le déroulement de mon activité »*.
 
 _**« Cette notion de conflit est négligée dans la réalité du travail. Les dirigeants et responsables en ont souvent une vision macro (grèves ou encore tensions syndicales) mais oublient la vision micro (tensions quotidiennes) qui est pourtant multiple, massive et très impactante pour les entreprises comme le montre cette étude. »** observe Stéphane Lefebvre-Mazurel, Directeur du pôle B2B, SmartCity & Inside d’OpinionWay_.
 
@@ -28,7 +28,7 @@ On peut ainsi parler de **gisements de coûts cachés et de leviers de profitab
 
 **En revanche, les répondants décrivant leur environnement de travail comme à la fois très performant et très empreint de sécurité psychologique passent deux fois moins de temps en conflit que la moyenne !**
 
-On peut parler pour ces répondants (qui se distinguent par leur capacité à être moins affectés par la conflictualité et par un fort niveau d’accompagnement dans leurs organisations – formations, intervenants extérieurs tels que coachs, mentors ou médiateurs, etc.) d’un gain d’efficience de 10 jours par an par rapport aux résultats globaux…
+On peut parler pour ces répondants (qui se distinguent par leur capacité à être moins affectés par la conflictualité et par un fort niveau d’accompagnement dans leurs organizations – formations, intervenants extérieurs tels que coachs, mentors ou médiateurs, etc.) d’un gain d’efficience de 10 jours par an par rapport aux résultats globaux…
 
 #### Quel objectif ?
 
@@ -36,7 +36,7 @@ Avec cet Observatoire, OpinionWay, All Leaders Initiative et topics souhaitent p
 
 ##### **En savoir plus sur le dispositif de l’Observatoire du Coût des Conflits – méthodologie, livrables et budget : [télécharger le descriptif en pdf](https://all-leaders.fr/wp-content/uploads/2025/10/Observatoire-du-Cout-des-Conflits-2021-plaquette-1.pdf)**
 
-##### **[Estimez les gains potentiels basés sur les coûts cachés de la conflictualité dans votre propre organisation](https://all-leaders.fr/conflictualite-au-travail-estimez-votre-gisement-de-couts-et-de-gains-caches/) !** (en quelques secondes sans aucune inscription…)
+##### **[Estimez les gains potentiels basés sur les coûts cachés de la conflictualité dans votre propre organization](https://all-leaders.fr/conflictualite-au-travail-estimez-votre-gisement-de-couts-et-de-gains-caches/) !** (en quelques secondes sans aucune inscription…)
 
 ##### **L’Observatoire du Coût des Conflits dans la presse :**
 

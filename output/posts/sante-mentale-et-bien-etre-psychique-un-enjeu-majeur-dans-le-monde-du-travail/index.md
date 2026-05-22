@@ -1,9 +1,9 @@
 ---
-title: "Santé mentale et bien-être psychique, un enjeu majeur dans le monde du travail !"
+title: 'Santé mentale et bien-être psychique, un enjeu majeur dans le monde du travail !'
 date: 2024-05-07
-categories: 
-  - "idees"
-coverImage: "gadiel-lazcano-ulPAVuxITEw-unsplash-scaled.jpg"
+categories:
+  - 'idees'
+coverImage: 'gadiel-lazcano-ulPAVuxITEw-unsplash-scaled.jpg'
 ---
 
 ### Encore résolument tabou il y a peu, la question du bien-être psychique et de la santé mentale au travail est entrée en pleine lumière depuis la crise Covid...
@@ -24,9 +24,9 @@ Cela ne les empêche pas de **douter de la réelle préoccupation de leur employ
 
 Celle du développement d’**un travail de qualité, sain et soutenable** pour ses acteurs, englobant à la fois les **conditions** de travail, la **qualité des relations** au travail, et le **sens** pouvant lui être donné.
 
-Rappelons afin d'éviter tout procès en _"bisounouserie"_ que la performance collective ne se déploie que dans un environnement où règne une sécurité psychologique suffisante, [comme nombre de nos travaux le soulignent](https://all-leaders.fr/impact-de-la-securite-psychologique-dans-la-performance-dequipe-et-lexcellence-organisationnelle/), éléments probants à l'appui.
+Rappelons afin d'éviter tout procès en _"bisounouserie"_ que la performance collective ne se déploie que dans un environnement où règne une sécurité psychologique suffisante, [comme nombre de nos travaux le soulignent](https://all-leaders.fr/impact-de-la-securite-psychologique-dans-la-performance-dequipe-et-lexcellence-organizationnelle/), éléments probants à l'appui.
 
-**La qualité du travail et la santé des collaborateurs et du management sont bien le garant de la qualité et de la santé d'une organisation et de sa performance globale, à l'alignement des enjeux économiques et sociaux.**
+**La qualité du travail et la santé des collaborateurs et du management sont bien le garant de la qualité et de la santé d'une organization et de sa performance globale, à l'alignement des enjeux économiques et sociaux.**
 
 Pour aller plus loin
 

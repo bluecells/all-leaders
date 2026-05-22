@@ -1,12 +1,12 @@
 ---
-title: "Qu’est-ce que le Leadership basé sur l’intention ?"
+title: 'Qu’est-ce que le Leadership basé sur l’intention ?'
 date: 2023-04-04
-categories: 
-  - "glossaire"
-coverImage: "glossary.jpg"
+categories:
+  - 'glossaire'
+coverImage: 'glossary.jpg'
 ---
 
-Le leadership basé sur l’intention est une **pratique** accessible à tous. Elle remet en question de manière pragmatique le modèle hiérarchique « leader-followers » au profit d’une organisation « leader-leader » et d’un « leadership d’équip(ag)e ».
+Le leadership basé sur l’intention est une **pratique** accessible à tous. Elle remet en question de manière pragmatique le modèle hiérarchique « leader-followers » au profit d’une organization « leader-leader » et d’un « leadership d’équip(ag)e ».
 
 Elle s'inspire notamment de :
 
@@ -20,4 +20,4 @@ Le leadership basé sur l'intention met l'accent sur la responsabilisation et l'
 
 Le leader, en refusant de donner des ordres et partageant clairement son intention, sa vision et la mission, crée un environnement où les membres de l'équipe sont encouragés à prendre des décisions éclairées et à contribuer activement à l'atteinte des objectifs communs.
 
-Le leadership basé sur l'intention repose sur la confiance, la subsidiarité et la responsabilité partagée. En adoptant cette approche, les leaders peuvent inspirer et motiver leur équipe à exceller, tout en favorisant l'innovation, la créativité et la croissance individuelle et collective. À ce titre, le leadership basé sur l’intention est également une **culture :** il développe sa pleine puissance lorsqu’il est pleinement intégré par l’équipe ou organisation, c'est-à-dire à la fois dans les valeurs, process, attitudes et comportements.
+Le leadership basé sur l'intention repose sur la confiance, la subsidiarité et la responsabilité partagée. En adoptant cette approche, les leaders peuvent inspirer et motiver leur équipe à exceller, tout en favorisant l'innovation, la créativité et la croissance individuelle et collective. À ce titre, le leadership basé sur l’intention est également une **culture :** il développe sa pleine puissance lorsqu’il est pleinement intégré par l’équipe ou organization, c'est-à-dire à la fois dans les valeurs, process, attitudes et comportements.

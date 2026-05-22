@@ -1,14 +1,14 @@
 ---
 title: "LA PUISSANCE DE L’INTENTION : ÉCHANGE D'INTENTIONS (4/6)"
 date: 2022-09-21
-categories: 
-  - "idees"
-coverImage: "Echange.jpg"
+categories:
+  - 'idees'
+coverImage: 'Echange.jpg'
 ---
 
 _L’approche du « Leadership basé sur l’intention » de All Leaders Initiative repose sur la puissance de « l’intention »._
 
-_Cette notion permet d’encapsuler deux dimensions essentielles à l’action de toute organisation : le but (quel est notre dessein, notre objectif ?) et l’utilité (est-ce-que nos actions, comportements et attitudes favorisent l’atteinte de ce but ?)._
+_Cette notion permet d’encapsuler deux dimensions essentielles à l’action de toute organization : le but (quel est notre dessein, notre objectif ?) et l’utilité (est-ce-que nos actions, comportements et attitudes favorisent l’atteinte de ce but ?)._
 
 _Dans cette série de six courts articles, nous précisons la notion d’intention, quels sont ses attributs particuliers, avant de conclure en forme de rappel sur les conditions de pleine expression de sa puissance._
 
@@ -19,19 +19,19 @@ Retrouvez :
 
 ## L'échange d'intentions
 
-Plutôt que d’intention au singulier, il convient avec le _**« Leadership basé sur l’intention »**_ de parler d’**échange d’intentions**.
+Plutôt que d’intention au singulier, il convient avec le ***« Leadership basé sur l’intention »*** de parler d’**échange d’intentions**.
 
 Ce croisement d’intentions consiste en un double mouvement où…
 
 1. **Le manager…** renonce à donner des ordres et des instructions… et s’engage à donner des intentions, partager la vision et les buts de la mission collective
 
-3. **Et le collaborateur…**  
-    … renonce à attendre passivement des instructions  
-    … et s’engage à apporter des intentions, au service de la vision et des buts communs.
+2. **Et le collaborateur…**  
+   … renonce à attendre passivement des instructions  
+   … et s’engage à apporter des intentions, au service de la vision et des buts communs.
 
 Ce croisement est donc aussi **une opportunité d’enrichissements**, en informations, options, etc. Même un refus devient conditionné, expliqué et donc « audible » pour chacun.
 
-Ainsi, dire _« quelle est ton intention ?_ » n’est pas du tout la même chose que _« viens avec des solutions ! »_ – c’est beaucoup plus ouvert !
+Ainsi, dire *« quelle est ton intention ?* » n’est pas du tout la même chose que *« viens avec des solutions ! »* – c’est beaucoup plus ouvert !
 
 L’échange d’intentions peut et doit être **un véritable dialogue**, basé sur la curiosité, le questionnement, et même le partage de doute…
 

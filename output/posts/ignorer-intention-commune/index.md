@@ -1,12 +1,12 @@
 ---
 title: "IGNORER L'INTENTION COMMUNE : UNE MENACE CRÉDIBLE POUR TOUTE ENTREPRISE"
 date: 2022-11-09
-categories: 
-  - "idees"
-coverImage: "IL-EXISTE-UNE-MENACE-CREDIBLE-POUR-TOUTE-ENTREPRISE.jpeg"
+categories:
+  - 'idees'
+coverImage: 'IL-EXISTE-UNE-MENACE-CREDIBLE-POUR-TOUTE-ENTREPRISE.jpeg'
 ---
 
-**Une entreprise est une organisation, mue par un projet ou un objectif, qui a généralement pour but de produire des biens ou des services, et – le sujet est trop vaste pour être traité dans un post- a minima d’en vivre.**
+**Une entreprise est une organization, mue par un projet ou un objectif, qui a généralement pour but de produire des biens ou des services, et – le sujet est trop vaste pour être traité dans un post- a minima d’en vivre.**
 
 ## La vision d'entreprise
 
@@ -24,4 +24,4 @@ Réfléchir à ce sujet de manière collective aide à ce que la menace ou évè
 
 ## Une juste conscience des risques
 
-_**Diffuser ainsi une culture de sûreté au sein de son organisation, correspondant à une juste conscience des risques, permet de créer les conditions pour que les actions de chacun soient mues par un désir de performance dans la durée, et conduites avec sérénité.**_
+_**Diffuser ainsi une culture de sûreté au sein de son organization, correspondant à une juste conscience des risques, permet de créer les conditions pour que les actions de chacun soient mues par un désir de performance dans la durée, et conduites avec sérénité.**_

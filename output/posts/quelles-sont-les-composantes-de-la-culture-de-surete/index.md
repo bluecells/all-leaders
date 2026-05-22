@@ -1,12 +1,12 @@
 ---
-title: "Quelles sont les composantes de la culture de sûreté ?"
+title: 'Quelles sont les composantes de la culture de sûreté ?'
 date: 2023-04-04
-categories: 
-  - "glossaire"
-coverImage: "glossary.jpg"
+categories:
+  - 'glossaire'
+coverImage: 'glossary.jpg'
 ---
 
-Augmenter la sûreté d’une organisation, sa pérennité par rapport à un évènement qui pourrait mettre son existence en défaut, en travaillant avec les équipes autour des fondamentaux que sont :
+Augmenter la sûreté d’une organization, sa pérennité par rapport à un évènement qui pourrait mettre son existence en défaut, en travaillant avec les équipes autour des fondamentaux que sont :
 
 - La clarté des enjeux liés à la nature du travail
 
@@ -34,6 +34,6 @@ Ceci permet de travailler les fondamentaux (préférentiellement par le biais d�
 
 ![Spectrum failure](images/spectrum-failure-big.jpg)
 
-> La culture de sûreté aide l’organisation à ne pas se laisser dépasser par un environnement de menace dans lequel les risques sont trop nombreux et évoluent trop rapidement pour être prédits, même par le dirigeant le plus clairvoyant.
-> 
+> La culture de sûreté aide l’organization à ne pas se laisser dépasser par un environnement de menace dans lequel les risques sont trop nombreux et évoluent trop rapidement pour être prédits, même par le dirigeant le plus clairvoyant.
+>
 > – Agence Internationale de l’Energie Atomique, 1990

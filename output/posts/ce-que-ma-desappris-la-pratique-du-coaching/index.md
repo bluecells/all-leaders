@@ -1,9 +1,9 @@
 ---
-title: "Ce que m’a désappris la pratique du coaching !"
+title: 'Ce que m’a désappris la pratique du coaching !'
 date: 2023-09-26
-categories: 
-  - "idees"
-coverImage: "une-autre-relation.jpeg"
+categories:
+  - 'idees'
+coverImage: 'une-autre-relation.jpeg'
 ---
 
 ## Ce que m’a désappris la pratique du coaching... ou qu'est-ce-que le coaching professionnel en réalité ?
@@ -14,7 +14,7 @@ coverImage: "une-autre-relation.jpeg"
 
 Il s’agit de :
 
-> _**Aider une personne, une équipe ou une organisation, à travers une ou plusieurs interventions, à trouver ou construire ses propres solutions, dans la perspective d’un développement à la fois durable et global.**_
+> _**Aider une personne, une équipe ou une organization, à travers une ou plusieurs interventions, à trouver ou construire ses propres solutions, dans la perspective d’un développement à la fois durable et global.**_
 
 Cela, nous avons presque tous l’impression de pouvoir le faire, lorsqu’on nous demande de l’aide sur un sujet. Pour ma part, j’ai appris à aider de différentes manières. Pas simple à retranscrire simplement, mais voici une tentative :
 
@@ -28,7 +28,7 @@ En tant que **maman**, j’aide par mon amour inconditionnel, en transmettant u
 
 Il m’est également difficile de ne pas être prise par les émotions intenses, ou d’accepter de leur part des points de vue qui vont contre mon système de valeurs.
 
-En tant que **manager** ou **chef de projet**, j’aide en établissant des buts clairs dans une organisation la plus transparente possible et en permettant à chacun de se développer en tant qu’objet de production mais également personne, dans sa dynamique individuelle et collective.
+En tant que **manager** ou **chef de projet**, j’aide en établissant des buts clairs dans une organization la plus transparente possible et en permettant à chacun de se développer en tant qu’objet de production mais également personne, dans sa dynamique individuelle et collective.
 
 Je suis cependant garante du résultat et il m’est souvent difficile de ne pas avoir de préférence pour les collaborateurs qui avancent le mieux et de ne pas être prise par les urgences quotidiennes.
 

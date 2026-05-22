@@ -1,22 +1,22 @@
 ---
-title: "« DRH, REDEVENEZ DES DONNEURS DE SOUFFLE » : L’APPEL DE L’AMIRAL OLIVIER LAJOUS"
+title: '« DRH, REDEVENEZ DES DONNEURS DE SOUFFLE » : L’APPEL DE L’AMIRAL OLIVIER LAJOUS'
 date: 2022-04-12
-categories: 
-  - "inspiration"
-coverImage: "amiral-Olivier-Lajous.jpeg"
+categories:
+  - 'inspiration'
+coverImage: 'amiral-Olivier-Lajous.jpeg'
 ---
 
-**Comment capitaliser sur la richesse humaine ? Nous reproduisons l’article _[publié ici](https://www.cspdocendi.fr/actualite/drh-redevenez-des-donneurs-de-souffle-lappel-de-lamiral-olivier-lajous?utm_source=linkedin&utm_medium=social&utm_campaign=leadearship-management&utm_term=211215&utm_content=)_ par CSP Docendi (Lefebvre Dalloz) et fondé sur un entretien avec une personnalité inspirante depuis longtemps pour _All Leaders Initiative_, l’amiral Olivier Lajous. Ce dernier livre ici une vision de la fonction RH à laquelle nous adhérons pleinement.**
+**Comment capitaliser sur la richesse humaine ? Nous reproduisons l’article *[publié ici](https://www.cspdocendi.fr/actualite/drh-redevenez-des-donneurs-de-souffle-lappel-de-lamiral-olivier-lajous?utm_source=linkedin&utm_medium=social&utm_campaign=leadearship-management&utm_term=211215&utm_content=)* par CSP Docendi (Lefebvre Dalloz) et fondé sur un entretien avec une personnalité inspirante depuis longtemps pour *All Leaders Initiative*, l’amiral Olivier Lajous. Ce dernier livre ici une vision de la fonction RH à laquelle nous adhérons pleinement.**
 
-**Redonner du sens, gérer le rythme et le temps, miser sur une alliance d’exigence et de bienveillance… Ancien DRH de la Marine nationale élu DRH de l’année en 2012, l’amiral Olivier Lajous vient de publier _DRH, le courage de l’humain !_ (Afnor éditions), un ouvrage co-écrit avec Thomas Vilcot. Rencontre avec le fondateur du cabinet Olivier Lajous Conseil, qui nous livre sa vision d’une approche renouvelée – et ré-humanisée – de la fonction RH.**
+**Redonner du sens, gérer le rythme et le temps, miser sur une alliance d’exigence et de bienveillance… Ancien DRH de la Marine nationale élu DRH de l’année en 2012, l’amiral Olivier Lajous vient de publier *DRH, le courage de l’humain !* (Afnor éditions), un ouvrage co-écrit avec Thomas Vilcot. Rencontre avec le fondateur du cabinet Olivier Lajous Conseil, qui nous livre sa vision d’une approche renouvelée – et ré-humanisée – de la fonction RH.**
 
-* * *
+---
 
 ### **D’APRÈS VOTRE EXPÉRIENCE DE DRH DANS L’ARMÉE, PUIS DE CONSEIL RH À DES ENTREPRISES PRIVÉES OU PUBLIQUES, LE RÔLE DE LA DIRECTION DES RESSOURCES HUMAINES EST-IL IDENTIQUE, QUEL QUE SOIT LE TYPE DE STRUCTURE ?**
 
-Toute organisation – administration, groupe privé, PME, milieu mutualiste ou associatif – fait face à l’improbable facteur humain : des femmes et des hommes travaillent ensemble pour une « cause ». Il peut s’agir de proposer des produits ou des services, de maintenir la paix, d’apporter des soins… Le défi est de les mettre au service de cette mission. Croient-ils à ce qu’ils font ? Se sentent-ils fiers et mobilisés ? Cette communauté doit se reconnaître au travers d’une culture, de valeurs, de règles de fonctionnement. Ce qui différencie les organisations tient justement à leur capacité à établir, ou non, des règles du jeu.
+Toute organization – administration, groupe privé, PME, milieu mutualiste ou associatif – fait face à l’improbable facteur humain : des femmes et des hommes travaillent ensemble pour une « cause ». Il peut s’agir de proposer des produits ou des services, de maintenir la paix, d’apporter des soins… Le défi est de les mettre au service de cette mission. Croient-ils à ce qu’ils font ? Se sentent-ils fiers et mobilisés ? Cette communauté doit se reconnaître au travers d’une culture, de valeurs, de règles de fonctionnement. Ce qui différencie les organizations tient justement à leur capacité à établir, ou non, des règles du jeu.
 
-* * *
+---
 
 ### **QUELS SONT LES PRINCIPAUX OBJECTIFS QUE DEVRAIT EMBRASSER LA DRH ?**
 
@@ -24,13 +24,13 @@ Sa mission première est de ré-enchanter le monde du travail. Enfermée dans un
 
 La DRH doit également réussir à articuler le « je » et le « nous ». D’après le concept africain de l’ubuntu, je suis ce que je suis grâce à ce que nous sommes. Il y a donc danger quand les intérêts des uns et des autres se télescopent, quand le « je » prend le pas sur le « nous ». Le « nous », c’est ce qui donne du sens. Ce sont des valeurs dans lesquelles on se reconnaît, des règles du jeu qui ont été co-construites et facilitent le vivre-ensemble. Faire communauté est donc un enjeu majeur pour la fonction RH, en contribuant à l’équilibre à trouver entre la réalisation individuelle et l’implication dans un collectif. Il faut aider les talents à se développer, à grandir, et mettre cette diversité des compétences au service d’un projet commun, d’une vision partagée.
 
-* * *
+---
 
 ### **POUR VOUS, LA DIRECTION DES RESSOURCES HUMAINES EST CELLE « DU LIEN, ET DU LIANT », TOUS DEUX ÉPROUVÉS DURANT LA CRISE SANITAIRE. COMMENT CONCILIER LES BESOINS LÉGITIMES DES INDIVIDUS, MIS EN LUMIÈRE DEPUIS LE DÉBUT DE LA PANDÉMIE, ET L’INTÉRÊT COLLECTIF ?**
 
 La crise a accéléré des tendances déjà présentes, dont la recherche d’un meilleur équilibre entre vie privée et vie professionnelle. Avec la généralisation du télétravail, il faut chercher d’autres façons de faire communauté, en inventant de nouveaux rituels. Des règles simples, de bon sens, pour vivre ensemble aussi harmonieusement que possible ; des règles que chacun peut s’approprier. En parallèle, il est essentiel de trouver des réponses adaptées aux besoins de chacun.
 
-* * *
+---
 
 ### **COMMENT LA DRH PEUT-ELLE RELEVER CES NOUVEAUX DÉFIS ?**
 
@@ -40,7 +40,7 @@ Dans l’entreprise, trop souvent, il semble que l’on doive être « tout le t
 
 Au-delà de la question du temps, la DRH doit favoriser le bon rythme dans l’animation managériale. À quel moment, pour quelle opportunité, faut-il mettre sous pression, puis la relâcher ? Le management doit pouvoir bénéficier du soutien de l’équipe RH afin de gérer efficacement le rythme et le temps.
 
-* * *
+---
 
 ### **LES _SOFT SKILLS_ SONT AU CŒUR DE VOTRE OUVRAGE – DES SOFT SKILLS QUI AGISSENT AU QUOTIDIEN POUR PERMETTRE LE DIALOGUE, NOURRIR L’ACCOMPAGNEMENT, DESSINER UN CHEMIN AUSSI ET INVITER À L’ACTION. QUELLES SONT CELLES QUI VOUS ONT ÉTÉ LE PLUS UTILES TOUT AU LONG DE VOTRE PARCOURS ?**
 
@@ -48,9 +48,9 @@ D’abord, la capacité à considérer l’autre dans son entièreté, pas uniqu
 
 C’est d’ailleurs, sans doute, la plus importante soft skill pour les DRH aujourd’hui : cet équilibre, qui permet de chercher des solutions conjuguant bien-être et performance. Plus les collaborateurs sont reconnus, motivés, plus la performance est au rendez-vous. Il faut donc s’occuper d’eux, sans oublier de s’occuper de soi. Il me paraît également essentiel de donner les moyens de l’autonomie, en formant pour apporter les outils et postures nécessaires.
 
-* * *
+---
 
-### **LES MODES MANAGÉRIALES SE SUCCÈDENT, APPORTANT PARFOIS DES BÉNÉFICES (HUMAINS, ORGANISATIONNELS), MAIS SE HEURTANT SOUVENT À L’ÉPREUVE DU RÉEL. COMMENT PALLIER CET ÉCUEIL ?**
+### **LES MODES MANAGÉRIALES SE SUCCÈDENT, APPORTANT PARFOIS DES BÉNÉFICES (HUMAINS, organizationNELS), MAIS SE HEURTANT SOUVENT À L’ÉPREUVE DU RÉEL. COMMENT PALLIER CET ÉCUEIL ?**
 
 Dans toute approche, comme celle de l’entreprise libérée, il peut y avoir des éléments intéressants à retenir. Le risque consiste à en faire une théorie au lieu de la confronter à la réalité du terrain. Dans tous les cas, la priorité porte sur le fait d’établir des règles de vivre-ensemble pour favoriser la rencontre, l’échange, le collaboratif. Il faut aussi tirer parti des retours d’expérience. Par exemple, le droit à l’erreur. Dans la Marine, nous considérons que l'erreur est une leçon : « Qu’en a-t-on appris pour qu’elle soit utile ? ».
 

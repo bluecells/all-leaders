@@ -1,23 +1,23 @@
 ---
-title: "LE TÉLÉTRAVAIL, MOINS BIEN VÉCU PAR LES JEUNES, LES FEMMES ET LES EMPLOYÉS"
+title: 'LE TÉLÉTRAVAIL, MOINS BIEN VÉCU PAR LES JEUNES, LES FEMMES ET LES EMPLOYÉS'
 date: 2023-05-12
-categories: 
-  - "idees"
-coverImage: "LE-TELETRAVAIL-MOINS-BIEN-VECU-PAR-LES-JEUNES-LES-FEMMES-ET-LES-EMPLOYES.jpeg"
+categories:
+  - 'idees'
+coverImage: 'LE-TELETRAVAIL-MOINS-BIEN-VECU-PAR-LES-JEUNES-LES-FEMMES-ET-LES-EMPLOYES.jpeg'
 ---
 
-_Photo : [Katya\_Ershova / Pixabay](https://pixabay.com/fr/photos/travailler-de-la-maison-femme-6158202/), [CC BY-SA](http://creativecommons.org/licenses/by-sa/4.0/)_
+_Photo : [Katya_Ershova / Pixabay](https://pixabay.com/fr/photos/travailler-de-la-maison-femme-6158202/), [CC BY-SA](http://creativecommons.org/licenses/by-sa/4.0/)_
 
 Dans le cadre des études sur le télétravail, nous avons le plaisir de republier le compte-rendu de résultats de la troisième enquête « Mon bureau post-confinement » de la chaire **Workplace Management de l’ESSEC Business School** initialement publié sur le site [theconversation.com](http://theconversation.com).
 
 - Le télétravail, moins bien vécu par les jeunes, les femmes et les employés
 
 - Femmes, jeunes et employés manifestent la plus grande envie de retrouver leur lieu de travail.  
-    [Ingrid Nappi](https://theconversation.com/profiles/ingrid-nappi-1111776), _[ESSEC](https://theconversation.com/institutions/essec-2330)_ et [Diane Le Luyer](https://theconversation.com/profiles/diane-le-luyer-1241542), _[ESSEC](https://theconversation.com/institutions/essec-2330)_
+   [Ingrid Nappi](https://theconversation.com/profiles/ingrid-nappi-1111776), *[ESSEC](https://theconversation.com/institutions/essec-2330)* et [Diane Le Luyer](https://theconversation.com/profiles/diane-le-luyer-1241542), *[ESSEC](https://theconversation.com/institutions/essec-2330)*
 
 ## Après plus d’un an de crise sanitaire et des mois de confinements plus ou moins souples...
 
-L’expérience du télétravail est désormais acquise par une partie des salariés et son bilan peut être dressé. Il a donné lieu à l’expression de toute une palette de vécus. Subi par certains, il a été une révélation professionnelle pour d'autres. Certaines organisations le voient encore comme un tournant majeur dans l’organisation du travail. D'autres l'ont vite enterré au fil des retours au bureau.
+L’expérience du télétravail est désormais acquise par une partie des salariés et son bilan peut être dressé. Il a donné lieu à l’expression de toute une palette de vécus. Subi par certains, il a été une révélation professionnelle pour d'autres. Certaines organizations le voient encore comme un tournant majeur dans l’organization du travail. D'autres l'ont vite enterré au fil des retours au bureau.
 
 ### « Mon bureau post-confinement » de la [chaire Workplace Management de l’ESSEC Business School](http://workplace-management.essec.edu/)
 

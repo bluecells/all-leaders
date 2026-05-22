@@ -1,12 +1,12 @@
 ---
 title: "Pour gagner, risquer l'initiative avec le commandement par intention"
 date: 2025-01-28
-categories: 
-  - "outils"
-coverImage: "revolution-1.jpg"
+categories:
+  - 'outils'
+coverImage: 'revolution-1.jpg'
 ---
 
-## La notion d’intention, et la nécessité de la rencontre entre intention descendante (vision, mission, objectif général…) et intentions montantes (contributions, initiatives, propositions, …) est l’essence de l’efficacité collective de toute organisation.
+## La notion d’intention, et la nécessité de la rencontre entre intention descendante (vision, mission, objectif général…) et intentions montantes (contributions, initiatives, propositions, …) est l’essence de l’efficacité collective de toute organization.
 
 Cette conception est **au coeur de l’approche de All Leaders Initiative**, et si vous nous connaissez déjà, vous savez que l’inspiration du monde de la mer, de l’esprit d’équipage propre à la Marine nationale est pour nous une étroite et chère source d’inspiration pour de nombreuses raisons...
 

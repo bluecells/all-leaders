@@ -278,7 +278,7 @@ Articles de blog organisés par langue.
 - `content` - Contenu Markdoc
 - JSON-LD type: `blog`
 
-**Organisation:**
+**organization:**
 
 - Articles français : `articles/fr/*.mdoc` (~20+ articles)
 - Articles anglais : `articles/en/*.mdoc` (Phase 2)
@@ -295,7 +295,7 @@ Services et accompagnements en format YAML.
 - `slug_fr` - Slug français
 - `slug_en` - Slug anglais (pour Phase 2)
 - `categorie` - Catégorie (diagnostic, coaching, etc.)
-- `type` - Type (equipe, individuel, organisation)
+- `type` - Type (equipe, individuel, organization)
 - `modalite` - Modalité d'intervention
 - `description` - Description courte
 - `long_description` - Description longue (Markdown)
@@ -303,7 +303,7 @@ Services et accompagnements en format YAML.
 - `image` - Image du service
 - `order` - Ordre d'affichage
 
-**Organisation:**
+**organization:**
 
 - Services français : `accompagnements/fr/*.yaml` (~17 services)
 - Services anglais : `accompagnements/en/*.yaml` (Phase 2)
@@ -324,7 +324,7 @@ Questions/réponses organisées par langue.
 - `metaTitle`, `metaDescription` - SEO
 - JSON-LD type: `faq`
 
-**Organisation:**
+**organization:**
 
 - FAQ françaises : `faq/fr/*.mdoc`
 - FAQ anglaises : `faq/en/*.mdoc` (Phase 2)
@@ -462,7 +462,7 @@ Structure simple:
 - Français: Sans préfixe (ex: `/ressources`)
 - Anglais: Préfixe `/en/` (ex: `/en/resources`)
 
-### 4.2 Organisation du contenu
+### 4.2 organization du contenu
 
 ```
 src/content/
@@ -798,7 +798,7 @@ Support de 3 types de données structurées:
   "headline": "Titre de l'article",
   "datePublished": "2024-01-15",
   "author": {
-    "@type": "Organization",
+    "@type": "organization",
     "name": "All Leaders Initiative"
   }
 }
@@ -945,7 +945,7 @@ Le fichier `tmp/restart.txt` déclenche le redémarrage de l'application Passeng
 
 ### 10.2 Keystatic Cloud
 
-**Organisation:** blue-cells-editors/limolo ⚠️
+**organization:** blue-cells-editors/limolo ⚠️
 
 **⚠️ Note:** Le projet Keystatic Cloud référencé est "limolo" - vérifier si c'est correct ou si un autre projet doit être utilisé pour All Leaders.
 
@@ -1186,7 +1186,7 @@ npm run build -- --verbose
 - Décrire l'image de manière concise
 - Bon pour l'accessibilité et le SEO
 
-**Organisation:**
+**organization:**
 
 - Images dans `/public/images/`
 - Sous-dossiers par type de contenu recommandé

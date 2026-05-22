@@ -1,9 +1,9 @@
 ---
-title: "Managerial courage, for and through psychological safety"
+title: 'Managerial courage, for and through psychological safety'
 date: 2024-01-14
-categories: 
-  - "ideas"
-coverImage: "PARLONS-CULTURE-DE-SURETE.jpeg"
+categories:
+  - 'ideas'
+coverImage: 'PARLONS-CULTURE-DE-SURETE.jpeg'
 ---
 
 At All Leaders Initiative, we know and love organizations. And we know and love managers. We've been there, we're with them, and we know that their courage is rarely highlighted. This courage is not only found in their big decisions, but also in their day-to-day choice (increasingly rare, in fact, and this is one of today's challenges) to devote themselves to their teams, in the service of their common mission.
@@ -20,7 +20,7 @@ As David Marquet points out, this implies a change in mentality from "leader-fol
 
 Managers are often faced with complex choices, involving difficult or unpopular compromises, often dealing with strategic changes, staff reductions or the adoption of new working methods. This means stopping certain production activities, making complex trade-offs, and sometimes laying off staff, for the benefit of our collective mission and ambition.
 
-In all cases, small or big decisions, change is never a given and always generates defensive reactions: managers are in the front line to ensure that it can be permanent within their team, for the benefit of their organisation.
+In all cases, small or big decisions, change is never a given and always generates defensive reactions: managers are in the front line to ensure that it can be permanent within their team, for the benefit of their organization.
 
 ### They have the courage to manage conflict
 
@@ -36,7 +36,7 @@ Encouraging innovation and calculated risk-taking within teams requires managers
 
 Sometimes managers have to take a stand to defend their team's interests against management or other departments. This requires confidence and determination, especially when it comes to protecting resources or advocating for the needs of the team. Even more so for young managers.
 
-From time to time, internal trade-offs mean that the interests of other teams are more crucial to the common mission. Once again, it is the managers who, with the organisation's vision and mission in mind, must have the courage to take it on and explain it to their teams. It requires just as much confidence and determination!
+From time to time, internal trade-offs mean that the interests of other teams are more crucial to the common mission. Once again, it is the managers who, with the organization's vision and mission in mind, must have the courage to take it on and explain it to their teams. It requires just as much confidence and determination!
 
 ### They have the courage to give honest feedback and show empathy
 
@@ -50,11 +50,11 @@ Developing managerial courage requires a deep understanding of a manager's raiso
 
 Managerial courage as an intrinsic component of interpersonal dynamics within teams.
 
-Psychological safety within a team or an organisation is just the thing,
+Psychological safety within a team or an organization is just the thing,
 
 "The belief shared by team members that they can express themselves freely and take interpersonal risks (express a differing opinion, report even a minor error, share an unfinished idea, etc.) without fear of negative repercussions".
 
-The relationship between managerial courage and psychological safety in an organisation is closely linked and bidirectional. They reinforce each other in a virtuous circle
+The relationship between managerial courage and psychological safety in an organization is closely linked and bidirectional. They reinforce each other in a virtuous circle
 
 ### Because psychological safety boosts managers' courage
 
@@ -74,7 +74,7 @@ By supporting employees' initiatives and ideas, managers reinforce trust and aut
 
 By recognising that failure is a natural part of the growth process and by allowing it - conditionally - and managing it constructively, managers cultivate an environment where their team feel safe to try, fail and learn.
 
-This synergy between psychological safety and managerial courage creates an organisational dynamic where risk-taking, innovation and personal and collective growth are encouraged, contributing to greater team performance and effectiveness.
+This synergy between psychological safety and managerial courage creates an organizational dynamic where risk-taking, innovation and personal and collective growth are encouraged, contributing to greater team performance and effectiveness.
 
 ## Start now with All Leaders Initiative
 

@@ -1,9 +1,9 @@
 ---
-title: "Champion du Monde !"
+title: 'Champion du Monde !'
 date: 2025-03-31
-categories: 
-  - "inspiration"
-coverImage: "G-Bril-Word-Champ.jpg"
+categories:
+  - 'inspiration'
+coverImage: 'G-Bril-Word-Champ.jpg'
 ---
 
 ## Parce que « venir avec des solutions » peut être contre-productif, nous préférons chez All Leaders Initiative mettre en avant le concept d’intention.
@@ -31,7 +31,7 @@ Il est plus prudent de maintenir un doute à ce propos et de discuter, collectiv
 
 En plus l'intention implique une vraie appropriation de l'action par son émetteur.
 
-**Au _"ne venez pas avec un problème mais des solutions"_, nous encourageons à substituer :**
+**Au *"ne venez pas avec un problème mais des solutions"*, nous encourageons à substituer :**
 
 **_« Venez avec votre problème et votre intention »._**
 
@@ -40,7 +40,7 @@ Concrètement, il s’agit de favoriser une réflexion avant l’action dans une
 ✔️ Quels sont les faits ?  
 ✔️ Qu’est-ce que j’en pense, qu’est-ce-qui me paraît souhaitable ?  
 ✔️ Quelles sont les options et contraintes ?  
-✔️ Au final quelle est mon intention ? Est-elle bien bien accordée à l’intention globale (vision et objectifs) de mon collectif / organisation ?
+✔️ Au final quelle est mon intention ? Est-elle bien bien accordée à l’intention globale (vision et objectifs) de mon collectif / organization ?
 
 **Chez All Leaders Initiative, on appelle cela “l’échelle du Leadership (basé sur l’intention) » mais on peut en reparler !**
 
