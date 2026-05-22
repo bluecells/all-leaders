@@ -6,7 +6,6 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import SeoAnalyzer from '../components/SeoAnalyzer/SeoAnalyzer.astro';
-import ActionBar from '@/components/ActionBar.astro';
 import NewsletterPopup from '@/components/NewsletterPopup.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import { getFaqQuestions } from '@/utils/faq';
@@ -88,16 +87,6 @@ const finalOgImage = ogImage || undefined;
 
   <Header lang={pageLang} />
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-PBZ8GS6L"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"></iframe></noscript
-    >
-    <!-- End Google Tag Manager (noscript) -->
-
     <main>
       <Breadcrumb lang={pageLang as 'fr' | 'en'} title={title} category={breadcrumbCategory} />
       <slot />
