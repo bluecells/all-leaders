@@ -148,7 +148,7 @@ if (items.length > 0) {
       { label: t.home, href: '/' },
       { label: t.accompagnements, href: '' }, // Pas de href car on est sur la page actuelle
     ];
-  } else if (isFAQ && pathSegments.length >= 2) {
+  } else if (isFAQ && pathSegments.length >= 3) {
     // Identifier le dossier faq
     const folderName = lang === 'en' ? 'faq' : 'faq';
     const folderLabel = t.faq;
@@ -187,6 +187,13 @@ if (items.length > 0) {
       { label: folderLabel, href: faqBaseUrl },
       { label: categoryLabel, href: `${faqBaseUrl}/${categorySlug}` },
       { label: titleLabel, href: '' }, // Pas de href pour la page actuelle
+    ];
+  } else if (isFAQ && pathSegments.length === 2) {
+    // Landing page FAQ (ex: /faq ou /en/faq)
+    const faqBaseUrl = lang === 'en' ? '/en/faq' : '/faq';
+    breadcrumbItems = [
+      { label: t.home, href: lang === 'en' ? '' : '/' },
+      { label: t.faq, href: '' }, // Pas de href car on est sur la page actuelle
     ];
   } else if (isServices && pathSegments.length === 4 && pathSegments[0] === 'en') {
     /**

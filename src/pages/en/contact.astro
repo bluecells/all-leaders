@@ -4,6 +4,11 @@ import Container from '../../components/UI/Container.astro';
 
 // URL Formspree
 const FORMSPREE_URL = 'https://formspree.io/f/mqeneyew';
+
+const alternateUrls = {
+  fr: '/contact',
+  en: '/en/contact',
+};
 ---
 
 <Layout
@@ -11,6 +16,7 @@ const FORMSPREE_URL = 'https://formspree.io/f/mqeneyew';
   metaTitle="Contact All Leaders Initiative"
   metaDescription="Please feel free to contact us for any questions regarding our services and their logistics."
   lang="en"
+  alternateUrls={alternateUrls}
 >
   <Container>
     <div class="contact-container min-h-[90vh]">

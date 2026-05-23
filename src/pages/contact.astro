@@ -5,12 +5,18 @@ import { CONTACT } from '../consts';
 
 // URL Formspree
 const FORMSPREE_URL = 'https://formspree.io/f/mqeneyew';
+
+const alternateUrls = {
+  fr: '/contact',
+  en: '/en/contact',
+};
 ---
 
 <Layout
   title={CONTACT.TITLE}
   metaTitle={CONTACT.METATITLE}
   metaDescription={CONTACT.METADESCRIPTION}
+  alternateUrls={alternateUrls}
 >
   <Container>
     <div class="contact-container min-h-[90vh]">
