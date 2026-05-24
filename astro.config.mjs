@@ -18,6 +18,7 @@ export default defineConfig({
       allowHTML: true, // C'est cette option qui permet de parser les <br>
     }),
     keystatic(),
+    sitemap(),
   ],
   i18n: {
     defaultLocale: 'fr',
