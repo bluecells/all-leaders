@@ -122,18 +122,18 @@ const ogLocale = localeMap[lang] || commonTranslations.fr.localeCode;
   alternateUrls ? (
     <>
       {/* FR (toujours présent) */}
-      <link rel="alternate" hreflang="fr" href={new URL(alternateUrls.fr, siteUrl).toString()} />
+      <link rel="alternate" hreflang="fr" href={new URL(alternateUrls.fr.replace(/^\//, ''), siteUrl).toString()} />
 
       {/* EN (si traduction existe) */}
       {alternateUrls.en && (
-        <link rel="alternate" hreflang="en" href={new URL(alternateUrls.en, siteUrl).toString()} />
+        <link rel="alternate" hreflang="en" href={new URL(alternateUrls.en.replace(/^\//, ''), siteUrl).toString()} />
       )}
 
       {/* x-default pointe vers FR */}
       <link
         rel="alternate"
         hreflang="x-default"
-        href={new URL(alternateUrls.fr, siteUrl).toString()}
+        href={new URL(alternateUrls.fr.replace(/^\//, ''), siteUrl).toString()}
       />
     </>
   ) : (

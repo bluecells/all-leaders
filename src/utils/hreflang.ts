@@ -51,13 +51,13 @@ export function buildPageUrl(
 export function buildAccompagnementUrl(
   accompagnement: CollectionEntry<'accompagnements'>,
   lang: 'fr' | 'en',
-  categorieSlug?: string
+  categorieSlug?: string | null
 ): string {
   const cleanSlug = accompagnement.data.slug;
   const accompagnementPrefix = ROUTE_PREFIXES.accompagnements[lang];
 
-  // Si une catégorie est fournie, l'utiliser dans l'URL
-  const categoryPath = categorieSlug ? `/${categorieSlug}` : '';
+  // Si une catégorie est fournie et non-vide, l'utiliser dans l'URL
+  const categoryPath = categorieSlug && categorieSlug.trim() ? `/${categorieSlug}` : '';
 
   // FR: /accompagnements/{categorie}/slug (pas de préfixe langue)
   if (lang === 'fr') {
@@ -209,7 +209,7 @@ export async function findAlternateUrls(
         const catEntry = collections.categories.find((c) =>
           lang === 'fr' ? c.data.name_fr === matchingEntry.data.categorie : c.data.name_en === matchingEntry.data.categorie
         );
-        const catSlug = lang === 'fr' ? (catEntry?.data.slug_fr || '') : (catEntry?.data.slug_en || '');
+        const catSlug = lang === 'fr' ? catEntry?.data.slug_fr : catEntry?.data.slug_en;
         // @ts-ignore - Nous savons que le type est correct
         result[lang] = buildUrl(matchingEntry, lang, catSlug);
       } else {
