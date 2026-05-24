@@ -119,7 +119,7 @@ const ogLocale = localeMap[lang] || commonTranslations.fr.localeCode;
 
 <!-- Language alternates -->
 {
-  alternateUrls ? (
+  alternateUrls && alternateUrls.fr ? (
     <>
       {/* FR (toujours présent) */}
       <link rel="alternate" hreflang="fr" href={new URL(alternateUrls.fr.replace(/^\//, ''), siteUrl).toString()} />
