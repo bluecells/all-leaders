@@ -1,4 +1,5 @@
 ---
+import { HOME_EN } from '../../consts';
 import Layout from '../../layouts/Layout.astro';
 import Grid from '../../components/UI/Grid.astro';
 import Carousel from '../../components/UI/Carousel.astro';
@@ -58,10 +59,10 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 </script>
 
 <Layout
-  title="All Leaders Initiative — Leadership based on intention for leaders and management teams"
+  title={HOME_EN.TITLE}
   lang="en"
-  metaTitle="All Leaders Initiative — Leadership Coaching and Collective Performance"
-  metaDescription="All Leaders Initiative supports management teams, executive committees and leaders to overcome collective blockages and develop intention-based leadership."
+  metaTitle={HOME_EN.METATITLE}
+  metaDescription={HOME_EN.METADESCRIPTION}
   alternateUrls={{ fr: '/', en: '/en/' }}
 >
   <div class="mx-auto hero-section halos-confines">

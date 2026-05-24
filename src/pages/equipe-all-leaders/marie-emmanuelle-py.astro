@@ -1,13 +1,17 @@
 ---
+import { MARIE_EMMANUELLE_PY } from '../../consts';
 import Layout from '../../../src/layouts/Layout.astro';
 ---
 
 <Layout
-  title="Marie Emmanuelle PY - All Leaders Initiative"
-  metaTitle="Marie Emmanuelle PY - All Leaders Initiative"
-  metaDescription="Découvrez le parcours et l'expertise de Marie Emmanuelle PY, associée fondatrice de All Leaders Initiative, spécialisée dans l'accompagnement des particuliers et des équipes en entreprise, avec une approche humaniste et appréciative."
+  title={MARIE_EMMANUELLE_PY.TITLE}
+  metaTitle={MARIE_EMMANUELLE_PY.METATITLE}
+  metaDescription={MARIE_EMMANUELLE_PY.METADESCRIPTION}
   lang="fr"
-  alternateUrls={{ fr: '/equipe-all-leaders/marie-emmanuelle-py', en: '/en/team-all-leaders/marie-emmanuelle-py' }}
+  alternateUrls={{
+    fr: '/equipe-all-leaders/marie-emmanuelle-py',
+    en: '/en/team-all-leaders/marie-emmanuelle-py',
+  }}
 >
   <div class="profile-card">
     <img
@@ -19,8 +23,14 @@ import Layout from '../../../src/layouts/Layout.astro';
     <h2>ASSOCIÉE FONDATRICE</h2>
     <ul>
       <li><a href="mailto:me@all-leaders.fr">me@all-leaders.fr</a> | +33 6 03 55 54 52</li>
-      <li>Profil <a href="https://www.linkedin.com/in/mepy/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-      <li>Cabinet privé : navigam.fr</li>
+      <li>
+        Profil <a href="https://www.linkedin.com/in/mepy/" target="_blank" rel="noopener noreferrer"
+          >LinkedIn</a>
+      </li>
+      <li>
+        <a href="https://marie-emmanuelle-py.fr" target="_blank" rel="noopener noreferrer"
+          >Cabinet privé</a>
+      </li>
     </ul>
     <p>
       Ancien officier de marine, ingénieur de formation devenue coach par conviction, Marie

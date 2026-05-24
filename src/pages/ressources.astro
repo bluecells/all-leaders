@@ -1,12 +1,13 @@
 ---
+import { RESOURCES } from '../consts';
 import Layout from '../layouts/Layout.astro';
 import BlogSection from '../components/Blog.astro';
 ---
 
 <Layout
-  title="Ressources - All Leaders"
-  metaTitle="Ressources - All Leaders"
-  metaDescription="Découvrez nos articles sur le tourisme responsable, la durabilité et la Sardaigne authentique."
+  title={RESOURCES.TITLE}
+  metaTitle={RESOURCES.METATITLE}
+  metaDescription={RESOURCES.METADESCRIPTION}
   lang="fr"
   alternateUrls={{ fr: '/ressources', en: '/en/resources' }}
 >

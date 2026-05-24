@@ -17,7 +17,7 @@ export const GET: APIRoute = async ({ site }) => {
     getCollection('accompagnements'),
     getCollection('faq'),
     getCollection('landing-pages'),
-    getCollection('category'),
+    getCollection('categories'),
   ]);
 
   const urlEntry = (

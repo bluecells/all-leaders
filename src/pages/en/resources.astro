@@ -1,12 +1,13 @@
 ---
+import { RESOURCES_EN } from '../../consts';
 import Layout from '../../layouts/Layout.astro';
 import BlogSection from '../../components/Blog.astro';
 ---
 
 <Layout
-  title="Resources"
-  metaTitle="Resources - All Leaders"
-  metaDescription="Discover our articles and resources on leadership, psychological safety, and organizational development."
+  title={RESOURCES_EN.TITLE}
+  metaTitle={RESOURCES_EN.METATITLE}
+  metaDescription={RESOURCES_EN.METADESCRIPTION}
   lang="en"
   alternateUrls={{ fr: '/ressources', en: '/en/resources' }}
 >
