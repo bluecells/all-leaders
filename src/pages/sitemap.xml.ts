@@ -79,6 +79,10 @@ export const GET: APIRoute = async ({ site }) => {
   urls.push(urlEntry('/faq', new Date(), '0.8', 'weekly'));
   urls.push(urlEntry('/en/faq', new Date(), '0.8', 'weekly'));
 
+  // Team pages
+  urls.push(urlEntry('/equipe-all-leaders', new Date(), '0.7', 'monthly'));
+  urls.push(urlEntry('/en/team-all-leaders', new Date(), '0.7', 'monthly'));
+
   // Landing pages (même logique que pages)
   for (const lp of landingPages) {
     const lang = lp.data.lang as 'fr' | 'en';
