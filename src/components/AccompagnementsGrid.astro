@@ -43,7 +43,7 @@ const sortedCategoryNames = [...new Set(filteredAccompagnements.map(item => item
 
 // 5. Helper pour l'URL - génère la bonne route selon la langue avec catégorie
 const getAccompagnementUrl = (item: CollectionEntry<'accompagnements'>, catSlug: string) => {
-  const itemSlug = lang === 'fr' ? item.data.slug_fr : item.data.slug_en;
+  const itemSlug = item.data.slug;
   if (lang === 'fr') {
     return `/accompagnements/${catSlug}/${itemSlug}`;
   } else {

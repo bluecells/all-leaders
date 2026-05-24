@@ -65,8 +65,13 @@ export const GET: APIRoute = async ({ site }) => {
   for (const accompagnement of accompagnements) {
     const lang = accompagnement.data.lang as 'fr' | 'en' | undefined;
     if (!lang) continue; // Skip accompagnements sans langue définie
-    const slug = (accompagnement.data.seoSlug || accompagnement.id.split('/').pop())?.replace(/^\/|\/$/g, '');
-    const path = lang === 'fr' ? `/accompagnements/${slug}` : `/en/services/${slug}`;
+
+    const catEntry = categories.find((c) =>
+      lang === 'fr' ? c.data.name_fr === accompagnement.data.categorie : c.data.name_en === accompagnement.data.categorie
+    );
+    const catSlug = lang === 'fr' ? (catEntry?.data.slug_fr || '') : (catEntry?.data.slug_en || '');
+    const slug = accompagnement.data.slug;
+    const path = lang === 'fr' ? `/accompagnements/${catSlug}/${slug}` : `/en/services/${catSlug}/${slug}`;
     urls.push(urlEntry(path, new Date(), '0.7', 'monthly'));
   }
 

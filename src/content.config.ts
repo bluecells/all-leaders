@@ -93,8 +93,7 @@ const accompagnements = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/accompagnements' }),
   schema: z.object({
     title: z.string(),
-    slug_fr: z.string(),
-    slug_en: z.string(),
+    slug: z.string(),
     categorie: z.string(),
     type: z.enum([
       'action',

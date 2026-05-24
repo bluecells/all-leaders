@@ -53,8 +53,7 @@ export function buildAccompagnementUrl(
   lang: 'fr' | 'en',
   categorieSlug?: string
 ): string {
-  const seoSlug = accompagnement.data.seoSlug || accompagnement.id.split('/').pop()?.replace('.yaml', '') || 'accompagnement';
-  const cleanSlug = seoSlug.replace(/^\/|\/$/g, '');
+  const cleanSlug = accompagnement.data.slug;
   const accompagnementPrefix = ROUTE_PREFIXES.accompagnements[lang];
 
   // Si une catégorie est fournie, l'utiliser dans l'URL
@@ -154,20 +153,20 @@ function getBaseFilename(entryId: string): string {
 /**
  * Trouve les URLs alternatives pour une entrée donnée dans les 2 langues
  *
- * Cette fonction cherche les traductions équivalentes d'une page/article/room/faq
+ * Cette fonction cherche les traductions équivalentes d'une page/article/accompagnement/faq
  * en utilisant le matching par nom de fichier.
  *
- * @param entry L'entrée courante (page, article, room ou faq)
- * @param entryType Le type d'entrée ('page', 'article', 'room', 'faq')
+ * @param entry L'entrée courante (article, accompagnement ou faq)
+ * @param entryType Le type d'entrée ('article', 'accompagnement', 'faq')
  * @param collections Toutes les collections nécessaires
  * @returns Les URLs alternatives pour FR, EN (null si pas de traduction)
  */
 export async function findAlternateUrls(
-  entry: CollectionEntry<'articles' | 'services' | 'faq'>,
-  entryType: 'article' | 'room' | 'faq',
+  entry: CollectionEntry<'articles' | 'accompagnements' | 'faq'>,
+  entryType: 'article' | 'accompagnement' | 'faq',
   collections: {
     articles: CollectionEntry<'articles'>[];
-    services: CollectionEntry<'services'>[];
+    accompagnements: CollectionEntry<'accompagnements'>[];
     faq: CollectionEntry<'faq'>[];
     categories: CollectionEntry<'category'>[];
   }
@@ -184,16 +183,16 @@ export async function findAlternateUrls(
   const collection =
     entryType === 'article'
       ? collections.articles
-      : entryType === 'room'
-        ? collections.services
+      : entryType === 'accompagnement'
+        ? collections.accompagnements
         : collections.faq;
 
   // Sélectionner la fonction de construction d'URL appropriée
   const buildUrl =
     entryType === 'article'
       ? (e: any, l: 'fr' | 'en') => buildArticleUrl(e, l, collections.categories)
-      : entryType === 'room'
-        ? buildServiceUrl
+      : entryType === 'accompagnement'
+        ? (e: any, l: 'fr' | 'en', catSlug?: string) => buildAccompagnementUrl(e, l, catSlug)
         : (e: any, l: 'fr' | 'en') => buildFaqUrl(e, l, collections.categories);
 
   // Pour chaque langue, chercher l'entrée correspondante
@@ -205,8 +204,18 @@ export async function findAlternateUrls(
     });
 
     if (matchingEntry) {
-      // @ts-ignore - Nous savons que le type est correct
-      result[lang] = buildUrl(matchingEntry, lang);
+      // Pour les accompagnements, besoin de trouver le slug de catégorie
+      if (entryType === 'accompagnement') {
+        const catEntry = collections.categories.find((c) =>
+          lang === 'fr' ? c.data.name_fr === matchingEntry.data.categorie : c.data.name_en === matchingEntry.data.categorie
+        );
+        const catSlug = lang === 'fr' ? (catEntry?.data.slug_fr || '') : (catEntry?.data.slug_en || '');
+        // @ts-ignore - Nous savons que le type est correct
+        result[lang] = buildUrl(matchingEntry, lang, catSlug);
+      } else {
+        // @ts-ignore - Nous savons que le type est correct
+        result[lang] = buildUrl(matchingEntry, lang);
+      }
     }
   }
 

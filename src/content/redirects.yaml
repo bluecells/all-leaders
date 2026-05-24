@@ -99,12 +99,12 @@ redirects:
   # PHASE 4: Accompagnements FR (Priorité 2 - ~17 liens)
   # ========================================
   - from: /accompagnements/agressivite-virtual-box
-    to: /accompagnements/gestion-de-la-conflictualité/formation-agressivite-professionnelle-virtual-box
+    to: /accompagnements/gestion-de-la-conflictualite/formation-agressivite-professionnelle-virtual-box
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
   - from: /accompagnements/bien-etre-psychique
-    to: /accompagnements/santé-mentale-et-performance-durable/bien-etre-psychique-et-sante-mentale-au-travail
+    to: /accompagnements/sante-mentale-et-performance-durable/bien-etre-psychique-et-sante-mentale-au-travail
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
@@ -114,7 +114,7 @@ redirects:
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
   - from: /accompagnements/coaching-okr-steppps
-    to: /accompagnements/coaching-d-équipes-et-d-organizations/coaching-okr-collectif-steppps-lbi
+    to: /accompagnements/coaching-equipes-et-organisations/coaching-okr-collectif-steppps-lbi
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
@@ -134,17 +134,17 @@ redirects:
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
   - from: /accompagnements/gestion-conflits
-    to: /accompagnements/gestion-de-la-conflictualité/gestion-des-conflits
+    to: /accompagnements/gestion-de-la-conflictualite/gestion-des-conflits
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
   - from: /accompagnements/gestion-stress-top
-    to: /accompagnements/santé-mentale-et-performance-durable/gestion-du-stress-methode-top
+    to: /accompagnements/sante-mentale-et-performance-durable/gestion-du-stress-methode-top
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
   - from: /accompagnements/gestion-violence-patient
-    to: /accompagnements/gestion-de-la-conflictualité/agressivite-du-patient
+    to: /accompagnements/gestion-de-la-conflictualite/agressivite-du-patient
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
@@ -169,12 +169,12 @@ redirects:
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
   - from: /accompagnements/pssm-premiers-secours
-    to: /accompagnements/santé-mentale-et-performance-durable/formations-pssm-premiers-secours-en-sante-mentale
+    to: /accompagnements/sante-mentale-et-performance-durable/formations-pssm-premiers-secours-en-sante-mentale
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
   - from: /accompagnements/seminaires-teambuilding
-    to: /accompagnements/coaching-d-équipes-et-d-organizations/seminaire-de-direction-teambuilding
+    to: /accompagnements/coaching-equipes-et-organisations/seminaire-de-direction-teambuilding
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
@@ -198,12 +198,12 @@ redirects:
     note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/services/bien-etre-psychique
-    to: /en/services/mental-wellbeing-and-sustainable-performance/mental-wellbeing-and-health-at-work
+    to: /en/services/mental-health-and-sustainable-performance/mental-wellbeing-and-health-at-work
     status: '301'
     note: 'Ancien format sans catégorie → nouveau format avec catégorie'
 
   - from: /en/accompagnements/bien-etre-psychique
-    to: /en/services/mental-wellbeing-and-sustainable-performance/mental-wellbeing-and-health-at-work
+    to: /en/services/mental-health-and-sustainable-performance/mental-wellbeing-and-health-at-work
     status: '301'
     note: 'Ancien format accompagnements → services avec catégorie'
 
@@ -313,7 +313,7 @@ redirects:
     note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/gestion-stress-top
-    to: /en/services/mental-wellbeing-and-sustainable-performance/stress-management-top-method
+    to: /en/services/mental-health-and-sustainable-performance/stress-management-top-method
     status: '301'
     note: 'Ancien format accompagnements → services avec catégorie'
 
@@ -343,7 +343,7 @@ redirects:
     note: 'Ancien format accompagnements → services avec catégorie'
 
   - from: /en/accompagnements/pssm-premiers-secours
-    to: /en/services/mental-wellbeing-and-sustainable-performance/pssm-mental-health-first-aid-training
+    to: /en/services/mental-health-and-sustainable-performance/pssm-mental-health-first-aid-training
     status: '301'
     note: 'Ancien format accompagnements → services avec catégorie'
 
