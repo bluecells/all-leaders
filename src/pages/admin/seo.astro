@@ -107,26 +107,166 @@ const getSeoStatus = (
 
 // Pages statiques Astro
 const astroPages = [
-  { title: HOME.TITLE, metaTitle: HOME.METATITLE, metaDescription: HOME.METADESCRIPTION, lang: 'fr', path: '/', id: 'home-fr' },
-  { title: HOME_EN.TITLE, metaTitle: HOME_EN.METATITLE, metaDescription: HOME_EN.METADESCRIPTION, lang: 'en', path: '/en/', id: 'home-en' },
-  { title: FAQ.TITLE, metaTitle: FAQ.METATITLE, metaDescription: FAQ.METADESCRIPTION, lang: 'fr', path: '/faq', id: 'faq-fr' },
-  { title: FAQ_EN.TITLE, metaTitle: FAQ_EN.METATITLE, metaDescription: FAQ_EN.METADESCRIPTION, lang: 'en', path: '/en/faq', id: 'faq-en' },
-  { title: ACCOMPAGNEMENTS.TITLE, metaTitle: ACCOMPAGNEMENTS.METATITLE, metaDescription: ACCOMPAGNEMENTS.METADESCRIPTION, lang: 'fr', path: '/accompagnements', id: 'accompagnements-fr' },
-  { title: ACCOMPAGNEMENTS_EN.TITLE, metaTitle: ACCOMPAGNEMENTS_EN.METATITLE, metaDescription: ACCOMPAGNEMENTS_EN.METADESCRIPTION, lang: 'en', path: '/en/services', id: 'services-en' },
-  { title: CONTACT.TITLE, metaTitle: CONTACT.METATITLE, metaDescription: CONTACT.METADESCRIPTION, lang: 'fr', path: '/contact', id: 'contact-fr' },
-  { title: CONTACT_EN.TITLE, metaTitle: CONTACT_EN.METATITLE, metaDescription: CONTACT_EN.METADESCRIPTION, lang: 'en', path: '/en/contact', id: 'contact-en' },
-  { title: PRIVACY.TITLE, metaTitle: PRIVACY.METATITLE, metaDescription: PRIVACY.METADESCRIPTION, lang: 'fr', path: '/privacy', id: 'privacy-fr' },
-  { title: PRIVACY_EN.TITLE, metaTitle: PRIVACY_EN.METATITLE, metaDescription: PRIVACY_EN.METADESCRIPTION, lang: 'en', path: '/en/privacy', id: 'privacy-en' },
-  { title: COOKIES.TITLE, metaTitle: COOKIES.METATITLE, metaDescription: COOKIES.METADESCRIPTION, lang: 'fr', path: '/cookies', id: 'cookies-fr' },
-  { title: COOKIES_EN.TITLE, metaTitle: COOKIES_EN.METATITLE, metaDescription: COOKIES_EN.METADESCRIPTION, lang: 'en', path: '/en/cookies', id: 'cookies-en' },
-  { title: RESOURCES.TITLE, metaTitle: RESOURCES.METATITLE, metaDescription: RESOURCES.METADESCRIPTION, lang: 'fr', path: '/ressources', id: 'resources-fr' },
-  { title: RESOURCES_EN.TITLE, metaTitle: RESOURCES_EN.METATITLE, metaDescription: RESOURCES_EN.METADESCRIPTION, lang: 'en', path: '/en/resources', id: 'resources-en' },
-  { title: TEAM.TITLE, metaTitle: TEAM.METATITLE, metaDescription: TEAM.METADESCRIPTION, lang: 'fr', path: '/equipe-all-leaders', id: 'team-fr' },
-  { title: TEAM_EN.TITLE, metaTitle: TEAM_EN.METATITLE, metaDescription: TEAM_EN.METADESCRIPTION, lang: 'en', path: '/en/team-all-leaders', id: 'team-en' },
-  { title: MARIE_EMMANUELLE_PY.TITLE, metaTitle: MARIE_EMMANUELLE_PY.METATITLE, metaDescription: MARIE_EMMANUELLE_PY.METADESCRIPTION, lang: 'fr', path: '/equipe-all-leaders/marie-emmanuelle-py', id: 'marie-fr' },
-  { title: MARIE_EMMANUELLE_PY_EN.TITLE, metaTitle: MARIE_EMMANUELLE_PY_EN.METATITLE, metaDescription: MARIE_EMMANUELLE_PY_EN.METADESCRIPTION, lang: 'en', path: '/en/team-all-leaders/marie-emmanuelle-py', id: 'marie-en' },
-  { title: PIERRE_ETIENNE_BOST.TITLE, metaTitle: PIERRE_ETIENNE_BOST.METATITLE, metaDescription: PIERRE_ETIENNE_BOST.METADESCRIPTION, lang: 'fr', path: '/equipe-all-leaders/pierre-etienne-bost', id: 'pierre-fr' },
-  { title: PIERRE_ETIENNE_BOST_EN.TITLE, metaTitle: PIERRE_ETIENNE_BOST_EN.METATITLE, metaDescription: PIERRE_ETIENNE_BOST_EN.METADESCRIPTION, lang: 'en', path: '/en/team-all-leaders/pierre-etienne-bost', id: 'pierre-en' },
+  {
+    title: HOME.TITLE,
+    metaTitle: HOME.METATITLE,
+    metaDescription: HOME.METADESCRIPTION,
+    lang: 'fr',
+    path: '/',
+    id: 'home-fr',
+  },
+  {
+    title: HOME_EN.TITLE,
+    metaTitle: HOME_EN.METATITLE,
+    metaDescription: HOME_EN.METADESCRIPTION,
+    lang: 'en',
+    path: '/en/',
+    id: 'home-en',
+  },
+  {
+    title: FAQ.TITLE,
+    metaTitle: FAQ.METATITLE,
+    metaDescription: FAQ.METADESCRIPTION,
+    lang: 'fr',
+    path: '/faq',
+    id: 'faq-fr',
+  },
+  {
+    title: FAQ_EN.TITLE,
+    metaTitle: FAQ_EN.METATITLE,
+    metaDescription: FAQ_EN.METADESCRIPTION,
+    lang: 'en',
+    path: '/en/faq',
+    id: 'faq-en',
+  },
+  {
+    title: ACCOMPAGNEMENTS.TITLE,
+    metaTitle: ACCOMPAGNEMENTS.METATITLE,
+    metaDescription: ACCOMPAGNEMENTS.METADESCRIPTION,
+    lang: 'fr',
+    path: '/accompagnements',
+    id: 'accompagnements-fr',
+  },
+  {
+    title: ACCOMPAGNEMENTS_EN.TITLE,
+    metaTitle: ACCOMPAGNEMENTS_EN.METATITLE,
+    metaDescription: ACCOMPAGNEMENTS_EN.METADESCRIPTION,
+    lang: 'en',
+    path: '/en/services',
+    id: 'services-en',
+  },
+  {
+    title: CONTACT.TITLE,
+    metaTitle: CONTACT.METATITLE,
+    metaDescription: CONTACT.METADESCRIPTION,
+    lang: 'fr',
+    path: '/contact',
+    id: 'contact-fr',
+  },
+  {
+    title: CONTACT_EN.TITLE,
+    metaTitle: CONTACT_EN.METATITLE,
+    metaDescription: CONTACT_EN.METADESCRIPTION,
+    lang: 'en',
+    path: '/en/contact',
+    id: 'contact-en',
+  },
+  {
+    title: PRIVACY.TITLE,
+    metaTitle: PRIVACY.METATITLE,
+    metaDescription: PRIVACY.METADESCRIPTION,
+    lang: 'fr',
+    path: '/privacy',
+    id: 'privacy-fr',
+  },
+  {
+    title: PRIVACY_EN.TITLE,
+    metaTitle: PRIVACY_EN.METATITLE,
+    metaDescription: PRIVACY_EN.METADESCRIPTION,
+    lang: 'en',
+    path: '/en/privacy',
+    id: 'privacy-en',
+  },
+  {
+    title: COOKIES.TITLE,
+    metaTitle: COOKIES.METATITLE,
+    metaDescription: COOKIES.METADESCRIPTION,
+    lang: 'fr',
+    path: '/cookies',
+    id: 'cookies-fr',
+  },
+  {
+    title: COOKIES_EN.TITLE,
+    metaTitle: COOKIES_EN.METATITLE,
+    metaDescription: COOKIES_EN.METADESCRIPTION,
+    lang: 'en',
+    path: '/en/cookies',
+    id: 'cookies-en',
+  },
+  {
+    title: RESOURCES.TITLE,
+    metaTitle: RESOURCES.METATITLE,
+    metaDescription: RESOURCES.METADESCRIPTION,
+    lang: 'fr',
+    path: '/ressources',
+    id: 'resources-fr',
+  },
+  {
+    title: RESOURCES_EN.TITLE,
+    metaTitle: RESOURCES_EN.METATITLE,
+    metaDescription: RESOURCES_EN.METADESCRIPTION,
+    lang: 'en',
+    path: '/en/resources',
+    id: 'resources-en',
+  },
+  {
+    title: TEAM.TITLE,
+    metaTitle: TEAM.METATITLE,
+    metaDescription: TEAM.METADESCRIPTION,
+    lang: 'fr',
+    path: '/equipe-all-leaders',
+    id: 'team-fr',
+  },
+  {
+    title: TEAM_EN.TITLE,
+    metaTitle: TEAM_EN.METATITLE,
+    metaDescription: TEAM_EN.METADESCRIPTION,
+    lang: 'en',
+    path: '/en/team-all-leaders',
+    id: 'team-en',
+  },
+  {
+    title: MARIE_EMMANUELLE_PY.TITLE,
+    metaTitle: MARIE_EMMANUELLE_PY.METATITLE,
+    metaDescription: MARIE_EMMANUELLE_PY.METADESCRIPTION,
+    lang: 'fr',
+    path: '/equipe-all-leaders/marie-emmanuelle-py',
+    id: 'marie-fr',
+  },
+  {
+    title: MARIE_EMMANUELLE_PY_EN.TITLE,
+    metaTitle: MARIE_EMMANUELLE_PY_EN.METATITLE,
+    metaDescription: MARIE_EMMANUELLE_PY_EN.METADESCRIPTION,
+    lang: 'en',
+    path: '/en/team-all-leaders/marie-emmanuelle-py',
+    id: 'marie-en',
+  },
+  {
+    title: PIERRE_ETIENNE_BOST.TITLE,
+    metaTitle: PIERRE_ETIENNE_BOST.METATITLE,
+    metaDescription: PIERRE_ETIENNE_BOST.METADESCRIPTION,
+    lang: 'fr',
+    path: '/equipe-all-leaders/pierre-etienne-bost',
+    id: 'pierre-fr',
+  },
+  {
+    title: PIERRE_ETIENNE_BOST_EN.TITLE,
+    metaTitle: PIERRE_ETIENNE_BOST_EN.METATITLE,
+    metaDescription: PIERRE_ETIENNE_BOST_EN.METADESCRIPTION,
+    lang: 'en',
+    path: '/en/team-all-leaders/pierre-etienne-bost',
+    id: 'pierre-en',
+  },
 ];
 
 const allEntries = [
@@ -139,12 +279,17 @@ const allEntries = [
   // Gérer les pages Astro et les collections différemment
   const isAstroPage = 'path' in entry && !('data' in entry);
 
-  const lang = isAstroPage ? entry.lang : (entry.data.lang || 'it');
+  const lang = isAstroPage ? entry.lang : entry.data.lang || 'it';
   const seoSlug = isAstroPage ? undefined : (entry.data.seoSlug as string | undefined);
   const metaTitle = isAstroPage ? entry.metaTitle : (entry.data.metaTitle as string | undefined);
-  const metaDescription = isAstroPage ? entry.metaDescription : (entry.data.metaDescription as string | undefined);
+  const metaDescription = isAstroPage
+    ? entry.metaDescription
+    : (entry.data.metaDescription as string | undefined);
 
-  const cleanSlug = (seoSlug || (isAstroPage ? '' : entry.id.split('/').pop()))?.replace(/^\/|\/$/g, '');
+  const cleanSlug = (seoSlug || (isAstroPage ? '' : entry.id.split('/').pop()))?.replace(
+    /^\/|\/$/g,
+    ''
+  );
 
   // --- CALCUL DE LA ROUTE FINALE ---
   let finalPath = '';
@@ -221,7 +366,7 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
 
 <Layout title="Audit SEO - Toutes les pages">
   <main style="padding: 2rem; font-family: sans-serif;">
-    <h1>Audit SEO delle collezioni</h1>
+    <h1>Audit SEO</h1>
 
     <!-- FILTRES ÉVOLUÉS (COMPACTS) -->
     <div

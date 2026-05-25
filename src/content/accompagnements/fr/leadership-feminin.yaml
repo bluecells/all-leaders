@@ -1,7 +1,7 @@
-title: "Leadership féminin"
-slug: "leadership-feminin"
-categorie: "Leadership development"
-type: "action"
+title: 'Leadership féminin'
+slug: 'leadership-feminin'
+categorie: 'Leadership development'
+type: 'action'
 description: "Coaching dédié aux femmes leaders, pour s'autoriser, se légitimer et développer son leadership dans des environnements historiquement masculins."
 long_description: "
 
@@ -21,12 +21,12 @@ long_description: "
   ### Un bénéfice qui dépasse le seul public féminin
 
   Développer le leadership féminin, c'est faire évoluer les modèles de pouvoir et de réussite de toute l'organization.\n"
-USP1: "Animé par des pionnières du réel"
-USP2: "Marine, nucléaire, industrie (parcours authentiques)"
-USP3: "Formats individuels, collectifs et mixtes"
-USP4: "Trois piliers - sens, action, ancrage"
+USP1: 'Animé par des pionnières du réel'
+USP2: 'Marine, nucléaire, industrie (parcours authentiques)'
+USP3: 'Formats individuels, collectifs et mixtes'
+USP4: 'Trois piliers - sens, action, ancrage'
 USP5: "Levier de transformation pour toute l'organization"
-image: "/images/services/leadership-au-feminin.webp"
-lang: "fr"
-metaTitle: "Leadership féminin pour managers"
+image: '/images/services/leadership-au-feminin.webp'
+lang: 'fr'
+metaTitle: 'Leadership féminin - un style de management'
 metaDescription: "Coaching dédié aux femmes leaders, pour s'autoriser, se légitimer et développer son leadership dans des environnements historiquement masculins."
