@@ -141,9 +141,6 @@
           "type": "null"
         }
       ]
-    },
-    "$schema": {
-      "type": "string"
     }
   },
   "required": [

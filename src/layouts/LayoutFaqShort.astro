@@ -20,19 +20,19 @@ const pageTitle = data.question;
 // Get all FAQs for navigation
 const allFaqs = await getCollection('faq');
 const sameLangFaqs = allFaqs
-  .filter(f => f.data.lang === data.lang && f.data.category === data.category)
+  .filter((f) => f.data.lang === data.lang && f.data.category === data.category)
   .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 
-const currentIndex = sameLangFaqs.findIndex(f => f.id === faq.id);
+const currentIndex = sameLangFaqs.findIndex((f) => f.id === faq.id);
 const previousFaq = currentIndex > 0 ? sameLangFaqs[currentIndex - 1] : null;
 const nextFaq = currentIndex < sameLangFaqs.length - 1 ? sameLangFaqs[currentIndex + 1] : null;
 
 // Category translation
 const categoryTranslations: Record<string, Record<string, string>> = {
-  dirigeant: { fr: 'Dirigeant', en: 'Leader' },
-  manager: { fr: 'Manager', en: 'Manager' },
-  assistant: { fr: 'Assistante', en: 'Assistant' },
-  collaborateur: { fr: 'Collaborateur', en: 'Employee' },
+  dirigeant: { fr: 'Dirigeants', en: 'Leaders' },
+  manager: { fr: 'Managers', en: 'Managers' },
+  assistant: { fr: 'Assistants', en: 'Assistants' },
+  collaborateur: { fr: 'Collaborateurs', en: 'Employees' },
 };
 
 const getCategoryName = (category: string, lang: string) => {
@@ -58,7 +58,6 @@ const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
   jsonType={data.jsonType || 'faq'}
   alternateUrls={alternateUrls}
 >
-
   <main class="faq-page">
     <!-- Hero Section -->
     <section class="faq-hero">
@@ -77,42 +76,49 @@ const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
       <!-- Category Link -->
       <div class="faq-footer">
         <a href={`${categoryPageUrl}#${categorySlug}`} class="category-link">
-          {data.lang === 'fr' ? '← Retour aux FAQ de' : '← Back to'} {categoryName}
+          {data.lang === 'fr' ? '← Retour aux FAQ de' : '← Back to'}
+          {categoryName}
         </a>
       </div>
     </article>
 
     <!-- Navigation -->
-    {(previousFaq || nextFaq) && (
-      <nav class="faq-navigation">
-        <div class="nav-container">
-          {previousFaq ? (
-            <a href={prevFaqUrl} class="nav-button nav-prev">
-              <span class="nav-label">{data.lang === 'fr' ? 'Question précédente' : 'Previous'}</span>
-              <span class="nav-title">{previousFaq.data.question}</span>
-            </a>
-          ) : (
-            <div></div>
-          )}
+    {
+      (previousFaq || nextFaq) && (
+        <nav class="faq-navigation">
+          <div class="nav-container">
+            {previousFaq ? (
+              <a href={prevFaqUrl} class="nav-button nav-prev">
+                <span class="nav-label">
+                  {data.lang === 'fr' ? 'Question précédente' : 'Previous'}
+                </span>
+                <span class="nav-title">{previousFaq.data.question}</span>
+              </a>
+            ) : (
+              <div />
+            )}
 
-          {nextFaq ? (
-            <a href={nextFaqUrl} class="nav-button nav-next">
-              <span class="nav-label">{data.lang === 'fr' ? 'Question suivante' : 'Next'}</span>
-              <span class="nav-title">{nextFaq.data.question}</span>
-            </a>
-          ) : (
-            <div></div>
-          )}
-        </div>
-      </nav>
-    )}
+            {nextFaq ? (
+              <a href={nextFaqUrl} class="nav-button nav-next">
+                <span class="nav-label">{data.lang === 'fr' ? 'Question suivante' : 'Next'}</span>
+                <span class="nav-title">{nextFaq.data.question}</span>
+              </a>
+            ) : (
+              <div />
+            )}
+          </div>
+        </nav>
+      )
+    }
   </main>
 </Layout>
 
 <style>
   .faq-page {
     min-height: 100dvh;
+    max-width: 800px;
     background-color: #fdfdfd;
+    margin: 0 auto;
   }
 
   /* Hero Section */
@@ -123,6 +129,7 @@ const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
     justify-content: center;
     background: linear-gradient(135deg, rgba(74, 103, 65, 0.05) 0%, rgba(74, 103, 65, 0.02) 100%);
     padding: 3rem 2rem;
+    margin-top: 1rem;
   }
 
   .faq-hero-content {
@@ -276,7 +283,7 @@ const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
   }
 
   .nav-label {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -284,7 +291,7 @@ const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
   }
 
   .nav-title {
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-weight: 500;
     line-height: 1.4;
     color: var(--color-brand-tertiary, #3d3d3d);
