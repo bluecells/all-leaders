@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import LayoutBlog from '../layouts/LayoutBlog.astro';
 import Layout from '../layouts/Layout.astro';
 import LayoutFaq from '../layouts/LayoutFaq.astro';
+import LayoutFaqShort from '../layouts/LayoutFaqShort.astro';
 import { findAlternateUrls, type AlternateUrls } from '@/utils/hreflang';
 
 const pathname = Astro.url.pathname.replace(/^\/|\/$/g, '');
@@ -153,20 +154,12 @@ if (!entry) {
 /* 7️⃣ FAQ */
 if (!entry && route.startsWith('faq/')) {
   const routeParts = route.split('/');
-  const categorySlug = routeParts[1];
-  const faqSlug = routeParts[2];
+  const faqSlug = routeParts[1];
 
-  if (categorySlug && faqSlug) {
-    const allFaqCategories = await getCollection('category');
+  if (faqSlug) {
     entry = faq.find((f) => {
       const cleanSlug = (f.data.seoSlug || f.id.split('/').pop()?.replace('.mdoc', ''))?.replace(/^\/|\/$/g, '');
-      if (f.data.lang !== lang || cleanSlug !== faqSlug) return false;
-
-      const catEntry = allFaqCategories.find((c) => c.id === f.data.category);
-      if (!catEntry) return false;
-
-      const catSlugLocalized = catEntry.data[`slug_${lang}`] || catEntry.data.slug_fr;
-      return catSlugLocalized === categorySlug;
+      return f.data.lang === lang && cleanSlug === faqSlug;
     });
     type = entry ? 'faq' : null;
   }
@@ -255,6 +248,6 @@ if (entry && type) {
 
 {
   entryType === 'faq' && (
-    <LayoutFaq faq={entryData as any} lang={entryLang} alternateUrls={alternateUrls} />
+    <LayoutFaqShort faq={entryData as any} lang={entryLang} alternateUrls={alternateUrls} />
   )
 }

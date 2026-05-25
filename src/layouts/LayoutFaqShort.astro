@@ -1,0 +1,317 @@
+---
+import Layout from './Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import { render, getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import type { AlternateUrls } from '@/utils/hreflang';
+
+interface Props {
+  faq: CollectionEntry<'faq'>;
+  lang?: 'it' | 'fr' | 'en';
+  alternateUrls?: AlternateUrls | null;
+}
+
+const { faq, alternateUrls } = Astro.props;
+const { data } = faq;
+const { Content } = await render(faq);
+
+// SEO
+const pageTitle = data.question;
+
+// Get all FAQs for navigation
+const allFaqs = await getCollection('faq');
+const sameLangFaqs = allFaqs
+  .filter(f => f.data.lang === data.lang && f.data.category === data.category)
+  .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
+const currentIndex = sameLangFaqs.findIndex(f => f.id === faq.id);
+const previousFaq = currentIndex > 0 ? sameLangFaqs[currentIndex - 1] : null;
+const nextFaq = currentIndex < sameLangFaqs.length - 1 ? sameLangFaqs[currentIndex + 1] : null;
+
+// Category translation
+const categoryTranslations: Record<string, Record<string, string>> = {
+  dirigeant: { fr: 'Dirigeant', en: 'Leader' },
+  manager: { fr: 'Manager', en: 'Manager' },
+  assistant: { fr: 'Assistante', en: 'Assistant' },
+  collaborateur: { fr: 'Collaborateur', en: 'Employee' },
+};
+
+const getCategoryName = (category: string, lang: string) => {
+  return categoryTranslations[category]?.[lang] || category;
+};
+
+const categoryName = getCategoryName(data.category || '', data.lang as 'fr' | 'en');
+const categorySlug = data.category?.toLowerCase().replace(/\s+/g, '-') || '';
+
+// Build URLs
+const baseUrl = data.lang === 'fr' ? '' : `/${data.lang}`;
+const categoryPageUrl = `${baseUrl}/faq`;
+const prevFaqUrl = previousFaq ? `${baseUrl}/faq/${previousFaq.data.seoSlug}` : null;
+const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
+---
+
+<Layout
+  title={pageTitle}
+  lang={data.lang as 'it' | 'fr' | 'en'}
+  metaTitle={data.metaTitle}
+  metaDescription={data.metaDescription}
+  ogImage={data.ogImage}
+  jsonType={data.jsonType || 'faq'}
+  alternateUrls={alternateUrls}
+>
+  <Breadcrumb lang={data.lang as 'fr' | 'en'} category={data.category} title={data.question} />
+
+  <main class="faq-page">
+    <!-- Hero Section -->
+    <section class="faq-hero">
+      <div class="faq-hero-content">
+        <div class="faq-category-badge">{categoryName}</div>
+        <h1 class="faq-question">{data.question}</h1>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <article class="faq-container">
+      <div class="faq-content">
+        <Content />
+      </div>
+
+      <!-- Category Link -->
+      <div class="faq-footer">
+        <a href={categoryPageUrl} class="category-link">
+          {data.lang === 'fr' ? '← Retour aux FAQ de' : '← Back to'} {categoryName}
+        </a>
+      </div>
+    </article>
+
+    <!-- Navigation -->
+    {(previousFaq || nextFaq) && (
+      <nav class="faq-navigation">
+        <div class="nav-container">
+          {previousFaq ? (
+            <a href={prevFaqUrl} class="nav-button nav-prev">
+              <span class="nav-label">{data.lang === 'fr' ? 'Question précédente' : 'Previous'}</span>
+              <span class="nav-title">{previousFaq.data.question}</span>
+            </a>
+          ) : (
+            <div></div>
+          )}
+
+          {nextFaq ? (
+            <a href={nextFaqUrl} class="nav-button nav-next">
+              <span class="nav-label">{data.lang === 'fr' ? 'Question suivante' : 'Next'}</span>
+              <span class="nav-title">{nextFaq.data.question}</span>
+            </a>
+          ) : (
+            <div></div>
+          )}
+        </div>
+      </nav>
+    )}
+  </main>
+</Layout>
+
+<style>
+  .faq-page {
+    min-height: 100dvh;
+    background-color: #fdfdfd;
+  }
+
+  /* Hero Section */
+  .faq-hero {
+    min-height: calc(50dvh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(74, 103, 65, 0.05) 0%, rgba(74, 103, 65, 0.02) 100%);
+    padding: 3rem 2rem;
+  }
+
+  .faq-hero-content {
+    max-width: 42rem;
+    text-align: center;
+  }
+
+  .faq-category-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background-color: var(--color-brand-primary, #4a6741);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+  }
+
+  .faq-question {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--color-brand-primary, #4a6741);
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .faq-hero {
+      min-height: calc(40dvh - 80px);
+      padding: 2rem 1.5rem;
+    }
+
+    .faq-question {
+      font-size: 2rem;
+    }
+  }
+
+  /* Content Section */
+  .faq-container {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .faq-content {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: var(--color-brand-tertiary, #3d3d3d);
+    margin-bottom: 3rem;
+  }
+
+  .faq-content :global(h2),
+  .faq-content :global(h3) {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--color-brand-primary, #4a6741);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .faq-content :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .faq-content :global(ul),
+  .faq-content :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.75rem;
+  }
+
+  .faq-content :global(li) {
+    margin-bottom: 0.75rem;
+  }
+
+  .faq-content :global(strong) {
+    color: var(--color-brand-primary, #4a6741);
+    font-weight: 600;
+  }
+
+  .faq-content :global(em) {
+    color: var(--color-brand-secondary, #8b9e84);
+  }
+
+  .faq-content :global(a) {
+    color: var(--color-brand-primary, #4a6741);
+    text-decoration: underline;
+    transition: opacity 0.2s;
+  }
+
+  .faq-content :global(a:hover) {
+    opacity: 0.8;
+  }
+
+  /* Footer */
+  .faq-footer {
+    padding-top: 2rem;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .category-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-brand-primary, #4a6741);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+  }
+
+  .category-link:hover {
+    transform: translateX(-4px);
+    opacity: 0.8;
+  }
+
+  /* Navigation */
+  .faq-navigation {
+    background-color: #fafafa;
+    border-top: 1px solid #e5e5e5;
+    padding: 3rem 2rem;
+  }
+
+  .nav-container {
+    max-width: 42rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .nav-button {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background-color: white;
+    border: 2px solid #e5e5e5;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--color-brand-tertiary, #3d3d3d);
+    transition: all 0.3s ease;
+  }
+
+  .nav-button:hover {
+    border-color: var(--color-brand-primary, #4a6741);
+    background-color: #fafafa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 103, 65, 0.1);
+  }
+
+  .nav-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-brand-primary, #4a6741);
+  }
+
+  .nav-title {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--color-brand-tertiary, #3d3d3d);
+  }
+
+  .nav-prev::before {
+    content: '← ';
+  }
+
+  .nav-next::after {
+    content: ' →';
+  }
+
+  @media (max-width: 768px) {
+    .faq-container {
+      padding: 2.5rem 1.5rem;
+    }
+
+    .nav-container {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .faq-content {
+      font-size: 1rem;
+    }
+  }
+</style>
