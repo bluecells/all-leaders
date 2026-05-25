@@ -100,11 +100,42 @@ const articles = defineCollection({
     featured: z.boolean().optional().default(false),
     category: z.string().nullish(),
     tags: z.array(z.string()).nullish().default([]),
-  }).transform((data) => ({
-    ...data,
+  }).transform((data) => {
     // Auto-generate metaTitle if not provided, following Google SEO rules (40-60 chars)
-    metaTitle: data.metaTitle || generateArticleMetaTitle(data.title, data.lang as 'fr' | 'en'),
-  })),
+    const title = data.title.trim().replace(/\s+/g, ' ');
+    let metaTitle = data.metaTitle;
+
+    if (!metaTitle) {
+      if (title.length >= 40 && title.length <= 60) {
+        metaTitle = title;
+      } else if (title.length < 40) {
+        const prefixes = data.lang === 'fr'
+          ? ['Guide: ', 'Comment: ', 'Découvrez: ', 'Tout savoir sur: ']
+          : ['Guide: ', 'How to: ', 'Discover: ', 'Learn about: '];
+
+        for (const prefix of prefixes) {
+          const candidate = prefix + title;
+          if (candidate.length >= 40 && candidate.length <= 60) {
+            metaTitle = candidate;
+            break;
+          }
+        }
+        if (!metaTitle) metaTitle = title;
+      } else {
+        let truncated = title.substring(0, 57);
+        const lastSpace = truncated.lastIndexOf(' ');
+        if (lastSpace > 40) {
+          truncated = truncated.substring(0, lastSpace);
+        }
+        metaTitle = truncated + '...';
+      }
+    }
+
+    return {
+      ...data,
+      metaTitle,
+    };
+  }),
 });
 
 // Collection FAQ
