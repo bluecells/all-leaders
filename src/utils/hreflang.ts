@@ -108,7 +108,7 @@ export function buildArticleUrl(
 
 /**
  * Construit l'URL d'une FAQ dans une langue donnée
- * Les FAQs ont une structure: /faq/{categorySlug}/{faqSlug}
+ * Les FAQs ont une structure simplifiée: /faq/{faqSlug}
  */
 export function buildFaqUrl(
   faq: CollectionEntry<'faq'>,
@@ -119,23 +119,13 @@ export function buildFaqUrl(
   const cleanSlug = seoSlug.replace(/^\/|\/$/g, '');
   const faqPrefix = ROUTE_PREFIXES.faq[lang];
 
-  // Trouver le slug localisé de la catégorie
-  let categorySlug = 'generale';
-  if (faq.data.category) {
-    const catEntry = categories.find((c) => c.id === faq.data.category);
-    if (catEntry) {
-      const slugKey = `slug_${lang}` as 'slug_fr' | 'slug_en';
-      categorySlug = catEntry.data[slugKey] || catEntry.data.slug_fr || 'generale';
-    }
-  }
-
-  // FR: /faq/{categorySlug}/{slug} (pas de préfixe)
+  // FR: /faq/{slug} (pas de préfixe)
   if (lang === 'fr') {
-    return `/${faqPrefix}/${categorySlug}/${cleanSlug}`;
+    return `/${faqPrefix}/${cleanSlug}`;
   }
 
-  // EN: /en/faq/{categorySlug}/{slug}
-  return `/${lang}/${faqPrefix}/${categorySlug}/${cleanSlug}`;
+  // EN: /en/faq/{slug}
+  return `/${lang}/${faqPrefix}/${cleanSlug}`;
 }
 
 /**

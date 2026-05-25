@@ -155,11 +155,23 @@ if (!entry) {
 if (!entry && route.startsWith('faq/')) {
   const routeParts = route.split('/');
   const faqSlug = routeParts[1];
+  const thirdSegment = routeParts[2];
 
   if (faqSlug) {
+    // Support both formats:
+    // - New: /faq/{slug}
+    // - Old: /faq/{category}/{slug}
+
+    let searchSlug = faqSlug;
+
+    // If we have 3 segments, the real slug is the third one (old format)
+    if (thirdSegment) {
+      searchSlug = thirdSegment;
+    }
+
     entry = faq.find((f) => {
       const cleanSlug = (f.data.seoSlug || f.id.split('/').pop()?.replace('.mdoc', ''))?.replace(/^\/|\/$/g, '');
-      return f.data.lang === lang && cleanSlug === faqSlug;
+      return f.data.lang === lang && cleanSlug === searchSlug;
     });
     type = entry ? 'faq' : null;
   }
