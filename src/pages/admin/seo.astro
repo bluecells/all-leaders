@@ -2,10 +2,10 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-const [articles, landingPages, services, faq] = await Promise.all([
+const [articles, landingPages, accompagnements, faq] = await Promise.all([
   getCollection('articles'),
   getCollection('landing-pages'),
-  getCollection('services'),
+  getCollection('accompagnements'),
   getCollection('faq'),
 ]);
 
@@ -17,9 +17,10 @@ const getTitle = (data: Record<string, unknown>): string => {
   return 'N/A';
 };
 
-// Fonction helper pour extraire la catégorie (seulement pour articles)
+// Fonction helper pour extraire la catégorie (pour articles et accompagnements)
 const getCategory = (data: Record<string, unknown>): string => {
   if ('category' in data && typeof data.category === 'string') return data.category;
+  if ('categorie' in data && typeof data.categorie === 'string') return data.categorie;
   return '';
 };
 
@@ -82,7 +83,7 @@ const getSeoStatus = (
 const allEntries = [
   ...articles.map((e) => ({ ...e, type: 'Article' as const })),
   ...landingPages.map((e) => ({ ...e, type: 'Page' as const })),
-  ...services.map((e) => ({ ...e, type: 'Room' as const })),
+  ...accompagnements.map((e) => ({ ...e, type: 'Accompagnement' as const })),
   ...faq.map((e) => ({ ...e, type: 'FAQ' as const })),
 ].map((entry) => {
   const lang = entry.data.lang || 'it';
@@ -102,10 +103,12 @@ const allEntries = [
     finalPath = lang === 'fr'
       ? `/${resourcesSegment}/${category}/${cleanSlug}`
       : `/${lang}/${resourcesSegment}/${category}/${cleanSlug}`;
-  } else if (entry.type === 'Room') {
+  } else if (entry.type === 'Accompagnement') {
+    const categorie = getCategory(entry.data as Record<string, unknown>);
+    const accompagnementSlug = (entry.data.slug as string | undefined) || cleanSlug;
     finalPath = lang === 'fr'
-      ? `/services/${cleanSlug}`
-      : `/${lang}/services/${cleanSlug}`;
+      ? `/accompagnements/${categorie}/${accompagnementSlug}`
+      : `/${lang}/services/${categorie}/${accompagnementSlug}`;
   } else if (entry.type === 'Page') {
     // Les landing pages (gérées via contenu)
     finalPath = lang === 'fr'
@@ -178,7 +181,7 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
           <option value="">Tipo</option>
           <option value="Article">Articolo</option>
           <option value="Page">Page</option>
-          <option value="Room">Room</option>
+          <option value="Accompagnement">Accompagnement</option>
           <option value="FAQ">FAQ</option>
         </select>
 
