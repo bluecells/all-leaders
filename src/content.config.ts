@@ -1,6 +1,41 @@
 import { defineCollection, z, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+// Helper function to generate metaTitle following Google SEO rules (40-60 characters)
+const generateArticleMetaTitle = (title: string, lang: 'fr' | 'en'): string => {
+  const cleanTitle = title.trim().replace(/\s+/g, ' ');
+
+  // Target range: 40-60 characters (Google typically displays 50-60 characters)
+  if (cleanTitle.length >= 40 && cleanTitle.length <= 60) {
+    return cleanTitle;
+  }
+
+  if (cleanTitle.length < 40) {
+    // Title too short: add context prefix
+    const prefixes = lang === 'fr'
+      ? ['Guide: ', 'Comment: ', 'Découvrez: ', 'Tout savoir sur: ']
+      : ['Guide: ', 'How to: ', 'Discover: ', 'Learn about: '];
+
+    for (const prefix of prefixes) {
+      const candidate = prefix + cleanTitle;
+      if (candidate.length >= 40 && candidate.length <= 60) {
+        return candidate;
+      }
+    }
+    // If still too short, use the title as is (imperfect but valid)
+    return cleanTitle;
+  }
+
+  // Title too long: truncate intelligently
+  let truncated = cleanTitle.substring(0, 57); // Leave room for "..."
+  // Don't cut mid-word
+  const lastSpace = truncated.lastIndexOf(' ');
+  if (lastSpace > 40) {
+    truncated = truncated.substring(0, lastSpace);
+  }
+  return truncated + '...';
+};
+
 // Schéma flexible pour les images (string brute ou objet Keystatic)
 const imageSchema = z
   .union([
@@ -65,7 +100,11 @@ const articles = defineCollection({
     featured: z.boolean().optional().default(false),
     category: z.string().nullish(),
     tags: z.array(z.string()).nullish().default([]),
-  }),
+  }).transform((data) => ({
+    ...data,
+    // Auto-generate metaTitle if not provided, following Google SEO rules (40-60 chars)
+    metaTitle: data.metaTitle || generateArticleMetaTitle(data.title, data.lang as 'fr' | 'en'),
+  })),
 });
 
 // Collection FAQ
