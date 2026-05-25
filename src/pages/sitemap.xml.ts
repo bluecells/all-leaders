@@ -100,16 +100,12 @@ export const GET: APIRoute = async ({ site }) => {
     urls.push(urlEntry(path, new Date(), '0.7', 'monthly'));
   }
 
-  // FAQ (avec catégorie slug localisée)
+  // FAQ (structure simplifiée: /faq/{faqSlug})
   for (const faq of faqs) {
     const lang = faq.data.lang as 'fr' | 'en';
-    const cat = categories.find((c) => c.id === faq.data.category);
-    if (!cat) continue;
-
-    const catSlug = cat.data[`slug_${lang}`] || cat.data.slug_fr || 'faq';
     const faqSlug = (faq.data.seoSlug || faq.id.split('/').pop()?.replace('.mdoc', ''))?.replace(/^\/|\/$/g, '');
 
-    const path = lang === 'fr' ? `/faq/${catSlug}/${faqSlug}` : `/${lang}/faq/${catSlug}/${faqSlug}`;
+    const path = lang === 'fr' ? `/faq/${faqSlug}` : `/${lang}/faq/${faqSlug}`;
     urls.push(urlEntry(path, null, '0.6', 'monthly'));
   }
 
