@@ -1,6 +1,5 @@
 ---
 import Layout from './Layout.astro';
-import Breadcrumb from '../components/Breadcrumb.astro';
 import { render, getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { AlternateUrls } from '@/utils/hreflang';
@@ -59,7 +58,6 @@ const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
   jsonType={data.jsonType || 'faq'}
   alternateUrls={alternateUrls}
 >
-  <Breadcrumb lang={data.lang as 'fr' | 'en'} category={data.category} title={data.question} />
 
   <main class="faq-page">
     <!-- Hero Section -->
@@ -78,7 +76,7 @@ const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
 
       <!-- Category Link -->
       <div class="faq-footer">
-        <a href={categoryPageUrl} class="category-link">
+        <a href={`${categoryPageUrl}#${categorySlug}`} class="category-link">
           {data.lang === 'fr' ? '← Retour aux FAQ de' : '← Back to'} {categoryName}
         </a>
       </div>
