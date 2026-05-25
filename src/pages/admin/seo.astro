@@ -2,11 +2,12 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-const [articles, landingPages, accompagnements, faq] = await Promise.all([
+const [articles, landingPages, accompagnements, faq, accompagnementsCategories] = await Promise.all([
   getCollection('articles'),
   getCollection('landing-pages'),
   getCollection('accompagnements'),
   getCollection('faq'),
+  getCollection('accompagnements-categories'),
 ]);
 
 // Fonction helper pour extraire le titre selon le type de collection
@@ -105,12 +106,17 @@ const allEntries = [
         ? `/${resourcesSegment}/${category}/${cleanSlug}`
         : `/${lang}/${resourcesSegment}/${category}/${cleanSlug}`;
   } else if (entry.type === 'Accompagnement') {
-    const categorie = getCategory(entry.data as Record<string, unknown>);
+    const categorieName = getCategory(entry.data as Record<string, unknown>);
     const accompagnementSlug = (entry.data.slug as string | undefined) || cleanSlug;
+    // Trouver le slug de la catégorie
+    const categoryEntry = accompagnementsCategories.find(
+      (c) => (lang === 'fr' ? c.data.name_fr : c.data.name_en) === categorieName
+    );
+    const categorySlug = categoryEntry ? (lang === 'fr' ? categoryEntry.data.slug_fr : categoryEntry.data.slug_en) : categorieName.toLowerCase().replace(/\s+/g, '-');
     finalPath =
       lang === 'fr'
-        ? `/accompagnements/${categorie}/${accompagnementSlug}`
-        : `/${lang}/services/${categorie}/${accompagnementSlug}`;
+        ? `/accompagnements/${categorySlug}/${accompagnementSlug}`
+        : `/${lang}/services/${categorySlug}/${accompagnementSlug}`;
   } else if (entry.type === 'Page') {
     // Les landing pages (gérées via contenu)
     finalPath = lang === 'fr' ? `/${cleanSlug}` : `/${lang}/${cleanSlug}`;
@@ -166,7 +172,6 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
           style="padding: 0.35rem 0.5rem; border: 1px solid #ccc; border-radius: 3px; font-size: 0.85rem;"
         >
           <option value="">Langue</option>
-          <option value="it">🇮🇹 IT</option>
           <option value="fr">🇫🇷 FR</option>
           <option value="en">🇬🇧 EN</option>
         </select>
@@ -176,7 +181,7 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
           id="filterType"
           style="padding: 0.35rem 0.5rem; border: 1px solid #ccc; border-radius: 3px; font-size: 0.85rem;"
         >
-          <option value="">Type</option>
+          <option value="Type">Type</option>
           <option value="Article">Article</option>
           <option value="Page">Page</option>
           <option value="Accompagnement">Accompagnement</option>
@@ -188,7 +193,7 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
           id="filterSeo"
           style="padding: 0.35rem 0.5rem; border: 1px solid #ccc; border-radius: 3px; font-size: 0.85rem;"
         >
-          <option value="">Status SEO</option>
+          <option value="status">Status SEO</option>
           <option value="complete">✅ Complet</option>
           <option value="partial">⚠️ Partiel</option>
           <option value="incomplete">❌ Vide</option>
