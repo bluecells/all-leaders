@@ -12,4 +12,4 @@ Disallow: /.git/
 Allow: /
 
 # Sitemap
-Sitemap: https://all-leaders.fr/sitemap-index.xml
+Sitemap: https://all-leaders.fr/sitemap.xml

@@ -4,7 +4,6 @@ import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 import markdoc from '@astrojs/markdoc';
 import node from '@astrojs/node';
-import sitemap from '@astrojs/sitemap';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -19,7 +18,6 @@ export default defineConfig({
       allowHTML: true, // C'est cette option qui permet de parser les <br>
     }),
     keystatic(),
-    sitemap(),
   ],
   i18n: {
     defaultLocale: 'fr',
