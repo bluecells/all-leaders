@@ -546,8 +546,8 @@ redirects:
     status: '301'
     note: 'Article ancien → /ressources/idees/'
 
-  - from: /quelles-conversations-pour-regenerer-nos-organizations-aujourdhui
-    to: /ressources/idees/quelles-conversations-pour-regenerer-nos-organizations-aujourdhui
+  - from: /quelles-conversations-pour-regenerer-nos-organisations-aujourdhui
+    to: /ressources/idees/quelles-conversations-pour-regenerer-nos-organisations-aujourdhui
     status: '301'
     note: 'Article ancien → /ressources/idees/'
 
