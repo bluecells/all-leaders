@@ -21,6 +21,8 @@ export const footerTranslations = {
     blueCells: 'Blue Cells',
     privacy: 'Privacy',
     cookie: 'Cookies',
+    adminLink: '/edit',
+    admin: 'Admin',
   },
   en: {
     company: 'All Leaders Initiative',
@@ -45,6 +47,8 @@ export const footerTranslations = {
     blueCells: 'Blue Cells',
     privacy: 'Privacy',
     cookie: 'Cookies',
+    adminLink: '/en/edit',
+    admin: 'Admin',
   },
 } as const;
 
