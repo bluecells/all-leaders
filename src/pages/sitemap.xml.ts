@@ -11,13 +11,15 @@ export const GET: APIRoute = async ({ site }) => {
     accompagnements,
     faqs,
     landingPages,
-    categories, // pour les slugs de catégories localisés
+    categories,
+    accompagnementsCategories,
   ] = await Promise.all([
     getCollection('articles'),
     getCollection('accompagnements'),
     getCollection('faq'),
     getCollection('landing-pages'),
     getCollection('categories'),
+    getCollection('accompagnements-categories'),
   ]);
 
   const urlEntry = (
@@ -66,10 +68,17 @@ export const GET: APIRoute = async ({ site }) => {
     const lang = accompagnement.data.lang as 'fr' | 'en' | undefined;
     if (!lang) continue; // Skip accompagnements sans langue définie
 
-    const catEntry = categories.find((c) =>
+    const catEntry = accompagnementsCategories.find((c) =>
       lang === 'fr' ? c.data.name_fr === accompagnement.data.categorie : c.data.name_en === accompagnement.data.categorie
     );
     const catSlug = lang === 'fr' ? (catEntry?.data.slug_fr || '') : (catEntry?.data.slug_en || '');
+
+    // Skip if catSlug is empty to avoid malformed URLs
+    if (!catSlug) {
+      console.warn(`Missing category slug for accompagnement: ${accompagnement.data.slug} (categorie: ${accompagnement.data.categorie})`);
+      continue;
+    }
+
     const slug = accompagnement.data.slug;
     const path = lang === 'fr' ? `/accompagnements/${catSlug}/${slug}` : `/en/services/${catSlug}/${slug}`;
     urls.push(urlEntry(path, new Date(), '0.7', 'monthly'));

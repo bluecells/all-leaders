@@ -168,7 +168,8 @@ export async function findAlternateUrls(
     articles: CollectionEntry<'articles'>[];
     accompagnements: CollectionEntry<'accompagnements'>[];
     faq: CollectionEntry<'faq'>[];
-    categories: CollectionEntry<'category'>[];
+    categories?: CollectionEntry<'category'>[];
+    accompagnementsCategories?: CollectionEntry<'accompagnements-categories'>[];
   }
 ): Promise<AlternateUrls> {
   const result: AlternateUrls = {
@@ -197,22 +198,36 @@ export async function findAlternateUrls(
 
   // Pour chaque langue, chercher l'entrée correspondante
   for (const lang of ['fr', 'en'] as const) {
-    // Chercher une entrée avec le même nom de fichier dans cette langue
-    const matchingEntry = collection.find((e) => {
-      const eBaseFilename = getBaseFilename(e.id);
-      return e.data.lang === lang && eBaseFilename === baseFilename;
-    });
+    let matchingEntry;
+
+    // Pour les accompagnements, matcher par image (identifiant commun entre FR/EN)
+    if (entryType === 'accompagnement') {
+      matchingEntry = collection.find((e) => {
+        return e.data.lang === lang && e.data.image === entry.data.image;
+      });
+    } else {
+      // Pour articles et FAQ, matcher par nom de fichier
+      matchingEntry = collection.find((e) => {
+        const eBaseFilename = getBaseFilename(e.id);
+        return e.data.lang === lang && eBaseFilename === baseFilename;
+      });
+    }
 
     if (matchingEntry) {
       // Pour les accompagnements, besoin de trouver le slug de catégorie
       if (entryType === 'accompagnement') {
-        const catEntry = collections.categories.find((c) =>
+        const catEntry = collections.accompagnementsCategories?.find((c) =>
           lang === 'fr' ? c.data.name_fr === matchingEntry.data.categorie : c.data.name_en === matchingEntry.data.categorie
         );
         const catSlug = lang === 'fr' ? catEntry?.data.slug_fr : catEntry?.data.slug_en;
+
         // @ts-ignore - Nous savons que le type est correct
         result[lang] = buildUrl(matchingEntry, lang, catSlug);
       } else {
+        // Pour les articles et FAQ, utiliser la collection category
+        const catEntry = collections.categories?.find((c) =>
+          lang === 'fr' ? c.data.name_fr === matchingEntry.data.category : c.data.name_en === matchingEntry.data.category
+        );
         // @ts-ignore - Nous savons que le type est correct
         result[lang] = buildUrl(matchingEntry, lang);
       }
