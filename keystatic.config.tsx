@@ -493,6 +493,16 @@ export default config({
           multiline: true,
           validation: { isRequired: true },
         }),
+        metaTitle: fields.text({
+          label: 'Meta Title',
+          validation: { isRequired: false },
+        }),
+        metaDescription: fields.text({
+          label: 'Meta Description',
+          multiline: true,
+          description: "122-155 caractères recommandé pour l'affichage optimal dans Google",
+          validation: { isRequired: false },
+        }),
         image: fields.image({
           label: 'Image',
           directory: 'public/images/services/',

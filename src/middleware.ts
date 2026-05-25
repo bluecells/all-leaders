@@ -2,7 +2,14 @@ import { defineMiddleware } from 'astro:middleware';
 import { getCollection } from 'astro:content';
 
 export const onRequest = defineMiddleware(async (context, next) => {
-  const { pathname } = context.url;
+  const { pathname, hostname, protocol } = context.url;
+
+  // Redirection 301 www → non-www (HTTP et HTTPS)
+  if (hostname.startsWith('www.')) {
+    const newHostname = hostname.slice(4); // Enlever 'www.'
+    const newUrl = new URL(pathname + context.url.search + context.url.hash, `${protocol}//${newHostname}`);
+    return context.redirect(newUrl.toString(), 301);
+  }
 
   // Redirection 301 des trailing slashes (sauf root '/')
   // Cette logique s'exécute AVANT la recherche de redirects
@@ -10,6 +17,14 @@ export const onRequest = defineMiddleware(async (context, next) => {
     const newPath = pathname.slice(0, -1);
     const newUrl = new URL(newPath + context.url.search + context.url.hash, context.url.origin);
     return context.redirect(newUrl.toString(), 301);
+  }
+
+  // Redirection 301 pour les URLs inspiration/{slug} vers la page ressources parente
+  if (pathname.includes('/ressources/inspiration/')) {
+    return context.redirect('/ressources', 301);
+  }
+  if (pathname.includes('/en/resources/inspiration/')) {
+    return context.redirect('/en/resources', 301);
   }
 
   // Charger les redirects depuis redirects.yaml

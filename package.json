@@ -10,7 +10,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "generate-seo": "node scripts/generate-seo-meta.mjs",
+    "generate-seo:dry-run": "node scripts/generate-seo-meta.mjs --dry-run"
   },
   "engines": {
     "node": ">=22.12.0"
@@ -44,6 +46,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^25.2.3",
     "prettier": "^3.8.1",
-    "prettier-plugin-astro": "^0.14.1"
+    "prettier-plugin-astro": "^0.14.1",
+    "yaml": "^2.9.0"
   }
 }

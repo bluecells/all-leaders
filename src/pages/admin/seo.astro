@@ -100,31 +100,29 @@ const allEntries = [
   if (entry.type === 'Article') {
     const category = getCategory(entry.data as Record<string, unknown>);
     const resourcesSegment = lang === 'fr' ? 'ressources' : 'resources';
-    finalPath = lang === 'fr'
-      ? `/${resourcesSegment}/${category}/${cleanSlug}`
-      : `/${lang}/${resourcesSegment}/${category}/${cleanSlug}`;
+    finalPath =
+      lang === 'fr'
+        ? `/${resourcesSegment}/${category}/${cleanSlug}`
+        : `/${lang}/${resourcesSegment}/${category}/${cleanSlug}`;
   } else if (entry.type === 'Accompagnement') {
     const categorie = getCategory(entry.data as Record<string, unknown>);
     const accompagnementSlug = (entry.data.slug as string | undefined) || cleanSlug;
-    finalPath = lang === 'fr'
-      ? `/accompagnements/${categorie}/${accompagnementSlug}`
-      : `/${lang}/services/${categorie}/${accompagnementSlug}`;
+    finalPath =
+      lang === 'fr'
+        ? `/accompagnements/${categorie}/${accompagnementSlug}`
+        : `/${lang}/services/${categorie}/${accompagnementSlug}`;
   } else if (entry.type === 'Page') {
     // Les landing pages (gérées via contenu)
-    finalPath = lang === 'fr'
-      ? `/${cleanSlug}`
-      : `/${lang}/${cleanSlug}`;
+    finalPath = lang === 'fr' ? `/${cleanSlug}` : `/${lang}/${cleanSlug}`;
   } else if (entry.type === 'FAQ') {
-    finalPath = lang === 'fr'
-      ? `/faq/${cleanSlug}`
-      : `/${lang}/faq/${cleanSlug}`;
+    finalPath = lang === 'fr' ? `/faq/${cleanSlug}` : `/${lang}/faq/${cleanSlug}`;
   }
 
   finalPath = finalPath.replace(/\/+/g, '/');
 
   // --- CALCUL DES CLASSES POUR META FIELDS ---
-  const metaTitleText = metaTitle || '❌ Mancante';
-  const metaDescriptionText = metaDescription || '❌ Mancante';
+  const metaTitleText = metaTitle || '❌ Vide';
+  const metaDescriptionText = metaDescription || '❌ Vide';
   const metaTitleHighlight = getMetaTitleClass(metaTitleText);
   const metaDescriptionHighlight = getMetaDescriptionClass(metaDescriptionText);
 
@@ -167,7 +165,7 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
           id="filterLang"
           style="padding: 0.35rem 0.5rem; border: 1px solid #ccc; border-radius: 3px; font-size: 0.85rem;"
         >
-          <option value="">Lingua</option>
+          <option value="">Langue</option>
           <option value="it">🇮🇹 IT</option>
           <option value="fr">🇫🇷 FR</option>
           <option value="en">🇬🇧 EN</option>
@@ -178,8 +176,8 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
           id="filterType"
           style="padding: 0.35rem 0.5rem; border: 1px solid #ccc; border-radius: 3px; font-size: 0.85rem;"
         >
-          <option value="">Tipo</option>
-          <option value="Article">Articolo</option>
+          <option value="">Type</option>
+          <option value="Article">Article</option>
           <option value="Page">Page</option>
           <option value="Accompagnement">Accompagnement</option>
           <option value="FAQ">FAQ</option>
@@ -192,8 +190,8 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
         >
           <option value="">Status SEO</option>
           <option value="complete">✅ Complet</option>
-          <option value="partial">⚠️ Parziale</option>
-          <option value="incomplete">❌ Mancante</option>
+          <option value="partial">⚠️ Partiel</option>
+          <option value="incomplete">❌ Vide</option>
         </select>
 
         <!-- Recherche Texte -->
@@ -221,10 +219,10 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
       <!-- LEGENDE -->
 
       <div class="flex gap-4 mt-2">
-        <span class=""><b>Codici colore</b></span>
-        <span class="highlight-yellow">troppo corto</span>
-        <span class="highlight-green">ottimale</span>
-        <span class="highlight-red">troppo lungo</span>
+        <span class=""><b>Code couleur</b></span>
+        <span class="highlight-yellow">trop court</span>
+        <span class="highlight-green">optimal</span>
+        <span class="highlight-red">trop long</span>
       </div>
     </div>
 
@@ -237,8 +235,8 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
       >
         <thead>
           <tr style="background: #f4f4f4;">
-            <th style="padding: 6px; min-width:60px; cursor: pointer;" data-sort="lang">Ling ▼</th>
-            <th style="padding: 6px; min-width:60px; cursor: pointer;" data-sort="type">Tipo ▼</th>
+            <th style="padding: 6px; min-width:60px; cursor: pointer;" data-sort="lang">Lang ▼</th>
+            <th style="padding: 6px; min-width:60px; cursor: pointer;" data-sort="type">Type ▼</th>
             <th style="padding: 6px; cursor: pointer;" data-sort="title">Titre Page ▼</th>
             <th style="padding: 6px; cursor: default;">Meta Title (40-60 car.)</th>
             <th style="padding: 6px;">Meta Description (122-155 car.)</th>

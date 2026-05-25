@@ -20,8 +20,8 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
 <Layout
   title={data.title}
   lang={lang}
-  metaTitle={`${data.title} - All Leaders Initiative`}
-  metaDescription={data.description}
+  metaTitle={data.metaTitle || `${data.title} - All Leaders Initiative`}
+  metaDescription={data.metaDescription || data.description}
   breadcrumbCategory={lang === 'fr' ? category?.data.name_fr : category?.data.name_en}
   alternateUrls={alternateUrls}
 >
