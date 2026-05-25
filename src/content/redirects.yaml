@@ -600,3 +600,24 @@ redirects:
     to: /ressources/idees/un-referentiel-pour-envisager-une-performance-sociale-organisationnelle-et-manageriale-au-service-de-la-performance-globale
     status: '301'
     note: 'Article ancien → /ressources/idees/'
+
+  # ========================================
+  # Inspiration category redirects (FR & EN)
+  # ========================================
+  - from: /ressources/inspiration
+    to: /ressources
+    status: '301'
+    note: 'Catégorie inspiration supprimée → page ressources'
+
+  - from: /en/resources/inspiration
+    to: /en/resources
+    status: '301'
+    note: 'Inspiration category removed → resources page'
+
+  # ========================================
+  # www redirect (HTTP to HTTPS, www to non-www)
+  # ========================================
+  - from: http://www.all-leaders.fr
+    to: https://all-leaders.fr
+    status: '301'
+    note: 'www + http → non-www + https'
