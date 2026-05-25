@@ -46,7 +46,8 @@ export const PRIVACY: Metadata = {
 export const COOKIES: Metadata = {
   TITLE: 'Politique des cookies',
   METATITLE: 'Politique des cookies - All Leaders Initiative',
-  METADESCRIPTION: 'Découvrez notre politique des cookies',
+  METADESCRIPTION:
+    'Nous souhaitons vous informer des cookies et des technologies de suivi utilisées sur notre site. Consultez notre politique des cookies',
 };
 
 // English (EN-GB) Metadata Constants
@@ -121,7 +122,7 @@ export const TEAM: Metadata = {
 
 export const TEAM_EN: Metadata = {
   TITLE: 'Our team - All Leaders Initiative',
-  METATITLE: 'Our team at All Leaders Initiative',
+  METATITLE: 'Meet our expert team at All Leaders Initiative',
   METADESCRIPTION:
     'Meet the founding members and team of All Leaders Initiative, experts in coaching, leadership and organizational development.',
 };
