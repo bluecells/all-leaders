@@ -4,6 +4,14 @@ import { getCollection } from 'astro:content';
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
 
+  // Redirection 301 des trailing slashes (sauf root '/')
+  // Cette logique s'exécute AVANT la recherche de redirects
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    const newPath = pathname.slice(0, -1);
+    const newUrl = new URL(newPath + context.url.search + context.url.hash, context.url.origin);
+    return context.redirect(newUrl.toString(), 301);
+  }
+
   // Charger les redirects depuis redirects.yaml
   const redirectsCollection = await getCollection('redirects');
 

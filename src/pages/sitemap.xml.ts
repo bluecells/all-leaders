@@ -39,7 +39,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   // Homepage + racine langue anglaise
   urls.push(urlEntry('/', new Date(), '1.0', 'daily'));
-  urls.push(urlEntry('/en/', new Date(), '0.9', 'daily'));
+  urls.push(urlEntry('/en', new Date(), '0.9', 'daily'));
 
   // Articles (avec catégorie slug localisée)
   for (const article of articles) {

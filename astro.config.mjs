@@ -10,6 +10,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 export default defineConfig({
   site: 'https://all-leaders.fr',
+  trailingSlash: 'never',
   output: 'server',
   adapter: node({ mode: 'standalone' }),
   integrations: [

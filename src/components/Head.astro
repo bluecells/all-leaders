@@ -42,7 +42,8 @@ const {
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString() || 'https://all-leaders.fr';
-const currentUrl = canonicalUrl || new URL(Astro.url.pathname, siteUrl).toString();
+const cleanPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const currentUrl = canonicalUrl || new URL(cleanPath, siteUrl).toString();
 
 // Utiliser les traductions centralisées pour le defaultDescription et localeMap
 const t = commonTranslations[lang as keyof typeof commonTranslations] || commonTranslations.fr;
