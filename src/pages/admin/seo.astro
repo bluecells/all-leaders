@@ -1,14 +1,38 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import {
+  HOME,
+  HOME_EN,
+  FAQ,
+  FAQ_EN,
+  ACCOMPAGNEMENTS,
+  ACCOMPAGNEMENTS_EN,
+  CONTACT,
+  CONTACT_EN,
+  PRIVACY,
+  PRIVACY_EN,
+  COOKIES,
+  COOKIES_EN,
+  RESOURCES,
+  RESOURCES_EN,
+  TEAM,
+  TEAM_EN,
+  MARIE_EMMANUELLE_PY,
+  MARIE_EMMANUELLE_PY_EN,
+  PIERRE_ETIENNE_BOST,
+  PIERRE_ETIENNE_BOST_EN,
+} from '../../consts';
 
-const [articles, landingPages, accompagnements, faq, accompagnementsCategories] = await Promise.all([
-  getCollection('articles'),
-  getCollection('landing-pages'),
-  getCollection('accompagnements'),
-  getCollection('faq'),
-  getCollection('accompagnements-categories'),
-]);
+const [articles, landingPages, accompagnements, faq, accompagnementsCategories] = await Promise.all(
+  [
+    getCollection('articles'),
+    getCollection('landing-pages'),
+    getCollection('accompagnements'),
+    getCollection('faq'),
+    getCollection('accompagnements-categories'),
+  ]
+);
 
 // Fonction helper pour extraire le titre selon le type de collection
 const getTitle = (data: Record<string, unknown>): string => {
@@ -81,24 +105,55 @@ const getSeoStatus = (
   return 'complete';
 };
 
+// Pages statiques Astro
+const astroPages = [
+  { title: HOME.TITLE, metaTitle: HOME.METATITLE, metaDescription: HOME.METADESCRIPTION, lang: 'fr', path: '/', id: 'home-fr' },
+  { title: HOME_EN.TITLE, metaTitle: HOME_EN.METATITLE, metaDescription: HOME_EN.METADESCRIPTION, lang: 'en', path: '/en/', id: 'home-en' },
+  { title: FAQ.TITLE, metaTitle: FAQ.METATITLE, metaDescription: FAQ.METADESCRIPTION, lang: 'fr', path: '/faq', id: 'faq-fr' },
+  { title: FAQ_EN.TITLE, metaTitle: FAQ_EN.METATITLE, metaDescription: FAQ_EN.METADESCRIPTION, lang: 'en', path: '/en/faq', id: 'faq-en' },
+  { title: ACCOMPAGNEMENTS.TITLE, metaTitle: ACCOMPAGNEMENTS.METATITLE, metaDescription: ACCOMPAGNEMENTS.METADESCRIPTION, lang: 'fr', path: '/accompagnements', id: 'accompagnements-fr' },
+  { title: ACCOMPAGNEMENTS_EN.TITLE, metaTitle: ACCOMPAGNEMENTS_EN.METATITLE, metaDescription: ACCOMPAGNEMENTS_EN.METADESCRIPTION, lang: 'en', path: '/en/services', id: 'services-en' },
+  { title: CONTACT.TITLE, metaTitle: CONTACT.METATITLE, metaDescription: CONTACT.METADESCRIPTION, lang: 'fr', path: '/contact', id: 'contact-fr' },
+  { title: CONTACT_EN.TITLE, metaTitle: CONTACT_EN.METATITLE, metaDescription: CONTACT_EN.METADESCRIPTION, lang: 'en', path: '/en/contact', id: 'contact-en' },
+  { title: PRIVACY.TITLE, metaTitle: PRIVACY.METATITLE, metaDescription: PRIVACY.METADESCRIPTION, lang: 'fr', path: '/privacy', id: 'privacy-fr' },
+  { title: PRIVACY_EN.TITLE, metaTitle: PRIVACY_EN.METATITLE, metaDescription: PRIVACY_EN.METADESCRIPTION, lang: 'en', path: '/en/privacy', id: 'privacy-en' },
+  { title: COOKIES.TITLE, metaTitle: COOKIES.METATITLE, metaDescription: COOKIES.METADESCRIPTION, lang: 'fr', path: '/cookies', id: 'cookies-fr' },
+  { title: COOKIES_EN.TITLE, metaTitle: COOKIES_EN.METATITLE, metaDescription: COOKIES_EN.METADESCRIPTION, lang: 'en', path: '/en/cookies', id: 'cookies-en' },
+  { title: RESOURCES.TITLE, metaTitle: RESOURCES.METATITLE, metaDescription: RESOURCES.METADESCRIPTION, lang: 'fr', path: '/ressources', id: 'resources-fr' },
+  { title: RESOURCES_EN.TITLE, metaTitle: RESOURCES_EN.METATITLE, metaDescription: RESOURCES_EN.METADESCRIPTION, lang: 'en', path: '/en/resources', id: 'resources-en' },
+  { title: TEAM.TITLE, metaTitle: TEAM.METATITLE, metaDescription: TEAM.METADESCRIPTION, lang: 'fr', path: '/equipe-all-leaders', id: 'team-fr' },
+  { title: TEAM_EN.TITLE, metaTitle: TEAM_EN.METATITLE, metaDescription: TEAM_EN.METADESCRIPTION, lang: 'en', path: '/en/team-all-leaders', id: 'team-en' },
+  { title: MARIE_EMMANUELLE_PY.TITLE, metaTitle: MARIE_EMMANUELLE_PY.METATITLE, metaDescription: MARIE_EMMANUELLE_PY.METADESCRIPTION, lang: 'fr', path: '/equipe-all-leaders/marie-emmanuelle-py', id: 'marie-fr' },
+  { title: MARIE_EMMANUELLE_PY_EN.TITLE, metaTitle: MARIE_EMMANUELLE_PY_EN.METATITLE, metaDescription: MARIE_EMMANUELLE_PY_EN.METADESCRIPTION, lang: 'en', path: '/en/team-all-leaders/marie-emmanuelle-py', id: 'marie-en' },
+  { title: PIERRE_ETIENNE_BOST.TITLE, metaTitle: PIERRE_ETIENNE_BOST.METATITLE, metaDescription: PIERRE_ETIENNE_BOST.METADESCRIPTION, lang: 'fr', path: '/equipe-all-leaders/pierre-etienne-bost', id: 'pierre-fr' },
+  { title: PIERRE_ETIENNE_BOST_EN.TITLE, metaTitle: PIERRE_ETIENNE_BOST_EN.METATITLE, metaDescription: PIERRE_ETIENNE_BOST_EN.METADESCRIPTION, lang: 'en', path: '/en/team-all-leaders/pierre-etienne-bost', id: 'pierre-en' },
+];
+
 const allEntries = [
   ...articles.map((e) => ({ ...e, type: 'Article' as const })),
   ...landingPages.map((e) => ({ ...e, type: 'Page' as const })),
   ...accompagnements.map((e) => ({ ...e, type: 'Accompagnement' as const })),
   ...faq.map((e) => ({ ...e, type: 'FAQ' as const })),
+  ...astroPages.map((e) => ({ ...e, type: 'Page' as const })),
 ].map((entry) => {
-  const lang = entry.data.lang || 'it';
-  const seoSlug = entry.data.seoSlug as string | undefined;
-  const metaTitle = entry.data.metaTitle as string | undefined;
-  const metaDescription = entry.data.metaDescription as string | undefined;
+  // Gérer les pages Astro et les collections différemment
+  const isAstroPage = 'path' in entry && !('data' in entry);
 
-  const cleanSlug = (seoSlug || entry.id.split('/').pop())?.replace(/^\/|\/$/g, '');
+  const lang = isAstroPage ? entry.lang : (entry.data.lang || 'it');
+  const seoSlug = isAstroPage ? undefined : (entry.data.seoSlug as string | undefined);
+  const metaTitle = isAstroPage ? entry.metaTitle : (entry.data.metaTitle as string | undefined);
+  const metaDescription = isAstroPage ? entry.metaDescription : (entry.data.metaDescription as string | undefined);
+
+  const cleanSlug = (seoSlug || (isAstroPage ? '' : entry.id.split('/').pop()))?.replace(/^\/|\/$/g, '');
 
   // --- CALCUL DE LA ROUTE FINALE ---
   let finalPath = '';
   const langPrefix = lang === 'it' ? '' : `/${lang}`;
 
-  if (entry.type === 'Article') {
+  if (isAstroPage) {
+    // Pages Astro statiques
+    finalPath = entry.path;
+  } else if (entry.type === 'Article') {
     const category = getCategory(entry.data as Record<string, unknown>);
     const resourcesSegment = lang === 'fr' ? 'ressources' : 'resources';
     finalPath =
@@ -112,14 +167,22 @@ const allEntries = [
     const categoryEntry = accompagnementsCategories.find(
       (c) => (lang === 'fr' ? c.data.name_fr : c.data.name_en) === categorieName
     );
-    const categorySlug = categoryEntry ? (lang === 'fr' ? categoryEntry.data.slug_fr : categoryEntry.data.slug_en) : categorieName.toLowerCase().replace(/\s+/g, '-');
+    const categorySlug = categoryEntry
+      ? lang === 'fr'
+        ? categoryEntry.data.slug_fr
+        : categoryEntry.data.slug_en
+      : categorieName.toLowerCase().replace(/\s+/g, '-');
     finalPath =
       lang === 'fr'
         ? `/accompagnements/${categorySlug}/${accompagnementSlug}`
         : `/${lang}/services/${categorySlug}/${accompagnementSlug}`;
   } else if (entry.type === 'Page') {
-    // Les landing pages (gérées via contenu)
-    finalPath = lang === 'fr' ? `/${cleanSlug}` : `/${lang}/${cleanSlug}`;
+    if (isAstroPage) {
+      finalPath = entry.path;
+    } else {
+      // Les landing pages (gérées via contenu)
+      finalPath = lang === 'fr' ? `/${cleanSlug}` : `/${lang}/${cleanSlug}`;
+    }
   } else if (entry.type === 'FAQ') {
     finalPath = lang === 'fr' ? `/faq/${cleanSlug}` : `/${lang}/faq/${cleanSlug}`;
   }
@@ -139,7 +202,7 @@ const allEntries = [
   return {
     lang,
     type: entry.type,
-    title: getTitle(entry.data as Record<string, unknown>),
+    title: isAstroPage ? entry.title : getTitle(entry.data as Record<string, unknown>),
     metaTitle: metaTitleText,
     metaTitleClass: metaTitleHighlight.className,
     metaTitleDisplay: metaTitleHighlight.displayText,
@@ -148,7 +211,7 @@ const allEntries = [
     metaDescriptionDisplay: metaDescriptionHighlight.displayText,
     seoStatus,
     computedRoute: finalPath || '/',
-    filePath: entry.id,
+    filePath: isAstroPage ? entry.id : entry.id,
   };
 });
 
@@ -181,7 +244,7 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
           id="filterType"
           style="padding: 0.35rem 0.5rem; border: 1px solid #ccc; border-radius: 3px; font-size: 0.85rem;"
         >
-          <option value="Type">Type</option>
+          <option value="">Type</option>
           <option value="Article">Article</option>
           <option value="Page">Page</option>
           <option value="Accompagnement">Accompagnement</option>
@@ -193,7 +256,7 @@ allEntries.sort((a, b) => a.lang.localeCompare(b.lang) || a.type.localeCompare(b
           id="filterSeo"
           style="padding: 0.35rem 0.5rem; border: 1px solid #ccc; border-radius: 3px; font-size: 0.85rem;"
         >
-          <option value="status">Status SEO</option>
+          <option value="">Status SEO</option>
           <option value="complete">✅ Complet</option>
           <option value="partial">⚠️ Partiel</option>
           <option value="incomplete">❌ Vide</option>
