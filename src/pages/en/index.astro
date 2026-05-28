@@ -1,4 +1,12 @@
 ---
+import { Image } from 'astro:assets';
+import mariePhoto from '@/assets/images/critical/marie-emmanuelle-py-acquarelle.webp';
+import pierrePhoto from '@/assets/images/critical/pierre-etienne-bost-acquarelle.webp';
+import logoBureauDuReel from '@/assets/images/partners/logo-bureau-du-reel.webp';
+import logoDaCrew from '@/assets/images/partners/logo-da-crew.webp';
+import logoYST from '@/assets/images/partners/logo-your-safety-training.webp';
+import logoEnablers from '@/assets/images/partners/logo-enablers-network.webp';
+import logoFA3R from '@/assets/images/partners/logo-fa3r.webp';
 import { HOME_EN } from '../../consts';
 import Layout from '../../layouts/Layout.astro';
 import Grid from '../../components/UI/Grid.astro';
@@ -135,9 +143,16 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
       <div class="values-section">
         {/* Side images on desktop */}
         <div id="fondateurs" class="values-image-left hidden order-2 md:order-1 md:flex">
-          <img
-            src="/images/pages/marie-emmanuelle-py-acquarelle.webp"
+          <Image
+            src={mariePhoto}
             alt="Marie-Emmanuelle Py"
+            width={600}
+            height={800}
+            widths={[300, 600]}
+            sizes="(max-width: 768px) 100vw, 22vw"
+            format="webp"
+            loading="lazy"
+            decoding="async"
             class="w-full h-auto object-cover"
           />
           <h3 class="mb-1" itemprop="name">Marie Emmanuelle PY</h3>
@@ -219,9 +234,16 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
         </div>
 
         <div class="values-image-right order-2 md:order-3 md:flex">
-          <img
-            src="/images/pages/pierre-etienne-bost-acquarelle.webp"
+          <Image
+            src={pierrePhoto}
             alt="Pierre-Etienne Bost"
+            width={600}
+            height={800}
+            widths={[300, 600]}
+            sizes="(max-width: 768px) 100vw, 22vw"
+            format="webp"
+            loading="lazy"
+            decoding="async"
             class="w-full h-auto object-cover"
           />
           <h3 class="mb-1" itemprop="name">Pierre-Etienne BOST</h3>
@@ -357,9 +379,16 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
       <ul class="partners-list max-w-4xl mx-auto px-4" role="list">
         <li>
           <article class="partner-article" role="listitem">
-            <img
-              src="/images/pages/logo-bureau-du-reel.webp"
+            <Image
+              src={logoBureauDuReel}
               alt="Logo for Bureau du Réel"
+              width={200}
+              height={200}
+              widths={[120, 200]}
+              sizes="(max-width: 768px) 180px, 200px"
+              format="webp"
+              loading="lazy"
+              decoding="async"
               class="partner-logo"
             />
             <div class="partner-content">
@@ -380,9 +409,16 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 
         <li>
           <article class="partner-article" role="listitem">
-            <img
-              src="/images/pages/logo-da-crew.webp"
+            <Image
+              src={logoDaCrew}
               alt="Logo for Da CREW"
+              width={200}
+              height={200}
+              widths={[120, 200]}
+              sizes="(max-width: 768px) 180px, 200px"
+              format="webp"
+              loading="lazy"
+              decoding="async"
               class="partner-logo"
             />
             <div class="partner-content">
@@ -402,9 +438,16 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 
         <li>
           <article class="partner-article" role="listitem">
-            <img
-              src="/images/pages/logo-your-safety-training.webp"
+            <Image
+              src={logoYST}
               alt="Logo for YourSafety.training"
+              width={200}
+              height={200}
+              widths={[120, 200]}
+              sizes="(max-width: 768px) 180px, 200px"
+              format="webp"
+              loading="lazy"
+              decoding="async"
               class="partner-logo"
             />
             <div class="partner-content">
@@ -467,9 +510,16 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 
         <li>
           <article class="partner-article" role="listitem">
-            <img
-              src="/images/pages/logo-enablers-network.webp"
+            <Image
+              src={logoEnablers}
               alt="Logo for Enablers"
+              width={200}
+              height={200}
+              widths={[120, 200]}
+              sizes="(max-width: 768px) 180px, 200px"
+              format="webp"
+              loading="lazy"
+              decoding="async"
               class="partner-logo"
             />
             <div class="partner-content">
@@ -488,7 +538,18 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 
         <li>
           <article class="partner-article" role="listitem">
-            <img src="/images/pages/logo-fa3r.webp" alt="Logo for FA3R" class="partner-logo" />
+            <Image
+              src={logoFA3R}
+              alt="Logo for FA3R"
+              width={200}
+              height={200}
+              widths={[120, 200]}
+              sizes="(max-width: 768px) 180px, 200px"
+              format="webp"
+              loading="lazy"
+              decoding="async"
+              class="partner-logo"
+            />
             <div class="partner-content">
               <h3>FA3R — Bespoke Outdoor Experiences</h3>
               <p>
