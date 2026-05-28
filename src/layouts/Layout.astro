@@ -10,8 +10,8 @@ import NewsletterPopup from '@/components/NewsletterPopup.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import { getFaqQuestions } from '@/utils/faq';
 import type { AlternateUrls } from '@/utils/hreflang';
-
-type JsonLdType = 'page' | 'blog' | 'event' | 'faq' | 'blogCollection' | 'hotelRoom' | null;
+import type { JsonLdType } from '@/types/jsonLd';
+import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   title: string;
@@ -29,6 +29,11 @@ interface Props {
     capacity?: number;
     amenities?: string[];
   };
+  serviceData?: {
+    serviceType?: string;
+    areaServed?: string;
+  };
+  blogPosts?: Array<CollectionEntry<'articles'>>;
   alternateUrls?: AlternateUrls | null;
   isHomepage?: boolean;
   breadcrumbCategory?: string;
@@ -47,6 +52,8 @@ const {
   keyword,
   publishDate,
   roomData,
+  serviceData = {},
+  blogPosts,
   alternateUrls,
   isHomepage = false,
   breadcrumbCategory,
@@ -82,6 +89,8 @@ const finalOgImage = ogImage || undefined;
     faqQuestions={faqQuestions}
     publishDate={publishDate}
     roomData={roomData}
+    serviceData={serviceData}
+    blogPosts={blogPosts}
     alternateUrls={alternateUrls}
   />
 

@@ -5,8 +5,8 @@ import GoogleTagManager from '@/components/GoogleTagManager.astro';
 import { SITE } from '@/consts';
 import { commonTranslations } from '@/data/translations';
 import type { AlternateUrls } from '@/utils/hreflang';
-
-type JsonLdType = 'page' | 'blog' | 'event' | 'faq' | 'blogCollection' | 'hotelRoom' | null;
+import type { JsonLdType } from '@/types/jsonLd';
+import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   title: string;
@@ -23,6 +23,11 @@ interface Props {
     capacity?: number;
     amenities?: string[];
   };
+  serviceData?: {
+    serviceType?: string;
+    areaServed?: string;
+  };
+  blogPosts?: Array<CollectionEntry<'articles'>>;
   alternateUrls?: AlternateUrls | null;
 }
 
@@ -38,6 +43,8 @@ const {
   jsonType = null,
   faqQuestions = [],
   roomData = {},
+  serviceData = {},
+  blogPosts,
   alternateUrls,
 } = Astro.props;
 
@@ -208,6 +215,23 @@ const ogLocale = localeMap[lang] || commonTranslations.fr.localeCode;
 }
 
 {
+  jsonType === 'service' && (
+    <JsonLd
+      type="service"
+      title={title}
+      description={finalMetaDescription}
+      url={`${SITE.URL}${Astro.url.pathname}`}
+      provider={{
+        name: SITE.NAME,
+        url: SITE.URL,
+      }}
+      serviceType={serviceData?.serviceType}
+      areaServed={serviceData?.areaServed}
+    />
+  )
+}
+
+{
   jsonType === 'blog' && publishDate && (
     <JsonLd
       type="blog"
@@ -217,6 +241,24 @@ const ogLocale = localeMap[lang] || commonTranslations.fr.localeCode;
       date={publishDate}
       image={ogImage}
       author={SITE.AUTHOR}
+    />
+  )
+}
+
+{
+  jsonType === 'blogCollection' && blogPosts && (
+    <JsonLd
+      type="blogCollection"
+      title={title}
+      description={finalMetaDescription}
+      url={`${SITE.URL}${Astro.url.pathname}`}
+      posts={blogPosts.map(post => ({
+        title: post.data.title,
+        description: post.data.metaDescription || post.data.excerpt || '',
+        url: `${SITE.URL}/${post.data.lang}/articles/${post.data.seoSlug || post.slug}`,
+        date: post.data.publishDate,
+        image: post.data.ogImage,
+      }))}
     />
   )
 }

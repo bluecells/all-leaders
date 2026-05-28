@@ -70,6 +70,14 @@
         }
       ]
     },
+    "jsonType": {
+      "default": "service",
+      "type": "string",
+      "enum": [
+        "page",
+        "service"
+      ]
+    },
     "USP1": {
       "type": "string"
     },

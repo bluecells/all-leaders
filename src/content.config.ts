@@ -61,7 +61,7 @@ const landingPages = defineCollection({
     metaDescription: z.string().nullish(),
     ogImage: z.string().nullish(),
     jsonType: z
-      .enum(['page', 'blog', 'event', 'faq', 'blogCollection', 'hotelRoom'])
+      .enum(['page', 'blog', 'faq', 'blogCollection', 'hotelRoom'])
       .default('page')
       .optional(),
     blocks: z.array(z.any()).optional(),
@@ -86,7 +86,7 @@ const articles = defineCollection({
     metaDescription: z.string().nullish(),
     ogImage: z.string().nullish(),
     jsonType: z
-      .enum(['page', 'blog', 'event', 'faq', 'blogCollection', 'hotelRoom'])
+      .enum(['page', 'blog', 'faq', 'blogCollection', 'hotelRoom'])
       .default('blog')
       .optional(),
     publishDate: z.coerce.date(),
@@ -149,7 +149,7 @@ const faq = defineCollection({
     metaDescription: z.string().nullish(),
     ogImage: z.string().nullish(),
     jsonType: z
-      .enum(['page', 'blog', 'event', 'faq', 'blogCollection', 'hotelRoom'])
+      .enum(['page', 'blog', 'faq', 'blogCollection', 'hotelRoom'])
       .default('faq')
       .optional(),
     category: z.string().optional(),
@@ -182,6 +182,10 @@ const accompagnements = defineCollection({
     metaTitle: z.string().nullish(),
     metaDescription: z.string().nullish(),
     ogImage: z.string().nullish(),
+    jsonType: z
+      .enum(['page', 'service'])
+      .default('service')
+      .optional(),
     USP1: z.string().optional(),
     USP2: z.string().optional(),
     USP3: z.string().optional(),

@@ -19,29 +19,6 @@ type BlogJsonLd = {
   categorie?: string;
 };
 
-type EventJsonLd = {
-  type: 'event';
-  title: string;
-  description?: string;
-  url: string;
-  dateStart: Date;
-  dateEnd: Date;
-  location: {
-    venue: string;
-    address?: string;
-    city: string;
-    postalCode?: string;
-    country?: string;
-  };
-  image?: string;
-  ticketInfo?: {
-    isFree: boolean;
-    price?: number;
-    currency?: string;
-    bookingUrl?: string;
-  };
-};
-
 type FaqJsonLd = {
   type: 'faq';
   title: string;
@@ -76,13 +53,26 @@ type HotelRoomJsonLd = {
   amenities?: string[];
 };
 
+type ServiceJsonLd = {
+  type: 'service';
+  title: string;
+  description: string;
+  url: string;
+  provider: {
+    name: string;
+    url: string;
+  };
+  serviceType?: string;
+  areaServed?: string;
+};
+
 type Props =
   | PageJsonLd
   | BlogJsonLd
-  | EventJsonLd
   | FaqJsonLd
   | BlogCollectionJsonLd
-  | HotelRoomJsonLd;
+  | HotelRoomJsonLd
+  | ServiceJsonLd;
 
 const props = Astro.props;
 
@@ -124,63 +114,6 @@ function generateBlogJsonLd(data: BlogJsonLd) {
       articleSection: data.categorie,
     }),
   };
-}
-
-function generateEventJsonLd(data: EventJsonLd) {
-  const jsonLd: any = {
-    '@context': 'https://schema.org',
-    '@type': 'Event',
-    name: data.title,
-    startDate: data.dateStart.toISOString(),
-    endDate: data.dateEnd.toISOString(),
-    url: data.url,
-    location: {
-      '@type': 'Place',
-      name: data.location.venue,
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: data.location.city,
-        ...(data.location.postalCode && { postalCode: data.location.postalCode }),
-        ...(data.location.address && { streetAddress: data.location.address }),
-        ...(data.location.country && { addressCountry: data.location.country }),
-      },
-    },
-    organizer: {
-      '@type': 'organization',
-      name: SITE.NAME,
-      url: SITE.URL,
-    },
-  };
-
-  if (data.description) {
-    jsonLd.description = data.description;
-  }
-
-  if (data.image) {
-    jsonLd.image = data.image;
-  }
-
-  if (data.ticketInfo) {
-    if (data.ticketInfo.isFree) {
-      jsonLd.offers = {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: data.ticketInfo.currency || 'EUR',
-        availability: 'https://schema.org/InStock',
-        url: data.url,
-      };
-    } else if (data.ticketInfo.price) {
-      jsonLd.offers = {
-        '@type': 'Offer',
-        price: data.ticketInfo.price.toString(),
-        priceCurrency: data.ticketInfo.currency || 'EUR',
-        availability: 'https://schema.org/InStock',
-        url: data.ticketInfo.bookingUrl || data.url,
-      };
-    }
-  }
-
-  return jsonLd;
 }
 
 function generateFaqJsonLd(data: FaqJsonLd) {
@@ -255,6 +188,23 @@ function generateHotelRoomJsonLd(data: HotelRoomJsonLd) {
   return jsonLd;
 }
 
+function generateServiceJsonLd(data: ServiceJsonLd) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: data.title,
+    description: data.description,
+    url: data.url,
+    provider: {
+      '@type': 'Organization',
+      name: data.provider.name,
+      url: data.provider.url,
+    },
+    ...(data.serviceType && { serviceType: data.serviceType }),
+    ...(data.areaServed && { areaServed: data.areaServed }),
+  };
+}
+
 let jsonLd;
 
 switch (props.type) {
@@ -264,9 +214,6 @@ switch (props.type) {
   case 'blog':
     jsonLd = generateBlogJsonLd(props);
     break;
-  case 'event':
-    jsonLd = generateEventJsonLd(props);
-    break;
   case 'faq':
     jsonLd = generateFaqJsonLd(props);
     break;
@@ -275,6 +222,9 @@ switch (props.type) {
     break;
   case 'hotelRoom':
     jsonLd = generateHotelRoomJsonLd(props);
+    break;
+  case 'service':
+    jsonLd = generateServiceJsonLd(props);
     break;
 }
 ---

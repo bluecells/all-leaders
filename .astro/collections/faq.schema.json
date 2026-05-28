@@ -52,7 +52,6 @@
       "enum": [
         "page",
         "blog",
-        "event",
         "faq",
         "blogCollection",
         "hotelRoom"
