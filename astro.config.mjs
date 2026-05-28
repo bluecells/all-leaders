@@ -40,6 +40,21 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      cssCodeSplit: true,
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            // Separate vendor chunks for better caching
+            if (id.includes('node_modules')) {
+              if (id.includes('gsap')) return 'gsap';
+              if (id.includes('react')) return 'react-vendor';
+              return 'vendor';
+            }
+          }
+        }
+      }
+    },
     ssr: {
       noExternal: isProd ? ['@keystatic/astro', 'cookie', 'lodash', 'direction', 'is-hotkey'] : [],
     },

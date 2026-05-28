@@ -3,6 +3,14 @@ import typography from '@tailwindcss/typography';
 
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  safelist: [
+    // Only include classes that are dynamically generated
+    'bg-limolo-green',
+    'text-limolo-accent',
+    'text-limolo-green',
+    // Add specific patterns for responsive if needed
+    { pattern: /^(bg|text|border)-(limolo-green|color-brand-.*|accent)/ },
+  ],
   theme: {
     extend: {
       colors: {

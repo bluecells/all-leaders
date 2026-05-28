@@ -18,52 +18,83 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
 ---
 
 <script>
-  import gsap from 'gsap';
-  import ScrollTrigger from 'gsap/ScrollTrigger';
-
-  try {
-    gsap.registerPlugin(ScrollTrigger);
-  } catch (e) {
-    console.error("Problème d'installation avec ScrollTrigger :", e);
-  }
+  // Déférer GSAP après First Paint pour améliorer la performance
+  const loadGSAP = () => {
+    return Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger')
+    ]);
+  };
 
   function animateHero() {
-    const heroTitle = document.querySelector('.hero-title');
-    const heroQuestion = document.querySelector('.hero-question');
-    const heroQuoteWrapper = document.querySelector('.hero-quote-wrapper');
+    loadGSAP().then(([gsapModule, scrollTriggerModule]) => {
+      const gsap = gsapModule.default;
+      const ScrollTrigger = scrollTriggerModule.default;
 
-    // Animation Hero basique (sans matchMedia pour tester la panne)
-    if (heroTitle) {
-      gsap.fromTo(heroTitle, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 });
-    }
+      try {
+        gsap.registerPlugin(ScrollTrigger);
+      } catch (e) {
+        console.error("Problème d'installation avec ScrollTrigger :", e);
+      }
 
-    if (heroQuestion) {
-      gsap.fromTo(heroQuestion, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1, delay: 0.6 });
-    }
+      const heroTitle = document.querySelector('.hero-title');
+      const heroQuestion = document.querySelector('.hero-question');
+      const heroQuoteWrapper = document.querySelector('.hero-quote-wrapper');
 
-    // Animation ScrollTrigger
-    if (heroQuoteWrapper) {
-      gsap.fromTo(
-        heroQuoteWrapper,
-        { autoAlpha: 0, y: 50 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 1.2,
-          scrollTrigger: {
-            trigger: heroQuoteWrapper,
-            start: '20% 85%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    }
+      // Animation Hero basique
+      if (heroTitle) {
+        gsap.fromTo(heroTitle, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 });
+      }
+
+      if (heroQuestion) {
+        gsap.fromTo(heroQuestion, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1, delay: 0.6 });
+      }
+
+      // Animation ScrollTrigger
+      if (heroQuoteWrapper) {
+        gsap.fromTo(
+          heroQuoteWrapper,
+          { autoAlpha: 0, y: 50 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 1.2,
+            scrollTrigger: {
+              trigger: heroQuoteWrapper,
+              start: '20% 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
+      }
+
+      ScrollTrigger.refresh();
+    }).catch(err => {
+      console.error('Erreur chargement GSAP :', err);
+    });
   }
 
-  // Compatible avec ou sans ViewTransitions d'Astro
-  document.addEventListener('astro:page-load', animateHero);
-  window.addEventListener('DOMContentLoaded', animateHero);
-  ScrollTrigger.refresh();
+  // Déclencher après interaction OU après 1s
+  let gsapLoaded = false;
+
+  const triggerAnimation = () => {
+    if (!gsapLoaded) {
+      gsapLoaded = true;
+      animateHero();
+    }
+  };
+
+  // Après 1 seconde
+  setTimeout(triggerAnimation, 1000);
+
+  // Ou au premier scroll
+  window.addEventListener('scroll', triggerAnimation, { once: true, passive: true });
+
+  // Support Astro View Transitions
+  document.addEventListener('astro:page-load', () => {
+    gsapLoaded = false;
+    triggerAnimation();
+  });
 </script>
 
 <Layout

@@ -2,17 +2,39 @@
 // src/components/GoogleTagManager.astro
 ---
 
-<!-- Google Tag Manager -->
+<!-- Google Tag Manager - Deferred Loading for Performance -->
 <script is:inline>
-  (function (w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-    var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s),
-      dl = l != 'dataLayer' ? '&l=' + l : '';
-    j.async = true;
-    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j, f);
-  })(window, document, 'script', 'dataLayer', 'GTM-PBZ8GS6L');
+  // Init DataLayer immediately (before GTM loads)
+  window.dataLayer = window.dataLayer || [];
+
+  let gtmLoaded = false;
+
+  function loadGTM() {
+    if (gtmLoaded) return;
+    gtmLoaded = true;
+
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),
+          dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PBZ8GS6L');
+  }
+
+  // Load GTM after first user interaction
+  const events = ['scroll', 'mousemove', 'touchstart', 'click'];
+  const loadOnce = () => {
+    loadGTM();
+    events.forEach(e => window.removeEventListener(e, loadOnce));
+  };
+
+  events.forEach(e => window.addEventListener(e, loadOnce, { passive: true, once: true }));
+
+  // Fallback: load after 5 seconds even without interaction
+  setTimeout(loadGTM, 5000);
 </script>
 <!-- End Google Tag Manager -->
