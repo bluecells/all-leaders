@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { getImageSrc } from '../../utils/imageHelper';
 
 // HeroSection.astro
@@ -12,7 +14,7 @@ interface Props {
   ctaLink?: string;
   secondaryLinkText?: string;
   secondaryLinkUrl?: string;
-  backgroundImage?: string | { src: string; alt?: string };
+  backgroundImage?: string | { src: string; alt?: string } | ImageMetadata;
   photoCredit?: string;
   backgroundPositionX?: string;
   backgroundPositionY?: string;
@@ -52,19 +54,35 @@ const TitleTag = titleTag;
 >
   <div class="absolute inset-0 -z-10">
     {
-      backgroundImageSrc ? (
+      backgroundImage ? (
         <>
-          <img
-            src={backgroundImageSrc}
-            alt="Background"
-            class="w-full h-full object-cover"
-            style={`object-position: ${backgroundPositionX} ${backgroundPositionY};`}
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-            width="1920"
-            height="1080"
-          />
+          {typeof backgroundImage === 'string' || (backgroundImage && 'src' in backgroundImage && typeof backgroundImage.src === 'string') ? (
+            <img
+              src={backgroundImageSrc}
+              alt="Background"
+              class="w-full h-full object-cover"
+              style={`object-position: ${backgroundPositionX} ${backgroundPositionY};`}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              width="1920"
+              height="1080"
+            />
+          ) : (
+            <Image
+              src={backgroundImage as ImageMetadata}
+              alt="Background"
+              width={1920}
+              height={1080}
+              widths={[1024, 1920, 2560]}
+              sizes="100vw"
+              format="webp"
+              loading="eager"
+              fetchpriority="high"
+              class="w-full h-full object-cover"
+              style={`object-position: ${backgroundPositionX} ${backgroundPositionY};`}
+            />
+          )}
           <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-600/50 to-transparent" />
           {photoCredit && (
             <div class="absolute bottom-4 right-4 text-white/40 text-[10px] uppercase tracking-widest">
