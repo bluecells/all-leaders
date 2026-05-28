@@ -115,20 +115,28 @@ const duplicatedPhotos = [...validPhotos, ...validPhotos];
 
   const speed = parseInt(track.style.getPropertyValue('--speed')) || 40000;
 
-  const animation = track.animate(
-    [{ transform: 'translateX(0px)' }, { transform: `translateX(-50%)` }],
-    {
-      duration: speed,
-      iterations: Infinity,
-      easing: 'linear',
-    }
-  );
-
+  let animation: Animation | null = null;
   let isDragging = false;
   let startX = 0;
   let startCurrentTime = 0;
 
+  // Initialiser l'animation (pausée initialement)
+  const initAnimation = () => {
+    if (!animation) {
+      animation = track.animate(
+        [{ transform: 'translateX(0px)' }, { transform: `translateX(-50%)` }],
+        {
+          duration: speed,
+          iterations: Infinity,
+          easing: 'linear',
+        }
+      );
+      animation.pause(); // Démarrer en pause
+    }
+  };
+
   const startDrag = (e: MouseEvent | TouchEvent) => {
+    if (!animation) return;
     isDragging = true;
     animation.pause();
     const x = 'pageX' in e ? e.pageX : e.touches[0].pageX;
@@ -137,7 +145,7 @@ const duplicatedPhotos = [...validPhotos, ...validPhotos];
   };
 
   const moveDrag = (e: MouseEvent | TouchEvent) => {
-    if (!isDragging) return;
+    if (!isDragging || !animation) return;
     const x = 'pageX' in e ? e.pageX : e.touches[0].pageX;
     const walk = x - startX;
 
@@ -152,10 +160,33 @@ const duplicatedPhotos = [...validPhotos, ...validPhotos];
   };
 
   const stopDrag = () => {
-    if (!isDragging) return;
+    if (!isDragging || !animation) return;
     isDragging = false;
     animation.play();
   };
+
+  // Intersection Observer pour détecter l'entrée dans le viewport
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Le carousel rentre dans le viewport
+          initAnimation();
+          if (!isDragging && animation) {
+            animation.play();
+          }
+        } else {
+          // Le carousel sort du viewport
+          if (animation && !isDragging) {
+            animation.pause();
+          }
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  observer.observe(track);
 
   track.addEventListener('mousedown', startDrag as EventListener);
   window.addEventListener('mousemove', moveDrag as EventListener);

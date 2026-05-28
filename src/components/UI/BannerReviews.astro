@@ -296,7 +296,7 @@ const allReviews = reviews[lang] || reviews.fr;
     background: white;
     border: 1px solid #e8e9eb8e;
     border-radius: 8px;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -305,7 +305,7 @@ const allReviews = reviews[lang] || reviews.fr;
     justify-content: flex-start;
     align-items: center;
     flex: 1 1 100%;
-    height: 38vh;
+    height: auto;
   }
 
   .review-role {
@@ -403,6 +403,7 @@ const allReviews = reviews[lang] || reviews.fr;
     .review-item {
       padding: 1rem;
       flex: 1 1 calc(33.333% - 1rem);
+      min-width: 38vh;
     }
 
     .review-name {

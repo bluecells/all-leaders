@@ -111,7 +111,7 @@ const navigationLinks = {
         <a href="mailto:contact@all-leaders.fr" class="social-link email-link"
           >contact@all-leaders.fr</a
         >
-        <a href={t.adminLink} class="social-link phone-link">{t.admin}</a>
+        <a href={t.adminLink} class="social-link phone-link">⚓</a>
       </div>
       <div class="footer-copyright">
         © {currentYear}
@@ -152,7 +152,6 @@ const navigationLinks = {
   .footer-container {
     max-width: 78rem;
     margin: 0 auto;
-    padding: 0 1.5rem;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 10px;
     padding: 0.5rem 1rem;
@@ -309,7 +308,7 @@ const navigationLinks = {
 
   .footer-copyright {
     font-size: 0.6rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     opacity: 0.8;
     text-align: center;
@@ -335,10 +334,10 @@ const navigationLinks = {
      ======================================== */
   @media (min-width: 768px) {
     .footer-main {
-      padding: 0.5rem 0 1.5rem 0;
+      padding: 0.5rem 0.5rem 1.5rem 1rem;
     }
     .footer-grid {
-      grid-template-columns: 1fr 330px 290px;
+      grid-template-columns: 1fr 330px 320px;
       text-align: left;
       align-items: stretch;
     }
@@ -380,9 +379,6 @@ const navigationLinks = {
   @media (min-width: 1919px) {
     .footer-grid {
       grid-template-columns: 1fr 400px 385px;
-    }
-    .footer-main {
-      padding: 1cqb;
     }
   }
 </style>

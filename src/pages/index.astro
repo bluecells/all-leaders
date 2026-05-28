@@ -816,7 +816,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
     .partner-article {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 0rem;
       padding: 1.15rem;
       border: 2px solid rgba(74, 103, 65, 0.1);
       border-radius: 0.5rem;
@@ -827,11 +827,12 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
 
     .partner-logo {
       width: 100% !important;
-      max-width: 180px !important; /* Limite la largeur max uniquement sur mobile */
+      max-width: 200px !important; /* Limite la largeur max uniquement sur mobile */
       height: auto !important;
+      max-height: 150px;
       object-fit: contain !important;
       display: block;
-      margin: 0 auto;
+      margin: 2rem auto 0 auto;
     }
 
     .partner-content {

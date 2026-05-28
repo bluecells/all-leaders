@@ -148,45 +148,48 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
     const rawSpeed = track.style.getPropertyValue('--speed');
     const duration = parseInt(rawSpeed) || 30000;
 
-    // Initialisation de l'animation WAAPI
-    const animation = track.animate(
-      [{ transform: 'translateX(0px)' }, { transform: 'translateX(-50%)' }],
-      {
-        duration: duration,
-        iterations: Infinity,
-        easing: 'linear',
-      }
-    );
-
+    let animation: Animation | null = null;
     let isDragging = false;
     let startX = 0;
     let startCurrentTime = 0;
 
+    // Initialiser l'animation (pausée initialement)
+    const initAnimation = () => {
+      if (!animation) {
+        animation = track.animate(
+          [{ transform: 'translateX(0px)' }, { transform: 'translateX(-50%)' }],
+          {
+            duration: duration,
+            iterations: Infinity,
+            easing: 'linear',
+          }
+        );
+        animation.pause(); // Démarrer en pause
+      }
+    };
+
+    // Gestionnaires pour le drag
     const startDrag = (e: MouseEvent | TouchEvent) => {
+      if (!animation) return;
       isDragging = true;
       animation.pause();
 
       const x = e instanceof MouseEvent ? e.pageX : e.touches[0].pageX;
       startX = x;
-
-      // On capture le temps actuel de l'animation
       startCurrentTime = Number(animation.currentTime) || 0;
     };
 
     const moveDrag = (e: MouseEvent | TouchEvent) => {
-      if (!isDragging) return;
+      if (!isDragging || !animation) return;
 
       const x = e instanceof MouseEvent ? e.pageX : e.touches[0].pageX;
       const walk = x - startX;
 
-      // Calcul du décalage temporel basé sur la distance scrollée
-      // On divise la largeur par 2 car le contenu est doublé
       const trackWidth = track.scrollWidth / 2;
       const timeOffset = (walk / trackWidth) * duration;
 
       let newTime = Number(startCurrentTime) - timeOffset;
 
-      // Boucle infinie temporelle
       if (newTime < 0) newTime += duration;
       if (newTime > duration) newTime -= duration;
 
@@ -194,10 +197,33 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
     };
 
     const stopDrag = () => {
-      if (!isDragging) return;
+      if (!isDragging || !animation) return;
       isDragging = false;
-      animation.play(); // Reprise fluide sans saut
+      animation.play();
     };
+
+    // Intersection Observer pour détecter l'entrée dans le viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Le carousel rentre dans le viewport
+            initAnimation();
+            if (!isDragging && animation) {
+              animation.play();
+            }
+          } else {
+            // Le carousel sort du viewport
+            if (animation && !isDragging) {
+              animation.pause();
+            }
+          }
+        });
+      },
+      { threshold: 0.1 } // Déclenche quand 10% du carousel est visible
+    );
+
+    observer.observe(track);
 
     // Events Souris
     track.addEventListener('mousedown', startDrag);
@@ -211,10 +237,10 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
 
     // Pause au hover si on ne drag pas
     track.addEventListener('mouseenter', () => {
-      if (!isDragging) animation.pause();
+      if (!isDragging && animation) animation.pause();
     });
     track.addEventListener('mouseleave', () => {
-      if (!isDragging) animation.play();
+      if (!isDragging && animation) animation.play();
     });
   }
 </script>
