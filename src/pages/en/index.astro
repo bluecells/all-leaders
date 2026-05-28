@@ -78,7 +78,6 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
     <div class="hero-title">
       <h1
         class="mb-0! py-2! text-xl! font-base md:text-[50px]! 2xl:text-[60px]! leading-8 md:leading-13 2xl:leading-tight!"
-        style="opacity: 0;"
       >
         <q
           >&nbsp;All high-performing teams look alike.<br />
@@ -383,13 +382,12 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
               src={logoBureauDuReel}
               alt="Logo for Bureau du Réel"
               width={200}
-              height={200}
               widths={[120, 200]}
               sizes="(max-width: 768px) 180px, 200px"
               format="webp"
               loading="lazy"
               decoding="async"
-              class="partner-logo"
+              class="partner-logo md:p-4"
             />
             <div class="partner-content">
               <h3>Le Bureau du Réel</h3>
@@ -413,13 +411,12 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
               src={logoDaCrew}
               alt="Logo for Da CREW"
               width={200}
-              height={200}
               widths={[120, 200]}
               sizes="(max-width: 768px) 180px, 200px"
               format="webp"
               loading="lazy"
               decoding="async"
-              class="partner-logo"
+              class="partner-logo md:p-4"
             />
             <div class="partner-content">
               <h3>Da CREW — Mission One</h3>
@@ -442,13 +439,12 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
               src={logoYST}
               alt="Logo for YourSafety.training"
               width={200}
-              height={200}
               widths={[120, 200]}
               sizes="(max-width: 768px) 180px, 200px"
               format="webp"
               loading="lazy"
               decoding="async"
-              class="partner-logo"
+              class="partner-logo md:p-4"
             />
             <div class="partner-content">
               <h3>YourSafety.training — Conflict Management</h3>
@@ -472,6 +468,7 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
               src="/images/pages/logo-synergie-et-co.png"
               alt="Logo for Synergies & Co"
               class="partner-logo"
+              style="width: 100%; height: auto; max-width: 100%; object-fit: contain;"
             />
             <div class="partner-content">
               <h3>Synergies &amp; Co — Operational Excellence</h3>
@@ -493,6 +490,7 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
               src="/images/pages/logo-pragmacie.svg"
               alt="Logo for Pragmacie"
               class="partner-logo"
+              style="width: 100%; height: auto; max-width: 100%; object-fit: contain;"
             />
             <div class="partner-content">
               <h3>Pragmacie — CliftonStrengths Talent Mapping</h3>
@@ -514,13 +512,12 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
               src={logoEnablers}
               alt="Logo for Enablers"
               width={200}
-              height={200}
               widths={[120, 200]}
               sizes="(max-width: 768px) 180px, 200px"
               format="webp"
               loading="lazy"
               decoding="async"
-              class="partner-logo"
+              class="partner-logo md:p-4"
             />
             <div class="partner-content">
               <h3>Enablers — International Support</h3>
@@ -542,13 +539,12 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
               src={logoFA3R}
               alt="Logo for FA3R"
               width={200}
-              height={200}
               widths={[120, 200]}
               sizes="(max-width: 768px) 180px, 200px"
               format="webp"
               loading="lazy"
               decoding="async"
-              class="partner-logo"
+              class="partner-logo md:p-4"
             />
             <div class="partner-content">
               <h3>FA3R — Bespoke Outdoor Experiences</h3>
@@ -778,17 +774,21 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
     .partner-article {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 0.5rem;
+      gap: 1.5rem;
       padding: 1.15rem;
       border: 2px solid rgba(74, 103, 65, 0.1);
       border-radius: 0.5rem;
       text-align: center;
+      align-items: center;
+      justify-items: center; /* Centre horizontalement l'image sur mobile */
     }
 
     .partner-logo {
-      width: 100%;
-      max-width: 180px;
-      height: auto;
+      width: 100% !important;
+      max-width: 180px !important; /* Limite la largeur max uniquement sur mobile */
+      height: auto !important;
+      object-fit: contain !important;
+      display: block;
       margin: 0 auto;
     }
 
@@ -796,7 +796,7 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-      align-items: center;
+      align-items: center; /* Aligné au centre sur mobile */
     }
 
     .partner-content h1,
@@ -805,64 +805,12 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
       text-align: center;
     }
 
-    /* Desktop mode: 4-column grid (logo 1/4, text 3/4) */
-    @media (min-width: 768px) {
-      .partner-article {
-        grid-template-columns: 1fr 3fr;
-        align-items: start;
-        gap: 1rem;
-        padding: 1.5rem;
-        margin-bottom: 0;
-        text-align: left;
-      }
-      .partners-list li {
-        padding: 0.75rem;
-      }
-
-      .partner-logo {
-        width: 100%;
-        height: auto;
-        max-width: 150px;
-        max-height: 150px;
-        object-fit: contain;
-        margin: 0 auto;
-      }
-
-      .partner-content {
-        align-items: flex-start;
-        justify-content: center;
-        height: 100%;
-      }
-
-      .partner-content h1,
-      .partner-content h2,
-      .partner-content h3 {
-        text-align: left;
-      }
-
-      .partner-article p {
-        text-align: left !important;
-      }
-
-      .partner-article a {
-        text-align: left;
-      }
-    }
-
-    .partner-article h3 {
-      margin: 0;
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-
     .partner-article p {
-      margin: 0.35rem 0;
-      font-size: 0.85rem;
-      font-family: sans-serif;
-      text-align: center;
+      text-align: center !important;
     }
 
     .partner-article a {
+      text-align: center;
       display: inline-block;
       margin-top: 0.25rem;
       color: var(--color-brand-accent);
@@ -870,13 +818,57 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
       transition: color 200ms;
       font-family: sans-serif;
       font-size: 0.85rem;
-      text-align: center;
     }
 
     .partner-article a:hover {
       color: var(--color-brand-accent);
     }
 
+    /* Desktop mode (Non mobile) : Grille 1/4 - 3/4 et textes calés à gauche */
+    @media (min-width: 768px) {
+      .partner-article {
+        grid-template-columns: 1fr 3fr;
+        align-items: center; /* Centre verticalement le logo par rapport au texte */
+        justify-items: start;
+        gap: 2.5rem;
+        padding: 1.5rem;
+        text-align: left;
+      }
+
+      .partners-list li {
+        padding: 0.75rem;
+      }
+
+      .partner-logo {
+        width: 100% !important;
+        max-width: 100% !important; /* Occupe 100% de la largeur de sa colonne (1fr) */
+        height: auto !important;
+        margin: 0;
+      }
+
+      .partner-content {
+        align-items: flex-start; /* Calé à gauche */
+        text-align: left;
+      }
+
+      .partner-content h1,
+      .partner-content h2,
+      .partner-content h3 {
+        text-align: left;
+        margin: 0;
+      }
+
+      .partner-article p {
+        text-align: left !important; /* Calé à gauche */
+        margin: 0.35rem 0;
+        font-size: 0.85rem;
+        font-family: sans-serif;
+      }
+
+      .partner-article a {
+        text-align: left; /* Calé à gauche */
+      }
+    }
     /* ==========================================
      FOUNDERS — 2 Column Layout
   =========================================== */
@@ -1048,11 +1040,5 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
       }
     }
 
-    /* Prevent FOUC (Flash Of Unstyled Content) for GSAP animations */
-    .hero-title,
-    .hero-quote-wrapper,
-    .hero-question {
-      opacity: 0;
-    }
   </style>
 </Layout>
