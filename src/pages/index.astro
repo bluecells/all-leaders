@@ -2,6 +2,10 @@
 import { Image } from 'astro:assets';
 import mariePhoto from '@/assets/images/critical/marie-emmanuelle-py-acquarelle.webp';
 import pierrePhoto from '@/assets/images/critical/pierre-etienne-bost-acquarelle.webp';
+import logoWatercolor from '@/assets/images/decorative/logo-ali-aquarelle.webp';
+import marqueDangerIsole from '@/assets/images/ui/marque-de-danger-isole.webp';
+import baliseSpeciale from '@/assets/images/ui/balise-speciale.webp';
+import boueeEauxSaines from '@/assets/images/ui/bouee-eaux-saines.webp';
 import logoBureauDuReel from '@/assets/images/partners/logo-bureau-du-reel.webp';
 import logoDaCrew from '@/assets/images/partners/logo-da-crew.webp';
 import logoYST from '@/assets/images/partners/logo-your-safety-training.webp';
@@ -229,10 +233,17 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
             </p>
             <div class="cap-container">
               <p class="text-center text-4xl! pb-12 mb-0!">Cap&nbsp;?</p>
-              <img
-                class="ali-logo-watercolour"
-                src="/images/pages/logo-ali-aquarelle.webp"
+              <Image
+                src={logoWatercolor}
                 alt="Logo All Leaders Initiative"
+                width={150}
+                height={150}
+                widths={[100, 150, 200]}
+                sizes="(max-width: 768px) 100px, 150px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="ali-logo-watercolour"
               />
             </div>
           </article>
@@ -325,15 +336,15 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
         items={[
           {
             title: 'Bien-être mental<br>fondamental à récréer',
-            media: '/images/pages/marque-de-danger-isole.webp',
+            media: marqueDangerIsole,
           },
           {
             title: 'Amplifier les points forts et réguler les vecteurs de vulnérabilité',
-            media: '/images/pages/balise-speciale.webp',
+            media: baliseSpeciale,
           },
           {
-            title: 'Déployer le leadership à tout niveau (leadership basé sur l’intention)',
-            media: '/images/pages/bouee-eaux-saines.webp',
+            title: 'Déployer le leadership à tout niveau (leadership basé sur l'intention)',
+            media: boueeEauxSaines,
           },
         ]}
       />

@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import compassIcon from '@/assets/images/ui/en-savoir-plus.webp';
+
 interface Props {
   lang?: 'fr' | 'en';
 }
@@ -98,7 +101,18 @@ const catList = categories[lang] || categories.fr;
             <a href={cat.href} class="compass-link" data-index={idx}>
               <span>
                 {cat.name}
-                <img src="/images/pages/en-savoir-plus.webp" class="image-link" alt={cat.alt} />
+                <Image
+                  src={compassIcon}
+                  alt={cat.alt}
+                  width={60}
+                  height={60}
+                  widths={[25, 40, 60]}
+                  sizes="(max-width: 768px) 25px, 60px"
+                  format="webp"
+                  loading="lazy"
+                  decoding="async"
+                  class="image-link"
+                />
               </span>
             </a>
           ))

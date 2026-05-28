@@ -1,8 +1,11 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface GridItem {
   title: string;
   description: string;
-  media?: string;
+  media?: string | ImageMetadata;
   isIcon?: boolean;
 }
 
@@ -78,15 +81,30 @@ const finalTextColor = textColor;
         <article class:list={['grid-item', reverse && 'grid-item-reverse']}>
           {item.media && !hideIcons && (
             <div class:list={['grid-item-media', item.isIcon ? 'is-icon' : 'is-image']}>
-              <img
-                class="buoy-animate"
-                src={item.media}
-                alt={item.title || 'Élément visuel'}
-                loading="eager"
-                decoding="async"
-                width="400"
-                height="500"
-              />
+              {typeof item.media === 'string' ? (
+                <img
+                  class="buoy-animate"
+                  src={item.media}
+                  alt={item.title || 'Élément visuel'}
+                  loading="eager"
+                  decoding="async"
+                  width="400"
+                  height="500"
+                />
+              ) : (
+                <Image
+                  src={item.media}
+                  alt={item.title || 'Élément visuel'}
+                  width={item.isIcon ? 90 : 400}
+                  height={item.isIcon ? 90 : 500}
+                  widths={item.isIcon ? [70, 90] : [300, 400]}
+                  sizes={item.isIcon ? '90px' : '(max-width: 768px) 80%, 40%'}
+                  format="webp"
+                  loading="eager"
+                  decoding="async"
+                  class="buoy-animate"
+                />
+              )}
             </div>
           )}
 

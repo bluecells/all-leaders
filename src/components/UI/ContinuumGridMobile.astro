@@ -1,4 +1,9 @@
 ---
+import { Image } from 'astro:assets';
+import boueeEauxSaines from '@/assets/images/ui/bouee-eaux-saines.webp';
+import baliseSpeciale from '@/assets/images/ui/balise-speciale.webp';
+import marqueDangerIsole from '@/assets/images/ui/marque-de-danger-isole.webp';
+
 // Composant ContinuumGrid pour mobile parfaitement centré H&V
 interface Props {
   lang?: 'fr' | 'en';
@@ -42,21 +47,54 @@ const t = texts[lang] || texts.fr;
       </div>
 
       <div class="mobile-zone zone-3">
-        <img class="img-bouees" src="/images/pages/bouee-eaux-saines.webp" alt="" />
+        <Image
+          src={boueeEauxSaines}
+          alt=""
+          width={65}
+          height={90}
+          widths={[50, 65]}
+          sizes="65px"
+          format="webp"
+          loading="lazy"
+          decoding="async"
+          class="img-bouees"
+        />
         <div>
           <span>{t.zone_3_title}</span>{t.zone_3_desc}
         </div>
       </div>
 
       <div class="mobile-zone zone-2">
-        <img class="img-bouees" src="/images/pages/balise-speciale.webp" alt="" />
+        <Image
+          src={baliseSpeciale}
+          alt=""
+          width={65}
+          height={90}
+          widths={[50, 65]}
+          sizes="65px"
+          format="webp"
+          loading="lazy"
+          decoding="async"
+          class="img-bouees"
+        />
         <div>
           <span>{t.zone_2_title}</span>{t.zone_2_desc}
         </div>
       </div>
 
       <div class="mobile-zone zone-1">
-        <img class="img-bouees" src="/images/pages/marque-de-danger-isole.webp" alt="" />
+        <Image
+          src={marqueDangerIsole}
+          alt=""
+          width={65}
+          height={90}
+          widths={[50, 65]}
+          sizes="65px"
+          format="webp"
+          loading="lazy"
+          decoding="async"
+          class="img-bouees"
+        />
         <div>
           <span>{t.zone_1_title}</span>{t.zone_1_desc}
         </div>

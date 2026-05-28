@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logoWatercolor from '@/assets/images/decorative/logo-ali-aquarelle.webp';
 import Layout from '../../layouts/Layout.astro';
 import Container from '../../components/UI/Container.astro';
 
@@ -22,10 +24,17 @@ const alternateUrls = {
     <div class="contact-container min-h-[90vh]">
       <div class="contact-layout">
         <div class="contact-left">
-          <img
-            class="ali-logo-watercolour"
-            src="/images/pages/logo-ali-aquarelle.webp"
+          <Image
+            src={logoWatercolor}
             alt="Logo All Leaders Initiative"
+            width={200}
+            height={200}
+            widths={[120, 200, 300]}
+            sizes="(max-width: 768px) 120px, 200px"
+            format="webp"
+            loading="lazy"
+            decoding="async"
+            class="ali-logo-watercolour"
           />
           <h1 class="contact-title">Contact Us</h1>
           <p class="contact-subtitle md:pb-20">

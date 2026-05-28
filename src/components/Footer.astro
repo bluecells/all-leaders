@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import bateauImage from '@/assets/images/decorative/bateau.webp';
 import { footerTranslations, type Language } from '../data/footerTranslations';
 
 interface Props {
@@ -76,7 +78,18 @@ const navigationLinks = {
 
       <!-- Section 3: Newsletter -->
       <div class="footer-section">
-        <img src="/images/pages/bateau.webp" alt="Bateau" class="footer-logo-ship" />
+        <Image
+          src={bateauImage}
+          alt="Bateau"
+          width={180}
+          height={135}
+          widths={[140, 180]}
+          sizes="180px"
+          format="webp"
+          loading="lazy"
+          decoding="async"
+          class="footer-logo-ship"
+        />
         <h4 class="footer-heading mb-0!">{t.keepInTouch}</h4>
         <a href="https://all-leaders.kessel.media" target="_blank" class="btn-limolo">
           <span class="btn-subtitle">{t.subscribe}</span><br />
