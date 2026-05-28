@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '@/assets/images/critical/logo-all-leaders-initiative.webp';
 import menuFR from '@/content/menu/fr.json';
 import menuEN from '@/content/menu/en.json';
 import { footerTranslations } from '../data/footerTranslations';
@@ -42,7 +44,18 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
     <div class="header-content">
       <div class="logo-container">
         <a href={logoUrl} class="logo-link">
-          <img class="logo-img" src="/images/logo-all-leaders-initiative.webp" alt="Logo" />
+          <Image
+            src={logo}
+            alt="All Leaders Initiative"
+            width={240}
+            height={60}
+            widths={[180, 240, 360]}
+            sizes="(max-width: 768px) 200px, 12vw"
+            format="webp"
+            loading="eager"
+            decoding="async"
+            class="logo-img"
+          />
         </a>
       </div>
 

@@ -12,6 +12,17 @@ export default defineConfig({
   trailingSlash: 'never',
   output: 'server',
   adapter: node({ mode: 'standalone' }),
+  image: {
+    domains: [],
+    remotePatterns: [],
+    service: {
+      entrypoint: 'astro/assets/services/sharp'
+    },
+    format: ['webp'],
+    quality: {
+      webp: 85,
+    },
+  },
   integrations: [
     react(),
     markdoc({

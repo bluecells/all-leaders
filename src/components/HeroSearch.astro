@@ -35,6 +35,10 @@ const {
             alt="Background"
             class="w-full h-full object-cover"
             style={`object-position: ${backgroundPositionX} ${backgroundPositionY};`}
+            loading="eager"
+            decoding="async"
+            width="1920"
+            height="1080"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-600/50 to-transparent" />
           {photoCredit && (

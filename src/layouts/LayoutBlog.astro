@@ -179,6 +179,10 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
                 src={featuredImagePath}
                 alt={featuredImageAlt || title}
                 class="w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
+                width="1200"
+                height="630"
               />
             </div>
           </div>
@@ -217,6 +221,10 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
                           src={itemFeaturedImagePath}
                           alt={itemFeaturedImageAlt || item.data.title}
                           class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                          decoding="async"
+                          width="800"
+                          height="500"
                         />
                       </div>
                       <div class="text-[10px] uppercase tracking-widest font-bold text-limolo-green mb-3">
