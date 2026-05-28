@@ -1,8 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { getImageSrc, getImageAlt } from '../../utils/imageHelper';
 
 interface ImageData {
-  image?: string | { src: string; alt?: string };
+  image?: string | { src: string; alt?: string } | ImageMetadata;
   src?: string;
   alt: string;
 }
@@ -38,10 +40,15 @@ const {
 const TitleTag = titleTag;
 
 // Normaliser les images et limiter à 10 images max
-const limitedImages = images.slice(0, 10).map((img) => ({
-  src: getImageSrc(img.image),
-  alt: img.alt || getImageAlt(img.image, ''),
-}));
+const limitedImages = images.slice(0, 10).map((img) => {
+  const isImageMetadata = img.image && typeof img.image === 'object' && !('src' in img.image);
+  return {
+    image: img.image,
+    isMetadata: isImageMetadata,
+    src: isImageMetadata ? undefined : getImageSrc(img.image),
+    alt: img.alt || getImageAlt(img.image, ''),
+  };
+});
 ---
 
 <div
@@ -53,7 +60,23 @@ const limitedImages = images.slice(0, 10).map((img) => ({
     {
       limitedImages.map((image, index) => (
         <div class="slide" data-index={index} style={index === 0 ? 'opacity: 1; z-index: 1;' : ''}>
-          <img src={image.src} alt={image.alt} loading={index === 0 ? 'eager' : 'lazy'} />
+          {image.isMetadata ? (
+            <Image
+              src={image.image as ImageMetadata}
+              alt={image.alt}
+              width={1920}
+              height={1080}
+              widths={[1024, 1920, 2560]}
+              sizes="100vw"
+              format="webp"
+              loading={index === 0 ? 'eager' : 'lazy'}
+              fetchpriority={index === 0 ? 'high' : 'low'}
+              decoding="async"
+              class="slider-image"
+            />
+          ) : (
+            <img src={image.src} alt={image.alt} loading={index === 0 ? 'eager' : 'lazy'} />
+          )}
         </div>
       ))
     }

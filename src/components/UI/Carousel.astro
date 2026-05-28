@@ -1,7 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
   images: Array<{
-    image: string;
+    image: string | ImageMetadata;
     alt: string;
   }>;
   height?: string;
@@ -39,7 +42,22 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
       {
         duplicatedImages.map((image) => (
           <div class="carousel-item">
-            <img src={image.image} alt={image.alt} loading="lazy" draggable="false" />
+            {typeof image.image === 'string' ? (
+              <img src={image.image} alt={image.alt} loading="lazy" draggable="false" />
+            ) : (
+              <Image
+                src={image.image}
+                alt={image.alt}
+                width={1920}
+                height={1080}
+                widths={[400, 800, 1200, 1920]}
+                sizes="(max-width: 768px) 100vw, 20vw"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="carousel-image"
+              />
+            )}
           </div>
         ))
       }
@@ -91,7 +109,8 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
     aspect-ratio: 16 / 9;
   }
 
-  .carousel-item img {
+  .carousel-item img,
+  .carousel-item .carousel-image {
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -100,7 +119,8 @@ const duplicatedImages = [...limitedImages, ...limitedImages];
     transition: transform 0.5s ease;
   }
 
-  .carousel-item:hover img {
+  .carousel-item:hover img,
+  .carousel-item:hover .carousel-image {
     transform: scale(1.1);
   }
 

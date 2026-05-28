@@ -1,7 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
   images: Array<{
-    image: string;
+    image: string | ImageMetadata;
     alt: string;
   }>;
   height?: string;
@@ -16,7 +19,22 @@ const { images, height = '20vh' } = Astro.props;
       {
         images.map((item, index) => (
           <div class="logo-item" data-logo-id={index}>
-            <img src={item.image} alt={item.alt} class="logo-image" />
+            {typeof item.image === 'string' ? (
+              <img src={item.image} alt={item.alt} class="logo-image" />
+            ) : (
+              <Image
+                src={item.image}
+                alt={item.alt}
+                width={200}
+                height={200}
+                widths={[120, 200]}
+                sizes="200px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="logo-image"
+              />
+            )}
           </div>
         ))
       }
