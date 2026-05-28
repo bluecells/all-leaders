@@ -24,7 +24,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
   try {
     gsap.registerPlugin(ScrollTrigger);
   } catch (e) {
-    console.error('Problème d\'installation avec ScrollTrigger :', e);
+    console.error("Problème d'installation avec ScrollTrigger :", e);
   }
 
   function animateHero() {
@@ -155,7 +155,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
             class="w-full h-auto object-cover"
           />
           <h3 class="mb-1" itemprop="name">Marie Emmanuelle PY</h3>
-          <p class="mb-8 uppercase text-slate-400" itemprop="jobTitle">Associée fondatrice</p>
+          <p class="mb-8 uppercase text-slate-600" itemprop="jobTitle">Associée fondatrice</p>
           <ul class="contact-list">
             <li>
               <a
@@ -252,7 +252,7 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
             class="w-full h-auto object-cover"
           />
           <h3 class="mb-1" itemprop="name">Pierre-Etienne BOST</h3>
-          <p class="mb-8 uppercase text-slate-400" itemprop="jobTitle">Associé fondateur</p>
+          <p class="mb-8 uppercase text-slate-600" itemprop="jobTitle">Associé fondateur</p>
           <ul class="contact-list">
             <li>
               <a
@@ -387,8 +387,8 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
       </p>
 
       <ul class="partners-list max-w-4xl mx-auto px-4" role="list" role="list">
-        <li>
-          <article class="partner-article" role="listitem">
+        <li role="listitem">
+          <article class="partner-article">
             <Image
               src={logoBureauDuReel}
               alt="Logo du Bureau du Réel"
@@ -418,8 +418,8 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
           </article>
         </li>
 
-        <li>
-          <article class="partner-article" role="listitem">
+        <li role="listitem">
+          <article class="partner-article">
             <Image
               src={logoDaCrew}
               alt="Logo de Da CREW"
@@ -447,8 +447,8 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
           </article>
         </li>
 
-        <li>
-          <article class="partner-article" role="listitem">
+        <li role="listitem">
+          <article class="partner-article">
             <Image
               src={logoYST}
               alt="Logo de YourSafety.training"
@@ -476,8 +476,8 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
           </article>
         </li>
 
-        <li>
-          <article class="partner-article" role="listitem">
+        <li role="listitem">
+          <article class="partner-article">
             <img
               src="/images/pages/logo-synergie-et-co.png"
               alt="Logo de Synergies & Co"
@@ -500,8 +500,8 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
           </article>
         </li>
 
-        <li>
-          <article class="partner-article" role="listitem">
+        <li role="listitem">
+          <article class="partner-article">
             <img
               src="/images/pages/logo-pragmacie.svg"
               alt="Logo de Pragmacie"
@@ -522,8 +522,8 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
           </article>
         </li>
 
-        <li>
-          <article class="partner-article" role="listitem">
+        <li role="listitem">
+          <article class="partner-article">
             <Image
               src={logoEnablers}
               alt="Logo d'Enablers"
@@ -549,8 +549,8 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
           </article>
         </li>
 
-        <li>
-          <article class="partner-article" role="listitem">
+        <li role="listitem">
+          <article class="partner-article">
             <Image
               src={logoFA3R}
               alt="Logo de FA3R"
