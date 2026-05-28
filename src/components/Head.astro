@@ -117,9 +117,19 @@ const ogLocale = localeMap[lang] || commonTranslations.fr.localeCode;
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="/ALL_LEADERS_INITIATIVE_FAVICON_25px_RED" />
-<link rel="icon" type="image/png" sizes="16x16" href="/ALL_LEADERS_INITIATIVE_FAVICON_25px_RED" />
-<link rel="apple-touch-icon" sizes="180x180" href="/ALL_LEADERS_INITIATIVE_FAVICON_25px_RED" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/ALL_LEADERS_INITIATIVE_FAVICON_25px_RED.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/ALL_LEADERS_INITIATIVE_FAVICON_25px_RED.png"
+/>
+<link rel="apple-touch-icon" sizes="180x180" href="/ALL_LEADERS_INITIATIVE_FAVICON_25px_RED.png" />
 
 <!-- Open Graph -->
 <meta property="og:type" content={ogType} />
@@ -151,11 +161,19 @@ const ogLocale = localeMap[lang] || commonTranslations.fr.localeCode;
   alternateUrls && alternateUrls.fr ? (
     <>
       {/* FR (toujours présent) */}
-      <link rel="alternate" hreflang="fr" href={new URL(alternateUrls.fr.replace(/^\//, ''), siteUrl).toString()} />
+      <link
+        rel="alternate"
+        hreflang="fr"
+        href={new URL(alternateUrls.fr.replace(/^\//, ''), siteUrl).toString()}
+      />
 
       {/* EN (si traduction existe) */}
       {alternateUrls.en && (
-        <link rel="alternate" hreflang="en" href={new URL(alternateUrls.en.replace(/^\//, ''), siteUrl).toString()} />
+        <link
+          rel="alternate"
+          hreflang="en"
+          href={new URL(alternateUrls.en.replace(/^\//, ''), siteUrl).toString()}
+        />
       )}
 
       {/* x-default pointe vers FR */}
@@ -177,7 +195,7 @@ const ogLocale = localeMap[lang] || commonTranslations.fr.localeCode;
 <!-- Robots -->
 <meta name="robots" content="index, follow" />
 
-<!-- JSON-LD  -->
+<!-- JSON-LD -->
 {
   jsonType === 'faq' && faqQuestions.length > 0 && (
     <JsonLd
@@ -190,26 +208,12 @@ const ogLocale = localeMap[lang] || commonTranslations.fr.localeCode;
 }
 
 {
-  jsonType === 'page' && (
+  (jsonType === 'page' || jsonType === null) && (
     <JsonLd
       type="page"
       title={title}
       description={finalMetaDescription}
       url={`${SITE.URL}${Astro.url.pathname}`}
-    />
-  )
-}
-
-{
-  jsonType === 'hotelRoom' && (
-    <JsonLd
-      type="hotelRoom"
-      title={title}
-      description={finalMetaDescription}
-      url={`${SITE.URL}${Astro.url.pathname}`}
-      image={ogImage}
-      capacity={roomData?.capacity}
-      amenities={roomData?.amenities}
     />
   )
 }
@@ -252,7 +256,7 @@ const ogLocale = localeMap[lang] || commonTranslations.fr.localeCode;
       title={title}
       description={finalMetaDescription}
       url={`${SITE.URL}${Astro.url.pathname}`}
-      posts={blogPosts.map(post => ({
+      posts={blogPosts.map((post) => ({
         title: post.data.title,
         description: post.data.metaDescription || post.data.excerpt || '',
         url: `${SITE.URL}/${post.data.lang}/articles/${post.data.seoSlug || post.slug}`,
