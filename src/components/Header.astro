@@ -102,14 +102,14 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
         <div class="lang-switcher">
           <a
             href="/"
-            style="display: inline-block; padding-right:2px; transform:translateY(2px);"
-            class={lang === 'fr' ? 'lang-link lang-active' : 'lang-link '}>🇫🇷</a
+            style="display: inline-block; padding-right:2px; transform:translateY(1px);"
+            class={lang === 'fr' ? 'lang-link lang-active text-xs' : 'lang-link text-xs'}>FR</a
           >
           <span class="lang-separator">|</span>
           <a
             href="/en"
-            style="display: inline-block; padding-right:2px; transform:translateY(2px);"
-            class={lang === 'en' ? 'lang-link lang-active' : 'lang-link'}>🇬🇧</a
+            style="display: inline-block; padding-right:2px; transform:translateY(1px);"
+            class={lang === 'en' ? 'lang-link lang-active text-xs' : 'lang-link text-xs'}>EN</a
           >
         </div>
       </nav>
@@ -204,13 +204,13 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
         <a
           href="/"
           style="display: inline-block; padding-right:2px; transform:translateY(2px);"
-          class={lang === 'fr' ? 'mobile-lang-link mobile-lang-active' : 'mobile-lang-link'}>🇫🇷</a
+          class={lang === 'fr' ? 'mobile-lang-link mobile-lang-active' : 'mobile-lang-link'}>FR</a
         >
         <span class="lang-separator">|</span>
         <a
           href="/en"
           style="display: inline-block; padding-right:2px; transform:translateY(2px);"
-          class={lang === 'en' ? 'mobile-lang-link mobile-lang-active' : 'mobile-lang-link'}>🇬🇧</a
+          class={lang === 'en' ? 'mobile-lang-link mobile-lang-active' : 'mobile-lang-link'}>EN</a
         >
       </div>
     </div>
@@ -401,10 +401,18 @@ const logoUrl = lang === 'fr' ? '/' : `/${lang}`;
   .mobile-lang-active {
     font-weight: bold;
   }
-
-  .lang-separator {
-    color: rgba(74, 103, 65, 0.4);
+  .lang-link {
+    font-size: 0.7rem;
   }
+  .lang-active {
+    color: #393d57a9 !important;
+  }
+
+  .lang-separator,
+  .lang-link {
+    color: #393d5742;
+  }
+
   @media (min-width: 1025px) {
     .nav-desktop {
       display: flex;
