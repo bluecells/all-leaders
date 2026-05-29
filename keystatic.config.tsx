@@ -41,7 +41,7 @@ export default config({
 
   singletons: {
     menuFR: singleton({
-      label: 'Menu FR 🇫🇷',
+      label: 'Menu 🇫🇷',
       path: 'src/content/menu/fr',
       format: { data: 'json' },
       schema: {
@@ -71,7 +71,7 @@ export default config({
       },
     }),
     menuEN: singleton({
-      label: 'Menu EN 🇬🇧',
+      label: 'Menu 🇬🇧',
       path: 'src/content/menu/en',
       format: { data: 'json' },
       schema: {
@@ -221,14 +221,17 @@ export default config({
       slugField: 'title',
       path: 'src/content/articles/**',
       format: { contentField: 'content' },
-      columns: ['lang', 'title', 'category'],
+      columns: ['lang', 'title.name', 'category'],
       schema: {
         title: fields.slug({
           name: { label: 'Titre' },
-          slug: { label: 'Slug SEO-friendly' },
+          slug: { label: 'Slug interne' },
         }),
         h1Title: fields.text({ label: 'Titre H1 (fallback sur Titre page)' }),
-        seoSlug: fields.text({ label: 'Slug SEO', validation: { isRequired: false } }),
+        seoSlug: fields.text({
+          label: 'Slug public SEO-friendly',
+          validation: { isRequired: false },
+        }),
         metaTitle: fields.text({ label: 'Meta Title', validation: { isRequired: false } }),
         metaDescription: fields.text({
           label: 'Meta Description',
@@ -337,7 +340,7 @@ export default config({
       label: 'Accompagnements',
       slugField: 'title',
       path: 'src/content/accompagnements/**',
-      columns: ['lang', 'title', 'type'],
+      columns: ['lang', 'title.name', 'type'],
       schema: {
         title: fields.slug({
           name: { label: 'Titre' },
@@ -392,6 +395,7 @@ export default config({
       label: 'FAQ',
       path: 'src/content/faq/**',
       format: { contentField: 'answer' },
+      columns: ['question', 'lang', 'category'],
       slugField: 'tag_slug',
       schema: {
         question: fields.text({ label: 'Question' }),
@@ -449,29 +453,29 @@ export default config({
       slugField: 'slug_fr',
       schema: {
         name_fr: fields.text({
-          label: '🇫🇷 Nom (FR)',
+          label: 'Nom 🇫🇷',
           validation: { isRequired: true },
         }),
         slug_fr: fields.text({
-          label: '🇫🇷 Slug (FR)',
+          label: 'Slug 🇫🇷',
           validation: { isRequired: true },
         }),
         description_fr: fields.text({
-          label: '🇫🇷 Description (FR)',
+          label: 'Description 🇫🇷',
           multiline: true,
           validation: { isRequired: true },
         }),
 
         name_en: fields.text({
-          label: '🇬🇧 Name (EN)',
+          label: 'Name 🇬🇧',
           validation: { isRequired: true },
         }),
         slug_en: fields.text({
-          label: '🇬🇧 Slug (EN)',
+          label: 'Slug 🇬🇧',
           validation: { isRequired: true },
         }),
         description_en: fields.text({
-          label: '🇬🇧 Description (EN)',
+          label: 'Description 🇬🇧',
           multiline: true,
           validation: { isRequired: true },
         }),
@@ -488,34 +492,34 @@ export default config({
       label: '🏷️ Catégories articles & faq',
       path: 'src/content/categories/*',
       format: { data: 'yaml' },
-      columns: ['name_it', 'name_fr', 'name_en'],
+      columns: ['name_fr', 'name_en'],
       slugField: 'tag_slug',
       schema: {
         name_fr: fields.text({
-          label: '🇫🇷 Nom (FR)',
+          label: 'Nom 🇫🇷',
           validation: { isRequired: true },
         }),
 
         slug_fr: fields.text({
-          label: '🇫🇷 Slug (FR)',
+          label: 'Slug 🇫🇷',
           validation: { isRequired: true },
         }),
-        description_fr: fields.text({ label: '🇫🇷 Description (FR)', multiline: true }),
+        description_fr: fields.text({ label: 'Description 🇫🇷', multiline: true }),
 
         name_en: fields.text({
-          label: '🇬🇧 Name (EN)',
+          label: 'Name 🇬🇧',
           validation: { isRequired: true },
         }),
 
         slug_en: fields.text({
-          label: '🇬🇧 Slug (EN)',
+          label: 'Slug 🇬🇧',
           validation: { isRequired: true },
         }),
 
-        description_en: fields.text({ label: '🇬🇧 Description (EN)', multiline: true }),
+        description_en: fields.text({ label: 'Description 🇬🇧', multiline: true }),
 
         tag_slug: fields.slug({
-          name: { label: 'ID del categoria (nome interno)' },
+          name: { label: 'ID de la catégorier (nom interne)' },
           slug: { label: 'Slug keystatic' },
         }),
       },
@@ -531,27 +535,27 @@ export default config({
       slugField: 'tag_slug',
       schema: {
         name_fr: fields.text({
-          label: '🇫🇷 Nom (FR)',
+          label: 'Nom 🇫🇷',
           validation: { isRequired: true },
         }),
 
         slug_fr: fields.text({
-          label: '🇫🇷 Slug (FR)',
+          label: 'Slug 🇫🇷',
           validation: { isRequired: true },
         }),
-        description_fr: fields.text({ label: '🇫🇷 Description (FR)', multiline: true }),
+        description_fr: fields.text({ label: 'Description 🇫🇷', multiline: true }),
 
         name_en: fields.text({
-          label: '🇬🇧 Name (EN)',
+          label: 'Name 🇬🇧',
           validation: { isRequired: true },
         }),
 
         slug_en: fields.text({
-          label: '🇬🇧 Slug (EN)',
+          label: 'Slug 🇬🇧',
           validation: { isRequired: true },
         }),
 
-        description_en: fields.text({ label: '🇬🇧 Description (EN)', multiline: true }),
+        description_en: fields.text({ label: 'Description 🇬🇧', multiline: true }),
 
         tag_slug: fields.slug({
           name: { label: 'ID del tag (nome interno)' },
