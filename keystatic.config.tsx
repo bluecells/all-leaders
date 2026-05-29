@@ -221,7 +221,7 @@ export default config({
       slugField: 'title',
       path: 'src/content/articles/**',
       format: { contentField: 'content' },
-      columns: ['lang', 'title.name', 'category'],
+      columns: ['lang', 'seoSlug', 'category'],
       schema: {
         title: fields.slug({
           name: { label: 'Titre' },
@@ -340,7 +340,7 @@ export default config({
       label: 'Accompagnements',
       slugField: 'title',
       path: 'src/content/accompagnements/**',
-      columns: ['lang', 'title.name', 'type'],
+      columns: ['lang', 'type', 'categorie'],
       schema: {
         title: fields.slug({
           name: { label: 'Titre' },
