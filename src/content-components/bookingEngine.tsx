@@ -7,11 +7,10 @@ export const BookingEngine = block({
     lang: fields.select({
       label: 'Langue',
       options: [
-        { label: 'Italiano', value: 'it' },
         { label: 'Français', value: 'fr' },
         { label: 'English', value: 'en' },
       ],
-      defaultValue: 'it',
+      defaultValue: 'fr',
     }),
   },
 

@@ -92,11 +92,10 @@ export const CarouselRooms = {
     lang: fields.select({
       label: 'Lingua da mostrare',
       options: [
-        { label: 'Italiano', value: 'it' },
         { label: 'Français', value: 'fr' },
         { label: 'English', value: 'en' }
       ],
-      defaultValue: 'it',
+      defaultValue: 'fr',
     }),
     height: fields.text({ label: 'Altezza (es: 500px)', defaultValue: '500px' }),
     speed: fields.number({ label: 'Velocità ciclo (ms)', defaultValue: 40000 }),

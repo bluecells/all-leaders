@@ -39,11 +39,10 @@ export const CarouselRooms = block({
     lang: fields.select({
       label: 'Lingua',
       options: [
-        { label: 'Italiano', value: 'it' },
         { label: 'Francese', value: 'fr' },
         { label: 'Inglese', value: 'en' },
       ],
-      defaultValue: 'it',
+      defaultValue: 'fr',
     }),
 
     excludeId: fields.text({

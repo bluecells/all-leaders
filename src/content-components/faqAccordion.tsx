@@ -15,11 +15,10 @@ export const FaqAccordion = wrapper({
     lang: fields.select({
       label: 'Lingua delle FAQ',
       options: [
-        { label: 'Italiano', value: 'it' },
         { label: 'Français', value: 'fr' },
         { label: 'English', value: 'en' },
       ],
-      defaultValue: 'it',
+      defaultValue: 'fr',
     }),
 
     allowMultiple: fields.checkbox({

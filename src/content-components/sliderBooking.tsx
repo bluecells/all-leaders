@@ -75,11 +75,10 @@ export const SliderBooking = block({
     lang: fields.select({
       label: 'Langue du booking engine',
       options: [
-        { label: 'Italiano', value: 'it' },
         { label: 'Français', value: 'fr' },
         { label: 'English', value: 'en' },
       ],
-      defaultValue: 'it',
+      defaultValue: 'fr',
     }),
   },
 

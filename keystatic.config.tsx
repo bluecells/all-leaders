@@ -20,8 +20,6 @@ import {
   YouTube,
   Accordion,
   Align,
-  BookingEngine,
-  SliderBooking,
 } from 'src/content-components/index.ts';
 // New imports for content components
 
@@ -42,36 +40,6 @@ export default config({
   }),
 
   singletons: {
-    menuIT: singleton({
-      label: 'Menu IT 🇮🇹',
-      path: 'src/content/menu/it',
-      format: { data: 'json' },
-      schema: {
-        links: fields.array(
-          fields.object({
-            label: fields.text({ label: 'Etichetta' }),
-            url: fields.text({ label: 'URL' }),
-            type: fields.select({
-              label: 'Tipo',
-              options: [
-                { label: 'Link normale', value: 'link' },
-                { label: 'Pulsante CTA', value: 'cta' },
-              ],
-              defaultValue: 'link',
-            }),
-            hasSubmenu: fields.checkbox({ label: 'Ha sottomenu?', defaultValue: false }),
-            submenu: fields.array(
-              fields.object({
-                label: fields.text({ label: 'Etichetta sottomenu' }),
-                url: fields.text({ label: 'URL sottomenu' }),
-              }),
-              { label: 'Sottomenu', itemLabel: (props) => props.fields.label.value || 'Sottomenu' }
-            ),
-          }),
-          { label: 'Link del menu', itemLabel: (props) => props.fields.label.value || 'Link' }
-        ),
-      },
-    }),
     menuFR: singleton({
       label: 'Menu FR 🇫🇷',
       path: 'src/content/menu/fr',
@@ -139,17 +107,17 @@ export default config({
       schema: {
         redirects: fields.array(
           fields.object({
-            from: fields.text({ label: 'Da (percorso vecchio)' }),
-            to: fields.text({ label: 'A (percorso nuovo)' }),
+            from: fields.text({ label: 'From (ancien chemin)' }),
+            to: fields.text({ label: 'To (nouveau chemin)' }),
             status: fields.select({
-              label: 'Codice di stato HTTP',
+              label: 'Code de redirection',
               options: [
-                { label: '301 (Permanente)', value: '301' },
-                { label: '302 (Temporaneo)', value: '302' },
+                { label: '301 (Permanent)', value: '301' },
+                { label: '302 (Temporaire)', value: '302' },
               ],
               defaultValue: '301',
             }),
-            note: fields.text({ label: 'Nota (opzionale)', validation: { isRequired: false } }),
+            note: fields.text({ label: 'Note (optionnelle)', validation: { isRequired: false } }),
           }),
           {
             label: 'Redirects',
@@ -169,13 +137,13 @@ export default config({
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({
-          name: { label: 'Titolo', description: 'Titolo della landing page' },
-          slug: { label: 'Path fisico sul server', description: 'Diverso dello slug SEO' },
+          name: { label: 'Titre', description: 'Titre de la landing page' },
+          slug: { label: 'Path physique sur le server', description: 'Différent du slug SEO' },
         }),
         metaTitle: fields.text({ label: 'Meta Title' }),
         metaDescription: fields.text({ label: 'Meta Description', multiline: true }),
         content: fields.markdoc({
-          label: 'Contenuto',
+          label: 'Contenu',
           options: {
             bold: true,
             italic: true,
@@ -207,138 +175,44 @@ export default config({
             GoogleMaps,
             Accordion,
             Align,
-            BookingEngine,
-            SliderBooking,
           },
         }),
         lang: fields.select({
-          label: 'Lingua',
+          label: 'Langue',
           options: [
-            { label: 'it', value: 'it' },
             { label: 'fr', value: 'fr' },
             { label: 'en', value: 'en' },
           ],
-          defaultValue: 'it',
+          defaultValue: 'fr',
         }),
-        seoSlug: fields.text({ label: 'URL SEO definitiva' }),
+        seoSlug: fields.text({ label: 'URL SEO finale' }),
         jsonType: fields.select({
-          label: 'Tipo di JSON-LD',
+          label: 'Type de JSON-LD',
           options: [
             { label: 'Page', value: 'page' },
-            { label: 'Articolo di blog', value: 'blog' },
+            { label: 'Article de blog', value: 'blog' },
             { label: 'Faq', value: 'faq' },
-            { label: 'Hotel Room', value: 'hotelRoom' },
+            { label: 'Accompagnement', value: 'accompagnements' },
           ],
           defaultValue: 'page',
         }),
         ogImage: fields.image({
-          label: 'Immagina Open Graph',
+          label: 'Image Open Graph',
           directory: 'public/images/content/',
           publicPath: '/images/content/',
           validation: { isRequired: false },
         }),
         featuredPhoto: fields.object({
           image: fields.image({
-            label: 'Featured Image',
+            label: 'Image mise en avant',
             directory: 'public/images/content/',
             publicPath: '/images/content/',
             validation: { isRequired: false },
           }),
           alt: fields.text({
-            label: 'Alt Text della Featured Image',
+            label: "Alt Text de l'image",
             validation: { isRequired: false },
           }),
-        }),
-      },
-    }),
-    rooms: collection({
-      label: 'Services',
-      slugField: 'slug',
-      path: 'src/content/services/**',
-      format: { contentField: 'content' },
-      columns: ['lang', 'nameDisplay', 'title', 'seoSlug'],
-      schema: {
-        title: fields.text({ label: 'Titolo della pagina', validation: { isRequired: true } }),
-        seoSlug: fields.text({ label: 'Slug SEO', validation: { isRequired: false } }),
-        metaTitle: fields.text({ label: 'Meta Title', validation: { isRequired: false } }),
-        metaDescription: fields.text({ label: 'Meta Description', multiline: true }),
-        slug: fields.slug({ name: { label: 'Slug tecnico della camera' } }),
-        roomId: fields.text({
-          label: 'RoomId sul booking engine',
-          validation: { isRequired: true },
-        }),
-        jsonType: fields.select({
-          label: 'Tipo di JSON-LD',
-          options: [
-            { label: 'Page', value: 'page' },
-            { label: 'Articolo di blog', value: 'blog' },
-            { label: 'Faq', value: 'faq' },
-            { label: 'Hotel Room', value: 'hotelRoom' },
-          ],
-          defaultValue: 'hotelRoom',
-        }),
-        punchline: fields.text({
-          label: 'Punchline del carousel',
-          validation: { isRequired: false },
-        }),
-        lang: fields.select({
-          label: 'Lingua',
-          options: [
-            { label: 'it', value: 'it' },
-            { label: 'fr', value: 'fr' },
-            { label: 'en', value: 'en' },
-          ],
-          defaultValue: 'it',
-        }),
-        nameDisplay: fields.text({ label: 'Nome allo schermo', validation: { isRequired: true } }),
-        featuredPhoto: fields.object({
-          image: fields.image({
-            label: 'Featured Image',
-            directory: 'public/images/content/',
-            publicPath: '/images/content/',
-            validation: { isRequired: false },
-          }),
-          alt: fields.text({
-            label: 'Alt Text della Featured Image',
-            validation: { isRequired: false },
-          }),
-        }),
-        photos: fields.array(
-          fields.object({
-            image: fields.image({
-              label: 'Image',
-              directory: 'public/images/services/gallery',
-              publicPath: '/images/services/gallery/',
-              validation: { isRequired: true },
-            }),
-            alt: fields.text({
-              label: 'Texte alternatif (SEO)',
-              validation: { isRequired: true },
-            }),
-          }),
-          {
-            label: 'Galerie de photos',
-            itemLabel: (props) => props.fields.alt.value || 'Photo sans titre',
-            // Keystatic ne gère pas nativement le .max(6) dans l'UI via validation pour les tableaux,
-            // mais tu peux l'indiquer dans l'étiquette pour l'utilisateur.
-            description: 'Maximum 6 photos pour la galerie.',
-          }
-        ),
-        amenity1: fields.text({ label: 'Amenity 1', validation: { isRequired: false } }),
-        amenity2: fields.text({ label: 'Amenity 2', validation: { isRequired: false } }),
-        amenity3: fields.text({ label: 'Amenity 3', validation: { isRequired: false } }),
-
-        content: fields.markdoc({
-          label: 'Content',
-          options: {
-            bold: true,
-            italic: true,
-            heading: [2, 3, 4],
-            link: true,
-            divider: true,
-            image: { directory: 'public/images/content', publicPath: '/images/content/' },
-          },
-          components: { Duo },
         }),
       },
     }),
@@ -350,10 +224,10 @@ export default config({
       columns: ['lang', 'title', 'category'],
       schema: {
         title: fields.slug({
-          name: { label: 'Titolo pagina' },
-          slug: { label: 'SEO-friendly slug' },
+          name: { label: 'Titre' },
+          slug: { label: 'Slug SEO-friendly' },
         }),
-        h1Title: fields.text({ label: 'Titolo H1 (fallback su Titolo pagina)' }),
+        h1Title: fields.text({ label: 'Titre H1 (fallback sur Titre page)' }),
         seoSlug: fields.text({ label: 'Slug SEO', validation: { isRequired: false } }),
         metaTitle: fields.text({ label: 'Meta Title', validation: { isRequired: false } }),
         metaDescription: fields.text({
@@ -363,18 +237,18 @@ export default config({
           validation: { isRequired: false },
         }),
         ogImage: fields.image({
-          label: 'Immagina Open Graph',
+          label: 'Image Open Graph',
           directory: 'public/images/content/',
           publicPath: '/images/content/',
           validation: { isRequired: false },
         }),
         jsonType: fields.select({
-          label: 'Tipo di JSON-LD',
+          label: 'Type de JSON-LD',
           options: [
             { label: 'Page', value: 'page' },
-            { label: 'Articolo di blog', value: 'blog' },
+            { label: 'Article de blog', value: 'blog' },
             { label: 'Faq', value: 'faq' },
-            { label: 'Hotel Room', value: 'hotelRoom' },
+            { label: 'Accompagnement', value: 'accompagnements' },
           ],
           defaultValue: 'blog',
         }),
@@ -383,22 +257,22 @@ export default config({
           description: "La date à laquelle l'article sera affiché comme publié",
           defaultValue: { kind: 'today' }, // Optionnel : sélectionne la date du jour par défaut
         }),
-        featured: fields.checkbox({ label: 'Articolo in vista', defaultValue: false }),
+        featured: fields.checkbox({ label: 'Article en vue', defaultValue: false }),
         featuredPhoto: fields.object({
           image: fields.image({
-            label: 'Featured Image',
+            label: 'Image mise en avant',
             directory: 'public/images/content/',
             publicPath: '/images/content/',
             validation: { isRequired: false },
           }),
           alt: fields.text({
-            label: 'Alt Text della Featured Image',
+            label: "Alt Text de l'image",
             validation: { isRequired: false },
           }),
         }),
         // Référence unique à une catégorie (optionnel)
         category: fields.relationship({
-          label: 'Catégorie principale',
+          label: 'Catégorie',
           collection: 'categories',
           validation: { isRequired: false },
         }),
@@ -414,7 +288,7 @@ export default config({
             itemLabel: (props) => props.value || 'Tag sans nom',
           }
         ),
-        excerpt: fields.text({ label: 'Riassunto', validation: { isRequired: false } }),
+        excerpt: fields.text({ label: 'Résumé', validation: { isRequired: false } }),
 
         content: fields.markdoc({
           label: 'Content',
@@ -447,18 +321,15 @@ export default config({
             GoogleMaps,
             Accordion,
             Align,
-            BookingEngine,
-            SliderBooking,
           },
         }),
         lang: fields.select({
-          label: 'Lang',
+          label: 'Langue',
           options: [
-            { label: 'it', value: 'it' },
             { label: 'fr', value: 'fr' },
             { label: 'en', value: 'en' },
           ],
-          defaultValue: 'it',
+          defaultValue: 'fr',
         }),
       },
     }),
@@ -466,7 +337,7 @@ export default config({
       label: 'Accompagnements',
       slugField: 'title',
       path: 'src/content/accompagnements/**',
-      columns: ['lang', 'title', 'type', 'categorie'],
+      columns: ['lang', 'title', 'type'],
       schema: {
         title: fields.slug({
           name: { label: 'Titre' },
@@ -481,10 +352,8 @@ export default config({
           options: [
             { label: 'Action', value: 'action' },
             { label: 'Investigation', value: 'investigation' },
-            { label: 'Formation', value: 'formation' },
-            { label: 'Coaching', value: 'coaching' },
-            { label: 'Conseil', value: 'conseil' },
-            { label: 'Mentorat', value: 'mentorat' },
+            { label: 'Inspiration', value: 'inspiration' },
+            { label: 'Immersion', value: 'immersion' },
           ],
           defaultValue: 'action',
         }),
@@ -525,7 +394,7 @@ export default config({
       format: { contentField: 'answer' },
       slugField: 'tag_slug',
       schema: {
-        question: fields.text({ label: 'Domanda' }),
+        question: fields.text({ label: 'Question' }),
         answer: fields.markdoc({
           label: 'Answer',
           options: {
@@ -539,33 +408,32 @@ export default config({
           components: { Duo },
         }),
         lang: fields.select({
-          label: 'Lingua',
+          label: 'Langue',
           options: [
-            { label: 'IT', value: 'it' },
             { label: 'FR', value: 'fr' },
             { label: 'EN', value: 'en' },
           ],
-          defaultValue: 'it',
+          defaultValue: 'fr',
         }),
         metaTitle: fields.text({ label: 'Meta Title', validation: { isRequired: false } }),
         metaDescription: fields.text({ label: 'Meta Description', multiline: true }),
         jsonType: fields.select({
-          label: 'Tipo di JSON-LD',
+          label: 'Type de JSON-LD',
           options: [
             { label: 'Page', value: 'page' },
-            { label: 'Articolo di blog', value: 'blog' },
+            { label: 'Article de blog', value: 'blog' },
             { label: 'Faq', value: 'faq' },
-            { label: 'Hotel Room', value: 'hotelRoom' },
+            { label: 'Accompagnement', value: 'accompagnements' },
           ],
           defaultValue: 'faq',
         }),
-        category: fields.text({ label: 'Categoria', validation: { isRequired: false } }),
+        category: fields.text({ label: 'Catégorie', validation: { isRequired: false } }),
         order: fields.number({
-          label: 'Numero di priorità (0=min)',
+          label: 'Niveau de priorité (0=min)',
           validation: { isRequired: false },
         }),
         tag_slug: fields.slug({
-          name: { label: 'ID della (nome interno)' },
+          name: { label: 'ID de la question (nom interne)' },
           slug: { label: 'Slug keystatic' },
         }),
       },
@@ -574,7 +442,7 @@ export default config({
     // ────────────────────────────────────────────────
     // 0. Catégories Services
     'accompagnements-categories': collection({
-      label: 'Accompagnements - Catégories 🏷️',
+      label: "🏷️ Catégories d'accompagnements ",
       path: 'src/content/accompagnements-categories/*',
       format: { data: 'yaml' },
       columns: ['name_fr', 'name_en'],
@@ -617,16 +485,12 @@ export default config({
     // ────────────────────────────────────────────────
     // 1. Catégories (Articles)
     categories: collection({
-      label: 'Catégories 🏷️',
+      label: '🏷️ Catégories articles & faq',
       path: 'src/content/categories/*',
       format: { data: 'yaml' },
       columns: ['name_it', 'name_fr', 'name_en'],
       slugField: 'tag_slug',
       schema: {
-        name_it: fields.text({ label: '🇮🇹 Nome (IT)' }),
-        slug_it: fields.text({ label: '🇮🇹 Slug (IT)' }),
-        description_it: fields.text({ label: '🇮🇹 Descrizione (IT)', multiline: true }),
-
         name_fr: fields.text({
           label: '🇫🇷 Nom (FR)',
           validation: { isRequired: true },
@@ -660,16 +524,12 @@ export default config({
     // ────────────────────────────────────────────────
     // 2. Tags (étiquettes plus fines)
     tags: collection({
-      label: 'Tags 🏷️',
+      label: '🏷️ Tags ',
       path: 'src/content/tags/*',
       format: { data: 'yaml' },
       columns: ['name_it', 'name_fr', 'name_en'],
       slugField: 'tag_slug',
       schema: {
-        name_it: fields.text({ label: '🇮🇹 Nome (IT)' }),
-        slug_it: fields.text({ label: '🇮🇹 Slug (IT)' }),
-        description_it: fields.text({ label: '🇮🇹 Descrizione (IT)', multiline: true }),
-
         name_fr: fields.text({
           label: '🇫🇷 Nom (FR)',
           validation: { isRequired: true },
