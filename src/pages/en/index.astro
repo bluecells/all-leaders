@@ -6,10 +6,12 @@ import logoWatercolor from '@/assets/images/decorative/logo-ali-aquarelle.webp';
 import marqueDangerIsole from '@/assets/images/ui/marque-de-danger-isole.webp';
 import baliseSpeciale from '@/assets/images/ui/balise-speciale.webp';
 import boueeEauxSaines from '@/assets/images/ui/bouee-eaux-saines.webp';
-import logoBureauDuReel from '@/assets/images/partners/logo-bureau-du-reel.webp';
+import logoBureauDuReel from '@/assets/images/partners/logo-bureau-du-reel.png';
 import logoDaCrew from '@/assets/images/partners/logo-da-crew.webp';
 import logoYST from '@/assets/images/partners/logo-your-safety-training.webp';
-import logoEnablers from '@/assets/images/partners/logo-enablers-network.webp';
+import logoSynergies from '@/assets/images/partners/logo-synergie-et-co.png';
+import logoPragmacie from '@/assets/images/partners/logo-pragmacie.png';
+import logoEnablers from '@/assets/images/partners/logo-enablers-network.png';
 import logoFA3R from '@/assets/images/partners/logo-fa3r.webp';
 import homeserve from '@/assets/images/partners/homeserve.webp';
 import edf from '@/assets/images/partners/edf.webp';
@@ -404,17 +406,19 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
       <ul class="partners-list max-w-4xl mx-auto px-4" role="list">
         <li role="listitem">
           <article class="partner-article">
-            <Image
-              src={logoBureauDuReel}
-              alt="Logo for Bureau du Réel"
-              width={200}
-              widths={[120, 200]}
-              sizes="(max-width: 768px) 180px, 200px"
-              format="webp"
-              loading="lazy"
-              decoding="async"
-              class="partner-logo md:p-4"
-            />
+            <div class="flex items-center justify-center w-full">
+              <Image
+                src={logoBureauDuReel}
+                alt="Logo for Bureau du Réel"
+                width={250}
+                widths={[180, 250]}
+                sizes="(max-width: 768px) 180px, 250px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="partner-logo object-contain"
+              />
+            </div>
             <div class="partner-content">
               <h3>Le Bureau du Réel</h3>
               <p>
@@ -433,17 +437,19 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 
         <li role="listitem">
           <article class="partner-article">
-            <Image
-              src={logoDaCrew}
-              alt="Logo for Da CREW"
-              width={200}
-              widths={[120, 200]}
-              sizes="(max-width: 768px) 180px, 200px"
-              format="webp"
-              loading="lazy"
-              decoding="async"
-              class="partner-logo md:p-4"
-            />
+            <div class="flex items-center justify-center w-full">
+              <Image
+                src={logoDaCrew}
+                alt="Logo for Bureau du Réel"
+                width={250}
+                widths={[180, 250]}
+                sizes="(max-width: 768px) 180px, 250px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="partner-logo object-contain"
+              />
+            </div>
             <div class="partner-content">
               <h3>Da CREW — Mission One</h3>
               <p>
@@ -461,17 +467,19 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 
         <li role="listitem">
           <article class="partner-article">
-            <Image
-              src={logoYST}
-              alt="Logo for YourSafety.training"
-              width={200}
-              widths={[120, 200]}
-              sizes="(max-width: 768px) 180px, 200px"
-              format="webp"
-              loading="lazy"
-              decoding="async"
-              class="partner-logo md:p-4"
-            />
+            <div class="flex items-center justify-center w-full">
+              <Image
+                src={logoYST}
+                alt="Logo for Bureau du Réel"
+                width={250}
+                widths={[180, 250]}
+                sizes="(max-width: 768px) 180px, 250px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="partner-logo object-contain"
+              />
+            </div>
             <div class="partner-content">
               <h3>YourSafety.training — Conflict Management</h3>
               <p>
@@ -490,12 +498,19 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 
         <li role="listitem">
           <article class="partner-article">
-            <img
-              src="/images/pages/logo-synergie-et-co.png"
-              alt="Logo for Synergies & Co"
-              class="partner-logo"
-              style="width: 100%; height: auto; max-width: 100%; object-fit: contain;"
-            />
+            <div class="flex items-center justify-center w-full">
+              <Image
+                src={logoSynergies}
+                alt="Logo of Synergie & Co"
+                width={250}
+                widths={[180, 250]}
+                sizes="(max-width: 768px) 180px, 250px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="partner-logo object-contain"
+              />
+            </div>
             <div class="partner-content">
               <h3>Synergies &amp; Co — Operational Excellence</h3>
               <p>
@@ -512,12 +527,19 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 
         <li role="listitem">
           <article class="partner-article">
-            <img
-              src="/images/pages/logo-pragmacie.svg"
-              alt="Logo for Pragmacie"
-              class="partner-logo"
-              style="width: 100%; height: auto; max-width: 100%; object-fit: contain;"
-            />
+            <div class="flex items-center justify-center w-full">
+              <Image
+                src={logoPragmacie}
+                alt="Logo of Pragmacie"
+                width={250}
+                widths={[180, 250]}
+                sizes="(max-width: 768px) 180px, 250px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="partner-logo object-contain"
+              />
+            </div>
             <div class="partner-content">
               <h3>Pragmacie — CliftonStrengths Talent Mapping</h3>
               <p>
@@ -534,17 +556,19 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 
         <li role="listitem">
           <article class="partner-article">
-            <Image
-              src={logoEnablers}
-              alt="Logo for Enablers"
-              width={200}
-              widths={[120, 200]}
-              sizes="(max-width: 768px) 180px, 200px"
-              format="webp"
-              loading="lazy"
-              decoding="async"
-              class="partner-logo md:p-4"
-            />
+            <div class="flex items-center justify-center w-full">
+              <Image
+                src={logoEnablers}
+                alt="Logo for Enablers"
+                width={250}
+                widths={[180, 250]}
+                sizes="(max-width: 768px) 180px, 250px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="partner-logo object-contain"
+              />
+            </div>
             <div class="partner-content">
               <h3>Enablers — International Support</h3>
               <p>
@@ -561,17 +585,19 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 
         <li role="listitem">
           <article class="partner-article">
-            <Image
-              src={logoFA3R}
-              alt="Logo for FA3R"
-              width={200}
-              widths={[120, 200]}
-              sizes="(max-width: 768px) 180px, 200px"
-              format="webp"
-              loading="lazy"
-              decoding="async"
-              class="partner-logo md:p-4"
-            />
+            <div class="flex items-center justify-center w-full">
+              <Image
+                src={logoFA3R}
+                alt="Logo for FA3R"
+                width={250}
+                widths={[180, 250]}
+                sizes="(max-width: 768px) 180px, 250px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="partner-logo object-contain"
+              />
+            </div>
             <div class="partner-content">
               <h3>FA3R — Bespoke Outdoor Experiences</h3>
               <p>
@@ -831,7 +857,13 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
       text-align: center;
     }
 
+    .partner-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
     .partner-article p {
+      padding-top: 0;
       text-align: center !important;
     }
 
@@ -866,7 +898,7 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
 
       .partner-logo {
         width: 100% !important;
-        max-width: 100% !important; /* Occupe 100% de la largeur de sa colonne (1fr) */
+        max-width: 250px !important; /* Occupe 100% de la largeur de sa colonne (1fr) */
         height: auto !important;
         margin: 0;
       }

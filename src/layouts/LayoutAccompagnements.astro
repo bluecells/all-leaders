@@ -85,7 +85,7 @@ const Content = rendered.Content;
         (data.USP1 || data.USP2 || data.USP3 || data.USP4 || data.USP5) && (
           <div class="usp-section flex flex-col mx-auto">
             <div class="p-4 w-full flex flex-col items-center rounded-lg border border-limolo-green/10">
-              <h2 class="text-xl font-semibold mt-4! mb-4 ml-0 md:ml-4 leading-relaxed">
+              <h2 class="text-xl font-semibold mt-4! mb-4 ml-0 leading-relaxed">
                 {lang === 'fr' ? 'Sujets clés' : 'Key topics'}
               </h2>
               <ul class="usp-list gap-4">
@@ -193,7 +193,7 @@ const Content = rendered.Content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
     width: 100%;
   }
 
@@ -209,10 +209,10 @@ const Content = rendered.Content;
       flex-direction: row;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 3rem;
+      gap: 1rem;
     }
     .usp-section {
-      width: 400px;
+      width: 420px;
     }
   }
 
@@ -226,6 +226,7 @@ const Content = rendered.Content;
   .usp-list li {
     color: #555;
     font-size: 0.75rem;
+    letter-spacing: -0.5px;
     line-height: 1.7;
     text-align: left;
     padding: 8px 0 8px 3px;
