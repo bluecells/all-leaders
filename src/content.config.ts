@@ -12,9 +12,10 @@ const generateArticleMetaTitle = (title: string, lang: 'fr' | 'en'): string => {
 
   if (cleanTitle.length < 40) {
     // Title too short: add context prefix
-    const prefixes = lang === 'fr'
-      ? ['Guide: ', 'Comment: ', 'Découvrez: ', 'Tout savoir sur: ']
-      : ['Guide: ', 'How to: ', 'Discover: ', 'Learn about: '];
+    const prefixes =
+      lang === 'fr'
+        ? ['Guide: ', 'Comment: ', 'Découvrez: ', 'Tout savoir sur: ']
+        : ['Guide: ', 'How to: ', 'Discover: ', 'Learn about: '];
 
     for (const prefix of prefixes) {
       const candidate = prefix + cleanTitle;
@@ -77,65 +78,68 @@ const landingPages = defineCollection({
 // Collection Articles
 const articles = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx,mdoc}', base: './src/content/articles' }),
-  schema: z.object({
-    title: z.string(),
-    h1Title: z.string().optional(),
-    lang: z.enum(['it', 'fr', 'en']),
-    seoSlug: z.string().nullish(),
-    metaTitle: z.string().nullish(),
-    metaDescription: z.string().nullish(),
-    ogImage: z.string().nullish(),
-    jsonType: z
-      .enum(['page', 'blog', 'faq', 'blogCollection', 'hotelRoom'])
-      .default('blog')
-      .optional(),
-    publishDate: z.coerce.date(),
-    featuredPhoto: z
-      .object({
-        image: z.string().nullish(),
-        alt: z.string().nullish(),
-      })
-      .nullish(),
-    excerpt: z.string().nullish(),
-    featured: z.boolean().optional().default(false),
-    category: z.string().nullish(),
-    tags: z.array(z.string()).nullish().default([]),
-  }).transform((data) => {
-    // Auto-generate metaTitle if not provided, following Google SEO rules (40-60 chars)
-    const title = data.title.trim().replace(/\s+/g, ' ');
-    let metaTitle = data.metaTitle;
+  schema: z
+    .object({
+      title: z.string(),
+      h1Title: z.string().optional(),
+      lang: z.enum(['it', 'fr', 'en']),
+      seoSlug: z.string().nullish(),
+      metaTitle: z.string().nullish(),
+      metaDescription: z.string().nullish(),
+      ogImage: z.string().nullish(),
+      jsonType: z
+        .enum(['page', 'blog', 'faq', 'blogCollection', 'hotelRoom'])
+        .default('blog')
+        .optional(),
+      publishDate: z.coerce.date(),
+      featuredPhoto: z
+        .object({
+          image: z.string().nullish(),
+          alt: z.string().nullish(),
+        })
+        .nullish(),
+      excerpt: z.string().nullish(),
+      featured: z.boolean().optional().default(false),
+      category: z.string().nullish(),
+      tags: z.array(z.string()).nullish().default([]),
+    })
+    .transform((data) => {
+      // Auto-generate metaTitle if not provided, following Google SEO rules (40-60 chars)
+      const title = data.title.trim().replace(/\s+/g, ' ');
+      let metaTitle = data.metaTitle;
 
-    if (!metaTitle) {
-      if (title.length >= 40 && title.length <= 60) {
-        metaTitle = title;
-      } else if (title.length < 40) {
-        const prefixes = data.lang === 'fr'
-          ? ['Guide: ', 'Comment: ', 'Découvrez: ', 'Tout savoir sur: ']
-          : ['Guide: ', 'How to: ', 'Discover: ', 'Learn about: '];
+      if (!metaTitle) {
+        if (title.length >= 40 && title.length <= 60) {
+          metaTitle = title;
+        } else if (title.length < 40) {
+          const prefixes =
+            data.lang === 'fr'
+              ? ['Guide: ', 'Comment: ', 'Découvrez: ', 'Tout savoir sur: ']
+              : ['Guide: ', 'How to: ', 'Discover: ', 'Learn about: '];
 
-        for (const prefix of prefixes) {
-          const candidate = prefix + title;
-          if (candidate.length >= 40 && candidate.length <= 60) {
-            metaTitle = candidate;
-            break;
+          for (const prefix of prefixes) {
+            const candidate = prefix + title;
+            if (candidate.length >= 40 && candidate.length <= 60) {
+              metaTitle = candidate;
+              break;
+            }
           }
+          if (!metaTitle) metaTitle = title;
+        } else {
+          let truncated = title.substring(0, 57);
+          const lastSpace = truncated.lastIndexOf(' ');
+          if (lastSpace > 40) {
+            truncated = truncated.substring(0, lastSpace);
+          }
+          metaTitle = truncated + '...';
         }
-        if (!metaTitle) metaTitle = title;
-      } else {
-        let truncated = title.substring(0, 57);
-        const lastSpace = truncated.lastIndexOf(' ');
-        if (lastSpace > 40) {
-          truncated = truncated.substring(0, lastSpace);
-        }
-        metaTitle = truncated + '...';
       }
-    }
 
-    return {
-      ...data,
-      metaTitle,
-    };
-  }),
+      return {
+        ...data,
+        metaTitle,
+      };
+    }),
 });
 
 // Collection FAQ
@@ -144,7 +148,7 @@ const faq = defineCollection({
   schema: z.object({
     question: z.string(),
     lang: z.enum(['it', 'fr', 'en']),
-    seoSlug: z.string().optional(),
+    seoSlug: z.string(),
     metaTitle: z.string().nullish(),
     metaDescription: z.string().nullish(),
     ogImage: z.string().nullish(),
@@ -158,34 +162,21 @@ const faq = defineCollection({
 });
 
 // Collection Accompagnements
-// Les accompagnements sont stockés dans /src/content/accompagnements/ en YAML
+// Les accompagnements sont stockés dans /src/content/accompagnements/ en MDOC
 const accompagnements = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/accompagnements' }),
+  loader: glob({ pattern: '**/*.{md,mdx,mdoc}', base: './src/content/accompagnements' }),
   schema: z.object({
     title: z.string(),
     slug: z.string(),
-    categorie: z.string(),
-    type: z.enum([
-      'action',
-      'investigation',
-      'formation',
-      'coaching',
-      'conseil',
-      'mentorat',
-      'immersion',
-      'inspiration',
-    ]),
+    category: z.string(),
+    type: z.enum(['action', 'investigation', 'immersion', 'inspiration']),
     description: z.string(),
-    long_description: z.string().optional(),
     image: z.string(),
     lang: z.enum(['fr', 'en']),
     metaTitle: z.string().nullish(),
     metaDescription: z.string().nullish(),
     ogImage: z.string().nullish(),
-    jsonType: z
-      .enum(['page', 'service'])
-      .default('service')
-      .optional(),
+    jsonType: z.enum(['page', 'service']).default('service').optional(),
     USP1: z.string().optional(),
     USP2: z.string().optional(),
     USP3: z.string().optional(),
@@ -213,14 +204,11 @@ const redirects = defineCollection({
 const category = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/categories' }),
   schema: z.object({
-    tag_slug: z.string().optional(),
-    name_it: z.string(),
+    cat_id: z.string(),
     name_fr: z.string(),
     name_en: z.string(),
-    slug_it: z.string(),
     slug_fr: z.string(),
     slug_en: z.string(),
-    description_it: z.string().optional(),
     description_fr: z.string().optional(),
     description_en: z.string().optional(),
   }),
@@ -230,14 +218,11 @@ const category = defineCollection({
 const tags = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/tags' }),
   schema: z.object({
-    tag_slug: z.string().optional(),
-    name_it: z.string(),
+    cat_id: z.string(),
     name_fr: z.string(),
     name_en: z.string(),
-    slug_it: z.string(),
     slug_fr: z.string(),
     slug_en: z.string(),
-    description_it: z.string().optional(),
     description_fr: z.string().optional(),
     description_en: z.string().optional(),
   }),

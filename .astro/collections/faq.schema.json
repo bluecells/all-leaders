@@ -70,6 +70,7 @@
   },
   "required": [
     "question",
-    "lang"
+    "lang",
+    "seoSlug"
   ]
 }

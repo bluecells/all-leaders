@@ -605,14 +605,14 @@ redirects:
   # Inspiration category redirects (FR & EN)
   # ========================================
   - from: /ressources/inspiration
-    to: /ressources
-    status: '301'
-    note: 'Catégorie inspiration supprimée → page ressources'
+    to: /ressources?category=inspiration
+    status: '302'
+    note: 'Category filter: inspiration → ressources with filter active (302 temporary during transition)'
 
   - from: /en/resources/inspiration
-    to: /en/resources
-    status: '301'
-    note: 'Inspiration category removed → resources page'
+    to: /en/resources?category=inspiration
+    status: '302'
+    note: 'Category filter: inspiration → resources with filter active (302 temporary during transition)'
 
   # ========================================
   # www redirect (HTTP to HTTPS, www to non-www)

@@ -6,31 +6,31 @@ import { useEffect, useState, type ReactNode } from 'react';
 export const Duo = wrapper({
   label: 'Duo Component',
   schema: {
-    title: fields.text({ label: 'Titolo', defaultValue: 'Titolo Principale' }),
+    title: fields.text({ label: 'Titre', defaultValue: 'Titre principal' }),
     image: fields.image({
-      label: 'Immagina',
+      label: 'Image',
       directory: 'public/images/content',
       publicPath: '/images/content/',
     }),
-    imageAlt: fields.text({ label: 'Descrizione SEO Immagine (Alt)' }),
+    imageAlt: fields.text({ label: "Description SEO de l'image (Alt)" }),
     imagePosition: fields.select({
-      label: 'Posizione Immagine',
+      label: "Position de l'image",
       options: [
-        { label: 'Sinistra', value: 'left' },
-        { label: 'Destra', value: 'right' },
+        { label: 'Gauche', value: 'left' },
+        { label: 'Droite', value: 'right' },
       ],
       defaultValue: 'right',
     }),
-    ctaText: fields.text({ label: 'Testo del CTA', defaultValue: 'CTA text' }),
-    ctaLink: fields.text({ label: 'Link del CTA', defaultValue: '#' }),
-    background: fields.text({ label: 'Colore di sfondo', defaultValue: 'transparent' }),
+    ctaText: fields.text({ label: 'Texte du CTA', defaultValue: 'Votre texte CTA' }),
+    ctaLink: fields.text({ label: 'Link du CTA', defaultValue: '#' }),
+    background: fields.text({ label: 'Couleur du fond', defaultValue: 'transparent' }),
     fullBleed: fields.checkbox({ label: 'Full Bleed?', defaultValue: false }),
     heightMatch: fields.checkbox({ label: 'Height Match?', defaultValue: false }),
-    maxHeight: fields.text({ label: 'Altezza massima', defaultValue: '60vh' }),
+    maxHeight: fields.text({ label: 'Hauteur max', defaultValue: '60vh' }),
     noBorderPadding: fields.checkbox({ label: 'No Border Padding?', defaultValue: false }),
     content: fields.child({
       kind: 'block',
-      placeholder: 'Contenuto dello slot...',
+      placeholder: 'Contenu du slot...',
       formatting: { inlineMarks: 'inherit', softBreaks: 'inherit' },
       links: 'inherit',
     }),
@@ -72,7 +72,9 @@ export const Duo = wrapper({
       >
         <div style={{ fontWeight: 'bold', marginBottom: '8px', borderBottom: '1px solid #eee' }}>
           Duo: {value.title || '(sans titre)'} ({value.imagePosition || 'right'})
-          {value.noBorderPadding && <span style={{ color: '#FF6B6B', marginLeft: '8px' }}>• No Border Padding</span>}
+          {value.noBorderPadding && (
+            <span style={{ color: '#FF6B6B', marginLeft: '8px' }}>• No Border Padding</span>
+          )}
         </div>
 
         <div

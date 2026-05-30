@@ -45,7 +45,7 @@ const getTitle = (data: Record<string, unknown>): string => {
 // Fonction helper pour extraire la catégorie (pour articles et accompagnements)
 const getCategory = (data: Record<string, unknown>): string => {
   if ('category' in data && typeof data.category === 'string') return data.category;
-  if ('categorie' in data && typeof data.categorie === 'string') return data.categorie;
+  if ('categorie' in data && typeof data.category === 'string') return data.category;
   return '';
 };
 

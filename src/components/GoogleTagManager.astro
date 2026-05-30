@@ -4,7 +4,6 @@
 
 <!-- Google Tag Manager - Deferred Loading for Performance -->
 <script is:inline>
-  // Init DataLayer immediately (before GTM loads)
   window.dataLayer = window.dataLayer || [];
 
   let gtmLoaded = false;
@@ -16,25 +15,44 @@
     (function (w, d, s, l, i) {
       w[l] = w[l] || [];
       w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
       var f = d.getElementsByTagName(s)[0],
         j = d.createElement(s),
         dl = l != 'dataLayer' ? '&l=' + l : '';
+
       j.async = true;
       j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
       f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-PBZ8GS6L');
   }
 
-  // Load GTM after first user interaction
-  const events = ['scroll', 'mousemove', 'touchstart', 'click'];
-  const loadOnce = () => {
-    loadGTM();
-    events.forEach((e) => window.removeEventListener(e, loadOnce));
-  };
+  function hasConsent() {
+    try {
+      const raw = localStorage.getItem('all-leaders-cookie-preferences');
+      if (!raw) return false;
+      const prefs = JSON.parse(raw);
+      return prefs.analytics === true || prefs.marketing === true;
+    } catch {
+      return false;
+    }
+  }
 
-  events.forEach((e) => window.addEventListener(e, loadOnce, { passive: true, once: true }));
+  function tryLoadGTM() {
+    if (hasConsent()) {
+      loadGTM();
+    }
+  }
 
-  // Fallback: load after 3 seconds even without interaction
-  setTimeout(loadGTM, 3000);
+  // 1. load si consent déjà donné
+  tryLoadGTM();
+
+  // 2. écouter les changements de consentement
+  window.addEventListener('cookie-consent-changed', (e) => {
+    const prefs = e.detail;
+
+    if (prefs.analytics || prefs.marketing) {
+      loadGTM();
+    }
+  });
 </script>
 <!-- End Google Tag Manager -->

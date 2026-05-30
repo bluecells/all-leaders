@@ -21,7 +21,10 @@ try {
   if (redirectsCollection && redirectsCollection.length > 0) {
     const redirectsData = redirectsCollection[0].data;
     const cleanPath = Astro.url.pathname.replace(/^\/|\/$/g, ''); // sans slash initial/final
-    const redirectMatch = redirectsData.redirects.find((r: any) => r.from === cleanPath);
+    const redirectMatch = redirectsData.redirects.find((r: any) => {
+      const normalizedFrom = r.from.startsWith('/') ? r.from.slice(1) : r.from;
+      return normalizedFrom === cleanPath;
+    });
 
     if (redirectMatch) {
       let toPath = redirectMatch.to.trim();
@@ -119,7 +122,7 @@ if (route.startsWith(resourcesSegment + '/')) {
     if (a.data.lang !== lang || cleanSlug !== articleSlug) return false;
 
     // Trouver la catégorie de cet article
-    const catEntry = allCategories.find((c) => c.id === a.data.category);
+    const catEntry = allCategories.find((c) => c.data.cat_id === a.data.category);
     if (!catEntry) {
       console.log(`[ARTICLES DEBUG] Category not found: ${a.data.category}`);
       return false;

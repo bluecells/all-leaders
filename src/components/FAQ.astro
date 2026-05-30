@@ -79,7 +79,7 @@ const sortedCategories = Object.keys(faqsByCategory).sort((a, b) => {
                       href={'/faq/' + faq.data.seoSlug}
                       class="text-left hover:text-cyan-600 hover:font-semibold"
                     >
-                      <span class="mr-2">⚓</span> {faq.data.question}
+                      <span class="mr-2 hidden md:inline">⚓</span> {faq.data.question}
                     </a>
                   </summary>
                 </details>

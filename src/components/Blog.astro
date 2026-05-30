@@ -83,11 +83,21 @@ const articlesData = sortedArticles.map((article) => {
   let displayCategory = 'Uncategorized';
   let categorySlug = '';
   if (category && typeof category === 'string') {
-    const catEntry = categoriesMap.get(category);
+    // Chercher d'abord par cat_id
+    let catEntry = categoriesMap.get(category);
+
+    // Fallback: chercher par slug si pas trouvé
+    if (!catEntry) {
+      catEntry = Array.from(categoriesMap.values()).find(c =>
+        c.data[`slug_${validLang}`] === category ||
+        c.data.slug_fr === category
+      );
+    }
+
     if (catEntry) {
-      // Utiliser le nom et slug de la langue active avec fallback vers italien
-      displayCategory = catEntry.data[`name_${validLang}`] || catEntry.data.name_it || category;
-      categorySlug = catEntry.data[`slug_${validLang}`] || catEntry.data.slug_it || category;
+      // Utiliser le nom et slug de la langue active avec fallback vers français
+      displayCategory = catEntry.data[`name_${validLang}`] || catEntry.data.name_fr || category;
+      categorySlug = catEntry.data[`slug_${validLang}`] || catEntry.data.slug_fr || category;
     }
   }
 
@@ -103,8 +113,8 @@ const articlesData = sortedArticles.map((article) => {
     .map((tagSlug) => {
       if (typeof tagSlug !== 'string') return null;
       const tagEntry = tagsMap.get(tagSlug);
-      // Utiliser le nom de la langue active avec fallback vers italien
-      return tagEntry?.data[`name_${validLang}`] || tagEntry?.data.name_it || tagSlug;
+      // Utiliser le nom de la langue active avec fallback vers français
+      return tagEntry?.data[`name_${validLang}`] || tagEntry?.data.name_fr || tagSlug;
     })
     .filter(Boolean);
 
@@ -177,8 +187,8 @@ const tagsForFilter = Array.from(tagSlugs).sort();
               if (!cat) return null;
 
               // Utiliser le nom localisé avec fallback
-              const localizedName = cat.data[`name_${validLang}`] || cat.data.name_it;
-              const localizedSlug = cat.data[`slug_${validLang}`] || cat.data.slug_it;
+              const localizedName = cat.data[`name_${validLang}`] || cat.data.name_fr;
+              const localizedSlug = cat.data[`slug_${validLang}`] || cat.data.slug_fr;
 
               return (
                 <button
@@ -206,8 +216,8 @@ const tagsForFilter = Array.from(tagSlugs).sort();
               if (!tag) return null;
 
               // Utiliser le nom localisé avec fallback
-              const localizedName = tag.data[`name_${validLang}`] || tag.data.name_it;
-              const localizedSlug = tag.data[`slug_${validLang}`] || tag.data.slug_it;
+              const localizedName = tag.data[`name_${validLang}`] || tag.data.name_fr;
+              const localizedSlug = tag.data[`slug_${validLang}`] || tag.data.slug_fr;
 
               return (
                 <button
@@ -225,7 +235,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
 
     <main class="lg:flex-1 lg:order-1 max-w-full">
       <div
-        class="grid gap-4 grid-cols-1 lg:grid-cols-4"
+        class="grid gap-4 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4"
         id="blog-grid"
         data-articles={JSON.stringify(articlesData)}
         data-cards-per-row-mobile={cardsPerRowMobile}
@@ -298,7 +308,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
                     )}
                     <div class="flex flex-col items-center justify-center min-h-18">
                       <a href={permalink} class="block group w-full px-2">
-                        <h3 class="text-[.9rem] font-base m-0 text-limolo-green leading-tight group-hover:text-limolo-accent transition-colors line-clamp-4">
+                        <h3 class="text-[.75rem] font-base m-0 text-limolo-green leading-tight group-hover:text-limolo-accent transition-colors line-clamp-4">
                           {title}
                         </h3>
                       </a>
@@ -402,7 +412,7 @@ const tagsForFilter = Array.from(tagSlugs).sort();
     background-color: var(--color-brand-primary);
   }
 
-  .categories-box {
+  .categorys-box {
     padding: 1rem 0;
     margin-bottom: 1rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);

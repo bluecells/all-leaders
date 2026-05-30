@@ -103,13 +103,18 @@ const t =
   function saveCookiePreferences(prefs: CookiePreferences) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
     localStorage.setItem(BANNER_KEY, 'true');
+
     applyConsentSettings(prefs);
+
+    // 🔥 NOTIFIER LE RESTE DE L’APP
+    window.dispatchEvent(
+      new CustomEvent('cookie-consent-changed', {
+        detail: prefs,
+      })
+    );
   }
 
   function applyConsentSettings(prefs: CookiePreferences) {
-    // Stocker le consentement dans window pour les scripts externes
-    (window as any).cookieConsent = prefs;
-
     // Bloquer/autoriser les cookies en fonction des préférences
     if (prefs.analytics) {
       // Charger Google Analytics ou autre service d'analytics

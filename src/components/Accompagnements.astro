@@ -17,11 +17,11 @@ accompagnements = accompagnements.filter((item) => item.data.lang === lang);
 
 // Filtrer par catégorie si spécifiée
 if (category) {
-  accompagnements = accompagnements.filter((item) => item.data.categorie === category);
+  accompagnements = accompagnements.filter((item) => item.data.category === category);
 }
 
 // Récupérer les catégories uniques pour affichage
-const categories = Array.from(new Set(accompagnements.map((item) => item.data.categorie)));
+const categories = Array.from(new Set(accompagnements.map((item) => item.data.category)));
 
 // Fonction pour obtenir la description d'une catégorie
 function getCategoryDescription(categoryName: string): string {
@@ -45,7 +45,7 @@ function getCategoryDescription(categoryName: string): string {
           </p>
           <div class="accompagnements-grid">
             {accompagnements
-              .filter((item) => item.data.categorie === cat)
+              .filter((item) => item.data.category === cat)
               .map((item) => (
                 <article class="accompagnement-card">
                   <div class="card-image">

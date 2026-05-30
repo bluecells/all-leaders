@@ -30,11 +30,11 @@ allCategories.forEach(cat => {
 
 // 3. Filtrage et tri des données
 const filteredAccompagnements = allAccompagnements.filter(item => 
-  item.data.lang === lang && (!category || item.data.categorie === category)
+  item.data.lang === lang && (!category || item.data.category === category)
 );
 
 // 4. Extraction et tri des noms de catégories présentes
-const sortedCategoryNames = [...new Set(filteredAccompagnements.map(item => item.data.categorie))]
+const sortedCategoryNames = [...new Set(filteredAccompagnements.map(item => item.data.category))]
   .sort((a, b) => {
     const orderA = categoryMap.get(a)?.order ?? 999;
     const orderB = categoryMap.get(b)?.order ?? 999;
@@ -56,7 +56,7 @@ const getAccompagnementUrl = (item: CollectionEntry<'accompagnements'>, catSlug:
   {sortedCategoryNames.length > 0 ? (
     sortedCategoryNames.map((catName) => {
       const catData = categoryMap.get(catName);
-      const itemsInCategory = filteredAccompagnements.filter(item => item.data.categorie === catName);
+      const itemsInCategory = filteredAccompagnements.filter(item => item.data.category === catName);
 
       return (
         <section class="category-section mb-16" id={`category-${catData?.slug}`}>

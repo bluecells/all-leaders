@@ -1,0 +1,64 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import LayoutAccompagnements from '../../../layouts/LayoutAccompagnements.astro';
+import { findAlternateUrls } from '../../../utils/hreflang';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  const accompagnements = await getCollection('accompagnements');
+  const categories = await getCollection('accompagnements-categories');
+
+  // Filtrer uniquement les accompagnements français
+  return accompagnements
+    .filter((acc) => acc.data.lang === 'fr')
+    .map((accompagnement) => {
+      // Trouver la catégorie correspondante
+      const category = categories.find(
+        (cat) => cat.data.name_fr === accompagnement.data.category
+      );
+
+      return {
+        params: {
+          category: category?.data.slug_fr || accompagnement.data.category.toLowerCase().replace(/\s+/g, '-'),
+          slug: accompagnement.data.slug,
+        },
+        props: {
+          accompagnementId: accompagnement.id,
+          categoryId: category?.id,
+        },
+      };
+    });
+}) satisfies GetStaticPaths;
+
+// Récupérer les données côté page
+const { accompagnementId, categoryId } = Astro.props;
+const accompagnements = await getCollection('accompagnements');
+const categories = await getCollection('accompagnements-categories');
+
+const accompagnement = accompagnements.find((a) => a.id === accompagnementId);
+const category = categories.find((c) => c.id === categoryId);
+
+if (!accompagnement || accompagnement.data.lang !== 'fr') {
+  return Astro.redirect('/accompagnements');
+}
+
+// Générer les URLs alternatives hreflang
+const alternateUrls = await findAlternateUrls(
+  accompagnement,
+  'accompagnement',
+  {
+    articles: [],
+    accompagnements: accompagnements,
+    faq: [],
+    accompagnementsCategories: categories,
+  }
+);
+---
+
+<LayoutAccompagnements
+  accompagnement={accompagnement}
+  category={category}
+  alternateUrls={alternateUrls}
+/>

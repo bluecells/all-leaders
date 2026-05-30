@@ -3,45 +3,45 @@ import { block } from '@keystatic/core/content-components';
 import { fields } from '@keystatic/core';
 
 export const YouTube = block({
-  label: 'Video YouTube (con preview)',
+  label: 'Video YouTube (avec preview)',
 
   schema: {
     videoId: fields.text({
-      label: 'ID del video YouTube',
-      description: "La parte dopo ?v= nell'URL (es: dQw4w9WgXcQ)",
+      label: 'ID de la vidéo YouTube',
+      description: "La partie après ?v= nell'URL (es: dQw4w9WgXcQ)",
       validation: { isRequired: true },
     }),
 
     title: fields.text({
-      label: 'Titolo del video (opzionale)',
-      description: 'Mostrato come testo alternativo e tooltip',
+      label: 'Titre de la vidéo (optionnel)',
+      description: 'Affiché comme titre alternatif ou tooltip',
       defaultValue: 'Video YouTube',
     }),
 
     height: fields.text({
-      label: 'Altezza del video',
-      description: 'Es: 400px, 500px, 60vh… Lascia vuoto per proporzione 16:9 automatica',
+      label: 'Hauteur de la vidéo',
+      description: 'Ex : 400px, 500px, 60vh… Laissez vide pour un format 16:9 automatique',
       defaultValue: '400px',
     }),
 
     padding: fields.text({
-      label: 'Padding verticale del contenitore',
+      label: 'Padding vertical du conteneur',
       defaultValue: '2rem 0',
     }),
 
     text: fields.text({
-      label: 'Testo descrittivo accanto al video (opzionale)',
+      label: 'Texte descriptif à côté de la vidéo (optionnel)',
       multiline: true,
-      description: 'Testo che appare a sinistra/destra o sopra/sotto il video',
+      description: 'Texte qui apparaît à gauche ou à droite de la preview en haut ou en bas',
     }),
 
     textPosition: fields.select({
-      label: 'Posizione del testo',
+      label: 'Position du texte',
       options: [
-        { label: 'Sopra', value: 'top' },
-        { label: 'Sotto', value: 'bottom' },
-        { label: 'A sinistra', value: 'left' },
-        { label: 'A destra', value: 'right' },
+        { label: 'Dessus', value: 'top' },
+        { label: 'Dessous', value: 'bottom' },
+        { label: 'A gauche', value: 'left' },
+        { label: 'A droite', value: 'right' },
       ],
       defaultValue: 'bottom',
     }),

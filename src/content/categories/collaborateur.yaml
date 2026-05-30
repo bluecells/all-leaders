@@ -1,10 +1,7 @@
-tag_slug: collaborateur
-name_it: Collaboratore
-name_fr: 'Pour les collaborateurs'
-name_en: Employee
-slug_it: collaboratore
+cat_id: collaborateur
+name_fr: Collaborateurs
 slug_fr: collaborateur
-slug_en: employee
-description_it: Domande frequenti per collaboratori e dipendenti
 description_fr: Questions fréquemment posées pour collaborateurs et employés
+name_en: Employee
+slug_en: employee
 description_en: Frequently asked questions for employees and contributors

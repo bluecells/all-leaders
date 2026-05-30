@@ -17,5 +17,6 @@ export { YouTube } from './youTube';
 export { GoogleMaps } from './googleMaps';
 export { Accordion } from './accordion';
 export { Align } from './align';
-export { BookingEngine } from './bookingEngine';
-export { SliderBooking } from './sliderBooking';
+export { Quadrifoglio } from './quadrifoglio';
+export { PdfViewer } from './pdfViewer';
+export { Table } from './table';

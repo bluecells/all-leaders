@@ -1,15 +1,15 @@
 {
   "links": [
     {
-      "label": "Nous",
-      "url": "/",
+      "label": "Nos accompagnements",
+      "url": "/accompagnements",
       "type": "link",
       "hasSubmenu": false,
       "submenu": []
     },
     {
-      "label": "Nos accompagnements",
-      "url": "/accompagnements",
+      "label": "FAQ",
+      "url": "/faq",
       "type": "link",
       "hasSubmenu": false,
       "submenu": []

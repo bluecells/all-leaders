@@ -5,6 +5,7 @@
   "trailingComma": "es5",
   "printWidth": 100,
   "arrowParens": "always",
+  "proseWrap": "preserve",
   "endOfLine": "lf",
   "plugins": ["prettier-plugin-astro"],
   "overrides": [

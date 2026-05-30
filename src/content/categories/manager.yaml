@@ -1,10 +1,7 @@
-tag_slug: manager
-name_it: Manager
-name_fr: 'Pour les managers'
-name_en: Manager
-slug_it: manager
+cat_id: manager
+name_fr: Managers
 slug_fr: manager
-slug_en: manager
-description_it: Domande frequenti per manager e responsabili di team
 description_fr: Questions fréquemment posées pour managers et responsables d'équipe
+name_en: Manager
+slug_en: manager
 description_en: Frequently asked questions for managers and team leaders

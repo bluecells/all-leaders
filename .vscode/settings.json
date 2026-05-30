@@ -22,8 +22,12 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "editor.wordWrap": "on",
   "prettier.singleQuote": true,
   "prettier.tabWidth": 2,
   "prettier.semi": true,
-  "prettier.trailingComma": "es5"
+  "prettier.trailingComma": "es5",
+  "files.associations": {
+    "*.mdoc": "markdown"
+  }
 }

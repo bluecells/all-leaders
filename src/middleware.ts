@@ -19,14 +19,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return context.redirect(newUrl.toString(), 301);
   }
 
-  // Redirection 301 pour les URLs inspiration/{slug} vers la page ressources parente
-  if (pathname.includes('/ressources/inspiration/')) {
-    return context.redirect('/ressources', 301);
-  }
-  if (pathname.includes('/en/resources/inspiration/')) {
-    return context.redirect('/en/resources', 301);
-  }
-
   // Charger les redirects depuis redirects.yaml
   const redirectsCollection = await getCollection('redirects');
 

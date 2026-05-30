@@ -2,10 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "properties": {
-    "tag_slug": {
-      "type": "string"
-    },
-    "name_it": {
+    "cat_id": {
       "type": "string"
     },
     "name_fr": {
@@ -14,16 +11,10 @@
     "name_en": {
       "type": "string"
     },
-    "slug_it": {
-      "type": "string"
-    },
     "slug_fr": {
       "type": "string"
     },
     "slug_en": {
-      "type": "string"
-    },
-    "description_it": {
       "type": "string"
     },
     "description_fr": {
@@ -37,10 +28,9 @@
     }
   },
   "required": [
-    "name_it",
+    "cat_id",
     "name_fr",
     "name_en",
-    "slug_it",
     "slug_fr",
     "slug_en"
   ]

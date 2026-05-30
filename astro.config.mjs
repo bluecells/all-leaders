@@ -56,7 +56,11 @@ export default defineConfig({
       }
     },
     ssr: {
-      noExternal: isProd ? ['@keystatic/astro', '@keystatic/core', 'cookie', 'lodash', 'direction', 'is-hotkey'] : [],
+      noExternal: ['@keystatic/astro', '@keystatic/core'],
+    },
+    optimizeDeps: {
+      include: ['@keystatic/core', '@keystatic/astro'],
+      exclude: ['@astrojs/node'],
     },
   },
 });

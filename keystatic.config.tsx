@@ -1,25 +1,18 @@
-import { CarouselRooms } from '@/content-components/carouselRooms';
-import { ContactForm } from '@/content-components/contactForm';
 import { config, fields, collection, singleton } from '@keystatic/core';
 import {
   Banner,
   Carousel,
   Duo,
-  Grid,
   Hero,
-  Slider,
   WideImage,
   CtaButton,
-  SliderSteps,
-  FaqAccordion,
   Strip,
-  InstaCarousel,
-  Reviews,
   NotaBene,
-  GoogleMaps,
   YouTube,
   Accordion,
-  Align,
+  Quadrifoglio,
+  PdfViewer,
+  Table,
 } from 'src/content-components/index.ts';
 // New imports for content components
 
@@ -134,6 +127,7 @@ export default config({
       slugField: 'title',
       path: 'src/content/landing-pages/**',
       columns: ['lang', 'title', 'seoSlug'],
+      entryLayout: 'content',
       format: { contentField: 'content' },
       schema: {
         title: fields.slug({
@@ -158,30 +152,23 @@ export default config({
             Banner,
             Carousel,
             Duo,
-            Grid,
             Hero,
-            Slider,
             WideImage,
             CtaButton,
-            SliderSteps,
-            ContactForm,
-            CarouselRooms,
-            FaqAccordion,
             Strip,
-            InstaCarousel,
-            Reviews,
             NotaBene,
             YouTube,
-            GoogleMaps,
             Accordion,
-            Align,
+            Quadrifoglio,
+            PdfViewer,
+            Table,
           },
         }),
         lang: fields.select({
           label: 'Langue',
           options: [
-            { label: 'fr', value: 'fr' },
-            { label: 'en', value: 'en' },
+            { label: 'Français', value: 'fr' },
+            { label: 'English', value: 'en' },
           ],
           defaultValue: 'fr',
         }),
@@ -220,19 +207,34 @@ export default config({
       label: 'Articles',
       slugField: 'title',
       path: 'src/content/articles/**',
+      entryLayout: 'content',
       format: { contentField: 'content' },
-      columns: ['lang', 'seoSlug', 'category'],
+      columns: ['title', 'lang', 'category'],
       schema: {
         title: fields.slug({
-          name: { label: 'Titre' },
-          slug: { label: 'Slug interne' },
+          name: {
+            label: 'Titre de la page',
+            description: "Le nom de l'onglet du navigateur",
+          },
+          slug: {
+            label: 'Slug interne',
+            description: '(ne pas modifier)',
+          },
         }),
-        h1Title: fields.text({ label: 'Titre H1 (fallback sur Titre page)' }),
+        h1Title: fields.text({
+          label: 'Titre principal (H1)',
+          description: 'Si vide, le titre de la page est utilisé',
+        }),
         seoSlug: fields.text({
-          label: 'Slug public SEO-friendly',
+          label: 'Slug public',
           validation: { isRequired: false },
+          description: "Le slug (fin de l'adresse) visible. Doit être SEO-friendly.",
         }),
-        metaTitle: fields.text({ label: 'Meta Title', validation: { isRequired: false } }),
+        metaTitle: fields.text({
+          label: 'Meta Title',
+          validation: { isRequired: false },
+          description: "60 caractères max pour l'affichage optimal dans Google",
+        }),
         metaDescription: fields.text({
           label: 'Meta Description',
           multiline: true,
@@ -241,12 +243,15 @@ export default config({
         }),
         ogImage: fields.image({
           label: 'Image Open Graph',
+          description: "L'image affichée sur Facebook, Whatsapp, X...",
           directory: 'public/images/content/',
           publicPath: '/images/content/',
           validation: { isRequired: false },
         }),
         jsonType: fields.select({
           label: 'Type de JSON-LD',
+          description: 'Type de données structurées utilisées par JSON-LD',
+          width: '600px',
           options: [
             { label: 'Page', value: 'page' },
             { label: 'Article de blog', value: 'blog' },
@@ -307,30 +312,23 @@ export default config({
             Banner,
             Carousel,
             Duo,
-            Grid,
             Hero,
-            Slider,
             WideImage,
             CtaButton,
-            SliderSteps,
-            ContactForm,
-            CarouselRooms,
-            FaqAccordion,
             Strip,
-            InstaCarousel,
-            Reviews,
             NotaBene,
             YouTube,
-            GoogleMaps,
             Accordion,
-            Align,
+            Quadrifoglio,
+            PdfViewer,
+            Table,
           },
         }),
         lang: fields.select({
           label: 'Langue',
           options: [
-            { label: 'fr', value: 'fr' },
-            { label: 'en', value: 'en' },
+            { label: 'Français', value: 'fr' },
+            { label: 'English', value: 'en' },
           ],
           defaultValue: 'fr',
         }),
@@ -340,14 +338,35 @@ export default config({
       label: 'Accompagnements',
       slugField: 'title',
       path: 'src/content/accompagnements/**',
-      columns: ['lang', 'type', 'categorie'],
+      entryLayout: 'content',
+      format: { contentField: 'content' },
+      columns: ['lang', 'type', 'category'],
       schema: {
         title: fields.slug({
           name: { label: 'Titre' },
-          slug: { label: 'Slug technique' },
+          slug: { label: 'Slug interne' },
         }),
-        categorie: fields.text({
+        slug: fields.text({
+          label: 'Slug SEO public',
+          validation: { isRequired: true },
+        }),
+        category: fields.select({
           label: 'Catégorie',
+          options: [
+            {
+              label: "Coaching d'équipes et d'organisations",
+              value: "Coaching d'équipes et d'organisations",
+            },
+            { label: 'Diagnostic de la performance', value: 'Diagnostic de la performance' },
+            { label: 'Executive coaching', value: 'Executive coaching' },
+            { label: 'Gestion de la conflictualité', value: 'Gestion de la conflictualité' },
+            { label: 'Leadership development', value: 'Leadership development' },
+            {
+              label: 'Santé mentale et performance durable',
+              value: 'Santé mentale et performance durable',
+            },
+          ],
+          defaultValue: 'Executive coaching',
           validation: { isRequired: true },
         }),
         type: fields.select({
@@ -364,6 +383,33 @@ export default config({
           label: 'Description',
           multiline: true,
           validation: { isRequired: true },
+        }),
+        content: fields.markdoc({
+          label: 'Corps',
+          options: {
+            bold: true,
+            italic: true,
+            heading: [2, 3, 4],
+            link: true,
+            divider: true,
+            image: { directory: 'public/images/content', publicPath: '/images/content/' },
+          },
+          components: {
+            Banner,
+            Carousel,
+            Duo,
+            Hero,
+            WideImage,
+            CtaButton,
+            Strip,
+            NotaBene,
+            YouTube,
+            Accordion,
+            Quadrifoglio,
+            PdfViewer,
+            Table,
+          },
+          validation: { isRequired: false },
         }),
         metaTitle: fields.text({
           label: 'Meta Title',
@@ -389,15 +435,39 @@ export default config({
           ],
           defaultValue: 'fr',
         }),
+        USP1: fields.text({
+          label: 'USP 1',
+          validation: { isRequired: false },
+        }),
+        USP2: fields.text({
+          label: 'USP 2',
+          validation: { isRequired: false },
+        }),
+        USP3: fields.text({
+          label: 'USP 3',
+          validation: { isRequired: false },
+        }),
+        USP4: fields.text({
+          label: 'USP 4',
+          validation: { isRequired: false },
+        }),
+        USP5: fields.text({
+          label: 'USP 5',
+          validation: { isRequired: false },
+        }),
       },
     }),
     faq: collection({
       label: 'FAQ',
       path: 'src/content/faq/**',
       format: { contentField: 'answer' },
-      columns: ['question', 'lang', 'category'],
-      slugField: 'tag_slug',
+      columns: ['question', 'category'],
+      slugField: 'seoSlug',
       schema: {
+        seoSlug: fields.text({
+          label: 'Slug SEO',
+          validation: { isRequired: true },
+        }),
         question: fields.text({ label: 'Question' }),
         answer: fields.markdoc({
           label: 'Answer',
@@ -409,13 +479,13 @@ export default config({
             divider: true,
             image: { directory: 'public/images/content', publicPath: '/images/content/' },
           },
-          components: { Duo },
+          components: { Duo, YouTube },
         }),
         lang: fields.select({
           label: 'Langue',
           options: [
-            { label: 'FR', value: 'fr' },
-            { label: 'EN', value: 'en' },
+            { label: 'Français', value: 'fr' },
+            { label: 'English', value: 'en' },
           ],
           defaultValue: 'fr',
         }),
@@ -431,14 +501,14 @@ export default config({
           ],
           defaultValue: 'faq',
         }),
-        category: fields.text({ label: 'Catégorie', validation: { isRequired: false } }),
+        category: fields.relationship({
+          label: 'Catégorie',
+          collection: 'categories',
+          validation: { isRequired: false },
+        }),
         order: fields.number({
           label: 'Niveau de priorité (0=min)',
           validation: { isRequired: false },
-        }),
-        tag_slug: fields.slug({
-          name: { label: 'ID de la question (nom interne)' },
-          slug: { label: 'Slug keystatic' },
         }),
       },
     }),
@@ -467,7 +537,7 @@ export default config({
         }),
 
         name_en: fields.text({
-          label: 'Name 🇬🇧',
+          label: 'Nom 🇬🇧',
           validation: { isRequired: true },
         }),
         slug_en: fields.text({
@@ -492,11 +562,16 @@ export default config({
       label: '🏷️ Catégories articles & faq',
       path: 'src/content/categories/*',
       format: { data: 'yaml' },
-      columns: ['name_fr', 'name_en'],
-      slugField: 'tag_slug',
+      columns: ['name_fr'],
+      slugField: 'cat_id',
       schema: {
+        cat_id: fields.text({
+          label: 'ID interne',
+          validation: { isRequired: true },
+        }),
+
         name_fr: fields.text({
-          label: 'Nom 🇫🇷',
+          label: 'Nom affiché 🇫🇷',
           validation: { isRequired: true },
         }),
 
@@ -507,7 +582,7 @@ export default config({
         description_fr: fields.text({ label: 'Description 🇫🇷', multiline: true }),
 
         name_en: fields.text({
-          label: 'Name 🇬🇧',
+          label: 'Nom affiché 🇬🇧',
           validation: { isRequired: true },
         }),
 
@@ -517,11 +592,6 @@ export default config({
         }),
 
         description_en: fields.text({ label: 'Description 🇬🇧', multiline: true }),
-
-        tag_slug: fields.slug({
-          name: { label: 'ID de la catégorier (nom interne)' },
-          slug: { label: 'Slug keystatic' },
-        }),
       },
     }),
 
@@ -531,9 +601,14 @@ export default config({
       label: '🏷️ Tags ',
       path: 'src/content/tags/*',
       format: { data: 'yaml' },
-      columns: ['name_it', 'name_fr', 'name_en'],
-      slugField: 'tag_slug',
+      columns: ['name_fr'],
+      slugField: 'cat_id',
       schema: {
+        cat_id: fields.text({
+          label: 'ID du tag (nom interne)',
+          validation: { isRequired: true },
+        }),
+
         name_fr: fields.text({
           label: 'Nom 🇫🇷',
           validation: { isRequired: true },
@@ -556,11 +631,6 @@ export default config({
         }),
 
         description_en: fields.text({ label: 'Description 🇬🇧', multiline: true }),
-
-        tag_slug: fields.slug({
-          name: { label: 'ID del tag (nome interno)' },
-          slug: { label: 'Slug keystatic' },
-        }),
       },
     }),
   },

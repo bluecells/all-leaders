@@ -87,7 +87,7 @@ export function buildArticleUrl(
   // Trouver la catégorie de l'article
   let categorySlug = 'uncategorized';
   if (article.data.category && typeof article.data.category === 'string') {
-    const catEntry = categories.find((c) => c.id === article.data.category);
+    const catEntry = categories.find((c) => c.data.cat_id === article.data.category);
     if (catEntry) {
       // Utiliser le slug localisé de la catégorie avec fallback vers français
       const slugKey = `slug_${lang}` as 'slug_fr' | 'slug_en';
@@ -181,10 +181,10 @@ export async function findAlternateUrls(
   // Sélectionner la fonction de construction d'URL appropriée
   const buildUrl =
     entryType === 'article'
-      ? (e: any, l: 'fr' | 'en') => buildArticleUrl(e, l, collections.categories)
+      ? (e: any, l: 'fr' | 'en') => buildArticleUrl(e, l, collections.categories!)
       : entryType === 'accompagnement'
         ? (e: any, l: 'fr' | 'en', catSlug?: string) => buildAccompagnementUrl(e, l, catSlug)
-        : (e: any, l: 'fr' | 'en') => buildFaqUrl(e, l, collections.categories);
+        : (e: any, l: 'fr' | 'en') => buildFaqUrl(e, l, collections.categories!);
 
   // Pour chaque langue, chercher l'entrée correspondante
   for (const lang of ['fr', 'en'] as const) {
@@ -207,7 +207,7 @@ export async function findAlternateUrls(
       // Pour les accompagnements, besoin de trouver le slug de catégorie
       if (entryType === 'accompagnement') {
         const catEntry = collections.accompagnementsCategories?.find((c) =>
-          lang === 'fr' ? c.data.name_fr === matchingEntry.data.categorie : c.data.name_en === matchingEntry.data.categorie
+          lang === 'fr' ? c.data.name_fr === matchingEntry.data.category : c.data.name_en === matchingEntry.data.category
         );
         const catSlug = lang === 'fr' ? catEntry?.data.slug_fr : catEntry?.data.slug_en;
 
@@ -215,7 +215,7 @@ export async function findAlternateUrls(
         result[lang] = buildUrl(matchingEntry, lang, catSlug);
       } else {
         // Pour les articles et FAQ, utiliser la collection category
-        const catEntry = collections.categories?.find((c) =>
+        const catEntry = collections.category?.find((c) =>
           lang === 'fr' ? c.data.name_fr === matchingEntry.data.category : c.data.name_en === matchingEntry.data.category
         );
         // @ts-ignore - Nous savons que le type est correct

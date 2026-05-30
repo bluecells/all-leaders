@@ -110,8 +110,8 @@ function generateBlogJsonLd(data: BlogJsonLd) {
       name: SITE.NAME,
       url: SITE.URL,
     },
-    ...(data.categorie && {
-      articleSection: data.categorie,
+    ...(data.category && {
+      articleSection: data.category,
     }),
   };
 }

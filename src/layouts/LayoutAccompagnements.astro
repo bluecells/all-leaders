@@ -1,7 +1,7 @@
 ---
 import Layout from './Layout.astro';
 import type { CollectionEntry } from 'astro:content';
-import { marked } from 'marked';
+import { render } from 'astro:content';
 
 interface Props {
   accompagnement: CollectionEntry<'accompagnements'>;
@@ -13,8 +13,9 @@ const { accompagnement, category, alternateUrls } = Astro.props;
 const { data } = accompagnement;
 const lang = (data.lang || 'fr') as 'fr' | 'en';
 
-// Convertir le Markdown en HTML
-const longDescriptionHTML = data.long_description ? await marked(data.long_description) : '';
+// Rendre le contenu Markdoc
+const rendered = await render(accompagnement);
+const Content = rendered.Content;
 ---
 
 <Layout
@@ -73,13 +74,11 @@ const longDescriptionHTML = data.long_description ? await marked(data.long_descr
     </div>
 
     <div class="main-container max-w-4xl mx-auto">
-      {
-        longDescriptionHTML && (
-          <div class="description-section-wrapper">
-            <div class="description-section mb-0md:mb-12" set:html={longDescriptionHTML} />
-          </div>
-        )
-      }
+      <div class="description-section-wrapper">
+        <div class="description-section prose mb-0 md:mb-12">
+          <Content />
+        </div>
+      </div>
 
       {/* USPs section */}
       {

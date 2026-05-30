@@ -8,6 +8,8 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import SeoAnalyzer from '../components/SeoAnalyzer/SeoAnalyzer.astro';
 import NewsletterPopup from '@/components/NewsletterPopup.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
+import GoogleConsentMode from '@/components/GoogleConsentMode.astro';
+import GoogleTagManager from '@/components/GoogleTagManager.astro';
 import { getFaqQuestions } from '@/utils/faq';
 import type { AlternateUrls } from '@/utils/hreflang';
 import type { JsonLdType } from '@/types/jsonLd';
@@ -175,6 +177,8 @@ const finalOgImage = ogImage || undefined;
     <Footer lang={pageLang} />
     <SeoAnalyzer keyword={keyword} />
     <CookieConsent lang={pageLang} />
+    <GoogleConsentMode />
+    <GoogleTagManager />
     {isHomepage && <NewsletterPopup lang={pageLang} />}
 
     <script>
@@ -183,31 +187,29 @@ const finalOgImage = ogImage || undefined;
 
       if (hasAnimatableElements) {
         // Import dynamiquement les animations
-        import('@/utils/animations').then(({
-          initPageAnimations,
-          animateOnScroll,
-          animateCardHover
-        }) => {
-          // Déclencher après que le navigateur soit inactif (requestIdleCallback)
-          if ('requestIdleCallback' in window) {
-            requestIdleCallback(() => {
-              initPageAnimations();
-              animateOnScroll('.article-card');
-              animateOnScroll('.service-card');
-              animateCardHover('.article-card');
-              animateCardHover('.service-card');
-            });
-          } else {
-            // Fallback: setTimeout pour les navigateurs sans requestIdleCallback
-            setTimeout(() => {
-              initPageAnimations();
-              animateOnScroll('.article-card');
-              animateOnScroll('.service-card');
-              animateCardHover('.article-card');
-              animateCardHover('.service-card');
-            }, 500);
+        import('@/utils/animations').then(
+          ({ initPageAnimations, animateOnScroll, animateCardHover }) => {
+            // Déclencher après que le navigateur soit inactif (requestIdleCallback)
+            if ('requestIdleCallback' in window) {
+              requestIdleCallback(() => {
+                initPageAnimations();
+                animateOnScroll('.article-card');
+                animateOnScroll('.service-card');
+                animateCardHover('.article-card');
+                animateCardHover('.service-card');
+              });
+            } else {
+              // Fallback: setTimeout pour les navigateurs sans requestIdleCallback
+              setTimeout(() => {
+                initPageAnimations();
+                animateOnScroll('.article-card');
+                animateOnScroll('.service-card');
+                animateCardHover('.article-card');
+                animateCardHover('.service-card');
+              }, 500);
+            }
           }
-        });
+        );
       }
     </script>
   </body>

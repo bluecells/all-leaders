@@ -44,7 +44,7 @@ export const GET: APIRoute = async ({ site }) => {
   // Articles (avec catégorie slug localisée)
   for (const article of articles) {
     const lang = article.data.lang as 'fr' | 'en';
-    const cat = categories.find((c) => c.id === article.data.category);
+    const cat = categories.find((c) => c.data.cat_id === article.data.category);
     if (!cat) continue;
 
     const catSlug = cat.data[`slug_${lang}`] || cat.data.slug_fr || 'ressources';
@@ -69,13 +69,13 @@ export const GET: APIRoute = async ({ site }) => {
     if (!lang) continue; // Skip accompagnements sans langue définie
 
     const catEntry = accompagnementsCategories.find((c) =>
-      lang === 'fr' ? c.data.name_fr === accompagnement.data.categorie : c.data.name_en === accompagnement.data.categorie
+      lang === 'fr' ? c.data.name_fr === accompagnement.data.category : c.data.name_en === accompagnement.data.category
     );
     const catSlug = lang === 'fr' ? (catEntry?.data.slug_fr || '') : (catEntry?.data.slug_en || '');
 
     // Skip if catSlug is empty to avoid malformed URLs
     if (!catSlug) {
-      console.warn(`Missing category slug for accompagnement: ${accompagnement.data.slug} (categorie: ${accompagnement.data.categorie})`);
+      console.warn(`Missing category slug for accompagnement: ${accompagnement.data.slug} (categorie: ${accompagnement.data.category})`);
       continue;
     }
 

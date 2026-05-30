@@ -3,26 +3,26 @@ import { block } from '@keystatic/core/content-components';
 import { fields } from '@keystatic/core';
 
 export const Accordion = block({
-  label: 'Accordéon (FAQ o sezioni espandibili)',
+  label: 'Accordéon',
 
   schema: {
     items: fields.array(
       fields.object({
         title: fields.text({
-          label: 'Titolo della sezione',
+          label: 'Titre de la section',
           validation: { isRequired: true },
         }),
 
         content: fields.text({
-          label: 'Contenuto della sezione',
+          label: 'Contenu de la section',
           multiline: true,
           validation: { isRequired: true },
           description:
-            'Testo espandibile. Supporta Markdown semplice: **grassetto**, *corsivo*, link [testo](url), \\n per a capo.',
+            'Texte expansible. Accepte Markdown simple : **gras**, *italique*, link [texte](url), \\n pour retour à la ligne.',
         }),
       }),
       {
-        label: "Voci dell'accordéon",
+        label: "Titres de l'accordéon",
         itemLabel: (props: any) => {
           const t = props.fields.title.value;
           return t ? (t.length > 30 ? t.substring(0, 27) + '…' : t) : 'Voce';
@@ -31,7 +31,7 @@ export const Accordion = block({
     ),
 
     allowMultiple: fields.checkbox({
-      label: 'Permettere più sezioni aperte contemporaneamente',
+      label: "Permet d'ouvrir plusieurs sections simultanément",
       defaultValue: true,
     }),
   },
@@ -46,18 +46,16 @@ export const Accordion = block({
         ? items.slice(0, 3)
         : [
             {
-              title: 'Come posso prenotare?',
-              content:
-                'Puoi prenotare direttamente dal sito o contattarci via email o WhatsApp.\n\n**Requisiti:** passaporto o carta d’identità valida.',
+              title: 'Quel accompagnement choisir ?',
+              content: 'Celui qui va le mieux',
             },
             {
-              title: 'Orari di check-in e check-out?',
-              content:
-                'Check-in dalle 15:00\nCheck-out entro le 11:00\nPossiamo essere flessibili su richiesta.',
+              title: 'Combien de temps ?',
+              content: "Ca dépend, s'il y a du vent.",
             },
             {
-              title: 'Accettate animali domestici?',
-              content: 'Sì, accettiamo animali di piccola taglia con un piccolo supplemento.',
+              title: 'Est-ce une thérapie ?',
+              content: 'Pas toujours.',
             },
           ];
 
