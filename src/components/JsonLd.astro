@@ -43,16 +43,6 @@ type BlogCollectionJsonLd = {
   }>;
 };
 
-type HotelRoomJsonLd = {
-  type: 'hotelRoom';
-  title: string;
-  description: string;
-  url: string;
-  image?: string;
-  capacity?: number;
-  amenities?: string[];
-};
-
 type ServiceJsonLd = {
   type: 'service';
   title: string;
@@ -66,13 +56,7 @@ type ServiceJsonLd = {
   areaServed?: string;
 };
 
-type Props =
-  | PageJsonLd
-  | BlogJsonLd
-  | FaqJsonLd
-  | BlogCollectionJsonLd
-  | HotelRoomJsonLd
-  | ServiceJsonLd;
+type Props = PageJsonLd | BlogJsonLd | FaqJsonLd | BlogCollectionJsonLd | ServiceJsonLd;
 
 const props = Astro.props;
 
@@ -160,34 +144,6 @@ function generateBlogCollectionJsonLd(data: BlogCollectionJsonLd) {
   };
 }
 
-function generateHotelRoomJsonLd(data: HotelRoomJsonLd) {
-  const jsonLd: any = {
-    '@context': 'https://schema.org',
-    '@type': 'HotelRoom',
-    name: data.title,
-    description: data.description,
-    url: data.url,
-    hotelName: SITE.NAME,
-  };
-
-  if (data.image) {
-    jsonLd.image = data.image;
-  }
-
-  if (data.capacity) {
-    jsonLd.occupancy = {
-      '@type': 'OpeningHoursSpecification',
-      maxOccupancy: data.capacity,
-    };
-  }
-
-  if (data.amenities && data.amenities.length > 0) {
-    jsonLd.amenities = data.amenities;
-  }
-
-  return jsonLd;
-}
-
 function generateServiceJsonLd(data: ServiceJsonLd) {
   return {
     '@context': 'https://schema.org',
@@ -219,9 +175,6 @@ switch (props.type) {
     break;
   case 'blogCollection':
     jsonLd = generateBlogCollectionJsonLd(props);
-    break;
-  case 'hotelRoom':
-    jsonLd = generateHotelRoomJsonLd(props);
     break;
   case 'service':
     jsonLd = generateServiceJsonLd(props);

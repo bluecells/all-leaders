@@ -5,12 +5,36 @@
     dataLayer.push(arguments);
   }
 
-  // Default DENIED (RGPD safe par défaut)
+  // Récupérer les préférences sauvegardées ou utiliser les défauts
+  function getInitialConsent() {
+    try {
+      const raw = localStorage.getItem('all-leaders-cookie-preferences');
+      if (raw) {
+        const prefs = JSON.parse(raw);
+        return {
+          analytics_storage: prefs.analytics ? 'granted' : 'denied',
+          ad_storage: prefs.marketing ? 'granted' : 'denied',
+          ad_user_data: prefs.marketing ? 'granted' : 'denied',
+          ad_personalization: prefs.marketing ? 'granted' : 'denied',
+        };
+      }
+    } catch (e) {
+      // Ignorer les erreurs de parsing
+    }
+    // Défaut: tout refusé (RGPD safe)
+    return {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    };
+  }
+
+  const initialConsent = getInitialConsent();
+
+  // Default consent (RGPD safe par défaut, ou préférences sauvegardées)
   gtag('consent', 'default', {
-    analytics_storage: 'denied',
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
+    ...initialConsent,
     wait_for_update: 500,
   });
 

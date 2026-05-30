@@ -106,12 +106,27 @@ const t =
 
     applyConsentSettings(prefs);
 
-    // 🔥 NOTIFIER LE RESTE DE L’APP
+    // 🔥 METTRE À JOUR GOOGLE CONSENT MODE
+    updateGoogleConsentMode(prefs);
+
+    // 🔥 NOTIFIER LE RESTE DE L'APP
     window.dispatchEvent(
       new CustomEvent('cookie-consent-changed', {
         detail: prefs,
       })
     );
+  }
+
+  function updateGoogleConsentMode(prefs: CookiePreferences) {
+    // Mise à jour du Google Consent Mode avec les préférences utilisateur
+    if (typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        analytics_storage: prefs.analytics ? 'granted' : 'denied',
+        ad_storage: prefs.marketing ? 'granted' : 'denied',
+        ad_user_data: prefs.marketing ? 'granted' : 'denied',
+        ad_personalization: prefs.marketing ? 'granted' : 'denied',
+      });
+    }
   }
 
   function applyConsentSettings(prefs: CookiePreferences) {
@@ -124,22 +139,6 @@ const t =
       // Charger les pixels de marketing
       loadMarketingPixels();
     }
-  }
-
-  function loadAnalytics() {
-    // Exemple: Google Analytics
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID';
-    document.head.appendChild(script);
-
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    function gtag(...args: any[]) {
-      (window as any).dataLayer.push(arguments);
-    }
-    (window as any).gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', 'YOUR_GA_ID');
   }
 
   function loadMarketingPixels() {
@@ -164,6 +163,8 @@ const t =
       banner.classList.add('hidden');
       const prefs = getCookiePreferences();
       applyConsentSettings(prefs);
+      // 🔥 Mettre à jour Google Consent Mode avec les prefs existantes
+      updateGoogleConsentMode(prefs);
       return;
     }
 
