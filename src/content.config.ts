@@ -55,6 +55,7 @@ const landingPages = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx,mdoc}', base: './src/content/landing-pages' }),
   schema: z.object({
     title: z.string(),
+    h1Title: z.string().optional(),
     slug: z.string().optional(),
     lang: z.enum(['it', 'fr', 'en']),
     seoSlug: z.string().nullish(),
@@ -167,6 +168,7 @@ const accompagnements = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx,mdoc}', base: './src/content/accompagnements' }),
   schema: z.object({
     title: z.string(),
+    h1Title: z.string().optional(),
     slug: z.string(),
     category: z.string(),
     type: z.enum(['action', 'investigation', 'immersion', 'inspiration']),

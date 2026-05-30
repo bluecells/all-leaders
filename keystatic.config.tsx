@@ -134,6 +134,10 @@ export default config({
           name: { label: 'Titre', description: 'Titre de la landing page' },
           slug: { label: 'Path physique sur le server', description: 'Différent du slug SEO' },
         }),
+        h1Title: fields.text({
+          label: 'Titre principal (H1)',
+          description: 'Si vide, le titre de la page est utilisé',
+        }),
         metaTitle: fields.text({ label: 'Meta Title' }),
         metaDescription: fields.text({ label: 'Meta Description', multiline: true }),
         content: fields.markdoc({

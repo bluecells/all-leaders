@@ -5,6 +5,9 @@
     "title": {
       "type": "string"
     },
+    "h1Title": {
+      "type": "string"
+    },
     "slug": {
       "type": "string"
     },
