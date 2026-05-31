@@ -77,6 +77,13 @@ const t =
 </div>
 
 <script>
+  // Déclaration d'augmentation de type pour window.gtag
+  declare global {
+    interface Window {
+      gtag?: (command: string, action: string, data?: any) => void;
+    }
+  }
+
   // Type pour les préférences de consentement
   interface CookiePreferences {
     essential: boolean;
@@ -119,7 +126,7 @@ const t =
 
   function updateGoogleConsentMode(prefs: CookiePreferences) {
     // Mise à jour du Google Consent Mode avec les préférences utilisateur
-    if (typeof window.gtag === 'function') {
+    if (typeof window !== 'undefined' && window.gtag && typeof window.gtag === 'function') {
       window.gtag('consent', 'update', {
         analytics_storage: prefs.analytics ? 'granted' : 'denied',
         ad_storage: prefs.marketing ? 'granted' : 'denied',
@@ -129,20 +136,25 @@ const t =
     }
   }
 
+  function loadAnalytics() {
+    // Google Analytics est chargé par GoogleTagManager après vérification du consentement
+    // Cette fonction est un placeholder pour les cas d'usage futurs
+  }
+
+  function loadMarketingPixels() {
+    // Ajouter ici les pixels de marketing (Facebook, etc.)
+  }
+
   function applyConsentSettings(prefs: CookiePreferences) {
     // Bloquer/autoriser les cookies en fonction des préférences
     if (prefs.analytics) {
-      // Charger Google Analytics ou autre service d'analytics
+      // Google Analytics est géré par GoogleTagManager
       loadAnalytics();
     }
     if (prefs.marketing) {
       // Charger les pixels de marketing
       loadMarketingPixels();
     }
-  }
-
-  function loadMarketingPixels() {
-    // Ajouter ici les pixels de marketing (Facebook, etc.)
   }
 
   function initCookieBanner() {
