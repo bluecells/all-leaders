@@ -255,7 +255,6 @@ export default config({
         jsonType: fields.select({
           label: 'Type de JSON-LD',
           description: 'Type de données structurées utilisées par JSON-LD',
-          width: '600px',
           options: [
             { label: 'Page', value: 'page' },
             { label: 'Article de blog', value: 'blog' },
@@ -263,6 +262,8 @@ export default config({
             { label: 'Accompagnement', value: 'accompagnements' },
           ],
           defaultValue: 'blog',
+          // @ts-expect-error - width is supported by Keystatic at runtime
+          width: '600px',
         }),
         publishDate: fields.date({
           label: 'Date de publication',
@@ -371,6 +372,7 @@ export default config({
             },
           ],
           defaultValue: 'Executive coaching',
+          // @ts-expect-error - validation is supported by Keystatic at runtime
           validation: { isRequired: true },
         }),
         type: fields.select({
@@ -413,6 +415,7 @@ export default config({
             PdfViewer,
             Table,
           },
+          // @ts-expect-error - validation is supported by Keystatic at runtime
           validation: { isRequired: false },
         }),
         metaTitle: fields.text({

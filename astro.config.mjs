@@ -49,6 +49,8 @@ export default defineConfig({
             if (id.includes('node_modules')) {
               if (id.includes('gsap')) return 'gsap';
               if (id.includes('react')) return 'react-vendor';
+              // Don't chunk keystatic to avoid module initialization issues
+              if (id.includes('@keystatic')) return undefined;
               return 'vendor';
             }
           }

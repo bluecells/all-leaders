@@ -128,7 +128,7 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
 
 <Layout
   title={title}
-  h1Title={h1Title}
+  {...(h1Title && { h1Title })}
   metaTitle={metaTitle}
   metaDescription={metaDescription || excerpt || ''}
   ogImage={ogImage || featuredImagePath}
@@ -136,7 +136,7 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
   publishDate={new Date(publishDate)}
   lang={lang}
   jsonType="blog"
-  alternateUrls={alternateUrls}
+  {...(alternateUrls !== undefined && { alternateUrls })}
 >
   <article class="bg-[#fdfdfd] min-h-screen my-0 md:my-8">
     <div class="flex flex-col items-center justify-center">
