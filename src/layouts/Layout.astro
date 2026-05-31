@@ -17,6 +17,7 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   title: string;
+  h1Title?: string;
   lang?: 'it' | 'fr' | 'en';
   seoSlug?: string;
   metaTitle?: string | undefined;
@@ -43,6 +44,7 @@ interface Props {
 
 const {
   title,
+  h1Title,
   lang = 'fr',
   seoSlug,
   metaTitle,
