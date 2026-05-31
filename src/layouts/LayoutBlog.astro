@@ -138,44 +138,36 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
   jsonType="blog"
   alternateUrls={alternateUrls}
 >
-  <article class="bg-[#fdfdfd] min-h-screen pb-10">
-    <div class="min-h-[82vh] md:min-h-[93vh] flex flex-col items-center justify-center">
-      <header class="relative pb-8 md:py-8">
+  <article class="bg-[#fdfdfd] min-h-screen my-0 md:my-8">
+    <div class="flex flex-col items-center justify-center">
+      <div class="relative pb-8 md:pb-2">
         <div class="max-w-4xl mx-auto px-6 text-center">
           <div
-            class="inline-block px-6 pt-0 mt-8 md:mt-0 pb-1 rounded-lg bg-limolo-green/5 border border-limolo-green/10 mb-4"
+            class="inline-block px-6 pt-0 mt-4 md:mt-0 pb-1 rounded-lg bg-limolo-green/5 border border-limolo-green/10 mb-4"
           >
             <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-limolo-green">
               {categoryLabel}
             </span>
           </div>
 
-          <h1 class="text-3xl md:text-4xl text-limolo-green leading-[1.3] mb-4">
+          <h1 class="text-3xl text-limolo-green leading-[1.3] mb-2">
             {cleanText(displayH1)}
           </h1>
 
-          <div class="flex items-center justify-center gap-4 text-gray-400">
-            <span class="h-px w-8 bg-gray-200"></span>
-            <time class="text-[11px] uppercase tracking-widest font-bold">
-              {formatDate(publishDate, lang)}
-            </time>
-            <span class="h-px w-8 bg-gray-200"></span>
-          </div>
-
           {
             excerpt && (
-              <p class="py-4 text-xl md:text-2xl text-gray-600  italic leading-relaxed max-w-3xl mx-auto">
+              <p class="py-2 text-xl md:text-2xl text-gray-600  italic leading-relaxed max-w-3xl mx-auto">
                 "{cleanText(excerpt)}"
               </p>
             )
           }
         </div>
-      </header>
+      </div>
 
       {
         featuredImagePath && (
-          <div class="w-md 2xl:w-xl max-w-xl mx-auto px-4 mb-20">
-            <div class="relative aspect-square md:aspect-4/3 rounded-xl overflow-hidden shadow-2xl shadow-limolo-green/10">
+          <div class="w-full md:max-w-[60%] mx-auto px-4 mb-2">
+            <div class="relative aspect-square md:aspect-video rounded-xl overflow-hidden shadow-2xl shadow-limolo-green/10">
               <img
                 src={featuredImagePath}
                 alt={featuredImageAlt || title}
@@ -190,6 +182,14 @@ const featuredImageAlt = getFeaturedImageAlt(featuredPhoto);
           </div>
         )
       }
+
+      <div class="flex items-center justify-center gap-4 text-gray-400">
+        <span class="h-px w-8 bg-gray-200"></span>
+        <time class="text-[11px] uppercase tracking-widest font-bold">
+          {formatDate(publishDate, lang)}
+        </time>
+        <span class="h-px w-8 bg-gray-200"></span>
+      </div>
     </div>
     <div class="prose-content max-w-4xl mx-auto">
       <slot />

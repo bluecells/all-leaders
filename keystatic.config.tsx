@@ -56,10 +56,10 @@ export default config({
                 label: fields.text({ label: 'Libellé sous-menu' }),
                 url: fields.text({ label: 'URL sous-menu' }),
               }),
-              { label: 'Sous-menu', itemLabel: (props) => props.fields.label.value || 'Sous-menu' }
+              { label: 'Sous-menu', itemLabel: (props: any) => props.fields.label.value || 'Sous-menu' }
             ),
           }),
-          { label: 'Liens du menu', itemLabel: (props) => props.fields.label.value || 'Lien' }
+          { label: 'Liens du menu', itemLabel: (props: any) => props.fields.label.value || 'Lien' }
         ),
       },
     }),
@@ -86,10 +86,10 @@ export default config({
                 label: fields.text({ label: 'Submenu label' }),
                 url: fields.text({ label: 'Submenu URL' }),
               }),
-              { label: 'Submenu', itemLabel: (props) => props.fields.label.value || 'Submenu' }
+              { label: 'Submenu', itemLabel: (props: any) => props.fields.label.value || 'Submenu' }
             ),
           }),
-          { label: 'Menu links', itemLabel: (props) => props.fields.label.value || 'Link' }
+          { label: 'Menu links', itemLabel: (props: any) => props.fields.label.value || 'Link' }
         ),
       },
     }),
@@ -114,7 +114,7 @@ export default config({
           }),
           {
             label: 'Redirects',
-            itemLabel: (props) => `${props.fields.from.value} → ${props.fields.to.value}`,
+            itemLabel: (props: any) => `${props.fields.from.value} → ${props.fields.to.value}`,
           }
         ),
       },
@@ -297,7 +297,7 @@ export default config({
           }),
           {
             label: 'Tags',
-            itemLabel: (props) => props.value || 'Tag sans nom',
+            itemLabel: (props: any) => props.value || 'Tag sans nom',
           }
         ),
         excerpt: fields.text({ label: 'Résumé', validation: { isRequired: false } }),
