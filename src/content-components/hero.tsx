@@ -8,35 +8,35 @@ export const Hero = block({
 
   schema: {
     title: fields.text({
-      label: 'Title',
-      defaultValue: 'Titolo Principale',
+      label: 'Titre',
+      defaultValue: 'Titre principae',
     }),
 
     subtitle: fields.text({
-      label: 'Subtitle',
-      defaultValue: 'Titolo Secondario',
+      label: 'Sous-titre',
+      defaultValue: 'Titre secondaire',
     }),
 
     ctaText: fields.text({
-      label: 'CTA Text',
+      label: 'Texte CTA',
       defaultValue: 'CTA',
     }),
 
     ctaLink: fields.text({
-      label: 'CTA Link',
+      label: 'Lien CTA',
       defaultValue: '/faq-it-limolo/',
     }),
 
     secondaryLinkText: fields.text({
-      label: 'Secondary Link Text',
+      label: 'Texte Lien secondaire',
     }),
 
     secondaryLinkUrl: fields.text({
-      label: 'Secondary Link URL',
+      label: 'URL Lien secondaire',
     }),
 
     backgroundImage: fields.image({
-      label: 'Background Image',
+      label: 'Image de fond',
       directory: 'public/images/hero',
       publicPath: '/images/hero/',
     }),
@@ -46,12 +46,12 @@ export const Hero = block({
     }),
 
     backgroundPositionX: fields.text({
-      label: 'Background Position X',
+      label: 'Position X du fond',
       defaultValue: 'bottom',
     }),
 
     minWidth: fields.text({
-      label: 'Min Width',
+      label: 'Largeur minimale',
       defaultValue: '300px',
     }),
   },

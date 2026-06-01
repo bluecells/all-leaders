@@ -8,41 +8,41 @@ export const Carousel = block({
 
   schema: {
     title: fields.text({
-      label: 'Titolo',
-      defaultValue: 'Titolo del carousel',
+      label: 'Titre',
+      defaultValue: 'Titre du carousel',
     }),
     images: fields.array(
       fields.object({
         image: fields.image({
-          label: 'Carousel Image',
+          label: 'Image Carousel ',
           directory: 'public/images/carousel',
           publicPath: '/images/carousel/',
         }),
         alt: fields.text({ label: 'Alt Text' }),
       }),
       {
-        label: 'Carousel Images',
+        label: 'Images Carousel',
         itemLabel: (props) => props.fields.alt.value || 'Carousel Image',
       }
     ),
 
     height: fields.text({
-      label: 'Height',
+      label: 'Hauteur',
       defaultValue: '30vh',
     }),
 
     speed: fields.number({
-      label: 'Speed (ms)',
+      label: 'Vitesse (ms)',
       defaultValue: 5000,
     }),
 
     background: fields.text({
-      label: 'Background',
+      label: 'Fond',
       defaultValue: 'transparent',
     }),
 
     spacing: fields.text({
-      label: 'Spacing',
+      label: 'Espacement',
       defaultValue: '1rem',
     }),
   },

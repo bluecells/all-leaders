@@ -3,34 +3,34 @@ import { block } from '@keystatic/core/content-components';
 import { fields } from '@keystatic/core';
 
 export const NotaBene = block({
-  label: 'Nota Bene / Avviso / Importante',
+  label: 'Nota Bene',
 
   schema: {
     title: fields.text({
-      label: 'Titolo (opzionale)',
-      description: 'Es: "Attenzione", "Info utili", "Da sapere"',
+      label: 'Titre (optionnel)',
+      description: 'Ex : "Attention", "Info utiles", "A savoir"',
     }),
 
     content: fields.text({
-      label: 'Contenuto del blocco',
+      label: 'Contenu du bloc',
       multiline: true,
       validation: { isRequired: true },
       description:
-        'Testo del messaggio. Puoi usare Markdown semplice: **grassetto**, *corsivo*, link [testo](url), ecc.',
+        'Texte du message. Accepte du Markdown simple : **gras**, *italique*, lien [texte](url), ecc.',
     }),
 
     type: fields.select({
-      label: 'Tipo di nota',
+      label: "Type d'alerte",
       options: [
-        { label: 'Info (verde)', value: 'info' },
-        { label: 'Avviso (giallo)', value: 'warning' },
-        { label: 'Importante (rosso)', value: 'important' },
+        { label: 'Info (vert)', value: 'info' },
+        { label: 'Avis (jaune)', value: 'warning' },
+        { label: 'Important (rouge)', value: 'important' },
       ],
       defaultValue: 'info',
     }),
 
     class: fields.text({
-      label: 'Classe CSS aggiuntiva (opzionale)',
+      label: 'Classes CSS supplémentaires (optionnelles)',
     }),
   },
 

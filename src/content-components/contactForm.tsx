@@ -4,27 +4,27 @@ import { fields } from '@keystatic/core';
 import type { ReactNode } from 'react';
 
 export const ContactForm = wrapper({
-  label: 'Formulario di contatto (via Formspree)',
+  label: 'Formulaire de contact (via Formspree)',
 
   schema: {
     formId: fields.text({
-      label: 'Formspree ID',
+      label: 'ID Formspree',
       description: "Esempio: xeeljwrl (la parte dopo /f/ nell'URL Formspree)",
       validation: { isRequired: true },
     }),
 
     formPosition: fields.select({
-      label: 'Posizione del formulario',
+      label: 'Position du formulaire',
       options: [
-        { label: 'A sinistra (contenuto a destra)', value: 'left' },
-        { label: 'A destra (contenuto a sinistra)', value: 'right' },
+        { label: 'A gauche (contenu à droite)', value: 'left' },
+        { label: 'A droite (contenu à gauche)', value: 'right' },
       ],
       defaultValue: 'right',
     }),
 
     buttonText: fields.text({
-      label: 'Testo del pulsante',
-      defaultValue: 'Invia messaggio',
+      label: 'Texte du bouton',
+      defaultValue: 'Envoyer',
     }),
   },
 

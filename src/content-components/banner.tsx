@@ -8,35 +8,35 @@ export const Banner = block({
 
   schema: {
     title: fields.text({
-      label: 'Titolo',
+      label: 'Titre',
       validation: { isRequired: true },
     }),
 
     subtitle: fields.text({
-      label: 'Sottotitolo',
+      label: 'Sous-titre',
     }),
 
     background: fields.text({
-      label: 'Sfondo',
+      label: 'Fond',
       defaultValue: 'white',
     }),
 
     height: fields.text({
-      label: 'Altezza',
+      label: 'Hauteur',
       defaultValue: '400px',
     }),
 
     ctaText: fields.text({
-      label: 'Testo CTA',
+      label: 'Texte CTA',
       defaultValue: 'CTA',
     }),
     ctaLink: fields.text({
-      label: 'Link CTA',
+      label: 'Lien CTA',
       defaultValue: '#',
     }),
 
     fullBleed: fields.checkbox({
-      label: 'Piena larghezza',
+      label: 'Pleine largeur',
       defaultValue: false,
     }),
   },
