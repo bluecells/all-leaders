@@ -27,8 +27,16 @@ PROPER_NOUNS = {
     'David', 'Marquet', 'Jean', 'Riou', 'Marie', 'Emmanuelle', 'Py',
     'Christian', 'Clot', 'Johnny', 'Gauthier', 'Bril', 'Vincent', 'Lenhardt',
     'OpinionWay', 'All', 'Leaders', 'Initiative', 'YouTube', 'Marine',
-    'France', 'World', 'Champion', 'Mondiale', 'Monde', 'Navy',
-    'Google', 'Facebook', 'LinkedIn', 'Twitter'
+    'France', 'Navy',
+    'Google', 'Facebook', 'LinkedIn', 'Twitter', 'HBR'
+}
+
+# Words that should never be capitalized (common words to skip)
+SKIP_WORDS = {
+    'À', 'à', 'Et', 'et', 'Ou', 'ou', 'Mais', 'mais', 'Donc', 'donc',
+    'Car', 'car', 'Ni', 'ni', 'Le', 'le', 'La', 'la', 'Les', 'les',
+    'De', 'de', 'Du', 'du', 'Des', 'des', 'Un', 'un', 'Une', 'une',
+    'Que', 'que', 'Qui', 'qui', 'Dont', 'dont', 'Où', 'où'
 }
 
 def normalize_title(title: str) -> str:
@@ -59,16 +67,27 @@ def normalize_title(title: str) -> str:
         # It's a word - normalize it
         upper_part = part.upper()
 
+        # Always lowercase version for checking
+        lower_part = part.lower()
+
         if upper_part in ACRONYMS:
+            # Keep acronyms uppercase
             result.append(upper_part)
-        elif part.title() in PROPER_NOUNS or part in PROPER_NOUNS:
+        elif part in PROPER_NOUNS or (len(part) > 1 and part[0].upper() + part[1:].lower() in PROPER_NOUNS):
+            # Keep proper nouns with first letter uppercase
             result.append(part[0].upper() + part[1:].lower())
         elif first_word and not after_separator:
+            # First word: capitalize first letter only
             result.append(part[0].upper() + part[1:].lower())
             first_word = False
-        else:
+        elif lower_part in SKIP_WORDS or lower_part.rstrip('s?!,;:') in SKIP_WORDS:
+            # Skip small words (articles, prepositions, etc.)
             result.append(part.lower())
-            after_separator = False
+        else:
+            # Regular word: lowercase
+            result.append(part.lower())
+
+        after_separator = False
 
     return ''.join(result)
 
