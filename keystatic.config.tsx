@@ -25,7 +25,7 @@ export default config({
       },
   ...(isProd && {
     cloud: {
-      project: 'blue-cells-editors/ali',
+      project: 'blue-cells-editors/all-leaders',
     },
   }),
 
@@ -53,7 +53,10 @@ export default config({
                 label: fields.text({ label: 'Libellé sous-menu' }),
                 url: fields.text({ label: 'URL sous-menu' }),
               }),
-              { label: 'Sous-menu', itemLabel: (props: any) => props.fields.label.value || 'Sous-menu' }
+              {
+                label: 'Sous-menu',
+                itemLabel: (props: any) => props.fields.label.value || 'Sous-menu',
+              }
             ),
           }),
           { label: 'Liens du menu', itemLabel: (props: any) => props.fields.label.value || 'Lien' }
