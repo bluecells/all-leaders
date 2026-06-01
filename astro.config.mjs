@@ -16,7 +16,7 @@ export default defineConfig({
     domains: [],
     remotePatterns: [],
     service: {
-      entrypoint: 'astro/assets/services/sharp'
+      entrypoint: 'astro/assets/services/sharp',
     },
     format: ['webp'],
     quality: {
@@ -45,24 +45,28 @@ export default defineConfig({
       rollupOptions: {
         output: {
           manualChunks: (id) => {
-            // Separate vendor chunks for better caching
+            // 1. ISOLER KEYSTATIC ET SES DÉPENDANCES DIRECTES
+            // Keystatic utilise beaucoup de sous-modules (slate, embla, etc.).
+            // On les force à s'initialiser ensemble pour éviter le "Cannot access before initialization"
+            if (id.includes('@keystatic') || id.includes('keystatic')) {
+              return 'keystatic-vendor';
+            }
+
+            // 2. Le reste de vos vendors existants
             if (id.includes('node_modules')) {
               if (id.includes('gsap')) return 'gsap';
               if (id.includes('react')) return 'react-vendor';
-              // Don't chunk keystatic to avoid module initialization issues
-              if (id.includes('@keystatic')) return undefined;
               return 'vendor';
             }
-          }
-        }
-      }
+          },
+        },
+      },
     },
     ssr: {
       noExternal: ['@keystatic/astro', '@keystatic/core'],
     },
     optimizeDeps: {
-      include: ['@keystatic/core', '@keystatic/astro'],
-      exclude: ['@astrojs/node'],
+      exclude: ['@astrojs/node', '@keystatic/core', '@keystatic/astro'],
     },
   },
 });
