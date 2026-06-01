@@ -1,20 +1,17 @@
 import { config, fields, collection, singleton } from '@keystatic/core';
-import {
-  Banner,
-  Carousel,
-  Duo,
-  Hero,
-  WideImage,
-  CtaButton,
-  Strip,
-  NotaBene,
-  YouTube,
-  Accordion,
-  Quadrifoglio,
-  PdfViewer,
-  Table,
-} from 'src/content-components/index.ts';
-// New imports for content components
+import { Banner } from './src/content-components/banner';
+import { Carousel } from './src/content-components/carousel';
+import { Duo } from './src/content-components/duo';
+import { Hero } from './src/content-components/hero';
+import { WideImage } from './src/content-components/wideImage';
+import { CtaButton } from './src/content-components/ctaButton';
+import { Strip } from './src/content-components/strip';
+import { NotaBene } from './src/content-components/notaBene';
+import { YouTube } from './src/content-components/youTube';
+import { Accordion } from './src/content-components/accordion';
+import { Quadrifoglio } from './src/content-components/quadrifoglio';
+import { PdfViewer } from './src/content-components/pdfViewer';
+import { Table } from './src/content-components/table';
 
 const isProd = process.env.NODE_ENV === 'production';
 
