@@ -42,27 +42,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
     build: {
       cssCodeSplit: true,
-      rollupOptions: {
-        output: {
-          manualChunks: (id) => {
-            // Separate vendor chunks for better caching
-            if (id.includes('node_modules')) {
-              if (id.includes('gsap')) return 'gsap';
-              if (id.includes('react')) return 'react-vendor';
-              // Don't chunk keystatic to avoid module initialization issues
-              if (id.includes('@keystatic')) return undefined;
-              return 'vendor';
-            }
-          }
-        }
-      }
-    },
-    ssr: {
-      noExternal: ['@keystatic/astro', '@keystatic/core'],
-    },
-    optimizeDeps: {
-      include: ['@keystatic/core', '@keystatic/astro'],
-      exclude: ['@astrojs/node'],
     },
   },
 });
