@@ -10,6 +10,7 @@ import NewsletterPopup from '@/components/NewsletterPopup.astro';
 import CookieConsent from '@/components/CookieConsent.astro';
 import GoogleConsentMode from '@/components/GoogleConsentMode.astro';
 import GoogleTagManager from '@/components/GoogleTagManager.astro';
+import AhrefsAnalytics from '@/components/AhrefsAnalytics.astro';
 import { getFaqQuestions } from '@/utils/faq';
 import type { AlternateUrls } from '@/utils/hreflang';
 import type { JsonLdType } from '@/types/jsonLd';
@@ -179,8 +180,9 @@ const finalOgImage = ogImage || undefined;
     <Footer lang={pageLang} />
     <SeoAnalyzer keyword={keyword} />
     <CookieConsent lang={pageLang} />
-    <GoogleConsentMode />
-    <GoogleTagManager />
+    <!-- <GoogleConsentMode />
+    <GoogleTagManager /> -->
+    <AhrefsAnalytics />
     {isHomepage && <NewsletterPopup lang={pageLang} />}
 
     <script>
