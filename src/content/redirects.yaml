@@ -615,6 +615,105 @@ redirects:
     note: 'Category filter: inspiration → resources with filter active (302 temporary during transition)'
 
   # ========================================
+  # ========================================
+  # PHASE 6: Quick wins GSC 404 (Mai-Juin 2026)
+  # ========================================
+
+  # Team members EN - ancien /our-team/ → /team-all-leaders/
+  - from: /en/our-team/marie-emmanuelle-py
+    to: /en/team-all-leaders/marie-emmanuelle-py
+    status: '301'
+    note: 'GSC 404 - Ancienne structure our-team → team-all-leaders'
+
+  - from: /en/our-team/pierre-etienne-bost
+    to: /en/team-all-leaders/pierre-etienne-bost
+    status: '301'
+    note: 'GSC 404 - Ancienne structure our-team → team-all-leaders'
+
+  # Jerome Bouteiller - pas de page individuelle
+  - from: /equipe-all-leaders/jerome-bouteiller
+    to: /equipe-all-leaders
+    status: '301'
+    note: 'GSC 404 - Pas de page individuelle pour Jerome → page équipe'
+
+  # Resources listing EN
+  - from: /en/resources-all-our-in-depth-articles
+    to: /en/resources
+    status: '301'
+    note: 'GSC 404 - Ancien slug ressources → nouveau'
+
+  # Articles EN avec "ressources" au lieu de "resources"
+  - from: /en/ressources/ideas/managerial-courage-for-and-through-psychological-safety
+    to: /en/resources/ideas/managerial-courage-for-and-through-psychological-safety
+    status: '301'
+    note: 'GSC 404 - FR "ressources" → EN "resources"'
+
+  - from: /en/ressources/ideas/psychological-safety-continuum
+    to: /en/resources/ideas/psychological-safety-continuum
+    status: '301'
+    note: 'GSC 404 - FR "ressources" → EN "resources"'
+
+  # Author pages EN → team listing
+  - from: /en/ressources/author/pierre-etienne-bost
+    to: /en/team-all-leaders
+    status: '301'
+    note: 'GSC 404 - Pages auteur → team listing'
+
+  - from: /en/author/marie-emmanuelle-py
+    to: /en/team-all-leaders
+    status: '301'
+    note: 'GSC 404 - Pages auteur → team listing'
+
+  # Thématiques EN obsolète
+  - from: /en/thematiques/solutions-metier-catalogue
+    to: /en/services
+    status: '301'
+    note: 'GSC 404 - Ancienne structure thématiques → services'
+
+  # Articles avec catégorie WP "non-classifiee" → catégorie correcte
+  - from: /ressources/non-classifiee/appreciative-inquiry-a-la-recherche-des-forces-valeurs-et-comportements-gagnants-dune-organisation
+    to: /ressources/outils/appreciative-inquiry-a-la-recherche-des-forces-valeurs-et-comportements-gagnants-dune-organisation
+    status: '301'
+    note: 'GSC 404 - Ancienne catégorie WP non-classifiee → outils (correct)'
+
+  # Services FR avec ancienne catégorie "coaching-en-leadership" → "leadership-development"
+  - from: /accompagnements/coaching-en-leadership/leadership-feminin
+    to: /accompagnements/leadership-development/leadership-feminin
+    status: '301'
+    note: 'GSC 404 - Ancienne catégorie coaching-en-leadership → leadership-development'
+
+  # Articles FR qui existent mais pas dans redirects.yaml
+  - from: /enaction-theorie-de-la-cognition
+    to: /ressources/glossaire/enaction-theorie-de-la-cognition
+    status: '301'
+    note: 'GSC 404 - Article racine → /ressources/glossaire/'
+
+  - from: /retraite-5-sens
+    to: /ressources/inspiration/retraite-5-sens
+    status: '301'
+    note: 'GSC 404 - Article racine → /ressources/inspiration/'
+
+  - from: /organiser-lequilibre-entre-exploration-et-execution-en-temps-de-travail-a-distance
+    to: /ressources/idees/organiser-lequilibre-entre-exploration-et-execution-en-temps-de-travail-a-distance
+    status: '301'
+    note: 'GSC 404 - Article racine → /ressources/idees/'
+
+  - from: /nouvelle-ere-du-travail-phygital
+    to: /ressources/idees/nouvelle-ere-du-travail-phygital
+    status: '301'
+    note: 'GSC 404 - Article racine → /ressources/idees/'
+
+  - from: /manque-de-cohesion-crise-risque-interne-majeur
+    to: /ressources/idees/manque-de-cohesion-crise-risque-interne-majeur
+    status: '301'
+    note: 'GSC 404 - Article racine → /ressources/idees/'
+
+  # Inspirations avec "s" → sans "s" (typo courante)
+  - from: /ressources/inspirations/observatoire-du-cout-des-conflits
+    to: /ressources/idees/observatoire-du-cout-des-conflits
+    status: '301'
+    note: 'GSC 404 - Typo "inspirations" + article en idees'
+
   # www redirect (HTTP to HTTPS, www to non-www)
   # ========================================
   - from: http://www.all-leaders.fr
