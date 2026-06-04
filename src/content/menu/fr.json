@@ -8,8 +8,8 @@
       "submenu": []
     },
     {
-      "label": "FAQ",
-      "url": "/faq",
+      "label": "Ressources",
+      "url": "/ressources",
       "type": "link",
       "hasSubmenu": false,
       "submenu": []
