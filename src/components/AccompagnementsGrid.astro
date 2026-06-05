@@ -18,10 +18,10 @@ const [allAccompagnements, allCategories] = await Promise.all([
 ]);
 
 // 2. Préparation du dictionnaire de catégories pour un accès rapide (O(1))
+// Note: All accompagnements store their category using the French name, so we always use name_fr as the key
 const categoryMap = new Map();
 allCategories.forEach(cat => {
-  const name = lang === 'fr' ? cat.data.name_fr : cat.data.name_en;
-  categoryMap.set(name, {
+  categoryMap.set(cat.data.name_fr, {
     order: cat.data.order ?? 999,
     description: lang === 'fr' ? cat.data.description_fr : cat.data.description_en,
     slug: lang === 'fr' ? cat.data.slug_fr : cat.data.slug_en
