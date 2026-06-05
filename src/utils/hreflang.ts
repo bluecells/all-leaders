@@ -206,8 +206,9 @@ export async function findAlternateUrls(
     if (matchingEntry) {
       // Pour les accompagnements, besoin de trouver le slug de catégorie
       if (entryType === 'accompagnement') {
+        // Always match against name_fr since all accompagnements store their category in French
         const catEntry = collections.accompagnementsCategories?.find((c) =>
-          lang === 'fr' ? c.data.name_fr === matchingEntry.data.category : c.data.name_en === matchingEntry.data.category
+          c.data.name_fr === matchingEntry.data.category
         );
         const catSlug = lang === 'fr' ? catEntry?.data.slug_fr : catEntry?.data.slug_en;
 
