@@ -68,8 +68,9 @@ export const GET: APIRoute = async ({ site }) => {
     const lang = accompagnement.data.lang as 'fr' | 'en' | undefined;
     if (!lang) continue; // Skip accompagnements sans langue définie
 
+    // Always match against name_fr since all accompagnements store their category in French
     const catEntry = accompagnementsCategories.find((c) =>
-      lang === 'fr' ? c.data.name_fr === accompagnement.data.category : c.data.name_en === accompagnement.data.category
+      c.data.name_fr === accompagnement.data.category
     );
     const catSlug = lang === 'fr' ? (catEntry?.data.slug_fr || '') : (catEntry?.data.slug_en || '');
 
