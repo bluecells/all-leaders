@@ -19,6 +19,7 @@ export default config({
   storage: isProd
     ? {
         kind: 'github',
+        repo: 'bluecells/all-leaders',
       }
     : {
         kind: 'local',
