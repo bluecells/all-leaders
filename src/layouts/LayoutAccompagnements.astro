@@ -19,6 +19,9 @@ const displayH1 = data.h1Title || data.title;
 // Rendre le contenu Markdoc
 const rendered = await render(accompagnement);
 const Content = rendered.Content;
+
+// Path image compatible Keystatic
+const imageUrl = `/images/services/${data.image}`;
 ---
 
 <Layout
@@ -66,7 +69,7 @@ const Content = rendered.Content;
           data.image && (
             <div class="accompagnement-hero mb-8 mx-auto max-w-xl">
               <img
-                src={data.image}
+                src={imageUrl}
                 alt={data.title}
                 class="aspect-6/4 md:aspect-21/11 rounded-lg shadow-lg object-cover"
                 style="max-height: 400px;"
