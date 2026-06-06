@@ -18,12 +18,16 @@ const isProd = process.env.NODE_ENV === 'production';
 export default config({
   storage: isProd
     ? {
-        kind: 'github',
-        repo: 'bluecells/all-leaders',
+        kind: 'cloud',
       }
     : {
         kind: 'local',
       },
+  ...(isProd && {
+    cloud: {
+      project: 'blue-cells-editors/all-leaders',
+    },
+  }),
 
   singletons: {
     menuFR: singleton({
