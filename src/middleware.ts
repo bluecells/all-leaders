@@ -15,7 +15,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
     if (forwardedHost && forwardedProto) {
       const correctUrl = new URL(context.url);
       correctUrl.protocol = forwardedProto;
-      correctUrl.host = forwardedHost;
+      correctUrl.hostname = forwardedHost;
+      correctUrl.port = ''; // Supprimer le port explicitement
 
       const newRequest = new Request(correctUrl.toString(), {
         method: context.request.method,
