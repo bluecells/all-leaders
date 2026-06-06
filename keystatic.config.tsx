@@ -24,7 +24,7 @@ export default config({
     : {
         kind: 'local',
       },
-})
+}),
 
   singletons: {
     menuFR: singleton({
