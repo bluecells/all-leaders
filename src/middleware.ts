@@ -2,6 +2,39 @@ import { defineMiddleware } from 'astro:middleware';
 import { getCollection } from 'astro:content';
 
 export const onRequest = defineMiddleware(async (context, next) => {
+  // Fix Keystatic OAuth redirect_uri pour Koyeb/production
+  // Workaround pour https://github.com/Thinkmill/keystatic/issues/1022
+  const isOAuthRoute =
+    context.url.pathname.includes('/github/oauth/') ||
+    context.url.pathname.includes('/github/login');
+
+  if (isOAuthRoute) {
+    const forwardedHost = context.request.headers.get('x-forwarded-host');
+    const forwardedProto = context.request.headers.get('x-forwarded-proto');
+
+    if (forwardedHost && forwardedProto) {
+      const correctUrl = new URL(context.url);
+      correctUrl.protocol = forwardedProto;
+      correctUrl.host = forwardedHost;
+
+      const newRequest = new Request(correctUrl.toString(), {
+        method: context.request.method,
+        headers: context.request.headers,
+        body: context.request.body,
+      });
+
+      Object.defineProperty(context, 'url', {
+        value: correctUrl,
+        writable: false
+      });
+
+      Object.defineProperty(context, 'request', {
+        value: newRequest,
+        writable: false
+      });
+    }
+  }
+
   const { pathname, hostname, protocol } = context.url;
 
   // Redirection 301 www → non-www (HTTP et HTTPS)
