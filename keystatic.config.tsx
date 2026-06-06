@@ -20,6 +20,9 @@ export default config({
     ? {
         kind: 'github',
         repo: 'bluecells/all-leaders',
+        ...(process.env.KEYSTATIC_GITHUB_REDIRECT_URI && {
+          redirectUri: process.env.KEYSTATIC_GITHUB_REDIRECT_URI,
+        }),
       }
     : {
         kind: 'local',

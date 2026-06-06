@@ -848,77 +848,7 @@ sitemap({
 
 ### 9.1 Hébergement
 
-**Hébergeur:** O2Switch
-
-- **Host:** chaise.o2switch.net
-- **User:** boje2508
-- **Path:** `/home2/boje2508/public_html/limolo.bluecells.eu` ⚠️
-
-**⚠️ Note:** Le chemin de déploiement contient "limolo" - vérifier si c'est correct ou si le chemin doit être mis à jour pour All Leaders.
-
-**Mode:** Application Node.js avec Passenger
-
-### 9.2 Script de déploiement (deploy.sh)
-
-**Fichier:** `/deploy.sh` à la racine
-
-**Processus en 5 étapes:**
-
-**1. Build local**
-
-```bash
-rm -rf dist/
-npm run build
-```
-
-**2. Préparation package.json**
-
-```bash
-# Création d'une version allégée sans devDependencies
-# Garde uniquement les dependencies de production
-```
-
-**3. Transfert rsync**
-
-```bash
-rsync -avz --delete \
-  dist/ \
-  src/content/ \
-  public/ \
-  app.js \
-  package.json \
-  keystatic.config.tsx \
-  user@host:path/
-```
-
-**Fichiers transférés:**
-
-- `dist/` - Build Astro
-- `src/content/` - Collections Keystatic
-- `public/` - Assets statiques
-- `app.js` - Point d'entrée Node
-- `package.json` - Dépendances
-- `keystatic.config.tsx` - Config Keystatic
-
-**4. Installation modules**
-
-```bash
-ssh user@host 'cd path && npm install --production'
-```
-
-**5. Redémarrage**
-
-```bash
-ssh user@host 'touch path/tmp/restart.txt'
-```
-
-Le fichier `tmp/restart.txt` déclenche le redémarrage de l'application Passenger.
-
-**Usage:**
-
-```bash
-./deploy.sh
-```
+Sur Koyeb
 
 ### 9.3 API Routes
 
