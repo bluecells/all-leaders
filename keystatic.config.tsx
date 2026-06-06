@@ -18,11 +18,12 @@ const isProd = process.env.NODE_ENV === 'production';
 export default config({
   storage: isProd
     ? {
-        kind: 'cloud',
+        kind: 'github',
       }
     : {
         kind: 'local',
       },
+
   singletons: {
     menuFR: singleton({
       label: 'Menu 🇫🇷',
