@@ -15,14 +15,22 @@ import { Table } from './src/content-components/table';
 
 const isProd = process.env.NODE_ENV === 'production';
 
+// Avertissement si mode local avec images GitHub potentiellement incohérentes
+if (!isProd && process.env.WARN_LOCAL_GITHUB_SYNC !== 'false') {
+  console.warn(`
+⚠️  Mode développement local détecté.
+    Les images sont gérées localement et ne seront PAS synchronisées avec GitHub.
+    Pour éditer du contenu avec images, utilisez l'interface production: https://all-leaders.fr/keystatic
+
+    Pour masquer cet avertissement: WARN_LOCAL_GITHUB_SYNC=false
+  `);
+}
+
 export default config({
   storage: isProd
     ? {
         kind: 'github',
         repo: 'bluecells/all-leaders',
-        ...(process.env.KEYSTATIC_GITHUB_REDIRECT_URI && {
-          redirectUri: process.env.KEYSTATIC_GITHUB_REDIRECT_URI,
-        }),
       }
     : {
         kind: 'local',
@@ -149,7 +157,7 @@ export default config({
             orderedList: true,
             link: true,
             divider: true,
-            image: { directory: 'public/images/content', publicPath: '/images/content/' },
+            image: { directory: 'public/images/landing-pages', publicPath: '/images/landing-pages/' },
           },
           components: {
             Banner,
@@ -188,15 +196,15 @@ export default config({
         }),
         ogImage: fields.image({
           label: 'Image Open Graph',
-          directory: 'public/images/content/',
-          publicPath: '/images/content/',
+          directory: 'public/images/landing-pages/',
+          publicPath: '/images/landing-pages/',
           validation: { isRequired: false },
         }),
         featuredPhoto: fields.object({
           image: fields.image({
             label: 'Image mise en avant',
-            directory: 'public/images/content/',
-            publicPath: '/images/content/',
+            directory: 'public/images/landing-pages/',
+            publicPath: '/images/landing-pages/',
             validation: { isRequired: false },
           }),
           alt: fields.text({
@@ -247,8 +255,8 @@ export default config({
         ogImage: fields.image({
           label: 'Image Open Graph',
           description: "L'image affichée sur Facebook, Whatsapp, X...",
-          directory: 'public/images/content/',
-          publicPath: '/images/content/',
+          directory: 'public/images/articles/',
+          publicPath: '/images/articles/',
           validation: { isRequired: false },
         }),
         jsonType: fields.select({
@@ -273,8 +281,8 @@ export default config({
         featuredPhoto: fields.object({
           image: fields.image({
             label: 'Image mise en avant',
-            directory: 'public/images/content/',
-            publicPath: '/images/content/',
+            directory: 'public/images/articles/',
+            publicPath: '/images/articles/',
             validation: { isRequired: false },
           }),
           alt: fields.text({
@@ -310,7 +318,7 @@ export default config({
             heading: [2, 3, 4],
             link: true,
             divider: true,
-            image: { directory: 'public/images/content', publicPath: '/images/content/' },
+            image: { directory: 'public/images/articles', publicPath: '/images/articles/' },
           },
           components: {
             Banner,
@@ -397,7 +405,7 @@ export default config({
             heading: [2, 3, 4],
             link: true,
             divider: true,
-            image: { directory: 'public/images/content', publicPath: '/images/content/' },
+            image: { directory: 'public/images/accompagnements', publicPath: '/images/accompagnements/' },
           },
           components: {
             Banner,
@@ -429,8 +437,8 @@ export default config({
         }),
         image: fields.image({
           label: 'Image',
-          directory: 'public/images/services/',
-          publicPath: '/images/services/',
+          directory: 'public/images/accompagnements/',
+          publicPath: '/images/accompagnements/',
           validation: { isRequired: true },
         }),
         lang: fields.select({
@@ -483,7 +491,7 @@ export default config({
             heading: [2, 3, 4],
             link: true,
             divider: true,
-            image: { directory: 'public/images/content', publicPath: '/images/content/' },
+            image: { directory: 'public/images/faq', publicPath: '/images/faq/' },
           },
           components: { Duo, YouTube },
         }),

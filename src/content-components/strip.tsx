@@ -10,8 +10,8 @@ export const Strip = block({
       fields.object({
         image: fields.image({
           label: 'Image',
-          directory: 'public/images/strip',
-          publicPath: '/images/strip/',
+          directory: 'public/images/content',
+          publicPath: '/images/content/',
           validation: { isRequired: true },
         }),
         alt: fields.text({

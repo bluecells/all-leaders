@@ -30,8 +30,8 @@ export const Grid = block({
         }),
         media: fields.image({
           label: 'Media (icona o immagine)',
-          directory: 'public/images/grid',
-          publicPath: '/images/grid/',
+          directory: 'public/images/content',
+          publicPath: '/images/content/',
         }),
         isIcon: fields.checkbox({
           label: 'Trattare come icona (più piccola e centrata)',

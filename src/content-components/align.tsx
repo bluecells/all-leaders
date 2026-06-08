@@ -4,16 +4,16 @@ import { fields } from '@keystatic/core';
 import type { ReactNode } from 'react';
 
 export const Align = wrapper({
-  label: 'Allineamento testo / contenuto',
+  label: 'Alignement texte/contenu',
 
   schema: {
     value: fields.select({
-      label: 'Allineamento',
-      description: "Scegli come allineare il contenuto all'interno del blocco",
+      label: 'Alignement',
+      description: "Sélectionnez comment aligner le contenu à l'intérieur du bloc",
       options: [
-        { label: 'Sinistra (default)', value: 'left' },
-        { label: 'Centrato', value: 'center' },
-        { label: 'Destra', value: 'right' },
+        { label: 'Gauche (default)', value: 'left' },
+        { label: 'Centré', value: 'center' },
+        { label: 'Droite', value: 'right' },
       ],
       defaultValue: 'left',
     }),
@@ -33,7 +33,7 @@ export const Align = wrapper({
         }}
       >
         <div style={{ fontWeight: 'bold', marginBottom: '0.8rem', color: '#555' }}>
-          Allineamento: {align === 'left' ? 'Sinistra' : align === 'center' ? 'Centrato' : 'Destra'}
+          Alignement: {align === 'left' ? 'Gauche' : align === 'center' ? 'Centré' : 'Droite'}
         </div>
 
         <div
@@ -47,9 +47,7 @@ export const Align = wrapper({
           }}
           className={`align-${align}`}
         >
-          {children || (
-            <em style={{ color: '#999' }}>Qui apparirà il contenuto allineato ({align})</em>
-          )}
+          {children || <em style={{ color: '#999' }}>Contenu alligné ({align})</em>}
         </div>
       </div>
     );

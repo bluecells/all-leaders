@@ -9,7 +9,7 @@ export const ContactForm = wrapper({
   schema: {
     formId: fields.text({
       label: 'ID Formspree',
-      description: "Esempio: xeeljwrl (la parte dopo /f/ nell'URL Formspree)",
+      description: "Exemple: xeeljwrl (la partie après /f/ dans l'URL Formspree)",
       validation: { isRequired: true },
     }),
 
@@ -30,7 +30,7 @@ export const ContactForm = wrapper({
 
   ContentView: ({ value, children }: { value: any; children: ReactNode }) => {
     const position = value?.formPosition || 'right';
-    const btnText = value?.buttonText || 'Invia messaggio';
+    const btnText = value?.buttonText || 'Envoyer';
 
     return (
       <div
@@ -80,7 +80,7 @@ export const ContactForm = wrapper({
             >
               {children || (
                 <em style={{ color: '#999' }}>
-                  Qui apparirà il tuo contenuto Markdown (testo, titoli, elenchi...)
+                  Ici sera affiché le contenu Markdown (texte, titres, listes...)
                 </em>
               )}
             </div>
@@ -98,7 +98,7 @@ export const ContactForm = wrapper({
             }}
           >
             <div style={{ color: '#555', fontStyle: 'italic', marginBottom: '1rem' }}>
-              Formulario di contatto (Formspree ID: {value?.formId || '(non definito)'})
+              Formulaire de contact (Formspree ID: {value?.formId || '(non défini)'})
             </div>
 
             <form
@@ -122,7 +122,7 @@ export const ContactForm = wrapper({
                 </label>
                 <input
                   type="text"
-                  placeholder="Il tuo nome"
+                  placeholder="Votre nom"
                   style={{
                     padding: '0.875rem',
                     border: '1px solid #ddd',
@@ -147,7 +147,7 @@ export const ContactForm = wrapper({
                 </label>
                 <input
                   type="email"
-                  placeholder="La tua email"
+                  placeholder="Votre email"
                   style={{
                     padding: '0.875rem',
                     border: '1px solid #ddd',
@@ -172,7 +172,7 @@ export const ContactForm = wrapper({
                 </label>
                 <input
                   type="tel"
-                  placeholder="Il tuo numero"
+                  placeholder="Votre numéro"
                   style={{
                     padding: '0.875rem',
                     border: '1px solid #ddd',
@@ -193,11 +193,11 @@ export const ContactForm = wrapper({
                     letterSpacing: '0.05em',
                   }}
                 >
-                  Oggetto *
+                  Objet *
                 </label>
                 <input
                   type="text"
-                  placeholder="Cosa riguarda il tuo messaggio?"
+                  placeholder="De quoi s'agit-il ?"
                   style={{
                     padding: '0.875rem',
                     border: '1px solid #ddd',
@@ -222,7 +222,7 @@ export const ContactForm = wrapper({
                 </label>
                 <textarea
                   rows={6}
-                  placeholder="Il tuo messaggio..."
+                  placeholder="Votre message..."
                   style={{
                     padding: '0.875rem',
                     border: '1px solid #ddd',
@@ -255,7 +255,7 @@ export const ContactForm = wrapper({
                 {btnText}
               </button>
 
-              {/* Messaggio di successo simulato */}
+              {/* Message de succès simulé */}
               <div
                 style={{
                   padding: '1rem',
@@ -267,7 +267,7 @@ export const ContactForm = wrapper({
                   marginTop: '1rem',
                 }}
               >
-                ✓ Messaggio inviato con successo! Ti risponderemo presto.
+                ✓ Message envoyé avec succès! Nous vous répondrons bientôt.
               </div>
             </form>
           </div>

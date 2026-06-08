@@ -1282,6 +1282,86 @@ Le site utilise deux patterns d'URL différents pour les services :
 
 ---
 
-**Dernière mise à jour:** 2026-05-21
-**Version de la documentation:** 2.0 (All Leaders Initiative)
-**Remplace:** Version 1.0 (Limolo House)
+## 18. Gestion des images avec Keystatic
+
+### 18.1 Structure des images
+
+Après migration (2026-06-08), la structure des images est organisée par collection :
+
+```
+public/images/
+├── content/           # Images des composants Markdoc génériques
+├── articles/          # Images des articles (65 images)
+├── accompagnements/   # Images des services/accompagnements (23 images)
+├── faq/              # Images des FAQ
+├── landing-pages/    # Images des landing pages (futur)
+└── pages/            # Images des pages statiques Astro
+```
+
+### 18.2 Modes de fonctionnement
+
+**Mode local (développement):**
+- Storage: `kind: 'local'`
+- Images stockées dans `public/images/` localement
+- Les images NE SONT PAS synchronisées avec GitHub
+- À utiliser pour: développement code, tests de composants
+
+**Mode GitHub (production):**
+- Storage: `kind: 'github'`
+- Images uploadées via https://all-leaders.fr/keystatic
+- Keystatic commit automatiquement dans le repo GitHub
+- À utiliser pour: ajout de contenu avec images
+
+### 18.3 Workflow recommandé
+
+#### Pour ajouter du contenu avec images (éditeurs):
+
+1. Aller sur https://all-leaders.fr/keystatic
+2. Se connecter avec GitHub OAuth
+3. Créer/éditer un article ou accompagnement
+4. Uploader l'image via l'interface Keystatic
+5. Sauvegarder → Keystatic commit automatiquement
+
+#### Pour développer localement (développeurs):
+
+1. Lancer `npm run dev` (mode local)
+2. Travailler sur le code, les composants
+3. Ne PAS ajouter d'images dans Keystatic local
+4. Pour tester avec de vraies images, utiliser celles déjà présentes
+
+#### Éviter les conflits:
+
+❌ **Ne JAMAIS faire:**
+- Ajouter des images en local puis les commiter manuellement
+- Éditer le même contenu en local ET en prod simultanément
+- Modifier manuellement les chemins d'images dans les .mdoc
+
+✅ **Toujours faire:**
+- Ajouter les images via l'interface prod (mode GitHub)
+- Faire `git pull` avant de travailler localement
+- Utiliser la branche `main` pour le contenu, des branches de feature pour le code
+
+### 18.4 Configuration
+
+Les chemins d'images sont configurés dans `keystatic.config.tsx`:
+
+```typescript
+// Landing pages
+'landing-pages' → directory: 'public/images/landing-pages/', publicPath: '/images/landing-pages/'
+
+// Articles
+articles → directory: 'public/images/articles/', publicPath: '/images/articles/'
+
+// Accompagnements
+accompagnements → directory: 'public/images/accompagnements/', publicPath: '/images/accompagnements/'
+
+// FAQ
+faq → directory: 'public/images/faq', publicPath: '/images/faq/'
+
+// Composants génériques
+all components → directory: 'public/images/content', publicPath: '/images/content/'
+```
+
+**Dernière mise à jour:** 2026-06-08 (Migration images)
+**Version de la documentation:** 2.1 (All Leaders Initiative + Images)
+**Remplace:** Version 2.0
