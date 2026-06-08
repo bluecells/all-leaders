@@ -255,7 +255,7 @@ export default config({
         ogImage: fields.image({
           label: 'Image Open Graph',
           description: "L'image affichée sur Facebook, Whatsapp, X...",
-          directory: 'public/images/articles/',
+          directory: 'public/images/articles',
           publicPath: '/images/articles/',
           validation: { isRequired: false },
         }),
@@ -280,8 +280,8 @@ export default config({
         featured: fields.checkbox({ label: 'Article en vue', defaultValue: false }),
         featuredPhoto: fields.object({
           image: fields.image({
-            label: 'Image mise en avant',
-            directory: 'public/images/articles/',
+            label: 'Image mise en avant (Organisez en /fr/{slug}/ ou /en/{slug}/)',
+            directory: 'public/images/articles',
             publicPath: '/images/articles/',
             validation: { isRequired: false },
           }),
@@ -405,7 +405,7 @@ export default config({
             heading: [2, 3, 4],
             link: true,
             divider: true,
-            image: { directory: 'public/images/accompagnements', publicPath: '/images/accompagnements/' },
+            image: { directory: 'public/images/services', publicPath: '/images/services/' },
           },
           components: {
             Banner,
@@ -436,9 +436,9 @@ export default config({
           validation: { isRequired: false },
         }),
         image: fields.image({
-          label: 'Image',
-          directory: 'public/images/accompagnements/',
-          publicPath: '/images/accompagnements/',
+          label: 'Image (Organisez en /fr/{slug}/ ou /en/{slug}/)',
+          directory: 'public/images/services',
+          publicPath: '/images/services/',
           validation: { isRequired: true },
         }),
         lang: fields.select({

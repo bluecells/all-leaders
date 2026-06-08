@@ -1341,27 +1341,67 @@ public/images/
 - Faire `git pull` avant de travailler localement
 - Utiliser la branche `main` pour le contenu, des branches de feature pour le code
 
-### 18.4 Configuration
+### 18.4 Configuration par langue et slug
 
-Les chemins d'images sont configurés dans `keystatic.config.tsx`:
+**Structure actuelle (depuis 2026-06-08):**
 
-```typescript
-// Landing pages
-'landing-pages' → directory: 'public/images/landing-pages/', publicPath: '/images/landing-pages/'
+Les images sont organisées par langue (`fr`/`en`) et slug dans une structure imbriquée:
 
-// Articles
-articles → directory: 'public/images/articles/', publicPath: '/images/articles/'
-
-// Accompagnements
-accompagnements → directory: 'public/images/accompagnements/', publicPath: '/images/accompagnements/'
-
-// FAQ
-faq → directory: 'public/images/faq', publicPath: '/images/faq/'
-
-// Composants génériques
-all components → directory: 'public/images/content', publicPath: '/images/content/'
+```
+public/images/
+├── services/
+│   ├── fr/
+│   │   ├── coaching-individuel-pour-managers/
+│   │   │   └── image.webp
+│   │   ├── leadership-feminin/
+│   │   │   └── image.webp
+│   │   └── ...
+│   └── en/
+│       ├── individual-coaching-for-managers/
+│       │   └── image.webp
+│       └── ...
+├── articles/
+│   ├── fr/
+│   │   ├── champion-du-monde/
+│   │   │   └── image.jpg
+│   │   └── ...
+│   └── en/
+│       ├── world-champion/
+│       │   └── image.jpg
+│       └── ...
+└── content/
+    ├── logo.webp
+    └── ...
 ```
 
-**Dernière mise à jour:** 2026-06-08 (Migration images)
-**Version de la documentation:** 2.1 (All Leaders Initiative + Images)
-**Remplace:** Version 2.0
+**Configuration Keystatic:**
+
+```typescript
+// Accompagnements - directory parent (organisation manuelle requise)
+image: fields.image({
+  directory: 'public/images/services',
+  publicPath: '/images/services/',
+  label: 'Image (Organisez en /fr/{slug}/ ou /en/{slug}/)'
+})
+
+// Articles - directory parent
+featuredPhoto: fields.object({
+  image: fields.image({
+    directory: 'public/images/articles',
+    publicPath: '/images/articles/',
+    label: 'Image mise en avant (Organisez en /fr/{slug}/ ou /en/{slug}/)'
+  })
+})
+
+// Composants - répertoire partagé
+image: fields.image({
+  directory: 'public/images/content',
+  publicPath: '/images/content/'
+})
+```
+
+⚠️ **Limitation Keystatic:** Les champs `directory` et `publicPath` n'acceptent que des **strings statiques**, pas de placeholders dynamiques (`{lang}`, `{slug}`). Pour cette raison, l'organisation manuelle en sous-dossiers par langue/slug est requise lors de l'upload d'images.
+
+**Dernière mise à jour:** 2026-06-08 (Migration vers structure par langue)
+**Version de la documentation:** 2.2 (Images par langue et slug)
+**Remplace:** Version 2.1
