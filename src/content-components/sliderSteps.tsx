@@ -36,8 +36,8 @@ export const SliderSteps = block({
 
         image: fields.image({
           label: 'Immagina della tappa',
-          directory: 'public/images/steps',
-          publicPath: '/images/steps/',
+          directory: 'public/images/content',
+          publicPath: '/images/content/',
           validation: { isRequired: true },
         }),
       }),

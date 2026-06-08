@@ -26,8 +26,8 @@ export const Slider = block({
       fields.object({
         image: fields.image({
           label: 'Immagina Slider',
-          directory: 'public/images/slider',
-          publicPath: '/images/slider/',
+          directory: 'public/images/content',
+          publicPath: '/images/content/',
         }),
         alt: fields.text({
           label: 'Alt Text',

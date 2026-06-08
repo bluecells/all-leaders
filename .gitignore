@@ -1,2 +1,11 @@
 node_modules
 dist
+
+# Images téléchargées en développement local uniquement
+# En production (GitHub storage), ces dossiers sont gérés par Keystatic
+# IMPORTANT: Ne pas commiter d'images ajoutées en local, utiliser la prod pour ça
+public/images/articles/*-local-*
+public/images/accompagnements/*-local-*
+
+# Fichier de tracking des images locales (pour debug)
+.keystatic-local-images.json

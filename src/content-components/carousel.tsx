@@ -15,8 +15,8 @@ export const Carousel = block({
       fields.object({
         image: fields.image({
           label: 'Image Carousel ',
-          directory: 'public/images/carousel',
-          publicPath: '/images/carousel/',
+          directory: 'public/images/content',
+          publicPath: '/images/content/',
         }),
         alt: fields.text({ label: 'Alt Text' }),
       }),

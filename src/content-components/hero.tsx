@@ -37,8 +37,8 @@ export const Hero = block({
 
     backgroundImage: fields.image({
       label: 'Image de fond',
-      directory: 'public/images/hero',
-      publicPath: '/images/hero/',
+      directory: 'public/images/content',
+      publicPath: '/images/content/',
     }),
 
     photoCredit: fields.text({
