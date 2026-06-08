@@ -71,7 +71,7 @@ export const Accordion = block({
         }}
       >
         <div style={{ color: '#555', fontStyle: 'italic', marginBottom: '1rem' }}>
-          Accordéon – {allowMultiple ? 'Più sezioni aperte ok' : 'Solo una aperta'}
+          Accordéon – {allowMultiple ? 'Plusieurs sections ouvertes' : 'Une seule section ouverte'}
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -136,7 +136,7 @@ export const Accordion = block({
             textAlign: 'center',
           }}
         >
-          Voci: {fakeItems.length} • Multiplo: {allowMultiple ? 'Sì' : 'No'}
+          Entrées: {fakeItems.length} • Multiples: {allowMultiple ? 'Oui' : 'Non'}
         </div>
       </div>
     );

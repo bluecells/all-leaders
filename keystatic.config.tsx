@@ -16,7 +16,7 @@ import { Table } from './src/content-components/table';
 const isProd = process.env.NODE_ENV === 'production';
 
 export default config({
-  storage: isProd
+  /*   storage: isProd
     ? {
         kind: 'github',
         repo: 'bluecells/all-leaders',
@@ -26,7 +26,12 @@ export default config({
       }
     : {
         kind: 'local',
-      },
+      }, */
+
+  storage: {
+    kind: 'github',
+    repo: 'bluecells/all-leaders',
+  },
 
   singletons: {
     menuFR: singleton({

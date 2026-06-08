@@ -61,13 +61,13 @@ export const Banner = block({
         }}
       >
         <div style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>
-          Banner: {value.title || '(manca il titolo)'}
+          Banner: {value.title || '(manque titre)'}
         </div>
 
         {value.subtitle && <div style={{ marginTop: '8px', opacity: 0.8 }}>{value.subtitle}</div>}
 
         <div style={{ marginTop: '12px', fontSize: '0.9rem', color: '#666' }}>
-          Altezza : {value.height || '400px'} • Full bleed : {value.fullBleed ? 'Sì' : 'No'}
+          Hauteur : {value.height || '400px'} • Pleine largeur : {value.fullBleed ? 'Oui' : 'Non'}
         </div>
       </div>
     );
