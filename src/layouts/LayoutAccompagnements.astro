@@ -30,6 +30,7 @@ const imageUrl = data.image?.startsWith('/images/') ? data.image : `/images/serv
   lang={lang}
   metaTitle={data.metaTitle || `${data.title} - All Leaders Initiative`}
   metaDescription={data.metaDescription || data.description}
+  ogImage={imageUrl}
   jsonType={data.jsonType || 'service'}
   serviceData={{
     serviceType: data.type,
