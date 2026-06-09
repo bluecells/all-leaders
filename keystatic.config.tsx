@@ -157,7 +157,10 @@ export default config({
             orderedList: true,
             link: true,
             divider: true,
-            image: { directory: 'public/images/landing-pages', publicPath: '/images/landing-pages/' },
+            image: {
+              directory: 'public/images/landing-pages',
+              publicPath: '/images/landing-pages/',
+            },
           },
           components: {
             Banner,
@@ -436,7 +439,7 @@ export default config({
           validation: { isRequired: false },
         }),
         image: fields.image({
-          label: 'Image (Organisez en /fr/{slug}/ ou /en/{slug}/)',
+          label: "Image d'illustration",
           directory: 'public/images/services',
           publicPath: '/images/services/',
           validation: { isRequired: true },
