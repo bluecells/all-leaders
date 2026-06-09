@@ -13,28 +13,25 @@ import { Quadrifoglio } from './src/content-components/quadrifoglio';
 import { PdfViewer } from './src/content-components/pdfViewer';
 import { Table } from './src/content-components/table';
 
-const isProd = process.env.NODE_ENV === 'production';
-
 // Avertissement si mode local avec images GitHub potentiellement incohérentes
-if (!isProd && process.env.WARN_LOCAL_GITHUB_SYNC !== 'false') {
-  console.warn(`
+if (typeof process !== 'undefined' && process.env) {
+  const isProd = process.env.NODE_ENV === 'production';
+  if (!isProd && process.env.WARN_LOCAL_GITHUB_SYNC !== 'false') {
+    console.warn(`
 ⚠️  Mode développement local détecté.
     Les images sont gérées localement et ne seront PAS synchronisées avec GitHub.
     Pour éditer du contenu avec images, utilisez l'interface production: https://all-leaders.fr/keystatic
 
     Pour masquer cet avertissement: WARN_LOCAL_GITHUB_SYNC=false
-  `);
+    `);
+  }
 }
 
 export default config({
-  storage: isProd
-    ? {
-        kind: 'github',
-        repo: 'bluecells/all-leaders',
-      }
-    : {
-        kind: 'local',
-      },
+  storage: {
+    kind: 'github',
+    repo: 'bluecells/all-leaders',
+  },
 
   singletons: {
     menuFR: singleton({
