@@ -1,0 +1,986 @@
+[
+  {
+    "mdocFile": "a-la-rentree.mdoc",
+    "lang": "en",
+    "title": "At the start of the new year, let's make our intentions clear!",
+    "seoSlug": "start-new-year-clear-intentions",
+    "imagePath": null,
+    "expectedImageExt": null
+  },
+  {
+    "mdocFile": "agir-en-stratege-dans-un-monde-volatile-et-incertain.mdoc",
+    "lang": "en",
+    "title": "Acting as a strategist in a volatile and uncertain world",
+    "seoSlug": "acting-strategist-volatile-uncertain-world",
+    "imagePath": "/images/articles/en/acting-strategist-volatile-uncertain-world/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "appreciative-inquiry-a-la-recherche-des-forces-valeurs-et-comportements-gagnants-dune-organisation.mdoc",
+    "lang": "en",
+    "title": "Appreciative inquiry: discovering the strengths, values and winning behaviours of an organization",
+    "seoSlug": "appreciative-inquiry-strengths-values-winning-behaviours",
+    "imagePath": "/images/articles/en/appreciative-inquiry-strengths-values-winning-behaviours/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "arretez-dattendre-des-solutions-favorisez-lintention.mdoc",
+    "lang": "en",
+    "title": "Stop waiting for solutions, foster intention!",
+    "seoSlug": "stop-waiting-solutions-foster-intention",
+    "imagePath": "/images/articles/en/stop-waiting-solutions-foster-intention/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "bienveillance-authenticite-et-autres-mots-valises-a-eviter.mdoc",
+    "lang": "en",
+    "title": "Kindness, authenticity and other 'catch-all words' to avoid. Really?",
+    "seoSlug": "kindness-authenticity-catch-all-words",
+    "imagePath": "/images/articles/en/kindness-authenticity-catch-all-words/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "ce-que-ma-desappris-la-pratique-du-coaching.mdoc",
+    "lang": "en",
+    "title": "What coaching practice has unlearned me!",
+    "seoSlug": "what-coaching-practice-unlearned-me",
+    "imagePath": "/images/articles/en/what-coaching-practice-unlearned-me/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "champion-du-monde.mdoc",
+    "lang": "en",
+    "title": "World champion!",
+    "seoSlug": "world-champion",
+    "imagePath": "/images/articles/en/world-champion/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "christian-clot-reaction-construction.mdoc",
+    "lang": "en",
+    "title": "Christian Clot - reaction + construction",
+    "seoSlug": "christian-clot-reaction-construction",
+    "imagePath": "/images/articles/en/christian-clot-reaction-construction/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "conflictualite-au-travail-estimez-votre-gisement-de-couts-et-de-gains-caches.mdoc",
+    "lang": "en",
+    "title": "Workplace conflict: assess your hidden costs… and hidden gains!",
+    "seoSlug": "workplace-conflict-assess-hidden-costs-gains",
+    "imagePath": "/images/articles/en/workplace-conflict-assess-hidden-costs-gains/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "contre-le-chaos-la-culture.mdoc",
+    "lang": "en",
+    "title": "Against chaos, culture",
+    "seoSlug": "against-chaos-culture",
+    "imagePath": "/images/articles/en/against-chaos-culture/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "courage-managerial-et-culture-de-surete.mdoc",
+    "lang": "en",
+    "title": "Managerial courage, through and for psychological safety",
+    "seoSlug": "managerial-courage-psychological-safety",
+    "imagePath": "/images/articles/en/managerial-courage-psychological-safety/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "courageux-mais-pas-temeraire.mdoc",
+    "lang": "en",
+    "title": "Brave but not reckless",
+    "seoSlug": "brave-but-not-reckless",
+    "imagePath": "/images/articles/en/brave-but-not-reckless/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "creuser-lecart-dans-le-brouillard-ne-pas-subir-la-crise-avec-methode.mdoc",
+    "lang": "en",
+    "title": "Creating daylight in the fog: not submitting to crisis, with method",
+    "seoSlug": "creating-daylight-fog-managing-crisis",
+    "imagePath": "/images/articles/en/creating-daylight-fog-managing-crisis/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "david-marquet-intent-based-leadership.mdoc",
+    "lang": "en",
+    "title": "Intent-based leadership according to David Marquet",
+    "seoSlug": "intent-based-leadership-david-marquet",
+    "imagePath": "/images/articles/en/intent-based-leadership-david-marquet/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "de-limportance-de-souligner-et-conscientiser-la-performance.mdoc",
+    "lang": "en",
+    "title": "Highlighting and raising awareness of performance",
+    "seoSlug": "highlighting-raising-awareness-performance",
+    "imagePath": "/images/articles/en/highlighting-raising-awareness-performance/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "enaction-theorie-de-la-cognition.mdoc",
+    "lang": "en",
+    "title": "What is enaction?",
+    "seoSlug": "what-is-enaction",
+    "imagePath": "/images/articles/en/what-is-enaction/image.webp",
+    "expectedImageExt": ".webp"
+  },
+  {
+    "mdocFile": "engagement-envie-clarte-reconnaissance-bienveillance.mdoc",
+    "lang": "en",
+    "title": "Commitment = drive = clarity + recognition + kindness",
+    "seoSlug": "commitment-drive-clarity-recognition-kindness",
+    "imagePath": "/images/articles/en/commitment-drive-clarity-recognition-kindness/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "enquete-exclusive-opinionway-all-leaders-initiative-un-actif-sur-dix-dans-la-spirale-de-lepuisement-professionnel.mdoc",
+    "lang": "en",
+    "title": "One in ten working people in the spiral of occupational burnout",
+    "seoSlug": "occupational-burnout-spiral-working-people",
+    "imagePath": "/images/articles/en/occupational-burnout-spiral-working-people/image.webp",
+    "expectedImageExt": ".webp"
+  },
+  {
+    "mdocFile": "evaluer-et-reduire-le-cout-excessif-de-la-conflictualite-au-travail-cest-possible.mdoc",
+    "lang": "en",
+    "title": "Cost of workplace conflict",
+    "seoSlug": "workplace-conflict-cost",
+    "imagePath": "/images/articles/en/workplace-conflict-cost/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "gagner-en-leadership-personnel-et-collectif-en-meme-temps.mdoc",
+    "lang": "en",
+    "title": "Gain in personal and collective leadership, at the same time! ? !",
+    "seoSlug": "personal-collective-leadership-same-time",
+    "imagePath": "/images/articles/en/personal-collective-leadership-same-time/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "gestion-pratique-de-la-violence-et-de-lagressivite-du-patient.mdoc",
+    "lang": "en",
+    "title": "2026 Guide for hospital staff safety",
+    "seoSlug": "hospital-staff-safety-guide-2026",
+    "imagePath": "/images/articles/en/hospital-staff-safety-guide-2026/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "ignorer-intention-commune.mdoc",
+    "lang": "en",
+    "title": "Ignoring shared intention: a credible threat to any company",
+    "seoSlug": "ignoring-shared-intention-business-threat",
+    "imagePath": "/images/articles/en/ignoring-shared-intention-business-threat/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "impact-de-la-securite-psychologique-dans-la-performance-dequipe-et-lexcellence-organisationnelle.mdoc",
+    "lang": "en",
+    "title": "Impact of psychological safety on team performance and organizational excellence",
+    "seoSlug": "psychological-safety-team-performance-organizational-excellence",
+    "imagePath": "/images/articles/en/psychological-safety-team-performance-organizational-excellence/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "la-dimension-relationnelle-du-travail-un-avantage-concurrentiel-trop-neglige.mdoc",
+    "lang": "en",
+    "title": "The relational dimension of work, an overlooked competitive advantage!",
+    "seoSlug": "relational-dimension-work-competitive-advantage",
+    "imagePath": "/images/articles/en/relational-dimension-work-competitive-advantage/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "la-puissance-de-l-intention-4-echange-d-intentions.mdoc",
+    "lang": "en",
+    "title": "The power of intention: exchange of intentions (4/6)",
+    "seoSlug": "power-of-intention-exchange-4-6",
+    "imagePath": "/images/articles/en/power-of-intention-exchange-4-6/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "le-coaching-en-pratique.mdoc",
+    "lang": "en",
+    "title": "Coaching in practice",
+    "seoSlug": "coaching-in-practice",
+    "imagePath": "/images/articles/en/coaching-in-practice/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "le-regatier-handivoile-gauthier-bril-et-all-leaders-initiative-un-partenariat-qui-a-du-souffle.mdoc",
+    "lang": "en",
+    "title": "Handisail sailor Gauthier Bril and All Leaders Initiative, a partnership with momentum!",
+    "seoSlug": "handisail-gauthier-bril-partnership",
+    "imagePath": "/images/articles/en/handisail-gauthier-bril-partnership/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "le-role-majeur-de-la-culture-de-surete-pour-anticiper-des-risques.mdoc",
+    "lang": "en",
+    "title": "The major role of safety culture in anticipating risks",
+    "seoSlug": "safety-culture-anticipating-risks",
+    "imagePath": "/images/articles/en/safety-culture-anticipating-risks/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "le-systemicien-nouveau-demineur-de-conflits-en-entreprise.mdoc",
+    "lang": "en",
+    "title": "The systemicist, new conflict defuser in business",
+    "seoSlug": "systemicist-conflict-resolution-business",
+    "imagePath": "/images/articles/en/systemicist-conflict-resolution-business/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "le-teletravail-moins-bien-vecu-par-les-jeunes-les-femmes-et-les-employes.mdoc",
+    "lang": "en",
+    "title": "Telework, experienced less well by young people, women and employees",
+    "seoSlug": "telework-young-people-women-employees",
+    "imagePath": "/images/articles/en/telework-young-people-women-employees/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "leadership-base-sur-l-intention.mdoc",
+    "lang": "en",
+    "title": "What is intent-based leadership?",
+    "seoSlug": "intent-based-leadership",
+    "imagePath": "/images/articles/en/intent-based-leadership/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "les-4-piliers-au-fondement-dun-engagement-professionnel-reussi.mdoc",
+    "lang": "en",
+    "title": "The 4 pillars at the foundation of successful professional commitment",
+    "seoSlug": "four-pillars-professional-commitment",
+    "imagePath": "/images/articles/en/four-pillars-professional-commitment/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "les-conditions-de-puissance-du-leadership-base-sur-lintention.mdoc",
+    "lang": "en",
+    "title": "Conditions for the power of 'INTENT-BASED LEADERSHIP'",
+    "seoSlug": "conditions-power-intent-based-leadership",
+    "imagePath": "/images/articles/en/conditions-power-intent-based-leadership/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "limplication-des-collaborateurs-cle-dune-vraie-digitalisation-reussie.mdoc",
+    "lang": "en",
+    "title": "Employee involvement, key to successful real digitalisation",
+    "seoSlug": "employee-involvement-successful-digitalization",
+    "imagePath": "/images/articles/en/employee-involvement-successful-digitalization/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "ma-le-diagnostic-partage-sur-lelement-humain-qui-reduit-risque-et-taux-dechec.mdoc",
+    "lang": "en",
+    "title": "M&A: shared assessment on human element reduces risk and failure rate",
+    "seoSlug": "ma-shared-assessment-human-element",
+    "imagePath": "/images/articles/en/ma-shared-assessment-human-element/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "managerial-courage-for-and-through-psychological-safety.mdoc",
+    "lang": "en",
+    "title": "Managerial courage, for and through psychological safety",
+    "seoSlug": "managerial-courage-for-and-through-psychological-safety",
+    "imagePath": "/images/articles/en/managerial-courage-for-and-through-psychological-safety/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "manque-de-cohesion-crise-risque-interne-majeur.mdoc",
+    "lang": "en",
+    "title": "What if in this crisis the biggest risk was internal to your organization?",
+    "seoSlug": "internal-risk-crisis-cohesion",
+    "imagePath": "/images/articles/en/internal-risk-crisis-cohesion/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "nouvelle-ere-du-travail-phygital.mdoc",
+    "lang": "en",
+    "title": "Are you one of the 2/3 of managers unprepared for the new 'PHYGITAL' WORK ERA?",
+    "seoSlug": "phygital-work-era-managers-unprepared",
+    "imagePath": "/images/articles/en/phygital-work-era-managers-unprepared/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "observatoire-du-cout-des-conflits.mdoc",
+    "lang": "en",
+    "title": "Conflict cost observatory",
+    "seoSlug": "conflict-cost-observatory",
+    "imagePath": "/images/articles/en/conflict-cost-observatory/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "organiser-lequilibre-entre-exploration-et-execution-en-temps-de-travail-a-distance.mdoc",
+    "lang": "en",
+    "title": "Organising the balance between exploration and execution in remote work time",
+    "seoSlug": "exploration-execution-balance-remote-work",
+    "imagePath": "/images/articles/en/exploration-execution-balance-remote-work/image.webp",
+    "expectedImageExt": ".webp"
+  },
+  {
+    "mdocFile": "pour-gagner-risquer-linitiative-avec-le-commandement-par-intention.mdoc",
+    "lang": "en",
+    "title": "To succeed, take the risk of initiative with intent-based command",
+    "seoSlug": "intent-based-command-take-initiative",
+    "imagePath": "/images/articles/en/intent-based-command-take-initiative/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "psychological-safety-continuum.mdoc",
+    "lang": "en",
+    "title": "Psychological safety continuum",
+    "seoSlug": "psychological-safety-continuum",
+    "imagePath": "/images/articles/en/psychological-safety-continuum/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "puissance-de-l-intention-1-implication-personnelle-et-appropriation.mdoc",
+    "lang": "en",
+    "title": "The power of intention: personal involvement and ownership (1/6)",
+    "seoSlug": "power-intention-personal-involvement-1-6",
+    "imagePath": "/images/articles/en/power-intention-personal-involvement-1-6/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "puissance-de-l-intention-2-orientee-action.mdoc",
+    "lang": "en",
+    "title": "The power of intention: action-oriented (2/6)",
+    "seoSlug": "power-intention-action-oriented-2-6",
+    "imagePath": "/images/articles/en/power-intention-action-oriented-2-6/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "puissance-de-l-intention-3.mdoc",
+    "lang": "en",
+    "title": "The power of intention: controlled (3/6)",
+    "seoSlug": "power-intention-controlled-3-6",
+    "imagePath": "/images/articles/en/power-intention-controlled-3-6/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "puissance-de-l-intention-5-protections-reciproques.mdoc",
+    "lang": "en",
+    "title": "The power of intention: mutual protections (5/6)",
+    "seoSlug": "power-intention-mutual-protections-5-6",
+    "imagePath": "/images/articles/en/power-intention-mutual-protections-5-6/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "quand-lagile-va-trop-loin.mdoc",
+    "lang": "en",
+    "title": "When 'AGILE' GOES TOO FAR…",
+    "seoSlug": "when-agile-goes-too-far",
+    "imagePath": "/images/articles/en/when-agile-goes-too-far/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "quelle-necessite-de-se-dire-bonjour-touuuuuuus-les-jours.mdoc",
+    "lang": "en",
+    "title": "Why is it necessary to greet each other every day?",
+    "seoSlug": "why-greet-each-other-daily",
+    "imagePath": "/images/articles/en/why-greet-each-other-daily/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "quelles-conversations-pour-regenerer-nos-organisations-aujourdhui.mdoc",
+    "lang": "en",
+    "title": "What conversations to regenerate our organizations today?",
+    "seoSlug": "conversations-regenerate-organizations",
+    "imagePath": "/images/articles/en/conversations-regenerate-organizations/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "quelles-sont-les-composantes-de-la-culture-de-surete.mdoc",
+    "lang": "en",
+    "title": "What are the components of safety culture?",
+    "seoSlug": "components-safety-culture",
+    "imagePath": "/images/articles/en/components-safety-culture/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "rencontre-avec-nos-associes-fondateurs-marie-emmanuelle-py-apres-la-marine-je-metais-resignee-a-ce-que-laventure-sarrete.mdoc",
+    "lang": "en",
+    "title": "After the navy, I had resigned myself to \"the adventure\" coming to an end… »",
+    "seoSlug": "after-navy-adventure",
+    "imagePath": "/images/articles/en/after-navy-adventure/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "retraite-5-sens.mdoc",
+    "lang": "en",
+    "title": "Let's rediscover the world through our 5 senses!",
+    "seoSlug": "rediscover-world-five-senses",
+    "imagePath": "/images/articles/en/rediscover-world-five-senses/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "richesse-humaine-drh-redonner-du-souffle-amiral-lajous.mdoc",
+    "lang": "en",
+    "title": "« Human wealth: HR directors, become givers of breath » – admiral Olivier Lajous'S CALL",
+    "seoSlug": "human-wealth-hr-directors",
+    "imagePath": "/images/articles/en/human-wealth-hr-directors/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "s-inspirer-des-methodes-organisationnelles-et-manageriales-de-la-marine-nationale.mdoc",
+    "lang": "en",
+    "title": "HBR France / chief, yes chief? companies would be well-advised to draw inspiration from the organizational and managerial methods of the French navy",
+    "seoSlug": "hbr-french-navy-organizational-methods",
+    "imagePath": "/images/articles/en/hbr-french-navy-organizational-methods/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "sante-mentale-et-bien-etre-psychique-un-enjeu-majeur-dans-le-monde-du-travail.mdoc",
+    "lang": "en",
+    "title": "Mental health and psychological well-being, a major issue in the world of work!",
+    "seoSlug": "mental-health-psychological-wellbeing-work",
+    "imagePath": "/images/articles/en/mental-health-psychological-wellbeing-work/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "sauvez-le-monde-en-coaching-collectif-en-realite-virtuelle.mdoc",
+    "lang": "en",
+    "title": "This year, dive in or gain perspective, but save the world!",
+    "seoSlug": "save-world-dive-perspective-virtual-reality",
+    "imagePath": "/images/articles/en/save-world-dive-perspective-virtual-reality/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "securite-ontologique.mdoc",
+    "lang": "en",
+    "title": "Ontological security: how to cultivate inner stability to hold steady in an uncertain world?",
+    "seoSlug": "ontological-security-inner-stability",
+    "imagePath": "/images/articles/en/ontological-security-inner-stability/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "sens-et-travail-entre-permanences-et-mutations.mdoc",
+    "lang": "en",
+    "title": "Meaning & work: between continuities and shifts",
+    "seoSlug": "meaning-work-continuities-shifts",
+    "imagePath": "/images/articles/en/meaning-work-continuities-shifts/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "signaux-faibles-le-bruit-de-fond-qui-vaut-de-lor.mdoc",
+    "lang": "en",
+    "title": "IT'S NOT THE SILENCE, BUT THE BACKGROUND NOISE THAT'S WORTH ITS WEIGHT IN GOLD",
+    "seoSlug": "background-noise-worth-gold",
+    "imagePath": "/images/articles/en/background-noise-worth-gold/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "sinteresser-aux-causes-des-defaillances-et-a-celles-du-bon-fonctionnement.mdoc",
+    "lang": "en",
+    "title": "Take an interest in the causes of failures and those of successful functioning",
+    "seoSlug": "causes-failures-successful-functioning",
+    "imagePath": "/images/articles/en/causes-failures-successful-functioning/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "the-impact-of-psychological-safety-on-team-performance-and-organisational-excellence.mdoc",
+    "lang": "en",
+    "title": "The impact of psychological safety on team performance and organisational excellence",
+    "seoSlug": "the-impact-of-psychological-safety-on-team-performance-and-organisational-excellence",
+    "imagePath": "/images/articles/en/the-impact-of-psychological-safety-on-team-performance-and-organisational-excellence/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "transformance-vincent-lenhardt.mdoc",
+    "lang": "en",
+    "title": "Vincent Lenhardt'S 'TRANSFORMANCE'",
+    "seoSlug": "vincent-lenhardt-transformance",
+    "imagePath": null,
+    "expectedImageExt": null
+  },
+  {
+    "mdocFile": "un-referentiel-pour-envisager-une-performance-sociale-organisationnelle-et-manageriale-au-service-de-la-performance-globale.mdoc",
+    "lang": "en",
+    "title": "The psychological safety continuum",
+    "seoSlug": "framework-social-organizational-managerial-performance",
+    "imagePath": "/images/articles/en/framework-social-organizational-managerial-performance/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "a-la-rentree.mdoc",
+    "lang": "fr",
+    "title": "A la rentrée on annonce la couleur !",
+    "seoSlug": "a-la-rentree",
+    "imagePath": "/images/articles/fr/a-la-rentree/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "agir-en-stratege-dans-un-monde-volatile-et-incertain.mdoc",
+    "lang": "fr",
+    "title": "Agir en stratège dans un monde volatile et incertain",
+    "seoSlug": "agir-en-stratege-dans-un-monde-volatile-et-incertain",
+    "imagePath": "/images/articles/fr/agir-en-stratege-dans-un-monde-volatile-et-incertain/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "appreciative-inquiry-a-la-recherche-des-forces-valeurs-et-comportements-gagnants-dune-organisation.mdoc",
+    "lang": "fr",
+    "title": "Appreciative inquiry : a la recherche des forces, valeurs et comportements gagnants d’une organisation",
+    "seoSlug": "appreciative-inquiry-a-la-recherche-des-forces-valeurs-et-comportements-gagnants-dune-organisation",
+    "imagePath": "/images/articles/fr/appreciative-inquiry-a-la-recherche-des-forces-valeurs-et-comportements-gagnants-dune-organisation/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "arretez-dattendre-des-solutions-favorisez-lintention.mdoc",
+    "lang": "fr",
+    "title": "Arrêtez d’attendre des solutions, favorisez l’intention !",
+    "seoSlug": "arretez-dattendre-des-solutions-favorisez-lintention",
+    "imagePath": "/images/articles/fr/arretez-dattendre-des-solutions-favorisez-lintention/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "bienveillance-authenticite-et-autres-mots-valises-a-eviter.mdoc",
+    "lang": "fr",
+    "title": "Bienveillance, authenticité et autres « mots-valises » à éviter. heu, vraiment ?",
+    "seoSlug": "bienveillance-authenticite-et-autres-mots-valises-a-eviter",
+    "imagePath": "/images/articles/fr/bienveillance-authenticite-et-autres-mots-valises-a-eviter/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "ce-que-ma-desappris-la-pratique-du-coaching.mdoc",
+    "lang": "fr",
+    "title": "Ce que m’a désappris la pratique du coaching !",
+    "seoSlug": "ce-que-ma-desappris-la-pratique-du-coaching",
+    "imagePath": "/images/articles/fr/ce-que-ma-desappris-la-pratique-du-coaching/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "champion-du-monde.mdoc",
+    "lang": "fr",
+    "title": "Champion du monde !",
+    "seoSlug": "champion-du-monde",
+    "imagePath": "/images/articles/fr/champion-du-monde/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "christian-clot-reaction-construction.mdoc",
+    "lang": "fr",
+    "title": "Christian Clot - réaction + construction",
+    "seoSlug": "christian-clot-reaction-construction",
+    "imagePath": "/images/articles/fr/christian-clot-reaction-construction/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "conflictualite-au-travail-estimez-votre-gisement-de-couts-et-de-gains-caches.mdoc",
+    "lang": "fr",
+    "title": "Conflictualité au travail : estimez votre gisement de coûts… et de gains cachés !",
+    "seoSlug": "conflictualite-au-travail-estimez-votre-gisement-de-couts-et-de-gains-caches",
+    "imagePath": "/images/articles/fr/conflictualite-au-travail-estimez-votre-gisement-de-couts-et-de-gains-caches/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "contre-le-chaos-la-culture.mdoc",
+    "lang": "fr",
+    "title": "Contre le chaos, la culture",
+    "seoSlug": "contre-le-chaos-la-culture",
+    "imagePath": "/images/articles/fr/contre-le-chaos-la-culture/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "courage-managerial-et-culture-de-surete.mdoc",
+    "lang": "fr",
+    "title": "Le courage managérial, pour et par la sécurité psychologique",
+    "seoSlug": "courage-managerial-et-culture-de-surete",
+    "imagePath": "/images/articles/fr/courage-managerial-et-culture-de-surete/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "courageux-mais-pas-temeraire.mdoc",
+    "lang": "fr",
+    "title": "Courageux mais pas téméraire",
+    "seoSlug": "courageux-mais-pas-temeraire",
+    "imagePath": "/images/articles/fr/courageux-mais-pas-temeraire/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "creuser-lecart-dans-le-brouillard-ne-pas-subir-la-crise-avec-methode.mdoc",
+    "lang": "fr",
+    "title": "Creuser l’écart dans le brouillard : ne pas subir la crise, avec méthode",
+    "seoSlug": "creuser-lecart-dans-le-brouillard-ne-pas-subir-la-crise-avec-methode",
+    "imagePath": "/images/articles/fr/creuser-lecart-dans-le-brouillard-ne-pas-subir-la-crise-avec-methode/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "david-marquet-intent-based-leadership.mdoc",
+    "lang": "fr",
+    "title": "Le leadership basé sur l'intention selon David Marquet",
+    "seoSlug": "david-marquet-intent-based-leadership",
+    "imagePath": "/images/articles/fr/david-marquet-intent-based-leadership/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "de-limportance-de-souligner-et-conscientiser-la-performance.mdoc",
+    "lang": "fr",
+    "title": "Souligner et conscientiser la performance",
+    "seoSlug": "de-limportance-de-souligner-et-conscientiser-la-performance",
+    "imagePath": "/images/articles/fr/de-limportance-de-souligner-et-conscientiser-la-performance/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "enaction-theorie-de-la-cognition.mdoc",
+    "lang": "fr",
+    "title": "Qu’est-ce que l’énaction\\_?",
+    "seoSlug": "enaction-theorie-de-la-cognition",
+    "imagePath": null,
+    "expectedImageExt": null
+  },
+  {
+    "mdocFile": "engagement-envie-clarte-reconnaissance-bienveillance.mdoc",
+    "lang": "fr",
+    "title": "Envie = clarté + reconnaissance + bienveillance",
+    "seoSlug": "engagement-envie-clarte-reconnaissance-bienveillance",
+    "imagePath": "/images/articles/fr/engagement-envie-clarte-reconnaissance-bienveillance/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "enquete-exclusive-opinionway-all-leaders-initiative-un-actif-sur-dix-dans-la-spirale-de-lepuisement-professionnel.mdoc",
+    "lang": "fr",
+    "title": "Un actif sur dix dans la spirale de l'épuisement professionnel",
+    "seoSlug": "enquete-exclusive-opinionway-all-leaders-initiative-un-actif-sur-dix-dans-la-spirale-de-lepuisement-professionnel",
+    "imagePath": "/images/articles/fr/enquete-exclusive-opinionway-all-leaders-initiative-un-actif-sur-dix-dans-la-spirale-de-lepuisement-professionnel/image.webp",
+    "expectedImageExt": ".webp"
+  },
+  {
+    "mdocFile": "evaluer-et-reduire-le-cout-excessif-de-la-conflictualite-au-travail-cest-possible.mdoc",
+    "lang": "fr",
+    "title": "Coût de la conflictualité au travail",
+    "seoSlug": "evaluer-et-reduire-le-cout-excessif-de-la-conflictualite-au-travail-cest-possible",
+    "imagePath": "/images/articles/fr/evaluer-et-reduire-le-cout-excessif-de-la-conflictualite-au-travail-cest-possible/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "gagner-en-leadership-personnel-et-collectif-en-meme-temps.mdoc",
+    "lang": "fr",
+    "title": "Gagner en leadership personnel et collectif, en même temps ! ? !",
+    "seoSlug": "gagner-en-leadership-personnel-et-collectif-en-meme-temps",
+    "imagePath": "/images/articles/fr/gagner-en-leadership-personnel-et-collectif-en-meme-temps/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "gestion-pratique-de-la-violence-et-de-lagressivite-du-patient.mdoc",
+    "lang": "fr",
+    "title": "Guide 2026 pour la sécurité du personnel à l'hôpital",
+    "seoSlug": "gestion-pratique-de-la-violence-et-de-lagressivite-du-patient",
+    "imagePath": "/images/articles/fr/gestion-pratique-de-la-violence-et-de-lagressivite-du-patient/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "ignorer-intention-commune.mdoc",
+    "lang": "fr",
+    "title": "Ignorer l'intention commune : une menace crédible pour toute entreprise",
+    "seoSlug": "ignorer-intention-commune",
+    "imagePath": "/images/articles/fr/ignorer-intention-commune/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "impact-de-la-securite-psychologique-dans-la-performance-dequipe-et-lexcellence-organisationnelle.mdoc",
+    "lang": "fr",
+    "title": "Impact de la sécurité psychologique dans la performance d’équipe et l’excellence organisationnelle",
+    "seoSlug": "impact-de-la-securite-psychologique-dans-la-performance-dequipe-et-lexcellence-organisationnelle",
+    "imagePath": "/images/articles/fr/impact-de-la-securite-psychologique-dans-la-performance-dequipe-et-lexcellence-organisationnelle/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "la-dimension-relationnelle-du-travail-un-avantage-concurrentiel-trop-neglige.mdoc",
+    "lang": "fr",
+    "title": "La dimension relationnelle du travail, un avantage concurrentiel trop négligé !",
+    "seoSlug": "la-dimension-relationnelle-du-travail-un-avantage-concurrentiel-trop-neglige",
+    "imagePath": "/images/articles/fr/la-dimension-relationnelle-du-travail-un-avantage-concurrentiel-trop-neglige/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "la-puissance-de-l-intention-4-echange-d-intentions.mdoc",
+    "lang": "fr",
+    "title": "La puissance de l’intention : échange d’intentions (4/6)",
+    "seoSlug": "la-puissance-de-l-intention-4-echange-d-intentions",
+    "imagePath": "/images/articles/fr/la-puissance-de-l-intention-4-echange-d-intentions/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "le-coaching-en-pratique.mdoc",
+    "lang": "fr",
+    "title": "Le coaching en pratique",
+    "seoSlug": "le-coaching-en-pratique",
+    "imagePath": "/images/articles/fr/le-coaching-en-pratique/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "le-regatier-handivoile-gauthier-bril-et-all-leaders-initiative-un-partenariat-qui-a-du-souffle.mdoc",
+    "lang": "fr",
+    "title": "Le régatier handivoile Gauthier Bril et All Leaders Initiative, un partenariat qui a du souffle !",
+    "seoSlug": "le-regatier-handivoile-gauthier-bril-et-all-leaders-initiative-un-partenariat-qui-a-du-souffle",
+    "imagePath": "/images/articles/fr/le-regatier-handivoile-gauthier-bril-et-all-leaders-initiative-un-partenariat-qui-a-du-souffle/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "le-role-majeur-de-la-culture-de-surete-pour-anticiper-des-risques.mdoc",
+    "lang": "fr",
+    "title": "Le rôle majeur de la culture de sûreté dans l’anticipation des risques",
+    "seoSlug": "le-role-majeur-de-la-culture-de-surete-pour-anticiper-des-risques",
+    "imagePath": "/images/articles/fr/le-role-majeur-de-la-culture-de-surete-pour-anticiper-des-risques/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "le-systemicien-nouveau-demineur-de-conflits-en-entreprise.mdoc",
+    "lang": "fr",
+    "title": "Le systémicien, nouveau démineur de conflits en entreprise",
+    "seoSlug": "le-systemicien-nouveau-demineur-de-conflits-en-entreprise",
+    "imagePath": "/images/articles/fr/le-systemicien-nouveau-demineur-de-conflits-en-entreprise/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "le-teletravail-moins-bien-vecu-par-les-jeunes-les-femmes-et-les-employes.mdoc",
+    "lang": "fr",
+    "title": "Le télétravail, moins bien vécu par les jeunes, les femmes et les employés",
+    "seoSlug": "le-teletravail-moins-bien-vecu-par-les-jeunes-les-femmes-et-les-employes",
+    "imagePath": "/images/articles/fr/le-teletravail-moins-bien-vecu-par-les-jeunes-les-femmes-et-les-employes/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "leadership-base-sur-l-intention.mdoc",
+    "lang": "fr",
+    "title": "Qu’est-ce que le leadership basé sur l’intention ?",
+    "seoSlug": "leadership-base-sur-l-intention",
+    "imagePath": "/images/articles/fr/leadership-base-sur-l-intention/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "les-4-piliers-au-fondement-dun-engagement-professionnel-reussi.mdoc",
+    "lang": "fr",
+    "title": "Les 4 piliers au fondement d’un engagement professionnel réussi",
+    "seoSlug": "les-4-piliers-au-fondement-dun-engagement-professionnel-reussi",
+    "imagePath": null,
+    "expectedImageExt": null
+  },
+  {
+    "mdocFile": "les-conditions-de-puissance-du-leadership-base-sur-lintention.mdoc",
+    "lang": "fr",
+    "title": "Les conditions de puissance du « leadership basé sur l’intention »",
+    "seoSlug": "les-conditions-de-puissance-du-leadership-base-sur-lintention",
+    "imagePath": "/images/articles/fr/les-conditions-de-puissance-du-leadership-base-sur-lintention/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "limplication-des-collaborateurs-cle-dune-vraie-digitalisation-reussie.mdoc",
+    "lang": "fr",
+    "title": "L’implication des collaborateurs, clé d’une vraie digitalisation réussie",
+    "seoSlug": "limplication-des-collaborateurs-cle-dune-vraie-digitalisation-reussie",
+    "imagePath": "/images/articles/fr/limplication-des-collaborateurs-cle-dune-vraie-digitalisation-reussie/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "ma-le-diagnostic-partage-sur-lelement-humain-qui-reduit-risque-et-taux-dechec.mdoc",
+    "lang": "fr",
+    "title": "M&A : le diagnostic partagé sur l'élément humain qui réduit risque et taux d'échec",
+    "seoSlug": "ma-le-diagnostic-partage-sur-lelement-humain-qui-reduit-risque-et-taux-dechec",
+    "imagePath": "/images/articles/fr/ma-le-diagnostic-partage-sur-lelement-humain-qui-reduit-risque-et-taux-dechec/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "manque-de-cohesion-crise-risque-interne-majeur.mdoc",
+    "lang": "fr",
+    "title": "Et si dans cette crise le plus grand risque était interne à votre organisation ?",
+    "seoSlug": "manque-de-cohesion-crise-risque-interne-majeur",
+    "imagePath": "/images/articles/fr/manque-de-cohesion-crise-risque-interne-majeur/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "nouvelle-ere-du-travail-phygital.mdoc",
+    "lang": "fr",
+    "title": "Faites-vous partie des 2/3 de managers non préparés à la nouvelle ère du travail « phygital » ?",
+    "seoSlug": "nouvelle-ere-du-travail-phygital",
+    "imagePath": "/images/articles/fr/nouvelle-ere-du-travail-phygital/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "observatoire-du-cout-des-conflits.mdoc",
+    "lang": "fr",
+    "title": "Observatoire du coût des conflits",
+    "seoSlug": "observatoire-du-cout-des-conflits",
+    "imagePath": "/images/articles/fr/observatoire-du-cout-des-conflits/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "organiser-lequilibre-entre-exploration-et-execution-en-temps-de-travail-a-distance.mdoc",
+    "lang": "fr",
+    "title": "Organiser l’équilibre entre exploration et exécution en temps de travail à distance",
+    "seoSlug": "organiser-lequilibre-entre-exploration-et-execution-en-temps-de-travail-a-distance",
+    "imagePath": "/images/articles/fr/organiser-lequilibre-entre-exploration-et-execution-en-temps-de-travail-a-distance/image.webp",
+    "expectedImageExt": ".webp"
+  },
+  {
+    "mdocFile": "pour-gagner-risquer-linitiative-avec-le-commandement-par-intention.mdoc",
+    "lang": "fr",
+    "title": "Pour gagner, risquer l'initiative avec le commandement par intention",
+    "seoSlug": "pour-gagner-risquer-linitiative-avec-le-commandement-par-intention",
+    "imagePath": "/images/articles/fr/pour-gagner-risquer-linitiative-avec-le-commandement-par-intention/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "puissance-de-l-intention-1-implication-personnelle-et-appropriation.mdoc",
+    "lang": "fr",
+    "title": "La puissance de l’intention : implication personnelle et appropriation (1/6)",
+    "seoSlug": "puissance-de-l-intention-1-implication-personnelle-et-appropriation",
+    "imagePath": "/images/articles/fr/puissance-de-l-intention-1-implication-personnelle-et-appropriation/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "puissance-de-l-intention-2-orientee-action.mdoc",
+    "lang": "fr",
+    "title": "La puissance de l’intention : orientée action (2/6)",
+    "seoSlug": "puissance-de-l-intention-2-orientee-action",
+    "imagePath": "/images/articles/fr/puissance-de-l-intention-2-orientee-action/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "puissance-de-l-intention-3.mdoc",
+    "lang": "fr",
+    "title": "La puissance de l’intention : contrôlée (3/6)",
+    "seoSlug": "puissance-de-l-intention-3",
+    "imagePath": "/images/articles/fr/puissance-de-l-intention-3/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "puissance-de-l-intention-5-protections-reciproques.mdoc",
+    "lang": "fr",
+    "title": "La puissance de l’intention : protections réciproques (5/6)",
+    "seoSlug": "puissance-de-l-intention-5-protections-reciproques",
+    "imagePath": "/images/articles/fr/puissance-de-l-intention-5-protections-reciproques/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "quand-lagile-va-trop-loin.mdoc",
+    "lang": "fr",
+    "title": "Quand « l’agile » va trop loin…",
+    "seoSlug": "quand-lagile-va-trop-loin",
+    "imagePath": "/images/articles/fr/quand-lagile-va-trop-loin/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "quelle-necessite-de-se-dire-bonjour-touuuuuuus-les-jours.mdoc",
+    "lang": "fr",
+    "title": "Quelle nécessité de se dire bonjour, touuuuuuus les jours ?",
+    "seoSlug": "quelle-necessite-de-se-dire-bonjour-touuuuuuus-les-jours",
+    "imagePath": "/images/articles/fr/quelle-necessite-de-se-dire-bonjour-touuuuuuus-les-jours/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "quelles-conversations-pour-regenerer-nos-organisations-aujourdhui.mdoc",
+    "lang": "fr",
+    "title": "Quelles conversations pour régénérer nos organisations aujourd’hui ?",
+    "seoSlug": "quelles-conversations-pour-regenerer-nos-organisations-aujourdhui",
+    "imagePath": "/images/articles/fr/quelles-conversations-pour-regenerer-nos-organisations-aujourdhui/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "quelles-sont-les-composantes-de-la-culture-de-surete.mdoc",
+    "lang": "fr",
+    "title": "Quelles sont les composantes de la culture de sûreté ?",
+    "seoSlug": "quelles-sont-les-composantes-de-la-culture-de-surete",
+    "imagePath": "/images/articles/fr/quelles-sont-les-composantes-de-la-culture-de-surete/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "rencontre-avec-nos-associes-fondateurs-marie-emmanuelle-py-apres-la-marine-je-metais-resignee-a-ce-que-laventure-sarrete.mdoc",
+    "lang": "fr",
+    "title": "Après la marine, je m’étais résignée à ce que « l’aventure » s’arrête… »",
+    "seoSlug": "rencontre-avec-nos-associes-fondateurs-marie-emmanuelle-py-apres-la-marine-je-metais-resignee-a-ce-que-laventure-sarrete",
+    "imagePath": "/images/articles/fr/rencontre-avec-nos-associes-fondateurs-marie-emmanuelle-py-apres-la-marine-je-metais-resignee-a-ce-que-laventure-sarrete/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "retraite-5-sens.mdoc",
+    "lang": "fr",
+    "title": "Redécouvrons le monde à travers nos 5 sens !",
+    "seoSlug": "retraite-5-sens",
+    "imagePath": "/images/articles/fr/retraite-5-sens/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "richesse-humaine-drh-redonner-du-souffle-amiral-lajous.mdoc",
+    "lang": "fr",
+    "title": "« DRH, Redevenez des donneurs de souffle » : l’appel de l’amiral Olivier Lajous",
+    "seoSlug": "richesse-humaine-drh-redonner-du-souffle-amiral-lajous",
+    "imagePath": "/images/articles/fr/richesse-humaine-drh-redonner-du-souffle-amiral-lajous/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "s-inspirer-des-methodes-organisationnelles-et-manageriales-de-la-marine-nationale.mdoc",
+    "lang": "fr",
+    "title": "HBR France / « chef, oui chef ? les entreprises auraient tout intérêt à s’inspirer des méthodes organisationnelles et managériales de la marine nationale. »",
+    "seoSlug": "s-inspirer-des-methodes-organisationnelles-et-manageriales-de-la-marine-nationale",
+    "imagePath": "/images/articles/fr/s-inspirer-des-methodes-organisationnelles-et-manageriales-de-la-marine-nationale/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "sante-mentale-et-bien-etre-psychique-un-enjeu-majeur-dans-le-monde-du-travail.mdoc",
+    "lang": "fr",
+    "title": "Santé mentale et bien-être psychique, un enjeu majeur dans le monde du travail !",
+    "seoSlug": "sante-mentale-et-bien-etre-psychique-un-enjeu-majeur-dans-le-monde-du-travail",
+    "imagePath": "/images/articles/fr/sante-mentale-et-bien-etre-psychique-un-enjeu-majeur-dans-le-monde-du-travail/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "sauvez-le-monde-en-coaching-collectif-en-realite-virtuelle.mdoc",
+    "lang": "fr",
+    "title": "Cette année, plongez ou prenez de la hauteur, mais sauvez le monde !",
+    "seoSlug": "sauvez-le-monde-en-coaching-collectif-en-realite-virtuelle",
+    "imagePath": "/images/articles/fr/sauvez-le-monde-en-coaching-collectif-en-realite-virtuelle/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "securite-ontologique.mdoc",
+    "lang": "fr",
+    "title": "Sécurité ontologique : comment cultiver une stabilité intérieure pour tenir dans un monde incertain ?",
+    "seoSlug": "securite-ontologique",
+    "imagePath": "/images/articles/fr/securite-ontologique/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "sens-et-travail-entre-permanences-et-mutations.mdoc",
+    "lang": "fr",
+    "title": "Sens & travail : entre permanences et mutations",
+    "seoSlug": "sens-et-travail-entre-permanences-et-mutations",
+    "imagePath": "/images/articles/fr/sens-et-travail-entre-permanences-et-mutations/image.jpg",
+    "expectedImageExt": ".jpg"
+  },
+  {
+    "mdocFile": "signaux-faibles-le-bruit-de-fond-qui-vaut-de-lor.mdoc",
+    "lang": "fr",
+    "title": "Ce n’est pas le silence, mais le bruit de fond qui vaut de l’or",
+    "seoSlug": "signaux-faibles-le-bruit-de-fond-qui-vaut-de-lor",
+    "imagePath": "/images/articles/fr/signaux-faibles-le-bruit-de-fond-qui-vaut-de-lor/image.jpeg",
+    "expectedImageExt": ".jpeg"
+  },
+  {
+    "mdocFile": "sinteresser-aux-causes-des-defaillances-et-a-celles-du-bon-fonctionnement.mdoc",
+    "lang": "fr",
+    "title": "S’intéresser aux causes des défaillances et à celles du bon fonctionnement",
+    "seoSlug": "sinteresser-aux-causes-des-defaillances-et-a-celles-du-bon-fonctionnement",
+    "imagePath": "/images/articles/fr/sinteresser-aux-causes-des-defaillances-et-a-celles-du-bon-fonctionnement/image.png",
+    "expectedImageExt": ".png"
+  },
+  {
+    "mdocFile": "transformance-vincent-lenhardt.mdoc",
+    "lang": "fr",
+    "title": "La « transformance » de Vincent Lenhardt",
+    "seoSlug": "transformance-vincent-lenhardt",
+    "imagePath": null,
+    "expectedImageExt": null
+  },
+  {
+    "mdocFile": "un-referentiel-pour-envisager-une-performance-sociale-organisationnelle-et-manageriale-au-service-de-la-performance-globale.mdoc",
+    "lang": "fr",
+    "title": "Le continuum de la sécurité psychologique",
+    "seoSlug": "un-referentiel-pour-envisager-une-performance-sociale-organisationnelle-et-manageriale-au-service-de-la-performance-globale",
+    "imagePath": "/images/articles/fr/un-referentiel-pour-envisager-une-performance-sociale-organisationnelle-et-manageriale-au-service-de-la-performance-globale/image.jpg",
+    "expectedImageExt": ".jpg"
+  }
+]

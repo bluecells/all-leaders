@@ -1,0 +1,86 @@
+[
+  {
+    "sourceDir": "\"S’intéresser aux causes des défaillances et à celles du bon fonctionnement\"",
+    "targetSlug": "sinteresser-aux-causes-des-defaillances-et-a-celles-du-bon-fonctionnement",
+    "articleTitle": "S’intéresser aux causes des défaillances et à celles du bon fonctionnement",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "\"Un actif sur dix dans la spirale de l'épuisement professionnel\"",
+    "targetSlug": "enquete-exclusive-opinionway-all-leaders-initiative-un-actif-sur-dix-dans-la-spirale-de-lepuisement-professionnel",
+    "articleTitle": "Un actif sur dix dans la spirale de l'épuisement professionnel",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "'A la rentrée on annonce la couleur !'",
+    "targetSlug": "a-la-rentree",
+    "articleTitle": "A la rentrée on annonce la couleur !",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "'Ce n’est pas le silence, mais le bruit de fond qui vaut de l’or'",
+    "targetSlug": "signaux-faibles-le-bruit-de-fond-qui-vaut-de-lor",
+    "articleTitle": "Ce n’est pas le silence, mais le bruit de fond qui vaut de l’or",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "'Et si dans cette crise le plus grand risque était interne à votre organisation ?'",
+    "targetSlug": "manque-de-cohesion-crise-risque-interne-majeur",
+    "articleTitle": "Et si dans cette crise le plus grand risque était interne à votre organisation ?",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "'Les conditions de puissance du « leadership basé sur l’intention »'",
+    "targetSlug": "les-conditions-de-puissance-du-leadership-base-sur-lintention",
+    "articleTitle": "Les conditions de puissance du « leadership basé sur l’intention »",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "'« DRH, Redevenez des donneurs de souffle » : l’appel de l’amiral Olivier Lajous'",
+    "targetSlug": "richesse-humaine-drh-redonner-du-souffle-amiral-lajous",
+    "articleTitle": "« DRH, Redevenez des donneurs de souffle » : l’appel de l’amiral Olivier Lajous",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "\"What is enaction?\"",
+    "targetSlug": "what-is-enaction",
+    "articleTitle": "What is enaction?",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "'Brave but not reckless'",
+    "targetSlug": "brave-but-not-reckless",
+    "articleTitle": "Brave but not reckless",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "'Creating daylight in the fog: not submitting to crisis, with method'",
+    "targetSlug": "creating-daylight-fog-managing-crisis",
+    "articleTitle": "Creating daylight in the fog: not submitting to crisis, with method",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "'Take an interest in the causes of failures and those of successful functioning'",
+    "targetSlug": "causes-failures-successful-functioning",
+    "articleTitle": "Take an interest in the causes of failures and those of successful functioning",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "'The relational dimension of work, an overlooked competitive advantage!'",
+    "targetSlug": "relational-dimension-work-competitive-advantage",
+    "articleTitle": "The relational dimension of work, an overlooked competitive advantage!",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "'What coaching practice has unlearned me!'",
+    "targetSlug": "what-coaching-practice-unlearned-me",
+    "articleTitle": "What coaching practice has unlearned me!",
+    "confidence": "exact"
+  },
+  {
+    "sourceDir": "'What if in this crisis the biggest risk was internal to your organization?'",
+    "targetSlug": "internal-risk-crisis-cohesion",
+    "articleTitle": "What if in this crisis the biggest risk was internal to your organization?",
+    "confidence": "exact"
+  }
+]
