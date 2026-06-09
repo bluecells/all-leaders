@@ -1,0 +1,975 @@
+[
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "collective-effectiveness-collaboration-assessment",
+    "newImagePath": "/images/services/en/collective-effectiveness-collaboration-assessment/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "conflict-cost-measurement",
+    "newImagePath": "/images/services/en/conflict-cost-measurement/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "conflict-management",
+    "newImagePath": "/images/services/en/conflict-management/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "corporate-seminars-teambuilding-for-managers",
+    "newImagePath": "/images/services/en/corporate-seminars-teambuilding-for-managers/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "disruptive-speakers",
+    "newImagePath": "/images/services/en/disruptive-speakers/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "experiential-leadership-virtual-reality-mission-one",
+    "newImagePath": "/images/services/en/experiential-leadership-virtual-reality-mission-one/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "individual-coaching-for-managers",
+    "newImagePath": "/images/services/en/individual-coaching-for-managers/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "managerial-supervision-groups",
+    "newImagePath": "/images/services/en/managerial-supervision-groups/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "mental-wellbeing-and-health-at-work",
+    "newImagePath": "/images/services/en/mental-wellbeing-and-health-at-work/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "mission-one-performance-flash-assessment",
+    "newImagePath": "/images/services/en/mission-one-performance-flash-assessment/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "okr-collective-coaching-steppps-ibl",
+    "newImagePath": "/images/services/en/okr-collective-coaching-steppps-ibl/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "patient-aggression-violence-management",
+    "newImagePath": "/images/services/en/patient-aggression-violence-management/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "professional-aggression-management-virtual-box",
+    "newImagePath": "/images/services/en/professional-aggression-management-virtual-box/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "pssm-mental-health-first-aid-training",
+    "newImagePath": "/images/services/en/pssm-mental-health-first-aid-training/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "stress-management-top-method",
+    "newImagePath": "/images/services/en/stress-management-top-method/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "womens-leadership",
+    "newImagePath": "/images/services/en/womens-leadership/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "en",
+    "slug": "workshops-managerial-skills-development",
+    "newImagePath": "/images/services/en/workshops-managerial-skills-development/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "agressivite-du-patient",
+    "newImagePath": "/images/services/fr/agressivite-du-patient/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "bien-etre-psychique-et-sante-mentale-au-travail",
+    "newImagePath": "/images/services/fr/bien-etre-psychique-et-sante-mentale-au-travail/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "coaching-individuel-pour-managers",
+    "newImagePath": "/images/services/fr/coaching-individuel-pour-managers/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "coaching-okr-collectif-steppps-lbi",
+    "newImagePath": "/images/services/fr/coaching-okr-collectif-steppps-lbi/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "conferenciers-disruptifs",
+    "newImagePath": "/images/services/fr/conferenciers-disruptifs/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "diagnostic-partage-efficacite-collective",
+    "newImagePath": "/images/services/fr/diagnostic-partage-efficacite-collective/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "formation-agressivite-professionnelle-virtual-box",
+    "newImagePath": "/images/services/fr/formation-agressivite-professionnelle-virtual-box/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "formations-pssm-premiers-secours-en-sante-mentale",
+    "newImagePath": "/images/services/fr/formations-pssm-premiers-secours-en-sante-mentale/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "gestion-des-conflits",
+    "newImagePath": "/images/services/fr/gestion-des-conflits/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "gestion-du-stress-methode-top",
+    "newImagePath": "/images/services/fr/gestion-du-stress-methode-top/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "groupes-de-supervision-manageriale",
+    "newImagePath": "/images/services/fr/groupes-de-supervision-manageriale/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "leadership-experientiel-en-realite-virtuelle-mission-one",
+    "newImagePath": "/images/services/fr/leadership-experientiel-en-realite-virtuelle-mission-one/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "leadership-feminin",
+    "newImagePath": "/images/services/fr/leadership-feminin/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "mesure-cout-conflictualite",
+    "newImagePath": "/images/services/fr/mesure-cout-conflictualite/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "mission-one-diagnostic-flash-de-la-performance",
+    "newImagePath": "/images/services/fr/mission-one-diagnostic-flash-de-la-performance/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "parcours-developpement-managerial-leadership",
+    "newImagePath": "/images/services/fr/parcours-developpement-managerial-leadership/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "seminaire-de-direction-teambuilding",
+    "newImagePath": "/images/services/fr/seminaire-de-direction-teambuilding/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "services",
+    "lang": "fr",
+    "slug": "supervision-collective",
+    "newImagePath": "/images/services/fr/supervision-collective/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"2026 Guide for hospital staff safety\"",
+    "newImagePath": "/images/articles/en/\"2026 Guide for hospital staff safety\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"Commitment = drive = clarity + recognition + kindness\"",
+    "newImagePath": "/images/articles/en/\"Commitment = drive = clarity + recognition + kindness\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"Conditions for the power of 'INTENT-BASED LEADERSHIP'\"",
+    "newImagePath": "/images/articles/en/\"Conditions for the power of 'INTENT-BASED LEADERSHIP'\"/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"Gain in personal and collective leadership, at the same time! ? !\"",
+    "newImagePath": "/images/articles/en/\"Gain in personal and collective leadership, at the same time! ? !\"/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"Handisail sailor Gauthier Bril and All Leaders Initiative, a partnership with momentum!\"",
+    "newImagePath": "/images/articles/en/\"Handisail sailor Gauthier Bril and All Leaders Initiative, a partnership with momentum!\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"IT'S NOT THE SILENCE, BUT THE BACKGROUND NOISE THAT'S WORTH ITS WEIGHT IN GOLD\"",
+    "newImagePath": "/images/articles/en/\"IT'S NOT THE SILENCE, BUT THE BACKGROUND NOISE THAT'S WORTH ITS WEIGHT IN GOLD\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"Kindness, authenticity and other 'catch-all words' to avoid. Really?\"",
+    "newImagePath": "/images/articles/en/\"Kindness, authenticity and other 'catch-all words' to avoid. Really?\"/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"Let's rediscover the world through our 5 senses!\"",
+    "newImagePath": "/images/articles/en/\"Let's rediscover the world through our 5 senses!\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"M&A: shared assessment on human element reduces risk and failure rate\"",
+    "newImagePath": "/images/articles/en/\"M&A: shared assessment on human element reduces risk and failure rate\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"Managerial courage, for and through psychological safety\"",
+    "newImagePath": "/images/articles/en/\"Managerial courage, for and through psychological safety\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"One in ten working people in the spiral of occupational burnout\"",
+    "newImagePath": "/images/articles/en/\"One in ten working people in the spiral of occupational burnout\"/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"Organising the balance between exploration and execution in remote work time\"",
+    "newImagePath": "/images/articles/en/\"Organising the balance between exploration and execution in remote work time\"/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"Psychological safety continuum\"",
+    "newImagePath": "/images/articles/en/\"Psychological safety continuum\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"The impact of psychological safety on team performance and organisational excellence\"",
+    "newImagePath": "/images/articles/en/\"The impact of psychological safety on team performance and organisational excellence\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"This year, dive in or gain perspective, but save the world!\"",
+    "newImagePath": "/images/articles/en/\"This year, dive in or gain perspective, but save the world!\"/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"What is enaction?\"",
+    "newImagePath": "/images/articles/en/\"What is enaction?\"/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"When 'AGILE' GOES TOO FAR…\"",
+    "newImagePath": "/images/articles/en/\"When 'AGILE' GOES TOO FAR…\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "\"« Human wealth: HR directors, become givers of breath » – admiral Olivier Lajous'S CALL\"",
+    "newImagePath": "/images/articles/en/\"« Human wealth: HR directors, become givers of breath » – admiral Olivier Lajous'S CALL\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Acting as a strategist in a volatile and uncertain world'",
+    "newImagePath": "/images/articles/en/'Acting as a strategist in a volatile and uncertain world'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'After the navy, I had resigned myself to \"the adventure\" coming to an end… »'",
+    "newImagePath": "/images/articles/en/'After the navy, I had resigned myself to \"the adventure\" coming to an end… »'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Against chaos, culture'",
+    "newImagePath": "/images/articles/en/'Against chaos, culture'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Appreciative inquiry: discovering the strengths, values and winning behaviours of an organization'",
+    "newImagePath": "/images/articles/en/'Appreciative inquiry: discovering the strengths, values and winning behaviours of an organization'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Brave but not reckless'",
+    "newImagePath": "/images/articles/en/'Brave but not reckless'/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Christian Clot - reaction + construction'",
+    "newImagePath": "/images/articles/en/'Christian Clot - reaction + construction'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Coaching in practice'",
+    "newImagePath": "/images/articles/en/'Coaching in practice'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Conflict cost observatory'",
+    "newImagePath": "/images/articles/en/'Conflict cost observatory'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Cost of workplace conflict'",
+    "newImagePath": "/images/articles/en/'Cost of workplace conflict'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Creating daylight in the fog: not submitting to crisis, with method'",
+    "newImagePath": "/images/articles/en/'Creating daylight in the fog: not submitting to crisis, with method'/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Employee involvement, key to successful real digitalisation'",
+    "newImagePath": "/images/articles/en/'Employee involvement, key to successful real digitalisation'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Highlighting and raising awareness of performance'",
+    "newImagePath": "/images/articles/en/'Highlighting and raising awareness of performance'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Ignoring shared intention: a credible threat to any company'",
+    "newImagePath": "/images/articles/en/'Ignoring shared intention: a credible threat to any company'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Impact of psychological safety on team performance and organizational excellence'",
+    "newImagePath": "/images/articles/en/'Impact of psychological safety on team performance and organizational excellence'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Intent-based leadership according to David Marquet'",
+    "newImagePath": "/images/articles/en/'Intent-based leadership according to David Marquet'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Managerial courage, through and for psychological safety'",
+    "newImagePath": "/images/articles/en/'Managerial courage, through and for psychological safety'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Meaning & work: between continuities and shifts'",
+    "newImagePath": "/images/articles/en/'Meaning & work: between continuities and shifts'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Mental health and psychological well-being, a major issue in the world of work!'",
+    "newImagePath": "/images/articles/en/'Mental health and psychological well-being, a major issue in the world of work!'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Ontological security: how to cultivate inner stability to hold steady in an uncertain world?'",
+    "newImagePath": "/images/articles/en/'Ontological security: how to cultivate inner stability to hold steady in an uncertain world?'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Stop waiting for solutions, foster intention!'",
+    "newImagePath": "/images/articles/en/'Stop waiting for solutions, foster intention!'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Take an interest in the causes of failures and those of successful functioning'",
+    "newImagePath": "/images/articles/en/'Take an interest in the causes of failures and those of successful functioning'/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Telework, experienced less well by young people, women and employees'",
+    "newImagePath": "/images/articles/en/'Telework, experienced less well by young people, women and employees'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'The 4 pillars at the foundation of successful professional commitment'",
+    "newImagePath": "/images/articles/en/'The 4 pillars at the foundation of successful professional commitment'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'The major role of safety culture in anticipating risks'",
+    "newImagePath": "/images/articles/en/'The major role of safety culture in anticipating risks'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'The psychological safety continuum'",
+    "newImagePath": "/images/articles/en/'The psychological safety continuum'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'The relational dimension of work, an overlooked competitive advantage!'",
+    "newImagePath": "/images/articles/en/'The relational dimension of work, an overlooked competitive advantage!'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'The systemicist, new conflict defuser in business'",
+    "newImagePath": "/images/articles/en/'The systemicist, new conflict defuser in business'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'To succeed, take the risk of initiative with intent-based command'",
+    "newImagePath": "/images/articles/en/'To succeed, take the risk of initiative with intent-based command'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'What are the components of safety culture?'",
+    "newImagePath": "/images/articles/en/'What are the components of safety culture?'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'What coaching practice has unlearned me!'",
+    "newImagePath": "/images/articles/en/'What coaching practice has unlearned me!'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'What conversations to regenerate our organizations today?'",
+    "newImagePath": "/images/articles/en/'What conversations to regenerate our organizations today?'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'What if in this crisis the biggest risk was internal to your organization?'",
+    "newImagePath": "/images/articles/en/'What if in this crisis the biggest risk was internal to your organization?'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'What is intent-based leadership?'",
+    "newImagePath": "/images/articles/en/'What is intent-based leadership?'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Why is it necessary to greet each other every day?'",
+    "newImagePath": "/images/articles/en/'Why is it necessary to greet each other every day?'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'Workplace conflict: assess your hidden costs… and hidden gains!'",
+    "newImagePath": "/images/articles/en/'Workplace conflict: assess your hidden costs… and hidden gains!'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "en",
+    "slug": "'World champion!'",
+    "newImagePath": "/images/articles/en/'World champion!'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Agir en stratège dans un monde volatile et incertain\"",
+    "newImagePath": "/images/articles/fr/\"Agir en stratège dans un monde volatile et incertain\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Appreciative inquiry : a la recherche des forces, valeurs et comportements gagnants d’une organisation\"",
+    "newImagePath": "/images/articles/fr/\"Appreciative inquiry : a la recherche des forces, valeurs et comportements gagnants d’une organisation\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Arrêtez d’attendre des solutions, favorisez l’intention !\"",
+    "newImagePath": "/images/articles/fr/\"Arrêtez d’attendre des solutions, favorisez l’intention !\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Bienveillance, authenticité et autres « mots-valises » à éviter. heu, vraiment ?\"",
+    "newImagePath": "/images/articles/fr/\"Bienveillance, authenticité et autres « mots-valises » à éviter. heu, vraiment ?\"/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Ce que m’a désappris la pratique du coaching !\"",
+    "newImagePath": "/images/articles/fr/\"Ce que m’a désappris la pratique du coaching !\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Cette année, plongez ou prenez de la hauteur, mais sauvez le monde !\"",
+    "newImagePath": "/images/articles/fr/\"Cette année, plongez ou prenez de la hauteur, mais sauvez le monde !\"/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Champion du monde !\"",
+    "newImagePath": "/images/articles/fr/\"Champion du monde !\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Christian Clot - réaction + construction\"",
+    "newImagePath": "/images/articles/fr/\"Christian Clot - réaction + construction\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Conflictualité au travail : estimez votre gisement de coûts… et de gains cachés !\"",
+    "newImagePath": "/images/articles/fr/\"Conflictualité au travail : estimez votre gisement de coûts… et de gains cachés !\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Contre le chaos, la culture\"",
+    "newImagePath": "/images/articles/fr/\"Contre le chaos, la culture\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Courageux mais pas téméraire\"",
+    "newImagePath": "/images/articles/fr/\"Courageux mais pas téméraire\"/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Coût de la conflictualité au travail\"",
+    "newImagePath": "/images/articles/fr/\"Coût de la conflictualité au travail\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Creuser l’écart dans le brouillard : ne pas subir la crise, avec méthode\"",
+    "newImagePath": "/images/articles/fr/\"Creuser l’écart dans le brouillard : ne pas subir la crise, avec méthode\"/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Envie = clarté + reconnaissance + bienveillance\"",
+    "newImagePath": "/images/articles/fr/\"Envie = clarté + reconnaissance + bienveillance\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Gagner en leadership personnel et collectif, en même temps ! ? !\"",
+    "newImagePath": "/images/articles/fr/\"Gagner en leadership personnel et collectif, en même temps ! ? !\"/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Guide 2026 pour la sécurité du personnel à l'hôpital\"",
+    "newImagePath": "/images/articles/fr/\"Guide 2026 pour la sécurité du personnel à l'hôpital\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Ignorer l'intention commune : une menace crédible pour toute entreprise\"",
+    "newImagePath": "/images/articles/fr/\"Ignorer l'intention commune : une menace crédible pour toute entreprise\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Impact de la sécurité psychologique dans la performance d’équipe et l’excellence organisationnelle\"",
+    "newImagePath": "/images/articles/fr/\"Impact de la sécurité psychologique dans la performance d’équipe et l’excellence organisationnelle\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"La dimension relationnelle du travail, un avantage concurrentiel trop négligé !\"",
+    "newImagePath": "/images/articles/fr/\"La dimension relationnelle du travail, un avantage concurrentiel trop négligé !\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Le coaching en pratique\"",
+    "newImagePath": "/images/articles/fr/\"Le coaching en pratique\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Le courage managérial, pour et par la sécurité psychologique\"",
+    "newImagePath": "/images/articles/fr/\"Le courage managérial, pour et par la sécurité psychologique\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Le leadership basé sur l'intention selon David Marquet\"",
+    "newImagePath": "/images/articles/fr/\"Le leadership basé sur l'intention selon David Marquet\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Le régatier handivoile Gauthier Bril et All Leaders Initiative, un partenariat qui a du souffle !\"",
+    "newImagePath": "/images/articles/fr/\"Le régatier handivoile Gauthier Bril et All Leaders Initiative, un partenariat qui a du souffle !\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Le rôle majeur de la culture de sûreté dans l’anticipation des risques\"",
+    "newImagePath": "/images/articles/fr/\"Le rôle majeur de la culture de sûreté dans l’anticipation des risques\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Le systémicien, nouveau démineur de conflits en entreprise\"",
+    "newImagePath": "/images/articles/fr/\"Le systémicien, nouveau démineur de conflits en entreprise\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Le télétravail, moins bien vécu par les jeunes, les femmes et les employés\"",
+    "newImagePath": "/images/articles/fr/\"Le télétravail, moins bien vécu par les jeunes, les femmes et les employés\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"L’implication des collaborateurs, clé d’une vraie digitalisation réussie\"",
+    "newImagePath": "/images/articles/fr/\"L’implication des collaborateurs, clé d’une vraie digitalisation réussie\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"M&A : le diagnostic partagé sur l'élément humain qui réduit risque et taux d'échec\"",
+    "newImagePath": "/images/articles/fr/\"M&A : le diagnostic partagé sur l'élément humain qui réduit risque et taux d'échec\"/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Observatoire du coût des conflits\"",
+    "newImagePath": "/images/articles/fr/\"Observatoire du coût des conflits\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Organiser l’équilibre entre exploration et exécution en temps de travail à distance\"",
+    "newImagePath": "/images/articles/fr/\"Organiser l’équilibre entre exploration et exécution en temps de travail à distance\"/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Pour gagner, risquer l'initiative avec le commandement par intention\"",
+    "newImagePath": "/images/articles/fr/\"Pour gagner, risquer l'initiative avec le commandement par intention\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Quand « l’agile » va trop loin…\"",
+    "newImagePath": "/images/articles/fr/\"Quand « l’agile » va trop loin…\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Redécouvrons le monde à travers nos 5 sens !\"",
+    "newImagePath": "/images/articles/fr/\"Redécouvrons le monde à travers nos 5 sens !\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Santé mentale et bien-être psychique, un enjeu majeur dans le monde du travail !\"",
+    "newImagePath": "/images/articles/fr/\"Santé mentale et bien-être psychique, un enjeu majeur dans le monde du travail !\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Souligner et conscientiser la performance\"",
+    "newImagePath": "/images/articles/fr/\"Souligner et conscientiser la performance\"/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"S’intéresser aux causes des défaillances et à celles du bon fonctionnement\"",
+    "newImagePath": "/images/articles/fr/\"S’intéresser aux causes des défaillances et à celles du bon fonctionnement\"/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "\"Un actif sur dix dans la spirale de l'épuisement professionnel\"",
+    "newImagePath": "/images/articles/fr/\"Un actif sur dix dans la spirale de l'épuisement professionnel\"/image.webp",
+    "imageFile": "image.webp"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'A la rentrée on annonce la couleur !'",
+    "newImagePath": "/images/articles/fr/'A la rentrée on annonce la couleur !'/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'Après la marine, je m’étais résignée à ce que « l’aventure » s’arrête… »'",
+    "newImagePath": "/images/articles/fr/'Après la marine, je m’étais résignée à ce que « l’aventure » s’arrête… »'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'Ce n’est pas le silence, mais le bruit de fond qui vaut de l’or'",
+    "newImagePath": "/images/articles/fr/'Ce n’est pas le silence, mais le bruit de fond qui vaut de l’or'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'Et si dans cette crise le plus grand risque était interne à votre organisation ?'",
+    "newImagePath": "/images/articles/fr/'Et si dans cette crise le plus grand risque était interne à votre organisation ?'/image.jpeg",
+    "imageFile": "image.jpeg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'Le continuum de la sécurité psychologique'",
+    "newImagePath": "/images/articles/fr/'Le continuum de la sécurité psychologique'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'Les conditions de puissance du « leadership basé sur l’intention »'",
+    "newImagePath": "/images/articles/fr/'Les conditions de puissance du « leadership basé sur l’intention »'/image.png",
+    "imageFile": "image.png"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'Quelle nécessité de se dire bonjour, touuuuuuus les jours ?'",
+    "newImagePath": "/images/articles/fr/'Quelle nécessité de se dire bonjour, touuuuuuus les jours ?'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'Quelles conversations pour régénérer nos organisations aujourd’hui ?'",
+    "newImagePath": "/images/articles/fr/'Quelles conversations pour régénérer nos organisations aujourd’hui ?'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'Quelles sont les composantes de la culture de sûreté ?'",
+    "newImagePath": "/images/articles/fr/'Quelles sont les composantes de la culture de sûreté ?'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'Qu’est-ce que le leadership basé sur l’intention ?'",
+    "newImagePath": "/images/articles/fr/'Qu’est-ce que le leadership basé sur l’intention ?'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'Sens & travail : entre permanences et mutations'",
+    "newImagePath": "/images/articles/fr/'Sens & travail : entre permanences et mutations'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'Sécurité ontologique : comment cultiver une stabilité intérieure pour tenir dans un monde incertain ?'",
+    "newImagePath": "/images/articles/fr/'Sécurité ontologique : comment cultiver une stabilité intérieure pour tenir dans un monde incertain ?'/image.jpg",
+    "imageFile": "image.jpg"
+  },
+  {
+    "collection": "articles",
+    "lang": "fr",
+    "slug": "'« DRH, Redevenez des donneurs de souffle » : l’appel de l’amiral Olivier Lajous'",
+    "newImagePath": "/images/articles/fr/'« DRH, Redevenez des donneurs de souffle » : l’appel de l’amiral Olivier Lajous'/image.jpeg",
+    "imageFile": "image.jpeg"
+  }
+]
