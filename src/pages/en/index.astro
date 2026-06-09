@@ -28,6 +28,7 @@ import potelChabot from '@/assets/images/partners/potel-chabot.webp';
 import stryker from '@/assets/images/partners/stryker.webp';
 import dedalus from '@/assets/images/partners/dedalus.webp';
 import wano from '@/assets/images/partners/wano.webp';
+import hoolr from '@/assets/images/partners/logo-hoolr.webp';
 import { HOME_EN } from '../../consts';
 import Layout from '../../layouts/Layout.astro';
 import Grid from '../../components/UI/Grid.astro';
@@ -607,6 +608,37 @@ import BannerReviews from '../../components/UI/BannerReviews.astro';
               </p>
               <a href="https://www.fa3r.fr/" aria-label="Learn more about FA3R"
                 >Learn under stress, decide under pressure, stand together.</a
+              >
+            </div>
+          </article>
+        </li>
+        <li role="listitem">
+          <article class="partner-article">
+            <div class="flex items-center justify-center w-full">
+              <Image
+                src={hoolr}
+                alt="Logo de Hooler Coaching"
+                width={250}
+                widths={[180, 250]}
+                sizes="(max-width: 768px) 180px, 250px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="partner-logo object-contain"
+              />
+            </div>
+            <div class="partner-content">
+              <h3>Hooler Coaching — Streamlined and comprehensive coaching management</h3>
+              <p>
+                SaaS digital platform designed for streamlined and comprehensive coaching
+                management: because we find it of the essence to provide you also with coaching
+                actions’ streamlined management capabilities (matching, meetings, tracking…) as well
+                as advanced reporting and evidence of impact.
+              </p>
+              <a
+                href="https://www.hoolercoaching.com/"
+                aria-label="En savoir plus sur Hooler Coaching"
+                >Discover how to work on the people side of work in a manageable and measurable way</a
               >
             </div>
           </article>

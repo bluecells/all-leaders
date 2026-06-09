@@ -28,6 +28,7 @@ import potelChabot from '@/assets/images/partners/potel-chabot.webp';
 import stryker from '@/assets/images/partners/stryker.webp';
 import dedalus from '@/assets/images/partners/dedalus.webp';
 import wano from '@/assets/images/partners/wano.webp';
+import hoolr from '@/assets/images/partners/logo-hoolr.webp';
 import { HOME } from '../consts';
 import Layout from '../layouts/Layout.astro';
 import Grid from '../components/UI/Grid.astro';
@@ -623,6 +624,37 @@ import BannerReviews from '../components/UI/BannerReviews.astro';
               </p>
               <a href="https://www.fa3r.fr/" aria-label="En savoir plus sur FA3R"
                 >Apprendre sous stress, décider sous pression, tenir ensemble.</a
+              >
+            </div>
+          </article>
+        </li>
+        <li role="listitem">
+          <article class="partner-article">
+            <div class="flex items-center justify-center w-full">
+              <Image
+                src={hoolr}
+                alt="Logo de Hooler Coaching"
+                width={250}
+                widths={[180, 250]}
+                sizes="(max-width: 768px) 180px, 250px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+                class="partner-logo object-contain"
+              />
+            </div>
+            <div class="partner-content">
+              <h3>Hooler Coaching — Pilotage global des activités de coaching</h3>
+              <p>
+                Hoolr Coaching, plateforme digitale SaaS de pilotage global des activités de
+                coaching : parce qu’il est essentiel pour nous de vous apporter aussi une gestion
+                opérationnelle du coaching (prise de RV, suivi…) standardisée et centralisée ainsi
+                qu’un reporting avancé pour une réelle mesure d’impact.
+              </p>
+              <a
+                href="https://www.hoolercoaching.com/"
+                aria-label="En savoir plus sur Hooler Coaching"
+                >Découvrir comment travailler sur l’humain peut être gérable et mesurable</a
               >
             </div>
           </article>
