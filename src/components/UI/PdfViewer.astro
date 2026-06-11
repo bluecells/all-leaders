@@ -1,23 +1,67 @@
 ---
 interface Props {
-  url: string;
+  // Nouveau format conditionnel
+  pdfSource?: {
+    discriminant: 'url' | 'upload';
+    value: {
+      externalUrl?: string;
+      file?: string;
+    };
+  };
+
+  // Ancien format legacy
+  url?: string;
+
   height?: string;
 }
-const { url, height = '600px' } = Astro.props;
+
+const { pdfSource, url, height = '600px' } = Astro.props;
+
+// Déterminer la source du PDF
+let pdfSrc = '';
+
+if (pdfSource?.discriminant === 'url') {
+  // Mode URL
+  pdfSrc = pdfSource.value.externalUrl || '';
+} else if (pdfSource?.discriminant === 'upload') {
+  // Mode upload
+  pdfSrc = pdfSource.value.file || '';
+} else if (url) {
+  // Fallback vers ancien format
+  pdfSrc = url;
+}
+
+// Validation : bloquer si pas de source
+if (!pdfSrc) {
+  console.error('PdfViewer: Aucune source PDF fournie');
+}
 ---
 
-<div class="pdf-container">
-  <iframe src={url} width="100%" height={height} style="border: none;" title="PDF Viewer">
-    <p>Votre navigateur ne supporte pas l'affichage des PDF. <a href={url}>Cliquez ici pour
-    télécharger le fichier.</a> </p>
-  </iframe>
-</div>
+{pdfSrc ? (
+  <div class="pdf-viewer-container my-8">
+    <iframe
+      src={pdfSrc}
+      class="w-full rounded-lg shadow-lg border border-gray-200"
+      style={`height: ${height};`}
+      title="PDF Viewer"
+      loading="lazy"
+    >
+      <p>Votre navigateur ne supporte pas l'affichage des PDF. <a href={pdfSrc}>Cliquez ici pour télécharger le fichier.</a></p>
+    </iframe>
+  </div>
+) : (
+  <div class="pdf-viewer-error my-8 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+    <p class="font-semibold">Erreur : Aucun PDF à afficher</p>
+    <p class="text-sm mt-1">Veuillez configurer une URL ou uploader un fichier PDF.</p>
+  </div>
+)}
 
 <style>
-  .pdf-container {
-    margin: 2rem 0;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  .pdf-viewer-container {
+    position: relative;
+  }
+
+  .pdf-viewer-error {
+    text-align: center;
   }
 </style>

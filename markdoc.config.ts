@@ -322,8 +322,20 @@ export default defineMarkdocConfig({
     Pdf: {
       render: component('./src/components/UI/PdfViewer.astro'),
       attributes: {
-        url: { type: String, required: true },
-        height: { type: String },
+        // Nouveau format conditionnel
+        pdfSource: {
+          type: Object,
+          required: false,
+        },
+        // Ancien format legacy
+        url: {
+          type: String,
+          required: false,
+        },
+        height: {
+          type: String,
+          default: '600px',
+        },
       },
     },
   },

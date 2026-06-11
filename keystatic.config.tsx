@@ -224,7 +224,7 @@ export default config({
       schema: {
         title: fields.slug({
           name: {
-            label: 'Titre de la page',
+            label: 'Titre de la page 🇫🇷',
             description: "Le nom de l'onglet du navigateur",
           },
           slug: {
@@ -291,7 +291,7 @@ export default config({
           }),
         }),
         category: fields.relationship({
-          label: 'Catégorie',
+          label: 'Catégorie 🇫🇷',
           collection: 'categories',
           validation: { isRequired: false },
         }),
@@ -345,74 +345,74 @@ export default config({
       schema: {
         title: fields.slug({
           name: {
-            label: 'Page Title',
-            description: 'The browser tab name',
+            label: 'Titre de la page 🇬🇧',
+            description: 'Nom de l’onglet du navigateur',
           },
           slug: {
             label: 'Internal slug',
-            description: '(do not modify)',
+            description: '(ne pas modifier)',
           },
         }),
         h1Title: fields.text({
-          label: 'Main title (H1)',
-          description: 'If empty, the page title is used',
+          label: 'Titre principal (H1)',
+          description: 'Si vide, le titre de la page est utilisé',
         }),
         seoSlug: fields.text({
-          label: 'Public slug',
+          label: 'Slug public',
           validation: { isRequired: false },
-          description: 'The visible slug (end of URL). Must be SEO-friendly.',
+          description: 'Le slug (fin de l’adresse) visible. Doit être SEO-friendly.',
         }),
         metaTitle: fields.text({
           label: 'Meta Title',
           validation: { isRequired: false },
-          description: '60 characters max for optimal Google display',
+          description: '60 caractères max pour affichage optimal dans Google',
         }),
         metaDescription: fields.text({
           label: 'Meta Description',
           multiline: true,
-          description: '120-160 characters recommended for optimal Google display',
+          description: '120-160 caractères recommandés pour un affichage optimal sur Google',
           validation: { isRequired: false },
         }),
         ogImage: fields.image({
           label: 'Open Graph Image',
-          description: 'The image displayed on Facebook, WhatsApp, X...',
+          description: "L'image affichée sur Facebook, Whatsapp, X...",
           directory: 'public/images/articles/en',
           publicPath: '/images/articles/en/',
           validation: { isRequired: false },
         }),
         jsonType: fields.select({
           label: 'JSON-LD Type',
-          description: 'Structured data type used by JSON-LD',
+          description: 'Type de donnée structurées utilisées par JSON-LD',
           options: [
             { label: 'Page', value: 'page' },
             { label: 'Blog Article', value: 'blog' },
             { label: 'FAQ', value: 'faq' },
-            { label: 'Service', value: 'accompagnements' },
+            { label: 'Accompagnement', value: 'accompagnements' },
           ],
           defaultValue: 'blog',
           // @ts-expect-error - width is supported by Keystatic at runtime
           width: '600px',
         }),
         publishDate: fields.date({
-          label: 'Publication date',
-          description: 'The date when the article will be shown as published',
+          label: 'Date de publication',
+          description: 'La date à laquelle l’article sera affiché comme publié',
           defaultValue: { kind: 'today' },
         }),
         featured: fields.checkbox({ label: 'Featured article', defaultValue: false }),
         featuredPhoto: fields.object({
           image: fields.image({
-            label: 'Featured image (Organize in /en/{slug}/)',
+            label: 'Image mise en avant',
             directory: 'public/images/articles/en',
             publicPath: '/images/articles/en/',
             validation: { isRequired: false },
           }),
           alt: fields.text({
-            label: 'Image alt text',
+            label: 'Texte alternatif de l’image',
             validation: { isRequired: false },
           }),
         }),
         category: fields.relationship({
-          label: 'Category',
+          label: 'Catégorie 🇬🇧',
           collection: 'categories',
           validation: { isRequired: false },
         }),
@@ -426,9 +426,9 @@ export default config({
             itemLabel: (props: any) => props.value || 'Unnamed tag',
           }
         ),
-        excerpt: fields.text({ label: 'Summary', validation: { isRequired: false } }),
+        excerpt: fields.text({ label: 'Résumé', validation: { isRequired: false } }),
         content: fields.markdoc({
-          label: 'Content',
+          label: 'Contenu',
           options: {
             bold: true,
             italic: true,
