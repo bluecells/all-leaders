@@ -1,249 +1,112 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-// Note: Pages sont gérées via fichiers .astro, pas via Keystatic
-
-// Collection Landing Pages
-const landingPages = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx,mdoc}', base: './src/content/landing-pages' }),
-  schema: z.object({
-    title: z.string(),
-    h1Title: z.string().optional(),
-    slug: z.string().optional(),
-    lang: z.enum(['it', 'fr', 'en']),
-    seoSlug: z.string().nullish(),
-    metaTitle: z.string().nullish(),
-    metaDescription: z.string().nullish(),
-    ogImage: z.string().nullish(),
-    jsonType: z
-      .enum(['page', 'blog', 'faq', 'blogCollection', 'hotelRoom'])
-      .default('page')
-      .optional(),
-    blocks: z.array(z.any()).optional(),
-    featuredPhoto: z
-      .object({
-        image: z.string().nullish(),
-        alt: z.string().nullish(),
-      })
-      .nullish(),
-  }),
+// Define base schema for content
+const baseArticleSchema = z.object({
+  title: z.string(),
+  h1Title: z.string().optional(),
+  seoSlug: z.string().optional(),
+  metaTitle: z.string().optional(),
+  metaDescription: z.string().optional(),
+  ogImage: z.string().optional(),
+  jsonType: z.string().optional(),
+  publishDate: z.date().optional(),
+  featured: z.boolean().default(false),
+  featuredPhoto: z.object({
+    image: z.string().optional(),
+    alt: z.string().optional(),
+  }).optional(),
+  category: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  excerpt: z.string().optional(),
 });
 
-// Collection Articles
-const articles = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx,mdoc}', base: './src/content/articles' }),
-  schema: z
-    .object({
-      title: z.string(),
-      h1Title: z.string().optional(),
-      lang: z.enum(['it', 'fr', 'en']),
-      seoSlug: z.string().nullish(),
-      metaTitle: z.string().nullish(),
-      metaDescription: z.string().nullish(),
-      ogImage: z.string().nullish(),
-      jsonType: z
-        .enum(['page', 'blog', 'faq', 'blogCollection', 'hotelRoom'])
-        .default('blog')
-        .optional(),
-      publishDate: z.coerce.date(),
-      featuredPhoto: z
-        .object({
-          image: z.string().nullish(),
-          alt: z.string().nullish(),
-        })
-        .nullish(),
-      excerpt: z.string().nullish(),
-      featured: z.boolean().optional().default(false),
-      category: z.string().nullish(),
-      tags: z.array(z.string()).nullish().default([]),
-    })
-    .transform((data: any) => {
-      // Auto-generate metaTitle if not provided, following Google SEO rules (40-60 chars)
-      const title = data.title.trim().replace(/\s+/g, ' ');
-      let metaTitle = data.metaTitle;
-
-      if (!metaTitle) {
-        if (title.length >= 40 && title.length <= 60) {
-          metaTitle = title;
-        } else if (title.length < 40) {
-          const prefixes =
-            data.lang === 'fr'
-              ? ['Guide: ', 'Comment: ', 'Découvrez: ', 'Tout savoir sur: ']
-              : ['Guide: ', 'How to: ', 'Discover: ', 'Learn about: '];
-
-          for (const prefix of prefixes) {
-            const candidate = prefix + title;
-            if (candidate.length >= 40 && candidate.length <= 60) {
-              metaTitle = candidate;
-              break;
-            }
-          }
-          if (!metaTitle) metaTitle = title;
-        } else {
-          let truncated = title.substring(0, 57);
-          const lastSpace = truncated.lastIndexOf(' ');
-          if (lastSpace > 40) {
-            truncated = truncated.substring(0, lastSpace);
-          }
-          metaTitle = truncated + '...';
-        }
-      }
-
-      return {
-        ...data,
-        metaTitle,
-      };
-    }),
+const baseAccompagnementSchema = z.object({
+  title: z.string(),
+  slug: z.string(),
+  category: z.string(),
+  type: z.enum(['action', 'investigation', 'inspiration', 'immersion']).default('action'),
+  description: z.string(),
+  image: z.string(),
+  metaTitle: z.string().optional(),
+  metaDescription: z.string().optional(),
 });
 
-// Collection FAQ
-const faq = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx,mdoc}', base: './src/content/faq' }),
-  schema: z.object({
-    question: z.string(),
-    lang: z.enum(['it', 'fr', 'en']),
-    seoSlug: z.string(),
-    metaTitle: z.string().nullish(),
-    metaDescription: z.string().nullish(),
-    ogImage: z.string().nullish(),
-    jsonType: z
-      .enum(['page', 'blog', 'faq', 'blogCollection', 'hotelRoom'])
-      .default('faq')
-      .optional(),
-    category: z.string().optional(),
-    order: z.number().default(0),
-  }),
+const baseFaqSchema = z.object({
+  seoSlug: z.string(),
+  question: z.string(),
+  metaTitle: z.string().optional(),
+  metaDescription: z.string().optional(),
+  jsonType: z.string().optional(),
+  category: z.string().optional(),
+  order: z.number().optional(),
 });
 
-// Collection Accompagnements
-// Les accompagnements sont stockés dans /src/content/accompagnements/ en MDOC
-const accompagnements = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx,mdoc}', base: './src/content/accompagnements' }),
-  schema: z.object({
-    title: z.string(),
-    h1Title: z.string().optional(),
-    slug: z.string(),
-    category: z.string(),
-    type: z.enum(['action', 'investigation', 'immersion', 'inspiration']),
-    description: z.string(),
-    image: z.string(),
-    lang: z.enum(['fr', 'en']),
-    metaTitle: z.string().nullish(),
-    metaDescription: z.string().nullish(),
-    ogImage: z.string().nullish(),
-    jsonType: z.enum(['page', 'service']).default('service').optional(),
-    USP1: z.string().optional(),
-    USP2: z.string().optional(),
-    USP3: z.string().optional(),
-    USP4: z.string().optional(),
-    USP5: z.string().optional(),
-  }),
+// Define collections with glob loader for Astro 6
+const articlesFR = defineCollection({
+  loader: glob({ pattern: '**/*.mdoc', base: './src/content/articlesFR' }),
+  schema: baseArticleSchema,
 });
 
-// Redirects (Single file)
-const redirects = defineCollection({
-  loader: glob({ pattern: '*.yaml', base: './src/content' }),
-  schema: z.object({
-    redirects: z.array(
-      z.object({
-        from: z.string(),
-        to: z.string(),
-        status: z.enum(['301', '302']).default('301'),
-        note: z.string().optional(),
-      })
-    ),
-  }),
+const articlesEN = defineCollection({
+  loader: glob({ pattern: '**/*.mdoc', base: './src/content/articlesEN' }),
+  schema: baseArticleSchema,
 });
 
-// Collection Catégories
-const category = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/categories' }),
-  schema: z.object({
-    cat_id: z.string(),
-    name_fr: z.string(),
-    name_en: z.string(),
-    slug_fr: z.string(),
-    slug_en: z.string(),
-    description_fr: z.string().optional(),
-    description_en: z.string().optional(),
-  }),
+const accompagnementsFR = defineCollection({
+  loader: glob({ pattern: '**/*.mdoc', base: './src/content/accompagnementsFR' }),
+  schema: baseAccompagnementSchema,
 });
 
-// Collection Tags
-const tags = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/tags' }),
-  schema: z.object({
-    cat_id: z.string(),
-    name_fr: z.string(),
-    name_en: z.string(),
-    slug_fr: z.string(),
-    slug_en: z.string(),
-    description_fr: z.string().optional(),
-    description_en: z.string().optional(),
-  }),
+const accompagnementsEN = defineCollection({
+  loader: glob({ pattern: '**/*.mdoc', base: './src/content/accompagnementsEN' }),
+  schema: baseAccompagnementSchema,
 });
 
-// Collection Menu
-const menu = defineCollection({
-  type: 'data',
-  schema: z.object({
-    links: z.array(
-      z.object({
-        label: z.string(),
-        url: z.string(),
-        type: z.enum(['link', 'cta']).default('link'),
-        hasSubmenu: z.boolean().default(false),
-        submenu: z
-          .array(
-            z.object({
-              label: z.string(),
-              url: z.string(),
-            })
-          )
-          .optional()
-          .default([]),
-      })
-    ),
-  }),
+const faqFR = defineCollection({
+  loader: glob({ pattern: '**/*.mdoc', base: './src/content/faqFR' }),
+  schema: baseFaqSchema,
 });
 
-// Collection Catégories Accompagnements
+const faqEN = defineCollection({
+  loader: glob({ pattern: '**/*.mdoc', base: './src/content/faqEN' }),
+  schema: baseFaqSchema,
+});
+
 const accompagnementsCategories = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/accompagnements-categories' }),
   schema: z.object({
-    name_fr: z.string(),
-    name_en: z.string(),
-    description_fr: z.string(),
-    description_en: z.string(),
     slug_fr: z.string(),
     slug_en: z.string(),
-    order: z.number().default(0),
+    name_fr: z.string(),
+    name_en: z.string(),
+    order: z.number().optional(),
+    description_fr: z.string().optional(),
+    description_en: z.string().optional(),
   }),
 });
 
-// Collection Modalités d'Intervention
-const modalitesIntervention = defineCollection({
-  loader: glob({ pattern: '**/*.yaml', base: './src/content/modalites-intervention' }),
+const categories = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/categories' }),
   schema: z.object({
-    slug: z.string(),
+    cat_id: z.string(),
+    slug_fr: z.string(),
+    slug_en: z.string(),
     name_fr: z.string(),
     name_en: z.string(),
-    description_fr: z.string(),
-    description_en: z.string(),
-    icon: z.string().optional(),
-    order: z.number().default(0),
+    order: z.number().optional(),
+    description_fr: z.string().optional(),
+    description_en: z.string().optional(),
   }),
 });
 
 export const collections = {
-  'landing-pages': landingPages,
-  articles,
-  faq,
-  accompagnements,
-  menu,
-  redirects,
-  category,
-  tags,
+  articlesFR,
+  articlesEN,
+  accompagnementsFR,
+  accompagnementsEN,
+  faqFR,
+  faqEN,
   'accompagnements-categories': accompagnementsCategories,
-  'modalites-intervention': modalitesIntervention,
+  categories,
 };

@@ -214,13 +214,13 @@ export default config({
         }),
       },
     }),
-    articles: collection({
-      label: 'Articles',
+    articlesFR: collection({
+      label: 'Articles 🇫🇷',
       slugField: 'title',
-      path: 'src/content/articles/**',
+      path: 'src/content/articlesFR/*',
       entryLayout: 'content',
       format: { contentField: 'content' },
-      columns: ['title', 'lang', 'category'],
+      columns: ['title', 'category'],
       schema: {
         title: fields.slug({
           name: {
@@ -255,8 +255,8 @@ export default config({
         ogImage: fields.image({
           label: 'Image Open Graph',
           description: "L'image affichée sur Facebook, Whatsapp, X...",
-          directory: 'public/images/articles',
-          publicPath: '/images/articles/',
+          directory: 'public/images/articles/fr',
+          publicPath: '/images/articles/fr/',
           validation: { isRequired: false },
         }),
         jsonType: fields.select({
@@ -275,14 +275,14 @@ export default config({
         publishDate: fields.date({
           label: 'Date de publication',
           description: "La date à laquelle l'article sera affiché comme publié",
-          defaultValue: { kind: 'today' }, // Optionnel : sélectionne la date du jour par défaut
+          defaultValue: { kind: 'today' },
         }),
         featured: fields.checkbox({ label: 'Article en vue', defaultValue: false }),
         featuredPhoto: fields.object({
           image: fields.image({
-            label: 'Image mise en avant (Organisez en /fr/{slug}/ ou /en/{slug}/)',
-            directory: 'public/images/articles',
-            publicPath: '/images/articles/',
+            label: 'Image mise en avant (Organisez en /fr/{slug}/)',
+            directory: 'public/images/articles/fr',
+            publicPath: '/images/articles/fr/',
             validation: { isRequired: false },
           }),
           alt: fields.text({
@@ -290,14 +290,11 @@ export default config({
             validation: { isRequired: false },
           }),
         }),
-        // Référence unique à une catégorie (optionnel)
         category: fields.relationship({
           label: 'Catégorie',
           collection: 'categories',
           validation: { isRequired: false },
         }),
-
-        // Tags (références multiples)
         tags: fields.array(
           fields.relationship({
             label: 'Tag',
@@ -309,16 +306,15 @@ export default config({
           }
         ),
         excerpt: fields.text({ label: 'Résumé', validation: { isRequired: false } }),
-
         content: fields.markdoc({
-          label: 'Content',
+          label: 'Contenu',
           options: {
             bold: true,
             italic: true,
             heading: [2, 3, 4],
             link: true,
             divider: true,
-            image: { directory: 'public/images/articles', publicPath: '/images/articles/' },
+            image: { directory: 'public/images/articles/fr', publicPath: '/images/articles/fr/' },
           },
           components: {
             Banner,
@@ -336,32 +332,143 @@ export default config({
             Table,
           },
         }),
-        lang: fields.select({
-          label: 'Langue',
+      },
+    }),
+
+    articlesEN: collection({
+      label: 'Articles 🇬🇧',
+      slugField: 'title',
+      path: 'src/content/articlesEN/*',
+      entryLayout: 'content',
+      format: { contentField: 'content' },
+      columns: ['title', 'category'],
+      schema: {
+        title: fields.slug({
+          name: {
+            label: 'Page title',
+            description: "The browser tab name",
+          },
+          slug: {
+            label: 'Internal slug',
+            description: '(do not modify)',
+          },
+        }),
+        h1Title: fields.text({
+          label: 'Main title (H1)',
+          description: 'If empty, the page title is used',
+        }),
+        seoSlug: fields.text({
+          label: 'Public slug',
+          validation: { isRequired: false },
+          description: "The visible slug (end of URL). Must be SEO-friendly.",
+        }),
+        metaTitle: fields.text({
+          label: 'Meta Title',
+          validation: { isRequired: false },
+          description: "60 characters max for optimal Google display",
+        }),
+        metaDescription: fields.text({
+          label: 'Meta Description',
+          multiline: true,
+          description: "120-160 characters recommended for optimal Google display",
+          validation: { isRequired: false },
+        }),
+        ogImage: fields.image({
+          label: 'Open Graph Image',
+          description: "The image displayed on Facebook, WhatsApp, X...",
+          directory: 'public/images/articles/en',
+          publicPath: '/images/articles/en/',
+          validation: { isRequired: false },
+        }),
+        jsonType: fields.select({
+          label: 'JSON-LD Type',
+          description: 'Structured data type used by JSON-LD',
           options: [
-            { label: 'Français', value: 'fr' },
-            { label: 'English', value: 'en' },
+            { label: 'Page', value: 'page' },
+            { label: 'Blog Article', value: 'blog' },
+            { label: 'FAQ', value: 'faq' },
+            { label: 'Service', value: 'accompagnements' },
           ],
-          defaultValue: 'fr',
+          defaultValue: 'blog',
+          // @ts-expect-error - width is supported by Keystatic at runtime
+          width: '600px',
+        }),
+        publishDate: fields.date({
+          label: 'Publication date',
+          description: "The date when the article will be shown as published",
+          defaultValue: { kind: 'today' },
+        }),
+        featured: fields.checkbox({ label: 'Featured article', defaultValue: false }),
+        featuredPhoto: fields.object({
+          image: fields.image({
+            label: 'Featured image (Organize in /en/{slug}/)',
+            directory: 'public/images/articles/en',
+            publicPath: '/images/articles/en/',
+            validation: { isRequired: false },
+          }),
+          alt: fields.text({
+            label: "Image alt text",
+            validation: { isRequired: false },
+          }),
+        }),
+        category: fields.relationship({
+          label: 'Category',
+          collection: 'categories',
+          validation: { isRequired: false },
+        }),
+        tags: fields.array(
+          fields.relationship({
+            label: 'Tag',
+            collection: 'tags',
+          }),
+          {
+            label: 'Tags',
+            itemLabel: (props: any) => props.value || 'Unnamed tag',
+          }
+        ),
+        excerpt: fields.text({ label: 'Summary', validation: { isRequired: false } }),
+        content: fields.markdoc({
+          label: 'Content',
+          options: {
+            bold: true,
+            italic: true,
+            heading: [2, 3, 4],
+            link: true,
+            divider: true,
+            image: { directory: 'public/images/articles/en', publicPath: '/images/articles/en/' },
+          },
+          components: {
+            Banner,
+            Carousel,
+            Duo,
+            Hero,
+            WideImage,
+            CtaButton,
+            Strip,
+            NotaBene,
+            YouTube,
+            Accordion,
+            Quadrifoglio,
+            PdfViewer,
+            Table,
+          },
         }),
       },
     }),
-    accompagnements: collection({
-      label: 'Accompagnements',
+
+    accompagnementsFR: collection({
+      label: 'Accompagnements 🇫🇷',
       slugField: 'title',
-      path: 'src/content/accompagnements/**',
+      path: 'src/content/accompagnementsFR/*',
       entryLayout: 'content',
       format: { contentField: 'content' },
-      columns: ['lang', 'type', 'category'],
+      columns: ['type', 'category'],
       schema: {
         title: fields.slug({
           name: { label: 'Titre' },
           slug: { label: 'Slug interne' },
         }),
-        slug: fields.text({
-          label: 'Slug SEO public',
-          validation: { isRequired: true },
-        }),
+        slug: fields.text({ label: 'Slug SEO public', validation: { isRequired: true } }),
         category: fields.select({
           label: 'Catégorie',
           options: [
@@ -397,6 +504,12 @@ export default config({
           multiline: true,
           validation: { isRequired: true },
         }),
+        image: fields.image({
+          label: "Image d'illustration",
+          directory: 'public/images/accompagnements/fr',
+          publicPath: '/images/accompagnements/fr/',
+          validation: { isRequired: true },
+        }),
         content: fields.markdoc({
           label: 'Corps',
           options: {
@@ -405,7 +518,10 @@ export default config({
             heading: [2, 3, 4],
             link: true,
             divider: true,
-            image: { directory: 'public/images/services', publicPath: '/images/services/' },
+            image: {
+              directory: 'public/images/accompagnements/fr',
+              publicPath: '/images/accompagnements/fr/',
+            },
           },
           components: {
             Banner,
@@ -422,58 +538,121 @@ export default config({
             PdfViewer,
             Table,
           },
-          // @ts-expect-error - validation is supported by Keystatic at runtime
-          validation: { isRequired: false },
         }),
-        metaTitle: fields.text({
-          label: 'Meta Title',
-          validation: { isRequired: false },
-        }),
+        metaTitle: fields.text({ label: 'Meta Title', validation: { isRequired: false } }),
         metaDescription: fields.text({
           label: 'Meta Description',
           multiline: true,
-          description: "122-155 caractères recommandé pour l'affichage optimal dans Google",
           validation: { isRequired: false },
         }),
-        image: fields.image({
-          label: "Image d'illustration",
-          directory: 'public/images/services',
-          publicPath: '/images/services/',
-          validation: { isRequired: true },
-        }),
-        lang: fields.select({
-          label: 'Langue',
-          options: [
-            { label: 'Français', value: 'fr' },
-            { label: 'Anglais', value: 'en' },
-          ],
-          defaultValue: 'fr',
-        }),
-        USP1: fields.text({
-          label: 'USP 1',
-          validation: { isRequired: false },
-        }),
-        USP2: fields.text({
-          label: 'USP 2',
-          validation: { isRequired: false },
-        }),
-        USP3: fields.text({
-          label: 'USP 3',
-          validation: { isRequired: false },
-        }),
-        USP4: fields.text({
-          label: 'USP 4',
-          validation: { isRequired: false },
-        }),
-        USP5: fields.text({
-          label: 'USP 5',
-          validation: { isRequired: false },
-        }),
+        USP1: fields.text({ label: 'USP 1', validation: { isRequired: false } }),
+        USP2: fields.text({ label: 'USP 2', validation: { isRequired: false } }),
+        USP3: fields.text({ label: 'USP 3', validation: { isRequired: false } }),
+        USP4: fields.text({ label: 'USP 4', validation: { isRequired: false } }),
+        USP5: fields.text({ label: 'USP 5', validation: { isRequired: false } }),
       },
     }),
-    faq: collection({
-      label: 'FAQ',
-      path: 'src/content/faq/**',
+
+    accompagnementsEN: collection({
+      label: 'Accompagnements 🇬🇧',
+      slugField: 'title',
+      path: 'src/content/accompagnementsEN/*',
+      entryLayout: 'content',
+      format: { contentField: 'content' },
+      columns: ['type', 'category'],
+      schema: {
+        title: fields.slug({
+          name: { label: 'Title' },
+          slug: { label: 'Internal slug' },
+        }),
+        slug: fields.text({ label: 'Public SEO slug', validation: { isRequired: true } }),
+        category: fields.select({
+          label: 'Catégorie',
+          options: [
+            {
+              label: "Coaching d'équipes et d'organisations",
+              value: "Coaching d'équipes et d'organisations",
+            },
+            { label: 'Diagnostic de la performance', value: 'Diagnostic de la performance' },
+            { label: 'Executive coaching', value: 'Executive coaching' },
+            { label: 'Gestion de la conflictualité', value: 'Gestion de la conflictualité' },
+            { label: 'Leadership development', value: 'Leadership development' },
+            {
+              label: 'Santé mentale et performance durable',
+              value: 'Santé mentale et performance durable',
+            },
+          ],
+          defaultValue: 'Executive coaching',
+          // @ts-expect-error - validation is supported by Keystatic at runtime
+          validation: { isRequired: true },
+        }),
+        type: fields.select({
+          label: 'Type',
+          options: [
+            { label: 'Action', value: 'action' },
+            { label: 'Investigation', value: 'investigation' },
+            { label: 'Inspiration', value: 'inspiration' },
+            { label: 'Immersion', value: 'immersion' },
+          ],
+          defaultValue: 'action',
+        }),
+        description: fields.text({
+          label: 'Description',
+          multiline: true,
+          validation: { isRequired: true },
+        }),
+        image: fields.image({
+          label: 'Illustration image',
+          directory: 'public/images/accompagnements/en',
+          publicPath: '/images/accompagnements/en/',
+          validation: { isRequired: true },
+        }),
+        content: fields.markdoc({
+          label: 'Content',
+          options: {
+            bold: true,
+            italic: true,
+            heading: [2, 3, 4],
+            link: true,
+            divider: true,
+            image: {
+              directory: 'public/images/accompagnements/en',
+              publicPath: '/images/accompagnements/en/',
+            },
+          },
+          components: {
+            Banner,
+            Carousel,
+            Duo,
+            Hero,
+            WideImage,
+            CtaButton,
+            Strip,
+            NotaBene,
+            YouTube,
+            Accordion,
+            Quadrifoglio,
+            PdfViewer,
+            Table,
+          },
+        }),
+        metaTitle: fields.text({ label: 'Meta Title', validation: { isRequired: false } }),
+        metaDescription: fields.text({
+          label: 'Meta Description',
+          multiline: true,
+          validation: { isRequired: false },
+        }),
+        USP1: fields.text({ label: 'USP 1', validation: { isRequired: false } }),
+        USP2: fields.text({ label: 'USP 2', validation: { isRequired: false } }),
+        USP3: fields.text({ label: 'USP 3', validation: { isRequired: false } }),
+        USP4: fields.text({ label: 'USP 4', validation: { isRequired: false } }),
+        USP5: fields.text({ label: 'USP 5', validation: { isRequired: false } }),
+      },
+    }),
+
+    faqFR: collection({
+      label: 'FAQ 🇫🇷',
+      path: 'src/content/faqFR/*',
       format: { contentField: 'answer' },
       columns: ['question', 'category'],
       slugField: 'seoSlug',
@@ -484,24 +663,16 @@ export default config({
         }),
         question: fields.text({ label: 'Question' }),
         answer: fields.markdoc({
-          label: 'Answer',
+          label: 'Réponse',
           options: {
             bold: true,
             italic: true,
             heading: [2, 3, 4],
             link: true,
             divider: true,
-            image: { directory: 'public/images/faq', publicPath: '/images/faq/' },
+            image: { directory: 'public/images/faq/fr', publicPath: '/images/faq/fr/' },
           },
           components: { Duo, YouTube },
-        }),
-        lang: fields.select({
-          label: 'Langue',
-          options: [
-            { label: 'Français', value: 'fr' },
-            { label: 'English', value: 'en' },
-          ],
-          defaultValue: 'fr',
         }),
         metaTitle: fields.text({ label: 'Meta Title', validation: { isRequired: false } }),
         metaDescription: fields.text({ label: 'Meta Description', multiline: true }),
@@ -522,6 +693,54 @@ export default config({
         }),
         order: fields.number({
           label: 'Niveau de priorité (0=min)',
+          validation: { isRequired: false },
+        }),
+      },
+    }),
+
+    faqEN: collection({
+      label: 'FAQ 🇬🇧',
+      path: 'src/content/faqEN/*',
+      format: { contentField: 'answer' },
+      columns: ['question', 'category'],
+      slugField: 'seoSlug',
+      schema: {
+        seoSlug: fields.text({
+          label: 'SEO Slug',
+          validation: { isRequired: true },
+        }),
+        question: fields.text({ label: 'Question' }),
+        answer: fields.markdoc({
+          label: 'Answer',
+          options: {
+            bold: true,
+            italic: true,
+            heading: [2, 3, 4],
+            link: true,
+            divider: true,
+            image: { directory: 'public/images/faq/en', publicPath: '/images/faq/en/' },
+          },
+          components: { Duo, YouTube },
+        }),
+        metaTitle: fields.text({ label: 'Meta Title', validation: { isRequired: false } }),
+        metaDescription: fields.text({ label: 'Meta Description', multiline: true }),
+        jsonType: fields.select({
+          label: 'JSON-LD Type',
+          options: [
+            { label: 'Page', value: 'page' },
+            { label: 'Blog Article', value: 'blog' },
+            { label: 'FAQ', value: 'faq' },
+            { label: 'Service', value: 'accompagnements' },
+          ],
+          defaultValue: 'faq',
+        }),
+        category: fields.relationship({
+          label: 'Category',
+          collection: 'categories',
+          validation: { isRequired: false },
+        }),
+        order: fields.number({
+          label: 'Priority level (0=min)',
           validation: { isRequired: false },
         }),
       },

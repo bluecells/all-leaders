@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 import LayoutFaq from '../layouts/LayoutFaq.astro';
 import LayoutFaqShort from '../layouts/LayoutFaqShort.astro';
 import { findAlternateUrls, type AlternateUrls } from '@/utils/hreflang';
+import { getAllArticles, getAllAccompagnements, getAllFaqs, getLang } from '@/utils/collections';
 
 const pathname = Astro.url.pathname.replace(/^\/|\/$/g, '');
 let ContentComponent: any = null;
@@ -86,10 +87,10 @@ if (route === 'blog' || rawPath === 'en/blog') {
 
 /* 3️⃣ Chargement collections */
 const [articles, faq, landingPages, accompagnements] = await Promise.all([
-  getCollection('articles'),
-  getCollection('faq'),
+  getAllArticles(),
+  getAllFaqs(),
   getCollection('landing-pages'),
-  getCollection('accompagnements'),
+  getAllAccompagnements(),
 ]);
 
 let entry = null;
@@ -105,10 +106,8 @@ if (route.startsWith(resourcesSegment + '/')) {
   const articleSlug = parts.slice(2).join('/');
 
   // Charger toutes les catégories une fois
-  const allCategories = await getCollection('category');
+  const allCategories = await getCollection('categories');
 
-  console.log(`[ARTICLES DEBUG] Looking for: lang=${lang}, categorySlug=${categorySlug}, articleSlug=${articleSlug}`);
-  console.log(`[ARTICLES DEBUG] Total articles: ${articles.length}`);
 
   entry = articles.find((a) => {
     const rawSlug = a.data.seoSlug || a.id.split('/').pop()?.replace(/\.(mdoc|md|mdx)$/, '');
@@ -116,21 +115,18 @@ if (route.startsWith(resourcesSegment + '/')) {
 
     // Debug first article
     if (articles.indexOf(a) === 0) {
-      console.log(`[ARTICLES DEBUG] First article: id=${a.id}, lang=${a.data.lang}, seoSlug=${a.data.seoSlug}, cleanSlug=${cleanSlug}, category=${a.data.category}`);
     }
 
-    if (a.data.lang !== lang || cleanSlug !== articleSlug) return false;
+    if (getLang(a) !== lang || cleanSlug !== articleSlug) return false;
 
     // Trouver la catégorie de cet article
     const catEntry = allCategories.find((c) => c.data.cat_id === a.data.category);
     if (!catEntry) {
-      console.log(`[ARTICLES DEBUG] Category not found: ${a.data.category}`);
       return false;
     }
 
     // Vérifier le slug localisé
     const catSlugLocalized = catEntry.data[`slug_${lang}`] || catEntry.data.slug_fr;
-    console.log(`[ARTICLES DEBUG] Category match check: ${catSlugLocalized} === ${categorySlug}`);
     return catSlugLocalized === categorySlug;
   });
   type = entry ? 'article' : null;
@@ -149,7 +145,7 @@ if (route.startsWith(resourcesSegment + '/')) {
 if (!entry) {
   entry = landingPages.find((lp) => {
     const cleanSlug = (lp.data.seoSlug || lp.id)?.replace(/^\/|\/$/g, '');
-    return lp.data.lang === lang && cleanSlug === route;
+    return getLang(lp) === lang && cleanSlug === route;
   });
   type = entry ? 'landing-page' : null;
 }
@@ -174,7 +170,7 @@ if (!entry && route.startsWith('faq/')) {
 
     entry = faq.find((f) => {
       const cleanSlug = (f.data.seoSlug || f.id.split('/').pop()?.replace('.mdoc', ''))?.replace(/^\/|\/$/g, '');
-      return f.data.lang === lang && cleanSlug === searchSlug;
+      return getLang(f) === lang && cleanSlug === searchSlug;
     });
     type = entry ? 'faq' : null;
   }
@@ -198,7 +194,7 @@ if (!entry) {
 // Calculer les URLs alternatives pour hreflang
 let alternateUrls: AlternateUrls | null = null;
 if (entry && type) {
-  const allCategories = await getCollection('category');
+  const allCategories = await getCollection('categories');
   alternateUrls = await findAlternateUrls(entry, type, {
     articles,
     accompagnements,
