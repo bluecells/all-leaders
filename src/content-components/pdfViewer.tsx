@@ -35,13 +35,6 @@ export const PdfViewer = block({
       defaultValue: '600px',
       validation: { isRequired: false },
     }),
-
-    // Champ legacy pour compatibilité backward
-    url: fields.text({
-      label: '[OBSOLÈTE] URL du PDF (ancien format)',
-      description: 'Ancien champ, utilisez "Source du PDF" ci-dessus',
-      validation: { isRequired: false },
-    }),
   },
 
   ContentView: ({ value }: { value: any }) => {
@@ -80,10 +73,6 @@ export const PdfViewer = block({
         displaySource = 'En attente d\'upload...';
         sourceType = 'Upload';
       }
-    } else if (value?.url) {
-      // Fallback pour ancien format
-      displaySource = value.url;
-      sourceType = 'URL (ancien format)';
     }
 
     return (

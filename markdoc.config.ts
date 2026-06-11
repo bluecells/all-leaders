@@ -327,10 +327,6 @@ export default defineMarkdocConfig({
           required: false,
           default: 'url',
         },
-        url: {
-          type: String,
-          required: false,
-        },
         externalUrl: {
           type: String,
           required: false,
