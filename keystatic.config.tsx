@@ -345,7 +345,7 @@ export default config({
       schema: {
         title: fields.slug({
           name: {
-            label: 'Page title',
+            label: 'Page Title',
             description: "The browser tab name",
           },
           slug: {
@@ -655,7 +655,7 @@ export default config({
       path: 'src/content/faqFR/*',
       format: { contentField: 'answer' },
       columns: ['question', 'category'],
-      slugField: 'seoSlug',
+      slugField: 'question',
       schema: {
         seoSlug: fields.text({
           label: 'Slug SEO',
@@ -703,7 +703,7 @@ export default config({
       path: 'src/content/faqEN/*',
       format: { contentField: 'answer' },
       columns: ['question', 'category'],
-      slugField: 'seoSlug',
+      slugField: 'question',
       schema: {
         seoSlug: fields.text({
           label: 'SEO Slug',
@@ -815,7 +815,7 @@ export default config({
         description_fr: fields.text({ label: 'Description 🇫🇷', multiline: true }),
 
         name_en: fields.text({
-          label: 'Nom affiché 🇬🇧',
+          label: 'Displayed name 🇬🇧',
           validation: { isRequired: true },
         }),
 
