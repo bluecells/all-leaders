@@ -346,7 +346,7 @@ export default config({
         title: fields.slug({
           name: {
             label: 'Page Title',
-            description: "The browser tab name",
+            description: 'The browser tab name',
           },
           slug: {
             label: 'Internal slug',
@@ -360,22 +360,22 @@ export default config({
         seoSlug: fields.text({
           label: 'Public slug',
           validation: { isRequired: false },
-          description: "The visible slug (end of URL). Must be SEO-friendly.",
+          description: 'The visible slug (end of URL). Must be SEO-friendly.',
         }),
         metaTitle: fields.text({
           label: 'Meta Title',
           validation: { isRequired: false },
-          description: "60 characters max for optimal Google display",
+          description: '60 characters max for optimal Google display',
         }),
         metaDescription: fields.text({
           label: 'Meta Description',
           multiline: true,
-          description: "120-160 characters recommended for optimal Google display",
+          description: '120-160 characters recommended for optimal Google display',
           validation: { isRequired: false },
         }),
         ogImage: fields.image({
           label: 'Open Graph Image',
-          description: "The image displayed on Facebook, WhatsApp, X...",
+          description: 'The image displayed on Facebook, WhatsApp, X...',
           directory: 'public/images/articles/en',
           publicPath: '/images/articles/en/',
           validation: { isRequired: false },
@@ -395,7 +395,7 @@ export default config({
         }),
         publishDate: fields.date({
           label: 'Publication date',
-          description: "The date when the article will be shown as published",
+          description: 'The date when the article will be shown as published',
           defaultValue: { kind: 'today' },
         }),
         featured: fields.checkbox({ label: 'Featured article', defaultValue: false }),
@@ -407,7 +407,7 @@ export default config({
             validation: { isRequired: false },
           }),
           alt: fields.text({
-            label: "Image alt text",
+            label: 'Image alt text',
             validation: { isRequired: false },
           }),
         }),
@@ -655,8 +655,17 @@ export default config({
       path: 'src/content/faqFR/*',
       format: { contentField: 'answer' },
       columns: ['question', 'category'],
-      slugField: 'question',
+      slugField: 'slug',
+
       schema: {
+        slug: fields.slug({
+          name: {
+            label: 'Question',
+          },
+          slug: {
+            label: 'Slug',
+          },
+        }),
         seoSlug: fields.text({
           label: 'Slug SEO',
           validation: { isRequired: true },
@@ -703,8 +712,17 @@ export default config({
       path: 'src/content/faqEN/*',
       format: { contentField: 'answer' },
       columns: ['question', 'category'],
-      slugField: 'question',
+      slugField: 'slug',
+
       schema: {
+        slug: fields.slug({
+          name: {
+            label: 'Question',
+          },
+          slug: {
+            label: 'Slug',
+          },
+        }),
         seoSlug: fields.text({
           label: 'SEO Slug',
           validation: { isRequired: true },
@@ -795,7 +813,7 @@ export default config({
       label: '🏷️ Catégories articles & faq',
       path: 'src/content/categories/*',
       format: { data: 'yaml' },
-      columns: ['name_fr'],
+      columns: ['name_fr', 'name_en'],
       slugField: 'cat_id',
       schema: {
         cat_id: fields.text({
@@ -804,7 +822,7 @@ export default config({
         }),
 
         name_fr: fields.text({
-          label: 'Nom affiché 🇫🇷',
+          label: 'Nom 🇫🇷',
           validation: { isRequired: true },
         }),
 
@@ -815,7 +833,7 @@ export default config({
         description_fr: fields.text({ label: 'Description 🇫🇷', multiline: true }),
 
         name_en: fields.text({
-          label: 'Displayed name 🇬🇧',
+          label: 'Nom 🇬🇧',
           validation: { isRequired: true },
         }),
 
@@ -834,7 +852,7 @@ export default config({
       label: '🏷️ Tags ',
       path: 'src/content/tags/*',
       format: { data: 'yaml' },
-      columns: ['name_fr'],
+      columns: ['name_fr', 'name_en'],
       slugField: 'cat_id',
       schema: {
         cat_id: fields.text({
@@ -854,7 +872,7 @@ export default config({
         description_fr: fields.text({ label: 'Description 🇫🇷', multiline: true }),
 
         name_en: fields.text({
-          label: 'Name 🇬🇧',
+          label: 'Nom 🇬🇧',
           validation: { isRequired: true },
         }),
 
