@@ -6,39 +6,40 @@ import { useEffect, useState } from 'react';
 export const PdfViewer = block({
   label: 'PDF Viewer',
   schema: {
-    pdfSource: fields.conditional(
-      fields.select({
-        label: 'Source du PDF',
-        options: [
-          { label: 'URL externe', value: 'url' },
-          { label: 'Upload fichier', value: 'upload' },
-        ],
-        defaultValue: 'url',
-      }),
-      {
-        url: fields.object({
-          externalUrl: fields.text({
-            label: 'URL du PDF',
-            description:
-              'URL complète (ex: https://domaine.com/doc/fichier.pdf) ou chemin local (ex: /documents/fichier.pdf)',
-            validation: { isRequired: true },
-          }),
-        }),
-        upload: fields.object({
-          file: fields.file({
-            label: 'Fichier PDF',
-            description: 'Téléversez un fichier PDF (max 10MB recommandé)',
-            directory: 'public/documents',
-            publicPath: '/documents/',
-            validation: { isRequired: true },
-          }),
-        }),
-      }
-    ),
+    pdfMode: fields.select({
+      label: 'Source du PDF',
+      options: [
+        { label: 'URL externe', value: 'url' },
+        { label: 'Upload fichier', value: 'upload' },
+      ],
+      defaultValue: 'url',
+    }),
+
+    externalUrl: fields.text({
+      label: 'URL du PDF',
+      description: 'URL complète (ex: https://domaine.com/doc/fichier.pdf) ou chemin local (ex: /documents/fichier.pdf)',
+      validation: { isRequired: false },
+    }),
+
+    file: fields.file({
+      label: 'Fichier PDF',
+      description: 'Téléversez un fichier PDF (max 10MB recommandé)',
+      directory: 'public/documents',
+      publicPath: '/documents/',
+      validation: { isRequired: false },
+    }),
+
     height: fields.text({
       label: 'Hauteur',
       description: 'Hauteur du viewer (ex: 600px, 80vh)',
       defaultValue: '600px',
+      validation: { isRequired: false },
+    }),
+
+    // Champ legacy pour compatibilité backward
+    url: fields.text({
+      label: '[OBSOLÈTE] URL du PDF (ancien format)',
+      description: 'Ancien champ, utilisez "Source du PDF" ci-dessus',
       validation: { isRequired: false },
     }),
   },
@@ -49,8 +50,8 @@ export const PdfViewer = block({
     // Gestion du preview pour fichier uploadé
     useEffect(() => {
       // Si mode upload avec fichier uploadé
-      if (value?.pdfSource?.discriminant === 'upload' && value?.pdfSource?.value?.file?.data) {
-        const fileData = value.pdfSource.value.file;
+      if (value?.pdfMode === 'upload' && value?.file?.data) {
+        const fileData = value.file;
         const blob = new Blob([fileData.data], {
           type: 'application/pdf',
         });
@@ -62,21 +63,21 @@ export const PdfViewer = block({
       } else {
         setPdfPreviewSrc(null);
       }
-    }, [value?.pdfSource]);
+    }, [value?.file, value?.pdfMode]);
 
     // Déterminer la source du PDF pour affichage
     let displaySource = '';
     let sourceType = '';
 
-    if (value?.pdfSource?.discriminant === 'url') {
-      displaySource = value.pdfSource.value.externalUrl || '';
+    if (value?.pdfMode === 'url') {
+      displaySource = value.externalUrl || '';
       sourceType = 'URL externe';
-    } else if (value?.pdfSource?.discriminant === 'upload') {
-      if (pdfPreviewSrc) {
-        displaySource = value.pdfSource.value.file?.filename || 'fichier.pdf';
+    } else if (value?.pdfMode === 'upload') {
+      if (value?.file?.filename) {
+        displaySource = value.file.filename;
         sourceType = 'Fichier uploadé';
       } else {
-        displaySource = "En attente d'upload...";
+        displaySource = 'En attente d\'upload...';
         sourceType = 'Upload';
       }
     } else if (value?.url) {

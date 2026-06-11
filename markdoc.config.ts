@@ -319,16 +319,23 @@ export default defineMarkdocConfig({
         class: { type: String },
       },
     },
-    Pdf: {
+    PdfViewer: {
       render: component('./src/components/UI/PdfViewer.astro'),
       attributes: {
-        // Nouveau format conditionnel
-        pdfSource: {
-          type: Object,
+        pdfMode: {
+          type: String,
+          required: false,
+          default: 'url',
+        },
+        url: {
+          type: String,
           required: false,
         },
-        // Ancien format legacy
-        url: {
+        externalUrl: {
+          type: String,
+          required: false,
+        },
+        file: {
           type: String,
           required: false,
         },

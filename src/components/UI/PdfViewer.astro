@@ -1,33 +1,33 @@
 ---
 interface Props {
-  // Nouveau format conditionnel
-  pdfSource?: {
-    discriminant: 'url' | 'upload';
-    value: {
-      externalUrl?: string;
-      file?: string;
-    };
-  };
+  // Mode sélectionné
+  pdfMode?: 'url' | 'upload';
 
   // Ancien format legacy
   url?: string;
 
+  // Nouveau format : URL externe
+  externalUrl?: string;
+
+  // Nouveau format : fichier uploadé
+  file?: string;
+
   height?: string;
 }
 
-const { pdfSource, url, height = '600px' } = Astro.props;
+const { pdfMode = 'url', url, externalUrl, file, height = '600px' } = Astro.props;
 
-// Déterminer la source du PDF
+// Déterminer la source du PDF avec priorité
 let pdfSrc = '';
 
-if (pdfSource?.discriminant === 'url') {
-  // Mode URL
-  pdfSrc = pdfSource.value.externalUrl || '';
-} else if (pdfSource?.discriminant === 'upload') {
-  // Mode upload
-  pdfSrc = pdfSource.value.file || '';
+if (pdfMode === 'url' && externalUrl) {
+  // Mode URL : priorité à externalUrl du nouveau format
+  pdfSrc = externalUrl;
+} else if (pdfMode === 'upload' && file) {
+  // Mode upload : fichier uploadé du nouveau format
+  pdfSrc = file;
 } else if (url) {
-  // Fallback vers ancien format
+  // Fallback : ancien format legacy
   pdfSrc = url;
 }
 
