@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
+import { getAllFaqs, getLang } from '@/utils/collections';
 
 interface Props {
   lang: 'fr' | 'en';
@@ -10,9 +11,9 @@ interface Props {
 const { lang, fullBleed = false } = Astro.props;
 
 // Récupérer toutes les FAQs dans la langue spécifiée
-const allFaqs = await getCollection('faq');
+const allFaqs = await getAllFaqs();
 const faqs = allFaqs
-  .filter((faq) => faq.data.lang === lang)
+  .filter((faq) => getLang(faq) === lang)
   .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 
 // Grouper les FAQs par catégorie
@@ -29,7 +30,7 @@ const faqsByCategory = faqs.reduce(
 );
 
 // Obtenir les catégories pour afficher les noms traduits
-const categories = await getCollection('category');
+const categories = await getCollection('categories');
 const categoryMap = new Map(
   categories.map((cat) => [
     cat.data.slug_fr,
