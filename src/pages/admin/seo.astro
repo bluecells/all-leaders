@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { getAllArticles, getAllAccompagnements, getAllFaqs, getLang } from '../../utils/collections';
 import Layout from '../../layouts/Layout.astro';
 import {
   HOME,
@@ -26,10 +27,10 @@ import {
 
 const [articles, landingPages, accompagnements, faq, accompagnementsCategories] = await Promise.all(
   [
-    getCollection('articles'),
+    getAllArticles(),
     getCollection('landing-pages'),
-    getCollection('accompagnements'),
-    getCollection('faq'),
+    getAllAccompagnements(),
+    getAllFaqs(),
     getCollection('accompagnements-categories'),
   ]
 );
@@ -279,7 +280,7 @@ const allEntries = [
   // Gérer les pages Astro et les collections différemment
   const isAstroPage = 'path' in entry && !('data' in entry);
 
-  const lang = isAstroPage ? entry.lang : entry.data.lang || 'it';
+  const lang = isAstroPage ? entry.lang : getLang(entry) || 'fr';
   const seoSlug = isAstroPage ? undefined : (entry.data.seoSlug as string | undefined);
   const metaTitle = isAstroPage ? entry.metaTitle : (entry.data.metaTitle as string | undefined);
   const metaDescription = isAstroPage

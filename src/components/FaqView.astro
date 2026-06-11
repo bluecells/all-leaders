@@ -1,7 +1,7 @@
 ---
 // FaqView.astro
 // Composant conteneur FAQ avec filtres et limite
-import { getCollection } from "astro:content"
+import { getAllFaqs } from "@/utils/collections"
 import FAQ from "../components/FAQ.astro"
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
 const { category, limit, showReadMore = true } = Astro.props
 
 // Récupérer toutes les FAQ
-let faqs = (await getCollection("faq")).sort((a, b) => {
+let faqs = (await getAllFaqs()).sort((a, b) => {
   const orderA = a.data.order || 0
   const orderB = b.data.order || 0
   return orderB - orderA

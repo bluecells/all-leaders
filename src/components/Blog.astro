@@ -1,5 +1,6 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
+import { getAllArticles, getLang } from '@/utils/collections';
 import { blogTranslations } from '@/data/translations';
 
 interface Props {
@@ -17,11 +18,11 @@ const {
   cardsPerRowDesktop = 4,
   articlesPerPage = 10,
 } = Astro.props;
-const validLang = lang === 'fr' || lang === 'en' ? lang : 'it';
+const validLang = lang === 'fr' || lang === 'en' ? lang : 'fr';
 const t = blogTranslations[validLang as keyof typeof blogTranslations];
 
 // Récupérer tous les articles dans la langue demandée
-const allArticles = await getCollection('articles', ({ data }) => data.lang === validLang);
+const allArticles = (await getAllArticles()).filter((article) => getLang(article) === validLang);
 
 // Trier par date descendante
 const sortedArticles = allArticles.sort(
@@ -37,7 +38,7 @@ const categorySlugs = new Set<string>(
 );
 
 const categoriesEntries = await Promise.all(
-  Array.from(categorySlugs).map((slug) => getEntry('category', slug))
+  Array.from(categorySlugs).map((slug) => getEntry('categories', slug))
 );
 
 const categoriesMap = new Map<string, Awaited<ReturnType<typeof getEntry>>>(

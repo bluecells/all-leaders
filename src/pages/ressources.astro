@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
+import { getAllArticles, getLang } from '@/utils/collections';
 import { RESOURCES } from '../consts';
 import Layout from '../layouts/Layout.astro';
 import BlogSection from '../components/Blog.astro';
 
 // Récupérer articles FR pour JSON-LD
-const allArticles = await getCollection('articles', ({ data }) => data.lang === 'fr');
+const allArticles = (await getAllArticles()).filter((article) => getLang(article) === 'fr');
 const recentArticles = allArticles
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 10);
