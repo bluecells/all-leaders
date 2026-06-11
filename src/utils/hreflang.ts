@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { getLang } from './collections';
 
 /**
  * Interface pour les URLs alternatives dans les 2 langues du site
@@ -49,7 +50,7 @@ export function buildPageUrl(
  * Construit l'URL d'un accompagnement dans une langue donnée
  */
 export function buildAccompagnementUrl(
-  accompagnement: CollectionEntry<'accompagnements'>,
+  accompagnement: CollectionEntry<'accompagnementsFR' | 'accompagnementsEN'>,
   lang: 'fr' | 'en',
   categorieSlug?: string | null
 ): string {
@@ -76,7 +77,7 @@ export const buildServiceUrl = buildAccompagnementUrl;
  * Les articles ont une structure: /ressources/{categorySlug}/{articleSlug} (FR) ou /en/resources/{categorySlug}/{articleSlug} (EN)
  */
 export function buildArticleUrl(
-  article: CollectionEntry<'articles'>,
+  article: CollectionEntry<'articlesFR' | 'articlesEN'>,
   lang: 'fr' | 'en',
   categories: CollectionEntry<'category'>[]
 ): string {
@@ -152,12 +153,12 @@ function getBaseFilename(entryId: string): string {
  * @returns Les URLs alternatives pour FR, EN (null si pas de traduction)
  */
 export async function findAlternateUrls(
-  entry: CollectionEntry<'articles' | 'accompagnements' | 'faq'>,
+  entry: CollectionEntry<'articlesFR' | 'articlesEN' | 'accompagnementsFR' | 'accompagnementsEN' | 'faqFR' | 'faqEN'>,
   entryType: 'article' | 'accompagnement' | 'faq',
   collections: {
-    articles: CollectionEntry<'articles'>[];
-    accompagnements: CollectionEntry<'accompagnements'>[];
-    faq: CollectionEntry<'faq'>[];
+    articles: CollectionEntry<'articlesFR' | 'articlesEN'>[];
+    accompagnements: CollectionEntry<'accompagnementsFR' | 'accompagnementsEN'>[];
+    faq: CollectionEntry<'faqFR' | 'faqEN'>[];
     categories?: CollectionEntry<'category'>[];
     accompagnementsCategories?: CollectionEntry<'accompagnements-categories'>[];
   }
@@ -193,13 +194,13 @@ export async function findAlternateUrls(
     // Pour les accompagnements, matcher par image (identifiant commun entre FR/EN)
     if (entryType === 'accompagnement') {
       matchingEntry = collection.find((e) => {
-        return e.data.lang === lang && e.data.image === entry.data.image;
+        return getLang(e) === lang && e.data.image === entry.data.image;
       });
     } else {
       // Pour articles et FAQ, matcher par nom de fichier
       matchingEntry = collection.find((e) => {
         const eBaseFilename = getBaseFilename(e.id);
-        return e.data.lang === lang && eBaseFilename === baseFilename;
+        return getLang(e) === lang && eBaseFilename === baseFilename;
       });
     }
 

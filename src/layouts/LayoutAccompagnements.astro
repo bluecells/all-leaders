@@ -21,7 +21,9 @@ const rendered = await render(accompagnement);
 const Content = rendered.Content;
 
 // Path image compatible Keystatic
-const imageUrl = data.image?.startsWith('/images/') ? data.image : `/images/services/${data.image}`;
+const imageUrl = data.image?.startsWith('/images/')
+  ? data.image
+  : `/images/accompagnements/${data.image}`;
 ---
 
 <Layout

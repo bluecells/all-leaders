@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { getAllAccompagnements, getLang } from '@/utils/collections';
 
 interface Props {
   lang: 'fr' | 'en';
@@ -9,11 +10,11 @@ interface Props {
 
 const { lang, category, fullBleed = false } = Astro.props;
 
-let accompagnements = await getCollection('accompagnements');
+let accompagnements = await getAllAccompagnements();
 const allCategories = await getCollection('accompagnements-categories');
 
 // Filtrer par langue
-accompagnements = accompagnements.filter((item) => item.data.lang === lang);
+accompagnements = accompagnements.filter((item) => getLang(item) === lang);
 
 // Filtrer par catégorie si spécifiée
 if (category) {

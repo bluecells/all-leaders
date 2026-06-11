@@ -77,8 +77,10 @@ function extractMetadata() {
       }
 
       // Remove quotes if present
-      if ((imagePath.startsWith("'") || imagePath.startsWith('"')) &&
-          (imagePath.endsWith("'") || imagePath.endsWith('"'))) {
+      if (
+        (imagePath.startsWith("'") || imagePath.startsWith('"')) &&
+        (imagePath.endsWith("'") || imagePath.endsWith('"'))
+      ) {
         imagePath = imagePath.slice(1, -1);
       }
 
@@ -93,8 +95,8 @@ function extractMetadata() {
         slug,
         currentImagePath: imagePath,
         currentImageFullPath: currentFullPath,
-        newImagePath: `/images/services/${lang}/${slug}/image${ext}`,
-        newImageFullPath: `public/images/services/${lang}/${slug}/image${ext}`,
+        newImagePath: `/images/accompagnements/${lang}/${slug}/image${ext}`,
+        newImageFullPath: `public/images/accompagnements/${lang}/${slug}/image${ext}`,
         imageExists,
         extension: ext,
       });
@@ -103,7 +105,9 @@ function extractMetadata() {
     }
   }
 
-  console.log(`   ✓ ${mapping.filter(m => m.collection === 'services').length} accompagnements processed\n`);
+  console.log(
+    `   ✓ ${mapping.filter((m) => m.collection === 'services').length} accompagnements processed\n`
+  );
 
   // === ARTICLES ===
   console.log('📝 Processing articles...');
@@ -150,8 +154,10 @@ function extractMetadata() {
       }
 
       // Remove quotes
-      if ((imagePath.startsWith("'") || imagePath.startsWith('"')) &&
-          (imagePath.endsWith("'") || imagePath.endsWith('"'))) {
+      if (
+        (imagePath.startsWith("'") || imagePath.startsWith('"')) &&
+        (imagePath.endsWith("'") || imagePath.endsWith('"'))
+      ) {
         imagePath = imagePath.slice(1, -1);
       }
 
@@ -176,13 +182,12 @@ function extractMetadata() {
     }
   }
 
-  console.log(`   ✓ ${mapping.filter(m => m.collection === 'articles').length} articles processed\n`);
+  console.log(
+    `   ✓ ${mapping.filter((m) => m.collection === 'articles').length} articles processed\n`
+  );
 
   // Save mapping
-  fs.writeFileSync(
-    'migration-lang-mapping.json',
-    JSON.stringify(mapping, null, 2)
-  );
+  fs.writeFileSync('migration-lang-mapping.json', JSON.stringify(mapping, null, 2));
 
   // Summary
   const byCollection = {};
@@ -190,7 +195,7 @@ function extractMetadata() {
   let missingImages = 0;
   let uniqueImages = new Set();
 
-  mapping.forEach(m => {
+  mapping.forEach((m) => {
     byCollection[m.collection] = (byCollection[m.collection] || 0) + 1;
     byLang[m.lang] = (byLang[m.lang] || 0) + 1;
     if (!m.imageExists) missingImages++;
@@ -206,7 +211,7 @@ function extractMetadata() {
 
   if (errors.length > 0) {
     console.log(`\n⚠️  ${errors.length} warning(s):`);
-    errors.forEach(err => console.log(`   - ${err}`));
+    errors.forEach((err) => console.log(`   - ${err}`));
   }
 
   console.log('\n✅ Mapping saved to: migration-lang-mapping.json');

@@ -129,15 +129,7 @@ declare module 'astro:content' {
 		: any;
 
 	type DataEntryMap = {
-		"accompagnements": Record<string, {
-  id: string;
-  body?: string;
-  collection: "accompagnements";
-  data: InferEntrySchema<"accompagnements">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"accompagnements-categories": Record<string, {
+		"accompagnements-categories": Record<string, {
   id: string;
   body?: string;
   collection: "accompagnements-categories";
@@ -145,67 +137,59 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"articles": Record<string, {
+"accompagnementsEN": Record<string, {
   id: string;
   body?: string;
-  collection: "articles";
-  data: InferEntrySchema<"articles">;
+  collection: "accompagnementsEN";
+  data: InferEntrySchema<"accompagnementsEN">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"category": Record<string, {
+"accompagnementsFR": Record<string, {
   id: string;
   body?: string;
-  collection: "category";
-  data: InferEntrySchema<"category">;
+  collection: "accompagnementsFR";
+  data: InferEntrySchema<"accompagnementsFR">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"faq": Record<string, {
+"articlesEN": Record<string, {
   id: string;
   body?: string;
-  collection: "faq";
-  data: InferEntrySchema<"faq">;
+  collection: "articlesEN";
+  data: InferEntrySchema<"articlesEN">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"landing-pages": Record<string, {
+"articlesFR": Record<string, {
   id: string;
   body?: string;
-  collection: "landing-pages";
-  data: InferEntrySchema<"landing-pages">;
+  collection: "articlesFR";
+  data: InferEntrySchema<"articlesFR">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"menu": Record<string, {
+"categories": Record<string, {
   id: string;
   body?: string;
-  collection: "menu";
-  data: InferEntrySchema<"menu">;
+  collection: "categories";
+  data: InferEntrySchema<"categories">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"modalites-intervention": Record<string, {
+"faqEN": Record<string, {
   id: string;
   body?: string;
-  collection: "modalites-intervention";
-  data: InferEntrySchema<"modalites-intervention">;
+  collection: "faqEN";
+  data: InferEntrySchema<"faqEN">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"redirects": Record<string, {
+"faqFR": Record<string, {
   id: string;
   body?: string;
-  collection: "redirects";
-  data: InferEntrySchema<"redirects">;
-  rendered?: RenderedContent;
-  filePath?: string;
-}>;
-"tags": Record<string, {
-  id: string;
-  body?: string;
-  collection: "tags";
-  data: InferEntrySchema<"tags">;
+  collection: "faqFR";
+  data: InferEntrySchema<"faqFR">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;

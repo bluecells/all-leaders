@@ -1,7 +1,8 @@
 // src/pages/sitemap.xml.ts
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { SITE } from '@/consts'; // Assure-toi que SITE.url = 'https://all-leaders.fr'
+import { SITE } from '@/consts';
+import { getAllArticles, getAllAccompagnements, getAllFaqs, getLang } from '@/utils/collections';
 
 export const GET: APIRoute = async ({ site }) => {
   const baseUrl = site?.toString() ?? SITE.URL ?? 'https://all-leaders.fr';
@@ -14,9 +15,9 @@ export const GET: APIRoute = async ({ site }) => {
     categories,
     accompagnementsCategories,
   ] = await Promise.all([
-    getCollection('articles'),
-    getCollection('accompagnements'),
-    getCollection('faq'),
+    getAllArticles(),
+    getAllAccompagnements(),
+    getAllFaqs(),
     getCollection('landing-pages'),
     getCollection('categories'),
     getCollection('accompagnements-categories'),
@@ -43,7 +44,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   // Articles (avec catégorie slug localisée)
   for (const article of articles) {
-    const lang = article.data.lang as 'fr' | 'en';
+    const lang = getLang(article);
     const cat = categories.find((c) => c.data.cat_id === article.data.category);
     if (!cat) continue;
 
@@ -65,8 +66,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   // Accompagnements
   for (const accompagnement of accompagnements) {
-    const lang = accompagnement.data.lang as 'fr' | 'en' | undefined;
-    if (!lang) continue; // Skip accompagnements sans langue définie
+    const lang = getLang(accompagnement);
 
     // Always match against name_fr since all accompagnements store their category in French
     const catEntry = accompagnementsCategories.find((c) =>
@@ -95,7 +95,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   // Landing pages (même logique que pages)
   for (const lp of landingPages) {
-    const lang = lp.data.lang as 'fr' | 'en';
+    const lang = getLang(lp);
     const slug = (lp.data.seoSlug || lp.id)?.replace(/^\/|\/$/g, '');
     const path = lang === 'fr' ? `/${slug}` : `/en/${slug}`;
     urls.push(urlEntry(path, new Date(), '0.7', 'monthly'));
@@ -103,7 +103,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   // FAQ (structure simplifiée: /faq/{faqSlug})
   for (const faq of faqs) {
-    const lang = faq.data.lang as 'fr' | 'en';
+    const lang = getLang(faq);
     const faqSlug = (faq.data.seoSlug || faq.id.split('/').pop()?.replace('.mdoc', ''))?.replace(/^\/|\/$/g, '');
 
     const path = lang === 'fr' ? `/faq/${faqSlug}` : `/${lang}/faq/${faqSlug}`;

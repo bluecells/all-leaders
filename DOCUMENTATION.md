@@ -1301,12 +1301,14 @@ public/images/
 ### 18.2 Modes de fonctionnement
 
 **Mode local (développement):**
+
 - Storage: `kind: 'local'`
 - Images stockées dans `public/images/` localement
 - Les images NE SONT PAS synchronisées avec GitHub
 - À utiliser pour: développement code, tests de composants
 
 **Mode GitHub (production):**
+
 - Storage: `kind: 'github'`
 - Images uploadées via https://all-leaders.fr/keystatic
 - Keystatic commit automatiquement dans le repo GitHub
@@ -1332,11 +1334,13 @@ public/images/
 #### Éviter les conflits:
 
 ❌ **Ne JAMAIS faire:**
+
 - Ajouter des images en local puis les commiter manuellement
 - Éditer le même contenu en local ET en prod simultanément
 - Modifier manuellement les chemins d'images dans les .mdoc
 
 ✅ **Toujours faire:**
+
 - Ajouter les images via l'interface prod (mode GitHub)
 - Faire `git pull` avant de travailler localement
 - Utiliser la branche `main` pour le contenu, des branches de feature pour le code
@@ -1379,25 +1383,25 @@ public/images/
 ```typescript
 // Accompagnements - directory parent (organisation manuelle requise)
 image: fields.image({
-  directory: 'public/images/services',
-  publicPath: '/images/services/',
-  label: 'Image (Organisez en /fr/{slug}/ ou /en/{slug}/)'
-})
+  directory: 'public/images/accompagnements',
+  publicPath: '/images/accompagnements/',
+  label: 'Image (Organisez en /fr/{slug}/ ou /en/{slug}/)',
+});
 
 // Articles - directory parent
 featuredPhoto: fields.object({
   image: fields.image({
     directory: 'public/images/articles',
     publicPath: '/images/articles/',
-    label: 'Image mise en avant (Organisez en /fr/{slug}/ ou /en/{slug}/)'
-  })
-})
+    label: 'Image mise en avant (Organisez en /fr/{slug}/ ou /en/{slug}/)',
+  }),
+});
 
 // Composants - répertoire partagé
 image: fields.image({
   directory: 'public/images/content',
-  publicPath: '/images/content/'
-})
+  publicPath: '/images/content/',
+});
 ```
 
 ⚠️ **Limitation Keystatic:** Les champs `directory` et `publicPath` n'acceptent que des **strings statiques**, pas de placeholders dynamiques (`{lang}`, `{slug}`). Pour cette raison, l'organisation manuelle en sous-dossiers par langue/slug est requise lors de l'upload d'images.

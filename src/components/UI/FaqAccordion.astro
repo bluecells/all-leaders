@@ -1,19 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
+import { getAllFaqs, getLang } from '@/utils/collections';
 
 interface Props {
   category?: string;
-  lang?: string;
+  lang?: 'fr' | 'en';
   allowMultiple?: boolean;
 }
 
-const { category, lang = 'it', allowMultiple = true } = Astro.props;
+const { category, lang = 'fr', allowMultiple = true } = Astro.props;
 
 // Récupérer toutes les FAQ de la collection
-const allFaqs = await getCollection('faq');
+const allFaqs = await getAllFaqs();
 
 // Filtrer par langue
-let faqs = allFaqs.filter((faq) => faq.data.lang === lang);
+let faqs = allFaqs.filter((faq) => getLang(faq) === lang);
 
 // Filtrer par catégorie si spécifiée
 if (category) {

@@ -4,7 +4,7 @@ import path from 'path';
 const mapping = [];
 
 // Find all image.* files in services
-const servicesDir = 'public/images/services';
+const servicesDir = 'public/images/accompagnements';
 
 function walkServices(dir) {
   const files = fs.readdirSync(dir);
@@ -23,19 +23,19 @@ function walkServices(dir) {
           const slugPath = path.join(filePath, slug);
           if (fs.statSync(slugPath).isDirectory()) {
             // Found slug directory
-            const imageFiles = fs.readdirSync(slugPath).filter(f => f.startsWith('image.'));
+            const imageFiles = fs.readdirSync(slugPath).filter((f) => f.startsWith('image.'));
 
             if (imageFiles.length > 0) {
               const imageName = imageFiles[0];
               const ext = path.extname(imageName);
-              const newImagePath = `/images/services/${lang}/${slug}/image${ext}`;
+              const newImagePath = `/images/accompagnements/${lang}/${slug}/image${ext}`;
 
               mapping.push({
                 collection: 'services',
                 lang,
                 slug,
                 newImagePath,
-                imageFile: imageName
+                imageFile: imageName,
               });
             }
           }
@@ -69,7 +69,7 @@ function walkArticles(dir) {
           const slugPath = path.join(filePath, slug);
           if (fs.statSync(slugPath).isDirectory()) {
             // Found slug directory
-            const imageFiles = fs.readdirSync(slugPath).filter(f => f.startsWith('image.'));
+            const imageFiles = fs.readdirSync(slugPath).filter((f) => f.startsWith('image.'));
 
             if (imageFiles.length > 0) {
               const imageName = imageFiles[0];
@@ -81,7 +81,7 @@ function walkArticles(dir) {
                 lang,
                 slug,
                 newImagePath,
-                imageFile: imageName
+                imageFile: imageName,
               });
             }
           }
@@ -96,8 +96,8 @@ function walkArticles(dir) {
 walkArticles(articlesDir);
 
 console.log(`Found ${mapping.length} actual images on disk:`);
-console.log(`  - Services: ${mapping.filter(m => m.collection === 'services').length}`);
-console.log(`  - Articles: ${mapping.filter(m => m.collection === 'articles').length}`);
+console.log(`  - Services: ${mapping.filter((m) => m.collection === 'services').length}`);
+console.log(`  - Articles: ${mapping.filter((m) => m.collection === 'articles').length}`);
 
 fs.writeFileSync('disk-image-mapping.json', JSON.stringify(mapping, null, 2), 'utf8');
 console.log(`\nSaved to disk-image-mapping.json`);

@@ -1,13 +1,13 @@
 // utils/faq.ts
-import { getCollection } from 'astro:content';
+import { getAllFaqs, getLang } from './collections';
 
-export async function getFaqQuestions({ lang, category }: { lang?: string; category?: string }) {
-  const allFaqs = await getCollection('faq');
+export async function getFaqQuestions({ lang, category }: { lang?: 'fr' | 'en'; category?: string }) {
+  const allFaqs = await getAllFaqs();
 
   let faqs = allFaqs;
 
   if (lang) {
-    faqs = faqs.filter((f) => f.data.lang === lang);
+    faqs = faqs.filter((f) => getLang(f) === lang);
   }
 
   if (category) {

@@ -5,13 +5,13 @@ import { readdirSync, lstatSync } from 'fs';
 // Mapping des anciens chemins vers nouveaux
 const pathMappings = {
   '/images/content/': '/images/articles/',
-  '/images/services/': '/images/accompagnements/',
+  '/images/accompagnements/': '/images/accompagnements/',
 };
 
 function getAllMdocFiles(dir, fileList = []) {
   const files = readdirSync(dir);
 
-  files.forEach(file => {
+  files.forEach((file) => {
     const filePath = path.join(dir, file);
     if (lstatSync(filePath).isDirectory()) {
       getAllMdocFiles(filePath, fileList);
@@ -62,7 +62,7 @@ function migrateFile(filePath) {
 }
 
 function main() {
-  console.log('🚀 Migration des chemins d\'images...\n');
+  console.log("🚀 Migration des chemins d'images...\n");
 
   // Migrer les articles
   console.log('📝 Articles...');

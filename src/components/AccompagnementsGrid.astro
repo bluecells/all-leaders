@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
+import { getAllAccompagnements, getLang } from '@/utils/collections';
 
 interface Props {
   lang: 'fr' | 'en';
@@ -13,7 +14,7 @@ const { lang, category, fullBleed = false } = Astro.props;
 
 // 1. Récupération des données
 const [allAccompagnements, allCategories] = await Promise.all([
-  getCollection('accompagnements'),
+  getAllAccompagnements(),
   getCollection('accompagnements-categories')
 ]);
 
@@ -29,8 +30,8 @@ allCategories.forEach(cat => {
 });
 
 // 3. Filtrage et tri des données
-const filteredAccompagnements = allAccompagnements.filter(item => 
-  item.data.lang === lang && (!category || item.data.category === category)
+const filteredAccompagnements = allAccompagnements.filter(item =>
+  getLang(item) === lang && (!category || item.data.category === category)
 );
 
 // 4. Extraction et tri des noms de catégories présentes

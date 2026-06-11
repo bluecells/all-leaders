@@ -3,16 +3,16 @@ import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import LayoutAccompagnements from '../../../layouts/LayoutAccompagnements.astro';
 import { findAlternateUrls } from '../../../utils/hreflang';
+import { getAllAccompagnements } from '../../../utils/collections';
 
 export const prerender = true;
 
 export const getStaticPaths = (async () => {
-  const accompagnements = await getCollection('accompagnements');
+  const accompagnements = await getCollection('accompagnementsFR');
   const categories = await getCollection('accompagnements-categories');
 
-  // Filtrer uniquement les accompagnements français
+  // Tous les accompagnements sont déjà français (pas besoin de filtrer)
   return accompagnements
-    .filter((acc) => acc.data.lang === 'fr')
     .map((accompagnement) => {
       // Trouver la catégorie correspondante
       const category = categories.find(
@@ -34,13 +34,13 @@ export const getStaticPaths = (async () => {
 
 // Récupérer les données côté page
 const { accompagnementId, categoryId } = Astro.props;
-const accompagnements = await getCollection('accompagnements');
+const accompagnements = await getAllAccompagnements();
 const categories = await getCollection('accompagnements-categories');
 
 const accompagnement = accompagnements.find((a) => a.id === accompagnementId);
 const category = categories.find((c) => c.id === categoryId);
 
-if (!accompagnement || accompagnement.data.lang !== 'fr') {
+if (!accompagnement) {
   return Astro.redirect('/accompagnements');
 }
 

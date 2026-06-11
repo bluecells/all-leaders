@@ -1,12 +1,13 @@
 ---
 import Layout from './Layout.astro';
-import { render, getCollection } from 'astro:content';
+import { render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { AlternateUrls } from '@/utils/hreflang';
+import { getAllFaqs, getLang } from '@/utils/collections';
 
 interface Props {
-  faq: CollectionEntry<'faq'>;
-  lang?: 'it' | 'fr' | 'en';
+  faq: CollectionEntry<'faqFR' | 'faqEN'>;
+  lang?: 'fr' | 'en';
   alternateUrls?: AlternateUrls | null;
 }
 
@@ -18,9 +19,10 @@ const { Content } = await render(faq);
 const pageTitle = data.question;
 
 // Get all FAQs for navigation
-const allFaqs = await getCollection('faq');
+const allFaqs = await getAllFaqs();
+const currentLang = getLang(faq);
 const sameLangFaqs = allFaqs
-  .filter((f) => f.data.lang === data.lang && f.data.category === data.category)
+  .filter((f) => getLang(f) === currentLang && f.data.category === data.category)
   .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
 
 const currentIndex = sameLangFaqs.findIndex((f) => f.id === faq.id);

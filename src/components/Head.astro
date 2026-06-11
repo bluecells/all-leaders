@@ -4,6 +4,7 @@ import JsonLd from '@/components/JsonLd.astro';
 import GoogleTagManager from '@/components/GoogleTagManager.astro';
 import { SITE } from '@/consts';
 import { commonTranslations } from '@/data/translations';
+import { getLang } from '@/utils/collections';
 import type { AlternateUrls } from '@/utils/hreflang';
 import type { JsonLdType } from '@/types/jsonLd';
 import type { CollectionEntry } from 'astro:content';
@@ -27,7 +28,7 @@ interface Props {
     serviceType?: string;
     areaServed?: string;
   };
-  blogPosts?: Array<CollectionEntry<'articles'>>;
+  blogPosts?: Array<CollectionEntry<'articlesFR' | 'articlesEN'>>;
   alternateUrls?: AlternateUrls | null;
 }
 
@@ -256,13 +257,18 @@ const ogLocale = localeMap[lang] || commonTranslations.fr.localeCode;
       title={title}
       description={finalMetaDescription}
       url={`${SITE.URL}${Astro.url.pathname}`}
-      posts={blogPosts.map((post) => ({
-        title: post.data.title,
-        description: post.data.metaDescription || post.data.excerpt || '',
-        url: `${SITE.URL}/${post.data.lang}/articles/${post.data.seoSlug || post.slug}`,
-        date: post.data.publishDate,
-        image: post.data.ogImage,
-      }))}
+      posts={blogPosts.map((post) => {
+        const postLang = getLang(post);
+        const resourcesSegment = postLang === 'fr' ? 'ressources' : 'resources';
+        const prefix = postLang === 'fr' ? '' : '/en';
+        return {
+          title: post.data.title,
+          description: post.data.metaDescription || post.data.excerpt || '',
+          url: `${SITE.URL}${prefix}/${resourcesSegment}/${post.data.seoSlug || post.slug}`,
+          date: post.data.publishDate,
+          image: post.data.ogImage,
+        };
+      })}
     />
   )
 }
