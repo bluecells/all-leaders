@@ -99,7 +99,7 @@ export default config({
     }),
     redirects: singleton({
       label: 'Redirects',
-      path: 'src/content/redirects',
+      path: 'src/content/redirects.yaml',
       format: { data: 'yaml' },
       schema: {
         redirects: fields.array(
@@ -280,7 +280,7 @@ export default config({
         featured: fields.checkbox({ label: 'Article en vue', defaultValue: false }),
         featuredPhoto: fields.object({
           image: fields.image({
-            label: 'Image mise en avant (Organisez en /fr/{slug}/)',
+            label: 'Image mise en avant',
             directory: 'public/images/articles/fr',
             publicPath: '/images/articles/fr/',
             validation: { isRequired: false },
