@@ -41,11 +41,11 @@ const getCategoryName = (category: string, lang: string) => {
   return categoryTranslations[category]?.[lang] || category;
 };
 
-const categoryName = getCategoryName(data.category || '', data.lang as 'fr' | 'en');
+const categoryName = getCategoryName(data.category || '', currentLang);
 const categorySlug = data.category?.toLowerCase().replace(/\s+/g, '-') || '';
 
 // Build URLs
-const baseUrl = data.lang === 'fr' ? '' : `/${data.lang}`;
+const baseUrl = currentLang === 'fr' ? '' : `/${currentLang}`;
 const categoryPageUrl = `${baseUrl}/faq`;
 const prevFaqUrl = previousFaq ? `${baseUrl}/faq/${previousFaq.data.seoSlug}` : null;
 const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
@@ -53,7 +53,7 @@ const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
 
 <Layout
   title={pageTitle}
-  lang={data.lang as 'it' | 'fr' | 'en'}
+  lang={currentLang as 'it' | 'fr' | 'en'}
   metaTitle={data.metaTitle}
   metaDescription={data.metaDescription}
   ogImage={data.ogImage}
@@ -78,7 +78,7 @@ const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
       <!-- Category Link -->
       <div class="faq-footer">
         <a href={`${categoryPageUrl}#${categorySlug}`} class="category-link">
-          {data.lang === 'fr' ? '← Retour aux FAQ' : '← Back to'}
+          {currentLang === 'fr' ? '← Retour aux FAQ' : '← Back to'}
           {categoryName}
         </a>
       </div>
@@ -92,7 +92,7 @@ const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
             {previousFaq ? (
               <a href={prevFaqUrl} class="nav-button nav-prev">
                 <span class="nav-label">
-                  {data.lang === 'fr' ? 'Question précédente' : 'Previous'}
+                  {currentLang === 'fr' ? 'Question précédente' : 'Previous'}
                 </span>
                 <span class="nav-title">{previousFaq.data.question}</span>
               </a>
@@ -102,7 +102,7 @@ const nextFaqUrl = nextFaq ? `${baseUrl}/faq/${nextFaq.data.seoSlug}` : null;
 
             {nextFaq ? (
               <a href={nextFaqUrl} class="nav-button nav-next">
-                <span class="nav-label">{data.lang === 'fr' ? 'Question suivante' : 'Next'}</span>
+                <span class="nav-label">{currentLang === 'fr' ? 'Question suivante' : 'Next'}</span>
                 <span class="nav-title">{nextFaq.data.question}</span>
               </a>
             ) : (
