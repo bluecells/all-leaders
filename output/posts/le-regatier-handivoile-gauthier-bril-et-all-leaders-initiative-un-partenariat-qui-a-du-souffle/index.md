@@ -1,9 +1,9 @@
 ---
-title: "Le régatier Handivoile Gauthier Bril et All Leaders Initiative, un partenariat qui a du souffle !"
+title: 'Le régatier Handivoile Gauthier Bril et All Leaders Initiative, un partenariat qui a du souffle !'
 date: 2024-05-23
-categories: 
-  - "inspiration"
-coverImage: "GB1.jpg"
+categories:
+  - 'inspiration'
+coverImage: 'GB1.jpg'
 ---
 
 ## Depuis l’an dernier, All Leaders Initiative soutient Gauthier Bril dans son engagement en sport de haut niveau, tout en faisant avec sa situation de handicap.
@@ -21,4 +21,4 @@ All Leaders Initiative , Association Des Pieds et Des Mains , DIRECT SAILING La 
 
 [gauthierbril@orange.fr](mailto:gauthierbril@orange.fr)
 
-![](images/GB-2.jpg)
+![](/images/articles/en/le-regatier-handivoile-gauthier-bril-et-all-leaders-initiative-un-partenariat-qui-a-du-souffle/image.jpg)
