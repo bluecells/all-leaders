@@ -923,5 +923,160 @@ HALOS
       transform-origin: center top;
       font-weight: 600;
     }
+
+    /* ==========================================
+ PARTNERS
+=========================================== */
+
+    .partners-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem auto;
+    }
+
+    .partners-list li {
+      padding: 1rem 0;
+    }
+
+    .partner-article {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 1.15rem;
+      border: 2px solid rgba(74, 103, 65, 0.1);
+      border-radius: 0.5rem;
+      text-align: center;
+      justify-items: center;
+    }
+
+    .partner-logo {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 2rem auto 0;
+    }
+
+    .partner-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .partner-content h1,
+    .partner-content h2,
+    .partner-content h3 {
+      text-align: center;
+    }
+
+    .partner-content h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .partner-article p {
+      text-align: center;
+    }
+
+    .partner-article a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 200ms;
+    }
+
+    .partner-article a:hover {
+      color: var(--color-brand-accent);
+    }
+
+    @media (min-width: 768px) {
+      .partner-article {
+        grid-template-columns: 1fr 3fr;
+        text-align: left;
+        justify-items: start;
+        gap: 2.5rem;
+        padding: 1.5rem;
+      }
+
+      .partner-logo {
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .partner-content {
+        align-items: flex-start;
+      }
+
+      .partner-content h1,
+      .partner-content h2,
+      .partner-content h3,
+      .partner-article p,
+      .partner-article a {
+        text-align: left;
+      }
+    }
+
+    /* ==========================================
+ FOUNDERS
+=========================================== */
+
+    .founders-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .founders-grid article {
+      padding: 1.5rem 1.5rem 1rem;
+      border: 1px solid rgba(74, 103, 65, 0.2);
+      border-radius: 0.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .founders-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ==========================================
+ VALUES
+=========================================== */
+
+    .values-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .values-image-left,
+    .values-image-right {
+      width: 100%;
+      background: rgba(197, 205, 221, 0.14);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .values-grid {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .values-section {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .values-image-left,
+      .values-image-right {
+        flex: 0 0 22%;
+      }
+
+      .values-grid {
+        flex: 1;
+      }
+    }
   </style>
 </Layout>
